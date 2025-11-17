@@ -10,8 +10,6 @@ import React from "react";
 
 export const DatePicker = ({
   onChange,
-  onMonthChange,
-  onYearChange,
   locale,
   holidays = [],
   value,
@@ -25,9 +23,8 @@ export const DatePicker = ({
       <Calendar
         monthYearSeparator="|"
         multiple={mode === "multiple"}
-        range={mode === "range"}
         value={
-          mode === "multiple" || mode === "range"
+          mode === "multiple"
             ? (Array.isArray(values) ? values : [values]).map(
                 (item: any) => item * 1000
               )
@@ -37,12 +34,6 @@ export const DatePicker = ({
           Array.isArray(value)
             ? onChange(value.map((item) => item.unix))
             : onChange(value.unix);
-        }}
-        onMonthChange={(value: DateObject) => {
-          onMonthChange(value.month);
-        }}
-        onYearChange={(value: DateObject) => {
-          onYearChange(value.year);
         }}
         className={cn("fragment", { "custom-day-cell": customDayCell })}
         {...(locale === "fa" && {
@@ -81,7 +72,7 @@ export const DatePicker = ({
                 isSelected: Array.isArray(selectedDate)
                   ? selectedDate.some(
                       (item) =>
-                        moment(+(item as DateObject)!.unix! * 1000)
+                        moment(+item.unix * 1000)
                           .startOf("day")
                           .unix() ==
                         moment(date.unix * 1000)
@@ -117,7 +108,7 @@ export const DatePicker = ({
             Array.isArray(selectedDate)
               ? selectedDate.some(
                   (item) =>
-                    moment(+(item as DateObject)!.unix! * 1000)
+                    moment(+item.unix * 1000)
                       .startOf("day")
                       .unix() ==
                     moment(date.unix * 1000)
@@ -139,12 +130,8 @@ export const datePickerMeta: CodeComponentMeta<any> = {
   name: "DatePicker",
   displayName: "Fragment/DatePicker",
   importPath: "@/fragment/components/date-picker",
-  section: "Fragment",
   props: {
-    value: {
-      type: "number",
-      hidden: (ps) => ps.mode === "multiple" || ps.mode === "range",
-    },
+    value: { type: "number", hidden: (ps) => ps.mode === "multiple" },
     values: {
       type: "array",
       hidden: (ps) => ps.mode === "single",
@@ -155,24 +142,6 @@ export const datePickerMeta: CodeComponentMeta<any> = {
       argTypes: [
         {
           name: "date",
-          type: "object",
-        },
-      ],
-    },
-    onMonthChange: {
-      type: "eventHandler",
-      argTypes: [
-        {
-          name: "month",
-          type: "object",
-        },
-      ],
-    },
-    onYearChange: {
-      type: "eventHandler",
-      argTypes: [
-        {
-          name: "year",
           type: "object",
         },
       ],
@@ -192,10 +161,6 @@ export const datePickerMeta: CodeComponentMeta<any> = {
         {
           label: "Multiple",
           value: "multiple",
-        },
-        {
-          label: "Range",
-          value: "range",
         },
       ],
     },
@@ -218,7 +183,7 @@ export const datePickerMeta: CodeComponentMeta<any> = {
       variableType: "number",
       valueProp: "value",
       onChangeProp: "onChange",
-      hidden: (ps) => ps.mode === "multiple" || ps.mode === "range",
+      hidden: (ps) => ps.mode === "multiple",
     },
     values: {
       type: "writable",
@@ -226,16 +191,6 @@ export const datePickerMeta: CodeComponentMeta<any> = {
       valueProp: "values",
       onChangeProp: "onChange",
       hidden: (ps) => ps.mode === "single",
-    },
-    month: {
-      type: "readonly",
-      variableType: "object",
-      onChangeProp: "onMonthChange",
-    },
-    year: {
-      type: "readonly",
-      variableType: "object",
-      onChangeProp: "onYearChange",
     },
   },
 };

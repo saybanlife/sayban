@@ -54,7 +54,6 @@ export const inputMeta: CodeComponentMeta<InputType> = {
   displayName: "Fragment/Input",
   importPath: "@/fragment/components/input",
   figmaMappings: [{ figmaComponentName: "Input" }],
-  section: "Fragment",
   props: {
     placeholder: "string",
     value: {

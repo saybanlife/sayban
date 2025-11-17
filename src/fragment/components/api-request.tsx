@@ -1,18 +1,9 @@
-/* eslint-disable react/display-name */
 "use client";
 
 import { CodeComponentMeta, useSelector } from "@plasmicapp/host";
-import {
-  ReactNode,
-  useEffect,
-  useState,
-  useId,
-  useImperativeHandle,
-  forwardRef,
-  useMemo,
-} from "react";
+import { ReactNode, useEffect, useState } from "react";
 import axios from "axios";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 
 type ApiRequestType = {
   method: "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
@@ -30,7 +21,7 @@ type ApiRequestType = {
   onSuccess?: (data: any) => void;
 };
 
-export const ApiRequest = forwardRef((props: ApiRequestType, ref) => {
+export const ApiRequest = (props: ApiRequestType) => {
   const {
     method = "GET",
     params,
@@ -47,23 +38,18 @@ export const ApiRequest = forwardRef((props: ApiRequestType, ref) => {
     onSuccess,
   } = props;
   const fragmentConfig = useSelector("Fragment");
-  const id = useId();
   const [isLoading, setIsLoading] = useState(false);
-  const fetchProps = useMemo(
-    () => ({
-      method,
-      url,
-      params,
-      body,
-      config: {
-        ...fragmentConfig?.apiConfig,
-        ...fragmentConfig?.previewApiConfig,
-        ...config,
-      },
-      id: id,
-    }),
-    [method, url, params, body, config, fragmentConfig, id]
-  );
+  const fetchProps = {
+    method,
+    url,
+    params,
+    body,
+    config: {
+      ...fragmentConfig?.apiConfig,
+      ...fragmentConfig?.previewApiConfig,
+      ...config,
+    },
+  };
   const { error } = useSWR(
     JSON.stringify(fetchProps),
     () => reuqestFn(fetchProps),
@@ -84,20 +70,6 @@ export const ApiRequest = forwardRef((props: ApiRequestType, ref) => {
       revalidateOnFocus: false,
       keepPreviousData: false,
     }
-  );
-
-  useImperativeHandle(
-    ref,
-    () => {
-      return {
-        refresh: () => {
-          mutate(JSON.stringify(fetchProps), () => reuqestFn(fetchProps), {
-            revalidate: true,
-          });
-        },
-      };
-    },
-    []
   );
 
   const reuqestFn = async ({ method, url, params, body, config }: any) => {
@@ -127,14 +99,13 @@ export const ApiRequest = forwardRef((props: ApiRequestType, ref) => {
     return errorDisplay;
   }
   return children;
-});
+};
 
 export const apiRequestMeta: CodeComponentMeta<ApiRequestType> = {
   name: "ApiRequest",
   displayName: "Fragment/ApiRequest",
   importPath: "@/fragment/components/api-request",
   figmaMappings: [{ figmaComponentName: "ApiRequest" }],
-  section: "Fragment",
   props: {
     method: {
       type: "choice",
@@ -224,12 +195,6 @@ export const apiRequestMeta: CodeComponentMeta<ApiRequestType> = {
           type: "boolean",
         },
       ],
-    },
-  },
-  refActions: {
-    refresh: {
-      argTypes: [],
-      displayName: "Refresh Data",
     },
   },
   classNameProp: "className",
