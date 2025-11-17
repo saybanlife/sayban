@@ -1,0 +1,74 @@
+.ariaInput:global(.__wab_instance) {
+  box-sizing: border-box;
+  box-shadow: inset 0px 0px 0px 2px var(--token-Yo4gdKCgyuAu);
+  color: var(--token-9M5jRUPt8Msb);
+  font-family: var(--token-8ld_RqqV9anD);
+  font-size: var(--token-ehIkf6s-dMLU);
+  line-height: var(--token-tyha1eTxLLSq);
+  width: 100%;
+  position: relative;
+  outline-style: none;
+  background: #1f2a23;
+  text-align: right;
+  min-width: 0;
+  border-radius: var(--token-6F5DR5OsTPi0);
+  padding: var(--token-6F5DR5OsTPi0) var(--token-UWj1h_kV6SQI);
+  border: 1px solid var(--token-ee2TuxDknsJj);
+}
+.ariaInput[data-disabled]:global(.__wab_instance) {
+  cursor: not-allowed;
+}
+.ariaInput[data-focused]:global(.__wab_instance) {
+  outline-style: solid;
+  outline-width: var(--token-I0Xtb9z7Q0X3);
+  outline-offset: 1px;
+  outline-color: var(--token-Yo4gdKCgyuAu);
+  box-shadow: none;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .ariaInput:global(.__wab_instance) {
+    box-shadow: none;
+  }
+}
+.ariaInputtype_soft:global(.__wab_instance) {
+  background: var(--token-liD1vsX_5V6S);
+  box-shadow: none;
+}
+.ariaInputtype_soft[data-hovered]:global(.__wab_instance) {
+  background: var(--token-EGJ4yk4AuJam);
+}
+.ariaInputtype_plain:global(.__wab_instance) {
+  box-shadow: none;
+}
+.ariaInputtype_plain[data-hovered]:global(.__wab_instance) {
+  background: var(--token-liD1vsX_5V6S);
+}
+.ariaInputflat_top:global(.__wab_instance) {
+  border-top-left-radius: 0rem;
+  border-top-right-radius: 0rem;
+}
+.ariaInputflat_right:global(.__wab_instance) {
+  border-top-right-radius: 0rem;
+  border-bottom-right-radius: 0rem;
+}
+.ariaInputflat_bottom:global(.__wab_instance) {
+  border-bottom-left-radius: 0rem;
+  border-bottom-right-radius: 0rem;
+}
+.ariaInputflat_left:global(.__wab_instance) {
+  border-top-left-radius: 0rem;
+  border-bottom-left-radius: 0rem;
+}
+.ariaInputpadded_left:global(.__wab_instance) {
+  padding-left: 2.5rem;
+}
+.ariaInputpadded_right:global(.__wab_instance) {
+  padding-right: 2.5rem;
+}
+.ariaInputsize_langh:global(.__wab_instance) {
+  font-size: var(--token-ehIkf6s-dMLU);
+  height: 2.8rem;
+}
+.ariaInputstyle2_rounded:global(.__wab_instance) {
+  border-radius: 50px;
+}

@@ -9,10 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^6.1.0",
+    "@ant-design/pro-components": "^2.6.4",
     "@growthbook/growthbook-react": "^1.0.0",
-    "@plasmicapp/cli": "^0.1.330",
+    "@plasmicapp/cli": "^0.1.348",
     "@plasmicapp/host": "^1.0.196",
     "@plasmicapp/react-web": "^0.2.337",
+    "@plasmicpkgs/antd5": "^0.0.308",
+    "@plasmicpkgs/plasmic-embed-css": "^0.1.213",
+    "@plasmicpkgs/plasmic-rich-components": "^1.0.224",
+    "@plasmicpkgs/react-aria": "^0.0.155",
+    "@plasmicpkgs/react-awesome-reveal": "^3.8.230",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-select": "^2.1.1",
     "@radix-ui/react-slider": "^1.2.0",
