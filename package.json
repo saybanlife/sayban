@@ -27,6 +27,7 @@
     "axios": "^1.7.2",
     "clsx": "^2.1.1",
     "jalali-moment": "^3.3.11",
+    "swiper": "^11.0.0",
     "lucide-react": "^0.399.0",
     "next": "14.2.3",
     "react": "^18",
