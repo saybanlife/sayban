@@ -16,6 +16,7 @@
     "@plasmicapp/host": "^1.0.196",
     "@plasmicapp/react-web": "^0.2.337",
     "@plasmicpkgs/antd5": "^0.0.308",
+    "@plasmicpkgs/plasmic-basic-components": "^0.0.258",
     "@plasmicpkgs/plasmic-embed-css": "^0.1.213",
     "@plasmicpkgs/plasmic-rich-components": "^1.0.224",
     "@plasmicpkgs/react-aria": "^0.0.155",
@@ -27,7 +28,6 @@
     "axios": "^1.7.2",
     "clsx": "^2.1.1",
     "jalali-moment": "^3.3.11",
-    "swiper": "^11.0.0",
     "lucide-react": "^0.399.0",
     "next": "14.2.3",
     "react": "^18",
@@ -36,6 +36,7 @@
     "react-multi-date-picker": "^4.5.2",
     "react-timeit": "^1.2.12",
     "recharts": "^2.12.7",
+    "swiper": "^11.0.0",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"

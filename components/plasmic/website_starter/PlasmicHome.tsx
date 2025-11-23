@@ -195,12 +195,12 @@ function PlasmicHome__RenderFunc(props: {
             (() => {
               try {
                 return [
+                  { text: "حمایتی", value: "Supportive" },
+                  { text: "توانبخشی", value: "Rehabilitation" },
+                  { text: "درمانی", value: "Medical" },
                   { text: "تکمیل درمان", value: "Medical Completion" },
-                  { text: "خدمات رفاهی", value: "Welfare Services" },
-                  { text: "مشاوره آموزشی", value: "Educational Counseling" },
-                  { text: "پشتیبانی اداری", value: "Administrative Support" },
-                  { text: "فعالیت‌های ورزشی", value: "Sports Activities" },
-                  { text: "برنامه‌های تفریحی", value: "Recreational Programs" }
+                  { text: "رفاهی", value: "Welfare Services" },
+                  { text: "تفریحی و گردشگری", value: "Recreational & Tourism" }
                 ];
               } catch (e) {
                 if (
