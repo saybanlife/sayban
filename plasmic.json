@@ -740,7 +740,7 @@
     {
       "projectId": "qARqpE4p5tZmJuNxFbTaPz",
       "projectApiToken": "cDKkRfF5RiVAFLbajh9308RnxGTJzxnjlFmEe8MwkJKZL1qkkz7DvHkqKgPZww11XpYzbZEjA2wXkLl1Q",
-      "projectName": "Website starter",
+      "projectName": "sayban",
       "version": "latest",
       "cssFilePath": "plasmic/website_starter/plasmic.module.css",
       "components": [
@@ -1368,6 +1368,16 @@
           "id": "Sy9FntGzJUck",
           "name": "Icon20Icon",
           "moduleFilePath": "plasmic/website_starter/icons/PlasmicIcon__Icon20.tsx"
+        },
+        {
+          "id": "sT28siWhYupd",
+          "name": "Icon21Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon21.tsx"
+        },
+        {
+          "id": "5JSOkqxEUr2H",
+          "name": "Icon22Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon22.tsx"
         }
       ],
       "images": [

@@ -39,6 +39,7 @@
   justify-content: space-between;
   align-items: center;
   column-gap: var(--token-kD77h-2NGSqI);
+  background: var(--token-KPGXdu9o7llP);
   min-width: 0;
   padding: var(--token-kD77h-2NGSqI) var(--token-rfsFxiclAtek);
 }

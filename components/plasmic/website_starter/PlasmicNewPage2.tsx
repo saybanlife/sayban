@@ -63,6 +63,7 @@ import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import { SwiperSlider } from "@/components/SwiperSlider"; // plasmic-import: byElilYJKEPk/codeComponent
 import Topics from "../../Topics"; // plasmic-import: K08M_vX52xMI/component
 import { Iframe } from "@plasmicpkgs/plasmic-basic-components";
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -71,12 +72,22 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicNewPage2.module.css"; // plasmic-import: Lh-Py4-EsRhC/css
 
+import Icon21Icon from "../sayban/icons/PlasmicIcon__Icon21"; // plasmic-import: sT28siWhYupd/icon
+import Icon22Icon from "../sayban/icons/PlasmicIcon__Icon22"; // plasmic-import: 5JSOkqxEUr2H/icon
+import Icon12Icon from "./icons/PlasmicIcon__Icon12"; // plasmic-import: BFmheOgAQHY6/icon
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+
 createPlasmicElementProxy;
 
-export type PlasmicNewPage2__VariantMembers = {};
-export type PlasmicNewPage2__VariantsArgs = {};
+export type PlasmicNewPage2__VariantMembers = {
+  top: "top";
+};
+export type PlasmicNewPage2__VariantsArgs = {
+  top?: SingleBooleanChoiceArg<"top">;
+};
 type VariantPropType = keyof PlasmicNewPage2__VariantsArgs;
-export const PlasmicNewPage2__VariantProps = new Array<VariantPropType>();
+export const PlasmicNewPage2__VariantProps = new Array<VariantPropType>("top");
 
 export type PlasmicNewPage2__ArgsType = {};
 type ArgPropType = keyof PlasmicNewPage2__ArgsType;
@@ -88,6 +99,8 @@ export type PlasmicNewPage2__OverridesType = {
   swiperSlider?: Flex__<typeof SwiperSlider>;
   topics?: Flex__<typeof Topics>;
   iframe?: Flex__<typeof Iframe>;
+  link?: Flex__<"a"> & Partial<LinkProps>;
+  button?: Flex__<typeof Button>;
 };
 
 export interface DefaultNewPage2Props {}
@@ -177,6 +190,12 @@ function PlasmicNewPage2__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "top",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.top
       }
     ],
     [$props, $ctx, $refs]
@@ -200,198 +219,365 @@ function PlasmicNewPage2__RenderFunc(props: {
         }
       `}</style>
 
-      <div className={projectcss.plasmic_page_wrapper}>
+      <div
+        data-plasmic-name={"root"}
+        data-plasmic-override={overrides.root}
+        data-plasmic-root={true}
+        data-plasmic-for-node={forNode}
+        className={classNames(
+          projectcss.all,
+          projectcss.root_reset,
+          projectcss.plasmic_default_styles,
+          projectcss.plasmic_mixins,
+          styleTokensClassNames,
+          sty.root,
+          { [sty.roottop]: hasVariant($state, "top", "top") }
+        )}
+        onScroll={async event => {
+          const $steps = {};
+
+          $steps["runCode"] = true
+            ? (() => {
+                const actionArgs = {
+                  customFunction: async () => {
+                    return (() => {
+                      const section = event.currentTarget;
+                      const scrollY = section.scrollTop;
+                      const activateThreshold = 150;
+                      const deactivateThreshold = 20;
+                      if (scrollY >= activateThreshold && !$state.top) {
+                        $state.top = true;
+                        console.log("Activated:", true);
+                      }
+                      if (scrollY <= deactivateThreshold && $state.top) {
+                        $state.top = false;
+                        return console.log("Deactivated:", false);
+                      }
+                    })();
+                  }
+                };
+                return (({ customFunction }) => {
+                  return customFunction();
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["runCode"] != null &&
+            typeof $steps["runCode"] === "object" &&
+            typeof $steps["runCode"].then === "function"
+          ) {
+            $steps["runCode"] = await $steps["runCode"];
+          }
+        }}
+      >
+        <Header
+          data-plasmic-name={"header"}
+          data-plasmic-override={overrides.header}
+          className={classNames("__wab_instance", sty.header, {
+            [sty.headertop]: hasVariant($state, "top", "top")
+          })}
+          slot={
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__jcwIw,
+                { [sty.texttop__jcwIwY7HPh]: hasVariant($state, "top", "top") }
+              )}
+            >
+              {
+                "\u0645\u0631\u0627\u06a9\u0632 \u0628\u0647\u062f\u0627\u0634\u062a\u06cc"
+              }
+            </div>
+          }
+          soft={hasVariant($state, "top", "top") ? undefined : true}
+        />
+
         <div
-          data-plasmic-name={"root"}
-          data-plasmic-override={overrides.root}
-          data-plasmic-root={true}
-          data-plasmic-for-node={forNode}
-          className={classNames(
-            projectcss.all,
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
-            styleTokensClassNames,
-            sty.root
-          )}
+          className={classNames(projectcss.all, sty.freeBox__dmiWu, {
+            [sty.freeBoxtop__dmiWuY7HPh]: hasVariant($state, "top", "top")
+          })}
         >
-          <Header
-            data-plasmic-name={"header"}
-            data-plasmic-override={overrides.header}
-            className={classNames("__wab_instance", sty.header)}
-            slot={
+          <div className={classNames(projectcss.all, sty.freeBox__gmZ0T)}>
+            <SwiperSlider
+              data-plasmic-name={"swiperSlider"}
+              data-plasmic-override={overrides.swiperSlider}
+              activeBulletColor={"#ffffff"}
+              activeSlideIndex={generateStateValueProp($state, [
+                "swiperSlider",
+                "activeSlideIndex"
+              ])}
+              autoplay={true}
+              autoplayDelay={5000}
+              bulletColor={"#888888"}
+              className={classNames("__wab_instance", sty.swiperSlider, {
+                [sty.swiperSlidertop]: hasVariant($state, "top", "top")
+              })}
+              disablePaginationClick={false}
+              lockSlides={generateStateValueProp($state, [
+                "swiperSlider",
+                "lockSlides"
+              ])}
+              loop={true}
+              onActiveSlideIndexChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "swiperSlider",
+                  "activeSlideIndex"
+                ]).apply(null, eventArgs);
+              }}
+              onLockSlidesChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "swiperSlider",
+                  "lockSlides"
+                ]).apply(null, eventArgs);
+              }}
+              showNavigationButtons={false}
+              showPagination={true}
+            >
+              <PlasmicImg__
+                alt={""}
+                className={classNames(sty.img___1Llrg, {
+                  [sty.imgtop___1LlrgY7HPh]: hasVariant($state, "top", "top")
+                })}
+                displayHeight={
+                  hasVariant($state, "top", "top") ? "180px" : "180px"
+                }
+                displayMaxHeight={"none"}
+                displayMaxWidth={"100%"}
+                displayMinHeight={"0"}
+                displayMinWidth={"0"}
+                displayWidth={"auto"}
+                id={"image"}
+                loading={"lazy"}
+                src={{
+                  src: "/plasmic/website_starter/images/image7.png",
+                  fullWidth: 800,
+                  fullHeight: 297,
+                  aspectRatio: undefined
+                }}
+              />
+            </SwiperSlider>
+            <div
+              className={classNames(projectcss.all, sty.freeBox__vhvE, {
+                [sty.freeBoxtop__vhvEY7HPh]: hasVariant($state, "top", "top")
+              })}
+            >
+              <PlasmicImg__
+                alt={""}
+                className={classNames(sty.img__jXp5J, {
+                  [sty.imgtop__jXp5Jy7HPh]: hasVariant($state, "top", "top")
+                })}
+                displayHeight={"4rem"}
+                displayMaxHeight={"none"}
+                displayMaxWidth={"100%"}
+                displayMinHeight={"0"}
+                displayMinWidth={"0"}
+                displayWidth={"4rem"}
+                loading={"lazy"}
+                src={{
+                  src: "/plasmic/website_starter/images/image6.png",
+                  fullWidth: 224,
+                  fullHeight: 224,
+                  aspectRatio: undefined
+                }}
+              />
+
               <div
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__jcwIw
+                  sty.text__nheGt,
+                  {
+                    [sty.texttop__nheGtY7HPh]: hasVariant($state, "top", "top")
+                  }
                 )}
               >
-                {
-                  "\u0645\u0631\u0627\u06a9\u0632 \u0628\u0647\u062f\u0627\u0634\u062a\u06cc"
-                }
+                {"Enter some text"}
               </div>
-            }
-            soft={true}
-          />
-
-          <div className={classNames(projectcss.all, sty.freeBox__dmiWu)}>
-            <div className={classNames(projectcss.all, sty.freeBox__gmZ0T)}>
-              <SwiperSlider
-                data-plasmic-name={"swiperSlider"}
-                data-plasmic-override={overrides.swiperSlider}
-                activeBulletColor={"#ffffff"}
-                activeSlideIndex={generateStateValueProp($state, [
-                  "swiperSlider",
-                  "activeSlideIndex"
-                ])}
-                autoplay={true}
-                autoplayDelay={5000}
-                bulletColor={"#888888"}
-                className={classNames("__wab_instance", sty.swiperSlider)}
-                disablePaginationClick={false}
-                lockSlides={generateStateValueProp($state, [
-                  "swiperSlider",
-                  "lockSlides"
-                ])}
-                loop={true}
-                onActiveSlideIndexChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "swiperSlider",
-                    "activeSlideIndex"
-                  ]).apply(null, eventArgs);
-                }}
-                onLockSlidesChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "swiperSlider",
-                    "lockSlides"
-                  ]).apply(null, eventArgs);
-                }}
-                showNavigationButtons={false}
-                showPagination={true}
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__z4OCm,
+                  {
+                    [sty.texttop__z4OCmy7HPh]: hasVariant($state, "top", "top")
+                  }
+                )}
               >
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img___1Llrg)}
-                  displayHeight={"180px"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={{
-                    src: "/plasmic/website_starter/images/image7.png",
-                    fullWidth: 800,
-                    fullHeight: 297,
-                    aspectRatio: undefined
-                  }}
-                />
-              </SwiperSlider>
-              <div className={classNames(projectcss.all, sty.freeBox__vhvE)}>
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__jXp5J)}
-                  displayHeight={"4rem"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"4rem"}
-                  loading={"lazy"}
-                  src={{
-                    src: "/plasmic/website_starter/images/image6.png",
-                    fullWidth: 224,
-                    fullHeight: 224,
-                    aspectRatio: undefined
-                  }}
-                />
-
+                {"Enter some text"}
+              </div>
+              <section
+                className={classNames(projectcss.all, sty.section__owkIu, {
+                  [sty.sectiontop__owkIuy7HPh]: hasVariant($state, "top", "top")
+                })}
+              >
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__nheGt
-                  )}
+                  className={classNames(projectcss.all, sty.freeBox__tCriU, {
+                    [sty.freeBoxtop__tCriUy7HPh]: hasVariant(
+                      $state,
+                      "top",
+                      "top"
+                    )
+                  })}
                 >
-                  {"Enter some text"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__z4OCm
-                  )}
-                >
-                  {"Enter some text"}
-                </div>
-                <Topics
-                  data-plasmic-name={"topics"}
-                  data-plasmic-override={overrides.topics}
-                  className={classNames("__wab_instance", sty.topics)}
-                  data={generateStateValueProp($state, ["topics", "data"])}
-                  onDataChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, ["topics", "data"]).apply(
-                      null,
-                      eventArgs
-                    );
+                  <Topics
+                    data-plasmic-name={"topics"}
+                    data-plasmic-override={overrides.topics}
+                    className={classNames("__wab_instance", sty.topics, {
+                      [sty.topicstop]: hasVariant($state, "top", "top")
+                    })}
+                    data={generateStateValueProp($state, ["topics", "data"])}
+                    onDataChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "topics",
+                        "data"
+                      ]).apply(null, eventArgs);
 
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
-                    }
-                  }}
-                  onSelectedChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    onSelectedChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "topics",
+                        "selected"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    selected={generateStateValueProp($state, [
                       "topics",
                       "selected"
-                    ]).apply(null, eventArgs);
-
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
-                    }
-                  }}
-                  selected={generateStateValueProp($state, [
-                    "topics",
-                    "selected"
-                  ])}
-                />
-
-                <div className={classNames(projectcss.all, sty.freeBox__oy6N)}>
+                    ])}
+                  />
+                </div>
+              </section>
+              <div className={classNames(projectcss.all, sty.freeBox__oy6N)}>
+                <div className={classNames(projectcss.all, sty.freeBox__vvhoi)}>
                   <div
-                    className={classNames(projectcss.all, sty.freeBox__vvhoi)}
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___5Ois5
+                    )}
                   >
+                    {hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? "\u0627\u06cc\u0646 \u062f\u0631\u0645\u0627\u0646\u06af\u0627\u0647 \u0628\u0627 \u0627\u0631\u0627\u0626\u0647 \u062e\u062f\u0645\u0627\u062a \u0639\u0645\u0648\u0645\u06cc\u060c \u062a\u062e\u0635\u0635\u06cc \u0648 \u0627\u0648\u0631\u0698\u0627\u0646\u0633\u06cc \u062a\u0644\u0627\u0634 \u0645\u06cc\u200c\u06a9\u0646\u062f \u0646\u06cc\u0627\u0632\u0647\u0627\u06cc \u062f\u0631\u0645\u0627\u0646\u06cc \u0645\u0631\u0627\u062c\u0639\u06cc\u0646 \u0631\u0627 \u0628\u0635\u0648\u0631\u062a \u0633\u0631\u06cc\u0639 \u0648 \u062f\u0642\u06cc\u0642 \u0628\u0631\u0637\u0631\u0641 \u06a9\u0646\u062f. \u0631\u0639\u0627\u06cc\u062a \u0627\u062e\u0644\u0627\u0642 \u067e\u0632\u0634\u06a9\u06cc \u0648 \u062d\u0641\u0638 \u062d\u0631\u06cc\u0645 \u062e\u0635\u0648\u0635\u06cc \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0627\u0632 \u0627\u0648\u0644\u0648\u06cc\u062a\u200c\u0647\u0627\u06cc \u0627\u0635\u0644\u06cc \u0645\u0627\u0633\u062a.\n\r\n\r\n\u06a9\u0627\u062f\u0631 \u067e\u0632\u0634\u06a9\u06cc \u0645\u062a\u0634\u06a9\u0644 \u0627\u0632 \u067e\u0632\u0634\u06a9\u0627\u0646 \u0645\u062a\u062e\u0635\u0635 \u0648 \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646 \u0645\u062c\u0631\u0628 \u0627\u0633\u062a \u0648 \u062e\u062f\u0645\u0627\u062a \u062a\u0634\u062e\u06cc\u0635\u06cc \u0645\u0627\u0646\u0646\u062f \u0622\u0632\u0645\u0627\u06cc\u0634\u06af\u0627\u0647 \u0648 \u062a\u0635\u0648\u06cc\u0631\u0628\u0631\u062f\u0627\u0631\u06cc \u062f\u0631 \u0645\u062d\u0644 \u0627\u0631\u0627\u0626\u0647 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u0648 \u067e\u0630\u06cc\u0631\u0634 \u062d\u0636\u0648\u0631\u06cc \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0628\u0627\u0634\u062f."
+                      : "\u0627\u06cc\u0646 \u062f\u0631\u0645\u0627\u0646\u06af\u0627\u0647 \u0628\u0627 \u0627\u0631\u0627\u0626\u0647 \u062e\u062f\u0645\u0627\u062a \u0639\u0645\u0648\u0645\u06cc\u060c \u062a\u062e\u0635\u0635\u06cc \u0648 \u0627\u0648\u0631\u0698\u0627\u0646\u0633\u06cc \u062a\u0644\u0627\u0634 \u0645\u06cc\u200c\u06a9\u0646\u062f \u0646\u06cc\u0627\u0632\u0647\u0627\u06cc \u062f\u0631\u0645\u0627\u0646\u06cc \u0645\u0631\u0627\u062c\u0639\u06cc\u0646 \u0631\u0627 \u0628\u0635\u0648\u0631\u062a \u0633\u0631\u06cc\u0639 \u0648 \u062f\u0642\u06cc\u0642 \u0628\u0631\u0637\u0631\u0641 \u06a9\u0646\u062f. \u0631\u0639\u0627\u06cc\u062a \u0627\u062e\u0644\u0627\u0642 \u067e\u0632\u0634\u06a9\u06cc \u0648 \u062d\u0641\u0638 \u062d\u0631\u06cc\u0645 \u062e\u0635\u0648\u0635\u06cc \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0627\u0632 \u0627\u0648\u0644\u0648\u06cc\u062a\u200c\u0647\u0627\u06cc \u0627\u0635\u0644\u06cc \u0645\u0627\u0633\u062a.\n\n\r\n\r\n\u06a9\u0627\u062f\u0631 \u067e\u0632\u0634\u06a9\u06cc \u0645\u062a\u0634\u06a9\u0644 \u0627\u0632 \u067e\u0632\u0634\u06a9\u0627\u0646 \u0645\u062a\u062e\u0635\u0635 \u0648 \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646 \u0645\u062c\u0631\u0628 \u0627\u0633\u062a \u0648 \u062e\u062f\u0645\u0627\u062a \u062a\u0634\u062e\u06cc\u0635\u06cc \u0645\u0627\u0646\u0646\u062f \u0622\u0632\u0645\u0627\u06cc\u0634\u06af\u0627\u0647 \u0648 \u062a\u0635\u0648\u06cc\u0631\u0628\u0631\u062f\u0627\u0631\u06cc \u062f\u0631 \u0645\u062d\u0644 \u0627\u0631\u0627\u0626\u0647 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u0648 \u067e\u0630\u06cc\u0631\u0634 \u062d\u0636\u0648\u0631\u06cc \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0628\u0627\u0634\u062f."}
+                  </div>
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__fdjfu
+                  )}
+                >
+                  {""}
+                </div>
+                <div className={classNames(projectcss.all, sty.freeBox__jiz5)}>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox___2Gdl9)}
+                  >
+                    <Icon21Icon
+                      className={classNames(projectcss.all, sty.svg___0EBpn)}
+                      role={"img"}
+                    />
+
                     <div
                       className={classNames(
                         projectcss.all,
                         projectcss.__wab_text,
-                        sty.text___5Ois5
+                        sty.text__ybfEv
                       )}
                     >
-                      {hasVariant(globalVariants, "screen", "mobileOnly")
-                        ? "\u0627\u06cc\u0646 \u062f\u0631\u0645\u0627\u0646\u06af\u0627\u0647 \u0628\u0627 \u0627\u0631\u0627\u0626\u0647 \u062e\u062f\u0645\u0627\u062a \u0639\u0645\u0648\u0645\u06cc\u060c \u062a\u062e\u0635\u0635\u06cc \u0648 \u0627\u0648\u0631\u0698\u0627\u0646\u0633\u06cc \u062a\u0644\u0627\u0634 \u0645\u06cc\u200c\u06a9\u0646\u062f \u0646\u06cc\u0627\u0632\u0647\u0627\u06cc \u062f\u0631\u0645\u0627\u0646\u06cc \u0645\u0631\u0627\u062c\u0639\u06cc\u0646 \u0631\u0627 \u0628\u0635\u0648\u0631\u062a \u0633\u0631\u06cc\u0639 \u0648 \u062f\u0642\u06cc\u0642 \u0628\u0631\u0637\u0631\u0641 \u06a9\u0646\u062f. \u0631\u0639\u0627\u06cc\u062a \u0627\u062e\u0644\u0627\u0642 \u067e\u0632\u0634\u06a9\u06cc \u0648 \u062d\u0641\u0638 \u062d\u0631\u06cc\u0645 \u062e\u0635\u0648\u0635\u06cc \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0627\u0632 \u0627\u0648\u0644\u0648\u06cc\u062a\u200c\u0647\u0627\u06cc \u0627\u0635\u0644\u06cc \u0645\u0627\u0633\u062a.\n\r\n\r\n\u06a9\u0627\u062f\u0631 \u067e\u0632\u0634\u06a9\u06cc \u0645\u062a\u0634\u06a9\u0644 \u0627\u0632 \u067e\u0632\u0634\u06a9\u0627\u0646 \u0645\u062a\u062e\u0635\u0635 \u0648 \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646 \u0645\u062c\u0631\u0628 \u0627\u0633\u062a \u0648 \u062e\u062f\u0645\u0627\u062a \u062a\u0634\u062e\u06cc\u0635\u06cc \u0645\u0627\u0646\u0646\u062f \u0622\u0632\u0645\u0627\u06cc\u0634\u06af\u0627\u0647 \u0648 \u062a\u0635\u0648\u06cc\u0631\u0628\u0631\u062f\u0627\u0631\u06cc \u062f\u0631 \u0645\u062d\u0644 \u0627\u0631\u0627\u0626\u0647 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u0648 \u067e\u0630\u06cc\u0631\u0634 \u062d\u0636\u0648\u0631\u06cc \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0628\u0627\u0634\u062f."
-                        : "\u0627\u06cc\u0646 \u062f\u0631\u0645\u0627\u0646\u06af\u0627\u0647 \u0628\u0627 \u0627\u0631\u0627\u0626\u0647 \u062e\u062f\u0645\u0627\u062a \u0639\u0645\u0648\u0645\u06cc\u060c \u062a\u062e\u0635\u0635\u06cc \u0648 \u0627\u0648\u0631\u0698\u0627\u0646\u0633\u06cc \u062a\u0644\u0627\u0634 \u0645\u06cc\u200c\u06a9\u0646\u062f \u0646\u06cc\u0627\u0632\u0647\u0627\u06cc \u062f\u0631\u0645\u0627\u0646\u06cc \u0645\u0631\u0627\u062c\u0639\u06cc\u0646 \u0631\u0627 \u0628\u0635\u0648\u0631\u062a \u0633\u0631\u06cc\u0639 \u0648 \u062f\u0642\u06cc\u0642 \u0628\u0631\u0637\u0631\u0641 \u06a9\u0646\u062f. \u0631\u0639\u0627\u06cc\u062a \u0627\u062e\u0644\u0627\u0642 \u067e\u0632\u0634\u06a9\u06cc \u0648 \u062d\u0641\u0638 \u062d\u0631\u06cc\u0645 \u062e\u0635\u0648\u0635\u06cc \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0627\u0632 \u0627\u0648\u0644\u0648\u06cc\u062a\u200c\u0647\u0627\u06cc \u0627\u0635\u0644\u06cc \u0645\u0627\u0633\u062a.\n\n\r\n\r\n\u06a9\u0627\u062f\u0631 \u067e\u0632\u0634\u06a9\u06cc \u0645\u062a\u0634\u06a9\u0644 \u0627\u0632 \u067e\u0632\u0634\u06a9\u0627\u0646 \u0645\u062a\u062e\u0635\u0635 \u0648 \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646 \u0645\u062c\u0631\u0628 \u0627\u0633\u062a \u0648 \u062e\u062f\u0645\u0627\u062a \u062a\u0634\u062e\u06cc\u0635\u06cc \u0645\u0627\u0646\u0646\u062f \u0622\u0632\u0645\u0627\u06cc\u0634\u06af\u0627\u0647 \u0648 \u062a\u0635\u0648\u06cc\u0631\u0628\u0631\u062f\u0627\u0631\u06cc \u062f\u0631 \u0645\u062d\u0644 \u0627\u0631\u0627\u0626\u0647 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u0648 \u067e\u0630\u06cc\u0631\u0634 \u062d\u0636\u0648\u0631\u06cc \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0628\u0627\u0634\u062f."}
+                      {
+                        "\u0633\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u06cc"
+                      }
                     </div>
                   </div>
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__fdjfu
+                      sty.text__d4Bt4
                     )}
                   >
-                    {""}
+                    {
+                      "\u0634\u0646\u0628\u0647 \u062a\u0627 \u0686\u0647\u0627\u0631\u0634\u0646\u0628\u0647 \u06f8:\u06f0\u06f0 \u2014 \u06f1\u06f7:\u06f0\u06f0\r\n\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647 \u06f8:\u06f0\u06f0 \u2014 \u06f1\u06f3:\u06f0\u06f0"
+                    }
+                  </div>
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__oTps
+                  )}
+                >
+                  {""}
+                </div>
+                <div
+                  className={classNames(projectcss.all, sty.freeBox___2Sep5)}
+                >
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__ubpas)}
+                  >
+                    <Icon22Icon
+                      className={classNames(projectcss.all, sty.svg__jzgOs)}
+                      role={"img"}
+                    />
+
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__bvWyt
+                      )}
+                    >
+                      {
+                        "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u062a\u0645\u0627\u0633"
+                      }
+                    </div>
                   </div>
                   <div
-                    className={classNames(projectcss.all, sty.freeBox__bI7QF)}
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__qPbCk
+                    )}
                   >
+                    {"09155113179 - 05136212070"}
+                  </div>
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__jBiEt
+                  )}
+                >
+                  {""}
+                </div>
+                <div className={classNames(projectcss.all, sty.freeBox__bI7QF)}>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__nUjoc)}
+                  >
+                    <Icon12Icon
+                      className={classNames(projectcss.all, sty.svg__zUz9B)}
+                      role={"img"}
+                    />
+
                     <div
                       className={classNames(
                         projectcss.all,
@@ -401,60 +587,165 @@ function PlasmicNewPage2__RenderFunc(props: {
                     >
                       {"\u0622\u062f\u0631\u0633"}
                     </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__u3XPc
-                      )}
-                    >
-                      {
-                        "\u062a\u0647\u0631\u0627\u0646\u060c \u062e\u06cc\u0627\u0628\u0627\u0646 \u0645\u062b\u0627\u0644\u060c \u06a9\u0648\u0686\u0647 \u0633\u0644\u0627\u0645\u062a\u060c \u067e\u0644\u0627\u06a9 \u06f1\u06f2\r"
-                      }
-                    </div>
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__uic01)}
-                    >
-                      <Iframe
-                        data-plasmic-name={"iframe"}
-                        data-plasmic-override={overrides.iframe}
-                        className={classNames("__wab_instance", sty.iframe)}
-                        preview={true}
-                        src={
-                          "https://neshan.org/maps/iframe/places/561b97631f69386925aec8c6cb8db203#c36.359-59.519-22z-0p/36.35892372217095/59.51887408063869"
-                        }
-                        srcDoc={
-                          "<div><h3>Heading</h3><p>Example text...</p></div>"
-                        }
-                        useHtml={false}
-                      />
-                    </div>
                   </div>
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__kAdYb
+                      sty.text__u3XPc
                     )}
                   >
-                    {""}
+                    {
+                      "\u062a\u0647\u0631\u0627\u0646\u060c \u062e\u06cc\u0627\u0628\u0627\u0646 \u0645\u062b\u0627\u0644\u060c \u06a9\u0648\u0686\u0647 \u0633\u0644\u0627\u0645\u062a\u060c \u067e\u0644\u0627\u06a9 \u06f1\u06f2\r"
+                    }
+                  </div>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__uic01)}
+                  >
+                    <Iframe
+                      data-plasmic-name={"iframe"}
+                      data-plasmic-override={overrides.iframe}
+                      className={classNames("__wab_instance", sty.iframe)}
+                      preview={true}
+                      src={
+                        "https://neshan.org/maps/iframe/places/561b97631f69386925aec8c6cb8db203#c36.359-59.519-22z-0p/36.35892372217095/59.51887408063869"
+                      }
+                      srcDoc={
+                        "<div><h3>Heading</h3><p>Example text...</p></div>"
+                      }
+                      useHtml={false}
+                    />
+
+                    <PlasmicLink__
+                      data-plasmic-name={"link"}
+                      data-plasmic-override={overrides.link}
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.a,
+                        sty.link
+                      )}
+                      component={Link}
+                      href={(() => {
+                        try {
+                          return (() => {
+                            var lat = 36.35892372217095;
+                            var lng = 59.51887408063869;
+                            if (
+                              /iPhone|iPad|iPod/i.test(
+                                window.navigator.userAgent
+                              )
+                            ) {
+                              return `https://maps.apple.com/?q=${lat},${lng}`;
+                            } else if (
+                              /Mobi|Android/i.test(window.navigator.userAgent)
+                            ) {
+                              return `geo:${lat},${lng}?q=مرکز درمانی رازی`;
+                            } else {
+                              return `https://www.google.com/maps?q=${lat},${lng}`;
+                            }
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
+                      platform={"nextjs"}
+                      target={"_blank"}
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <section className={classNames(projectcss.all, sty.section__novko)}>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__cZmru
+            )}
+          >
+            {""}
+          </div>
+          <div className={classNames(projectcss.all, sty.freeBox__vEytZ)}>
+            <div className={classNames(projectcss.all, sty.freeBox__qyVud)}>
+              <div className={classNames(projectcss.all, sty.freeBox___9YXKs)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___49QVu
+                  )}
+                >
+                  {"Enter some text"}
+                </div>
+                <div className={classNames(projectcss.all, sty.freeBox__gEpo7)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__qJkM
+                    )}
+                  >
+                    {"1"}
+                  </div>
+                </div>
+              </div>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__kC5Qq
+                )}
+              >
+                {"Enter some text"}
+              </div>
+            </div>
+            <Button
+              data-plasmic-name={"button"}
+              data-plasmic-override={overrides.button}
+              className={classNames("__wab_instance", sty.button)}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__zl99I
+                  )}
+                >
+                  {"\u0631\u0632\u0631\u0648 \u0632\u0645\u0627\u0646"}
+                </div>
+              }
+            />
+          </div>
+        </section>
       </div>
     </React.Fragment>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "swiperSlider", "topics", "iframe"],
+  root: [
+    "root",
+    "header",
+    "swiperSlider",
+    "topics",
+    "iframe",
+    "link",
+    "button"
+  ],
   header: ["header"],
   swiperSlider: ["swiperSlider"],
   topics: ["topics"],
-  iframe: ["iframe"]
+  iframe: ["iframe"],
+  link: ["link"],
+  button: ["button"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -465,6 +756,8 @@ type NodeDefaultElementType = {
   swiperSlider: typeof SwiperSlider;
   topics: typeof Topics;
   iframe: typeof Iframe;
+  link: "a";
+  button: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -533,6 +826,8 @@ export const PlasmicNewPage2 = Object.assign(
     swiperSlider: makeNodeComponent("swiperSlider"),
     topics: makeNodeComponent("topics"),
     iframe: makeNodeComponent("iframe"),
+    link: makeNodeComponent("link"),
+    button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicNewPage2
     internalVariantProps: PlasmicNewPage2__VariantProps,
