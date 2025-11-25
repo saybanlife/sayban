@@ -59,8 +59,10 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { SwiperSlider } from "@/components/SwiperSlider"; // plasmic-import: byElilYJKEPk/codeComponent
 import ToolsItem from "../../ToolsItem"; // plasmic-import: M_mJLv9BDPmq/component
-import SearchItem from "../../SearchItem"; // plasmic-import: NOHnZeskf8Iu/component
+import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
+import Item from "../../Item"; // plasmic-import: lqR7VxT6h9YH/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -86,8 +88,10 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>("onSearchChange");
 
 export type PlasmicHome__OverridesType = {
   root?: Flex__<"div">;
+  swiperSlider2?: Flex__<typeof SwiperSlider>;
   toolsItem?: Flex__<typeof ToolsItem>;
-  searchItem?: Flex__<typeof SearchItem>;
+  reveal?: Flex__<typeof Reveal>;
+  item?: Flex__<typeof Item>;
 };
 
 export interface DefaultHomeProps {
@@ -135,6 +139,8 @@ function PlasmicHome__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const globalVariants = _useGlobalVariants();
+
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -144,6 +150,18 @@ function PlasmicHome__RenderFunc(props: {
 
         valueProp: "search",
         onChangeProp: "onSearchChange"
+      },
+      {
+        path: "swiperSlider2.activeSlideIndex",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $ctx }) => 0
+      },
+      {
+        path: "swiperSlider2.lockSlides",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -173,6 +191,115 @@ function PlasmicHome__RenderFunc(props: {
         { [sty.rootsearch]: hasVariant($state, "search", "search") }
       )}
     >
+      <div
+        className={classNames(projectcss.all, sty.freeBox__dzcLe, {
+          [sty.freeBoxsearch__dzcLeMh4IK]: hasVariant(
+            $state,
+            "search",
+            "search"
+          )
+        })}
+      >
+        <SwiperSlider
+          data-plasmic-name={"swiperSlider2"}
+          data-plasmic-override={overrides.swiperSlider2}
+          activeBulletColor={"#ffffff"}
+          activeSlideIndex={generateStateValueProp($state, [
+            "swiperSlider2",
+            "activeSlideIndex"
+          ])}
+          autoplay={true}
+          autoplayDelay={5000}
+          bulletColor={"#888888"}
+          className={classNames("__wab_instance", sty.swiperSlider2)}
+          disablePaginationClick={false}
+          lockSlides={generateStateValueProp($state, [
+            "swiperSlider2",
+            "lockSlides"
+          ])}
+          loop={true}
+          onActiveSlideIndexChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "swiperSlider2",
+              "activeSlideIndex"
+            ]).apply(null, eventArgs);
+          }}
+          onLockSlidesChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "swiperSlider2",
+              "lockSlides"
+            ]).apply(null, eventArgs);
+          }}
+          showNavigationButtons={false}
+          showPagination={true}
+        >
+          <PlasmicImg__
+            alt={""}
+            className={classNames(sty.img__redDh)}
+            displayHeight={
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? "120px"
+                : "200px"
+            }
+            displayMaxHeight={"none"}
+            displayMaxWidth={"100%"}
+            displayMinHeight={"0"}
+            displayMinWidth={"0"}
+            displayWidth={"auto"}
+            loading={"lazy"}
+            src={{
+              src: "/plasmic/website_starter/images/image7.png",
+              fullWidth: 800,
+              fullHeight: 297,
+              aspectRatio: undefined
+            }}
+          />
+
+          <PlasmicImg__
+            alt={""}
+            className={classNames(sty.img___58Ai3)}
+            displayHeight={
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? "120px"
+                : "200px"
+            }
+            displayMaxHeight={"none"}
+            displayMaxWidth={"100%"}
+            displayMinHeight={"0"}
+            displayMinWidth={"0"}
+            displayWidth={"auto"}
+            loading={"lazy"}
+            src={{
+              src: "/plasmic/website_starter/images/image8.png",
+              fullWidth: 409,
+              fullHeight: 123,
+              aspectRatio: undefined
+            }}
+          />
+
+          <PlasmicImg__
+            alt={""}
+            className={classNames(sty.img__yq35R)}
+            displayHeight={
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? "120px"
+                : "200px"
+            }
+            displayMaxHeight={"none"}
+            displayMaxWidth={"100%"}
+            displayMinHeight={"0"}
+            displayMinWidth={"0"}
+            displayWidth={"auto"}
+            loading={"lazy"}
+            src={{
+              src: "/plasmic/website_starter/images/image9.png",
+              fullWidth: 413,
+              fullHeight: 122,
+              aspectRatio: undefined
+            }}
+          />
+        </SwiperSlider>
+      </div>
       <div
         className={classNames(projectcss.all, sty.freeBox__muDck, {
           [sty.freeBoxsearch__muDckMh4IK]: hasVariant(
@@ -251,30 +378,53 @@ function PlasmicHome__RenderFunc(props: {
           )
         })}
       >
-        <SearchItem
-          data-plasmic-name={"searchItem"}
-          data-plasmic-override={overrides.searchItem}
-          className={classNames("__wab_instance", sty.searchItem, {
-            [sty.searchItemsearch]: hasVariant($state, "search", "search")
+        <Reveal
+          data-plasmic-name={"reveal"}
+          data-plasmic-override={overrides.reveal}
+          cascade={true}
+          className={classNames("__wab_instance", sty.reveal)}
+          damping={0.2}
+          effect={"fade"}
+          triggerOnce={true}
+        >
+          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))([
+            2, 3, 4
+          ]).map((__plasmic_item_0, __plasmic_idx_0) => {
+            const currentItem = __plasmic_item_0;
+            const currentIndex = __plasmic_idx_0;
+            return (
+              <Item
+                data-plasmic-name={"item"}
+                data-plasmic-override={overrides.item}
+                className={classNames("__wab_instance", sty.item, {
+                  [sty.itemsearch]: hasVariant($state, "search", "search")
+                })}
+                key={currentIndex}
+              />
+            );
           })}
-        />
+        </Reveal>
       </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "toolsItem", "searchItem"],
+  root: ["root", "swiperSlider2", "toolsItem", "reveal", "item"],
+  swiperSlider2: ["swiperSlider2"],
   toolsItem: ["toolsItem"],
-  searchItem: ["searchItem"]
+  reveal: ["reveal", "item"],
+  item: ["item"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  swiperSlider2: typeof SwiperSlider;
   toolsItem: typeof ToolsItem;
-  searchItem: typeof SearchItem;
+  reveal: typeof Reveal;
+  item: typeof Item;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -339,8 +489,10 @@ export const PlasmicHome = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    swiperSlider2: makeNodeComponent("swiperSlider2"),
     toolsItem: makeNodeComponent("toolsItem"),
-    searchItem: makeNodeComponent("searchItem"),
+    reveal: makeNodeComponent("reveal"),
+    item: makeNodeComponent("item"),
 
     // Metadata about props expected for PlasmicHome
     internalVariantProps: PlasmicHome__VariantProps,

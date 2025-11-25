@@ -237,8 +237,8 @@ function PlasmicHomepage__RenderFunc(props: {
                   displayMinWidth={"0"}
                   displayWidth={
                     hasVariant(globalVariants, "screen", "mobileOnly")
-                      ? "30vw"
-                      : "200vw"
+                      ? "150px"
+                      : "150px"
                   }
                   loading={"lazy"}
                   src={{

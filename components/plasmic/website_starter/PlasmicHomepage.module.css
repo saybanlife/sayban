@@ -189,14 +189,14 @@
 .img {
   object-fit: cover;
   max-width: 100%;
-  width: 200vw;
+  width: 150px;
 }
 .img > picture > img {
   object-fit: cover;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .img {
-    width: 30vw;
+    width: 150px;
   }
 }
 .freeBox___9C3Gw {

@@ -67,7 +67,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicMenueIcon.module.css"; // plasmic-import: 8E0dazXQIYne/css
 
-import Icon3Icon from "./icons/PlasmicIcon__Icon3"; // plasmic-import: Rc-72xdr2bSW/icon
+import Icon24Icon from "../sayban/icons/PlasmicIcon__Icon24"; // plasmic-import: Zol8GIsmVO1W/icon
 import Icon14Icon from "./icons/PlasmicIcon__Icon14"; // plasmic-import: Rdo3c9b8zHVR/icon
 import Icon15Icon from "./icons/PlasmicIcon__Icon15"; // plasmic-import: uAXK4fWyRv8m/icon
 import Icon16Icon from "./icons/PlasmicIcon__Icon16"; // plasmic-import: h4Q2RYIs-wbf/icon
@@ -245,7 +245,7 @@ function PlasmicMenueIcon__RenderFunc(props: {
                     ? Icon15Icon
                     : hasVariant($state, "icons", "settings")
                       ? Icon16Icon
-                      : Icon3Icon
+                      : Icon24Icon
         }
         className={classNames(projectcss.all, sty.svg, {
           [sty.svgcolor_dark]: hasVariant($state, "color", "dark"),
