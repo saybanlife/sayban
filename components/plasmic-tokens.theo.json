@@ -21,6 +21,16 @@
       }
     },
     {
+      "name": "8",
+      "type": "spacing",
+      "value": "2rem",
+      "category": "spacing",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "P3I_D0uxQRnt"
+      }
+    },
+    {
       "name": "Accent",
       "type": "color",
       "value": "#E8E0C5",
@@ -2651,6 +2661,16 @@
       }
     },
     {
+      "name": "Unnamed Style Token 2",
+      "type": "spacing",
+      "value": "2px",
+      "category": "spacing",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "YhQm4wg3VLyj"
+      }
+    },
+    {
       "name": "Warning/Warning",
       "type": "color",
       "value": "#FACC15",
@@ -2701,6 +2721,16 @@
       }
     },
     {
+      "name": "X Small",
+      "type": "fontsize",
+      "value": "0.75rem",
+      "category": "fontsize",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "w-4Gcj0_UzPS"
+      }
+    },
+    {
       "name": "base",
       "type": "color",
       "value": "#1F2A23",
@@ -2708,6 +2738,16 @@
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
         "id": "ee2TuxDknsJj"
+      }
+    },
+    {
+      "name": "base 2",
+      "type": "fontsize",
+      "value": "1rem",
+      "category": "fontsize",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "9jx4RULNbWhl"
       }
     },
     {
@@ -2731,6 +2771,16 @@
       }
     },
     {
+      "name": "large",
+      "type": "fontsize",
+      "value": "1.125rem",
+      "category": "fontsize",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "hbNq_Oz393_j"
+      }
+    },
+    {
       "name": "lighe base",
       "type": "color",
       "value": "#3C631D",
@@ -2738,6 +2788,26 @@
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
         "id": "-ieHgGbFH1Fa"
+      }
+    },
+    {
+      "name": "small",
+      "type": "fontsize",
+      "value": "0.875rem",
+      "category": "fontsize",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "R7X4jvpZsbD-"
+      }
+    },
+    {
+      "name": "small 2",
+      "type": "fontsize",
+      "value": "0.875rem",
+      "category": "fontsize",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "UD-qlc_UzpDF"
       }
     }
   ],

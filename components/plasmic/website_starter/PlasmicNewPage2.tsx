@@ -63,6 +63,9 @@ import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import { SwiperSlider } from "@/components/SwiperSlider"; // plasmic-import: byElilYJKEPk/codeComponent
 import Topics from "../../Topics"; // plasmic-import: K08M_vX52xMI/component
 import { Iframe } from "@plasmicpkgs/plasmic-basic-components";
+import { Embed } from "@plasmicpkgs/plasmic-basic-components";
+import { AntdProgress } from "@plasmicpkgs/antd5/skinny/registerProgress";
+import Comment from "../../Comment"; // plasmic-import: 4NLVwAuHCB3Q/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -100,6 +103,9 @@ export type PlasmicNewPage2__OverridesType = {
   topics?: Flex__<typeof Topics>;
   iframe?: Flex__<typeof Iframe>;
   link?: Flex__<"a"> & Partial<LinkProps>;
+  embedHtml?: Flex__<typeof Embed>;
+  progress?: Flex__<typeof AntdProgress>;
+  comment?: Flex__<typeof Comment>;
   button?: Flex__<typeof Button>;
 };
 
@@ -164,13 +170,35 @@ function PlasmicNewPage2__RenderFunc(props: {
         path: "topics.data",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
-          {
-            label: "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a",
-            value: "Description"
-          },
-          { label: "\u0646\u0638\u0631\u0627\u062a", value: "Comments" }
-        ]
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return [
+                {
+                  label: "توضیحات",
+                  value: "Description"
+                },
+                {
+                  label: `نظرات (${$state.rate}⭐️)`,
+                  value: "Comments"
+                }
+              ];
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [
+                  {
+                    label: "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a",
+                    value: "Description"
+                  },
+                  { label: "\u0646\u0638\u0631\u0627\u062a", value: "Comments" }
+                ];
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "topics.selected",
@@ -196,6 +224,12 @@ function PlasmicNewPage2__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $ctx }) => $props.top
+      },
+      {
+        path: "rate",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $ctx }) => 3
       }
     ],
     [$props, $ctx, $refs]
@@ -462,47 +496,79 @@ function PlasmicNewPage2__RenderFunc(props: {
                   />
                 </div>
               </section>
-              <div className={classNames(projectcss.all, sty.freeBox__oy6N)}>
-                <div className={classNames(projectcss.all, sty.freeBox__vvhoi)}>
+              {(() => {
+                try {
+                  return $state.topics.selected == "Description";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div className={classNames(projectcss.all, sty.freeBox__oy6N)}>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text___5Ois5
-                    )}
+                    className={classNames(projectcss.all, sty.freeBox__vvhoi)}
                   >
-                    {hasVariant(globalVariants, "screen", "mobileOnly")
-                      ? "\u0627\u06cc\u0646 \u062f\u0631\u0645\u0627\u0646\u06af\u0627\u0647 \u0628\u0627 \u0627\u0631\u0627\u0626\u0647 \u062e\u062f\u0645\u0627\u062a \u0639\u0645\u0648\u0645\u06cc\u060c \u062a\u062e\u0635\u0635\u06cc \u0648 \u0627\u0648\u0631\u0698\u0627\u0646\u0633\u06cc \u062a\u0644\u0627\u0634 \u0645\u06cc\u200c\u06a9\u0646\u062f \u0646\u06cc\u0627\u0632\u0647\u0627\u06cc \u062f\u0631\u0645\u0627\u0646\u06cc \u0645\u0631\u0627\u062c\u0639\u06cc\u0646 \u0631\u0627 \u0628\u0635\u0648\u0631\u062a \u0633\u0631\u06cc\u0639 \u0648 \u062f\u0642\u06cc\u0642 \u0628\u0631\u0637\u0631\u0641 \u06a9\u0646\u062f. \u0631\u0639\u0627\u06cc\u062a \u0627\u062e\u0644\u0627\u0642 \u067e\u0632\u0634\u06a9\u06cc \u0648 \u062d\u0641\u0638 \u062d\u0631\u06cc\u0645 \u062e\u0635\u0648\u0635\u06cc \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0627\u0632 \u0627\u0648\u0644\u0648\u06cc\u062a\u200c\u0647\u0627\u06cc \u0627\u0635\u0644\u06cc \u0645\u0627\u0633\u062a.\n\r\n\r\n\u06a9\u0627\u062f\u0631 \u067e\u0632\u0634\u06a9\u06cc \u0645\u062a\u0634\u06a9\u0644 \u0627\u0632 \u067e\u0632\u0634\u06a9\u0627\u0646 \u0645\u062a\u062e\u0635\u0635 \u0648 \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646 \u0645\u062c\u0631\u0628 \u0627\u0633\u062a \u0648 \u062e\u062f\u0645\u0627\u062a \u062a\u0634\u062e\u06cc\u0635\u06cc \u0645\u0627\u0646\u0646\u062f \u0622\u0632\u0645\u0627\u06cc\u0634\u06af\u0627\u0647 \u0648 \u062a\u0635\u0648\u06cc\u0631\u0628\u0631\u062f\u0627\u0631\u06cc \u062f\u0631 \u0645\u062d\u0644 \u0627\u0631\u0627\u0626\u0647 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u0648 \u067e\u0630\u06cc\u0631\u0634 \u062d\u0636\u0648\u0631\u06cc \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0628\u0627\u0634\u062f."
-                      : "\u0627\u06cc\u0646 \u062f\u0631\u0645\u0627\u0646\u06af\u0627\u0647 \u0628\u0627 \u0627\u0631\u0627\u0626\u0647 \u062e\u062f\u0645\u0627\u062a \u0639\u0645\u0648\u0645\u06cc\u060c \u062a\u062e\u0635\u0635\u06cc \u0648 \u0627\u0648\u0631\u0698\u0627\u0646\u0633\u06cc \u062a\u0644\u0627\u0634 \u0645\u06cc\u200c\u06a9\u0646\u062f \u0646\u06cc\u0627\u0632\u0647\u0627\u06cc \u062f\u0631\u0645\u0627\u0646\u06cc \u0645\u0631\u0627\u062c\u0639\u06cc\u0646 \u0631\u0627 \u0628\u0635\u0648\u0631\u062a \u0633\u0631\u06cc\u0639 \u0648 \u062f\u0642\u06cc\u0642 \u0628\u0631\u0637\u0631\u0641 \u06a9\u0646\u062f. \u0631\u0639\u0627\u06cc\u062a \u0627\u062e\u0644\u0627\u0642 \u067e\u0632\u0634\u06a9\u06cc \u0648 \u062d\u0641\u0638 \u062d\u0631\u06cc\u0645 \u062e\u0635\u0648\u0635\u06cc \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0627\u0632 \u0627\u0648\u0644\u0648\u06cc\u062a\u200c\u0647\u0627\u06cc \u0627\u0635\u0644\u06cc \u0645\u0627\u0633\u062a.\n\n\r\n\r\n\u06a9\u0627\u062f\u0631 \u067e\u0632\u0634\u06a9\u06cc \u0645\u062a\u0634\u06a9\u0644 \u0627\u0632 \u067e\u0632\u0634\u06a9\u0627\u0646 \u0645\u062a\u062e\u0635\u0635 \u0648 \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646 \u0645\u062c\u0631\u0628 \u0627\u0633\u062a \u0648 \u062e\u062f\u0645\u0627\u062a \u062a\u0634\u062e\u06cc\u0635\u06cc \u0645\u0627\u0646\u0646\u062f \u0622\u0632\u0645\u0627\u06cc\u0634\u06af\u0627\u0647 \u0648 \u062a\u0635\u0648\u06cc\u0631\u0628\u0631\u062f\u0627\u0631\u06cc \u062f\u0631 \u0645\u062d\u0644 \u0627\u0631\u0627\u0626\u0647 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u0648 \u067e\u0630\u06cc\u0631\u0634 \u062d\u0636\u0648\u0631\u06cc \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0628\u0627\u0634\u062f."}
-                  </div>
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__fdjfu
-                  )}
-                >
-                  {""}
-                </div>
-                <div className={classNames(projectcss.all, sty.freeBox__jiz5)}>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox___2Gdl9)}
-                  >
-                    <Icon21Icon
-                      className={classNames(projectcss.all, sty.svg___0EBpn)}
-                      role={"img"}
-                    />
-
                     <div
                       className={classNames(
                         projectcss.all,
                         projectcss.__wab_text,
-                        sty.text__ybfEv
+                        sty.text___5Ois5
+                      )}
+                    >
+                      {hasVariant(globalVariants, "screen", "mobileOnly")
+                        ? "\u0627\u06cc\u0646 \u062f\u0631\u0645\u0627\u0646\u06af\u0627\u0647 \u0628\u0627 \u0627\u0631\u0627\u0626\u0647 \u062e\u062f\u0645\u0627\u062a \u0639\u0645\u0648\u0645\u06cc\u060c \u062a\u062e\u0635\u0635\u06cc \u0648 \u0627\u0648\u0631\u0698\u0627\u0646\u0633\u06cc \u062a\u0644\u0627\u0634 \u0645\u06cc\u200c\u06a9\u0646\u062f \u0646\u06cc\u0627\u0632\u0647\u0627\u06cc \u062f\u0631\u0645\u0627\u0646\u06cc \u0645\u0631\u0627\u062c\u0639\u06cc\u0646 \u0631\u0627 \u0628\u0635\u0648\u0631\u062a \u0633\u0631\u06cc\u0639 \u0648 \u062f\u0642\u06cc\u0642 \u0628\u0631\u0637\u0631\u0641 \u06a9\u0646\u062f. \u0631\u0639\u0627\u06cc\u062a \u0627\u062e\u0644\u0627\u0642 \u067e\u0632\u0634\u06a9\u06cc \u0648 \u062d\u0641\u0638 \u062d\u0631\u06cc\u0645 \u062e\u0635\u0648\u0635\u06cc \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0627\u0632 \u0627\u0648\u0644\u0648\u06cc\u062a\u200c\u0647\u0627\u06cc \u0627\u0635\u0644\u06cc \u0645\u0627\u0633\u062a.\n\r\n\r\n\u06a9\u0627\u062f\u0631 \u067e\u0632\u0634\u06a9\u06cc \u0645\u062a\u0634\u06a9\u0644 \u0627\u0632 \u067e\u0632\u0634\u06a9\u0627\u0646 \u0645\u062a\u062e\u0635\u0635 \u0648 \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646 \u0645\u062c\u0631\u0628 \u0627\u0633\u062a \u0648 \u062e\u062f\u0645\u0627\u062a \u062a\u0634\u062e\u06cc\u0635\u06cc \u0645\u0627\u0646\u0646\u062f \u0622\u0632\u0645\u0627\u06cc\u0634\u06af\u0627\u0647 \u0648 \u062a\u0635\u0648\u06cc\u0631\u0628\u0631\u062f\u0627\u0631\u06cc \u062f\u0631 \u0645\u062d\u0644 \u0627\u0631\u0627\u0626\u0647 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u0648 \u067e\u0630\u06cc\u0631\u0634 \u062d\u0636\u0648\u0631\u06cc \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0628\u0627\u0634\u062f."
+                        : "\u0627\u06cc\u0646 \u062f\u0631\u0645\u0627\u0646\u06af\u0627\u0647 \u0628\u0627 \u0627\u0631\u0627\u0626\u0647 \u062e\u062f\u0645\u0627\u062a \u0639\u0645\u0648\u0645\u06cc\u060c \u062a\u062e\u0635\u0635\u06cc \u0648 \u0627\u0648\u0631\u0698\u0627\u0646\u0633\u06cc \u062a\u0644\u0627\u0634 \u0645\u06cc\u200c\u06a9\u0646\u062f \u0646\u06cc\u0627\u0632\u0647\u0627\u06cc \u062f\u0631\u0645\u0627\u0646\u06cc \u0645\u0631\u0627\u062c\u0639\u06cc\u0646 \u0631\u0627 \u0628\u0635\u0648\u0631\u062a \u0633\u0631\u06cc\u0639 \u0648 \u062f\u0642\u06cc\u0642 \u0628\u0631\u0637\u0631\u0641 \u06a9\u0646\u062f. \u0631\u0639\u0627\u06cc\u062a \u0627\u062e\u0644\u0627\u0642 \u067e\u0632\u0634\u06a9\u06cc \u0648 \u062d\u0641\u0638 \u062d\u0631\u06cc\u0645 \u062e\u0635\u0648\u0635\u06cc \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0627\u0632 \u0627\u0648\u0644\u0648\u06cc\u062a\u200c\u0647\u0627\u06cc \u0627\u0635\u0644\u06cc \u0645\u0627\u0633\u062a.\n\n\r\n\r\n\u06a9\u0627\u062f\u0631 \u067e\u0632\u0634\u06a9\u06cc \u0645\u062a\u0634\u06a9\u0644 \u0627\u0632 \u067e\u0632\u0634\u06a9\u0627\u0646 \u0645\u062a\u062e\u0635\u0635 \u0648 \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646 \u0645\u062c\u0631\u0628 \u0627\u0633\u062a \u0648 \u062e\u062f\u0645\u0627\u062a \u062a\u0634\u062e\u06cc\u0635\u06cc \u0645\u0627\u0646\u0646\u062f \u0622\u0632\u0645\u0627\u06cc\u0634\u06af\u0627\u0647 \u0648 \u062a\u0635\u0648\u06cc\u0631\u0628\u0631\u062f\u0627\u0631\u06cc \u062f\u0631 \u0645\u062d\u0644 \u0627\u0631\u0627\u0626\u0647 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u0648 \u067e\u0630\u06cc\u0631\u0634 \u062d\u0636\u0648\u0631\u06cc \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0628\u0627\u0634\u062f."}
+                    </div>
+                  </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__fdjfu
+                    )}
+                  >
+                    {""}
+                  </div>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__jiz5)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        sty.freeBox___2Gdl9
+                      )}
+                    >
+                      <Icon21Icon
+                        className={classNames(projectcss.all, sty.svg___0EBpn)}
+                        role={"img"}
+                      />
+
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__ybfEv
+                        )}
+                      >
+                        {
+                          "\u0633\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u06cc"
+                        }
+                      </div>
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__d4Bt4
                       )}
                     >
                       {
-                        "\u0633\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u06cc"
+                        "\u0634\u0646\u0628\u0647 \u062a\u0627 \u0686\u0647\u0627\u0631\u0634\u0646\u0628\u0647 \u06f8:\u06f0\u06f0 \u2014 \u06f1\u06f7:\u06f0\u06f0\r\n\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647 \u06f8:\u06f0\u06f0 \u2014 \u06f1\u06f3:\u06f0\u06f0"
                       }
                     </div>
                   </div>
@@ -510,156 +576,438 @@ function PlasmicNewPage2__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__d4Bt4
+                      sty.text__oTps
                     )}
                   >
-                    {
-                      "\u0634\u0646\u0628\u0647 \u062a\u0627 \u0686\u0647\u0627\u0631\u0634\u0646\u0628\u0647 \u06f8:\u06f0\u06f0 \u2014 \u06f1\u06f7:\u06f0\u06f0\r\n\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647 \u06f8:\u06f0\u06f0 \u2014 \u06f1\u06f3:\u06f0\u06f0"
-                    }
+                    {""}
                   </div>
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__oTps
-                  )}
-                >
-                  {""}
-                </div>
-                <div
-                  className={classNames(projectcss.all, sty.freeBox___2Sep5)}
-                >
                   <div
-                    className={classNames(projectcss.all, sty.freeBox__ubpas)}
+                    className={classNames(projectcss.all, sty.freeBox___2Sep5)}
                   >
-                    <Icon22Icon
-                      className={classNames(projectcss.all, sty.svg__jzgOs)}
-                      role={"img"}
-                    />
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__ubpas)}
+                    >
+                      <Icon22Icon
+                        className={classNames(projectcss.all, sty.svg__jzgOs)}
+                        role={"img"}
+                      />
 
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__bvWyt
+                        )}
+                      >
+                        {
+                          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u062a\u0645\u0627\u0633"
+                        }
+                      </div>
+                    </div>
                     <div
                       className={classNames(
                         projectcss.all,
                         projectcss.__wab_text,
-                        sty.text__bvWyt
+                        sty.text__qPbCk
+                      )}
+                    >
+                      {"09155113179 - 05136212070"}
+                    </div>
+                  </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__jBiEt
+                    )}
+                  >
+                    {""}
+                  </div>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__bI7QF)}
+                  >
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__nUjoc)}
+                    >
+                      <Icon12Icon
+                        className={classNames(projectcss.all, sty.svg__zUz9B)}
+                        role={"img"}
+                      />
+
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__sncLn
+                        )}
+                      >
+                        {"\u0622\u062f\u0631\u0633"}
+                      </div>
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__u3XPc
                       )}
                     >
                       {
-                        "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u062a\u0645\u0627\u0633"
+                        "\u062a\u0647\u0631\u0627\u0646\u060c \u062e\u06cc\u0627\u0628\u0627\u0646 \u0645\u062b\u0627\u0644\u060c \u06a9\u0648\u0686\u0647 \u0633\u0644\u0627\u0645\u062a\u060c \u067e\u0644\u0627\u06a9 \u06f1\u06f2\r"
                       }
                     </div>
-                  </div>
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__qPbCk
-                    )}
-                  >
-                    {"09155113179 - 05136212070"}
-                  </div>
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__jBiEt
-                  )}
-                >
-                  {""}
-                </div>
-                <div className={classNames(projectcss.all, sty.freeBox__bI7QF)}>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__nUjoc)}
-                  >
-                    <Icon12Icon
-                      className={classNames(projectcss.all, sty.svg__zUz9B)}
-                      role={"img"}
-                    />
-
                     <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__sncLn
-                      )}
+                      className={classNames(projectcss.all, sty.freeBox__uic01)}
                     >
-                      {"\u0622\u062f\u0631\u0633"}
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__u3XPc
-                    )}
-                  >
-                    {
-                      "\u062a\u0647\u0631\u0627\u0646\u060c \u062e\u06cc\u0627\u0628\u0627\u0646 \u0645\u062b\u0627\u0644\u060c \u06a9\u0648\u0686\u0647 \u0633\u0644\u0627\u0645\u062a\u060c \u067e\u0644\u0627\u06a9 \u06f1\u06f2\r"
-                    }
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__uic01)}
-                  >
-                    <Iframe
-                      data-plasmic-name={"iframe"}
-                      data-plasmic-override={overrides.iframe}
-                      className={classNames("__wab_instance", sty.iframe)}
-                      preview={true}
-                      src={
-                        "https://neshan.org/maps/iframe/places/561b97631f69386925aec8c6cb8db203#c36.359-59.519-22z-0p/36.35892372217095/59.51887408063869"
-                      }
-                      srcDoc={
-                        "<div><h3>Heading</h3><p>Example text...</p></div>"
-                      }
-                      useHtml={false}
-                    />
+                      <Iframe
+                        data-plasmic-name={"iframe"}
+                        data-plasmic-override={overrides.iframe}
+                        className={classNames("__wab_instance", sty.iframe)}
+                        preview={true}
+                        src={
+                          "https://neshan.org/maps/iframe/places/561b97631f69386925aec8c6cb8db203#c36.359-59.519-22z-0p/36.35892372217095/59.51887408063869"
+                        }
+                        srcDoc={
+                          "<div><h3>Heading</h3><p>Example text...</p></div>"
+                        }
+                        useHtml={false}
+                      />
 
-                    <PlasmicLink__
-                      data-plasmic-name={"link"}
-                      data-plasmic-override={overrides.link}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.a,
-                        sty.link
-                      )}
-                      component={Link}
-                      href={(() => {
-                        try {
-                          return (() => {
-                            var lat = 36.35892372217095;
-                            var lng = 59.51887408063869;
+                      <PlasmicLink__
+                        data-plasmic-name={"link"}
+                        data-plasmic-override={overrides.link}
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.a,
+                          sty.link
+                        )}
+                        component={Link}
+                        href={(() => {
+                          try {
+                            return (() => {
+                              var lat = 36.35892372217095;
+                              var lng = 59.51887408063869;
+                              if (
+                                /iPhone|iPad|iPod/i.test(
+                                  window.navigator.userAgent
+                                )
+                              ) {
+                                return `https://maps.apple.com/?q=${lat},${lng}`;
+                              } else if (
+                                /Mobi|Android/i.test(window.navigator.userAgent)
+                              ) {
+                                return `geo:${lat},${lng}?q=مرکز درمانی رازی`;
+                              } else {
+                                return `https://www.google.com/maps?q=${lat},${lng}`;
+                              }
+                            })();
+                          } catch (e) {
                             if (
-                              /iPhone|iPad|iPod/i.test(
-                                window.navigator.userAgent
-                              )
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
                             ) {
-                              return `https://maps.apple.com/?q=${lat},${lng}`;
-                            } else if (
-                              /Mobi|Android/i.test(window.navigator.userAgent)
-                            ) {
-                              return `geo:${lat},${lng}?q=مرکز درمانی رازی`;
-                            } else {
-                              return `https://www.google.com/maps?q=${lat},${lng}`;
+                              return undefined;
                             }
-                          })();
+                            throw e;
+                          }
+                        })()}
+                        platform={"nextjs"}
+                        target={"_blank"}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : null}
+              {(() => {
+                try {
+                  return $state.topics.selected == "Comments";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div
+                  className={classNames(projectcss.all, sty.freeBox___85U3R)}
+                >
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__nh8Dx)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__wtJr
+                      )}
+                    >
+                      {
+                        "\u0646\u0638\u0631\u06cc \u0628\u0631\u0627\u06cc \u0646\u0645\u0627\u06cc\u0634 \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f."
+                      }
+                    </div>
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__a2H6Z)}
+                    >
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__pEmsc
+                        )}
+                      >
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__l8FIv
+                          )}
+                        >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text___8Bj8J
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return $state.rate;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "3";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__mIgGg
+                            )}
+                            data-i18n={"score.numberOf"}
+                          >
+                            {" \u0627\u0632 5"}
+                          </div>
+                        </div>
+                        <Embed
+                          data-plasmic-name={"embedHtml"}
+                          data-plasmic-override={overrides.embedHtml}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.embedHtml
+                          )}
+                          code={(() => {
+                            try {
+                              return `<div id="rateBox" style="display: flex; direction: ltr;"></div>
+
+<style>
+  .iconWrap {
+    width: 40px;       /* عرض بزرگ‌تر */
+    position: relative;
+  }
+
+  .iconWrap svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .filledPart {
+    color: #FACC15;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    clip-path: inset(0 100% 0 0); /* ← تغییر می‌کند در جاوااسکریپت */
+    width: 100%;
+    height: 100%;
+  }
+
+  .basePart {
+    color: lightgray;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<script>
+function drawRating(score) {
+  const container = document.getElementById('rateBox');
+  container.innerHTML = '';
+  container.style.direction = 'ltr';
+
+  const starSVG = '<svg viewBox=\"0 0 24 24\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">' +
+    '<path d=\"M9.15316 5.40838C10.4198 3.13613 11.0531 2 12 2C12.9469 2 13.5802 3.13612 14.8468 5.40837L15.1745 5.99623C15.5345 6.64193 15.7144 6.96479 15.9951 7.17781C16.2757 7.39083 16.6251 7.4699 17.3241 7.62805L17.9605 7.77203C20.4201 8.32856 21.65 8.60682 21.9426 9.54773C22.2352 10.4886 21.3968 11.4691 19.7199 13.4299L19.2861 13.9372C18.8096 14.4944 18.5713 14.773 18.4641 15.1177C18.357 15.4624 18.393 15.8341 18.465 16.5776L18.5306 17.2544C18.7841 19.8706 18.9109 21.1787 18.1449 21.7602C17.3788 22.3417 16.2273 21.8115 13.9243 20.7512L13.3285 20.4768C12.6741 20.1755 12.3469 20.0248 12 20.0248C11.6531 20.0248 11.3259 20.1755 10.6715 20.4768L10.0757 20.7512C7.77268 21.8115 6.62118 22.3417 5.85515 21.7602C5.08912 21.1787 5.21588 19.8706 5.4694 17.2544L5.53498 16.5776C5.60703 15.8341 5.64305 15.4624 5.53586 15.1177C5.42868 14.773 5.19043 14.4944 4.71392 13.9372L4.2801 13.4299C2.60325 11.4691 1.76482 10.4886 2.05742 9.54773C2.35002 8.60682 3.57986 8.32856 6.03954 7.77203L6.67589 7.62805C7.37485 7.4699 7.72433 7.39083 8.00494 7.17781C8.28555 6.96479 8.46553 6.64194 8.82547 5.99623L9.15316 5.40838Z\"/>' +
+  '</svg>';
+
+  for (let i = 0; i < 5; i++) {
+    const wrap = document.createElement('div');
+    wrap.className = 'iconWrap';
+
+    const base = document.createElement('div');
+    base.className = 'basePart';
+    base.innerHTML = starSVG;
+
+    const fill = document.createElement('div');
+    fill.className = 'filledPart';
+    fill.innerHTML = starSVG;
+
+    let percent = Math.min(Math.max(score - i, 0), 1) * 100;
+    fill.style.clipPath = 'inset(0 ' + (100 - percent) + '% 0 0)';
+
+    wrap.appendChild(base);
+    wrap.appendChild(fill);
+    container.appendChild(wrap);
+  }
+}
+
+// اجرای نمونه
+drawRating(${$state.rate});
+</script>
+`;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "<div>Paste your embed code via the right sidebar</div>";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        />
+
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__dc3Us
+                          )}
+                        >
+                          {"2000 \u0646\u0641\u0631"}
+                        </div>
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox___18HMk
+                        )}
+                      >
+                        {(_par =>
+                          !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                          (() => {
+                            try {
+                              return [5, 4, 3, 2, 1];
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return [];
+                              }
+                              throw e;
+                            }
+                          })()
+                        ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                          const currentItem = __plasmic_item_0;
+                          const currentIndex = __plasmic_idx_0;
+                          return (
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__fpFjl
+                              )}
+                              key={currentIndex}
+                            >
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__k8Xxd
+                                )}
+                              >
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__mXnGq
+                                  )}
+                                >
+                                  <React.Fragment>
+                                    {(() => {
+                                      try {
+                                        return currentItem;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return "1";
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                  </React.Fragment>
+                                </div>
+                              </div>
+                              <AntdProgress
+                                data-plasmic-name={"progress"}
+                                data-plasmic-override={overrides.progress}
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.progress
+                                )}
+                                percent={30}
+                                showInfo={true}
+                                strokeColor={true ? "#FDE047" : undefined}
+                                strokeWidth={6}
+                                trailColor={true ? "#FFFFFF40" : undefined}
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    {(_par =>
+                      !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                      (() => {
+                        try {
+                          return $state.topics.data;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
                             e?.plasmicType === "PlasmicUndefinedDataError"
                           ) {
-                            return undefined;
+                            return [];
                           }
                           throw e;
                         }
-                      })()}
-                      platform={"nextjs"}
-                      target={"_blank"}
-                    />
+                      })()
+                    ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                      const user = __plasmic_item_0;
+                      const currentIndex = __plasmic_idx_0;
+                      return (
+                        <Comment
+                          data-plasmic-name={"comment"}
+                          data-plasmic-override={overrides.comment}
+                          className={classNames("__wab_instance", sty.comment)}
+                          key={currentIndex}
+                          user={user}
+                        />
+                      );
+                    })}
                   </div>
                 </div>
-              </div>
+              ) : null}
             </div>
           </div>
         </div>
@@ -738,6 +1086,9 @@ const PlasmicDescendants = {
     "topics",
     "iframe",
     "link",
+    "embedHtml",
+    "progress",
+    "comment",
     "button"
   ],
   header: ["header"],
@@ -745,6 +1096,9 @@ const PlasmicDescendants = {
   topics: ["topics"],
   iframe: ["iframe"],
   link: ["link"],
+  embedHtml: ["embedHtml"],
+  progress: ["progress"],
+  comment: ["comment"],
   button: ["button"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -757,6 +1111,9 @@ type NodeDefaultElementType = {
   topics: typeof Topics;
   iframe: typeof Iframe;
   link: "a";
+  embedHtml: typeof Embed;
+  progress: typeof AntdProgress;
+  comment: typeof Comment;
   button: typeof Button;
 };
 
@@ -827,6 +1184,9 @@ export const PlasmicNewPage2 = Object.assign(
     topics: makeNodeComponent("topics"),
     iframe: makeNodeComponent("iframe"),
     link: makeNodeComponent("link"),
+    embedHtml: makeNodeComponent("embedHtml"),
+    progress: makeNodeComponent("progress"),
+    comment: makeNodeComponent("comment"),
     button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicNewPage2

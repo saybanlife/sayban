@@ -1241,6 +1241,32 @@
           "cssFilePath": "plasmic/website_starter/PlasmicTopics.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "egij6yhU3x2N",
+          "name": "Stars",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicStars.tsx",
+          "importSpec": {
+            "modulePath": "Stars.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicStars.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "4NLVwAuHCB3Q",
+          "name": "Comment",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicComment.tsx",
+          "importSpec": {
+            "modulePath": "Comment.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicComment.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -1378,6 +1404,11 @@
           "id": "5JSOkqxEUr2H",
           "name": "Icon22Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon22.tsx"
+        },
+        {
+          "id": "hgw2XQplK13k",
+          "name": "Icon77Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon77.tsx"
         }
       ],
       "images": [
