@@ -238,7 +238,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   displayWidth={
                     hasVariant(globalVariants, "screen", "mobileOnly")
                       ? "30vw"
-                      : "10vw"
+                      : "200vw"
                   }
                   loading={"lazy"}
                   src={{

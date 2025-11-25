@@ -60,7 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
-import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
+import Item from "../../Item"; // plasmic-import: lqR7VxT6h9YH/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -68,9 +68,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicNewPage3.module.css"; // plasmic-import: JM9_woEGqy8m/css
-
-import Icon20Icon from "./icons/PlasmicIcon__Icon20"; // plasmic-import: Sy9FntGzJUck/icon
-import Icon19Icon from "./icons/PlasmicIcon__Icon19"; // plasmic-import: gxz20slK6TmF/icon
 
 createPlasmicElementProxy;
 
@@ -86,8 +83,8 @@ export const PlasmicNewPage3__ArgProps = new Array<ArgPropType>();
 export type PlasmicNewPage3__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<typeof Header>;
-  img?: Flex__<typeof PlasmicImg__>;
-  textCollapse?: Flex__<typeof TextCollapse>;
+  freeBox?: Flex__<"div">;
+  item?: Flex__<typeof Item>;
 };
 
 export interface DefaultNewPage3Props {}
@@ -165,7 +162,11 @@ function PlasmicNewPage3__RenderFunc(props: {
             slot={"\u06a9\u0644\u06cc\u0646\u06cc\u06a9 \u0647\u0627"}
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox__zwWvt)}>
+          <div
+            data-plasmic-name={"freeBox"}
+            data-plasmic-override={overrides.freeBox}
+            className={classNames(projectcss.all, sty.freeBox)}
+          >
             {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
               (() => {
                 try {
@@ -184,112 +185,12 @@ function PlasmicNewPage3__RenderFunc(props: {
               const currentItem = __plasmic_item_0;
               const currentIndex = __plasmic_idx_0;
               return (
-                <div
-                  className={classNames(projectcss.all, sty.freeBox__lpvB)}
+                <Item
+                  data-plasmic-name={"item"}
+                  data-plasmic-override={overrides.item}
+                  className={classNames("__wab_instance", sty.item)}
                   key={currentIndex}
-                >
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__h6Gz7)}
-                  >
-                    <PlasmicImg__
-                      data-plasmic-name={"img"}
-                      data-plasmic-override={overrides.img}
-                      alt={""}
-                      className={classNames(sty.img)}
-                      displayHeight={"2.5rem"}
-                      displayMaxHeight={"none"}
-                      displayMaxWidth={"100%"}
-                      displayMinHeight={"0"}
-                      displayMinWidth={"0"}
-                      displayWidth={"2.5rem"}
-                      loading={"lazy"}
-                      src={{
-                        src: "/plasmic/website_starter/images/image6.png",
-                        fullWidth: 224,
-                        fullHeight: 224,
-                        aspectRatio: undefined
-                      }}
-                    />
-
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___7HJvh
-                      )}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox___5Q6Zg
-                        )}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__tFopo
-                          )}
-                        >
-                          {"\u06a9\u0644\u06cc\u0646\u06cc\u06a9"}
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__e3Rh4
-                          )}
-                        >
-                          <Icon20Icon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__hfC9P
-                            )}
-                            role={"img"}
-                          />
-
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text___81YHy
-                            )}
-                          >
-                            {"4.5"}
-                          </div>
-                        </div>
-                      </div>
-                      <TextCollapse
-                        data-plasmic-name={"textCollapse"}
-                        data-plasmic-override={overrides.textCollapse}
-                        className={classNames(
-                          "__wab_instance",
-                          sty.textCollapse
-                        )}
-                        enableToggle={false}
-                        maxLines={1}
-                        text={
-                          "jkacksckjsc cnjsncsncsiocnosnd scniscnsiocsc ufutftufuyyf uhuhuohohhi ouhoihoho hihhohoh ohohohhoh oihhoh"
-                        }
-                      />
-                    </div>
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__eNl3V)}
-                    >
-                      <Icon19Icon
-                        className={classNames(projectcss.all, sty.svg__y1Qe5)}
-                        role={"img"}
-                      />
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__wRoF
-                    )}
-                  >
-                    {""}
-                  </div>
-                </div>
+                />
               );
             })}
           </div>
@@ -300,10 +201,10 @@ function PlasmicNewPage3__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "img", "textCollapse"],
+  root: ["root", "header", "freeBox", "item"],
   header: ["header"],
-  img: ["img"],
-  textCollapse: ["textCollapse"]
+  freeBox: ["freeBox", "item"],
+  item: ["item"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -311,8 +212,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
-  img: typeof PlasmicImg__;
-  textCollapse: typeof TextCollapse;
+  freeBox: "div";
+  item: typeof Item;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -378,8 +279,8 @@ export const PlasmicNewPage3 = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
-    img: makeNodeComponent("img"),
-    textCollapse: makeNodeComponent("textCollapse"),
+    freeBox: makeNodeComponent("freeBox"),
+    item: makeNodeComponent("item"),
 
     // Metadata about props expected for PlasmicNewPage3
     internalVariantProps: PlasmicNewPage3__VariantProps,

@@ -1,0 +1,27 @@
+.root {
+  display: inline-flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  background: #fde047;
+  border-radius: var(--token-73iLa06AE6f4);
+  padding: var(--token-I0Xtb9z7Q0X3) var(--token-rfsFxiclAtek);
+}
+.rootok {
+  background: var(--token-aTHxjKoUeWnv);
+}
+.rootnok {
+  background: var(--token-0gAjYifG8xWY);
+}
+.text {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-size: var(--token-U1UvBDD-VoLt);
+  font-weight: 700;
+  min-width: 0;
+}

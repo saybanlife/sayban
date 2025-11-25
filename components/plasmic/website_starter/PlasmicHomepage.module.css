@@ -189,7 +189,7 @@
 .img {
   object-fit: cover;
   max-width: 100%;
-  width: 10vw;
+  width: 200vw;
 }
 .img > picture > img {
   object-fit: cover;

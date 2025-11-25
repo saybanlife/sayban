@@ -1267,6 +1267,32 @@
           "cssFilePath": "plasmic/sayban/PlasmicComment.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "lqR7VxT6h9YH",
+          "name": "Item",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicItem.tsx",
+          "importSpec": {
+            "modulePath": "Item.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "UhSHXabmHrQP",
+          "name": "Status",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicStatus.tsx",
+          "importSpec": {
+            "modulePath": "Status.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicStatus.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
