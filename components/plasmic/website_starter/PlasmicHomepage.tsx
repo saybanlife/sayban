@@ -654,6 +654,11 @@ function PlasmicHomepage__RenderFunc(props: {
                 $state,
                 "page",
                 "categories"
+              ),
+              [sty.categoriespage_subcategories]: hasVariant(
+                $state,
+                "page",
+                "subcategories"
               )
             })}
             onSubcategories={async () => {
@@ -751,6 +756,19 @@ function PlasmicHomepage__RenderFunc(props: {
                 "subcategories"
               )
             })}
+            subcategori={(() => {
+              try {
+                return $state.categories.subcategories;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
           />
 
           <ApiRequest

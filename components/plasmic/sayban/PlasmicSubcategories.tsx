@@ -154,6 +154,11 @@ function PlasmicSubcategories__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "item[].center",
+        type: "private",
+        variableType: "object"
       }
     ],
     [$props, $ctx, $refs]
@@ -230,6 +235,21 @@ function PlasmicSubcategories__RenderFunc(props: {
                 }
               })()}
               key={currentIndex}
+              onCenterChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "item",
+                  __plasmic_idx_0,
+                  "center"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
             />
           );
         })}
@@ -282,7 +302,7 @@ function PlasmicSubcategories__RenderFunc(props: {
         params={(() => {
           try {
             return {
-              subcategory_id: 2
+              subcategory_id: $props.subcategori?.id
             };
           } catch (e) {
             if (
@@ -294,7 +314,19 @@ function PlasmicSubcategories__RenderFunc(props: {
             throw e;
           }
         })()}
-        shouldFetch={true}
+        shouldFetch={(() => {
+          try {
+            return $props.subcategori?.id;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })()}
         url={"https://sayban.darkube.app/webhook/centers"}
       />
     </div>
