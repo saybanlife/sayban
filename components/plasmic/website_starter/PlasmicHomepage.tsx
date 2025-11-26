@@ -519,7 +519,7 @@ function PlasmicHomepage__RenderFunc(props: {
                             }
                             throw e;
                           }
-                        })()}`
+                        })()}/[[subcategory]]`
                       };
                       return (({ destination }) => {
                         if (
