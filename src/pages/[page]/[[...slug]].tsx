@@ -6,7 +6,7 @@ import GlobalContextsProvider from "../../../components/plasmic/website_starter/
 import { PlasmicHomepage } from "../../../components/plasmic/website_starter/PlasmicHomepage";
 
 export default function Homepage() {
-  const pathname = usePathname();
+const pathname = usePathname() || "/";
 
   // "/centers/sport/football" → ["centers","sport","football"]
   const parts = pathname.split("/").filter(Boolean);
