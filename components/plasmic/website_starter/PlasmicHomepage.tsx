@@ -64,6 +64,7 @@ import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/compone
 import Home from "../../Home"; // plasmic-import: m-UDUThzN-63/component
 import Categories from "../../Categories"; // plasmic-import: R95SHqmqnvX5/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -101,6 +102,7 @@ export type PlasmicHomepage__OverridesType = {
   home?: Flex__<typeof Home>;
   categories?: Flex__<typeof Categories>;
   apiRequest?: Flex__<typeof ApiRequest>;
+  sideEffect?: Flex__<typeof SideEffect>;
 };
 
 export interface DefaultHomepageProps {}
@@ -191,10 +193,7 @@ function PlasmicHomepage__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return (
-                $ctx.params.categories != undefined &&
-                $ctx.params.categories != "[categories]"
-              );
+              return $state.slug[0] != undefined && $state.slug[0] != "";
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -211,6 +210,12 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "slug",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => []
       }
     ],
     [$props, $ctx, $refs]
@@ -634,6 +639,40 @@ function PlasmicHomepage__RenderFunc(props: {
             }}
             url={"https://sayban.darkube.app/webhook/categories/full"}
           />
+
+          <SideEffect
+            data-plasmic-name={"sideEffect"}
+            data-plasmic-override={overrides.sideEffect}
+            className={classNames("__wab_instance", sty.sideEffect)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          const parts = $ctx.pagePath
+                            .split("/")
+                            .filter(Boolean);
+                          return ($state.slug = parts.slice(1) ?? []);
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -649,7 +688,8 @@ const PlasmicDescendants = {
     "textInput",
     "home",
     "categories",
-    "apiRequest"
+    "apiRequest",
+    "sideEffect"
   ],
   homePage: ["homePage", "menu2", "img", "textInput", "home"],
   menu2: ["menu2"],
@@ -657,7 +697,8 @@ const PlasmicDescendants = {
   textInput: ["textInput"],
   home: ["home"],
   categories: ["categories"],
-  apiRequest: ["apiRequest"]
+  apiRequest: ["apiRequest"],
+  sideEffect: ["sideEffect"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -671,6 +712,7 @@ type NodeDefaultElementType = {
   home: typeof Home;
   categories: typeof Categories;
   apiRequest: typeof ApiRequest;
+  sideEffect: typeof SideEffect;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -742,6 +784,7 @@ export const PlasmicHomepage = Object.assign(
     home: makeNodeComponent("home"),
     categories: makeNodeComponent("categories"),
     apiRequest: makeNodeComponent("apiRequest"),
+    sideEffect: makeNodeComponent("sideEffect"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,
