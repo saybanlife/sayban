@@ -81,13 +81,10 @@ export const PlasmicItem__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicItem__ArgsType = {
   item?: any;
-  onCenterChange?: (val: string) => void;
+  onClick?: (event: any) => void;
 };
 type ArgPropType = keyof PlasmicItem__ArgsType;
-export const PlasmicItem__ArgProps = new Array<ArgPropType>(
-  "item",
-  "onCenterChange"
-);
+export const PlasmicItem__ArgProps = new Array<ArgPropType>("item", "onClick");
 
 export type PlasmicItem__OverridesType = {
   root?: Flex__<"div">;
@@ -98,7 +95,7 @@ export type PlasmicItem__OverridesType = {
 
 export interface DefaultItemProps {
   item?: any;
-  onCenterChange?: (val: string) => void;
+  onClick?: (event: any) => void;
   className?: string;
 }
 
@@ -141,26 +138,6 @@ function PlasmicItem__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
-    () => [
-      {
-        path: "center",
-        type: "readonly",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({}),
-
-        onChangeProp: "onCenterChange"
-      }
-    ],
-    [$props, $ctx, $refs]
-  );
-  const $state = useDollarState(stateSpecs, {
-    $props,
-    $ctx,
-    $queries: {},
-    $refs
-  });
-
   const styleTokensClassNames = _useStyleTokens();
 
   return (
@@ -177,37 +154,7 @@ function PlasmicItem__RenderFunc(props: {
         styleTokensClassNames,
         sty.root
       )}
-      onClick={async event => {
-        const $steps = {};
-
-        $steps["updateCenter"] = true
-          ? (() => {
-              const actionArgs = {
-                variable: {
-                  objRoot: $state,
-                  variablePath: ["center"]
-                },
-                operation: 0
-              };
-              return (({ variable, value, startIndex, deleteCount }) => {
-                if (!variable) {
-                  return;
-                }
-                const { objRoot, variablePath } = variable;
-
-                $stateSet(objRoot, variablePath, value);
-                return value;
-              })?.apply(null, [actionArgs]);
-            })()
-          : undefined;
-        if (
-          $steps["updateCenter"] != null &&
-          typeof $steps["updateCenter"] === "object" &&
-          typeof $steps["updateCenter"].then === "function"
-        ) {
-          $steps["updateCenter"] = await $steps["updateCenter"];
-        }
-      }}
+      onClick={args.onClick}
     >
       <div className={classNames(projectcss.all, sty.freeBox__kPnDw)}>
         <PlasmicImg__

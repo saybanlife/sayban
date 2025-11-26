@@ -50,7 +50,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 100%;
+  width: auto;
   height: auto;
   max-width: 100%;
   justify-content: flex-start;
@@ -60,8 +60,15 @@
   bottom: auto;
   right: auto;
   z-index: 1;
-  min-width: 0;
+  justify-self: flex-start;
   padding: 0px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .homePage {
+    width: 100%;
+    grid-column-start: 1 !important;
+    grid-column-end: -1 !important;
+  }
 }
 .homePagepage_categories {
   display: none;

@@ -60,8 +60,8 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
-import Item from "../../Item"; // plasmic-import: lqR7VxT6h9YH/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+import Item from "../../Item"; // plasmic-import: lqR7VxT6h9YH/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -77,22 +77,29 @@ export type PlasmicSubcategories__VariantsArgs = {};
 type VariantPropType = keyof PlasmicSubcategories__VariantsArgs;
 export const PlasmicSubcategories__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicSubcategories__ArgsType = { subcategori?: any };
+export type PlasmicSubcategories__ArgsType = {
+  subcategori?: any;
+  center?: any;
+  onCenterChange?: (val: string) => void;
+};
 type ArgPropType = keyof PlasmicSubcategories__ArgsType;
 export const PlasmicSubcategories__ArgProps = new Array<ArgPropType>(
-  "subcategori"
+  "subcategori",
+  "center",
+  "onCenterChange"
 );
 
 export type PlasmicSubcategories__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<typeof Header>;
-  freeBox?: Flex__<"div">;
-  item?: Flex__<typeof Item>;
   apiRequest?: Flex__<typeof ApiRequest>;
+  item?: Flex__<typeof Item>;
 };
 
 export interface DefaultSubcategoriesProps {
   subcategori?: any;
+  center?: any;
+  onCenterChange?: (val: string) => void;
   className?: string;
 }
 
@@ -156,9 +163,12 @@ function PlasmicSubcategories__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "item[].center",
-        type: "private",
-        variableType: "object"
+        path: "center",
+        type: "writable",
+        variableType: "object",
+
+        valueProp: "center",
+        onChangeProp: "onCenterChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -194,151 +204,165 @@ function PlasmicSubcategories__RenderFunc(props: {
         slot={"\u06a9\u0644\u06cc\u0646\u06cc\u06a9 \u0647\u0627"}
       />
 
-      <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
-      >
-        {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-          (() => {
+      <div className={classNames(projectcss.all, sty.freeBox__zwWvt)}>
+        <ApiRequest
+          data-plasmic-name={"apiRequest"}
+          data-plasmic-override={overrides.apiRequest}
+          className={classNames("__wab_instance", sty.apiRequest)}
+          errorDisplay={null}
+          loadingDisplay={(_par =>
+            !_par ? [] : Array.isArray(_par) ? _par : [_par])([2, 3, 4]).map(
+            (__plasmic_item_0, __plasmic_idx_0) => {
+              const currentItem = __plasmic_item_0;
+              const currentIndex = __plasmic_idx_0;
+              return (
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    sty.freeBox___1Bts8,
+                    "shimmer"
+                  )}
+                  key={currentIndex}
+                />
+              );
+            }
+          )}
+          method={"GET"}
+          onError={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onLoading={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onSuccess={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          params={(() => {
             try {
-              return $state.apiRequest.data.result;
+              return {
+                subcategory_id: 2 || $props.subcategori?.id
+              };
             } catch (e) {
               if (
                 e instanceof TypeError ||
                 e?.plasmicType === "PlasmicUndefinedDataError"
               ) {
-                return [];
+                return undefined;
               }
               throw e;
             }
-          })()
-        ).map((__plasmic_item_0, __plasmic_idx_0) => {
-          const currentItem = __plasmic_item_0;
-          const currentIndex = __plasmic_idx_0;
-          return (
-            <Item
-              data-plasmic-name={"item"}
-              data-plasmic-override={overrides.item}
-              className={classNames("__wab_instance", sty.item)}
-              item={(() => {
-                try {
-                  return currentItem;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-              key={currentIndex}
-              onCenterChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "item",
-                  __plasmic_idx_0,
-                  "center"
-                ]).apply(null, eventArgs);
-
+          })()}
+          shouldFetch={(() => {
+            try {
+              return $props.subcategori?.id;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })()}
+          url={"https://sayban.darkube.app/webhook/centers"}
+        >
+          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+            (() => {
+              try {
+                return $state.apiRequest.data.result;
+              } catch (e) {
                 if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
                 ) {
-                  return;
+                  return [];
                 }
-              }}
-            />
-          );
-        })}
+                throw e;
+              }
+            })()
+          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+            const currentItem = __plasmic_item_0;
+            const currentIndex = __plasmic_idx_0;
+            return (
+              <Item
+                data-plasmic-name={"item"}
+                data-plasmic-override={overrides.item}
+                className={classNames("__wab_instance", sty.item)}
+                item={(() => {
+                  try {
+                    return currentItem;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                key={currentIndex}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateCenter"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["center"]
+                          },
+                          operation: 0,
+                          value: currentItem || {}
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateCenter"] != null &&
+                    typeof $steps["updateCenter"] === "object" &&
+                    typeof $steps["updateCenter"].then === "function"
+                  ) {
+                    $steps["updateCenter"] = await $steps["updateCenter"];
+                  }
+                }}
+              />
+            );
+          })}
+        </ApiRequest>
       </div>
-      <ApiRequest
-        data-plasmic-name={"apiRequest"}
-        data-plasmic-override={overrides.apiRequest}
-        className={classNames("__wab_instance", sty.apiRequest)}
-        errorDisplay={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text___3VNW
-            )}
-          >
-            {"Error fetching data"}
-          </div>
-        }
-        loadingDisplay={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text___8Ur3X
-            )}
-          >
-            {"Loading..."}
-          </div>
-        }
-        method={"GET"}
-        onError={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        onLoading={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        onSuccess={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        params={(() => {
-          try {
-            return {
-              subcategory_id: $props.subcategori?.id
-            };
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-        shouldFetch={(() => {
-          try {
-            return $props.subcategori?.id;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return true;
-            }
-            throw e;
-          }
-        })()}
-        url={"https://sayban.darkube.app/webhook/centers"}
-      />
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "freeBox", "item", "apiRequest"],
+  root: ["root", "header", "apiRequest", "item"],
   header: ["header"],
-  freeBox: ["freeBox", "item"],
-  item: ["item"],
-  apiRequest: ["apiRequest"]
+  apiRequest: ["apiRequest", "item"],
+  item: ["item"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -346,9 +370,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
-  freeBox: "div";
-  item: typeof Item;
   apiRequest: typeof ApiRequest;
+  item: typeof Item;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -414,9 +437,8 @@ export const PlasmicSubcategories = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
-    freeBox: makeNodeComponent("freeBox"),
-    item: makeNodeComponent("item"),
     apiRequest: makeNodeComponent("apiRequest"),
+    item: makeNodeComponent("item"),
 
     // Metadata about props expected for PlasmicSubcategories
     internalVariantProps: PlasmicSubcategories__VariantProps,

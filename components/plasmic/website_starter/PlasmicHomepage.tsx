@@ -235,6 +235,12 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "subcategories.center",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -744,6 +750,7 @@ function PlasmicHomepage__RenderFunc(props: {
           <Subcategories
             data-plasmic-name={"subcategories"}
             data-plasmic-override={overrides.subcategories}
+            center={generateStateValueProp($state, ["subcategories", "center"])}
             className={classNames("__wab_instance", sty.subcategories, {
               [sty.subcategoriespage_categories]: hasVariant(
                 $state,
@@ -756,6 +763,20 @@ function PlasmicHomepage__RenderFunc(props: {
                 "subcategories"
               )
             })}
+            onCenterChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "subcategories",
+                "center"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
             subcategori={(() => {
               try {
                 return $state.categories.subcategories;
