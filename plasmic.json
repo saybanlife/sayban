@@ -751,7 +751,7 @@
           "projectId": "qARqpE4p5tZmJuNxFbTaPz",
           "renderModuleFilePath": "plasmic/website_starter/PlasmicHomepage.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/[page]/[[categories]]/[[subcategory]].tsx"
+            "modulePath": "../src/pages/[page]/[[...slug]].tsx"
           },
           "cssFilePath": "plasmic/website_starter/PlasmicHomepage.module.css",
           "scheme": "blackbox",

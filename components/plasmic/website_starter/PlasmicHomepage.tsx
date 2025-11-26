@@ -507,19 +507,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["goToHomepage"] = true
                   ? (() => {
                       const actionArgs = {
-                        destination: `/${"home"}/${(() => {
-                          try {
-                            return $state.home.categori.slug;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}/[[subcategory]]`
+                        destination: `/${"home"}/[[...slug]]`
                       };
                       return (({ destination }) => {
                         if (
