@@ -1,19 +1,28 @@
 "use client";
 
-import * as React from "react";
+import { usePathname } from "next/navigation";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
 import GlobalContextsProvider from "../../../components/plasmic/website_starter/PlasmicGlobalContextsProvider";
 import { PlasmicHomepage } from "../../../components/plasmic/website_starter/PlasmicHomepage";
 
-import { useParams } from "next/navigation";
+export default function Homepage() {
+  const pathname = usePathname();
 
-function Homepage() {
-  const params = useParams(); // ← اینجا درست همه داینامیک‌ها را می‌دهد
+  // "/centers/sport/football" → ["centers","sport","football"]
+  const parts = pathname.split("/").filter(Boolean);
+
+  const page = parts[0] || null;
+  const slug = parts.slice(1); // ["sport", "football", ...]
+
+  const params = {
+    page,
+    slug,
+  };
 
   return (
     <GlobalContextsProvider>
       <PageParamsProvider__
-        route={window.location.pathname}
+        route={pathname}
         params={params}
         query={params}
       >
@@ -22,5 +31,3 @@ function Homepage() {
     </GlobalContextsProvider>
   );
 }
-
-export default Homepage;
