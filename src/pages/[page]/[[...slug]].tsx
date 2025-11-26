@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
-import GlobalContextsProvider from "../../../components/plasmic/website_starter/PlasmicGlobalContextsProvider";
-import { PlasmicHomepage } from "../../../components/plasmic/website_starter/PlasmicHomepage";
+import GlobalContextsProvider from "../../../../components/plasmic/website_starter/PlasmicGlobalContextsProvider";
+import { PlasmicHomepage } from "../../../../components/plasmic/website_starter/PlasmicHomepage";
 
 import { useParams } from "next/navigation";
 
