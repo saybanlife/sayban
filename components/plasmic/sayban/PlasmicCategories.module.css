@@ -1,0 +1,207 @@
+.root {
+  background: var(--token-KPGXdu9o7llP);
+  display: grid;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  align-content: flex-start;
+  justify-items: center;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  min-height: 0;
+  grid-template-columns:
+    var(--plsmc-viewport-gap) 1fr minmax(0, var(--plsmc-wide-chunk))
+    min(
+      var(--plsmc-standard-width),
+      calc(100% - var(--plsmc-viewport-gap) - var(--plsmc-viewport-gap))
+    )
+    minmax(0, var(--plsmc-wide-chunk)) 1fr var(--plsmc-viewport-gap);
+  padding: 3rem var(--token-kD77h-2NGSqI) var(--token-73iLa06AE6f4);
+}
+.root > * {
+  grid-column: 4;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .root > * {
+    grid-column: 4;
+  }
+}
+.header:global(.__wab_instance) {
+  max-width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  position: fixed;
+  right: 0;
+}
+.freeBox__bfnIl {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-73iLa06AE6f4);
+  min-width: 0;
+  padding: 0px var(--token-73iLa06AE6f4);
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__bfnIl {
+    width: 100%;
+    grid-column-start: 1 !important;
+    grid-column-end: -1 !important;
+    padding: 0px;
+  }
+}
+.freeBox__xhLuY {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+  min-width: 0;
+  border-radius: var(--token-kD77h-2NGSqI);
+  padding: 0px;
+}
+.swiperSlider:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+  width: 100%;
+  min-width: 0;
+}
+.img__u72A0 {
+  object-fit: cover;
+  max-width: 100%;
+  height: 200px;
+}
+.img__u72A0 > picture > img {
+  object-fit: cover;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .img__u72A0 {
+    height: 120px;
+  }
+}
+.img__pybI {
+  object-fit: cover;
+  max-width: 100%;
+  height: 200px;
+}
+.img__pybI > picture > img {
+  object-fit: cover;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .img__pybI {
+    height: 120px;
+  }
+}
+.img__qBgAf {
+  object-fit: cover;
+  max-width: 100%;
+  height: 200px;
+}
+.img__qBgAf > picture > img {
+  object-fit: cover;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .img__qBgAf {
+    height: 120px;
+  }
+}
+.freeBox__xcchq {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  grid-row-gap: var(--token-kD77h-2NGSqI);
+  grid-column-gap: var(--token-kD77h-2NGSqI);
+  min-width: 0;
+  padding: 0px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__xcchq {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    grid-column-start: 1 !important;
+    grid-column-end: -1 !important;
+  }
+}
+.freeBox___4F4Ap {
+  background: none;
+  outline-color: var(--token-pRs3-4jrQ4XQ);
+  outline-style: solid;
+  outline-width: medium;
+  position: relative;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--token-gLYiSvxc94NR);
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: var(--token-Vi8cDx7an2mh);
+}
+.text {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-9M5jRUPt8Msb);
+  font-weight: 600;
+  font-size: var(--token-Tca_MqWoqq_b);
+  text-align: right;
+  min-width: 0;
+}
+.freeBox__buwE7 {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__gah5R {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 0px;
+}
+.img__x4Hog {
+  object-fit: cover;
+  max-width: 100%;
+  width: 30px;
+  height: 30px;
+  margin-left: -10px;
+  z-index: 2;
+  flex-shrink: 0;
+  border-radius: 50px;
+  border: 4px solid var(--token-KPGXdu9o7llP);
+}
+.img__x4Hog > picture > img {
+  object-fit: cover;
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-Yo4gdKCgyuAu);
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}

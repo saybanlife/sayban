@@ -74,18 +74,40 @@ import Icon16Icon from "./icons/PlasmicIcon__Icon16"; // plasmic-import: h4Q2RYI
 import Icon4Icon from "./icons/PlasmicIcon__Icon4"; // plasmic-import: XYEdqsKT1Z5t/icon
 import Icon5Icon from "./icons/PlasmicIcon__Icon5"; // plasmic-import: 8vOA1S70pHdl/icon
 import Icon6Icon from "./icons/PlasmicIcon__Icon6"; // plasmic-import: wfu5dAZKgp8n/icon
+import Icon27Icon from "../sayban/icons/PlasmicIcon__Icon27"; // plasmic-import: H0kX6aZGCrcz/icon
+import Icon25Icon from "../sayban/icons/PlasmicIcon__Icon25"; // plasmic-import: 2CSyPCl98YLt/icon
+import Icon26Icon from "../sayban/icons/PlasmicIcon__Icon26"; // plasmic-import: tI_PZ_NW7AQQ/icon
 
 createPlasmicElementProxy;
 
 export type PlasmicMenueIcon__VariantMembers = {
   select: "select";
-  icons: "settings" | "user" | "home";
+  icons:
+    | "settings"
+    | "user"
+    | "home"
+    | "supportive"
+    | "rehabilitation"
+    | "medical"
+    | "medicalcompletion"
+    | "welfareservices"
+    | "recreationaltourism";
   size: "min" | "max";
   color: "dark";
 };
 export type PlasmicMenueIcon__VariantsArgs = {
   select?: SingleBooleanChoiceArg<"select">;
-  icons?: SingleChoiceArg<"settings" | "user" | "home">;
+  icons?: SingleChoiceArg<
+    | "settings"
+    | "user"
+    | "home"
+    | "supportive"
+    | "rehabilitation"
+    | "medical"
+    | "medicalcompletion"
+    | "welfareservices"
+    | "recreationaltourism"
+  >;
   size?: SingleChoiceArg<"min" | "max">;
   color?: SingleChoiceArg<"dark">;
 };
@@ -105,11 +127,22 @@ export type PlasmicMenueIcon__OverridesType = {
   root?: Flex__<"div">;
   freeBox?: Flex__<"div">;
   svg?: Flex__<"svg">;
+  img?: Flex__<typeof PlasmicImg__>;
 };
 
 export interface DefaultMenueIconProps {
   select?: SingleBooleanChoiceArg<"select">;
-  icons?: SingleChoiceArg<"settings" | "user" | "home">;
+  icons?: SingleChoiceArg<
+    | "settings"
+    | "user"
+    | "home"
+    | "supportive"
+    | "rehabilitation"
+    | "medical"
+    | "medicalcompletion"
+    | "welfareservices"
+    | "recreationaltourism"
+  >;
   size?: SingleChoiceArg<"min" | "max">;
   color?: SingleChoiceArg<"dark">;
   className?: string;
@@ -212,7 +245,14 @@ function PlasmicMenueIcon__RenderFunc(props: {
           [sty.rooticons_home_select]:
             hasVariant($state, "select", "select") &&
             hasVariant($state, "icons", "home"),
+          [sty.rooticons_medical]: hasVariant($state, "icons", "medical"),
+          [sty.rooticons_rehabilitation]: hasVariant(
+            $state,
+            "icons",
+            "rehabilitation"
+          ),
           [sty.rooticons_settings]: hasVariant($state, "icons", "settings"),
+          [sty.rooticons_supportive]: hasVariant($state, "icons", "supportive"),
           [sty.rootselect]: hasVariant($state, "select", "select"),
           [sty.rootsize_max]: hasVariant($state, "size", "max")
         }
@@ -239,13 +279,19 @@ function PlasmicMenueIcon__RenderFunc(props: {
               : hasVariant($state, "icons", "settings") &&
                   hasVariant($state, "select", "select")
                 ? Icon6Icon
-                : hasVariant($state, "icons", "home")
-                  ? Icon14Icon
-                  : hasVariant($state, "icons", "user")
-                    ? Icon15Icon
-                    : hasVariant($state, "icons", "settings")
-                      ? Icon16Icon
-                      : Icon24Icon
+                : hasVariant($state, "icons", "medicalcompletion")
+                  ? Icon26Icon
+                  : hasVariant($state, "icons", "medical")
+                    ? Icon25Icon
+                    : hasVariant($state, "icons", "supportive")
+                      ? Icon27Icon
+                      : hasVariant($state, "icons", "home")
+                        ? Icon14Icon
+                        : hasVariant($state, "icons", "user")
+                          ? Icon15Icon
+                          : hasVariant($state, "icons", "settings")
+                            ? Icon16Icon
+                            : Icon24Icon
         }
         className={classNames(projectcss.all, sty.svg, {
           [sty.svgcolor_dark]: hasVariant($state, "color", "dark"),
@@ -253,27 +299,99 @@ function PlasmicMenueIcon__RenderFunc(props: {
           [sty.svgicons_home_select]:
             hasVariant($state, "select", "select") &&
             hasVariant($state, "icons", "home"),
+          [sty.svgicons_medical]: hasVariant($state, "icons", "medical"),
+          [sty.svgicons_medicalcompletion]: hasVariant(
+            $state,
+            "icons",
+            "medicalcompletion"
+          ),
+          [sty.svgicons_recreationaltourism]: hasVariant(
+            $state,
+            "icons",
+            "recreationaltourism"
+          ),
+          [sty.svgicons_rehabilitation]: hasVariant(
+            $state,
+            "icons",
+            "rehabilitation"
+          ),
           [sty.svgicons_settings]: hasVariant($state, "icons", "settings"),
           [sty.svgicons_settings_select]:
             hasVariant($state, "icons", "settings") &&
             hasVariant($state, "select", "select"),
+          [sty.svgicons_supportive]: hasVariant($state, "icons", "supportive"),
           [sty.svgicons_user]: hasVariant($state, "icons", "user"),
           [sty.svgicons_user_select]:
             hasVariant($state, "icons", "user") &&
             hasVariant($state, "select", "select"),
+          [sty.svgicons_welfareservices]: hasVariant(
+            $state,
+            "icons",
+            "welfareservices"
+          ),
           [sty.svgselect]: hasVariant($state, "select", "select"),
           [sty.svgsize_max]: hasVariant($state, "size", "max")
         })}
         role={"img"}
+      />
+
+      <PlasmicImg__
+        data-plasmic-name={"img"}
+        data-plasmic-override={overrides.img}
+        alt={""}
+        className={classNames(sty.img, {
+          [sty.imgicons_medical]: hasVariant($state, "icons", "medical"),
+          [sty.imgicons_medicalcompletion]: hasVariant(
+            $state,
+            "icons",
+            "medicalcompletion"
+          ),
+          [sty.imgicons_rehabilitation]: hasVariant(
+            $state,
+            "icons",
+            "rehabilitation"
+          ),
+          [sty.imgicons_supportive]: hasVariant($state, "icons", "supportive")
+        })}
+        displayHeight={"2rem"}
+        displayMaxHeight={"none"}
+        displayMaxWidth={"100%"}
+        displayMinHeight={"0"}
+        displayMinWidth={"0"}
+        displayWidth={"2rem"}
+        loading={"lazy"}
+        src={
+          hasVariant($state, "icons", "medicalcompletion")
+            ? {
+                src: "/plasmic/sayban/images/image11.svg",
+                fullWidth: 24,
+                fullHeight: 24,
+                aspectRatio: undefined
+              }
+            : hasVariant($state, "icons", "supportive")
+              ? {
+                  src: "/plasmic/sayban/images/image12.svg",
+                  fullWidth: 24,
+                  fullHeight: 24,
+                  aspectRatio: undefined
+                }
+              : {
+                  src: "/plasmic/sayban/images/image10.svg",
+                  fullWidth: 24,
+                  fullHeight: 24,
+                  aspectRatio: undefined
+                }
+        }
       />
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox", "svg"],
+  root: ["root", "freeBox", "svg", "img"],
   freeBox: ["freeBox"],
-  svg: ["svg"]
+  svg: ["svg"],
+  img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -282,6 +400,7 @@ type NodeDefaultElementType = {
   root: "div";
   freeBox: "div";
   svg: "svg";
+  img: typeof PlasmicImg__;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -348,6 +467,7 @@ export const PlasmicMenueIcon = Object.assign(
     // Helper components rendering sub-elements
     freeBox: makeNodeComponent("freeBox"),
     svg: makeNodeComponent("svg"),
+    img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicMenueIcon
     internalVariantProps: PlasmicMenueIcon__VariantProps,

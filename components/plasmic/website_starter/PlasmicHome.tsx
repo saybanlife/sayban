@@ -82,9 +82,21 @@ export type PlasmicHome__VariantsArgs = {
 type VariantPropType = keyof PlasmicHome__VariantsArgs;
 export const PlasmicHome__VariantProps = new Array<VariantPropType>("search");
 
-export type PlasmicHome__ArgsType = { onSearchChange?: (val: any) => void };
+export type PlasmicHome__ArgsType = {
+  onSearchChange?: (val: any) => void;
+  categories?: any;
+  categori?: any;
+  onCategoriChange?: (val: string) => void;
+  onCategori?: () => void;
+};
 type ArgPropType = keyof PlasmicHome__ArgsType;
-export const PlasmicHome__ArgProps = new Array<ArgPropType>("onSearchChange");
+export const PlasmicHome__ArgProps = new Array<ArgPropType>(
+  "onSearchChange",
+  "categories",
+  "categori",
+  "onCategoriChange",
+  "onCategori"
+);
 
 export type PlasmicHome__OverridesType = {
   root?: Flex__<"div">;
@@ -96,6 +108,10 @@ export type PlasmicHome__OverridesType = {
 
 export interface DefaultHomeProps {
   onSearchChange?: (val: any) => void;
+  categories?: any;
+  categori?: any;
+  onCategoriChange?: (val: string) => void;
+  onCategori?: () => void;
   search?: SingleBooleanChoiceArg<"search">;
   className?: string;
 }
@@ -162,6 +178,14 @@ function PlasmicHome__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "categori",
+        type: "writable",
+        variableType: "object",
+
+        valueProp: "categori",
+        onChangeProp: "onCategoriChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -321,14 +345,7 @@ function PlasmicHome__RenderFunc(props: {
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {
               try {
-                return [
-                  { text: "حمایتی", value: "Supportive" },
-                  { text: "توانبخشی", value: "Rehabilitation" },
-                  { text: "درمانی", value: "Medical" },
-                  { text: "تکمیل درمان", value: "Medical Completion" },
-                  { text: "رفاهی", value: "Welfare Services" },
-                  { text: "تفریحی و گردشگری", value: "Recreational & Tourism" }
-                ];
+                return $props.categories;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -364,6 +381,59 @@ function PlasmicHome__RenderFunc(props: {
                   }
                 })()}
                 key={currentIndex}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateCategori"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["categori"]
+                          },
+                          operation: 0,
+                          value: currentItem
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateCategori"] != null &&
+                    typeof $steps["updateCategori"] === "object" &&
+                    typeof $steps["updateCategori"].then === "function"
+                  ) {
+                    $steps["updateCategori"] = await $steps["updateCategori"];
+                  }
+
+                  $steps["runOnCategori"] = true
+                    ? (() => {
+                        const actionArgs = { eventRef: $props["onCategori"] };
+                        return (({ eventRef, args }) => {
+                          return eventRef?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runOnCategori"] != null &&
+                    typeof $steps["runOnCategori"] === "object" &&
+                    typeof $steps["runOnCategori"].then === "function"
+                  ) {
+                    $steps["runOnCategori"] = await $steps["runOnCategori"];
+                  }
+                }}
               />
             );
           })}

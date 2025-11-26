@@ -81,9 +81,15 @@ export const PlasmicToolsItem__VariantProps = new Array<VariantPropType>(
   "back"
 );
 
-export type PlasmicToolsItem__ArgsType = { data?: any };
+export type PlasmicToolsItem__ArgsType = {
+  data?: any;
+  onClick?: (event: any) => void;
+};
 type ArgPropType = keyof PlasmicToolsItem__ArgsType;
-export const PlasmicToolsItem__ArgProps = new Array<ArgPropType>("data");
+export const PlasmicToolsItem__ArgProps = new Array<ArgPropType>(
+  "data",
+  "onClick"
+);
 
 export type PlasmicToolsItem__OverridesType = {
   root?: Flex__<"div">;
@@ -94,6 +100,7 @@ export type PlasmicToolsItem__OverridesType = {
 
 export interface DefaultToolsItemProps {
   data?: any;
+  onClick?: (event: any) => void;
   back?: SingleBooleanChoiceArg<"back">;
   className?: string;
 }
@@ -172,6 +179,7 @@ function PlasmicToolsItem__RenderFunc(props: {
         sty.root,
         { [sty.rootback]: hasVariant($state, "back", "back") }
       )}
+      onClick={args.onClick}
     >
       <div
         data-plasmic-name={"freeBox"}
@@ -186,6 +194,19 @@ function PlasmicToolsItem__RenderFunc(props: {
           className={classNames("__wab_instance", sty.menueIcon, {
             [sty.menueIconback]: hasVariant($state, "back", "back")
           })}
+          icons={(() => {
+            try {
+              return $props.data.icon;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()}
           size={"max"}
         />
       </div>
@@ -199,7 +220,7 @@ function PlasmicToolsItem__RenderFunc(props: {
         <React.Fragment>
           {(() => {
             try {
-              return $props.data.text;
+              return $props.data.name;
             } catch (e) {
               if (
                 e instanceof TypeError ||

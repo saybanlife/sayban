@@ -751,7 +751,7 @@
           "projectId": "qARqpE4p5tZmJuNxFbTaPz",
           "renderModuleFilePath": "plasmic/website_starter/PlasmicHomepage.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/index.tsx"
+            "modulePath": "../src/pages/[page]/[categories].tsx"
           },
           "cssFilePath": "plasmic/website_starter/PlasmicHomepage.module.css",
           "scheme": "blackbox",
@@ -1162,20 +1162,6 @@
           "componentType": "component"
         },
         {
-          "id": "R95SHqmqnvX5",
-          "name": "NewPage",
-          "type": "managed",
-          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
-          "renderModuleFilePath": "plasmic/website_starter/PlasmicNewPage.tsx",
-          "importSpec": {
-            "modulePath": "../src/pages/new-page.tsx"
-          },
-          "cssFilePath": "plasmic/website_starter/PlasmicNewPage.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/new-page"
-        },
-        {
           "id": "1fS9mxEN0mIl",
           "name": "LineClomp",
           "type": "managed",
@@ -1291,6 +1277,19 @@
             "modulePath": "Status.tsx"
           },
           "cssFilePath": "plasmic/sayban/PlasmicStatus.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "R95SHqmqnvX5",
+          "name": "Categories",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicCategories.tsx",
+          "importSpec": {
+            "modulePath": "Categories.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicCategories.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
@@ -1445,6 +1444,21 @@
           "id": "Zol8GIsmVO1W",
           "name": "Icon24Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon24.tsx"
+        },
+        {
+          "id": "2CSyPCl98YLt",
+          "name": "Icon25Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon25.tsx"
+        },
+        {
+          "id": "tI_PZ_NW7AQQ",
+          "name": "Icon26Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon26.tsx"
+        },
+        {
+          "id": "H0kX6aZGCrcz",
+          "name": "Icon27Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon27.tsx"
         }
       ],
       "images": [
@@ -1512,6 +1526,21 @@
           "id": "Q1085GAiWrXz",
           "name": "image 9",
           "filePath": "../public/plasmic/website_starter/images/image9.png"
+        },
+        {
+          "id": "h50IbwY_92Ri",
+          "name": "image 10",
+          "filePath": "../public/plasmic/sayban/images/image10.svg"
+        },
+        {
+          "id": "U1UHUfEL4DU4",
+          "name": "image 11",
+          "filePath": "../public/plasmic/sayban/images/image11.svg"
+        },
+        {
+          "id": "U-YgfUMSlfqC",
+          "name": "image 12",
+          "filePath": "../public/plasmic/sayban/images/image12.svg"
         }
       ],
       "indirect": false,
