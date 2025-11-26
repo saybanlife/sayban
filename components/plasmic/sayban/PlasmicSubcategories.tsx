@@ -249,7 +249,7 @@ function PlasmicSubcategories__RenderFunc(props: {
           params={(() => {
             try {
               return {
-                subcategory_id: 2 || $props.subcategori?.id
+                subcategory_id: $props.subcategori?.id
               };
             } catch (e) {
               if (
