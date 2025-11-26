@@ -2,7 +2,7 @@
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: auto;
   height: auto;
   max-width: 100%;
@@ -10,6 +10,12 @@
   position: relative;
   justify-self: flex-start;
   padding: 0px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .root {
+    align-items: center;
+    justify-content: flex-start;
+  }
 }
 .rootback {
   background: none;
@@ -46,7 +52,7 @@
   justify-content: center;
   align-items: center;
   border-radius: var(--token-rfsFxiclAtek);
-  padding: var(--token-6F5DR5OsTPi0);
+  padding: var(--token-UWj1h_kV6SQI);
 }
 .menueIcon:global(.__wab_instance) {
   max-width: 100%;
@@ -63,6 +69,6 @@
 }
 .textback {
   font-size: var(--token-ehIkf6s-dMLU);
-  white-space: pre;
+  white-space: pre-wrap;
   user-select: none;
 }

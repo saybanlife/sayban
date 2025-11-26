@@ -215,7 +215,23 @@ function PlasmicHomepage__RenderFunc(props: {
         path: "slug",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                const parts = $ctx.pagePath.split("/").filter(Boolean);
+                return parts.slice(1);
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -584,8 +600,8 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-override={overrides.categories}
             categories={(() => {
               try {
-                return $state.apiRequest.data.result.find(
-                  i => i.slug == $ctx.params.categories
+                return $state.apiRequest?.data?.result?.find(
+                  i => i.slug == ($state.slug[0] || "")
                 );
               } catch (e) {
                 if (
@@ -644,34 +660,6 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-name={"sideEffect"}
             data-plasmic-override={overrides.sideEffect}
             className={classNames("__wab_instance", sty.sideEffect)}
-            onMount={async () => {
-              const $steps = {};
-
-              $steps["runCode"] = true
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return (() => {
-                          const parts = $ctx.pagePath
-                            .split("/")
-                            .filter(Boolean);
-                          return ($state.slug = parts.slice(1) ?? []);
-                        })();
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runCode"] != null &&
-                typeof $steps["runCode"] === "object" &&
-                typeof $steps["runCode"].then === "function"
-              ) {
-                $steps["runCode"] = await $steps["runCode"];
-              }
-            }}
           />
         </div>
       </div>
