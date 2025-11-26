@@ -1181,7 +1181,7 @@
           "projectId": "qARqpE4p5tZmJuNxFbTaPz",
           "renderModuleFilePath": "plasmic/website_starter/PlasmicNewPage3.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/new-page/[page]/[categories].tsx"
+            "modulePath": "../src/pages/new-page.tsx"
           },
           "cssFilePath": "plasmic/website_starter/PlasmicNewPage3.module.css",
           "scheme": "blackbox",

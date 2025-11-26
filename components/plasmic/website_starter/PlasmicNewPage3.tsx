@@ -61,6 +61,7 @@ import {
 
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import Item from "../../Item"; // plasmic-import: lqR7VxT6h9YH/component
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -85,6 +86,7 @@ export type PlasmicNewPage3__OverridesType = {
   header?: Flex__<typeof Header>;
   freeBox?: Flex__<"div">;
   item?: Flex__<typeof Item>;
+  apiRequest?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultNewPage3Props {}
@@ -127,6 +129,36 @@ function PlasmicNewPage3__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
+
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "apiRequest.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "apiRequest.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "apiRequest.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $refs
+  });
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -194,6 +226,68 @@ function PlasmicNewPage3__RenderFunc(props: {
               );
             })}
           </div>
+          <ApiRequest
+            data-plasmic-name={"apiRequest"}
+            data-plasmic-override={overrides.apiRequest}
+            className={classNames("__wab_instance", sty.apiRequest)}
+            errorDisplay={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___3VNW
+                )}
+              >
+                {"Error fetching data"}
+              </div>
+            }
+            loadingDisplay={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___8Ur3X
+                )}
+              >
+                {"Loading..."}
+              </div>
+            }
+            method={"GET"}
+            onError={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            onLoading={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "apiRequest",
+                "loading"
+              ]).apply(null, eventArgs);
+            }}
+            onSuccess={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            params={(() => {
+              try {
+                return {
+                  subcategory_id: $ctx.query
+                };
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            url={"https://sayban.darkube.app/webhook/centers"}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -201,10 +295,11 @@ function PlasmicNewPage3__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "freeBox", "item"],
+  root: ["root", "header", "freeBox", "item", "apiRequest"],
   header: ["header"],
   freeBox: ["freeBox", "item"],
-  item: ["item"]
+  item: ["item"],
+  apiRequest: ["apiRequest"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -214,6 +309,7 @@ type NodeDefaultElementType = {
   header: typeof Header;
   freeBox: "div";
   item: typeof Item;
+  apiRequest: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -281,6 +377,7 @@ export const PlasmicNewPage3 = Object.assign(
     header: makeNodeComponent("header"),
     freeBox: makeNodeComponent("freeBox"),
     item: makeNodeComponent("item"),
+    apiRequest: makeNodeComponent("apiRequest"),
 
     // Metadata about props expected for PlasmicNewPage3
     internalVariantProps: PlasmicNewPage3__VariantProps,
