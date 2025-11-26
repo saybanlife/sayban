@@ -6,18 +6,15 @@ import GlobalContextsProvider from "../../../components/plasmic/website_starter/
 import { PlasmicHomepage } from "../../../components/plasmic/website_starter/PlasmicHomepage";
 
 export default function Homepage() {
-const pathname = usePathname() || "/";
+  const pathname = usePathname() || "/";
 
   // "/centers/sport/football" → ["centers","sport","football"]
   const parts = pathname.split("/").filter(Boolean);
 
-  const page = parts[0] || null;
-  const slug = parts.slice(1); // ["sport", "football", ...]
+  const page = parts[0] || undefined; // ← تغییر از null به undefined
+  const slug = parts.slice(1);
 
-  const params = {
-    page,
-    slug,
-  };
+  const params = { page, slug };
 
   return (
     <GlobalContextsProvider>
