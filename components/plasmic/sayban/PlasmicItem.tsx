@@ -79,9 +79,9 @@ export type PlasmicItem__VariantsArgs = {};
 type VariantPropType = keyof PlasmicItem__VariantsArgs;
 export const PlasmicItem__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicItem__ArgsType = {};
+export type PlasmicItem__ArgsType = { item?: any };
 type ArgPropType = keyof PlasmicItem__ArgsType;
-export const PlasmicItem__ArgProps = new Array<ArgPropType>();
+export const PlasmicItem__ArgProps = new Array<ArgPropType>("item");
 
 export type PlasmicItem__OverridesType = {
   root?: Flex__<"div">;
@@ -91,6 +91,7 @@ export type PlasmicItem__OverridesType = {
 };
 
 export interface DefaultItemProps {
+  item?: any;
   className?: string;
 }
 
@@ -163,12 +164,24 @@ function PlasmicItem__RenderFunc(props: {
           displayMinWidth={"0"}
           displayWidth={"2.5rem"}
           loading={"lazy"}
-          src={{
-            src: "/plasmic/website_starter/images/image6.png",
-            fullWidth: 224,
-            fullHeight: 224,
-            aspectRatio: undefined
-          }}
+          src={(() => {
+            try {
+              return $props.item.main_image;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return {
+                  src: "/plasmic/website_starter/images/image6.png",
+                  fullWidth: 224,
+                  fullHeight: 224,
+                  aspectRatio: undefined
+                };
+              }
+              throw e;
+            }
+          })()}
         />
 
         <div className={classNames(projectcss.all, sty.freeBox__andtq)}>
@@ -181,7 +194,21 @@ function PlasmicItem__RenderFunc(props: {
                   sty.text__agEiw
                 )}
               >
-                {"\u06a9\u0644\u06cc\u0646\u06cc\u06a9"}
+                <React.Fragment>
+                  {(() => {
+                    try {
+                      return $props.item.name;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "\u06a9\u0644\u06cc\u0646\u06cc\u06a9";
+                      }
+                      throw e;
+                    }
+                  })()}
+                </React.Fragment>
               </div>
               <div className={classNames(projectcss.all, sty.freeBox__z5Dw1)}>
                 <Icon20Icon
@@ -196,7 +223,21 @@ function PlasmicItem__RenderFunc(props: {
                     sty.text__urzHj
                   )}
                 >
-                  {"4.5"}
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $props.item.rating_avg;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "4.5";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
                 </div>
               </div>
             </div>
@@ -212,9 +253,19 @@ function PlasmicItem__RenderFunc(props: {
             className={classNames("__wab_instance", sty.textCollapse)}
             enableToggle={false}
             maxLines={1}
-            text={
-              "jkacksckjsc cnjsncsncsiocnosnd scniscnsiocsc ufutftufuyyf uhuhuohohhi ouhoihoho hihhohoh ohohohhoh oihhoh"
-            }
+            text={(() => {
+              try {
+                return $props.item.address;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
           />
         </div>
         <div className={classNames(projectcss.all, sty.freeBox__b41Xr)}>

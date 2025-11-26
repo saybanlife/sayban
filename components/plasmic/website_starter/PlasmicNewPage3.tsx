@@ -202,7 +202,7 @@ function PlasmicNewPage3__RenderFunc(props: {
             {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
               (() => {
                 try {
-                  return [2, 3, 4, 5, 6, 7, 8];
+                  return $state.apiRequest.data.result;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -221,6 +221,19 @@ function PlasmicNewPage3__RenderFunc(props: {
                   data-plasmic-name={"item"}
                   data-plasmic-override={overrides.item}
                   className={classNames("__wab_instance", sty.item)}
+                  item={(() => {
+                    try {
+                      return currentItem;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
                   key={currentIndex}
                 />
               );
@@ -274,7 +287,7 @@ function PlasmicNewPage3__RenderFunc(props: {
             params={(() => {
               try {
                 return {
-                  subcategory_id: $ctx.query
+                  subcategory_id: 2
                 };
               } catch (e) {
                 if (
