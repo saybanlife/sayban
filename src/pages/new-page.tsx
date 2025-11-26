@@ -2,9 +2,9 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
-import GlobalContextsProvider from "../../../components/plasmic/website_starter/PlasmicGlobalContextsProvider";
+import GlobalContextsProvider from "../../components/plasmic/website_starter/PlasmicGlobalContextsProvider";
 
-import { PlasmicNewPage3 } from "../../../components/plasmic/website_starter/PlasmicNewPage3";
+import { PlasmicNewPage3 } from "../../components/plasmic/website_starter/PlasmicNewPage3";
 import { useRouter } from "next/router";
 
 function NewPage3() {
