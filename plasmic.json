@@ -1175,20 +1175,6 @@
           "componentType": "component"
         },
         {
-          "id": "JM9_woEGqy8m",
-          "name": "NewPage3",
-          "type": "managed",
-          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
-          "renderModuleFilePath": "plasmic/website_starter/PlasmicNewPage3.tsx",
-          "importSpec": {
-            "modulePath": "../src/pages/new-page.tsx"
-          },
-          "cssFilePath": "plasmic/website_starter/PlasmicNewPage3.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/new-page-3"
-        },
-        {
           "id": "Lh-Py4-EsRhC",
           "name": "NewPage2",
           "type": "managed",
@@ -1292,6 +1278,33 @@
           "cssFilePath": "plasmic/sayban/PlasmicCategories.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "JM9_woEGqy8m",
+          "name": "Subcategories",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicSubcategories.tsx",
+          "importSpec": {
+            "modulePath": "Subcategories.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicSubcategories.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "f1blqtlMCCYK",
+          "name": "NewPage4",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicNewPage4.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/new-page-3.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicNewPage4.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/new-page-3"
         }
       ],
       "icons": [

@@ -78,9 +78,19 @@ export type PlasmicCategories__VariantsArgs = {};
 type VariantPropType = keyof PlasmicCategories__VariantsArgs;
 export const PlasmicCategories__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicCategories__ArgsType = { categories?: any };
+export type PlasmicCategories__ArgsType = {
+  categories?: any;
+  subcategories?: any;
+  onSubcategoriesChange?: (val: string) => void;
+  onSubcategories?: () => void;
+};
 type ArgPropType = keyof PlasmicCategories__ArgsType;
-export const PlasmicCategories__ArgProps = new Array<ArgPropType>("categories");
+export const PlasmicCategories__ArgProps = new Array<ArgPropType>(
+  "categories",
+  "subcategories",
+  "onSubcategoriesChange",
+  "onSubcategories"
+);
 
 export type PlasmicCategories__OverridesType = {
   root?: Flex__<"div">;
@@ -92,6 +102,9 @@ export type PlasmicCategories__OverridesType = {
 
 export interface DefaultCategoriesProps {
   categories?: any;
+  subcategories?: any;
+  onSubcategoriesChange?: (val: string) => void;
+  onSubcategories?: () => void;
   className?: string;
 }
 
@@ -149,6 +162,14 @@ function PlasmicCategories__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "subcategories",
+        type: "writable",
+        variableType: "object",
+
+        valueProp: "subcategories",
+        onChangeProp: "onSubcategoriesChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -324,6 +345,63 @@ function PlasmicCategories__RenderFunc(props: {
               <div
                 className={classNames(projectcss.all, sty.freeBox___4F4Ap)}
                 key={currentIndex}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateSubcategories"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["subcategories"]
+                          },
+                          operation: 0,
+                          value: currentItem
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateSubcategories"] != null &&
+                    typeof $steps["updateSubcategories"] === "object" &&
+                    typeof $steps["updateSubcategories"].then === "function"
+                  ) {
+                    $steps["updateSubcategories"] =
+                      await $steps["updateSubcategories"];
+                  }
+
+                  $steps["runOnSubcategories"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          eventRef: $props["onSubcategories"]
+                        };
+                        return (({ eventRef, args }) => {
+                          return eventRef?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runOnSubcategories"] != null &&
+                    typeof $steps["runOnSubcategories"] === "object" &&
+                    typeof $steps["runOnSubcategories"].then === "function"
+                  ) {
+                    $steps["runOnSubcategories"] =
+                      await $steps["runOnSubcategories"];
+                  }
+                }}
               >
                 <div
                   data-plasmic-name={"text"}

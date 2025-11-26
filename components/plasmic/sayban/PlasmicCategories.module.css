@@ -18,7 +18,7 @@
       calc(100% - var(--plsmc-viewport-gap) - var(--plsmc-viewport-gap))
     )
     minmax(0, var(--plsmc-wide-chunk)) 1fr var(--plsmc-viewport-gap);
-  padding: 3rem var(--token-kD77h-2NGSqI) var(--token-73iLa06AE6f4);
+  padding: 3rem 0px 0px;
 }
 .root > * {
   grid-column: 4;
@@ -156,7 +156,7 @@
   max-width: 100%;
   color: var(--token-9M5jRUPt8Msb);
   font-weight: 600;
-  font-size: var(--token-Tca_MqWoqq_b);
+  font-size: var(--token-9jx4RULNbWhl);
   text-align: right;
   min-width: 0;
 }

@@ -59,12 +59,13 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import Menu2 from "../../Menu2"; // plasmic-import: z9yXgH-e4ant/component
 import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
 import Home from "../../Home"; // plasmic-import: m-UDUThzN-63/component
 import Categories from "../../Categories"; // plasmic-import: R95SHqmqnvX5/component
+import Subcategories from "../../Subcategories"; // plasmic-import: JM9_woEGqy8m/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
-import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -79,15 +80,13 @@ import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHz
 createPlasmicElementProxy;
 
 export type PlasmicHomepage__VariantMembers = {
-  categories: "categories";
+  page: "categories" | "subcategories";
 };
 export type PlasmicHomepage__VariantsArgs = {
-  categories?: SingleBooleanChoiceArg<"categories">;
+  page?: SingleChoiceArg<"categories" | "subcategories">;
 };
 type VariantPropType = keyof PlasmicHomepage__VariantsArgs;
-export const PlasmicHomepage__VariantProps = new Array<VariantPropType>(
-  "categories"
-);
+export const PlasmicHomepage__VariantProps = new Array<VariantPropType>("page");
 
 export type PlasmicHomepage__ArgsType = {};
 type ArgPropType = keyof PlasmicHomepage__ArgsType;
@@ -95,14 +94,15 @@ export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHomepage__OverridesType = {
   root?: Flex__<"div">;
+  sideEffect?: Flex__<typeof SideEffect>;
   homePage?: Flex__<"div">;
   menu2?: Flex__<typeof Menu2>;
   img?: Flex__<typeof PlasmicImg__>;
   textInput?: Flex__<typeof TextInput>;
   home?: Flex__<typeof Home>;
   categories?: Flex__<typeof Categories>;
+  subcategories?: Flex__<typeof Subcategories>;
   apiRequest?: Flex__<typeof ApiRequest>;
-  sideEffect?: Flex__<typeof SideEffect>;
 };
 
 export interface DefaultHomepageProps {}
@@ -184,16 +184,17 @@ function PlasmicHomepage__RenderFunc(props: {
         path: "page",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.page
-      },
-      {
-        path: "categories",
-        type: "private",
-        variableType: "variant",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.slug[0] != undefined && $state.slug[0] != "";
+              return (() => {
+                if ($state.slug[0] !== undefined) {
+                  ("categories");
+                  if ($state.slug[1] !== undefined) {
+                    return "subcategories";
+                  }
+                }
+              })();
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -203,7 +204,7 @@ function PlasmicHomepage__RenderFunc(props: {
               }
               throw e;
             }
-          })() ?? $props.categories
+          })() ?? $props.page
       },
       {
         path: "home.categori",
@@ -232,6 +233,12 @@ function PlasmicHomepage__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "categories.subcategories",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -269,22 +276,44 @@ function PlasmicHomepage__RenderFunc(props: {
             styleTokensClassNames,
             sty.root,
             {
-              [sty.rootcategories]: hasVariant(
+              [sty.rootpage_categories]: hasVariant(
                 $state,
-                "categories",
+                "page",
                 "categories"
+              ),
+              [sty.rootpage_subcategories]: hasVariant(
+                $state,
+                "page",
+                "subcategories"
               )
             }
           )}
         >
+          <SideEffect
+            data-plasmic-name={"sideEffect"}
+            data-plasmic-override={overrides.sideEffect}
+            className={classNames("__wab_instance", sty.sideEffect, {
+              [sty.sideEffectpage_subcategories]: hasVariant(
+                $state,
+                "page",
+                "subcategories"
+              )
+            })}
+          />
+
           <div
             data-plasmic-name={"homePage"}
             data-plasmic-override={overrides.homePage}
             className={classNames(projectcss.all, sty.homePage, {
-              [sty.homePagecategories]: hasVariant(
+              [sty.homePagepage_categories]: hasVariant(
                 $state,
-                "categories",
+                "page",
                 "categories"
+              ),
+              [sty.homePagepage_subcategories]: hasVariant(
+                $state,
+                "page",
+                "subcategories"
               )
             })}
           >
@@ -333,7 +362,13 @@ function PlasmicHomepage__RenderFunc(props: {
                     data-plasmic-name={"img"}
                     data-plasmic-override={overrides.img}
                     alt={""}
-                    className={classNames(sty.img)}
+                    className={classNames(sty.img, {
+                      [sty.imgpage_categories]: hasVariant(
+                        $state,
+                        "page",
+                        "categories"
+                      )
+                    })}
                     displayHeight={"auto"}
                     displayMaxHeight={"none"}
                     displayMaxWidth={"100%"}
@@ -516,10 +551,15 @@ function PlasmicHomepage__RenderFunc(props: {
                 }
               })()}
               className={classNames("__wab_instance", sty.home, {
-                [sty.homecategories]: hasVariant(
+                [sty.homepage_categories]: hasVariant(
                   $state,
-                  "categories",
+                  "page",
                   "categories"
+                ),
+                [sty.homepage_subcategories]: hasVariant(
+                  $state,
+                  "page",
+                  "subcategories"
                 )
               })}
               onCategori={async () => {
@@ -614,10 +654,105 @@ function PlasmicHomepage__RenderFunc(props: {
               }
             })()}
             className={classNames("__wab_instance", sty.categories, {
-              [sty.categoriescategories]: hasVariant(
+              [sty.categoriespage_categories]: hasVariant(
                 $state,
-                "categories",
+                "page",
                 "categories"
+              )
+            })}
+            onSubcategories={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            if ($state?.categories?.subcategories?.slug)
+                              $state.slug.push(
+                                $state?.categories?.subcategories?.slug
+                              );
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+            onSubcategoriesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "categories",
+                "subcategories"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            subcategories={generateStateValueProp($state, [
+              "categories",
+              "subcategories"
+            ])}
+          />
+
+          <Subcategories
+            data-plasmic-name={"subcategories"}
+            data-plasmic-override={overrides.subcategories}
+            className={classNames("__wab_instance", sty.subcategories, {
+              [sty.subcategoriespage_categories]: hasVariant(
+                $state,
+                "page",
+                "categories"
+              ),
+              [sty.subcategoriespage_subcategories]: hasVariant(
+                $state,
+                "page",
+                "subcategories"
               )
             })}
           />
@@ -626,10 +761,15 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-name={"apiRequest"}
             data-plasmic-override={overrides.apiRequest}
             className={classNames("__wab_instance", sty.apiRequest, {
-              [sty.apiRequestcategories]: hasVariant(
+              [sty.apiRequestpage_categories]: hasVariant(
                 $state,
-                "categories",
+                "page",
                 "categories"
+              ),
+              [sty.apiRequestpage_subcategories]: hasVariant(
+                $state,
+                "page",
+                "subcategories"
               )
             })}
             errorDisplay={null}
@@ -655,12 +795,6 @@ function PlasmicHomepage__RenderFunc(props: {
             }}
             url={"https://sayban.darkube.app/webhook/categories/full"}
           />
-
-          <SideEffect
-            data-plasmic-name={"sideEffect"}
-            data-plasmic-override={overrides.sideEffect}
-            className={classNames("__wab_instance", sty.sideEffect)}
-          />
         </div>
       </div>
     </React.Fragment>
@@ -670,37 +804,40 @@ function PlasmicHomepage__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "sideEffect",
     "homePage",
     "menu2",
     "img",
     "textInput",
     "home",
     "categories",
-    "apiRequest",
-    "sideEffect"
+    "subcategories",
+    "apiRequest"
   ],
+  sideEffect: ["sideEffect"],
   homePage: ["homePage", "menu2", "img", "textInput", "home"],
   menu2: ["menu2"],
   img: ["img"],
   textInput: ["textInput"],
   home: ["home"],
   categories: ["categories"],
-  apiRequest: ["apiRequest"],
-  sideEffect: ["sideEffect"]
+  subcategories: ["subcategories"],
+  apiRequest: ["apiRequest"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  sideEffect: typeof SideEffect;
   homePage: "div";
   menu2: typeof Menu2;
   img: typeof PlasmicImg__;
   textInput: typeof TextInput;
   home: typeof Home;
   categories: typeof Categories;
+  subcategories: typeof Subcategories;
   apiRequest: typeof ApiRequest;
-  sideEffect: typeof SideEffect;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -765,14 +902,15 @@ export const PlasmicHomepage = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    sideEffect: makeNodeComponent("sideEffect"),
     homePage: makeNodeComponent("homePage"),
     menu2: makeNodeComponent("menu2"),
     img: makeNodeComponent("img"),
     textInput: makeNodeComponent("textInput"),
     home: makeNodeComponent("home"),
     categories: makeNodeComponent("categories"),
+    subcategories: makeNodeComponent("subcategories"),
     apiRequest: makeNodeComponent("apiRequest"),
-    sideEffect: makeNodeComponent("sideEffect"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,
