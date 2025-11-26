@@ -299,6 +299,7 @@ function PlasmicNewPage4__RenderFunc(props: {
                 throw e;
               }
             })()}
+            shouldFetch={true}
             url={"https://sayban.darkube.app/webhook/centers"}
           />
         </div>

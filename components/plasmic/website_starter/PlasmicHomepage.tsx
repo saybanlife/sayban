@@ -188,12 +188,8 @@ function PlasmicHomepage__RenderFunc(props: {
           (() => {
             try {
               return (() => {
-                if ($state.slug[0] !== undefined) {
-                  ("categories");
-                  if ($state.slug[1] !== undefined) {
-                    return "subcategories";
-                  }
-                }
+                if ($state.slug[1] != undefined) return "subcategories";
+                if ($state.slug[0] != undefined) return "categories";
               })();
             } catch (e) {
               if (
@@ -793,6 +789,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 eventArgs
               );
             }}
+            shouldFetch={true}
             url={"https://sayban.darkube.app/webhook/categories/full"}
           />
         </div>
