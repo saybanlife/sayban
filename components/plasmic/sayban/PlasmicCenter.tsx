@@ -344,9 +344,21 @@ function PlasmicCenter__RenderFunc(props: {
               { [sty.texttop__jcwIwY7HPh]: hasVariant($state, "top", "top") }
             )}
           >
-            {
-              "\u0645\u0631\u0627\u06a9\u0632 \u0628\u0647\u062f\u0627\u0634\u062a\u06cc"
-            }
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $state?.apiRequest?.data?.result?.name;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "\u0645\u0631\u0627\u06a9\u0632 \u0628\u0647\u062f\u0627\u0634\u062a\u06cc";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
           </div>
         }
         soft={hasVariant($state, "top", "top") ? undefined : true}
@@ -1154,7 +1166,7 @@ drawRating(${$state.rate});
                                 percent={30}
                                 showInfo={true}
                                 strokeColor={true ? "#FDE047" : undefined}
-                                strokeWidth={6}
+                                strokeWidth={5}
                                 trailColor={true ? "#FFFFFF40" : undefined}
                               />
                             </div>
