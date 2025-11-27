@@ -1188,7 +1188,7 @@ function PlasmicLogin__RenderFunc(props: {
               }
 
               $steps["goToHomepage"] =
-                $steps.getCookie?.data != null && $steps.getCookie?.data != ""
+                $steps.getCookie != null && $steps.getCookie != ""
                   ? (() => {
                       const actionArgs = { destination: `/${"home"}/${""}` };
                       return (({ destination }) => {
@@ -1214,7 +1214,7 @@ function PlasmicLogin__RenderFunc(props: {
               }
 
               $steps["updatePage"] =
-                $steps.getCookie?.data == null || $steps.getCookie?.data == ""
+                $steps.getCookie == null || $steps.getCookie == ""
                   ? (() => {
                       const actionArgs = {
                         vgroup: "page",
