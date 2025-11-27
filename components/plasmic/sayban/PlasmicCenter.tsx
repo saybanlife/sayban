@@ -193,7 +193,7 @@ function PlasmicCenter__RenderFunc(props: {
                   value: "Description"
                 },
                 {
-                  label: `نظرات (${$state.rate}⭐️)`,
+                  label: `نظرات (${$state.apiRequest?.data?.result?.rating_avg}⭐️)`,
                   value: "Comments"
                 }
               ];
@@ -243,7 +243,20 @@ function PlasmicCenter__RenderFunc(props: {
         path: "rate",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 3
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $state?.apiRequest?.data?.result?.rating_avg;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return 3;
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "apiRequest.data",
@@ -1096,7 +1109,21 @@ drawRating(${$state.rate});
                             sty.text__dc3Us
                           )}
                         >
-                          {"2000 \u0646\u0641\u0631"}
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return `${$state.apiRequest.data.reviews[0].total_reviews} نفر `;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "2000 \u0646\u0641\u0631";
+                                }
+                                throw e;
+                              }
+                            })()}
+                          </React.Fragment>
                         </div>
                       </div>
                       <div
@@ -1109,7 +1136,18 @@ drawRating(${$state.rate});
                           !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                           (() => {
                             try {
-                              return [5, 4, 3, 2, 1];
+                              return (() => {
+                                function buildReviewArray(data) {
+                                  return [5, 4, 3, 2, 1].map(star => ({
+                                    star: star,
+                                    percent: data[`percent_${star}`] ?? 0
+                                  }));
+                                }
+                                const reviewsArray = buildReviewArray(
+                                  $state?.apiRequest?.data?.reviews[0]
+                                );
+                                return reviewsArray;
+                              })();
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -1147,7 +1185,7 @@ drawRating(${$state.rate});
                                   <React.Fragment>
                                     {(() => {
                                       try {
-                                        return currentItem;
+                                        return currentItem.star;
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
@@ -1169,7 +1207,20 @@ drawRating(${$state.rate});
                                   "__wab_instance",
                                   sty.progress
                                 )}
-                                percent={30}
+                                percent={(() => {
+                                  try {
+                                    return currentItem.percent;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return 30;
+                                    }
+                                    throw e;
+                                  }
+                                })()}
                                 showInfo={true}
                                 strokeColor={true ? "#FDE047" : undefined}
                                 strokeWidth={5}
@@ -1184,7 +1235,7 @@ drawRating(${$state.rate});
                       !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                       (() => {
                         try {
-                          return $state.topics.data;
+                          return $state.apiRequest.data.reviews;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||

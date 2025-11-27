@@ -113,7 +113,7 @@
   font-family: "Roboto", sans-serif;
   font-weight: normal;
   font-style: normal;
-  color: #535353;
+  color: var(--token-9M5jRUPt8Msb);
   text-align: left;
   text-transform: none;
   line-height: 1.5;
@@ -136,12 +136,13 @@
   font-size: 14px;
   font-weight: normal;
   font-style: normal;
-  color: #535353;
+  color: var(--token-C6B6ZAuqICKE);
   text-align: left;
   text-transform: none;
   line-height: 1.5;
   letter-spacing: normal;
   white-space: pre-wrap;
+  opacity: 0.7;
 }
 .freeBox__poXve {
   animation: none;
@@ -176,10 +177,10 @@
   max-width: 100%;
   text-align: right;
   font-family: "Roboto", sans-serif;
-  font-size: 14px;
+  font-size: var(--token-9jx4RULNbWhl);
   font-weight: normal;
   font-style: normal;
-  color: #535353;
+  color: var(--token-9M5jRUPt8Msb);
   text-transform: none;
   line-height: 1.5;
   letter-spacing: normal;

@@ -287,7 +287,7 @@ function PlasmicComment__RenderFunc(props: {
               <React.Fragment>
                 {(() => {
                   try {
-                    return new Date($props.user.timestamp).toLocaleDateString(
+                    return new Date($props.user.created_at).toLocaleDateString(
                       "fa-IR"
                     );
                   } catch (e) {
@@ -327,7 +327,7 @@ function PlasmicComment__RenderFunc(props: {
                   data-plasmic-override={overrides.stars}
                   activ={(() => {
                     try {
-                      return currentItem <= $props.user.rate;
+                      return currentItem <= $props.user.rating;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
