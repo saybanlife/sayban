@@ -299,6 +299,7 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-name={"sideEffect"}
             data-plasmic-override={overrides.sideEffect}
             className={classNames("__wab_instance", sty.sideEffect, {
+              [sty.sideEffectpage_center]: hasVariant($state, "page", "center"),
               [sty.sideEffectpage_subcategories]: hasVariant(
                 $state,
                 "page",
@@ -851,6 +852,19 @@ function PlasmicHomepage__RenderFunc(props: {
                 }
               }).apply(null, eventArgs);
             }}
+            slug={(() => {
+              try {
+                return $ctx.params?.slug?.[1] || "";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
             subcategori={(() => {
               try {
                 return $state.categories.subcategories;
@@ -899,24 +913,52 @@ function PlasmicHomepage__RenderFunc(props: {
                   })()
             }
             className={classNames("__wab_instance", sty.center, {
-              [sty.centerpage_center]: hasVariant($state, "page", "center")
+              [sty.centerpage_center]: hasVariant($state, "page", "center"),
+              [sty.centerpage_subcategories]: hasVariant(
+                $state,
+                "page",
+                "subcategories"
+              )
             })}
-            id={(() => {
-              try {
-                return (() => {
-                  const index = $state.slug.findIndex(i => i === "center");
-                  return index === -1 ? "" : $state.slug[index + 1];
-                })();
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })()}
+            id={
+              hasVariant($state, "page", "center")
+                ? (() => {
+                    try {
+                      return (() => {
+                        const index = $ctx.params.slug.findIndex(
+                          i => i === "center"
+                        );
+                        return index === -1 ? "" : $ctx.params.slug[index + 1];
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()
+                : (() => {
+                    try {
+                      return (() => {
+                        const index = $state.slug.findIndex(
+                          i => i === "center"
+                        );
+                        return index === -1 ? "" : $state.slug[index + 1];
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()
+            }
             subcatgori={(() => {
               try {
                 return $state.categories.subcategories;

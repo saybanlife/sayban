@@ -81,12 +81,14 @@ export type PlasmicSubcategories__ArgsType = {
   subcategori?: any;
   center?: any;
   onCenterChange?: (val: string) => void;
+  slug?: string;
 };
 type ArgPropType = keyof PlasmicSubcategories__ArgsType;
 export const PlasmicSubcategories__ArgProps = new Array<ArgPropType>(
   "subcategori",
   "center",
-  "onCenterChange"
+  "onCenterChange",
+  "slug"
 );
 
 export type PlasmicSubcategories__OverridesType = {
@@ -100,6 +102,7 @@ export interface DefaultSubcategoriesProps {
   subcategori?: any;
   center?: any;
   onCenterChange?: (val: string) => void;
+  slug?: string;
   className?: string;
 }
 
@@ -249,7 +252,7 @@ function PlasmicSubcategories__RenderFunc(props: {
           params={(() => {
             try {
               return {
-                subcategory_id: $props.subcategori?.id
+                subcategory: $props.slug
               };
             } catch (e) {
               if (
@@ -263,7 +266,7 @@ function PlasmicSubcategories__RenderFunc(props: {
           })()}
           shouldFetch={(() => {
             try {
-              return $props.subcategori?.id;
+              return $props.slug;
             } catch (e) {
               if (
                 e instanceof TypeError ||
