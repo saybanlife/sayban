@@ -80,15 +80,17 @@ export const PlasmicSubcategories__VariantProps = new Array<VariantPropType>();
 export type PlasmicSubcategories__ArgsType = {
   subcategori?: any;
   center?: any;
-  onCenterChange?: (val: string) => void;
+  onCenterChange2?: (val: string) => void;
   slug?: string;
+  onCenter?: () => void;
 };
 type ArgPropType = keyof PlasmicSubcategories__ArgsType;
 export const PlasmicSubcategories__ArgProps = new Array<ArgPropType>(
   "subcategori",
   "center",
-  "onCenterChange",
-  "slug"
+  "onCenterChange2",
+  "slug",
+  "onCenter"
 );
 
 export type PlasmicSubcategories__OverridesType = {
@@ -101,8 +103,9 @@ export type PlasmicSubcategories__OverridesType = {
 export interface DefaultSubcategoriesProps {
   subcategori?: any;
   center?: any;
-  onCenterChange?: (val: string) => void;
+  onCenterChange2?: (val: string) => void;
   slug?: string;
+  onCenter?: () => void;
   className?: string;
 }
 
@@ -171,7 +174,7 @@ function PlasmicSubcategories__RenderFunc(props: {
         variableType: "object",
 
         valueProp: "center",
-        onChangeProp: "onCenterChange"
+        onChangeProp: "onCenterChange2"
       }
     ],
     [$props, $ctx, $refs]
@@ -350,6 +353,22 @@ function PlasmicSubcategories__RenderFunc(props: {
                     typeof $steps["updateCenter"].then === "function"
                   ) {
                     $steps["updateCenter"] = await $steps["updateCenter"];
+                  }
+
+                  $steps["updateCenter2"] = true
+                    ? (() => {
+                        const actionArgs = { eventRef: $props["onCenter"] };
+                        return (({ eventRef, args }) => {
+                          return eventRef?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateCenter2"] != null &&
+                    typeof $steps["updateCenter2"] === "object" &&
+                    typeof $steps["updateCenter2"].then === "function"
+                  ) {
+                    $steps["updateCenter2"] = await $steps["updateCenter2"];
                   }
                 }}
               />

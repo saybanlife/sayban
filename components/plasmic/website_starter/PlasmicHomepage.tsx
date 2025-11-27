@@ -775,7 +775,69 @@ function PlasmicHomepage__RenderFunc(props: {
                 "subcategories"
               )
             })}
-            onCenterChange={async (...eventArgs: any) => {
+            onCenter={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            if ($state.subcategories?.center?.id) {
+                              $state.slug.push("center");
+                              $state.slug.push(
+                                $state.subcategories?.center?.id
+                              );
+                            }
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+            onCenterChange2={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "subcategories",
                 "center"
@@ -788,69 +850,6 @@ function PlasmicHomepage__RenderFunc(props: {
               ) {
                 return;
               }
-
-              (async val => {
-                const $steps = {};
-
-                $steps["goToHomepage"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        destination: `/${(() => {
-                          try {
-                            return $ctx.params.page;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}/${(() => {
-                          try {
-                            return (() => {
-                              if ($state?.subcategories?.center?.id) {
-                                $state.slug.push("center");
-                                $state.slug.push(
-                                  $state?.subcategories?.center?.id
-                                );
-                              }
-                              return $state.slug.join("/");
-                            })();
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}`
-                      };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToHomepage"] != null &&
-                  typeof $steps["goToHomepage"] === "object" &&
-                  typeof $steps["goToHomepage"].then === "function"
-                ) {
-                  $steps["goToHomepage"] = await $steps["goToHomepage"];
-                }
-              }).apply(null, eventArgs);
             }}
             slug={(() => {
               try {
