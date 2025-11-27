@@ -89,7 +89,7 @@ export const Fragment = ({
         const expires = new Date(Date.now() + days * 864e5).toUTCString();
         document.cookie = `${name}=${encodeURIComponent(
           value
-        )}; expires=${expires}; path=/; domain=.liom.app; secure; SameSite=Lax`;
+        )}; expires=${expires}; path=/; domain=.sayban.app; secure; SameSite=Lax`;
       },
 
       getCookie: (name: string) => {
