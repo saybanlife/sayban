@@ -190,9 +190,9 @@ function PlasmicHomepage__RenderFunc(props: {
           (() => {
             try {
               return (() => {
-                if ($state.slug.includes("center")) return "center";
-                if ($state.slug[1] != undefined) return "subcategories";
-                if ($state.slug[0] != undefined) return "categories";
+                if ($ctx.params?.slug?.includes("center")) return "center";
+                if ($ctx.params?.slug?.[1] != undefined) return "subcategories";
+                if ($ctx.params?.slug?.[0] != undefined) return "categories";
               })();
             } catch (e) {
               if (
@@ -384,8 +384,8 @@ function PlasmicHomepage__RenderFunc(props: {
                     displayMinWidth={"0"}
                     displayWidth={
                       hasVariant(globalVariants, "screen", "mobileOnly")
-                        ? "150px"
-                        : "150px"
+                        ? "120px"
+                        : "120px"
                     }
                     loading={"lazy"}
                     src={{

@@ -262,8 +262,8 @@ function PlasmicHome__RenderFunc(props: {
             className={classNames(sty.img__redDh)}
             displayHeight={
               hasVariant(globalVariants, "screen", "mobileOnly")
-                ? "120px"
-                : "200px"
+                ? "100px"
+                : "150px"
             }
             displayMaxHeight={"none"}
             displayMaxWidth={"100%"}
@@ -284,8 +284,8 @@ function PlasmicHome__RenderFunc(props: {
             className={classNames(sty.img___58Ai3)}
             displayHeight={
               hasVariant(globalVariants, "screen", "mobileOnly")
-                ? "120px"
-                : "200px"
+                ? "100px"
+                : "150px"
             }
             displayMaxHeight={"none"}
             displayMaxWidth={"100%"}
@@ -306,8 +306,8 @@ function PlasmicHome__RenderFunc(props: {
             className={classNames(sty.img__yq35R)}
             displayHeight={
               hasVariant(globalVariants, "screen", "mobileOnly")
-                ? "120px"
-                : "200px"
+                ? "100px"
+                : "150px"
             }
             displayMaxHeight={"none"}
             displayMaxWidth={"100%"}
