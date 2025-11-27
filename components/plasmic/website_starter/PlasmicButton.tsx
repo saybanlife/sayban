@@ -69,6 +69,7 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJu
 import sty from "./PlasmicButton.module.css"; // plasmic-import: 2MRRFY7jUAge/css
 
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import Icon30Icon from "../sayban/icons/PlasmicIcon__Icon30"; // plasmic-import: 0iSVhpgUti5-/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 
 createPlasmicElementProxy;
@@ -81,6 +82,7 @@ export type PlasmicButton__VariantMembers = {
   iconEnd: "iconEnd";
   roundedFull: "roundedFull";
   flatSide: "top" | "right" | "bottom" | "left";
+  loading: "loading";
 };
 export type PlasmicButton__VariantsArgs = {
   color?: SingleChoiceArg<
@@ -92,6 +94,7 @@ export type PlasmicButton__VariantsArgs = {
   iconEnd?: SingleBooleanChoiceArg<"iconEnd">;
   roundedFull?: SingleBooleanChoiceArg<"roundedFull">;
   flatSide?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
+  loading?: SingleBooleanChoiceArg<"loading">;
 };
 type VariantPropType = keyof PlasmicButton__VariantsArgs;
 export const PlasmicButton__VariantProps = new Array<VariantPropType>(
@@ -101,7 +104,8 @@ export const PlasmicButton__VariantProps = new Array<VariantPropType>(
   "iconStart",
   "iconEnd",
   "roundedFull",
-  "flatSide"
+  "flatSide",
+  "loading"
 );
 
 export type PlasmicButton__ArgsType = {
@@ -112,6 +116,7 @@ export type PlasmicButton__ArgsType = {
   onClick?: (event: any) => void;
   linkTo?: string;
   openLinkInNewTab?: boolean;
+  onLoadingChange?: (val: any) => void;
   start?: React.ReactNode;
   label?: React.ReactNode;
   end?: React.ReactNode;
@@ -125,6 +130,7 @@ export const PlasmicButton__ArgProps = new Array<ArgPropType>(
   "onClick",
   "linkTo",
   "openLinkInNewTab",
+  "onLoadingChange",
   "start",
   "label",
   "end"
@@ -135,6 +141,7 @@ export type PlasmicButton__OverridesType = {
   softBackground?: Flex__<"div">;
   border?: Flex__<"div">;
   interactionEffect?: Flex__<"div">;
+  svg?: Flex__<"svg">;
 };
 
 export interface DefaultButtonProps {
@@ -145,6 +152,7 @@ export interface DefaultButtonProps {
   onClick?: (event: any) => void;
   linkTo?: string;
   openLinkInNewTab?: boolean;
+  onLoadingChange?: (val: any) => void;
   start?: React.ReactNode;
   label?: React.ReactNode;
   end?: React.ReactNode;
@@ -157,6 +165,7 @@ export interface DefaultButtonProps {
   iconEnd?: SingleBooleanChoiceArg<"iconEnd">;
   roundedFull?: SingleBooleanChoiceArg<"roundedFull">;
   flatSide?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
+  loading?: SingleBooleanChoiceArg<"loading">;
   className?: string;
 }
 
@@ -245,6 +254,14 @@ function PlasmicButton__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $ctx }) => $props.flatSide
+      },
+      {
+        path: "loading",
+        type: "writable",
+        variableType: "variant",
+
+        valueProp: "loading",
+        onChangeProp: "onLoadingChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -309,6 +326,7 @@ function PlasmicButton__RenderFunc(props: {
           [sty.rootflatSide_top]: hasVariant($state, "flatSide", "top"),
           [sty.rooticonEnd]: hasVariant($state, "iconEnd", "iconEnd"),
           [sty.rooticonStart]: hasVariant($state, "iconStart", "iconStart"),
+          [sty.rootloading]: hasVariant($state, "loading", "loading"),
           [sty.rootroundedFull]: hasVariant(
             $state,
             "roundedFull",
@@ -410,6 +428,11 @@ function PlasmicButton__RenderFunc(props: {
               "color",
               "warning"
             ),
+            [sty.softBackgroundloading]: hasVariant(
+              $state,
+              "loading",
+              "loading"
+            ),
             [sty.softBackgroundroundedFull]: hasVariant(
               $state,
               "roundedFull",
@@ -447,6 +470,7 @@ function PlasmicButton__RenderFunc(props: {
             [sty.borderflatSide_left]: hasVariant($state, "flatSide", "left"),
             [sty.borderflatSide_right]: hasVariant($state, "flatSide", "right"),
             [sty.borderflatSide_top]: hasVariant($state, "flatSide", "top"),
+            [sty.borderloading]: hasVariant($state, "loading", "loading"),
             [sty.borderroundedFull]: hasVariant(
               $state,
               "roundedFull",
@@ -490,6 +514,11 @@ function PlasmicButton__RenderFunc(props: {
             "color",
             "warning"
           ),
+          [sty.interactionEffectloading]: hasVariant(
+            $state,
+            "loading",
+            "loading"
+          ),
           [sty.interactionEffectroundedFull]: hasVariant(
             $state,
             "roundedFull",
@@ -528,6 +557,11 @@ function PlasmicButton__RenderFunc(props: {
             $state,
             "color",
             "neutral"
+          ),
+          [sty.freeBoxloading__vNlPwCdmbs]: hasVariant(
+            $state,
+            "loading",
+            "loading"
           ),
           [sty.freeBoxroundedFull__vNlPwyIw6A]: hasVariant(
             $state,
@@ -704,113 +738,134 @@ function PlasmicButton__RenderFunc(props: {
             })
           })}
         </div>
-        {renderPlasmicSlot({
-          defaultContents: (
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__nirJc
-              )}
-            >
-              {"Text"}
-            </div>
-          ),
-          value: args.label,
-          className: classNames(sty.slotTargetLabel, {
-            [sty.slotTargetLabelcolor_errorDestructive]: hasVariant(
-              $state,
-              "color",
-              "errorDestructive"
-            ),
-            [sty.slotTargetLabelcolor_muted]: hasVariant(
-              $state,
-              "color",
-              "muted"
-            ),
-            [sty.slotTargetLabelcolor_neutral]: hasVariant(
-              $state,
-              "color",
-              "neutral"
-            ),
-            [sty.slotTargetLabelcolor_success]: hasVariant(
-              $state,
-              "color",
-              "success"
-            ),
-            [sty.slotTargetLabelcolor_warning]: hasVariant(
-              $state,
-              "color",
-              "warning"
-            ),
-            [sty.slotTargetLabeliconEnd]: hasVariant(
-              $state,
-              "iconEnd",
-              "iconEnd"
-            ),
-            [sty.slotTargetLabeliconStart]: hasVariant(
-              $state,
-              "iconStart",
-              "iconStart"
-            ),
-            [sty.slotTargetLabelsize_extraLarge]: hasVariant(
-              $state,
-              "size",
-              "extraLarge"
-            ),
-            [sty.slotTargetLabelsize_extraSmall]: hasVariant(
-              $state,
-              "size",
-              "extraSmall"
-            ),
-            [sty.slotTargetLabelsize_large]: hasVariant(
-              $state,
-              "size",
-              "large"
-            ),
-            [sty.slotTargetLabelsize_small]: hasVariant(
-              $state,
-              "size",
-              "small"
-            ),
-            [sty.slotTargetLabeltype_bordered]: hasVariant(
-              $state,
-              "type",
-              "bordered"
-            ),
-            [sty.slotTargetLabeltype_bordered_color_errorDestructive]:
-              hasVariant($state, "color", "errorDestructive") &&
-              hasVariant($state, "type", "bordered"),
-            [sty.slotTargetLabeltype_bordered_color_muted]:
-              hasVariant($state, "color", "muted") &&
-              hasVariant($state, "type", "bordered"),
-            [sty.slotTargetLabeltype_bordered_color_neutral]:
-              hasVariant($state, "color", "neutral") &&
-              hasVariant($state, "type", "bordered"),
-            [sty.slotTargetLabeltype_bordered_color_success]:
-              hasVariant($state, "color", "success") &&
-              hasVariant($state, "type", "bordered"),
-            [sty.slotTargetLabeltype_bordered_color_warning]:
-              hasVariant($state, "color", "warning") &&
-              hasVariant($state, "type", "bordered"),
-            [sty.slotTargetLabeltype_soft]: hasVariant($state, "type", "soft"),
-            [sty.slotTargetLabeltype_soft_color_errorDestructive]:
-              hasVariant($state, "color", "errorDestructive") &&
-              hasVariant($state, "type", "soft"),
-            [sty.slotTargetLabeltype_soft_color_muted]:
-              hasVariant($state, "color", "muted") &&
-              hasVariant($state, "type", "soft"),
-            [sty.slotTargetLabeltype_soft_color_neutral]:
-              hasVariant($state, "color", "neutral") &&
-              hasVariant($state, "type", "soft"),
-            [sty.slotTargetLabeltype_soft_color_success]:
-              hasVariant($state, "color", "success") &&
-              hasVariant($state, "type", "soft"),
-            [sty.slotTargetLabeltype_soft_color_warning]:
-              hasVariant($state, "color", "warning") &&
-              hasVariant($state, "type", "soft")
-          })
-        })}
+        {(hasVariant($state, "loading", "loading") ? true : false) ? (
+          <Icon30Icon
+            data-plasmic-name={"svg"}
+            data-plasmic-override={overrides.svg}
+            className={classNames(projectcss.all, sty.svg, {
+              [sty.svgloading]: hasVariant($state, "loading", "loading")
+            })}
+            role={"img"}
+          />
+        ) : null}
+        {(hasVariant($state, "loading", "loading") ? false : true)
+          ? renderPlasmicSlot({
+              defaultContents: (
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__nirJc
+                  )}
+                >
+                  {"Text"}
+                </div>
+              ),
+              value: args.label,
+              className: classNames(sty.slotTargetLabel, {
+                [sty.slotTargetLabelcolor_errorDestructive]: hasVariant(
+                  $state,
+                  "color",
+                  "errorDestructive"
+                ),
+                [sty.slotTargetLabelcolor_muted]: hasVariant(
+                  $state,
+                  "color",
+                  "muted"
+                ),
+                [sty.slotTargetLabelcolor_neutral]: hasVariant(
+                  $state,
+                  "color",
+                  "neutral"
+                ),
+                [sty.slotTargetLabelcolor_success]: hasVariant(
+                  $state,
+                  "color",
+                  "success"
+                ),
+                [sty.slotTargetLabelcolor_warning]: hasVariant(
+                  $state,
+                  "color",
+                  "warning"
+                ),
+                [sty.slotTargetLabeliconEnd]: hasVariant(
+                  $state,
+                  "iconEnd",
+                  "iconEnd"
+                ),
+                [sty.slotTargetLabeliconStart]: hasVariant(
+                  $state,
+                  "iconStart",
+                  "iconStart"
+                ),
+                [sty.slotTargetLabelloading]: hasVariant(
+                  $state,
+                  "loading",
+                  "loading"
+                ),
+                [sty.slotTargetLabelsize_extraLarge]: hasVariant(
+                  $state,
+                  "size",
+                  "extraLarge"
+                ),
+                [sty.slotTargetLabelsize_extraSmall]: hasVariant(
+                  $state,
+                  "size",
+                  "extraSmall"
+                ),
+                [sty.slotTargetLabelsize_large]: hasVariant(
+                  $state,
+                  "size",
+                  "large"
+                ),
+                [sty.slotTargetLabelsize_small]: hasVariant(
+                  $state,
+                  "size",
+                  "small"
+                ),
+                [sty.slotTargetLabeltype_bordered]: hasVariant(
+                  $state,
+                  "type",
+                  "bordered"
+                ),
+                [sty.slotTargetLabeltype_bordered_color_errorDestructive]:
+                  hasVariant($state, "color", "errorDestructive") &&
+                  hasVariant($state, "type", "bordered"),
+                [sty.slotTargetLabeltype_bordered_color_muted]:
+                  hasVariant($state, "color", "muted") &&
+                  hasVariant($state, "type", "bordered"),
+                [sty.slotTargetLabeltype_bordered_color_neutral]:
+                  hasVariant($state, "color", "neutral") &&
+                  hasVariant($state, "type", "bordered"),
+                [sty.slotTargetLabeltype_bordered_color_success]:
+                  hasVariant($state, "color", "success") &&
+                  hasVariant($state, "type", "bordered"),
+                [sty.slotTargetLabeltype_bordered_color_warning]:
+                  hasVariant($state, "color", "warning") &&
+                  hasVariant($state, "type", "bordered"),
+                [sty.slotTargetLabeltype_soft]: hasVariant(
+                  $state,
+                  "type",
+                  "soft"
+                ),
+                [sty.slotTargetLabeltype_soft_color_errorDestructive]:
+                  hasVariant($state, "color", "errorDestructive") &&
+                  hasVariant($state, "type", "soft"),
+                [sty.slotTargetLabeltype_soft_color_muted]:
+                  hasVariant($state, "color", "muted") &&
+                  hasVariant($state, "type", "soft"),
+                [sty.slotTargetLabeltype_soft_color_neutral]:
+                  hasVariant($state, "color", "neutral") &&
+                  hasVariant($state, "type", "soft"),
+                [sty.slotTargetLabeltype_soft_color_success]:
+                  hasVariant($state, "color", "success") &&
+                  hasVariant($state, "type", "soft"),
+                [sty.slotTargetLabeltype_soft_color_warning]:
+                  hasVariant($state, "color", "warning") &&
+                  hasVariant($state, "type", "soft")
+              })
+            })
+          : null}
         <div
           className={classNames(projectcss.all, sty.freeBox__dzv7U, {
             [sty.freeBoxiconEnd__dzv7UnkAf8]: hasVariant(
@@ -945,10 +1000,11 @@ function PlasmicButton__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "softBackground", "border", "interactionEffect"],
+  root: ["root", "softBackground", "border", "interactionEffect", "svg"],
   softBackground: ["softBackground"],
   border: ["border"],
-  interactionEffect: ["interactionEffect"]
+  interactionEffect: ["interactionEffect"],
+  svg: ["svg"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -958,6 +1014,7 @@ type NodeDefaultElementType = {
   softBackground: "div";
   border: "div";
   interactionEffect: "div";
+  svg: "svg";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1025,6 +1082,7 @@ export const PlasmicButton = Object.assign(
     softBackground: makeNodeComponent("softBackground"),
     border: makeNodeComponent("border"),
     interactionEffect: makeNodeComponent("interactionEffect"),
+    svg: makeNodeComponent("svg"),
 
     // Metadata about props expected for PlasmicButton
     internalVariantProps: PlasmicButton__VariantProps,

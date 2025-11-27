@@ -157,6 +157,8 @@
   --plasmic-token-x-small: var(--token-w-4Gcj0_UzPS);
   --token-YhQm4wg3VLyj: 2px;
   --plasmic-token-unnamed-style-token-2: var(--token-YhQm4wg3VLyj);
+  --token-fni3nTjgVNW-: #8254c6;
+  --plasmic-token-primary: var(--token-fni3nTjgVNW-);
 }
 
 .plasmic_tokens {

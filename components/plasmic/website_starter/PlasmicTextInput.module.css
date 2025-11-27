@@ -1,6 +1,6 @@
 .ariaInput:global(.__wab_instance) {
   box-sizing: border-box;
-  box-shadow: inset 0px 0px 0px 2px var(--token-Yo4gdKCgyuAu);
+  box-shadow: inset 0px 0px 0px 2px var(--token-C6B6ZAuqICKE);
   color: var(--token-9M5jRUPt8Msb);
   font-family: var(--token-8ld_RqqV9anD);
   font-size: var(--token-ehIkf6s-dMLU);
@@ -24,11 +24,6 @@
   outline-offset: 1px;
   outline-color: var(--token-Yo4gdKCgyuAu);
   box-shadow: none;
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .ariaInput:global(.__wab_instance) {
-    box-shadow: none;
-  }
 }
 .ariaInputtype_soft:global(.__wab_instance) {
   background: var(--token-liD1vsX_5V6S);

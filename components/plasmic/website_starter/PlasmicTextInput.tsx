@@ -173,6 +173,9 @@ export type PlasmicTextInput__ArgsType = {
   ariaLabel?: string;
   onChange?: (val: string) => void;
   onFocus?: (focusEvent: any) => void;
+  maxLength?: number;
+  minLength?: number;
+  pattern?: string;
 };
 type ArgPropType = keyof PlasmicTextInput__ArgsType;
 export const PlasmicTextInput__ArgProps = new Array<ArgPropType>(
@@ -186,7 +189,10 @@ export const PlasmicTextInput__ArgProps = new Array<ArgPropType>(
   "autoComplete",
   "ariaLabel",
   "onChange",
-  "onFocus"
+  "onFocus",
+  "maxLength",
+  "minLength",
+  "pattern"
 );
 
 export type PlasmicTextInput__OverridesType = {
@@ -272,6 +278,9 @@ export interface DefaultTextInputProps {
   ariaLabel?: string;
   onChange?: (val: string) => void;
   onFocus?: (focusEvent: any) => void;
+  maxLength?: number;
+  minLength?: number;
+  pattern?: string;
   type?: SingleChoiceArg<"soft" | "plain">;
   flat?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   padded?: MultiChoiceArg<"left" | "right">;
@@ -427,6 +436,8 @@ function PlasmicTextInput__RenderFunc(props: {
       ),
       disabled: args.disabled,
       inputMode: args.inputMode,
+      maxLength: args.maxLength,
+      minLength: args.minLength,
       onChange: async (...eventArgs: any) => {
         generateStateOnChangePropForCodeComponents(
           $state,
@@ -436,6 +447,7 @@ function PlasmicTextInput__RenderFunc(props: {
         ).apply(null, eventArgs);
       },
       onFocus: args.onFocus,
+      pattern: args.pattern,
       placeholder: args.placeholder,
       plasmicUpdateVariant: updateVariant,
       readOnly: args.readOnly,

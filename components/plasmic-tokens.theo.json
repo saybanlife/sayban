@@ -2791,6 +2791,16 @@
       }
     },
     {
+      "name": "primary",
+      "type": "color",
+      "value": "#8254C6",
+      "category": "color",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "fni3nTjgVNW-"
+      }
+    },
+    {
       "name": "small",
       "type": "fontsize",
       "value": "0.875rem",

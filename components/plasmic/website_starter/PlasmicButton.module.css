@@ -85,6 +85,9 @@
   border-top-left-radius: 0rem;
   border-bottom-left-radius: 0rem;
 }
+.rootloading:global(.__wab_instance) {
+  cursor: not-allowed;
+}
 .softBackground {
   display: block;
   position: absolute;
@@ -195,6 +198,9 @@
 .interactionEffectroundedFull {
   border-radius: 99px;
 }
+.interactionEffectloading {
+  background: var(--token-0bhwu4BnB6BF);
+}
 .freeBox__vNlPw {
   display: flex;
   justify-content: center;
@@ -302,6 +308,15 @@
   position: relative;
   height: 1em;
   flex-shrink: 0;
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  color: #ffffec;
+  height: 1em;
+}
+.svgloading {
+  display: block;
 }
 .slotTargetLabel {
   color: var(--token-OBoW1r9lulTJ);
