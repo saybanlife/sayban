@@ -836,13 +836,17 @@ function PlasmicCenter__RenderFunc(props: {
                       <Iframe
                         data-plasmic-name={"iframe"}
                         data-plasmic-override={overrides.iframe}
-                        className={classNames("__wab_instance", sty.iframe)}
+                        className={classNames("__wab_instance", sty.iframe, {
+                          [sty.iframetop]: hasVariant($state, "top", "top")
+                        })}
                         preview={true}
                         src={(() => {
                           try {
                             return (() => {
-                              var lat = $state.apiRequest.data.result.latitude;
-                              var lng = $state.apiRequest.data.result.longitude;
+                              var lat =
+                                $state.apiRequest?.data?.result?.latitude;
+                              var lng =
+                                $state.apiRequest?.data?.result?.longitude;
                               var neshanUrl = `https://neshan.org/maps/iframe/#c${lat}-${lng}-18z-0p/${lat}/${lng}`;
                               return neshanUrl;
                             })();
@@ -868,14 +872,17 @@ function PlasmicCenter__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.a,
-                          sty.link
+                          sty.link,
+                          { [sty.linktop]: hasVariant($state, "top", "top") }
                         )}
                         component={Link}
                         href={(() => {
                           try {
                             return (() => {
-                              var lat = $state.apiRequest.data.result.latitude;
-                              var lng = $state.apiRequest.data.result.longitude;
+                              var lat =
+                                $state.apiRequest?.data?.result?.latitude;
+                              var lng =
+                                $state.apiRequest?.data?.result?.longitude;
                               if (
                                 /iPhone|iPad|iPod/i.test(
                                   window.navigator.userAgent
