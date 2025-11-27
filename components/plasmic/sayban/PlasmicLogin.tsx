@@ -849,70 +849,20 @@ function PlasmicLogin__RenderFunc(props: {
                   }
                 }}
                 page={hasVariant($state, "page", "code") ? "code" : undefined}
-                t={generateStateValueProp($state, ["codeTimer", "t"])}
-              />
-
-              <Button
-                data-plasmic-name={"codeSubmit"}
-                data-plasmic-override={overrides.codeSubmit}
-                className={classNames("__wab_instance", sty.codeSubmit, {
-                  [sty.codeSubmitpage_code]: hasVariant($state, "page", "code"),
-                  [sty.codeSubmitpage_mobile]: hasVariant(
-                    $state,
-                    "page",
-                    "mobile"
-                  )
-                })}
-                label={
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__kPol0
-                    )}
-                  >
-                    {"\u062a\u0627\u06cc\u06cc\u062f"}
-                  </div>
-                }
-                loading={generateStateValueProp($state, [
-                  "codeSubmit",
-                  "loading"
-                ])}
-                onClick={async event => {
+                sendCode={async () => {
                   const $steps = {};
 
-                  $steps["runCode"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          customFunction: async () => {
-                            return ($state.codeSubmit.loading = true);
-                          }
-                        };
-                        return (({ customFunction }) => {
-                          return customFunction();
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runCode"] != null &&
-                    typeof $steps["runCode"] === "object" &&
-                    typeof $steps["runCode"].then === "function"
-                  ) {
-                    $steps["runCode"] = await $steps["runCode"];
-                  }
-
-                  $steps["validate"] = true
+                  $steps["invokeGlobalAction"] = true
                     ? (() => {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://sayban.darkube.app/webhook/users/validate",
+                            "https://sayban.darkube.app/webhook/users/auth",
                             undefined,
                             (() => {
                               try {
                                 return {
-                                  mobile: $state.mobile.value,
-                                  code: window.inputValues.join("")
+                                  mobile: $state.mobile.value
                                 };
                               } catch (e) {
                                 if (
@@ -933,87 +883,100 @@ function PlasmicLogin__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["validate"] != null &&
-                    typeof $steps["validate"] === "object" &&
-                    typeof $steps["validate"].then === "function"
+                    $steps["invokeGlobalAction"] != null &&
+                    typeof $steps["invokeGlobalAction"] === "object" &&
+                    typeof $steps["invokeGlobalAction"].then === "function"
                   ) {
-                    $steps["validate"] = await $steps["validate"];
+                    $steps["invokeGlobalAction"] =
+                      await $steps["invokeGlobalAction"];
                   }
+                }}
+                t={generateStateValueProp($state, ["codeTimer", "t"])}
+              />
 
-                  $steps["setCookie"] =
-                    $steps.validate.data?.success == true
+              <div
+                className={classNames(projectcss.all, sty.freeBox__dTs1F, {
+                  [sty.freeBoxpage_code__dTs1FOhvpc]: hasVariant(
+                    $state,
+                    "page",
+                    "code"
+                  ),
+                  [sty.freeBoxpage_mobile__dTs1FmKfXs]: hasVariant(
+                    $state,
+                    "page",
+                    "mobile"
+                  )
+                })}
+                id={
+                  hasVariant($state, "page", "code") ? "codeButten" : undefined
+                }
+              >
+                <Button
+                  data-plasmic-name={"codeSubmit"}
+                  data-plasmic-override={overrides.codeSubmit}
+                  className={classNames("__wab_instance", sty.codeSubmit, {
+                    [sty.codeSubmitpage_code]: hasVariant(
+                      $state,
+                      "page",
+                      "code"
+                    ),
+                    [sty.codeSubmitpage_mobile]: hasVariant(
+                      $state,
+                      "page",
+                      "mobile"
+                    )
+                  })}
+                  label={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__kPol0
+                      )}
+                    >
+                      {"\u062a\u0627\u06cc\u06cc\u062f"}
+                    </div>
+                  }
+                  loading={generateStateValueProp($state, [
+                    "codeSubmit",
+                    "loading"
+                  ])}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
                       ? (() => {
                           const actionArgs = {
-                            args: [
-                              "token",
-                              (() => {
-                                try {
-                                  return $steps.validate?.data?.data?.token;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })(),
-                              100
-                            ]
-                          };
-                          return $globalActions["Fragment.setCookie"]?.apply(
-                            null,
-                            [...actionArgs.args]
-                          );
-                        })()
-                      : undefined;
-                  if (
-                    $steps["setCookie"] != null &&
-                    typeof $steps["setCookie"] === "object" &&
-                    typeof $steps["setCookie"].then === "function"
-                  ) {
-                    $steps["setCookie"] = await $steps["setCookie"];
-                  }
-
-                  $steps["goToHomepage"] =
-                    $steps.validate.data?.success == true
-                      ? (() => {
-                          const actionArgs = {
-                            destination: `/${"home"}/${""}`
-                          };
-                          return (({ destination }) => {
-                            if (
-                              typeof destination === "string" &&
-                              destination.startsWith("#")
-                            ) {
-                              document
-                                .getElementById(destination.substr(1))
-                                .scrollIntoView({ behavior: "smooth" });
-                            } else {
-                              __nextRouter?.push(destination);
+                            customFunction: async () => {
+                              return ($state.codeSubmit.loading = true);
                             }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
                           })?.apply(null, [actionArgs]);
                         })()
                       : undefined;
-                  if (
-                    $steps["goToHomepage"] != null &&
-                    typeof $steps["goToHomepage"] === "object" &&
-                    typeof $steps["goToHomepage"].then === "function"
-                  ) {
-                    $steps["goToHomepage"] = await $steps["goToHomepage"];
-                  }
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
 
-                  $steps["invokeGlobalAction"] =
-                    $steps.validate.data?.success == false
+                    $steps["validate"] = true
                       ? (() => {
                           const actionArgs = {
                             args: [
-                              "error",
+                              "POST",
+                              "https://sayban.darkube.app/webhook/users/validate",
+                              undefined,
                               (() => {
                                 try {
-                                  return $steps.validate?.data?.message || "";
+                                  return {
+                                    mobile: $state.mobile.value,
+                                    code: window.inputValues.join("")
+                                  };
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -1027,57 +990,159 @@ function PlasmicLogin__RenderFunc(props: {
                               })()
                             ]
                           };
-                          return $globalActions["Fragment.showToast"]?.apply(
+                          return $globalActions["Fragment.apiRequest"]?.apply(
                             null,
                             [...actionArgs.args]
                           );
                         })()
                       : undefined;
-                  if (
-                    $steps["invokeGlobalAction"] != null &&
-                    typeof $steps["invokeGlobalAction"] === "object" &&
-                    typeof $steps["invokeGlobalAction"].then === "function"
-                  ) {
+                    if (
+                      $steps["validate"] != null &&
+                      typeof $steps["validate"] === "object" &&
+                      typeof $steps["validate"].then === "function"
+                    ) {
+                      $steps["validate"] = await $steps["validate"];
+                    }
+
+                    $steps["setCookie"] =
+                      $steps.validate.data?.success == true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "token",
+                                (() => {
+                                  try {
+                                    return $steps.validate?.data?.data?.token;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })(),
+                                100
+                              ]
+                            };
+                            return $globalActions["Fragment.setCookie"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["setCookie"] != null &&
+                      typeof $steps["setCookie"] === "object" &&
+                      typeof $steps["setCookie"].then === "function"
+                    ) {
+                      $steps["setCookie"] = await $steps["setCookie"];
+                    }
+
+                    $steps["goToHomepage"] =
+                      $steps.validate.data?.success == true
+                        ? (() => {
+                            const actionArgs = {
+                              destination: `/${"home"}/${""}`
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["goToHomepage"] != null &&
+                      typeof $steps["goToHomepage"] === "object" &&
+                      typeof $steps["goToHomepage"].then === "function"
+                    ) {
+                      $steps["goToHomepage"] = await $steps["goToHomepage"];
+                    }
+
                     $steps["invokeGlobalAction"] =
-                      await $steps["invokeGlobalAction"];
-                  }
+                      $steps.validate.data?.success == false
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "error",
+                                (() => {
+                                  try {
+                                    return $steps.validate?.data?.message || "";
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.showToast"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["invokeGlobalAction"] != null &&
+                      typeof $steps["invokeGlobalAction"] === "object" &&
+                      typeof $steps["invokeGlobalAction"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction"] =
+                        await $steps["invokeGlobalAction"];
+                    }
 
-                  $steps["runCode2"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          customFunction: async () => {
-                            return ($state.codeSubmit.loading = false);
-                          }
-                        };
-                        return (({ customFunction }) => {
-                          return customFunction();
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runCode2"] != null &&
-                    typeof $steps["runCode2"] === "object" &&
-                    typeof $steps["runCode2"].then === "function"
-                  ) {
-                    $steps["runCode2"] = await $steps["runCode2"];
-                  }
-                }}
-                onLoadingChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "codeSubmit",
-                    "loading"
-                  ]).apply(null, eventArgs);
+                    $steps["runCode2"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return ($state.codeSubmit.loading = false);
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode2"] != null &&
+                      typeof $steps["runCode2"] === "object" &&
+                      typeof $steps["runCode2"].then === "function"
+                    ) {
+                      $steps["runCode2"] = await $steps["runCode2"];
+                    }
+                  }}
+                  onLoadingChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "codeSubmit",
+                      "loading"
+                    ]).apply(null, eventArgs);
 
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                size={"extraLarge"}
-              />
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  size={"extraLarge"}
+                />
+              </div>
             </div>
           ) : null}
           <SideEffect

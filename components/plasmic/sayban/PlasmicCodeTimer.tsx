@@ -209,21 +209,24 @@ function PlasmicCodeTimer__RenderFunc(props: {
             sty.text__cPh7C
           )}
         >
-          <React.Fragment>
-            {(() => {
-              try {
-                return ` (${$state.t}) ثانیه تا ارسال مجدد رمز`;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "";
+          <div
+            className={projectcss.__wab_expr_html_text}
+            dangerouslySetInnerHTML={{
+              __html: (() => {
+                try {
+                  return ` (<span class="BoldText">${$state.t}</span>) ثانیه تا ارسال مجدد رمز`;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
                 }
-                throw e;
-              }
-            })()}
-          </React.Fragment>
+              })()
+            }}
+          />
         </div>
       ) : null}
       {(() => {
