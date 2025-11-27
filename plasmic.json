@@ -1175,20 +1175,6 @@
           "componentType": "component"
         },
         {
-          "id": "Lh-Py4-EsRhC",
-          "name": "NewPage2",
-          "type": "managed",
-          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
-          "renderModuleFilePath": "plasmic/website_starter/PlasmicNewPage2.tsx",
-          "importSpec": {
-            "modulePath": "../src/pages/new-page-2.tsx"
-          },
-          "cssFilePath": "plasmic/website_starter/PlasmicNewPage2.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/new-page-2"
-        },
-        {
           "id": "x_nNzrKWX6O9",
           "name": "Topic",
           "type": "managed",
@@ -1305,6 +1291,19 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/new-page-3"
+        },
+        {
+          "id": "Lh-Py4-EsRhC",
+          "name": "Center",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicCenter.tsx",
+          "importSpec": {
+            "modulePath": "Center.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicCenter.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

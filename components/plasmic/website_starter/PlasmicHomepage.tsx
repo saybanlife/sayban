@@ -65,6 +65,7 @@ import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/compone
 import Home from "../../Home"; // plasmic-import: m-UDUThzN-63/component
 import Categories from "../../Categories"; // plasmic-import: R95SHqmqnvX5/component
 import Subcategories from "../../Subcategories"; // plasmic-import: JM9_woEGqy8m/component
+import Center from "../../Center"; // plasmic-import: Lh-Py4-EsRhC/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -80,10 +81,10 @@ import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHz
 createPlasmicElementProxy;
 
 export type PlasmicHomepage__VariantMembers = {
-  page: "categories" | "subcategories";
+  page: "categories" | "subcategories" | "center";
 };
 export type PlasmicHomepage__VariantsArgs = {
-  page?: SingleChoiceArg<"categories" | "subcategories">;
+  page?: SingleChoiceArg<"categories" | "subcategories" | "center">;
 };
 type VariantPropType = keyof PlasmicHomepage__VariantsArgs;
 export const PlasmicHomepage__VariantProps = new Array<VariantPropType>("page");
@@ -102,6 +103,7 @@ export type PlasmicHomepage__OverridesType = {
   home?: Flex__<typeof Home>;
   categories?: Flex__<typeof Categories>;
   subcategories?: Flex__<typeof Subcategories>;
+  center?: Flex__<typeof Center>;
   apiRequest?: Flex__<typeof ApiRequest>;
 };
 
@@ -283,6 +285,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 "page",
                 "categories"
               ),
+              [sty.rootpage_center]: hasVariant($state, "page", "center"),
               [sty.rootpage_subcategories]: hasVariant(
                 $state,
                 "page",
@@ -312,6 +315,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 "page",
                 "categories"
               ),
+              [sty.homePagepage_center]: hasVariant($state, "page", "center"),
               [sty.homePagepage_subcategories]: hasVariant(
                 $state,
                 "page",
@@ -661,6 +665,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 "page",
                 "categories"
               ),
+              [sty.categoriespage_center]: hasVariant($state, "page", "center"),
               [sty.categoriespage_subcategories]: hasVariant(
                 $state,
                 "page",
@@ -757,6 +762,11 @@ function PlasmicHomepage__RenderFunc(props: {
                 "page",
                 "categories"
               ),
+              [sty.subcategoriespage_center]: hasVariant(
+                $state,
+                "page",
+                "center"
+              ),
               [sty.subcategoriespage_subcategories]: hasVariant(
                 $state,
                 "page",
@@ -776,8 +786,137 @@ function PlasmicHomepage__RenderFunc(props: {
               ) {
                 return;
               }
+
+              (async val => {
+                const $steps = {};
+
+                $steps["goToHomepage"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        destination: `/${(() => {
+                          try {
+                            return $ctx.params.page;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}/${(() => {
+                          try {
+                            return (() => {
+                              if ($state?.subcategories?.center?.id) {
+                                $state.slug.push("center");
+                                $state.slug.push(
+                                  $state?.subcategories?.center?.id
+                                );
+                              }
+                              return $state.slug.join("/");
+                            })();
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}`
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToHomepage"] != null &&
+                  typeof $steps["goToHomepage"] === "object" &&
+                  typeof $steps["goToHomepage"].then === "function"
+                ) {
+                  $steps["goToHomepage"] = await $steps["goToHomepage"];
+                }
+              }).apply(null, eventArgs);
             }}
             subcategori={(() => {
+              try {
+                return $state.categories.subcategories;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          />
+
+          <Center
+            data-plasmic-name={"center"}
+            data-plasmic-override={overrides.center}
+            center={
+              hasVariant($state, "page", "center")
+                ? (() => {
+                    try {
+                      return $state.subcategories.center;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()
+                : (() => {
+                    try {
+                      return $state.subcategories.center;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()
+            }
+            className={classNames("__wab_instance", sty.center, {
+              [sty.centerpage_center]: hasVariant($state, "page", "center")
+            })}
+            id={(() => {
+              try {
+                return (() => {
+                  const index = $state.slug.findIndex(i => i === "center");
+                  return index === -1 ? "" : $state.slug[index + 1];
+                })();
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            subcatgori={(() => {
               try {
                 return $state.categories.subcategories;
               } catch (e) {
@@ -801,6 +940,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 "page",
                 "categories"
               ),
+              [sty.apiRequestpage_center]: hasVariant($state, "page", "center"),
               [sty.apiRequestpage_subcategories]: hasVariant(
                 $state,
                 "page",
@@ -848,6 +988,7 @@ const PlasmicDescendants = {
     "home",
     "categories",
     "subcategories",
+    "center",
     "apiRequest"
   ],
   sideEffect: ["sideEffect"],
@@ -858,6 +999,7 @@ const PlasmicDescendants = {
   home: ["home"],
   categories: ["categories"],
   subcategories: ["subcategories"],
+  center: ["center"],
   apiRequest: ["apiRequest"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -873,6 +1015,7 @@ type NodeDefaultElementType = {
   home: typeof Home;
   categories: typeof Categories;
   subcategories: typeof Subcategories;
+  center: typeof Center;
   apiRequest: typeof ApiRequest;
 };
 
@@ -946,6 +1089,7 @@ export const PlasmicHomepage = Object.assign(
     home: makeNodeComponent("home"),
     categories: makeNodeComponent("categories"),
     subcategories: makeNodeComponent("subcategories"),
+    center: makeNodeComponent("center"),
     apiRequest: makeNodeComponent("apiRequest"),
 
     // Metadata about props expected for PlasmicHomepage
