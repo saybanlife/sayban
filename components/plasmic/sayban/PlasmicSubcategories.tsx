@@ -269,7 +269,7 @@ function PlasmicSubcategories__RenderFunc(props: {
           })()}
           shouldFetch={(() => {
             try {
-              return $props.slug;
+              return $props.slug != undefined && $props.slug != "";
             } catch (e) {
               if (
                 e instanceof TypeError ||

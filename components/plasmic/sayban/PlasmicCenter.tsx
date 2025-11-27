@@ -424,7 +424,7 @@ function PlasmicCenter__RenderFunc(props: {
         })()}
         shouldFetch={(() => {
           try {
-            return $props.id;
+            return $props.id != undefined && $props.id != "";
           } catch (e) {
             if (
               e instanceof TypeError ||
