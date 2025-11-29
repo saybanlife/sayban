@@ -364,12 +364,27 @@ function PlasmicLogin__RenderFunc(props: {
           <div
             data-plasmic-name={"loading"}
             data-plasmic-override={overrides.loading}
-            className={classNames(projectcss.all, sty.loading, "headerBox", {
-              [sty.loadingpage_code]: hasVariant($state, "page", "code"),
-              [sty.loadingpage_loading]: hasVariant($state, "page", "loading"),
-              [sty.loadingpage_mobile]: hasVariant($state, "page", "mobile"),
-              [sty.loadingpage_name]: hasVariant($state, "page", "name")
-            })}
+            className={classNames(
+              projectcss.all,
+              sty.loading,
+              hasVariant($state, "page", "name")
+                ? "headerBox"
+                : hasVariant($state, "page", "code")
+                  ? "headerBox"
+                  : hasVariant($state, "page", "mobile")
+                    ? "headerBox"
+                    : ``,
+              {
+                [sty.loadingpage_code]: hasVariant($state, "page", "code"),
+                [sty.loadingpage_loading]: hasVariant(
+                  $state,
+                  "page",
+                  "loading"
+                ),
+                [sty.loadingpage_mobile]: hasVariant($state, "page", "mobile"),
+                [sty.loadingpage_name]: hasVariant($state, "page", "name")
+              }
+            )}
           >
             <div
               className={classNames(projectcss.all, sty.freeBox__pRd, {
@@ -811,9 +826,7 @@ function PlasmicLogin__RenderFunc(props: {
                 $steps["goToLogin"] =
                   $steps.auto.data?.success == true
                     ? (() => {
-                        const actionArgs = {
-                          destination: `/login/[[...step]]`
-                        };
+                        const actionArgs = { destination: `/login/${"code"}` };
                         return (({ destination }) => {
                           if (
                             typeof destination === "string" &&
@@ -1363,7 +1376,7 @@ function PlasmicLogin__RenderFunc(props: {
                       $steps.validate?.data?.type == "install"
                         ? (() => {
                             const actionArgs = {
-                              destination: `/login/[[...step]]`
+                              destination: `/login/${"name"}`
                             };
                             return (({ destination }) => {
                               if (
