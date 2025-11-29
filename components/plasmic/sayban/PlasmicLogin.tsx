@@ -79,6 +79,7 @@ import sty from "./PlasmicLogin.module.css"; // plasmic-import: 9IHhNJeWZ_i2/css
 import Icon29Icon from "./icons/PlasmicIcon__Icon29"; // plasmic-import: HcCx9V8iyiy_/icon
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: L5-0jFcT5N2O/icon
 
 createPlasmicElementProxy;
 
@@ -361,31 +362,6 @@ function PlasmicLogin__RenderFunc(props: {
             }
           )}
         >
-          <div
-            className={classNames(projectcss.all, sty.freeBox__nagjF, {
-              [sty.freeBoxpage_code__nagjFohvpc]: hasVariant(
-                $state,
-                "page",
-                "code"
-              ),
-              [sty.freeBoxpage_loading__nagjFEyvhu]: hasVariant(
-                $state,
-                "page",
-                "loading"
-              ),
-              [sty.freeBoxpage_mobile__nagjFmKfXs]: hasVariant(
-                $state,
-                "page",
-                "mobile"
-              ),
-              [sty.freeBoxpage_name__nagjFaq9MH]: hasVariant(
-                $state,
-                "page",
-                "name"
-              )
-            })}
-          />
-
           <div
             data-plasmic-name={"loading"}
             data-plasmic-override={overrides.loading}
@@ -2501,6 +2477,51 @@ function PlasmicLogin__RenderFunc(props: {
               </AntdModal>
             );
           })()}
+          <div
+            className={classNames(projectcss.all, sty.freeBox__fItOa, {
+              [sty.freeBoxpage_code__fItOaOhvpc]: hasVariant(
+                $state,
+                "page",
+                "code"
+              ),
+              [sty.freeBoxpage_loading__fItOaEyvhu]: hasVariant(
+                $state,
+                "page",
+                "loading"
+              ),
+              [sty.freeBoxpage_mobile__fItOamKfXs]: hasVariant(
+                $state,
+                "page",
+                "mobile"
+              ),
+              [sty.freeBoxpage_name__fItOaaq9MH]: hasVariant(
+                $state,
+                "page",
+                "name"
+              )
+            })}
+          >
+            <Icon34Icon
+              className={classNames(projectcss.all, sty.svg__eAdSp, {
+                [sty.svgpage_code__eAdSpohvpc]: hasVariant(
+                  $state,
+                  "page",
+                  "code"
+                ),
+                [sty.svgpage_mobile__eAdSPmKfXs]: hasVariant(
+                  $state,
+                  "page",
+                  "mobile"
+                ),
+                [sty.svgpage_name__eAdSPaq9MH]: hasVariant(
+                  $state,
+                  "page",
+                  "name"
+                )
+              })}
+              role={"img"}
+            />
+          </div>
         </div>
       </div>
     </React.Fragment>

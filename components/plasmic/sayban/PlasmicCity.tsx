@@ -70,7 +70,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicCity.module.css"; // plasmic-import: dRrvldGFbNOC/css
 
-import Icon18Icon from "../website_starter/icons/PlasmicIcon__Icon18"; // plasmic-import: 2q_FFTPL4mYA/icon
+import Icon33Icon from "./icons/PlasmicIcon__Icon33"; // plasmic-import: MJBmXdq7GQ5D/icon
 import Icon9Icon from "../website_starter/icons/PlasmicIcon__Icon9"; // plasmic-import: C4Cciq7DgQq7/icon
 import Icon10Icon from "../website_starter/icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
 import Icon32Icon from "./icons/PlasmicIcon__Icon32"; // plasmic-import: hVogcrNM7Ss9/icon
@@ -237,7 +237,7 @@ function PlasmicCity__RenderFunc(props: {
             className={classNames(projectcss.all, sty.freeBox__gfn1Y)}
             id={"headerMain"}
           >
-            <Icon18Icon
+            <Icon33Icon
               className={classNames(projectcss.all, sty.svg__uj7Fb)}
               onClick={async event => {
                 const $steps = {};
