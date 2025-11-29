@@ -106,9 +106,9 @@ export type PlasmicLogin__OverridesType = {
   codeSubmit?: Flex__<typeof Button>;
   name?: Flex__<typeof TextInput>;
   code?: Flex__<typeof TextInput>;
-  select?: Flex__<typeof Select>;
-  select2?: Flex__<typeof Select>;
-  code2?: Flex__<typeof TextInput>;
+  selectGender?: Flex__<typeof Select>;
+  selectMarital?: Flex__<typeof Select>;
+  cityInput?: Flex__<typeof TextInput>;
   codeSubmit2?: Flex__<typeof Button>;
   sideEffect?: Flex__<typeof SideEffect>;
   modal?: Flex__<typeof AntdModal>;
@@ -218,31 +218,31 @@ function PlasmicLogin__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "select.isOpen",
+        path: "selectGender.isOpen",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
       },
       {
-        path: "select.value",
+        path: "selectGender.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "select2.isOpen",
+        path: "selectMarital.isOpen",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
       },
       {
-        path: "select2.value",
+        path: "selectMarital.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "code2.value",
+        path: "cityInput.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
@@ -268,6 +268,12 @@ function PlasmicLogin__RenderFunc(props: {
       },
       {
         path: "city.city",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "token",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
@@ -1248,8 +1254,43 @@ function PlasmicLogin__RenderFunc(props: {
                       $steps["setCookie"] = await $steps["setCookie"];
                     }
 
-                    $steps["goToHomepage"] =
+                    $steps["token"] =
                       $steps.validate.data?.success == true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["token"]
+                              },
+                              operation: 0,
+                              value: $steps.validate?.data?.data?.token
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["token"] != null &&
+                      typeof $steps["token"] === "object" &&
+                      typeof $steps["token"].then === "function"
+                    ) {
+                      $steps["token"] = await $steps["token"];
+                    }
+
+                    $steps["goToHomepage"] =
+                      $steps.validate?.data?.type != "install"
                         ? (() => {
                             const actionArgs = {
                               destination: `/${"home"}/${""}`
@@ -1274,6 +1315,32 @@ function PlasmicLogin__RenderFunc(props: {
                       typeof $steps["goToHomepage"].then === "function"
                     ) {
                       $steps["goToHomepage"] = await $steps["goToHomepage"];
+                    }
+
+                    $steps["updatePage"] =
+                      $steps.validate?.data?.type == "install"
+                        ? (() => {
+                            const actionArgs = {
+                              vgroup: "page",
+                              operation: 0,
+                              value: "name"
+                            };
+                            return (({ vgroup, value }) => {
+                              if (typeof value === "string") {
+                                value = [value];
+                              }
+
+                              $stateSet($state, vgroup, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["updatePage"] != null &&
+                      typeof $steps["updatePage"] === "object" &&
+                      typeof $steps["updatePage"].then === "function"
+                    ) {
+                      $steps["updatePage"] = await $steps["updatePage"];
                     }
 
                     $steps["invokeGlobalAction"] =
@@ -1559,13 +1626,20 @@ function PlasmicLogin__RenderFunc(props: {
                 })}
               >
                 <Select
-                  data-plasmic-name={"select"}
-                  data-plasmic-override={overrides.select}
-                  className={classNames("__wab_instance", sty.select, {
-                    [sty.selectpage_name]: hasVariant($state, "page", "name")
+                  data-plasmic-name={"selectGender"}
+                  data-plasmic-override={overrides.selectGender}
+                  className={classNames("__wab_instance", sty.selectGender, {
+                    [sty.selectGenderpage_name]: hasVariant(
+                      $state,
+                      "page",
+                      "name"
+                    )
                   })}
                   description={null}
-                  isOpen={generateStateValueProp($state, ["select", "isOpen"])}
+                  isOpen={generateStateValueProp($state, [
+                    "selectGender",
+                    "isOpen"
+                  ])}
                   items={(_par =>
                     !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                     (() => {
@@ -1622,7 +1696,7 @@ function PlasmicLogin__RenderFunc(props: {
                   label={null}
                   onChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
-                      "select",
+                      "selectGender",
                       "value"
                     ]).apply(null, eventArgs);
 
@@ -1636,7 +1710,7 @@ function PlasmicLogin__RenderFunc(props: {
                   }}
                   onOpenChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
-                      "select",
+                      "selectGender",
                       "isOpen"
                     ]).apply(null, eventArgs);
 
@@ -1649,17 +1723,27 @@ function PlasmicLogin__RenderFunc(props: {
                     }
                   }}
                   placeholder={"\u062c\u0646\u0633\u06cc\u062a"}
-                  value={generateStateValueProp($state, ["select", "value"])}
+                  value={generateStateValueProp($state, [
+                    "selectGender",
+                    "value"
+                  ])}
                 />
 
                 <Select
-                  data-plasmic-name={"select2"}
-                  data-plasmic-override={overrides.select2}
-                  className={classNames("__wab_instance", sty.select2, {
-                    [sty.select2page_name]: hasVariant($state, "page", "name")
+                  data-plasmic-name={"selectMarital"}
+                  data-plasmic-override={overrides.selectMarital}
+                  className={classNames("__wab_instance", sty.selectMarital, {
+                    [sty.selectMaritalpage_name]: hasVariant(
+                      $state,
+                      "page",
+                      "name"
+                    )
                   })}
                   description={null}
-                  isOpen={generateStateValueProp($state, ["select2", "isOpen"])}
+                  isOpen={generateStateValueProp($state, [
+                    "selectMarital",
+                    "isOpen"
+                  ])}
                   items={(_par =>
                     !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                     (() => {
@@ -1722,7 +1806,7 @@ function PlasmicLogin__RenderFunc(props: {
                   label={null}
                   onChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
-                      "select2",
+                      "selectMarital",
                       "value"
                     ]).apply(null, eventArgs);
 
@@ -1736,7 +1820,7 @@ function PlasmicLogin__RenderFunc(props: {
                   }}
                   onOpenChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
-                      "select2",
+                      "selectMarital",
                       "isOpen"
                     ]).apply(null, eventArgs);
 
@@ -1751,19 +1835,26 @@ function PlasmicLogin__RenderFunc(props: {
                   placeholder={
                     "\u0648\u0636\u0639\u06cc\u062a \u062a\u0627\u0647\u0644"
                   }
-                  value={generateStateValueProp($state, ["select2", "value"])}
+                  value={generateStateValueProp($state, [
+                    "selectMarital",
+                    "value"
+                  ])}
                 />
               </div>
               <TextInput
-                data-plasmic-name={"code2"}
-                data-plasmic-override={overrides.code2}
+                data-plasmic-name={"cityInput"}
+                data-plasmic-override={overrides.cityInput}
                 ariaLabel={hasVariant($state, "page", "mobile") ? "cscscs" : ``}
                 autoComplete={[]}
                 autoFocus={false}
-                className={classNames("__wab_instance", sty.code2, {
-                  [sty.code2page_code]: hasVariant($state, "page", "code"),
-                  [sty.code2page_mobile]: hasVariant($state, "page", "mobile"),
-                  [sty.code2page_name]: hasVariant($state, "page", "name")
+                className={classNames("__wab_instance", sty.cityInput, {
+                  [sty.cityInputpage_code]: hasVariant($state, "page", "code"),
+                  [sty.cityInputpage_mobile]: hasVariant(
+                    $state,
+                    "page",
+                    "mobile"
+                  ),
+                  [sty.cityInputpage_name]: hasVariant($state, "page", "name")
                 })}
                 disabled={false}
                 inputMode={
@@ -1774,10 +1865,10 @@ function PlasmicLogin__RenderFunc(props: {
                 }
                 maxLength={10}
                 onChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, ["code2", "value"]).apply(
-                    null,
-                    eventArgs
-                  );
+                  generateStateOnChangeProp($state, [
+                    "cityInput",
+                    "value"
+                  ]).apply(null, eventArgs);
 
                   if (
                     eventArgs.length > 1 &&
@@ -1829,7 +1920,7 @@ function PlasmicLogin__RenderFunc(props: {
                 }
                 readOnly={false}
                 size={"langh"}
-                value={generateStateValueProp($state, ["code2", "value"])}
+                value={generateStateValueProp($state, ["cityInput", "value"])}
               />
 
               <div
@@ -1916,18 +2007,22 @@ function PlasmicLogin__RenderFunc(props: {
                       $steps["runCode"] = await $steps["runCode"];
                     }
 
-                    $steps["validate"] = true
+                    $steps["setProfile"] = true
                       ? (() => {
                           const actionArgs = {
                             args: [
                               "POST",
-                              "https://sayban.darkube.app/webhook/users/validate",
+                              "https://sayban.darkube.app/webhook/setProfile",
                               undefined,
                               (() => {
                                 try {
                                   return {
-                                    mobile: $state.mobile.value,
-                                    code: window.inputValues.join("")
+                                    user_Id: 2, // یا 'user-Id': 2 اگر نیاز به dash داری
+                                    name: $state.name.value,
+                                    national_code: $state.code.value,
+                                    city: $state.city.city,
+                                    gender: $state.selectGender.value,
+                                    marital_status: $state.selectMarital.value
                                   };
                                 } catch (e) {
                                   if (
@@ -1949,52 +2044,15 @@ function PlasmicLogin__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["validate"] != null &&
-                      typeof $steps["validate"] === "object" &&
-                      typeof $steps["validate"].then === "function"
+                      $steps["setProfile"] != null &&
+                      typeof $steps["setProfile"] === "object" &&
+                      typeof $steps["setProfile"].then === "function"
                     ) {
-                      $steps["validate"] = await $steps["validate"];
-                    }
-
-                    $steps["setCookie"] =
-                      $steps.validate.data?.success == true
-                        ? (() => {
-                            const actionArgs = {
-                              args: [
-                                "token",
-                                (() => {
-                                  try {
-                                    return $steps.validate?.data?.data?.token;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })(),
-                                100
-                              ]
-                            };
-                            return $globalActions["Fragment.setCookie"]?.apply(
-                              null,
-                              [...actionArgs.args]
-                            );
-                          })()
-                        : undefined;
-                    if (
-                      $steps["setCookie"] != null &&
-                      typeof $steps["setCookie"] === "object" &&
-                      typeof $steps["setCookie"].then === "function"
-                    ) {
-                      $steps["setCookie"] = await $steps["setCookie"];
+                      $steps["setProfile"] = await $steps["setProfile"];
                     }
 
                     $steps["goToHomepage"] =
-                      $steps.validate.data?.success == true
+                      $steps.setProfile.data?.success == true
                         ? (() => {
                             const actionArgs = {
                               destination: `/${"home"}/${""}`
@@ -2022,14 +2080,16 @@ function PlasmicLogin__RenderFunc(props: {
                     }
 
                     $steps["invokeGlobalAction"] =
-                      $steps.validate.data?.success == false
+                      $steps.setProfile.data?.success == false
                         ? (() => {
                             const actionArgs = {
                               args: [
                                 "error",
                                 (() => {
                                   try {
-                                    return $steps.validate?.data?.message || "";
+                                    return (
+                                      $steps.setProfile?.data?.message || ""
+                                    );
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -2197,7 +2257,9 @@ function PlasmicLogin__RenderFunc(props: {
           <AntdModal
             data-plasmic-name={"modal"}
             data-plasmic-override={overrides.modal}
-            className={classNames("__wab_instance", sty.modal)}
+            className={classNames("__wab_instance", sty.modal, {
+              [sty.modalpage_code]: hasVariant($state, "page", "code")
+            })}
             closeIcon={
               <svg
                 className={classNames(projectcss.all, sty.svg___4TQ44)}
@@ -2305,9 +2367,9 @@ const PlasmicDescendants = {
     "codeSubmit",
     "name",
     "code",
-    "select",
-    "select2",
-    "code2",
+    "selectGender",
+    "selectMarital",
+    "cityInput",
     "codeSubmit2",
     "sideEffect",
     "modal",
@@ -2322,9 +2384,9 @@ const PlasmicDescendants = {
   codeSubmit: ["codeSubmit"],
   name: ["name"],
   code: ["code"],
-  select: ["select"],
-  select2: ["select2"],
-  code2: ["code2"],
+  selectGender: ["selectGender"],
+  selectMarital: ["selectMarital"],
+  cityInput: ["cityInput"],
   codeSubmit2: ["codeSubmit2"],
   sideEffect: ["sideEffect"],
   modal: ["modal", "city"],
@@ -2344,9 +2406,9 @@ type NodeDefaultElementType = {
   codeSubmit: typeof Button;
   name: typeof TextInput;
   code: typeof TextInput;
-  select: typeof Select;
-  select2: typeof Select;
-  code2: typeof TextInput;
+  selectGender: typeof Select;
+  selectMarital: typeof Select;
+  cityInput: typeof TextInput;
   codeSubmit2: typeof Button;
   sideEffect: typeof SideEffect;
   modal: typeof AntdModal;
@@ -2424,9 +2486,9 @@ export const PlasmicLogin = Object.assign(
     codeSubmit: makeNodeComponent("codeSubmit"),
     _name: makeNodeComponent("name"),
     code: makeNodeComponent("code"),
-    select: makeNodeComponent("select"),
-    select2: makeNodeComponent("select2"),
-    code2: makeNodeComponent("code2"),
+    selectGender: makeNodeComponent("selectGender"),
+    selectMarital: makeNodeComponent("selectMarital"),
+    cityInput: makeNodeComponent("cityInput"),
     codeSubmit2: makeNodeComponent("codeSubmit2"),
     sideEffect: makeNodeComponent("sideEffect"),
     modal: makeNodeComponent("modal"),

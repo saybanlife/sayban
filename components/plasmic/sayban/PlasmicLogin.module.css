@@ -674,29 +674,29 @@
   min-width: 0;
   padding: 0px;
 }
-.select:global(.__wab_instance):global(.__wab_instance) {
+.selectGender:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
-.select2:global(.__wab_instance):global(.__wab_instance) {
+.selectMarital:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
-.code2:global(.__wab_instance):global(.__wab_instance) {
+.cityInput:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
   flex-shrink: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .code2:global(.__wab_instance):global(.__wab_instance) {
+  .cityInput:global(.__wab_instance):global(.__wab_instance) {
     flex-shrink: 0;
   }
 }
-.code2page_mobile:global(.__wab_instance):global(.__wab_instance) {
+.cityInputpage_mobile:global(.__wab_instance):global(.__wab_instance) {
   flex-shrink: 0;
 }
-.code2page_code:global(.__wab_instance):global(.__wab_instance) {
+.cityInputpage_code:global(.__wab_instance):global(.__wab_instance) {
   flex-shrink: 0;
   display: none;
 }
-.code2page_name:global(.__wab_instance):global(.__wab_instance) {
+.cityInputpage_name:global(.__wab_instance):global(.__wab_instance) {
   flex-shrink: 0;
 }
 .freeBox__rDqi {
