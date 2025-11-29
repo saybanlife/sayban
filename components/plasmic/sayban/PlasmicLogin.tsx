@@ -1780,6 +1780,7 @@ function PlasmicLogin__RenderFunc(props: {
                     }
                   }}
                   placeholder={"\u062c\u0646\u0633\u06cc\u062a"}
+                  showLabel={false}
                   value={generateStateValueProp($state, [
                     "selectGender",
                     "value"
@@ -1889,9 +1890,8 @@ function PlasmicLogin__RenderFunc(props: {
                       return;
                     }
                   }}
-                  placeholder={
-                    "\u0648\u0636\u0639\u06cc\u062a \u062a\u0627\u0647\u0644"
-                  }
+                  placeholder={"\u062a\u0627\u0647\u0644"}
+                  showLabel={false}
                   value={generateStateValueProp($state, [
                     "selectMarital",
                     "value"
@@ -1941,7 +1941,7 @@ function PlasmicLogin__RenderFunc(props: {
                   $steps["goToLogin"] = true
                     ? (() => {
                         const actionArgs = {
-                          destination: `/login/[[...step]]?city=${"true"}`
+                          destination: `/login/${"name"}?city=${"true"}`
                         };
                         return (({ destination }) => {
                           if (
