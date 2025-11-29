@@ -874,11 +874,6 @@
           "checksum": "f62966f43aeb4765d60b2c7a340841e1"
         },
         {
-          "assetId": "qARqpE4p5tZmJuNxFbTaPz",
-          "type": "projectCss",
-          "checksum": "118cdfd0dcbe2b7089b48a801ddb6f3b"
-        },
-        {
           "type": "renderModule",
           "assetId": "dRrvldGFbNOC",
           "checksum": "2fa8988ca1c1bae4e6c2802943858b91"
@@ -897,6 +892,11 @@
           "type": "icon",
           "assetId": "hVogcrNM7Ss9",
           "checksum": "0d0f8c4a8e79f075a07d1199c3c51786"
+        },
+        {
+          "assetId": "qARqpE4p5tZmJuNxFbTaPz",
+          "type": "projectCss",
+          "checksum": "118cdfd0dcbe2b7089b48a801ddb6f3b"
         }
       ],
       "codegenVersion": "0.0.2"
