@@ -376,15 +376,18 @@
   max-width: 100%;
   object-fit: cover;
 }
-.home:global(.__wab_instance) {
+.freeBox__sCmYa {
+  display: flex;
+  flex-direction: column;
   position: relative;
-  width: 98%;
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .home:global(.__wab_instance) {
-    width: 100%;
-    min-width: 0;
-  }
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-73iLa06AE6f4);
+  min-width: 0;
+  padding: 0px;
 }
 .freeBox___1WXlA {
   background: none;
@@ -401,8 +404,33 @@
   width: 100%;
   box-shadow: none;
   min-width: 0;
+  flex-shrink: 0;
   border-radius: var(--token-rfsFxiclAtek);
   padding: var(--token-Vi8cDx7an2mh);
+}
+.freeBox__aTvDo {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  grid-row-gap: 3rem;
+  grid-column-gap: 3rem;
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__y0Iqc {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
 }
 .freeBox___1SPfr {
   background: none;
@@ -415,28 +443,20 @@
   align-items: center;
   flex-direction: column;
   display: flex;
-  height: 120px;
-  width: 100%;
+  height: 80px;
+  width: 80px;
   box-shadow: none;
-  min-width: 0;
+  flex-shrink: 0;
   border-radius: var(--token-rfsFxiclAtek);
   padding: var(--token-Vi8cDx7an2mh);
 }
-.freeBox__crvC {
-  background: none;
-  outline-color: var(--token-pRs3-4jrQ4XQ);
-  outline-style: solid;
-  outline-width: 0px;
-  animation: none;
-  max-width: 100%;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-  display: flex;
-  height: 120px;
-  width: 100%;
-  box-shadow: none;
-  min-width: 0;
-  border-radius: var(--token-rfsFxiclAtek);
-  padding: var(--token-Vi8cDx7an2mh);
+.home:global(.__wab_instance) {
+  position: relative;
+  width: 98%;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .home:global(.__wab_instance) {
+    width: 100%;
+    min-width: 0;
+  }
 }

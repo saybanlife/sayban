@@ -981,7 +981,55 @@ function PlasmicHomepage__RenderFunc(props: {
               )
             })}
             errorDisplay={null}
-            loadingDisplay={null}
+            loadingDisplay={
+              <div className={classNames(projectcss.all, sty.freeBox__sCmYa)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    sty.freeBox___1WXlA,
+                    "shimmer"
+                  )}
+                />
+
+                <div className={classNames(projectcss.all, sty.freeBox__aTvDo)}>
+                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                    (() => {
+                      try {
+                        return [2, 3, 4, 5, 7, 8];
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()
+                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                    const currentItem = __plasmic_item_0;
+                    const currentIndex = __plasmic_idx_0;
+                    return (
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__y0Iqc
+                        )}
+                        key={currentIndex}
+                      >
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox___1SPfr,
+                            "shimmer"
+                          )}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            }
             method={"GET"}
             onError={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
@@ -1106,25 +1154,6 @@ function PlasmicHomepage__RenderFunc(props: {
               search={generateStateValueProp($state, ["home", "search"])}
             />
           </ApiRequest>
-          <div
-            className={classNames(
-              projectcss.all,
-              sty.freeBox___1WXlA,
-              "shimmer"
-            )}
-          />
-
-          <div
-            className={classNames(
-              projectcss.all,
-              sty.freeBox___1SPfr,
-              "shimmer"
-            )}
-          />
-
-          <div
-            className={classNames(projectcss.all, sty.freeBox__crvC, "shimmer")}
-          />
         </div>
       </div>
     </React.Fragment>
