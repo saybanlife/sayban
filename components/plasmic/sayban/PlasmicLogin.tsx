@@ -231,7 +231,7 @@ function PlasmicLogin__RenderFunc(props: {
           <div
             data-plasmic-name={"loading"}
             data-plasmic-override={overrides.loading}
-            className={classNames(projectcss.all, sty.loading, {
+            className={classNames(projectcss.all, sty.loading, "headerBox", {
               [sty.loadingpage_code]: hasVariant($state, "page", "code"),
               [sty.loadingpage_loading]: hasVariant($state, "page", "loading"),
               [sty.loadingpage_mobile]: hasVariant($state, "page", "mobile")
