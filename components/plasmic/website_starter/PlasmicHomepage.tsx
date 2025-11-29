@@ -326,23 +326,6 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["getCookie"] = await $steps["getCookie"];
               }
 
-              $steps["invokeGlobalAction"] = true
-                ? (() => {
-                    const actionArgs = { args: [1000] };
-                    return $globalActions["Fragment.wait"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
-              ) {
-                $steps["invokeGlobalAction"] =
-                  await $steps["invokeGlobalAction"];
-              }
-
               $steps["goToLogin"] =
                 $steps.getCookie == null || $steps.getCookie == ""
                   ? (() => {
@@ -1075,6 +1058,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   "page",
                   "categories"
                 ),
+                [sty.homepage_center]: hasVariant($state, "page", "center"),
                 [sty.homepage_subcategories]: hasVariant(
                   $state,
                   "page",

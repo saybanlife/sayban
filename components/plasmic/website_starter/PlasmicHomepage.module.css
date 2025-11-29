@@ -460,3 +460,6 @@
     min-width: 0;
   }
 }
+.homepage_center:global(.__wab_instance) {
+  display: none;
+}

@@ -2199,6 +2199,7 @@ function PlasmicLogin__RenderFunc(props: {
             data-plasmic-override={overrides.sideEffect}
             className={classNames("__wab_instance", sty.sideEffect, {
               [sty.sideEffectpage_code]: hasVariant($state, "page", "code"),
+              [sty.sideEffectpage_mobile]: hasVariant($state, "page", "mobile"),
               [sty.sideEffectpage_name]: hasVariant($state, "page", "name")
             })}
             onMount={async () => {
@@ -2264,7 +2265,8 @@ function PlasmicLogin__RenderFunc(props: {
               }
 
               $steps["goToLogin"] =
-                $steps.getCookie == null || $steps.getCookie == ""
+                ($steps.getCookie == null || $steps.getCookie == "") &&
+                $ctx?.params?.step?.[0] == null
                   ? (() => {
                       const actionArgs = { destination: `/login/${"mobile"}` };
                       return (({ destination }) => {
