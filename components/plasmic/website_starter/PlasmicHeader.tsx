@@ -67,7 +67,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicHeader.module.css"; // plasmic-import: Ot6T4AzLOJkl/css
 
-import Icon18Icon from "./icons/PlasmicIcon__Icon18"; // plasmic-import: 2q_FFTPL4mYA/icon
+import Icon33Icon from "../sayban/icons/PlasmicIcon__Icon33"; // plasmic-import: MJBmXdq7GQ5D/icon
 
 createPlasmicElementProxy;
 
@@ -218,7 +218,7 @@ function PlasmicHeader__RenderFunc(props: {
             })}
           />
 
-          <Icon18Icon
+          <Icon33Icon
             data-plasmic-name={"svg"}
             data-plasmic-override={overrides.svg}
             className={classNames(projectcss.all, sty.svg, {
@@ -227,11 +227,17 @@ function PlasmicHeader__RenderFunc(props: {
             role={"img"}
           />
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox___07Lui)}>
+        <div
+          className={classNames(projectcss.all, sty.freeBox___07Lui, {
+            [sty.freeBoxsoft___07LuiFgJuq]: hasVariant($state, "soft", "soft")
+          })}
+        >
           {renderPlasmicSlot({
             defaultContents: "Enter some text",
             value: args.slot,
-            className: classNames(sty.slotTargetSlot)
+            className: classNames(sty.slotTargetSlot, {
+              [sty.slotTargetSlotsoft]: hasVariant($state, "soft", "soft")
+            })
           })}
         </div>
         <div className={classNames(projectcss.all, sty.freeBox__o586O)}>

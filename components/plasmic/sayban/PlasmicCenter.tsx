@@ -166,6 +166,8 @@ function PlasmicCenter__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const globalVariants = _useGlobalVariants();
+
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -396,6 +398,13 @@ function PlasmicCenter__RenderFunc(props: {
               )}
             />
 
+            {(
+              hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
+            ) ? (
+              <div
+                className={classNames(projectcss.all, sty.freeBox___6EpC1, ``)}
+              />
+            ) : null}
             <div
               className={classNames(
                 projectcss.all,
@@ -412,29 +421,106 @@ function PlasmicCenter__RenderFunc(props: {
               )}
             />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                sty.freeBox__odEb7,
-                "shimmer"
-              )}
-            />
+            <div className={classNames(projectcss.all, sty.freeBox__jeIFm)}>
+              <div className={classNames(projectcss.all, sty.freeBox___18C93)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    sty.freeBox__zAzI5,
+                    "shimmer"
+                  )}
+                />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                sty.freeBox__wNpxW,
-                "shimmer"
-              )}
-            />
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    sty.freeBox__mdZl7,
+                    "shimmer"
+                  )}
+                />
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox___4Ehs3)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    sty.freeBox__upDi,
+                    "shimmer"
+                  )}
+                />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                sty.freeBox__zAzI5,
-                "shimmer"
-              )}
-            />
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    sty.freeBox___7PMq,
+                    "shimmer"
+                  )}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    sty.freeBox__iY0TX,
+                    "shimmer"
+                  )}
+                />
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__eE1OF)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    sty.freeBox__pMwb,
+                    "shimmer"
+                  )}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    sty.freeBox__snlvX,
+                    "shimmer"
+                  )}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    sty.freeBox__sj7IZ,
+                    "shimmer"
+                  )}
+                />
+              </div>
+              {(
+                hasVariant(globalVariants, "screen", "mobileOnly")
+                  ? true
+                  : false
+              ) ? (
+                <div className={classNames(projectcss.all, sty.freeBox__viGzh)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      sty.freeBox__bX4Ya,
+                      "shimmer"
+                    )}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      sty.freeBox__vGexe,
+                      "shimmer"
+                    )}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      sty.freeBox__a1HbY,
+                      "shimmer"
+                    )}
+                  />
+                </div>
+              ) : null}
+            </div>
           </div>
         }
         method={"GET"}
