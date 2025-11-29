@@ -175,7 +175,7 @@ function PlasmicLogin__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $ctx.params.step;
+              return $ctx.params.step[0];
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -811,7 +811,9 @@ function PlasmicLogin__RenderFunc(props: {
                 $steps["goToLogin"] =
                   $steps.auto.data?.success == true
                     ? (() => {
-                        const actionArgs = { destination: `/login/${"code"}` };
+                        const actionArgs = {
+                          destination: `/login/[[...step]]`
+                        };
                         return (({ destination }) => {
                           if (
                             typeof destination === "string" &&
@@ -1361,7 +1363,7 @@ function PlasmicLogin__RenderFunc(props: {
                       $steps.validate?.data?.type == "install"
                         ? (() => {
                             const actionArgs = {
-                              destination: `/login/${"name"}`
+                              destination: `/login/[[...step]]`
                             };
                             return (({ destination }) => {
                               if (
@@ -1926,19 +1928,7 @@ function PlasmicLogin__RenderFunc(props: {
                   $steps["goToLogin"] = true
                     ? (() => {
                         const actionArgs = {
-                          destination: `/login/${(() => {
-                            try {
-                              return $ctx.params.step;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}?city=${"true"}`
+                          destination: `/login/[[...step]]?city=${"true"}`
                         };
                         return (({ destination }) => {
                           if (
@@ -2276,7 +2266,7 @@ function PlasmicLogin__RenderFunc(props: {
               $steps["goToLogin"] =
                 $steps.getCookie == null || $steps.getCookie == ""
                   ? (() => {
-                      const actionArgs = { destination: `/login/${"mobile"}` };
+                      const actionArgs = { destination: `/login/[[...step]]` };
                       return (({ destination }) => {
                         if (
                           typeof destination === "string" &&
@@ -2401,19 +2391,7 @@ function PlasmicLogin__RenderFunc(props: {
                     $steps["goToLogin"] = true
                       ? (() => {
                           const actionArgs = {
-                            destination: `/login/${(() => {
-                              try {
-                                return $ctx.params.step;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()}`
+                            destination: `/login/[[...step]]`
                           };
                           return (({ destination }) => {
                             if (

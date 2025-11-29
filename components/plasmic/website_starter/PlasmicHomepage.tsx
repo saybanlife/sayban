@@ -346,7 +346,7 @@ function PlasmicHomepage__RenderFunc(props: {
               $steps["goToLogin"] =
                 $steps.getCookie == null || $steps.getCookie == ""
                   ? (() => {
-                      const actionArgs = { destination: `/login/${"mobile"}` };
+                      const actionArgs = { destination: `/login/[[...step]]` };
                       return (({ destination }) => {
                         if (
                           typeof destination === "string" &&

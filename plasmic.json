@@ -1312,7 +1312,7 @@
           "projectId": "qARqpE4p5tZmJuNxFbTaPz",
           "renderModuleFilePath": "plasmic/sayban/PlasmicLogin.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/login/[[step]].tsx"
+            "modulePath": "../src/pages/login/[[...step]].tsx"
           },
           "cssFilePath": "plasmic/sayban/PlasmicLogin.module.css",
           "scheme": "blackbox",
