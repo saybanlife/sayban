@@ -904,14 +904,14 @@
           "checksum": "37a5d219871e9b9af4075029dc6f8999"
         },
         {
-          "assetId": "qARqpE4p5tZmJuNxFbTaPz",
-          "type": "projectCss",
-          "checksum": "118cdfd0dcbe2b7089b48a801ddb6f3b"
-        },
-        {
           "type": "icon",
           "assetId": "L5-0jFcT5N2O",
           "checksum": "462ef1e7ea711fd21012511b786477e9"
+        },
+        {
+          "assetId": "qARqpE4p5tZmJuNxFbTaPz",
+          "type": "projectCss",
+          "checksum": "118cdfd0dcbe2b7089b48a801ddb6f3b"
         }
       ],
       "codegenVersion": "0.0.2"
