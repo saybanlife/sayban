@@ -172,7 +172,20 @@ function PlasmicLogin__RenderFunc(props: {
         path: "page",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.page
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $ctx.params.step;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })() ?? $props.page
       },
       {
         path: "mobileSubmit.loading",
@@ -264,7 +277,34 @@ function PlasmicLogin__RenderFunc(props: {
         path: "modal.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          hasVariant($state, "page", "name")
+            ? (() => {
+                try {
+                  return $ctx.query.city == "true";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })()
+            : (() => {
+                try {
+                  return $ctx.params.step.includes("city");
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })()
       },
       {
         path: "city.city",
@@ -768,30 +808,30 @@ function PlasmicLogin__RenderFunc(props: {
                   $steps["auto"] = await $steps["auto"];
                 }
 
-                $steps["updatePage"] =
+                $steps["goToLogin"] =
                   $steps.auto.data?.success == true
                     ? (() => {
-                        const actionArgs = {
-                          vgroup: "page",
-                          operation: 0,
-                          value: "code"
-                        };
-                        return (({ vgroup, value }) => {
-                          if (typeof value === "string") {
-                            value = [value];
+                        const actionArgs = { destination: `/login/${"code"}` };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
                           }
-
-                          $stateSet($state, vgroup, value);
-                          return value;
                         })?.apply(null, [actionArgs]);
                       })()
                     : undefined;
                 if (
-                  $steps["updatePage"] != null &&
-                  typeof $steps["updatePage"] === "object" &&
-                  typeof $steps["updatePage"].then === "function"
+                  $steps["goToLogin"] != null &&
+                  typeof $steps["goToLogin"] === "object" &&
+                  typeof $steps["goToLogin"].then === "function"
                 ) {
-                  $steps["updatePage"] = await $steps["updatePage"];
+                  $steps["goToLogin"] = await $steps["goToLogin"];
                 }
 
                 $steps["runCode2"] = true
@@ -1317,30 +1357,32 @@ function PlasmicLogin__RenderFunc(props: {
                       $steps["goToHomepage"] = await $steps["goToHomepage"];
                     }
 
-                    $steps["updatePage"] =
+                    $steps["goToLogin"] =
                       $steps.validate?.data?.type == "install"
                         ? (() => {
                             const actionArgs = {
-                              vgroup: "page",
-                              operation: 0,
-                              value: "name"
+                              destination: `/login/${"name"}`
                             };
-                            return (({ vgroup, value }) => {
-                              if (typeof value === "string") {
-                                value = [value];
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
                               }
-
-                              $stateSet($state, vgroup, value);
-                              return value;
                             })?.apply(null, [actionArgs]);
                           })()
                         : undefined;
                     if (
-                      $steps["updatePage"] != null &&
-                      typeof $steps["updatePage"] === "object" &&
-                      typeof $steps["updatePage"].then === "function"
+                      $steps["goToLogin"] != null &&
+                      typeof $steps["goToLogin"] === "object" &&
+                      typeof $steps["goToLogin"].then === "function"
                     ) {
-                      $steps["updatePage"] = await $steps["updatePage"];
+                      $steps["goToLogin"] = await $steps["goToLogin"];
                     }
 
                     $steps["invokeGlobalAction"] =
@@ -1881,38 +1923,43 @@ function PlasmicLogin__RenderFunc(props: {
                 onFocus={async focusEvent => {
                   const $steps = {};
 
-                  $steps["updateModalOpen"] = true
+                  $steps["goToLogin"] = true
                     ? (() => {
                         const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["modal", "open"]
-                          },
-                          operation: 0,
-                          value: true
+                          destination: `/login/${(() => {
+                            try {
+                              return $ctx.params.step;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}?city=${"true"}`
                         };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
                           }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
                         })?.apply(null, [actionArgs]);
                       })()
                     : undefined;
                   if (
-                    $steps["updateModalOpen"] != null &&
-                    typeof $steps["updateModalOpen"] === "object" &&
-                    typeof $steps["updateModalOpen"].then === "function"
+                    $steps["goToLogin"] != null &&
+                    typeof $steps["goToLogin"] === "object" &&
+                    typeof $steps["goToLogin"].then === "function"
                   ) {
-                    $steps["updateModalOpen"] = await $steps["updateModalOpen"];
+                    $steps["goToLogin"] = await $steps["goToLogin"];
                   }
                 }}
                 placeholder={
@@ -2226,129 +2273,192 @@ function PlasmicLogin__RenderFunc(props: {
                 $steps["goToHomepage"] = await $steps["goToHomepage"];
               }
 
-              $steps["updatePage"] =
+              $steps["goToLogin"] =
                 $steps.getCookie == null || $steps.getCookie == ""
                   ? (() => {
-                      const actionArgs = {
-                        vgroup: "page",
-                        operation: 0,
-                        value: "mobile"
-                      };
-                      return (({ vgroup, value }) => {
-                        if (typeof value === "string") {
-                          value = [value];
+                      const actionArgs = { destination: `/login/${"mobile"}` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
                         }
-
-                        $stateSet($state, vgroup, value);
-                        return value;
                       })?.apply(null, [actionArgs]);
                     })()
                   : undefined;
               if (
-                $steps["updatePage"] != null &&
-                typeof $steps["updatePage"] === "object" &&
-                typeof $steps["updatePage"].then === "function"
+                $steps["goToLogin"] != null &&
+                typeof $steps["goToLogin"] === "object" &&
+                typeof $steps["goToLogin"].then === "function"
               ) {
-                $steps["updatePage"] = await $steps["updatePage"];
+                $steps["goToLogin"] = await $steps["goToLogin"];
               }
             }}
           />
 
-          <AntdModal
-            data-plasmic-name={"modal"}
-            data-plasmic-override={overrides.modal}
-            className={classNames("__wab_instance", sty.modal, {
-              [sty.modalpage_code]: hasVariant($state, "page", "code")
-            })}
-            closeIcon={
-              <svg
-                className={classNames(projectcss.all, sty.svg___4TQ44)}
-                role={"img"}
-              />
-            }
-            defaultStylesClassName={classNames(
-              projectcss.root_reset,
-              projectcss.plasmic_default_styles,
-              projectcss.plasmic_mixins,
-              styleTokensClassNames
-            )}
-            hideFooter={true}
-            maskClosable={true}
-            modalContentClassName={classNames({
-              [sty["pcls_ldvOxjafZSXi"]]: true
-            })}
-            modalScopeClassName={sty["modal__modal"]}
-            onOpenChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["modal", "open"]).apply(
-                null,
-                eventArgs
-              );
-            }}
-            open={generateStateValueProp($state, ["modal", "open"])}
-            title={null}
-            trigger={null}
-            width={"100vw"}
-          >
-            <City
-              data-plasmic-name={"city"}
-              data-plasmic-override={overrides.city}
-              back={async () => {
-                const $steps = {};
+          {(() => {
+            const child$Props = {
+              className: classNames("__wab_instance", sty.modal, {
+                [sty.modalpage_code]: hasVariant($state, "page", "code"),
+                [sty.modalpage_name]: hasVariant($state, "page", "name")
+              }),
+              closeIcon: (
+                <svg
+                  className={classNames(projectcss.all, sty.svg___4TQ44)}
+                  role={"img"}
+                />
+              ),
 
-                $steps["updateModalOpen"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["modal", "open"]
-                        },
-                        operation: 0,
-                        value: false
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateModalOpen"] != null &&
-                  typeof $steps["updateModalOpen"] === "object" &&
-                  typeof $steps["updateModalOpen"].then === "function"
-                ) {
-                  $steps["updateModalOpen"] = await $steps["updateModalOpen"];
-                }
-              }}
-              city={generateStateValueProp($state, ["city", "city"])}
-              className={classNames("__wab_instance", sty.city, {
-                [sty.citypage_name]: hasVariant($state, "page", "name")
-              })}
-              onCityChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["city", "city"]).apply(
+              defaultStylesClassName: classNames(
+                projectcss.root_reset,
+                projectcss.plasmic_default_styles,
+                projectcss.plasmic_mixins,
+                styleTokensClassNames
+              ),
+              hideFooter: true,
+              maskClosable: true,
+              modalContentClassName: classNames({
+                [sty["pcls_ldvOxjafZSXi"]]: true
+              }),
+              modalScopeClassName: sty["modal__modal"],
+              onOpenChange: async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["modal", "open"]).apply(
                   null,
                   eventArgs
                 );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
+              },
+              open: generateStateValueProp($state, ["modal", "open"]),
+              title: null,
+              trigger: null,
+              width: "100vw"
+            };
+            initializeCodeComponentStates(
+              $state,
+              [
+                {
+                  name: "open",
+                  plasmicStateName: "modal.open"
                 }
-              }}
-            />
-          </AntdModal>
+              ],
+              [],
+              undefined ?? {},
+              child$Props
+            );
+            initializePlasmicStates(
+              $state,
+              [
+                {
+                  name: "modal.open",
+                  initFunc: ({ $props, $state, $queries }) =>
+                    hasVariant($state, "page", "name")
+                      ? (() => {
+                          try {
+                            return $ctx.query.city == "true";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return false;
+                            }
+                            throw e;
+                          }
+                        })()
+                      : (() => {
+                          try {
+                            return $ctx.params.step.includes("city");
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return false;
+                            }
+                            throw e;
+                          }
+                        })()
+                }
+              ],
+              []
+            );
+            return (
+              <AntdModal
+                data-plasmic-name={"modal"}
+                data-plasmic-override={overrides.modal}
+                {...child$Props}
+              >
+                <City
+                  data-plasmic-name={"city"}
+                  data-plasmic-override={overrides.city}
+                  back={async () => {
+                    const $steps = {};
+
+                    $steps["goToLogin"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/login/${(() => {
+                              try {
+                                return $ctx.params.step;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToLogin"] != null &&
+                      typeof $steps["goToLogin"] === "object" &&
+                      typeof $steps["goToLogin"].then === "function"
+                    ) {
+                      $steps["goToLogin"] = await $steps["goToLogin"];
+                    }
+                  }}
+                  city={generateStateValueProp($state, ["city", "city"])}
+                  className={classNames("__wab_instance", sty.city, {
+                    [sty.citypage_name]: hasVariant($state, "page", "name")
+                  })}
+                  onCityChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, ["city", "city"]).apply(
+                      null,
+                      eventArgs
+                    );
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                />
+              </AntdModal>
+            );
+          })()}
         </div>
       </div>
     </React.Fragment>
