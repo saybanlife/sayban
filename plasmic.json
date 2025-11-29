@@ -1618,6 +1618,11 @@
           "id": "U-YgfUMSlfqC",
           "name": "image 12",
           "filePath": "../public/plasmic/sayban/images/image12.svg"
+        },
+        {
+          "id": "VVyiWWSY58Jq",
+          "name": "image 13",
+          "filePath": "../public/plasmic/sayban/images/image13.png"
         }
       ],
       "indirect": false,

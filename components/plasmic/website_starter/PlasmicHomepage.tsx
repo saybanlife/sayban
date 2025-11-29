@@ -62,11 +62,11 @@ import {
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import Menu2 from "../../Menu2"; // plasmic-import: z9yXgH-e4ant/component
 import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
-import Home from "../../Home"; // plasmic-import: m-UDUThzN-63/component
 import Categories from "../../Categories"; // plasmic-import: R95SHqmqnvX5/component
 import Subcategories from "../../Subcategories"; // plasmic-import: JM9_woEGqy8m/component
 import Center from "../../Center"; // plasmic-import: Lh-Py4-EsRhC/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+import Home from "../../Home"; // plasmic-import: m-UDUThzN-63/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -100,11 +100,11 @@ export type PlasmicHomepage__OverridesType = {
   menu2?: Flex__<typeof Menu2>;
   img?: Flex__<typeof PlasmicImg__>;
   textInput?: Flex__<typeof TextInput>;
-  home?: Flex__<typeof Home>;
   categories?: Flex__<typeof Categories>;
   subcategories?: Flex__<typeof Subcategories>;
   center?: Flex__<typeof Center>;
   apiRequest?: Flex__<typeof ApiRequest>;
+  home?: Flex__<typeof Home>;
 };
 
 export interface DefaultHomepageProps {}
@@ -633,107 +633,6 @@ function PlasmicHomepage__RenderFunc(props: {
                 />
               </div>
             </section>
-            <Home
-              data-plasmic-name={"home"}
-              data-plasmic-override={overrides.home}
-              categori={generateStateValueProp($state, ["home", "categori"])}
-              categories={(() => {
-                try {
-                  return $state.apiRequest.data.result;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-              className={classNames("__wab_instance", sty.home, {
-                [sty.homepage_categories]: hasVariant(
-                  $state,
-                  "page",
-                  "categories"
-                ),
-                [sty.homepage_subcategories]: hasVariant(
-                  $state,
-                  "page",
-                  "subcategories"
-                )
-              })}
-              onCategori={async () => {
-                const $steps = {};
-
-                $steps["goToHomepage"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        destination: `/${"home"}/${(() => {
-                          try {
-                            return $state.home.categori.slug;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}`
-                      };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToHomepage"] != null &&
-                  typeof $steps["goToHomepage"] === "object" &&
-                  typeof $steps["goToHomepage"].then === "function"
-                ) {
-                  $steps["goToHomepage"] = await $steps["goToHomepage"];
-                }
-              }}
-              onCategoriChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["home", "categori"]).apply(
-                  null,
-                  eventArgs
-                );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              onSearchChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["home", "search"]).apply(
-                  null,
-                  eventArgs
-                );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              search={generateStateValueProp($state, ["home", "search"])}
-            />
           </div>
           <Categories
             data-plasmic-name={"categories"}
@@ -1104,6 +1003,127 @@ function PlasmicHomepage__RenderFunc(props: {
             }}
             shouldFetch={true}
             url={"https://sayban.darkube.app/webhook/categories/full"}
+          >
+            <Home
+              data-plasmic-name={"home"}
+              data-plasmic-override={overrides.home}
+              categori={generateStateValueProp($state, ["home", "categori"])}
+              categories={(() => {
+                try {
+                  return $state.apiRequest.data.result;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              className={classNames("__wab_instance", sty.home, {
+                [sty.homepage_categories]: hasVariant(
+                  $state,
+                  "page",
+                  "categories"
+                ),
+                [sty.homepage_subcategories]: hasVariant(
+                  $state,
+                  "page",
+                  "subcategories"
+                )
+              })}
+              onCategori={async () => {
+                const $steps = {};
+
+                $steps["goToHomepage"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        destination: `/${"home"}/${(() => {
+                          try {
+                            return $state.home.categori.slug;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}`
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToHomepage"] != null &&
+                  typeof $steps["goToHomepage"] === "object" &&
+                  typeof $steps["goToHomepage"].then === "function"
+                ) {
+                  $steps["goToHomepage"] = await $steps["goToHomepage"];
+                }
+              }}
+              onCategoriChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["home", "categori"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              onSearchChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["home", "search"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              search={generateStateValueProp($state, ["home", "search"])}
+            />
+          </ApiRequest>
+          <div
+            className={classNames(
+              projectcss.all,
+              sty.freeBox___1WXlA,
+              "shimmer"
+            )}
+          />
+
+          <div
+            className={classNames(
+              projectcss.all,
+              sty.freeBox___1SPfr,
+              "shimmer"
+            )}
+          />
+
+          <div
+            className={classNames(projectcss.all, sty.freeBox__crvC, "shimmer")}
           />
         </div>
       </div>
@@ -1119,22 +1139,22 @@ const PlasmicDescendants = {
     "menu2",
     "img",
     "textInput",
-    "home",
     "categories",
     "subcategories",
     "center",
-    "apiRequest"
+    "apiRequest",
+    "home"
   ],
   sideEffect: ["sideEffect"],
-  homePage: ["homePage", "menu2", "img", "textInput", "home"],
+  homePage: ["homePage", "menu2", "img", "textInput"],
   menu2: ["menu2"],
   img: ["img"],
   textInput: ["textInput"],
-  home: ["home"],
   categories: ["categories"],
   subcategories: ["subcategories"],
   center: ["center"],
-  apiRequest: ["apiRequest"]
+  apiRequest: ["apiRequest", "home"],
+  home: ["home"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1146,11 +1166,11 @@ type NodeDefaultElementType = {
   menu2: typeof Menu2;
   img: typeof PlasmicImg__;
   textInput: typeof TextInput;
-  home: typeof Home;
   categories: typeof Categories;
   subcategories: typeof Subcategories;
   center: typeof Center;
   apiRequest: typeof ApiRequest;
+  home: typeof Home;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1220,11 +1240,11 @@ export const PlasmicHomepage = Object.assign(
     menu2: makeNodeComponent("menu2"),
     img: makeNodeComponent("img"),
     textInput: makeNodeComponent("textInput"),
-    home: makeNodeComponent("home"),
     categories: makeNodeComponent("categories"),
     subcategories: makeNodeComponent("subcategories"),
     center: makeNodeComponent("center"),
     apiRequest: makeNodeComponent("apiRequest"),
+    home: makeNodeComponent("home"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

@@ -54,19 +54,125 @@
   max-width: 100%;
   object-fit: cover;
 }
-.text__iBer9 {
+.freeBox__ba1Jk {
+  display: flex;
+  flex-direction: column;
   position: relative;
   width: 100%;
   height: auto;
   max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-rfsFxiclAtek);
   min-width: 0;
+  padding: 0px;
 }
-.text___78LB9 {
-  position: relative;
-  width: 100%;
-  height: auto;
+.freeBox__e3SRl {
+  background: none;
+  outline-color: var(--token-pRs3-4jrQ4XQ);
+  outline-style: solid;
+  outline-width: 0px;
   max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  height: 180px;
+  width: 100%;
+  box-shadow: none;
   min-width: 0;
+  flex-shrink: 0;
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: var(--token-Vi8cDx7an2mh);
+}
+.freeBox__gfB {
+  background: var(--token-C6B6ZAuqICKE);
+  outline-color: var(--token-pRs3-4jrQ4XQ);
+  outline-style: solid;
+  outline-width: 0px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  column-gap: 0px;
+  max-width: 100%;
+  box-shadow: none;
+  flex-shrink: 0;
+  border-radius: 50%;
+  padding: var(--token-rfsFxiclAtek);
+}
+.freeBox__rOG5 {
+  background: none;
+  outline-color: var(--token-pRs3-4jrQ4XQ);
+  outline-style: solid;
+  outline-width: 0px;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  height: 2px;
+  width: 50%;
+  box-shadow: none;
+  flex-shrink: 0;
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: var(--token-Vi8cDx7an2mh);
+}
+.freeBox__odEb7 {
+  background: none;
+  outline-color: var(--token-pRs3-4jrQ4XQ);
+  outline-style: solid;
+  outline-width: 0px;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  height: 100px;
+  width: 100%;
+  box-shadow: none;
+  min-width: 0;
+  flex-shrink: 0;
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: var(--token-Vi8cDx7an2mh);
+}
+.freeBox__wNpxW {
+  background: none;
+  outline-color: var(--token-pRs3-4jrQ4XQ);
+  outline-style: solid;
+  outline-width: 0px;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  height: 100px;
+  width: 100%;
+  box-shadow: none;
+  min-width: 0;
+  flex-shrink: 0;
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: var(--token-Vi8cDx7an2mh);
+}
+.freeBox__zAzI5 {
+  background: none;
+  outline-color: var(--token-pRs3-4jrQ4XQ);
+  outline-style: solid;
+  outline-width: 0px;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  height: 200px;
+  width: 100%;
+  box-shadow: none;
+  min-width: 0;
+  flex-shrink: 0;
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: var(--token-Vi8cDx7an2mh);
 }
 .freeBox__dmiWu {
   display: flex;
@@ -117,6 +223,8 @@
   height: 180px;
   transition-property: all;
   transition-duration: 0.2s;
+  width: 100%;
+  min-width: 0;
   -webkit-transition-property: all;
   -webkit-transition-duration: 0.2s;
 }
@@ -630,6 +738,27 @@
     animation: none;
   }
 }
+.freeBox___0J9Fb {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: var(--token-73iLa06AE6f4);
+}
+.img__gAbMj {
+  object-fit: cover;
+  max-width: 100%;
+  width: 10rem;
+  filter: hue-rotate(242deg);
+}
+.img__gAbMj > picture > img {
+  object-fit: cover;
+}
 .text__wtJr {
   animation: none;
   position: relative;
@@ -641,13 +770,13 @@
   font-family: "Roboto", sans-serif;
   font-weight: normal;
   font-style: normal;
-  color: #535353;
+  color: var(--token-9M5jRUPt8Msb);
   text-transform: none;
   line-height: 1.5;
   letter-spacing: normal;
   white-space: pre-wrap;
+  opacity: 0.8;
   min-width: 0;
-  display: none;
 }
 .freeBox__a2H6Z {
   animation: none;
