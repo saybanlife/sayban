@@ -460,6 +460,12 @@
     min-width: 0;
   }
 }
+.homepage_categories:global(.__wab_instance) {
+  display: none;
+}
+.homepage_subcategories:global(.__wab_instance) {
+  display: none;
+}
 .homepage_center:global(.__wab_instance) {
   display: none;
 }
