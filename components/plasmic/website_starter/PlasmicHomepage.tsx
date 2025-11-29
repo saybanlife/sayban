@@ -150,6 +150,8 @@ function PlasmicHomepage__RenderFunc(props: {
 
   const globalVariants = _useGlobalVariants();
 
+  const $globalActions = useGlobalActions?.();
+
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -244,6 +246,12 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "token",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -298,14 +306,98 @@ function PlasmicHomepage__RenderFunc(props: {
           <SideEffect
             data-plasmic-name={"sideEffect"}
             data-plasmic-override={overrides.sideEffect}
-            className={classNames("__wab_instance", sty.sideEffect, {
-              [sty.sideEffectpage_center]: hasVariant($state, "page", "center"),
-              [sty.sideEffectpage_subcategories]: hasVariant(
-                $state,
-                "page",
-                "subcategories"
-              )
-            })}
+            className={classNames("__wab_instance", sty.sideEffect)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["getCookie"] = true
+                ? (() => {
+                    const actionArgs = { args: ["token"] };
+                    return $globalActions["Fragment.getCookie"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["getCookie"] != null &&
+                typeof $steps["getCookie"] === "object" &&
+                typeof $steps["getCookie"].then === "function"
+              ) {
+                $steps["getCookie"] = await $steps["getCookie"];
+              }
+
+              $steps["invokeGlobalAction"] = true
+                ? (() => {
+                    const actionArgs = { args: [1000] };
+                    return $globalActions["Fragment.wait"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["goToLogin"] =
+                $steps.getCookie == null || $steps.getCookie == ""
+                  ? (() => {
+                      const actionArgs = { destination: `/login/${"mobile"}` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+              if (
+                $steps["goToLogin"] != null &&
+                typeof $steps["goToLogin"] === "object" &&
+                typeof $steps["goToLogin"].then === "function"
+              ) {
+                $steps["goToLogin"] = await $steps["goToLogin"];
+              }
+
+              $steps["updateToken"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["token"]
+                      },
+                      operation: 0,
+                      value: $steps.getCookie
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateToken"] != null &&
+                typeof $steps["updateToken"] === "object" &&
+                typeof $steps["updateToken"].then === "function"
+              ) {
+                $steps["updateToken"] = await $steps["updateToken"];
+              }
+            }}
           />
 
           <div
