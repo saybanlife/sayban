@@ -15,23 +15,39 @@
   box-sizing: border-box;
   cursor: pointer;
   width: 100%;
-  box-shadow: inset 0px 0px 0px 1px var(--token-kI60KiRr_Lur);
+  box-shadow: inset 0px 0px 0px 2px var(--token-C6B6ZAuqICKE);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   outline-style: none;
-  background: var(--token-80wG4y4sryg5);
+  background: #1f2a23;
+  font-family: var(--token-8ld_RqqV9anD);
+  font-size: var(--token-ehIkf6s-dMLU);
+  color: var(--token-9M5jRUPt8Msb);
+  text-align: right;
+  line-height: var(--token-tyha1eTxLLSq);
   min-width: 0;
   border-radius: var(--token-6F5DR5OsTPi0);
-  padding: 0px;
-  border-style: none;
+  padding: var(--token-6F5DR5OsTPi0) var(--token-UWj1h_kV6SQI);
 }
 .ariaSelect[data-focus-visible] .ariaButton:global(.__wab_instance) {
   outline-style: solid;
   outline-width: var(--token-I0Xtb9z7Q0X3);
-  outline-offset: 1px;
-  outline-color: var(--token-xZK-xLPCiE1W);
+  outline-offset: 0px;
+  outline-color: var(--token-Yo4gdKCgyuAu);
+  width: 100%;
+  font-family: var(--token-8ld_RqqV9anD);
+  font-size: var(--token-ehIkf6s-dMLU);
+  color: var(--token-9M5jRUPt8Msb);
+  text-align: right;
+  line-height: var(--token-tyha1eTxLLSq);
+  background: #1f2a23;
+  box-shadow: none;
+  min-width: 0;
+  border-radius: var(--token-6F5DR5OsTPi0);
+  padding: var(--token-6F5DR5OsTPi0) var(--token-UWj1h_kV6SQI);
+  border: 1px solid var(--token-ee2TuxDknsJj);
 }
 .ariaSelectedValue:global(.__wab_instance) {
   font-size: var(--token-ehIkf6s-dMLU);

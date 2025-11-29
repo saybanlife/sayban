@@ -1312,7 +1312,7 @@
           "projectId": "qARqpE4p5tZmJuNxFbTaPz",
           "renderModuleFilePath": "plasmic/sayban/PlasmicLogin.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/login.tsx"
+            "modulePath": "../src/pages/login/[[step]].tsx"
           },
           "cssFilePath": "plasmic/sayban/PlasmicLogin.module.css",
           "scheme": "blackbox",
@@ -1329,6 +1329,19 @@
             "modulePath": "CodeTimer.tsx"
           },
           "cssFilePath": "plasmic/sayban/PlasmicCodeTimer.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "dRrvldGFbNOC",
+          "name": "City",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicCity.tsx",
+          "importSpec": {
+            "modulePath": "City.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicCity.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
@@ -1513,6 +1526,16 @@
           "id": "0iSVhpgUti5-",
           "name": "Icon30Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon30.tsx"
+        },
+        {
+          "id": "Sa8vocL0DW8J",
+          "name": "Icon31Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon31.tsx"
+        },
+        {
+          "id": "hVogcrNM7Ss9",
+          "name": "Icon32Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon32.tsx"
         }
       ],
       "images": [

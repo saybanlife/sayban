@@ -75,6 +75,7 @@ import Icon4Icon from "./icons/PlasmicIcon__Icon4"; // plasmic-import: XYEdqsKT1
 import Icon5Icon from "./icons/PlasmicIcon__Icon5"; // plasmic-import: 8vOA1S70pHdl/icon
 import Icon6Icon from "./icons/PlasmicIcon__Icon6"; // plasmic-import: wfu5dAZKgp8n/icon
 import Icon27Icon from "../sayban/icons/PlasmicIcon__Icon27"; // plasmic-import: H0kX6aZGCrcz/icon
+import Icon31Icon from "../sayban/icons/PlasmicIcon__Icon31"; // plasmic-import: Sa8vocL0DW8J/icon
 import Icon25Icon from "../sayban/icons/PlasmicIcon__Icon25"; // plasmic-import: 2CSyPCl98YLt/icon
 import Icon26Icon from "../sayban/icons/PlasmicIcon__Icon26"; // plasmic-import: tI_PZ_NW7AQQ/icon
 
@@ -283,15 +284,17 @@ function PlasmicMenueIcon__RenderFunc(props: {
                   ? Icon26Icon
                   : hasVariant($state, "icons", "medical")
                     ? Icon25Icon
-                    : hasVariant($state, "icons", "supportive")
-                      ? Icon27Icon
-                      : hasVariant($state, "icons", "home")
-                        ? Icon14Icon
-                        : hasVariant($state, "icons", "user")
-                          ? Icon15Icon
-                          : hasVariant($state, "icons", "settings")
-                            ? Icon16Icon
-                            : Icon24Icon
+                    : hasVariant($state, "icons", "rehabilitation")
+                      ? Icon31Icon
+                      : hasVariant($state, "icons", "supportive")
+                        ? Icon27Icon
+                        : hasVariant($state, "icons", "home")
+                          ? Icon14Icon
+                          : hasVariant($state, "icons", "user")
+                            ? Icon15Icon
+                            : hasVariant($state, "icons", "settings")
+                              ? Icon16Icon
+                              : Icon24Icon
         }
         className={classNames(projectcss.all, sty.svg, {
           [sty.svgcolor_dark]: hasVariant($state, "color", "dark"),
