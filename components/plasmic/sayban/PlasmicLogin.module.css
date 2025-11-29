@@ -145,6 +145,15 @@
   min-width: 0;
   padding: 0px;
 }
+.freeBoxpage_mobile__yXneKmKfXs {
+  display: none;
+}
+.freeBoxpage_code__yXneKohvpc {
+  display: none;
+}
+.freeBoxpage_name__yXneKaq9MH {
+  display: none;
+}
 .text__co9R6 {
   width: 100%;
   height: auto;
@@ -154,6 +163,9 @@
   font-size: var(--token-Tca_MqWoqq_b);
   font-weight: 600;
   min-width: 0;
+}
+.textpage_mobile__co9R6MKfXs {
+  display: none;
 }
 .text__lpPu2 {
   position: relative;
@@ -209,7 +221,7 @@
   z-index: 1;
   right: 0;
   bottom: 0;
-  filter: blur(4px);
+  filter: blur(5px);
   padding: var(--token-rfsFxiclAtek) var(--token-73iLa06AE6f4)
     var(--token-73iLa06AE6f4);
 }

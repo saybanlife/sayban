@@ -294,7 +294,7 @@ function PlasmicLogin__RenderFunc(props: {
               })()
             : (() => {
                 try {
-                  return $ctx.params.step.includes("city");
+                  return $ctx.query.city == "true";
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -1941,7 +1941,19 @@ function PlasmicLogin__RenderFunc(props: {
                   $steps["goToLogin"] = true
                     ? (() => {
                         const actionArgs = {
-                          destination: `/login/${"name"}?city=${"true"}`
+                          destination: `/login/${(() => {
+                            try {
+                              return $ctx.params.step?.[0];
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}?city=${"true"}`
                         };
                         return (({ destination }) => {
                           if (
@@ -2376,7 +2388,7 @@ function PlasmicLogin__RenderFunc(props: {
                         })()
                       : (() => {
                           try {
-                            return $ctx.params.step.includes("city");
+                            return $ctx.query.city == "true";
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -2406,7 +2418,19 @@ function PlasmicLogin__RenderFunc(props: {
                     $steps["goToLogin"] = true
                       ? (() => {
                           const actionArgs = {
-                            destination: `/login/[[...step]]`
+                            destination: `/login/${(() => {
+                              try {
+                                return $ctx.params.step?.[0];
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}`
                           };
                           return (({ destination }) => {
                             if (

@@ -60,7 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
-import { SwiperSlider } from "@/components/SwiperSlider"; // plasmic-import: byElilYJKEPk/codeComponent
+import LineClomp from "../../LineClomp"; // plasmic-import: 1fS9mxEN0mIl/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -95,8 +95,9 @@ export const PlasmicCategories__ArgProps = new Array<ArgPropType>(
 export type PlasmicCategories__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<typeof Header>;
-  swiperSlider?: Flex__<typeof SwiperSlider>;
+  lineClomp?: Flex__<typeof LineClomp>;
   text?: Flex__<"div">;
+  img?: Flex__<typeof PlasmicImg__>;
   svg?: Flex__<"svg">;
 };
 
@@ -147,22 +148,8 @@ function PlasmicCategories__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const globalVariants = _useGlobalVariants();
-
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
-      {
-        path: "swiperSlider.activeSlideIndex",
-        type: "private",
-        variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 0
-      },
-      {
-        path: "swiperSlider.lockSlides",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
-      },
       {
         path: "subcategories",
         type: "writable",
@@ -223,105 +210,12 @@ function PlasmicCategories__RenderFunc(props: {
 
       <div className={classNames(projectcss.all, sty.freeBox__bfnIl)}>
         <div className={classNames(projectcss.all, sty.freeBox__xhLuY)}>
-          <SwiperSlider
-            data-plasmic-name={"swiperSlider"}
-            data-plasmic-override={overrides.swiperSlider}
-            activeBulletColor={"#ffffff"}
-            activeSlideIndex={generateStateValueProp($state, [
-              "swiperSlider",
-              "activeSlideIndex"
-            ])}
-            autoplay={true}
-            autoplayDelay={5000}
-            bulletColor={"#888888"}
-            className={classNames("__wab_instance", sty.swiperSlider)}
-            disablePaginationClick={false}
-            lockSlides={generateStateValueProp($state, [
-              "swiperSlider",
-              "lockSlides"
-            ])}
-            loop={true}
-            onActiveSlideIndexChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "swiperSlider",
-                "activeSlideIndex"
-              ]).apply(null, eventArgs);
-            }}
-            onLockSlidesChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "swiperSlider",
-                "lockSlides"
-              ]).apply(null, eventArgs);
-            }}
-            showNavigationButtons={false}
-            showPagination={true}
-          >
-            <PlasmicImg__
-              alt={""}
-              className={classNames(sty.img__u72A0)}
-              displayHeight={
-                hasVariant(globalVariants, "screen", "mobileOnly")
-                  ? "120px"
-                  : "200px"
-              }
-              displayMaxHeight={"none"}
-              displayMaxWidth={"100%"}
-              displayMinHeight={"0"}
-              displayMinWidth={"0"}
-              displayWidth={"auto"}
-              loading={"lazy"}
-              src={{
-                src: "/plasmic/website_starter/images/image7.png",
-                fullWidth: 800,
-                fullHeight: 297,
-                aspectRatio: undefined
-              }}
-            />
-
-            <PlasmicImg__
-              alt={""}
-              className={classNames(sty.img__pybI)}
-              displayHeight={
-                hasVariant(globalVariants, "screen", "mobileOnly")
-                  ? "120px"
-                  : "200px"
-              }
-              displayMaxHeight={"none"}
-              displayMaxWidth={"100%"}
-              displayMinHeight={"0"}
-              displayMinWidth={"0"}
-              displayWidth={"auto"}
-              loading={"lazy"}
-              src={{
-                src: "/plasmic/website_starter/images/image8.png",
-                fullWidth: 409,
-                fullHeight: 123,
-                aspectRatio: undefined
-              }}
-            />
-
-            <PlasmicImg__
-              alt={""}
-              className={classNames(sty.img__qBgAf)}
-              displayHeight={
-                hasVariant(globalVariants, "screen", "mobileOnly")
-                  ? "120px"
-                  : "200px"
-              }
-              displayMaxHeight={"none"}
-              displayMaxWidth={"100%"}
-              displayMinHeight={"0"}
-              displayMinWidth={"0"}
-              displayWidth={"auto"}
-              loading={"lazy"}
-              src={{
-                src: "/plasmic/website_starter/images/image9.png",
-                fullWidth: 413,
-                fullHeight: 122,
-                aspectRatio: undefined
-              }}
-            />
-          </SwiperSlider>
+          <LineClomp
+            data-plasmic-name={"lineClomp"}
+            data-plasmic-override={overrides.lineClomp}
+            className={classNames("__wab_instance", sty.lineClomp)}
+            numberOfLine={"5"}
+          />
         </div>
         <div className={classNames(projectcss.all, sty.freeBox__xcchq)}>
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -440,8 +334,10 @@ function PlasmicCategories__RenderFunc(props: {
                       const currentIndex = __plasmic_idx_1;
                       return (
                         <PlasmicImg__
+                          data-plasmic-name={"img"}
+                          data-plasmic-override={overrides.img}
                           alt={""}
-                          className={classNames(sty.img__x4Hog)}
+                          className={classNames(sty.img)}
                           displayHeight={"30px"}
                           displayMaxHeight={"none"}
                           displayMaxWidth={"100%"}
@@ -477,10 +373,11 @@ function PlasmicCategories__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "swiperSlider", "text", "svg"],
+  root: ["root", "header", "lineClomp", "text", "img", "svg"],
   header: ["header"],
-  swiperSlider: ["swiperSlider"],
+  lineClomp: ["lineClomp"],
   text: ["text"],
+  img: ["img"],
   svg: ["svg"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -489,8 +386,9 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
-  swiperSlider: typeof SwiperSlider;
+  lineClomp: typeof LineClomp;
   text: "div";
+  img: typeof PlasmicImg__;
   svg: "svg";
 };
 
@@ -557,8 +455,9 @@ export const PlasmicCategories = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
-    swiperSlider: makeNodeComponent("swiperSlider"),
+    lineClomp: makeNodeComponent("lineClomp"),
     text: makeNodeComponent("text"),
+    img: makeNodeComponent("img"),
     svg: makeNodeComponent("svg"),
 
     // Metadata about props expected for PlasmicCategories

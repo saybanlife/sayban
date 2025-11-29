@@ -29,15 +29,17 @@
   align-items: center;
   justify-content: center;
   column-gap: 0px;
-  object-fit: cover;
+  object-fit: fill;
   max-width: 100%;
   align-self: center;
+  object-position: 0% 0%;
   flex-shrink: 0;
   border-radius: 50%;
   padding: var(--token-rfsFxiclAtek);
 }
 .img > picture > img {
-  object-fit: cover;
+  object-fit: fill;
+  object-position: 0% 0%;
 }
 .freeBox__andtq {
   display: flex;
