@@ -168,6 +168,7 @@ function PlasmicItem__RenderFunc(props: {
           displayMinHeight={"0"}
           displayMinWidth={"0"}
           displayWidth={"2.5rem"}
+          height={"100%"}
           loading={"lazy"}
           src={(() => {
             try {
@@ -187,6 +188,7 @@ function PlasmicItem__RenderFunc(props: {
               throw e;
             }
           })()}
+          width={"100%"}
         />
 
         <div className={classNames(projectcss.all, sty.freeBox__andtq)}>

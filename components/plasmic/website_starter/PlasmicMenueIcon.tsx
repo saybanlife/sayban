@@ -333,7 +333,13 @@ function PlasmicMenueIcon__RenderFunc(props: {
             "welfareservices"
           ),
           [sty.svgselect]: hasVariant($state, "select", "select"),
-          [sty.svgsize_max]: hasVariant($state, "size", "max")
+          [sty.svgsize_max]: hasVariant($state, "size", "max"),
+          [sty.svgsize_max_icons_medical]:
+            hasVariant($state, "size", "max") &&
+            hasVariant($state, "icons", "medical"),
+          [sty.svgsize_max_icons_rehabilitation]:
+            hasVariant($state, "icons", "rehabilitation") &&
+            hasVariant($state, "size", "max")
         })}
         role={"img"}
       />
@@ -354,7 +360,13 @@ function PlasmicMenueIcon__RenderFunc(props: {
             "icons",
             "rehabilitation"
           ),
-          [sty.imgicons_supportive]: hasVariant($state, "icons", "supportive")
+          [sty.imgicons_supportive]: hasVariant($state, "icons", "supportive"),
+          [sty.imgsize_max_icons_medical]:
+            hasVariant($state, "size", "max") &&
+            hasVariant($state, "icons", "medical"),
+          [sty.imgsize_max_icons_rehabilitation]:
+            hasVariant($state, "size", "max") &&
+            hasVariant($state, "icons", "rehabilitation")
         })}
         displayHeight={"2rem"}
         displayMaxHeight={"none"}

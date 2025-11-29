@@ -425,8 +425,8 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  grid-row-gap: 3rem;
-  grid-column-gap: 3rem;
+  grid-row-gap: 2rem;
+  grid-column-gap: 2rem;
   min-width: 0;
   padding: 0px;
 }
@@ -440,7 +440,7 @@
   justify-content: flex-start;
   align-items: center;
   min-width: 0;
-  padding: 8px;
+  padding: 0px;
 }
 .freeBox___1SPfr {
   background: none;

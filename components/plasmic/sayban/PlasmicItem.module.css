@@ -21,25 +21,19 @@
   min-width: 0;
 }
 .img {
-  background: var(--token-C6B6ZAuqICKE);
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  column-gap: 0px;
   object-fit: cover;
   max-width: 100%;
+  width: 2.5rem;
+  height: 2.5rem;
   align-self: center;
-  object-position: 0% 0%;
+  object-position: 100% 100%;
   flex-shrink: 0;
   border-radius: 50%;
-  padding: var(--token-rfsFxiclAtek);
+  border-width: 0px;
 }
 .img > picture > img {
   object-fit: cover;
-  object-position: 0% 0%;
+  object-position: 100% 100%;
 }
 .freeBox__andtq {
   display: flex;

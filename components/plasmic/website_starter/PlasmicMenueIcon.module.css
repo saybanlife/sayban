@@ -82,6 +82,11 @@
 .svgicons_home_select {
   color: var(--token-Yo4gdKCgyuAu);
 }
+.svgsize_max_icons_rehabilitation {
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+}
 .img {
   object-fit: cover;
   max-width: 100%;

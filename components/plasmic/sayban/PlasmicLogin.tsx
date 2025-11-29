@@ -362,6 +362,31 @@ function PlasmicLogin__RenderFunc(props: {
           )}
         >
           <div
+            className={classNames(projectcss.all, sty.freeBox__nagjF, {
+              [sty.freeBoxpage_code__nagjFohvpc]: hasVariant(
+                $state,
+                "page",
+                "code"
+              ),
+              [sty.freeBoxpage_loading__nagjFEyvhu]: hasVariant(
+                $state,
+                "page",
+                "loading"
+              ),
+              [sty.freeBoxpage_mobile__nagjFmKfXs]: hasVariant(
+                $state,
+                "page",
+                "mobile"
+              ),
+              [sty.freeBoxpage_name__nagjFaq9MH]: hasVariant(
+                $state,
+                "page",
+                "name"
+              )
+            })}
+          />
+
+          <div
             data-plasmic-name={"loading"}
             data-plasmic-override={overrides.loading}
             className={classNames(
