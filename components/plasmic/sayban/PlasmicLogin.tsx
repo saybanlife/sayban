@@ -2274,7 +2274,7 @@ function PlasmicLogin__RenderFunc(props: {
                     }
 
                     $steps["goToHomepage"] =
-                      $steps.setProfile.data?.success == true
+                      $steps.setProfile?.data?.success == true
                         ? (() => {
                             const actionArgs = {
                               destination: `/${"home"}/${""}`
@@ -2302,7 +2302,7 @@ function PlasmicLogin__RenderFunc(props: {
                     }
 
                     $steps["invokeGlobalAction"] =
-                      $steps.setProfile.data?.success == false
+                      $steps.setProfile?.data?.success == false
                         ? (() => {
                             const actionArgs = {
                               args: [
