@@ -144,6 +144,13 @@
   min-width: 0;
   border-bottom: 1px solid var(--token-C6B6ZAuqICKE);
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .text {
+    width: 100%;
+    grid-column-start: 1 !important;
+    grid-column-end: -1 !important;
+  }
+}
 .textsoft {
   display: none;
 }

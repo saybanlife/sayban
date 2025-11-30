@@ -875,6 +875,7 @@
   position: fixed;
   width: auto;
   justify-self: flex-start;
+  display: none;
   border-radius: var(--token-rfsFxiclAtek);
   padding: var(--token-D_3fp_JIDs1G);
 }
