@@ -1967,93 +1967,118 @@ function PlasmicLogin__RenderFunc(props: {
                   ])}
                 />
               </div>
-              <TextInput
-                data-plasmic-name={"cityInput"}
-                data-plasmic-override={overrides.cityInput}
-                ariaLabel={hasVariant($state, "page", "mobile") ? "cscscs" : ``}
-                autoComplete={[]}
-                autoFocus={false}
-                className={classNames("__wab_instance", sty.cityInput, {
-                  [sty.cityInputpage_code]: hasVariant($state, "page", "code"),
-                  [sty.cityInputpage_mobile]: hasVariant(
+              <div
+                className={classNames(projectcss.all, sty.freeBox__iHjyx, {
+                  [sty.freeBoxpage_name__iHjyxaq9MH]: hasVariant(
                     $state,
                     "page",
-                    "mobile"
-                  ),
-                  [sty.cityInputpage_name]: hasVariant($state, "page", "name")
+                    "name"
+                  )
                 })}
-                disabled={false}
-                inputMode={
-                  hasVariant($state, "page", "mobile") ? "tel" : undefined
-                }
-                inputType={
-                  hasVariant($state, "page", "mobile") ? "tel" : "text"
-                }
-                maxLength={10}
-                onChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "cityInput",
-                    "value"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
+              >
+                <TextInput
+                  data-plasmic-name={"cityInput"}
+                  data-plasmic-override={overrides.cityInput}
+                  ariaLabel={
+                    hasVariant($state, "page", "mobile") ? "cscscs" : ``
                   }
-                }}
-                onFocus={async focusEvent => {
-                  const $steps = {};
+                  autoComplete={[]}
+                  autoFocus={false}
+                  className={classNames("__wab_instance", sty.cityInput, {
+                    [sty.cityInputpage_code]: hasVariant(
+                      $state,
+                      "page",
+                      "code"
+                    ),
+                    [sty.cityInputpage_mobile]: hasVariant(
+                      $state,
+                      "page",
+                      "mobile"
+                    ),
+                    [sty.cityInputpage_name]: hasVariant($state, "page", "name")
+                  })}
+                  disabled={false}
+                  inputMode={
+                    hasVariant($state, "page", "mobile") ? "tel" : undefined
+                  }
+                  inputType={
+                    hasVariant($state, "page", "mobile") ? "tel" : "text"
+                  }
+                  maxLength={10}
+                  onChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "cityInput",
+                      "value"
+                    ]).apply(null, eventArgs);
 
-                  $steps["goToLogin"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          destination: `/login/${(() => {
-                            try {
-                              return $ctx.params.step?.[0];
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  placeholder={
+                    "\u0645\u062d\u0644 \u0633\u06a9\u0648\u0646\u062a"
+                  }
+                  readOnly={false}
+                  size={"langh"}
+                  value={generateStateValueProp($state, ["cityInput", "value"])}
+                />
+
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__kdwa6, {
+                    [sty.freeBoxpage_name__kdwa6Aq9MH]: hasVariant(
+                      $state,
+                      "page",
+                      "name"
+                    )
+                  })}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["goToLogin"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/login/${(() => {
+                              try {
+                                return $ctx.params.step?.[0];
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
+                            })()}?city=${"true"}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
                             }
-                          })()}?city=${"true"}`
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["goToLogin"] != null &&
-                    typeof $steps["goToLogin"] === "object" &&
-                    typeof $steps["goToLogin"].then === "function"
-                  ) {
-                    $steps["goToLogin"] = await $steps["goToLogin"];
-                  }
-                }}
-                placeholder={
-                  "\u0645\u062d\u0644 \u0633\u06a9\u0648\u0646\u062a"
-                }
-                readOnly={false}
-                size={"langh"}
-                value={generateStateValueProp($state, ["cityInput", "value"])}
-              />
-
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToLogin"] != null &&
+                      typeof $steps["goToLogin"] === "object" &&
+                      typeof $steps["goToLogin"].then === "function"
+                    ) {
+                      $steps["goToLogin"] = await $steps["goToLogin"];
+                    }
+                  }}
+                />
+              </div>
               <div
                 className={classNames(projectcss.all, sty.freeBox__rDqi, {
                   [sty.freeBoxpage_code__rDqiOhvpc]: hasVariant(
