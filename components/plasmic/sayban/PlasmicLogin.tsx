@@ -1376,6 +1376,39 @@ function PlasmicLogin__RenderFunc(props: {
                       $steps["token"] = await $steps["token"];
                     }
 
+                    $steps["updateId"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["id"]
+                            },
+                            operation: 0
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateId"] != null &&
+                      typeof $steps["updateId"] === "object" &&
+                      typeof $steps["updateId"].then === "function"
+                    ) {
+                      $steps["updateId"] = await $steps["updateId"];
+                    }
+
                     $steps["goToHomepage"] =
                       $steps.validate?.data?.type != "install"
                         ? (() => {
