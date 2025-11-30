@@ -2265,7 +2265,9 @@ function PlasmicLogin__RenderFunc(props: {
               }
 
               $steps["goToHomepage"] =
-                $steps.getCookie != null && $steps.getCookie != ""
+                $steps.getCookie != null &&
+                $steps.getCookie != "" &&
+                $ctx?.params?.step?.[0] == null
                   ? (() => {
                       const actionArgs = { destination: `/${"home"}/${""}` };
                       return (({ destination }) => {
