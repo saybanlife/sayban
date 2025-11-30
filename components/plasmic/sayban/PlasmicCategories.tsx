@@ -60,7 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
-import LineClomp from "../../LineClomp"; // plasmic-import: 1fS9mxEN0mIl/component
+import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -95,7 +95,7 @@ export const PlasmicCategories__ArgProps = new Array<ArgPropType>(
 export type PlasmicCategories__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<typeof Header>;
-  lineClomp?: Flex__<typeof LineClomp>;
+  textCollapse?: Flex__<typeof TextCollapse>;
   text?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
   svg?: Flex__<"svg">;
@@ -210,11 +210,26 @@ function PlasmicCategories__RenderFunc(props: {
 
       <div className={classNames(projectcss.all, sty.freeBox__bfnIl)}>
         <div className={classNames(projectcss.all, sty.freeBox__xhLuY)}>
-          <LineClomp
-            data-plasmic-name={"lineClomp"}
-            data-plasmic-override={overrides.lineClomp}
-            className={classNames("__wab_instance", sty.lineClomp)}
-            numberOfLine={"5"}
+          <TextCollapse
+            data-plasmic-name={"textCollapse"}
+            data-plasmic-override={overrides.textCollapse}
+            buttonClassName={classNames({ [sty["pcls_5x8adsmWwa4M"]]: true })}
+            className={classNames("__wab_instance", sty.textCollapse)}
+            enableToggle={true}
+            maxLines={3}
+            text={(() => {
+              try {
+                return $props.categories?.category_description || "";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
           />
         </div>
         <div className={classNames(projectcss.all, sty.freeBox__xcchq)}>
@@ -373,9 +388,9 @@ function PlasmicCategories__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "lineClomp", "text", "img", "svg"],
+  root: ["root", "header", "textCollapse", "text", "img", "svg"],
   header: ["header"],
-  lineClomp: ["lineClomp"],
+  textCollapse: ["textCollapse"],
   text: ["text"],
   img: ["img"],
   svg: ["svg"]
@@ -386,7 +401,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
-  lineClomp: typeof LineClomp;
+  textCollapse: typeof TextCollapse;
   text: "div";
   img: typeof PlasmicImg__;
   svg: "svg";
@@ -455,7 +470,7 @@ export const PlasmicCategories = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
-    lineClomp: makeNodeComponent("lineClomp"),
+    textCollapse: makeNodeComponent("textCollapse"),
     text: makeNodeComponent("text"),
     img: makeNodeComponent("img"),
     svg: makeNodeComponent("svg"),

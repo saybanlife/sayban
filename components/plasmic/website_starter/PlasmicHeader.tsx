@@ -93,6 +93,7 @@ export const PlasmicHeader__ArgProps = new Array<ArgPropType>(
 export type PlasmicHeader__OverridesType = {
   root?: Flex__<"section">;
   svg?: Flex__<"svg">;
+  text?: Flex__<"div">;
 };
 
 export interface DefaultHeaderProps {
@@ -247,13 +248,23 @@ function PlasmicHeader__RenderFunc(props: {
           })}
         </div>
       </div>
+      <div
+        data-plasmic-name={"text"}
+        data-plasmic-override={overrides.text}
+        className={classNames(projectcss.all, projectcss.__wab_text, sty.text, {
+          [sty.textsoft]: hasVariant($state, "soft", "soft")
+        })}
+      >
+        {""}
+      </div>
     </section>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "svg"],
-  svg: ["svg"]
+  root: ["root", "svg", "text"],
+  svg: ["svg"],
+  text: ["text"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -261,6 +272,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "section";
   svg: "svg";
+  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -326,6 +338,7 @@ export const PlasmicHeader = Object.assign(
   {
     // Helper components rendering sub-elements
     svg: makeNodeComponent("svg"),
+    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicHeader
     internalVariantProps: PlasmicHeader__VariantProps,

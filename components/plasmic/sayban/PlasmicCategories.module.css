@@ -71,8 +71,18 @@
   border-radius: var(--token-kD77h-2NGSqI);
   padding: 0px;
 }
-.lineClomp:global(.__wab_instance) {
+.textCollapse:global(.__wab_instance) {
   max-width: 100%;
+  object-fit: cover;
+  width: 100%;
+  text-align: right;
+  color: var(--token-9M5jRUPt8Msb);
+  min-width: 0;
+}
+.pcls_5x8adsmWwa4M {
+  color: var(--token-Yo4gdKCgyuAu);
+  font-size: var(--token-U1UvBDD-VoLt);
+  outline: none;
 }
 .freeBox__xcchq {
   display: grid;

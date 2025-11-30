@@ -40,6 +40,7 @@
   align-items: center;
   column-gap: var(--token-kD77h-2NGSqI);
   background: var(--token-KPGXdu9o7llP);
+  box-shadow: 0px 4px 16px 0px #00000045;
   min-width: 0;
   padding: var(--token-kD77h-2NGSqI) var(--token-rfsFxiclAtek);
 }
@@ -52,6 +53,7 @@
 }
 .freeBoxsoft__lHkfyFgJuq {
   background: linear-gradient(0deg, #00121b00 0%, #00121bb3 63%, #00121bcc 99%);
+  box-shadow: none;
 }
 .freeBox__ameEp {
   display: flex;
@@ -131,4 +133,17 @@
   align-items: center;
   flex-shrink: 0;
   padding: 0px;
+}
+.text {
+  animation: none;
+  position: relative;
+  width: 100%;
+  height: 1px;
+  max-width: 100%;
+  opacity: 0.2;
+  min-width: 0;
+  border-bottom: 1px solid var(--token-C6B6ZAuqICKE);
+}
+.textsoft {
+  display: none;
 }
