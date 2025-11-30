@@ -1376,31 +1376,33 @@ function PlasmicLogin__RenderFunc(props: {
                       $steps["token"] = await $steps["token"];
                     }
 
-                    $steps["updateId"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["id"]
-                            },
-                            operation: 0
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
+                    $steps["updateId"] =
+                      $steps.validate.data?.success == true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["id"]
+                              },
+                              operation: 0,
+                              value: $steps.validate?.data?.data?.id
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
 
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
                     if (
                       $steps["updateId"] != null &&
                       typeof $steps["updateId"] === "object" &&
@@ -2175,7 +2177,7 @@ function PlasmicLogin__RenderFunc(props: {
                               (() => {
                                 try {
                                   return {
-                                    user_Id: 2,
+                                    user_Id: $state.id,
                                     name: $state.name.value,
                                     national_code: $state.code.value,
                                     city: $state.city.city,
