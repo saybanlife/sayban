@@ -195,7 +195,7 @@ function PlasmicCenter__RenderFunc(props: {
                   value: "Description"
                 },
                 {
-                  label: `نظرات (${$state.apiRequest?.data?.result?.rating_avg}⭐️)`,
+                  label: `نظرات <span style="font-size: 11px;">( ${$state.apiRequest?.data?.result?.rating_avg}⭐️)</span>`,
                   value: "Comments"
                 }
               ];
@@ -1493,83 +1493,97 @@ drawRating(${$state.rate});
           </div>
         </div>
       </ApiRequest>
-      <section className={classNames(projectcss.all, sty.section__novko)}>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__cZmru
-          )}
-        >
-          {""}
-        </div>
-        <div className={classNames(projectcss.all, sty.freeBox__vEytZ)}>
-          <div className={classNames(projectcss.all, sty.freeBox__qyVud)}>
-            <div className={classNames(projectcss.all, sty.freeBox___9YXKs)}>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text___49QVu
-                )}
-              >
-                {"Enter some text"}
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox__gEpo7)}>
+      {(() => {
+        try {
+          return $state.apiRequest?.data?.result;
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return true;
+          }
+          throw e;
+        }
+      })() ? (
+        <section className={classNames(projectcss.all, sty.section__novko)}>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__cZmru
+            )}
+          >
+            {""}
+          </div>
+          <div className={classNames(projectcss.all, sty.freeBox__vEytZ)}>
+            <div className={classNames(projectcss.all, sty.freeBox__qyVud)}>
+              <div className={classNames(projectcss.all, sty.freeBox___9YXKs)}>
                 <div
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text__qJkM
+                    sty.text___49QVu
                   )}
                 >
-                  {"1"}
+                  {"Enter some text"}
+                </div>
+                <div className={classNames(projectcss.all, sty.freeBox__gEpo7)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__qJkM
+                    )}
+                  >
+                    {"1"}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__kC5Qq
-              )}
-            >
-              {"Enter some text"}
-            </div>
-          </div>
-          <Button
-            data-plasmic-name={"button"}
-            data-plasmic-override={overrides.button}
-            className={classNames("__wab_instance", sty.button)}
-            label={
               <div
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__zl99I
+                  sty.text__kC5Qq
                 )}
               >
-                {"\u0631\u0632\u0631\u0648 \u0632\u0645\u0627\u0646"}
+                {"Enter some text"}
               </div>
-            }
-            loading={generateStateValueProp($state, ["button", "loading"])}
-            onLoadingChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["button", "loading"]).apply(
-                null,
-                eventArgs
-              );
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
+            </div>
+            <Button
+              data-plasmic-name={"button"}
+              data-plasmic-override={overrides.button}
+              className={classNames("__wab_instance", sty.button)}
+              label={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__zl99I
+                  )}
+                >
+                  {"\u0631\u0632\u0631\u0648 \u0632\u0645\u0627\u0646"}
+                </div>
               }
-            }}
-          />
-        </div>
-      </section>
+              loading={generateStateValueProp($state, ["button", "loading"])}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["button", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+            />
+          </div>
+        </section>
+      ) : null}
     </div>
   ) as React.ReactElement | null;
 }

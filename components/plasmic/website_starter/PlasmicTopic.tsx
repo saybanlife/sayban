@@ -181,21 +181,24 @@ function PlasmicTopic__RenderFunc(props: {
           [sty.textselect]: hasVariant($state, "select", "select")
         })}
       >
-        <React.Fragment>
-          {(() => {
-            try {
-              return $props.data.label;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a";
+        <div
+          className={projectcss.__wab_expr_html_text}
+          dangerouslySetInnerHTML={{
+            __html: (() => {
+              try {
+                return $props.data.label;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a";
+                }
+                throw e;
               }
-              throw e;
-            }
-          })()}
-        </React.Fragment>
+            })()
+          }}
+        />
       </div>
       <div
         data-plasmic-name={"freeBox"}
