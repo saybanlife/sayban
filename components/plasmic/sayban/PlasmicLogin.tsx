@@ -1668,7 +1668,9 @@ function PlasmicLogin__RenderFunc(props: {
                     }
                   }).apply(null, eventArgs);
                 }}
-                placeholder={"\u06a9\u062f \u0645\u0644\u06cc"}
+                placeholder={
+                  "\u06a9\u062f \u0645\u0644\u06cc (\u0627\u062e\u062a\u06cc\u0627\u0631\u06cc)"
+                }
                 readOnly={false}
                 size={"langh"}
                 value={generateStateValueProp($state, ["code", "value"])}
@@ -2070,7 +2072,36 @@ function PlasmicLogin__RenderFunc(props: {
                       $steps["runCode"] = await $steps["runCode"];
                     }
 
-                    $steps["setProfile"] = true
+                    $steps["runCode3"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return (() => {
+                                if (!$state.name.value)
+                                  return "لطفا نام خود را وارد کنید";
+                                if (!$state.city.city)
+                                  return "لطفا محل سکونت را وارد کنید";
+                                if (!$state.selectGender.value)
+                                  return "لطفا جنسیت را انتخاب کنید";
+                                if (!$state.selectMarital.value)
+                                  return "لطفا وضعیت تاهل را انتخاب کنید";
+                              })();
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode3"] != null &&
+                      typeof $steps["runCode3"] === "object" &&
+                      typeof $steps["runCode3"].then === "function"
+                    ) {
+                      $steps["runCode3"] = await $steps["runCode3"];
+                    }
+
+                    $steps["setProfile"] = !$steps.runCode3
                       ? (() => {
                           const actionArgs = {
                             args: [
@@ -2080,7 +2111,7 @@ function PlasmicLogin__RenderFunc(props: {
                               (() => {
                                 try {
                                   return {
-                                    user_Id: 2, // یا 'user-Id': 2 اگر نیاز به dash داری
+                                    user_Id: 2,
                                     name: $state.name.value,
                                     national_code: $state.code.value,
                                     city: $state.city.city,
@@ -2112,6 +2143,43 @@ function PlasmicLogin__RenderFunc(props: {
                       typeof $steps["setProfile"].then === "function"
                     ) {
                       $steps["setProfile"] = await $steps["setProfile"];
+                    }
+
+                    $steps["invokeGlobalAction2"] = $steps.runCode3
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "error",
+                              (() => {
+                                try {
+                                  return $steps.runCode3;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })(),
+                              "top-right"
+                            ]
+                          };
+                          return $globalActions["Fragment.showToast"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["invokeGlobalAction2"] != null &&
+                      typeof $steps["invokeGlobalAction2"] === "object" &&
+                      typeof $steps["invokeGlobalAction2"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction2"] =
+                        await $steps["invokeGlobalAction2"];
                     }
 
                     $steps["goToHomepage"] =
