@@ -71,7 +71,6 @@ import projectcss from "../website_starter/plasmic.module.css"; // plasmic-impor
 import sty from "./PlasmicCity.module.css"; // plasmic-import: dRrvldGFbNOC/css
 
 import Icon33Icon from "./icons/PlasmicIcon__Icon33"; // plasmic-import: MJBmXdq7GQ5D/icon
-import Icon9Icon from "../website_starter/icons/PlasmicIcon__Icon9"; // plasmic-import: C4Cciq7DgQq7/icon
 import Icon10Icon from "../website_starter/icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
 import Icon32Icon from "./icons/PlasmicIcon__Icon32"; // plasmic-import: hVogcrNM7Ss9/icon
 
@@ -342,18 +341,13 @@ function PlasmicCity__RenderFunc(props: {
                     }
                   }).apply(null, eventArgs);
                 }}
-                padded={["left", "right"]}
+                padded={[]}
                 placeholder={
                   "\u062c\u0633\u062a\u062c\u0648 \u0634\u0647\u0631 \u0645\u0648\u0631\u062f \u0646\u0638\u0631"
                 }
                 size={"langh"}
                 style2={"rounded"}
                 value={generateStateValueProp($state, ["textInput", "value"])}
-              />
-
-              <Icon9Icon
-                className={classNames(projectcss.all, sty.svg__snfQj)}
-                role={"img"}
               />
 
               {(() => {

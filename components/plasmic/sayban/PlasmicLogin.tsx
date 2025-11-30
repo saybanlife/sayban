@@ -318,6 +318,12 @@ function PlasmicLogin__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "id",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -1022,6 +1028,31 @@ function PlasmicLogin__RenderFunc(props: {
                       )
                     }
                   )}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return (() => {
+                                return window.history.back();
+                              })();
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+                  }}
                 >
                   <div
                     className={projectcss.__wab_expr_html_text}
@@ -2393,6 +2424,7 @@ function PlasmicLogin__RenderFunc(props: {
             const child$Props = {
               className: classNames("__wab_instance", sty.modal, {
                 [sty.modalpage_code]: hasVariant($state, "page", "code"),
+                [sty.modalpage_mobile]: hasVariant($state, "page", "mobile"),
                 [sty.modalpage_name]: hasVariant($state, "page", "name")
               }),
               closeIcon: (
@@ -2501,7 +2533,7 @@ function PlasmicLogin__RenderFunc(props: {
                                 }
                                 throw e;
                               }
-                            })()}`
+                            })()}?city=${"false"}`
                           };
                           return (({ destination }) => {
                             if (
@@ -2527,6 +2559,7 @@ function PlasmicLogin__RenderFunc(props: {
                   }}
                   city={generateStateValueProp($state, ["city", "city"])}
                   className={classNames("__wab_instance", sty.city, {
+                    [sty.citypage_code]: hasVariant($state, "page", "code"),
                     [sty.citypage_name]: hasVariant($state, "page", "name")
                   })}
                   onCityChange={async (...eventArgs: any) => {
@@ -2570,6 +2603,31 @@ function PlasmicLogin__RenderFunc(props: {
                 "name"
               )
             })}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          return window.history.back();
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
           >
             <Icon34Icon
               className={classNames(projectcss.all, sty.svg__eAdSp, {

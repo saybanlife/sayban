@@ -816,6 +816,7 @@
   top: var(--token-73iLa06AE6f4);
   z-index: 20;
   position: fixed;
+  display: none;
   border-radius: var(--token-rfsFxiclAtek);
   padding: var(--token-D_3fp_JIDs1G);
 }
