@@ -88,6 +88,7 @@ export type PlasmicHome__ArgsType = {
   categori?: any;
   onCategoriChange?: (val: string) => void;
   onCategori?: () => void;
+  searchItems?: any;
 };
 type ArgPropType = keyof PlasmicHome__ArgsType;
 export const PlasmicHome__ArgProps = new Array<ArgPropType>(
@@ -95,7 +96,8 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>(
   "categories",
   "categori",
   "onCategoriChange",
-  "onCategori"
+  "onCategori",
+  "searchItems"
 );
 
 export type PlasmicHome__OverridesType = {
@@ -112,6 +114,7 @@ export interface DefaultHomeProps {
   categori?: any;
   onCategoriChange?: (val: string) => void;
   onCategori?: () => void;
+  searchItems?: any;
   search?: SingleBooleanChoiceArg<"search">;
   className?: string;
 }
@@ -457,9 +460,21 @@ function PlasmicHome__RenderFunc(props: {
           effect={"fade"}
           triggerOnce={true}
         >
-          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))([
-            2, 3, 4
-          ]).map((__plasmic_item_0, __plasmic_idx_0) => {
+          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+            (() => {
+              try {
+                return $props.searchItems;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
+              }
+            })()
+          ).map((__plasmic_item_0, __plasmic_idx_0) => {
             const currentItem = __plasmic_item_0;
             const currentIndex = __plasmic_idx_0;
             return (
@@ -469,6 +484,19 @@ function PlasmicHome__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.item, {
                   [sty.itemsearch]: hasVariant($state, "search", "search")
                 })}
+                item={(() => {
+                  try {
+                    return currentItem;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
                 key={currentIndex}
               />
             );

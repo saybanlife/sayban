@@ -105,6 +105,7 @@ export type PlasmicHomepage__OverridesType = {
   center?: Flex__<typeof Center>;
   apiRequest?: Flex__<typeof ApiRequest>;
   home?: Flex__<typeof Home>;
+  apiRequest2?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultHomepageProps {}
@@ -252,6 +253,30 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "apiRequest2.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "apiRequest2.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "apiRequest2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "keyword",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -326,24 +351,23 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["getCookie"] = await $steps["getCookie"];
               }
 
-              $steps["goToLogin"] =
-                $steps.getCookie == null || $steps.getCookie == ""
-                  ? (() => {
-                      const actionArgs = { destination: `/login/[[...step]]` };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
+              $steps["goToLogin"] = false
+                ? (() => {
+                    const actionArgs = { destination: `/login/[[...step]]` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
               if (
                 $steps["goToLogin"] != null &&
                 typeof $steps["goToLogin"] === "object" &&
@@ -491,6 +515,46 @@ function PlasmicHomepage__RenderFunc(props: {
                       ) {
                         return;
                       }
+
+                      (async val => {
+                        const $steps = {};
+
+                        $steps["updateKeyword"] =
+                          $state.textInput.value.length % 3 == 0
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["keyword"]
+                                  },
+                                  operation: 0,
+                                  value: $state.textInput.value
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                        if (
+                          $steps["updateKeyword"] != null &&
+                          typeof $steps["updateKeyword"] === "object" &&
+                          typeof $steps["updateKeyword"].then === "function"
+                        ) {
+                          $steps["updateKeyword"] =
+                            await $steps["updateKeyword"];
+                        }
+                      }).apply(null, eventArgs);
                     }}
                     onFocus={async focusEvent => {
                       const $steps = {};
@@ -1136,8 +1200,91 @@ function PlasmicHomepage__RenderFunc(props: {
                 }
               }}
               search={generateStateValueProp($state, ["home", "search"])}
+              searchItems={(() => {
+                try {
+                  return $state.apiRequest2.data.result;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
             />
           </ApiRequest>
+          <ApiRequest
+            data-plasmic-name={"apiRequest2"}
+            data-plasmic-override={overrides.apiRequest2}
+            body={(() => {
+              try {
+                return { keyword: $state.keyword };
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            children={null}
+            className={classNames("__wab_instance", sty.apiRequest2, {
+              [sty.apiRequest2page_categories]: hasVariant(
+                $state,
+                "page",
+                "categories"
+              ),
+              [sty.apiRequest2page_center]: hasVariant(
+                $state,
+                "page",
+                "center"
+              ),
+              [sty.apiRequest2page_subcategories]: hasVariant(
+                $state,
+                "page",
+                "subcategories"
+              )
+            })}
+            errorDisplay={null}
+            loadingDisplay={null}
+            method={"POST"}
+            onError={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["apiRequest2", "error"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            onLoading={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "apiRequest2",
+                "loading"
+              ]).apply(null, eventArgs);
+            }}
+            onSuccess={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["apiRequest2", "data"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            shouldFetch={(() => {
+              try {
+                return $state.keyword != "";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()}
+            url={"https://sayban.darkube.app/webhook/search"}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -1156,7 +1303,8 @@ const PlasmicDescendants = {
     "subcategories",
     "center",
     "apiRequest",
-    "home"
+    "home",
+    "apiRequest2"
   ],
   sideEffect: ["sideEffect"],
   homePage: ["homePage", "menu2", "img", "textInput"],
@@ -1167,7 +1315,8 @@ const PlasmicDescendants = {
   subcategories: ["subcategories"],
   center: ["center"],
   apiRequest: ["apiRequest", "home"],
-  home: ["home"]
+  home: ["home"],
+  apiRequest2: ["apiRequest2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1184,6 +1333,7 @@ type NodeDefaultElementType = {
   center: typeof Center;
   apiRequest: typeof ApiRequest;
   home: typeof Home;
+  apiRequest2: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1258,6 +1408,7 @@ export const PlasmicHomepage = Object.assign(
     center: makeNodeComponent("center"),
     apiRequest: makeNodeComponent("apiRequest"),
     home: makeNodeComponent("home"),
+    apiRequest2: makeNodeComponent("apiRequest2"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,
