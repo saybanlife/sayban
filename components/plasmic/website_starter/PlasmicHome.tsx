@@ -89,6 +89,9 @@ export type PlasmicHome__ArgsType = {
   onCategoriChange?: (val: string) => void;
   onCategori?: () => void;
   searchItems?: any;
+  selectedCenderid?: string;
+  onSelectedCenderidChange?: (val: string) => void;
+  openCenter?: () => void;
 };
 type ArgPropType = keyof PlasmicHome__ArgsType;
 export const PlasmicHome__ArgProps = new Array<ArgPropType>(
@@ -97,7 +100,10 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>(
   "categori",
   "onCategoriChange",
   "onCategori",
-  "searchItems"
+  "searchItems",
+  "selectedCenderid",
+  "onSelectedCenderidChange",
+  "openCenter"
 );
 
 export type PlasmicHome__OverridesType = {
@@ -115,6 +121,9 @@ export interface DefaultHomeProps {
   onCategoriChange?: (val: string) => void;
   onCategori?: () => void;
   searchItems?: any;
+  selectedCenderid?: string;
+  onSelectedCenderidChange?: (val: string) => void;
+  openCenter?: () => void;
   search?: SingleBooleanChoiceArg<"search">;
   className?: string;
 }
@@ -189,6 +198,14 @@ function PlasmicHome__RenderFunc(props: {
 
         valueProp: "categori",
         onChangeProp: "onCategoriChange"
+      },
+      {
+        path: "selectedCenderid",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "selectedCenderid",
+        onChangeProp: "onSelectedCenderidChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -498,6 +515,60 @@ function PlasmicHome__RenderFunc(props: {
                   }
                 })()}
                 key={currentIndex}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateSelectedCenderid"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["selectedCenderid"]
+                          },
+                          operation: 0,
+                          value: currentItem.id
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateSelectedCenderid"] != null &&
+                    typeof $steps["updateSelectedCenderid"] === "object" &&
+                    typeof $steps["updateSelectedCenderid"].then === "function"
+                  ) {
+                    $steps["updateSelectedCenderid"] =
+                      await $steps["updateSelectedCenderid"];
+                  }
+
+                  $steps["runOpenCenter"] = true
+                    ? (() => {
+                        const actionArgs = { eventRef: $props["openCenter"] };
+                        return (({ eventRef, args }) => {
+                          return eventRef?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runOpenCenter"] != null &&
+                    typeof $steps["runOpenCenter"] === "object" &&
+                    typeof $steps["runOpenCenter"].then === "function"
+                  ) {
+                    $steps["runOpenCenter"] = await $steps["runOpenCenter"];
+                  }
+                }}
               />
             );
           })}

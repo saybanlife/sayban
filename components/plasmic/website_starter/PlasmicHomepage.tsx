@@ -221,10 +221,7 @@ function PlasmicHomepage__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return (() => {
-                const parts = $ctx.pagePath.split("/").filter(Boolean);
-                return parts.slice(1);
-              })();
+              return $ctx.params.slug || [];
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -274,6 +271,12 @@ function PlasmicHomepage__RenderFunc(props: {
       },
       {
         path: "keyword",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "home.selectedCenderid",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
@@ -1199,6 +1202,80 @@ function PlasmicHomepage__RenderFunc(props: {
                   return;
                 }
               }}
+              onSelectedCenderidChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "home",
+                  "selectedCenderid"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              openCenter={async () => {
+                const $steps = {};
+
+                $steps["goToHomepage"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        destination: `/${(() => {
+                          try {
+                            return $ctx.params.page;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}/${(() => {
+                          try {
+                            return (() => {
+                              if ($state.home.selectedCenderid) {
+                                $state.slug.push("center");
+                                $state.slug.push($state.home.selectedCenderid);
+                              }
+                              return $state.slug.join("/");
+                            })();
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}`
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToHomepage"] != null &&
+                  typeof $steps["goToHomepage"] === "object" &&
+                  typeof $steps["goToHomepage"].then === "function"
+                ) {
+                  $steps["goToHomepage"] = await $steps["goToHomepage"];
+                }
+              }}
               search={generateStateValueProp($state, ["home", "search"])}
               searchItems={(() => {
                 try {
@@ -1213,6 +1290,10 @@ function PlasmicHomepage__RenderFunc(props: {
                   throw e;
                 }
               })()}
+              selectedCenderid={generateStateValueProp($state, [
+                "home",
+                "selectedCenderid"
+              ])}
             />
           </ApiRequest>
           <ApiRequest
