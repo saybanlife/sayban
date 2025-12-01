@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import toast, { ToastPosition, Toaster } from "react-hot-toast";
 
 import {
@@ -39,11 +39,10 @@ export const Fragment = ({
         duration?: number
       ) => {
         toast[type ?? "success"](message, {
-          duration,
-          position: placement,
+          duration: duration,
+          position: placement as ToastPosition,
         });
       },
-
       apiRequest: async (
         method: "GET" | "POST" | "DELETE" | "PUT" | "PATCH" = "GET",
         url: string,
@@ -60,7 +59,8 @@ export const Fragment = ({
               ...previewApiConfig,
               ...config,
             });
-          } else {
+          }
+          if (method !== "GET") {
             result = await axios[
               method.toLowerCase() as "post" | "delete" | "put" | "patch"
             ](url, body, {
@@ -77,28 +77,8 @@ export const Fragment = ({
           }
         }
       },
-
       wait: (duration: number = 1000) => {
         return new Promise((resolve) => setTimeout(resolve, duration));
-      },
-
-      // -----------------------------
-      //       COOKIE: SET & GET
-      // -----------------------------
-      setCookie: (name: string, value: string, days: number = 7) => {
-        const expires = new Date(Date.now() + days * 864e5).toUTCString();
-        document.cookie = `${name}=${encodeURIComponent(
-          value
-        )}; expires=${expires}; path=/; domain=.sayban.app; secure; SameSite=Lax`;
-      },
-
-      getCookie: (name: string) => {
-        return (
-          document.cookie
-            .split("; ")
-            .find((row) => row.startsWith(name + "="))
-            ?.split("=")[1] || null
-        );
       },
     }),
     []
@@ -131,17 +111,22 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
     apiConfig: {
       displayName: "API Config",
       type: "object",
-      description: `{ withCredentials: true }`,
+      description: `e.g. { withCredentials: true }`,
+      helpText:
+        "Read about request configuration options at https://axios-http.com/docs/req_config",
     },
     previewApiConfig: {
       displayName: "Preview API Config",
       type: "object",
+      description: `e.g. { headers: { 'Authorization': 'XXX' } }`,
       editOnly: true,
-      description: `{ headers: { 'Authorization': 'XXX' } }`,
+      helpText:
+        "Read about request configuration options at https://axios-http.com/docs/req_config",
     },
     rtl: {
       displayName: "RTL",
       type: "boolean",
+      description: `Direction`,
     },
     primaryColor: {
       displayName: "Primary Color",
@@ -151,7 +136,6 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
     },
   },
   providesData: true,
-
   globalActions: {
     showToast: {
       displayName: "Show Toast",
@@ -161,12 +145,14 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
           type: {
             type: "choice",
             options: ["success", "error"],
+            defaultValueHint: "success",
           },
         },
         {
           name: "message",
           type: {
             type: "string",
+            defaultValueHint: "A message for you!",
             required: true,
           },
         },
@@ -182,17 +168,18 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
               "bottom-center",
               "bottom-right",
             ],
+            defaultValueHint: "top-right",
           },
         },
         {
           name: "duration",
           type: {
             type: "number",
+            defaultValueHint: 3000,
           },
         },
       ],
     },
-
     wait: {
       displayName: "Wait",
       parameters: [
@@ -200,12 +187,13 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
           name: "duration",
           type: {
             type: "number",
+            defaultValueHint: 1000,
             defaultValue: 1000,
+            helpText: "executes after a specified delay (in milliseconds).",
           },
         },
       ],
     },
-
     apiRequest: {
       displayName: "API Request",
       parameters: [
@@ -214,6 +202,8 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
           type: {
             type: "choice",
             options: ["GET", "POST", "DELETE", "PUT", "PATCH"],
+            defaultValueHint: "GET",
+            defaultValue: "GET",
           },
         },
         {
@@ -221,21 +211,27 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
           displayName: "URL",
           type: {
             type: "string",
+            defaultValueHint: "/api/v1/users",
             required: true,
           },
         },
         {
-          name: "params",
           displayName: "Query Params",
+          name: "params",
           type: {
             type: "object",
+            description: `e.g. { id: 20 }`,
+            helpText:
+              "It will append this to the end of the URL as ?key=value.",
           },
         },
         {
-          name: "body",
           displayName: "Body",
+          name: "body",
           type: {
             type: "object",
+            helpText: "It is not applicable for the GET method.",
+            description: `e.g. { id: 20 }`,
           },
         },
         {
@@ -243,52 +239,9 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
           displayName: "Request Config",
           type: {
             type: "object",
-          },
-        },
-      ],
-    },
-
-    // -----------------------------
-    //        COOKIE ACTIONS
-    // -----------------------------
-    setCookie: {
-      displayName: "Set Cookie",
-      parameters: [
-        {
-          name: "name",
-          type: {
-            type: "string",
-            required: true,
-            defaultValueHint: "token",
-          },
-        },
-        {
-          name: "value",
-          type: {
-            type: "string",
-            required: true,
-            defaultValueHint: "12345",
-          },
-        },
-        {
-          name: "days",
-          type: {
-            type: "number",
-            defaultValueHint: 7,
-          },
-        },
-      ],
-    },
-
-    getCookie: {
-      displayName: "Get Cookie",
-      parameters: [
-        {
-          name: "name",
-          type: {
-            type: "string",
-            required: true,
-            defaultValueHint: "token",
+            description: `e.g. { headers: { 'Authorization': 'XXX' } }`,
+            helpText:
+              "Read about request configuration options at https://axios-http.com/docs/req_config",
           },
         },
       ],

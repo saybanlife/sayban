@@ -18,10 +18,6 @@ import { ApiRequest, apiRequestMeta } from "@/fragment/components/api-request";
 import { Slider, sliderMeta } from "@/fragment/components/slider";
 import { Chart, chartMeta } from "@/fragment/components/chart";
 import { Textarea, textareaMeta } from "@/fragment/components/textarea";
-import {SwiperSlider,SwiperSliderMeta} from "@/components/SwiperSlider";
-import {TextCollapse,TextCollapseMeta} from "@/components/TextCollapse";
-
-
 
 export default function PlasmicHost() {
   return <PlasmicCanvasHost />;
@@ -40,7 +36,3 @@ registerComponent(Slider, sliderMeta);
 registerComponent(ApiRequest, apiRequestMeta);
 registerComponent(Chart, chartMeta);
 registerComponent(Textarea, textareaMeta);
-registerComponent(SwiperSlider,SwiperSliderMeta);
-registerComponent(TextCollapse,TextCollapseMeta);
-
-
