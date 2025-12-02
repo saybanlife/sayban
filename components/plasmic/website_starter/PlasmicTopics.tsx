@@ -70,10 +70,14 @@ import sty from "./PlasmicTopics.module.css"; // plasmic-import: K08M_vX52xMI/cs
 
 createPlasmicElementProxy;
 
-export type PlasmicTopics__VariantMembers = {};
-export type PlasmicTopics__VariantsArgs = {};
+export type PlasmicTopics__VariantMembers = {
+  size: "small";
+};
+export type PlasmicTopics__VariantsArgs = {
+  size?: SingleChoiceArg<"small">;
+};
 type VariantPropType = keyof PlasmicTopics__VariantsArgs;
-export const PlasmicTopics__VariantProps = new Array<VariantPropType>();
+export const PlasmicTopics__VariantProps = new Array<VariantPropType>("size");
 
 export type PlasmicTopics__ArgsType = {
   data?: any;
@@ -101,6 +105,7 @@ export interface DefaultTopicsProps {
   onDataChange?: (val: string) => void;
   selected?: string;
   onSelectedChange?: (val: string) => void;
+  size?: SingleChoiceArg<"small">;
   className?: string;
 }
 
@@ -160,6 +165,12 @@ function PlasmicTopics__RenderFunc(props: {
 
         valueProp: "selected",
         onChangeProp: "onSelectedChange"
+      },
+      {
+        path: "size",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.size
       }
     ],
     [$props, $ctx, $refs]
@@ -191,7 +202,9 @@ function PlasmicTopics__RenderFunc(props: {
       <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
+        className={classNames(projectcss.all, sty.freeBox, {
+          [sty.freeBoxsize_small]: hasVariant($state, "size", "small")
+        })}
       >
         {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
           (() => {
@@ -214,7 +227,9 @@ function PlasmicTopics__RenderFunc(props: {
             <Topic
               data-plasmic-name={"topic"}
               data-plasmic-override={overrides.topic}
-              className={classNames("__wab_instance", sty.topic)}
+              className={classNames("__wab_instance", sty.topic, {
+                [sty.topicsize_small]: hasVariant($state, "size", "small")
+              })}
               data={(() => {
                 try {
                   return currentItem;
@@ -279,6 +294,23 @@ function PlasmicTopics__RenderFunc(props: {
                   throw e;
                 }
               })()}
+              size={
+                hasVariant($state, "size", "small")
+                  ? (() => {
+                      try {
+                        return $state.size;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()
+                  : undefined
+              }
             />
           );
         })}

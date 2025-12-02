@@ -1,0 +1,61 @@
+.root {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  position: relative;
+  padding: 0px;
+}
+.svg__nY58K {
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-KjATzAYJ5IB7);
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.svgactive__nY58KxP55R {
+  color: var(--token-MAnhFXGh8Ir8);
+}
+.svgdir_left__nY58Ki0Smc {
+  display: none;
+}
+.freeBox {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox {
+    padding-right: 0px;
+  }
+}
+.slotTargetChildren {
+  font-size: var(--token-9jx4RULNbWhl);
+  font-weight: 400;
+  color: var(--token-KjATzAYJ5IB7);
+  text-align: right;
+}
+.slotTargetChildrenactive {
+  color: var(--token-MAnhFXGh8Ir8);
+}
+.svg___3C20A {
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-KjATzAYJ5IB7);
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.svgactive___3C20AxP55R {
+  color: var(--token-MAnhFXGh8Ir8);
+}
+.svgdir_righte___3C20AbxmJx {
+  display: none;
+}

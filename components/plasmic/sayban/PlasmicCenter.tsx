@@ -63,11 +63,16 @@ import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { SwiperSlider } from "@/components/SwiperSlider"; // plasmic-import: byElilYJKEPk/codeComponent
 import Topics from "../../Topics"; // plasmic-import: K08M_vX52xMI/component
+import Service from "../../Service"; // plasmic-import: 0JNfyGRvC0FA/component
 import { Iframe } from "@plasmicpkgs/plasmic-basic-components";
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import { AntdProgress } from "@plasmicpkgs/antd5/skinny/registerProgress";
 import Comment from "../../Comment"; // plasmic-import: 4NLVwAuHCB3Q/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
+import Next from "../../Next"; // plasmic-import: gLmxuN6lLlgW/component
+import Calendar from "../../Calendar"; // plasmic-import: Ne_OAR5Gww2F/component
+import SelectTime from "../../SelectTime"; // plasmic-import: gjWWc9BL-2Ke/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -76,8 +81,9 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicCenter.module.css"; // plasmic-import: Lh-Py4-EsRhC/css
 
-import Icon21Icon from "./icons/PlasmicIcon__Icon21"; // plasmic-import: sT28siWhYupd/icon
+import Icon35Icon from "./icons/PlasmicIcon__Icon35"; // plasmic-import: gD26CTYCiCfq/icon
 import Icon22Icon from "./icons/PlasmicIcon__Icon22"; // plasmic-import: 5JSOkqxEUr2H/icon
+import Icon21Icon from "./icons/PlasmicIcon__Icon21"; // plasmic-import: sT28siWhYupd/icon
 import Icon12Icon from "../website_starter/icons/PlasmicIcon__Icon12"; // plasmic-import: BFmheOgAQHY6/icon
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
@@ -111,12 +117,17 @@ export type PlasmicCenter__OverridesType = {
   apiRequest?: Flex__<typeof ApiRequest>;
   swiperSlider?: Flex__<typeof SwiperSlider>;
   topics?: Flex__<typeof Topics>;
+  service?: Flex__<typeof Service>;
   iframe?: Flex__<typeof Iframe>;
   link?: Flex__<"a"> & Partial<LinkProps>;
   embedHtml?: Flex__<typeof Embed>;
   progress?: Flex__<typeof AntdProgress>;
   comment?: Flex__<typeof Comment>;
   button?: Flex__<typeof Button>;
+  dialog2?: Flex__<typeof Dialog>;
+  calendar?: Flex__<typeof Calendar>;
+  topics2?: Flex__<typeof Topics>;
+  selectTime?: Flex__<typeof SelectTime>;
 };
 
 export interface DefaultCenterProps {
@@ -283,6 +294,66 @@ function PlasmicCenter__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "service",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "dialog2.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "topics2.data",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                const times = [
+                  {
+                    label: "صبح",
+                    value: "morning"
+                  },
+                  {
+                    label: "ظهر",
+                    value: "noon"
+                  },
+                  {
+                    label: "عصر و شب",
+                    value: "evening_night"
+                  }
+                ];
+
+                return times;
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "topics2.selected",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "morning"
+      },
+      {
+        path: "calendar.selected",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $ctx }) => 0
       }
     ],
     [$props, $ctx, $refs]
@@ -843,16 +914,13 @@ function PlasmicCenter__RenderFunc(props: {
                     {""}
                   </div>
                   <div
-                    className={classNames(projectcss.all, sty.freeBox__jiz5)}
+                    className={classNames(projectcss.all, sty.freeBox___9Cthd)}
                   >
                     <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___2Gdl9
-                      )}
+                      className={classNames(projectcss.all, sty.freeBox__zIrIo)}
                     >
-                      <Icon21Icon
-                        className={classNames(projectcss.all, sty.svg___0EBpn)}
+                      <Icon35Icon
+                        className={classNames(projectcss.all, sty.svg__hn1Se)}
                         role={"img"}
                       />
 
@@ -860,44 +928,108 @@ function PlasmicCenter__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.__wab_text,
-                          sty.text__ybfEv
+                          sty.text__crmsw
                         )}
                       >
                         {
-                          "\u0633\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u06cc"
+                          "\u0646\u0648\u0639 \u062e\u062f\u0645\u0627\u062a \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
                         }
                       </div>
                     </div>
                     <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__d4Bt4
-                      )}
+                      className={classNames(projectcss.all, sty.freeBox__n9VMv)}
                     >
-                      <React.Fragment>
-                        {(() => {
+                      {(_par =>
+                        !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                        (() => {
                           try {
-                            return $state.apiRequest?.data?.result
-                              ?.working_hours;
+                            return $state.apiRequest.data.result.services;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
                               e?.plasmicType === "PlasmicUndefinedDataError"
                             ) {
-                              return "\u0634\u0646\u0628\u0647 \u062a\u0627 \u0686\u0647\u0627\u0631\u0634\u0646\u0628\u0647 \u06f8:\u06f0\u06f0 \u2014 \u06f1\u06f7:\u06f0\u06f0\r\n\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647 \u06f8:\u06f0\u06f0 \u2014 \u06f1\u06f3:\u06f0\u06f0";
+                              return [];
                             }
                             throw e;
                           }
-                        })()}
-                      </React.Fragment>
+                        })()
+                      ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                        const currentItem = __plasmic_item_0;
+                        const currentIndex = __plasmic_idx_0;
+                        return (
+                          <Service
+                            data-plasmic-name={"service"}
+                            data-plasmic-override={overrides.service}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.service
+                            )}
+                            currentItem={currentItem}
+                            key={currentIndex}
+                            onClick={async event => {
+                              const $steps = {};
+
+                              $steps["updateService"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      variable: {
+                                        objRoot: $state,
+                                        variablePath: ["service"]
+                                      },
+                                      operation: 0,
+                                      value: currentItem
+                                    };
+                                    return (({
+                                      variable,
+                                      value,
+                                      startIndex,
+                                      deleteCount
+                                    }) => {
+                                      if (!variable) {
+                                        return;
+                                      }
+                                      const { objRoot, variablePath } =
+                                        variable;
+
+                                      $stateSet(objRoot, variablePath, value);
+                                      return value;
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["updateService"] != null &&
+                                typeof $steps["updateService"] === "object" &&
+                                typeof $steps["updateService"].then ===
+                                  "function"
+                              ) {
+                                $steps["updateService"] =
+                                  await $steps["updateService"];
+                              }
+                            }}
+                            select={(() => {
+                              try {
+                                return $state.service.id == currentItem.id;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return [];
+                                }
+                                throw e;
+                              }
+                            })()}
+                          />
+                        );
+                      })}
                     </div>
                   </div>
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__oTps
+                      sty.text__xpDwp
                     )}
                   >
                     {""}
@@ -953,7 +1085,67 @@ function PlasmicCenter__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__jBiEt
+                      sty.text__dgu5Y
+                    )}
+                  >
+                    {""}
+                  </div>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__jiz5)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        sty.freeBox___2Gdl9
+                      )}
+                    >
+                      <Icon21Icon
+                        className={classNames(projectcss.all, sty.svg___0EBpn)}
+                        role={"img"}
+                      />
+
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__ybfEv
+                        )}
+                      >
+                        {
+                          "\u0633\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u06cc"
+                        }
+                      </div>
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__d4Bt4
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return $state.apiRequest?.data?.result
+                              ?.working_hours;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u0634\u0646\u0628\u0647 \u062a\u0627 \u0686\u0647\u0627\u0631\u0634\u0646\u0628\u0647 \u06f8:\u06f0\u06f0 \u2014 \u06f1\u06f7:\u06f0\u06f0\r\n\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647 \u06f8:\u06f0\u06f0 \u2014 \u06f1\u06f3:\u06f0\u06f0";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                  </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__vim8U
                     )}
                   >
                     {""}
@@ -1526,7 +1718,9 @@ drawRating(${$state.rate});
                     sty.text___49QVu
                   )}
                 >
-                  {"Enter some text"}
+                  <React.Fragment>
+                    {$state.service?.price?.toLocaleString() + " تومان"}
+                  </React.Fragment>
                 </div>
                 <div className={classNames(projectcss.all, sty.freeBox__gEpo7)}>
                   <div
@@ -1536,7 +1730,21 @@ drawRating(${$state.rate});
                       sty.text__qJkM
                     )}
                   >
-                    {"1"}
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return $state.service.discount_percent + "%";
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "1";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
                   </div>
                 </div>
               </div>
@@ -1547,7 +1755,9 @@ drawRating(${$state.rate});
                   sty.text__kC5Qq
                 )}
               >
-                {"Enter some text"}
+                <React.Fragment>
+                  {$state.service?.final_price?.toLocaleString() + " تومان"}
+                </React.Fragment>
               </div>
             </div>
             <Button
@@ -1566,6 +1776,44 @@ drawRating(${$state.rate});
                 </div>
               }
               loading={generateStateValueProp($state, ["button", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateDialog2Opendialog"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["dialog2", "opendialog"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateDialog2Opendialog"] != null &&
+                  typeof $steps["updateDialog2Opendialog"] === "object" &&
+                  typeof $steps["updateDialog2Opendialog"].then === "function"
+                ) {
+                  $steps["updateDialog2Opendialog"] =
+                    await $steps["updateDialog2Opendialog"];
+                }
+              }}
               onLoadingChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, ["button", "loading"]).apply(
                   null,
@@ -1584,6 +1832,178 @@ drawRating(${$state.rate});
           </div>
         </section>
       ) : null}
+      <Dialog
+        data-plasmic-name={"dialog2"}
+        data-plasmic-override={overrides.dialog2}
+        className={classNames("__wab_instance", sty.dialog2)}
+        nopadding={true}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog2", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["dialog2", "opendialog"])}
+      >
+        <div className={classNames(projectcss.all, sty.freeBox__eh9J7)}>
+          <div className={classNames(projectcss.all, sty.freeBox__n49Dk)}>
+            <div className={classNames(projectcss.all, sty.freeBox__ywuoD)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__uifQf
+                )}
+              >
+                {
+                  "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u0645\u0627\u0646 "
+                }
+              </div>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___1PIid
+                )}
+              >
+                <React.Fragment>
+                  {(() => {
+                    try {
+                      return `(${$state.service.duration_minutes} دقیقه)`;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u0645\u0627\u0646 ";
+                      }
+                      throw e;
+                    }
+                  })()}
+                </React.Fragment>
+              </div>
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox__pEwRp)}>
+              <Next
+                active={true}
+                className={classNames("__wab_instance", sty.next__mEl0O)}
+                dir={"righte"}
+              >
+                {"\u0645\u0627\u0647 \u0642\u0628\u0644"}
+              </Next>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__wjmMc
+                )}
+              >
+                {
+                  "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u0645\u0627\u0646 "
+                }
+              </div>
+              <Next
+                className={classNames("__wab_instance", sty.next__iiXch)}
+                dir={"left"}
+              />
+            </div>
+            <Calendar
+              data-plasmic-name={"calendar"}
+              data-plasmic-override={overrides.calendar}
+              className={classNames("__wab_instance", sty.calendar)}
+              days={(() => {
+                try {
+                  return [
+                    "2025-01-10",
+                    "2025-02-22",
+                    "2025-03-15",
+                    "2025-04-30",
+                    "2025-05-18"
+                  ];
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              onSelectedChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "calendar",
+                  "selected"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              selected={generateStateValueProp($state, [
+                "calendar",
+                "selected"
+              ])}
+            />
+          </div>
+          <Topics
+            data-plasmic-name={"topics2"}
+            data-plasmic-override={overrides.topics2}
+            className={classNames("__wab_instance", sty.topics2)}
+            data={generateStateValueProp($state, ["topics2", "data"])}
+            onDataChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["topics2", "data"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onSelectedChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["topics2", "selected"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            selected={generateStateValueProp($state, ["topics2", "selected"])}
+            size={"small"}
+          />
+
+          <div className={classNames(projectcss.all, sty.freeBox__sDCwv)}>
+            <SelectTime
+              data-plasmic-name={"selectTime"}
+              data-plasmic-override={overrides.selectTime}
+              className={classNames("__wab_instance", sty.selectTime)}
+            />
+          </div>
+        </div>
+      </Dialog>
     </div>
   ) as React.ReactElement | null;
 }
@@ -1595,18 +2015,24 @@ const PlasmicDescendants = {
     "apiRequest",
     "swiperSlider",
     "topics",
+    "service",
     "iframe",
     "link",
     "embedHtml",
     "progress",
     "comment",
-    "button"
+    "button",
+    "dialog2",
+    "calendar",
+    "topics2",
+    "selectTime"
   ],
   header: ["header"],
   apiRequest: [
     "apiRequest",
     "swiperSlider",
     "topics",
+    "service",
     "iframe",
     "link",
     "embedHtml",
@@ -1615,12 +2041,17 @@ const PlasmicDescendants = {
   ],
   swiperSlider: ["swiperSlider"],
   topics: ["topics"],
+  service: ["service"],
   iframe: ["iframe"],
   link: ["link"],
   embedHtml: ["embedHtml"],
   progress: ["progress"],
   comment: ["comment"],
-  button: ["button"]
+  button: ["button"],
+  dialog2: ["dialog2", "calendar", "topics2", "selectTime"],
+  calendar: ["calendar"],
+  topics2: ["topics2"],
+  selectTime: ["selectTime"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1631,12 +2062,17 @@ type NodeDefaultElementType = {
   apiRequest: typeof ApiRequest;
   swiperSlider: typeof SwiperSlider;
   topics: typeof Topics;
+  service: typeof Service;
   iframe: typeof Iframe;
   link: "a";
   embedHtml: typeof Embed;
   progress: typeof AntdProgress;
   comment: typeof Comment;
   button: typeof Button;
+  dialog2: typeof Dialog;
+  calendar: typeof Calendar;
+  topics2: typeof Topics;
+  selectTime: typeof SelectTime;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1705,12 +2141,17 @@ export const PlasmicCenter = Object.assign(
     apiRequest: makeNodeComponent("apiRequest"),
     swiperSlider: makeNodeComponent("swiperSlider"),
     topics: makeNodeComponent("topics"),
+    service: makeNodeComponent("service"),
     iframe: makeNodeComponent("iframe"),
     link: makeNodeComponent("link"),
     embedHtml: makeNodeComponent("embedHtml"),
     progress: makeNodeComponent("progress"),
     comment: makeNodeComponent("comment"),
     button: makeNodeComponent("button"),
+    dialog2: makeNodeComponent("dialog2"),
+    calendar: makeNodeComponent("calendar"),
+    topics2: makeNodeComponent("topics2"),
+    selectTime: makeNodeComponent("selectTime"),
 
     // Metadata about props expected for PlasmicCenter
     internalVariantProps: PlasmicCenter__VariantProps,

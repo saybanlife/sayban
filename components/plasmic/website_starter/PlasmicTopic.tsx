@@ -71,12 +71,17 @@ createPlasmicElementProxy;
 
 export type PlasmicTopic__VariantMembers = {
   select: "select";
+  size: "small";
 };
 export type PlasmicTopic__VariantsArgs = {
   select?: SingleBooleanChoiceArg<"select">;
+  size?: SingleChoiceArg<"small">;
 };
 type VariantPropType = keyof PlasmicTopic__VariantsArgs;
-export const PlasmicTopic__VariantProps = new Array<VariantPropType>("select");
+export const PlasmicTopic__VariantProps = new Array<VariantPropType>(
+  "select",
+  "size"
+);
 
 export type PlasmicTopic__ArgsType = {
   data?: any;
@@ -95,6 +100,7 @@ export interface DefaultTopicProps {
   data?: any;
   onClick?: (event: any) => void;
   select?: SingleBooleanChoiceArg<"select">;
+  size?: SingleChoiceArg<"small">;
   className?: string;
 }
 
@@ -144,6 +150,12 @@ function PlasmicTopic__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $ctx }) => $props.select
+      },
+      {
+        path: "size",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.size
       }
     ],
     [$props, $ctx, $refs]
@@ -170,7 +182,13 @@ function PlasmicTopic__RenderFunc(props: {
         projectcss.plasmic_mixins,
         styleTokensClassNames,
         sty.root,
-        { [sty.rootselect]: hasVariant($state, "select", "select") }
+        {
+          [sty.rootselect]: hasVariant($state, "select", "select"),
+          [sty.rootsize_small]: hasVariant($state, "size", "small"),
+          [sty.rootsize_small_select]:
+            hasVariant($state, "size", "small") &&
+            hasVariant($state, "select", "select")
+        }
       )}
       onClick={args.onClick}
     >
@@ -178,7 +196,11 @@ function PlasmicTopic__RenderFunc(props: {
         data-plasmic-name={"text"}
         data-plasmic-override={overrides.text}
         className={classNames(projectcss.all, projectcss.__wab_text, sty.text, {
-          [sty.textselect]: hasVariant($state, "select", "select")
+          [sty.textselect]: hasVariant($state, "select", "select"),
+          [sty.textsize_small]: hasVariant($state, "size", "small"),
+          [sty.textsize_small_select]:
+            hasVariant($state, "size", "small") &&
+            hasVariant($state, "select", "select")
         })}
       >
         <div
@@ -204,7 +226,10 @@ function PlasmicTopic__RenderFunc(props: {
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
         className={classNames(projectcss.all, sty.freeBox, {
-          [sty.freeBoxselect]: hasVariant($state, "select", "select")
+          [sty.freeBoxselect]: hasVariant($state, "select", "select"),
+          [sty.freeBoxsize_small_select]:
+            hasVariant($state, "size", "small") &&
+            hasVariant($state, "select", "select")
         })}
       />
     </div>

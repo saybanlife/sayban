@@ -8,6 +8,7 @@
   justify-content: flex-start;
   align-items: center;
   justify-self: flex-start;
+  row-gap: 0px;
   padding: 0px;
 }
 .freeBox {
@@ -22,8 +23,17 @@
   min-width: 0;
   padding: 0px var(--token-kD77h-2NGSqI);
 }
+.freeBoxsize_small {
+  column-gap: var(--token-rfsFxiclAtek);
+  row-gap: 0px;
+  padding: 0px;
+}
 .topic:global(.__wab_instance) {
   position: relative;
+}
+.topicsize_small:global(.__wab_instance) {
+  width: 100%;
+  min-width: 0;
 }
 .text {
   animation: none;

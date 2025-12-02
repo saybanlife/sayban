@@ -111,7 +111,7 @@
       calc(100% - var(--plsmc-viewport-gap) - var(--plsmc-viewport-gap))
     )
     minmax(0, var(--plsmc-wide-chunk)) 1fr var(--plsmc-viewport-gap);
-  padding: var(--token-rfsFxiclAtek);
+  padding: 0px var(--token-rfsFxiclAtek);
 }
 .section__iGcIn > * {
   grid-column: 4;
@@ -185,7 +185,7 @@
   max-width: 100%;
   justify-content: center;
   align-items: center;
-  background: url("/plasmic/website_starter/images/_3380864Svg.svg") 0% 0% / cover;
+  background: var(--token--ieHgGbFH1Fa);
   row-gap: var(--token-rfsFxiclAtek);
   transition-property: all;
   transition-duration: 0.3s;
@@ -247,7 +247,7 @@
   top: 0;
   background: var(--token-ee2TuxDknsJj);
   filter: blur(20px);
-  opacity: 0.4;
+  opacity: 0.2;
   right: 0;
   bottom: 0;
   border-radius: 50%;

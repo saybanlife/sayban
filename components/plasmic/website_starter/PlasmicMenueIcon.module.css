@@ -9,17 +9,17 @@
   position: relative;
   background: none;
   min-width: 0;
-  padding: 0px;
+  padding: var(--token-rfsFxiclAtek);
   border-width: 0px;
 }
 .rootselect {
-  background: none;
+  background: var(--token-9M5jRUPt8Msb);
   height: auto;
   width: auto;
   justify-self: flex-start;
   display: inline-flex;
   border-radius: 50%;
-  padding: 0px;
+  padding: var(--token-rfsFxiclAtek);
 }
 .freeBox {
   flex-direction: column;
@@ -53,6 +53,7 @@
   max-width: 100%;
   width: 2rem;
   height: 2rem;
+  color: var(--token-9M5jRUPt8Msb);
   flex-shrink: 0;
 }
 .svgselect {
@@ -74,13 +75,17 @@
   flex-shrink: 0;
 }
 .svgcolor_dark {
-  color: var(--token--ieHgGbFH1Fa);
+  color: var(--token-KPGXdu9o7llP);
 }
 .svgicons_settings_select {
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: none;
+  color: var(--token-KPGXdu9o7llP);
+}
+.svgicons_user_select {
+  color: var(--token-KPGXdu9o7llP);
 }
 .svgicons_home_select {
-  color: var(--token-Yo4gdKCgyuAu);
+  color: var(--token-KPGXdu9o7llP);
 }
 .svgsize_max_icons_rehabilitation {
   width: 2rem;

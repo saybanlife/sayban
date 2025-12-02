@@ -43,7 +43,7 @@
   background: linear-gradient(
     30deg,
     var(--token--ieHgGbFH1Fa) 0%,
-    #6ead3c 100%
+    var(--token--ieHgGbFH1Fa) 100%
   );
   box-shadow: 0px 4px 16px 0px #1717174d;
   column-gap: 0px;

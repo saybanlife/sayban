@@ -1,0 +1,48 @@
+/* eslint-disable */
+/* tslint:disable */
+// @ts-nocheck
+/* prettier-ignore-start */
+import React from "react";
+import { classNames } from "@plasmicapp/react-web";
+
+export type Icon332IconProps = React.ComponentProps<"svg"> & {
+  title?: string;
+};
+
+export function Icon332Icon(props: Icon332IconProps) {
+  const { className, style, title, ...restProps } = props;
+  return (
+    <svg
+      xmlns={"http://www.w3.org/2000/svg"}
+      fill={"none"}
+      viewBox={"0 0 24 24"}
+      height={"1em"}
+      className={classNames("plasmic-default__svg", className)}
+      style={style}
+      {...restProps}
+    >
+      {title && <title>{title}</title>}
+
+      <path
+        stroke={"currentColor"}
+        strokeLinecap={"round"}
+        strokeLinejoin={"round"}
+        strokeWidth={"1.5"}
+        d={"M8.97 22h6c5 0 7-2 7-7V9c0-5-2-7-7-7h-6c-5 0-7 2-7 7v6c0 5 2 7 7 7"}
+      ></path>
+
+      <path
+        stroke={"currentColor"}
+        strokeLinecap={"round"}
+        strokeLinejoin={"round"}
+        strokeWidth={"1.5"}
+        d={
+          "m1.97 12.7 6-.02c.75 0 1.59.57 1.87 1.27l1.14 2.88c.26.65.67.65.93 0l2.29-5.81c.22-.56.63-.58.91-.05l1.04 1.97c.31.59 1.11 1.07 1.77 1.07h4.06"
+        }
+      ></path>
+    </svg>
+  );
+}
+
+export default Icon332Icon;
+/* prettier-ignore-end */

@@ -52,7 +52,12 @@
   }
 }
 .freeBoxsoft__lHkfyFgJuq {
-  background: linear-gradient(0deg, #00121b00 0%, #00121bb3 63%, #00121bcc 99%);
+  background: linear-gradient(
+    0deg,
+    #00121b00 0%,
+    var(--token-KPGXdu9o7llP) 63%,
+    var(--token-KPGXdu9o7llP) 99%
+  );
   box-shadow: none;
 }
 .freeBox__ameEp {
@@ -100,7 +105,7 @@
   max-width: 100%;
   width: 25px;
   height: 25px;
-  color: var(--token-Yo4gdKCgyuAu);
+  color: var(--token-9M5jRUPt8Msb);
   flex-shrink: 0;
 }
 .svgsoft {

@@ -9,10 +9,9 @@
   justify-self: flex-start;
   position: relative;
   background: var(--token-KPGXdu9o7llP);
-  border-top-width: 2px;
-  border-top-style: solid;
   min-width: 0;
   padding: var(--token-rfsFxiclAtek);
+  border-top: 2px solid #505050;
 }
 .freeBox__toeWv {
   display: flex;

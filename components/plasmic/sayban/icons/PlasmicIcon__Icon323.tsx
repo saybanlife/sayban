@@ -1,0 +1,64 @@
+/* eslint-disable */
+/* tslint:disable */
+// @ts-nocheck
+/* prettier-ignore-start */
+import React from "react";
+import { classNames } from "@plasmicapp/react-web";
+
+export type Icon323IconProps = React.ComponentProps<"svg"> & {
+  title?: string;
+};
+
+export function Icon323Icon(props: Icon323IconProps) {
+  const { className, style, title, ...restProps } = props;
+  return (
+    <svg
+      xmlns={"http://www.w3.org/2000/svg"}
+      xmlnsXlink={"http://www.w3.org/1999/xlink"}
+      fill={"none"}
+      viewBox={"-2 0 32 32"}
+      height={"1em"}
+      className={classNames("plasmic-default__svg", className)}
+      style={style}
+      {...restProps}
+    >
+      {title && <title>{title}</title>}
+
+      <path
+        fill={"#F70"}
+        d={"M13.647 32a4.571 4.571 0 1 0 0-9.143 4.571 4.571 0 0 0 0 9.143"}
+      ></path>
+
+      <path
+        fill={"url(#a)"}
+        fillRule={"evenodd"}
+        d={
+          "M21.19 6.172q-1.987-1.986-4.496-2.71v-.414q0-1.263-.892-2.155A2.94 2.94 0 0 0 13.647 0q-1.263 0-2.155.893a2.94 2.94 0 0 0-.893 2.155v.414q-2.508.724-4.495 2.71Q2.98 9.296 2.98 13.714v8.229L.491 24.929q-.284.341-.353.78-.044.44.144.842t.562.64q.375.237.818.238h23.97q.443 0 .817-.238.375-.238.562-.64.189-.402.132-.841a1.5 1.5 0 0 0-.341-.78l-2.489-2.987v-8.229q0-4.418-3.124-7.542"
+        }
+        clipRule={"evenodd"}
+      ></path>
+
+      <defs>
+        <radialGradient
+          id={"a"}
+          cx={"0"}
+          cy={"0"}
+          r={"1"}
+          gradientTransform={
+            "matrix(12.58806 17.14284 -16.88644 12.39979 9.13 7.542)"
+          }
+          gradientUnits={"userSpaceOnUse"}
+        >
+          <stop stopColor={"#FADF73"}></stop>
+
+          <stop offset={".457"} stopColor={"#FFD500"}></stop>
+
+          <stop offset={"1"} stopColor={"#FC9900"}></stop>
+        </radialGradient>
+      </defs>
+    </svg>
+  );
+}
+
+export default Icon323Icon;
+/* prettier-ignore-end */

@@ -19,6 +19,7 @@
     "@plasmicpkgs/plasmic-basic-components": "^0.0.258",
     "@plasmicpkgs/plasmic-embed-css": "^0.1.213",
     "@plasmicpkgs/plasmic-rich-components": "^1.0.224",
+    "@plasmicpkgs/radix-ui": "^0.0.88",
     "@plasmicpkgs/react-aria": "^0.0.155",
     "@plasmicpkgs/react-awesome-reveal": "^3.8.230",
     "@radix-ui/react-popover": "^1.0.7",

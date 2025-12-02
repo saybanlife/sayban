@@ -18,19 +18,15 @@ export interface GlobalContextsProviderProps {
   embedCssProps?: Partial<
     Omit<React.ComponentProps<typeof EmbedCss>, "children">
   >;
-
   antdConfigProviderProps?: Partial<
     Omit<React.ComponentProps<typeof AntdConfigProvider>, "children">
   >;
-
   fragmentProps?: Partial<
     Omit<React.ComponentProps<typeof Fragment>, "children">
   >;
-
   growthBookProps?: Partial<
     Omit<React.ComponentProps<typeof GrowthBook>, "children">
   >;
-
   splunkProps?: Partial<Omit<React.ComponentProps<typeof Splunk>, "children">>;
 }
 
@@ -65,32 +61,32 @@ export default function GlobalContextsProvider(
         colorBgBase={
           antdConfigProviderProps && "colorBgBase" in antdConfigProviderProps
             ? antdConfigProviderProps.colorBgBase!
-            : "#ffffff"
+            : "#F5F0DC"
         }
         colorError={
           antdConfigProviderProps && "colorError" in antdConfigProviderProps
             ? antdConfigProviderProps.colorError!
-            : "#D46A6A"
+            : "#EF5350"
         }
         colorInfo={
           antdConfigProviderProps && "colorInfo" in antdConfigProviderProps
             ? antdConfigProviderProps.colorInfo!
-            : "#5AA8B5"
+            : "#64B5F6"
         }
         colorPrimary={
           antdConfigProviderProps && "colorPrimary" in antdConfigProviderProps
             ? antdConfigProviderProps.colorPrimary!
-            : "#364B39"
+            : "#4A5B4D"
         }
         colorSuccess={
           antdConfigProviderProps && "colorSuccess" in antdConfigProviderProps
             ? antdConfigProviderProps.colorSuccess!
-            : "#5CBF7A"
+            : "#66BB6A"
         }
         colorWarning={
           antdConfigProviderProps && "colorWarning" in antdConfigProviderProps
             ? antdConfigProviderProps.colorWarning!
-            : "#E3B04B"
+            : "#FFD54F"
         }
         controlHeight={
           antdConfigProviderProps && "controlHeight" in antdConfigProviderProps

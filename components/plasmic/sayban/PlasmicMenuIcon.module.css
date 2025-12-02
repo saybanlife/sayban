@@ -1,0 +1,56 @@
+.root {
+  object-fit: cover;
+  max-width: 100%;
+  color: #757575;
+  width: 20px;
+  height: 20px;
+  display: block;
+  position: relative;
+}
+.rootselect {
+  color: var(--token-L5Hgrtuy-ukv);
+}
+.rooticons_occasion {
+  color: var(--token-80wG4y4sryg5);
+}
+.rooticons_birthday {
+  color: var(--token-80wG4y4sryg5);
+}
+.rooticons_love {
+  color: var(--token-80wG4y4sryg5);
+}
+.rooticons_alert {
+  color: var(--token-80wG4y4sryg5);
+}
+.rooticons_medicineTime {
+  color: #757575;
+}
+.rootcolor_waite {
+  color: var(--token-80wG4y4sryg5);
+}
+.rootcolor_blue {
+  color: var(--token-xZK-xLPCiE1W);
+}
+.rootcolor_green {
+  color: var(--token-8IZ3P-rlJFBA);
+}
+.rootcolor_warning {
+  color: var(--token-EueuB3d74YKA);
+}
+.rootcolor_fuchsia {
+  color: var(--token-G2OXqM4Nes36);
+}
+.rootcolor_p {
+  color: var(--token-kI60KiRr_Lur);
+}
+.rootcolor_iconColor {
+  color: var(--token-clkRsHVdZgT8);
+}
+.rootsize__25 {
+  width: 25px;
+  height: 25px;
+}
+.rootsize__12 {
+  width: 12px;
+  height: 12px;
+}
