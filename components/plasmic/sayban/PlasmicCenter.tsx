@@ -103,12 +103,14 @@ export type PlasmicCenter__ArgsType = {
   subcatgori?: any;
   center?: any;
   id?: string;
+  jalali?: any;
 };
 type ArgPropType = keyof PlasmicCenter__ArgsType;
 export const PlasmicCenter__ArgProps = new Array<ArgPropType>(
   "subcatgori",
   "center",
-  "id"
+  "id",
+  "jalali"
 );
 
 export type PlasmicCenter__OverridesType = {
@@ -134,6 +136,7 @@ export interface DefaultCenterProps {
   subcatgori?: any;
   center?: any;
   id?: string;
+  jalali?: any;
   top?: SingleBooleanChoiceArg<"top">;
   className?: string;
 }
