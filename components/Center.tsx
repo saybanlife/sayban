@@ -27,5 +27,6 @@ function Center_(props: CenterProps, ref: HTMLElementRefOf<"div">) {
   );
 }
 
+
 const Center = React.forwardRef(Center_);
 export default Center;
