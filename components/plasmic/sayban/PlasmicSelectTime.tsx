@@ -75,9 +75,17 @@ export type PlasmicSelectTime__VariantsArgs = {};
 type VariantPropType = keyof PlasmicSelectTime__VariantsArgs;
 export const PlasmicSelectTime__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicSelectTime__ArgsType = { times?: any };
+export type PlasmicSelectTime__ArgsType = {
+  selected?: string;
+  onSelectedChange?: (val: string) => void;
+  times?: any;
+};
 type ArgPropType = keyof PlasmicSelectTime__ArgsType;
-export const PlasmicSelectTime__ArgProps = new Array<ArgPropType>("times");
+export const PlasmicSelectTime__ArgProps = new Array<ArgPropType>(
+  "selected",
+  "onSelectedChange",
+  "times"
+);
 
 export type PlasmicSelectTime__OverridesType = {
   root?: Flex__<"div">;
@@ -85,6 +93,8 @@ export type PlasmicSelectTime__OverridesType = {
 };
 
 export interface DefaultSelectTimeProps {
+  selected?: string;
+  onSelectedChange?: (val: string) => void;
   times?: any;
   className?: string;
 }
@@ -132,9 +142,11 @@ function PlasmicSelectTime__RenderFunc(props: {
     () => [
       {
         path: "selected",
-        type: "private",
+        type: "writable",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+
+        valueProp: "selected",
+        onChangeProp: "onSelectedChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -166,7 +178,7 @@ function PlasmicSelectTime__RenderFunc(props: {
       {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
         (() => {
           try {
-            return [2, 3, 4, 5, 6, 7];
+            return $props.times;
           } catch (e) {
             if (
               e instanceof TypeError ||
@@ -185,31 +197,50 @@ function PlasmicSelectTime__RenderFunc(props: {
             data-plasmic-name={"timeShow"}
             data-plasmic-override={overrides.timeShow}
             className={classNames("__wab_instance", sty.timeShow)}
+            currentItem={(() => {
+              try {
+                return currentItem.slot_start;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
             key={currentIndex}
             onClick={async event => {
               const $steps = {};
 
-              $steps["updateSelected"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["selected"]
-                      },
-                      operation: 0,
-                      value: currentItem
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
+              $steps["updateSelected"] =
+                currentItem.status == "available"
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["selected"]
+                        },
+                        operation: 0,
+                        value: currentItem
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
 
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
               if (
                 $steps["updateSelected"] != null &&
                 typeof $steps["updateSelected"] === "object" &&
@@ -220,7 +251,7 @@ function PlasmicSelectTime__RenderFunc(props: {
             }}
             select={(() => {
               try {
-                return currentItem == $state.selected;
+                return currentItem.slot_start == $state.selected.slot_start;
               } catch (e) {
                 if (
                   e instanceof TypeError ||

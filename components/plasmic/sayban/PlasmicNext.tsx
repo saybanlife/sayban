@@ -86,17 +86,26 @@ export const PlasmicNext__VariantProps = new Array<VariantPropType>(
   "dir"
 );
 
-export type PlasmicNext__ArgsType = { children?: React.ReactNode };
+export type PlasmicNext__ArgsType = {
+  onClick?: (event: any) => void;
+  children?: React.ReactNode;
+  children2?: React.ReactNode;
+};
 type ArgPropType = keyof PlasmicNext__ArgsType;
-export const PlasmicNext__ArgProps = new Array<ArgPropType>("children");
+export const PlasmicNext__ArgProps = new Array<ArgPropType>(
+  "onClick",
+  "children",
+  "children2"
+);
 
 export type PlasmicNext__OverridesType = {
   root?: Flex__<"div">;
-  freeBox?: Flex__<"div">;
 };
 
 export interface DefaultNextProps {
+  onClick?: (event: any) => void;
   children?: React.ReactNode;
+  children2?: React.ReactNode;
   active?: SingleBooleanChoiceArg<"active">;
   dir?: SingleChoiceArg<"left" | "righte">;
   className?: string;
@@ -180,59 +189,130 @@ function PlasmicNext__RenderFunc(props: {
         projectcss.plasmic_mixins,
         styleTokensClassNames,
         sty.root,
-        { [sty.rootactive]: hasVariant($state, "active", "active") }
+        {
+          [sty.rootactive]: hasVariant($state, "active", "active"),
+          [sty.rootdir_righte_active]:
+            hasVariant($state, "active", "active") &&
+            hasVariant($state, "dir", "righte")
+        }
       )}
     >
-      <ChevronRightIcon
-        className={classNames(projectcss.all, sty.svg__nY58K, {
-          [sty.svgactive__nY58KxP55R]: hasVariant($state, "active", "active"),
-          [sty.svgdir_left__nY58Ki0Smc]: hasVariant($state, "dir", "left"),
-          [sty.svgdir_righte__nY58KbxmJx]: hasVariant($state, "dir", "righte")
-        })}
-        role={"img"}
-      />
-
       <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox, {
-          [sty.freeBoxactive]: hasVariant($state, "active", "active")
+        className={classNames(projectcss.all, sty.freeBox___5WJuH, {
+          [sty.freeBoxactive___5WJuHxP55R]: hasVariant(
+            $state,
+            "active",
+            "active"
+          )
         })}
       >
-        {renderPlasmicSlot({
-          defaultContents: "\u0645\u0627\u0647 \u0628\u0639\u062f",
-          value: args.children,
-          className: classNames(sty.slotTargetChildren, {
-            [sty.slotTargetChildrenactive]: hasVariant(
+        <ChevronRightIcon
+          className={classNames(projectcss.all, sty.svg__nY58K, {
+            [sty.svgactive__nY58KxP55R]: hasVariant($state, "active", "active"),
+            [sty.svgdir_left__nY58Ki0Smc]: hasVariant($state, "dir", "left"),
+            [sty.svgdir_righte__nY58KbxmJx]: hasVariant($state, "dir", "righte")
+          })}
+          role={"img"}
+        />
+
+        <div
+          className={classNames(projectcss.all, sty.freeBox__pPwDs, {
+            [sty.freeBoxactive__pPwDSxP55R]: hasVariant(
               $state,
               "active",
               "active"
             )
-          })
-        })}
+          })}
+        >
+          {renderPlasmicSlot({
+            defaultContents: "\u0645\u0627\u0647 \u0628\u0639\u062f",
+            value: args.children,
+            className: classNames(sty.slotTargetChildren, {
+              [sty.slotTargetChildrenactive]: hasVariant(
+                $state,
+                "active",
+                "active"
+              )
+            })
+          })}
+        </div>
+        <ChevronLeftIcon
+          className={classNames(projectcss.all, sty.svg___3C20A, {
+            [sty.svgactive___3C20AxP55R]: hasVariant(
+              $state,
+              "active",
+              "active"
+            ),
+            [sty.svgdir_left___3C20Ai0Smc]: hasVariant($state, "dir", "left"),
+            [sty.svgdir_righte___3C20AbxmJx]: hasVariant(
+              $state,
+              "dir",
+              "righte"
+            )
+          })}
+          role={"img"}
+        />
       </div>
-      <ChevronLeftIcon
-        className={classNames(projectcss.all, sty.svg___3C20A, {
-          [sty.svgactive___3C20AxP55R]: hasVariant($state, "active", "active"),
-          [sty.svgdir_left___3C20Ai0Smc]: hasVariant($state, "dir", "left"),
-          [sty.svgdir_righte___3C20AbxmJx]: hasVariant($state, "dir", "righte")
+      <div
+        className={classNames(projectcss.all, sty.freeBox__juzh, {
+          [sty.freeBoxactive__juzhXP55R]: hasVariant($state, "active", "active")
         })}
-        role={"img"}
-      />
+        onClick={args.onClick}
+      >
+        <ChevronRightIcon
+          className={classNames(projectcss.all, sty.svg__ynIr, {
+            [sty.svgactive__ynIrxP55R]: hasVariant($state, "active", "active"),
+            [sty.svgdir_left__ynIri0Smc]: hasVariant($state, "dir", "left"),
+            [sty.svgdir_righte__ynIrbxmJx]: hasVariant($state, "dir", "righte")
+          })}
+          role={"img"}
+        />
+
+        <div
+          className={classNames(projectcss.all, sty.freeBox__b1RfY, {
+            [sty.freeBoxactive__b1RfYxP55R]: hasVariant(
+              $state,
+              "active",
+              "active"
+            )
+          })}
+        >
+          {renderPlasmicSlot({
+            defaultContents: "\u0645\u0627\u0647 \u0642\u0628\u0644",
+            value: args.children2,
+            className: classNames(sty.slotTargetChildren2, {
+              [sty.slotTargetChildren2active]: hasVariant(
+                $state,
+                "active",
+                "active"
+              ),
+              [sty.slotTargetChildren2dir_righte_active]:
+                hasVariant($state, "active", "active") &&
+                hasVariant($state, "dir", "righte")
+            })
+          })}
+        </div>
+        <ChevronLeftIcon
+          className={classNames(projectcss.all, sty.svg__mqDbA, {
+            [sty.svgactive__mqDbAxP55R]: hasVariant($state, "active", "active"),
+            [sty.svgdir_left__mqDbAi0Smc]: hasVariant($state, "dir", "left"),
+            [sty.svgdir_righte__mqDbAbxmJx]: hasVariant($state, "dir", "righte")
+          })}
+          role={"img"}
+        />
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox"],
-  freeBox: ["freeBox"]
+  root: ["root"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  freeBox: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -297,7 +377,6 @@ export const PlasmicNext = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    freeBox: makeNodeComponent("freeBox"),
 
     // Metadata about props expected for PlasmicNext
     internalVariantProps: PlasmicNext__VariantProps,

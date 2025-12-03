@@ -183,7 +183,21 @@ function PlasmicTimeShow__RenderFunc(props: {
         data-plasmic-override={overrides.text}
         className={classNames(projectcss.all, projectcss.__wab_text, sty.text)}
       >
-        {"11:55"}
+        <React.Fragment>
+          {(() => {
+            try {
+              return $props.currentItem;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return "11:55";
+              }
+              throw e;
+            }
+          })()}
+        </React.Fragment>
       </div>
     </div>
   ) as React.ReactElement | null;

@@ -105,7 +105,7 @@ export type PlasmicHomepage__OverridesType = {
   center?: Flex__<typeof Center>;
   apiRequest?: Flex__<typeof ApiRequest>;
   home?: Flex__<typeof Home>;
-  apiRequest2?: Flex__<typeof ApiRequest>;
+  search?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultHomepageProps {}
@@ -249,22 +249,23 @@ function PlasmicHomepage__RenderFunc(props: {
         path: "token",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwaXJlIjoxNzY0NTA2MjczfQ.A6wRqW0jMYVg_rZ4OMZ5oXrcOVwKq3BG4i_wmvKf_8A"
       },
       {
-        path: "apiRequest2.data",
+        path: "search.data",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "apiRequest2.error",
+        path: "search.error",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "apiRequest2.loading",
+        path: "search.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -379,7 +380,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["goToLogin"] = await $steps["goToLogin"];
               }
 
-              $steps["updateToken"] = true
+              $steps["updateToken"] = false
                 ? (() => {
                     const actionArgs = {
                       variable: {
@@ -1030,6 +1031,23 @@ function PlasmicHomepage__RenderFunc(props: {
                 "subcategories"
               )
             })}
+            config={(() => {
+              try {
+                return {
+                  headers: {
+                    Authorization: `Bearer ${$state.token}`
+                  }
+                };
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
             errorDisplay={null}
             loadingDisplay={
               <div className={classNames(projectcss.all, sty.freeBox__sCmYa)}>
@@ -1099,7 +1117,19 @@ function PlasmicHomepage__RenderFunc(props: {
                 eventArgs
               );
             }}
-            shouldFetch={true}
+            shouldFetch={(() => {
+              try {
+                return $state.token != null && $state.token != "";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()}
             url={"https://sayban.darkube.app/webhook/categories/full"}
           >
             <Home
@@ -1279,7 +1309,7 @@ function PlasmicHomepage__RenderFunc(props: {
               search={generateStateValueProp($state, ["home", "search"])}
               searchItems={(() => {
                 try {
-                  return $state.apiRequest2.data.result;
+                  return $state.search.data.result;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -1297,8 +1327,8 @@ function PlasmicHomepage__RenderFunc(props: {
             />
           </ApiRequest>
           <ApiRequest
-            data-plasmic-name={"apiRequest2"}
-            data-plasmic-override={overrides.apiRequest2}
+            data-plasmic-name={"search"}
+            data-plasmic-override={overrides.search}
             body={(() => {
               try {
                 return { keyword: $state.keyword };
@@ -1313,40 +1343,53 @@ function PlasmicHomepage__RenderFunc(props: {
               }
             })()}
             children={null}
-            className={classNames("__wab_instance", sty.apiRequest2, {
-              [sty.apiRequest2page_categories]: hasVariant(
+            className={classNames("__wab_instance", sty.search, {
+              [sty.searchpage_categories]: hasVariant(
                 $state,
                 "page",
                 "categories"
               ),
-              [sty.apiRequest2page_center]: hasVariant(
-                $state,
-                "page",
-                "center"
-              ),
-              [sty.apiRequest2page_subcategories]: hasVariant(
+              [sty.searchpage_center]: hasVariant($state, "page", "center"),
+              [sty.searchpage_subcategories]: hasVariant(
                 $state,
                 "page",
                 "subcategories"
               )
             })}
+            config={(() => {
+              try {
+                return {
+                  headers: {
+                    Authorization: `Bearer ${$state.token}`
+                  }
+                };
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
             errorDisplay={null}
             loadingDisplay={null}
             method={"POST"}
             onError={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["apiRequest2", "error"]).apply(
+              generateStateOnChangeProp($state, ["search", "error"]).apply(
                 null,
                 eventArgs
               );
             }}
             onLoading={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "apiRequest2",
-                "loading"
-              ]).apply(null, eventArgs);
+              generateStateOnChangeProp($state, ["search", "loading"]).apply(
+                null,
+                eventArgs
+              );
             }}
             onSuccess={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["apiRequest2", "data"]).apply(
+              generateStateOnChangeProp($state, ["search", "data"]).apply(
                 null,
                 eventArgs
               );
@@ -1385,7 +1428,7 @@ const PlasmicDescendants = {
     "center",
     "apiRequest",
     "home",
-    "apiRequest2"
+    "search"
   ],
   sideEffect: ["sideEffect"],
   homePage: ["homePage", "menu2", "img", "textInput"],
@@ -1397,7 +1440,7 @@ const PlasmicDescendants = {
   center: ["center"],
   apiRequest: ["apiRequest", "home"],
   home: ["home"],
-  apiRequest2: ["apiRequest2"]
+  search: ["search"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1414,7 +1457,7 @@ type NodeDefaultElementType = {
   center: typeof Center;
   apiRequest: typeof ApiRequest;
   home: typeof Home;
-  apiRequest2: typeof ApiRequest;
+  search: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1489,7 +1532,7 @@ export const PlasmicHomepage = Object.assign(
     center: makeNodeComponent("center"),
     apiRequest: makeNodeComponent("apiRequest"),
     home: makeNodeComponent("home"),
-    apiRequest2: makeNodeComponent("apiRequest2"),
+    search: makeNodeComponent("search"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

@@ -2149,6 +2149,12 @@
           "name": "TextCollapse",
           "displayName": "TextCollapse",
           "componentImportPath": "@/components/TextCollapse"
+        },
+        {
+          "id": "or4OA254jYBm",
+          "name": "JalaliMoment",
+          "displayName": "JalaliMoment",
+          "componentImportPath": "@/components/JalaliMoment"
         }
       ],
       "customFunctions": []

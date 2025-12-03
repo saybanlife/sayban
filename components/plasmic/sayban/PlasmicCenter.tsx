@@ -59,13 +59,13 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { SwiperSlider } from "@/components/SwiperSlider"; // plasmic-import: byElilYJKEPk/codeComponent
 import Topics from "../../Topics"; // plasmic-import: K08M_vX52xMI/component
 import Service from "../../Service"; // plasmic-import: 0JNfyGRvC0FA/component
 import { Iframe } from "@plasmicpkgs/plasmic-basic-components";
-import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import { AntdProgress } from "@plasmicpkgs/antd5/skinny/registerProgress";
 import Comment from "../../Comment"; // plasmic-import: 4NLVwAuHCB3Q/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
@@ -122,14 +122,15 @@ export type PlasmicCenter__OverridesType = {
   service?: Flex__<typeof Service>;
   iframe?: Flex__<typeof Iframe>;
   link?: Flex__<"a"> & Partial<LinkProps>;
-  embedHtml?: Flex__<typeof Embed>;
   progress?: Flex__<typeof AntdProgress>;
   comment?: Flex__<typeof Comment>;
   button?: Flex__<typeof Button>;
   dialog2?: Flex__<typeof Dialog>;
   calendar?: Flex__<typeof Calendar>;
   topics2?: Flex__<typeof Topics>;
+  date?: Flex__<typeof ApiRequest>;
   selectTime?: Flex__<typeof SelectTime>;
+  button2?: Flex__<typeof Button>;
 };
 
 export interface DefaultCenterProps {
@@ -357,6 +358,108 @@ function PlasmicCenter__RenderFunc(props: {
         type: "private",
         variableType: "number",
         initFunc: ({ $props, $state, $queries, $ctx }) => 0
+      },
+      {
+        path: "year",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                function faToEn(str) {
+                  return str.replace(/[۰-۹]/g, d =>
+                    String("۰۱۲۳۴۵۶۷۸۹".indexOf(d))
+                  );
+                }
+                const faDate = new Date().toLocaleDateString("fa-IR", {
+                  year: "numeric",
+                  month: "2-digit"
+                });
+                const enDate = faToEn(faDate);
+                const [year, month] = enDate.split("/").map(Number);
+                const dateObj = {
+                  year,
+                  month
+                };
+                return dateObj;
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return {};
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "date.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "date.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "date.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "yearActive",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                function faToEn(str) {
+                  return str.replace(/[۰-۹]/g, d =>
+                    String("۰۱۲۳۴۵۶۷۸۹".indexOf(d))
+                  );
+                }
+                const faDate = new Date().toLocaleDateString("fa-IR", {
+                  year: "numeric",
+                  month: "2-digit"
+                });
+                const enDate = faToEn(faDate);
+                const [year, month] = enDate.split("/").map(Number);
+                const dateObj = {
+                  year,
+                  month
+                };
+                return dateObj;
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return {};
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "button2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "selectTime.selected",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ``
       }
     ],
     [$props, $ctx, $refs]
@@ -422,6 +525,13 @@ function PlasmicCenter__RenderFunc(props: {
         }
       }}
     >
+      <Embed
+        className={classNames("__wab_instance", sty.embedHtml__m2QtL)}
+        code={
+          '<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>\r\n'
+        }
+      />
+
       <Header
         data-plasmic-name={"header"}
         data-plasmic-override={overrides.header}
@@ -1432,11 +1542,9 @@ function PlasmicCenter__RenderFunc(props: {
                             </div>
                           </div>
                           <Embed
-                            data-plasmic-name={"embedHtml"}
-                            data-plasmic-override={overrides.embedHtml}
                             className={classNames(
                               "__wab_instance",
-                              sty.embedHtml
+                              sty.embedHtml__qRdTw
                             )}
                             code={(() => {
                               try {
@@ -1690,7 +1798,7 @@ drawRating(${$state.rate});
       </ApiRequest>
       {(() => {
         try {
-          return $state.apiRequest?.data?.result;
+          return $state.apiRequest?.data?.result && $state.service;
         } catch (e) {
           if (
             e instanceof TypeError ||
@@ -1896,9 +2004,58 @@ drawRating(${$state.rate});
             </div>
             <div className={classNames(projectcss.all, sty.freeBox__pEwRp)}>
               <Next
-                active={true}
+                active={(() => {
+                  try {
+                    return $state.year.month == $state.yearActive.month + 1;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
                 className={classNames("__wab_instance", sty.next__mEl0O)}
                 dir={"righte"}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateYearMonth"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["year", "month"]
+                          },
+                          operation: 3
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, oldValue - 1);
+                          return oldValue - 1;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateYearMonth"] != null &&
+                    typeof $steps["updateYearMonth"] === "object" &&
+                    typeof $steps["updateYearMonth"].then === "function"
+                  ) {
+                    $steps["updateYearMonth"] = await $steps["updateYearMonth"];
+                  }
+                }}
               >
                 {"\u0645\u0627\u0647 \u0642\u0628\u0644"}
               </Next>
@@ -1909,28 +2066,156 @@ drawRating(${$state.rate});
                   sty.text__wjmMc
                 )}
               >
-                {
-                  "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u0645\u0627\u0646 "
-                }
+                <React.Fragment>
+                  {(() => {
+                    try {
+                      return (() => {
+                        const persianMonthsFa = [
+                          "فروردین",
+                          "اردیبهشت",
+                          "خرداد",
+                          "تیر",
+                          "مرداد",
+                          "شهریور",
+                          "مهر",
+                          "آبان",
+                          "آذر",
+                          "دی",
+                          "بهمن",
+                          "اسفند"
+                        ];
+
+                        return `${persianMonthsFa[$state.year.month - 1]}  ${$state.year.year}`;
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u0645\u0627\u0646 ";
+                      }
+                      throw e;
+                    }
+                  })()}
+                </React.Fragment>
               </div>
               <Next
+                active={(() => {
+                  try {
+                    return $state.year.month == $state.yearActive.month;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
+                children2={"\u0645\u0627\u0647 \u0628\u0639\u062f"}
                 className={classNames("__wab_instance", sty.next__iiXch)}
                 dir={"left"}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateYearMonth"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["year", "month"]
+                          },
+                          operation: 2
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, oldValue + 1);
+                          return oldValue + 1;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateYearMonth"] != null &&
+                    typeof $steps["updateYearMonth"] === "object" &&
+                    typeof $steps["updateYearMonth"].then === "function"
+                  ) {
+                    $steps["updateYearMonth"] = await $steps["updateYearMonth"];
+                  }
+                }}
               />
             </div>
             <Calendar
               data-plasmic-name={"calendar"}
               data-plasmic-override={overrides.calendar}
               className={classNames("__wab_instance", sty.calendar)}
+              clearTime={async () => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return ($state.selectTime.selected = "");
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+              }}
               days={(() => {
                 try {
-                  return [
-                    "2025-01-10",
-                    "2025-02-22",
-                    "2025-03-15",
-                    "2025-04-30",
-                    "2025-05-18"
-                  ];
+                  return (() => {
+                    function getNext7DaysJalali() {
+                      const result = [];
+                      const today = new Date();
+                      for (let i = 0; i < 7; i++) {
+                        const date = new Date();
+                        date.setDate(today.getDate() + i);
+                        const { jy, jm, jd } = window.jalaali.toJalaali(
+                          date.getFullYear(),
+                          date.getMonth() + 1,
+                          date.getDate()
+                        );
+                        result.push({
+                          gy: date.getFullYear(),
+                          gm: date.getMonth() + 1,
+                          gd: date.getDate(),
+                          month: date.toLocaleString("fa-IR", {
+                            month: "long"
+                          }),
+                          week: date.toLocaleString("fa-IR", {
+                            weekday: "long"
+                          }),
+                          jy,
+                          jm,
+                          jd,
+                          formatted: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+                        });
+                      }
+                      return result;
+                    }
+                    return getNext7DaysJalali();
+                  })();
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -1999,12 +2284,255 @@ drawRating(${$state.rate});
           />
 
           <div className={classNames(projectcss.all, sty.freeBox__sDCwv)}>
-            <SelectTime
-              data-plasmic-name={"selectTime"}
-              data-plasmic-override={overrides.selectTime}
-              className={classNames("__wab_instance", sty.selectTime)}
-            />
+            <ApiRequest
+              data-plasmic-name={"date"}
+              data-plasmic-override={overrides.date}
+              className={classNames("__wab_instance", sty.date)}
+              errorDisplay={null}
+              loadingDisplay={null}
+              method={"GET"}
+              onError={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["date", "error"]).apply(
+                  null,
+                  eventArgs
+                );
+              }}
+              onLoading={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["date", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+              }}
+              onSuccess={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["date", "data"]).apply(
+                  null,
+                  eventArgs
+                );
+              }}
+              params={(() => {
+                try {
+                  return {
+                    id: $state.service.id,
+                    date: $state.calendar.selected
+                  };
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              shouldFetch={true}
+              url={"https://sayban.darkube.app/webhook/service/working/"}
+            >
+              <SelectTime
+                data-plasmic-name={"selectTime"}
+                data-plasmic-override={overrides.selectTime}
+                className={classNames("__wab_instance", sty.selectTime)}
+                onSelectedChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "selectTime",
+                    "selected"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                selected={generateStateValueProp($state, [
+                  "selectTime",
+                  "selected"
+                ])}
+                times={(() => {
+                  try {
+                    return $state.date.data.result.find(
+                      i => i.period == $state.topics2.selected
+                    ).slots;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+              />
+            </ApiRequest>
           </div>
+          <section className={classNames(projectcss.all, sty.section__lYw80)}>
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__o8Sh
+              )}
+            >
+              {""}
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox___2LWei)}>
+              {(() => {
+                try {
+                  return $state.selectTime.selected;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div className={classNames(projectcss.all, sty.freeBox__xdYqj)}>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox___0MTld)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__r1R6K
+                      )}
+                    >
+                      <React.Fragment>{`${new Date($state.calendar.selected).toLocaleString("fa-IR", { month: "long", day: "numeric" })}، ${$state.selectTime.selected.slot_start} - ${$state.selectTime.selected.slot_end}`}</React.Fragment>
+                    </div>
+                  </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__ahK9G
+                    )}
+                  >
+                    <React.Fragment>
+                      {$state.service?.final_price?.toLocaleString() + " تومان"}
+                    </React.Fragment>
+                  </div>
+                </div>
+              ) : null}
+              {(() => {
+                try {
+                  return !$state.selectTime.selected;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div className={classNames(projectcss.all, sty.freeBox__ghGw)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__v33LD
+                    )}
+                  >
+                    {
+                      "\u0644\u0637\u0641\u0627 \u06cc\u06a9 \u062a\u0627\u0631\u06cc\u062e \u0648 \u0632\u0645\u0627\u0646 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f."
+                    }
+                  </div>
+                </div>
+              ) : null}
+              <Button
+                data-plasmic-name={"button2"}
+                data-plasmic-override={overrides.button2}
+                className={classNames("__wab_instance", sty.button2)}
+                disabled={(() => {
+                  try {
+                    return !$state.selectTime.selected;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__iBm3F
+                    )}
+                  >
+                    {
+                      "\u062a\u0627\u06cc\u06cc\u062f \u0648 \u0627\u062f\u0627\u0645\u0647"
+                    }
+                  </div>
+                }
+                loading={generateStateValueProp($state, ["button2", "loading"])}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateDialog2Opendialog"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["dialog2", "opendialog"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateDialog2Opendialog"] != null &&
+                    typeof $steps["updateDialog2Opendialog"] === "object" &&
+                    typeof $steps["updateDialog2Opendialog"].then === "function"
+                  ) {
+                    $steps["updateDialog2Opendialog"] =
+                      await $steps["updateDialog2Opendialog"];
+                  }
+                }}
+                onLoadingChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "button2",
+                    "loading"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                size={"extraLarge"}
+              />
+            </div>
+          </section>
         </div>
       </Dialog>
     </div>
@@ -2021,14 +2549,15 @@ const PlasmicDescendants = {
     "service",
     "iframe",
     "link",
-    "embedHtml",
     "progress",
     "comment",
     "button",
     "dialog2",
     "calendar",
     "topics2",
-    "selectTime"
+    "date",
+    "selectTime",
+    "button2"
   ],
   header: ["header"],
   apiRequest: [
@@ -2038,7 +2567,6 @@ const PlasmicDescendants = {
     "service",
     "iframe",
     "link",
-    "embedHtml",
     "progress",
     "comment"
   ],
@@ -2047,14 +2575,15 @@ const PlasmicDescendants = {
   service: ["service"],
   iframe: ["iframe"],
   link: ["link"],
-  embedHtml: ["embedHtml"],
   progress: ["progress"],
   comment: ["comment"],
   button: ["button"],
-  dialog2: ["dialog2", "calendar", "topics2", "selectTime"],
+  dialog2: ["dialog2", "calendar", "topics2", "date", "selectTime", "button2"],
   calendar: ["calendar"],
   topics2: ["topics2"],
-  selectTime: ["selectTime"]
+  date: ["date", "selectTime"],
+  selectTime: ["selectTime"],
+  button2: ["button2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -2068,14 +2597,15 @@ type NodeDefaultElementType = {
   service: typeof Service;
   iframe: typeof Iframe;
   link: "a";
-  embedHtml: typeof Embed;
   progress: typeof AntdProgress;
   comment: typeof Comment;
   button: typeof Button;
   dialog2: typeof Dialog;
   calendar: typeof Calendar;
   topics2: typeof Topics;
+  date: typeof ApiRequest;
   selectTime: typeof SelectTime;
+  button2: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -2147,14 +2677,15 @@ export const PlasmicCenter = Object.assign(
     service: makeNodeComponent("service"),
     iframe: makeNodeComponent("iframe"),
     link: makeNodeComponent("link"),
-    embedHtml: makeNodeComponent("embedHtml"),
     progress: makeNodeComponent("progress"),
     comment: makeNodeComponent("comment"),
     button: makeNodeComponent("button"),
     dialog2: makeNodeComponent("dialog2"),
     calendar: makeNodeComponent("calendar"),
     topics2: makeNodeComponent("topics2"),
+    date: makeNodeComponent("date"),
     selectTime: makeNodeComponent("selectTime"),
+    button2: makeNodeComponent("button2"),
 
     // Metadata about props expected for PlasmicCenter
     internalVariantProps: PlasmicCenter__VariantProps,

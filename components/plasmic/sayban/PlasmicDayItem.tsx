@@ -85,9 +85,15 @@ export const PlasmicDayItem__VariantProps = new Array<VariantPropType>(
   "disable"
 );
 
-export type PlasmicDayItem__ArgsType = { onClick?: (event: any) => void };
+export type PlasmicDayItem__ArgsType = {
+  onClick?: (event: any) => void;
+  data?: any;
+};
 type ArgPropType = keyof PlasmicDayItem__ArgsType;
-export const PlasmicDayItem__ArgProps = new Array<ArgPropType>("onClick");
+export const PlasmicDayItem__ArgProps = new Array<ArgPropType>(
+  "onClick",
+  "data"
+);
 
 export type PlasmicDayItem__OverridesType = {
   root?: Flex__<"div">;
@@ -96,6 +102,7 @@ export type PlasmicDayItem__OverridesType = {
 
 export interface DefaultDayItemProps {
   onClick?: (event: any) => void;
+  data?: any;
   select?: SingleBooleanChoiceArg<"select">;
   disable?: SingleBooleanChoiceArg<"disable">;
   className?: string;
@@ -190,7 +197,21 @@ function PlasmicDayItem__RenderFunc(props: {
           sty.text__lsz5S
         )}
       >
-        {"\u0627\u0645\u0631\u0648\u0632"}
+        <React.Fragment>
+          {(() => {
+            try {
+              return $props.data.week;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return "\u0627\u0645\u0631\u0648\u0632";
+              }
+              throw e;
+            }
+          })()}
+        </React.Fragment>
       </div>
       <div
         className={classNames(projectcss.all, sty.freeBox__h8Ix2, {
@@ -224,7 +245,21 @@ function PlasmicDayItem__RenderFunc(props: {
               }
             )}
           >
-            {"11"}
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.data.jd;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "11";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
           </div>
         </div>
         <Icon32Icon

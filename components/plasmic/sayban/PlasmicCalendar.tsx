@@ -79,12 +79,14 @@ export type PlasmicCalendar__ArgsType = {
   days?: any;
   selected?: number;
   onSelectedChange?: (val: string) => void;
+  clearTime?: () => void;
 };
 type ArgPropType = keyof PlasmicCalendar__ArgsType;
 export const PlasmicCalendar__ArgProps = new Array<ArgPropType>(
   "days",
   "selected",
-  "onSelectedChange"
+  "onSelectedChange",
+  "clearTime"
 );
 
 export type PlasmicCalendar__OverridesType = {
@@ -96,6 +98,7 @@ export interface DefaultCalendarProps {
   days?: any;
   selected?: number;
   onSelectedChange?: (val: string) => void;
+  clearTime?: () => void;
   className?: string;
 }
 
@@ -197,6 +200,19 @@ function PlasmicCalendar__RenderFunc(props: {
             data-plasmic-name={"dayItem"}
             data-plasmic-override={overrides.dayItem}
             className={classNames("__wab_instance", sty.dayItem)}
+            data={(() => {
+              try {
+                return currentItem;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
             key={currentIndex}
             onClick={async event => {
               const $steps = {};
@@ -209,7 +225,7 @@ function PlasmicCalendar__RenderFunc(props: {
                         variablePath: ["selected"]
                       },
                       operation: 0,
-                      value: currentItem
+                      value: currentItem.formatted
                     };
                     return (({ variable, value, startIndex, deleteCount }) => {
                       if (!variable) {
@@ -229,10 +245,26 @@ function PlasmicCalendar__RenderFunc(props: {
               ) {
                 $steps["updateSelected"] = await $steps["updateSelected"];
               }
+
+              $steps["updateSelected2"] = true
+                ? (() => {
+                    const actionArgs = { eventRef: $props["clearTime"] };
+                    return (({ eventRef, args }) => {
+                      return eventRef?.(...(args ?? []));
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSelected2"] != null &&
+                typeof $steps["updateSelected2"] === "object" &&
+                typeof $steps["updateSelected2"].then === "function"
+              ) {
+                $steps["updateSelected2"] = await $steps["updateSelected2"];
+              }
             }}
             select={(() => {
               try {
-                return $state.selected == currentItem;
+                return $state.selected == currentItem.formatted;
               } catch (e) {
                 if (
                   e instanceof TypeError ||

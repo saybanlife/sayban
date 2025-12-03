@@ -9,6 +9,21 @@
   position: relative;
   padding: 0px;
 }
+.freeBox___5WJuH {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 0px;
+}
+.freeBoxactive___5WJuHxP55R {
+  display: none;
+}
 .svg__nY58K {
   object-fit: cover;
   max-width: 100%;
@@ -23,7 +38,7 @@
 .svgdir_left__nY58Ki0Smc {
   display: none;
 }
-.freeBox {
+.freeBox__pPwDs {
   width: auto;
   height: auto;
   max-width: 100%;
@@ -32,7 +47,7 @@
   flex-direction: row;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .freeBox {
+  .freeBox__pPwDs {
     padding-right: 0px;
   }
 }
@@ -57,5 +72,70 @@
   color: var(--token-MAnhFXGh8Ir8);
 }
 .svgdir_righte___3C20AbxmJx {
+  display: none;
+}
+.freeBox__juzh {
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  display: none;
+  padding: 0px;
+}
+.freeBoxactive__juzhXP55R {
+  display: flex;
+}
+.svg__ynIr {
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-KjATzAYJ5IB7);
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.svgactive__ynIrxP55R {
+  color: var(--token-MAnhFXGh8Ir8);
+}
+.svgdir_left__ynIri0Smc {
+  display: none;
+}
+.freeBox__b1RfY {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__b1RfY {
+    padding-right: 0px;
+  }
+}
+.slotTargetChildren2 {
+  font-size: var(--token-9jx4RULNbWhl);
+  font-weight: 400;
+  color: var(--token-KjATzAYJ5IB7);
+  text-align: right;
+}
+.slotTargetChildren2active {
+  color: var(--token-MAnhFXGh8Ir8);
+}
+.svg__mqDbA {
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-KjATzAYJ5IB7);
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.svgactive__mqDbAxP55R {
+  color: var(--token-MAnhFXGh8Ir8);
+}
+.svgdir_righte__mqDbAbxmJx {
   display: none;
 }
