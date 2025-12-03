@@ -85,12 +85,14 @@ export type PlasmicCity__ArgsType = {
   city?: string;
   onCityChange?: (val: string) => void;
   back?: () => void;
+  token?: string;
 };
 type ArgPropType = keyof PlasmicCity__ArgsType;
 export const PlasmicCity__ArgProps = new Array<ArgPropType>(
   "city",
   "onCityChange",
-  "back"
+  "back",
+  "token"
 );
 
 export type PlasmicCity__OverridesType = {
@@ -107,6 +109,7 @@ export interface DefaultCityProps {
   city?: string;
   onCityChange?: (val: string) => void;
   back?: () => void;
+  token?: string;
   className?: string;
 }
 
@@ -454,6 +457,23 @@ function PlasmicCity__RenderFunc(props: {
         data-plasmic-name={"apiRequest"}
         data-plasmic-override={overrides.apiRequest}
         className={classNames("__wab_instance", sty.apiRequest)}
+        config={(() => {
+          try {
+            return {
+              headers: {
+                Authorization: `Bearer ${$props.token}`
+              }
+            };
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
         errorDisplay={null}
         loadingDisplay={null}
         method={"GET"}

@@ -919,6 +919,19 @@ function PlasmicHomepage__RenderFunc(props: {
                 throw e;
               }
             })()}
+            token={(() => {
+              try {
+                return $state.token;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
           />
 
           <Center
@@ -1013,6 +1026,23 @@ function PlasmicHomepage__RenderFunc(props: {
                 throw e;
               }
             })()}
+            token={
+              hasVariant($state, "page", "center")
+                ? (() => {
+                    try {
+                      return $state.token;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()
+                : undefined
+            }
           />
 
           <ApiRequest

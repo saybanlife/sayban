@@ -76,7 +76,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicLogin.module.css"; // plasmic-import: 9IHhNJeWZ_i2/css
 
-import Icon29Icon from "./icons/PlasmicIcon__Icon29"; // plasmic-import: HcCx9V8iyiy_/icon
+import Icon39Icon from "./icons/PlasmicIcon__Icon39"; // plasmic-import: mY1x2mJnCMIY/icon
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: L5-0jFcT5N2O/icon
@@ -532,7 +532,7 @@ function PlasmicLogin__RenderFunc(props: {
                 </div>
               </div>
             </div>
-            <Icon29Icon
+            <Icon39Icon
               className={classNames(projectcss.all, sty.svg__nfxVa, {
                 [sty.svgpage_code__nfxVaohvpc]: hasVariant(
                   $state,

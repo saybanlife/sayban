@@ -83,6 +83,7 @@ export type PlasmicSubcategories__ArgsType = {
   onCenterChange2?: (val: string) => void;
   slug?: string;
   onCenter?: () => void;
+  token?: string;
 };
 type ArgPropType = keyof PlasmicSubcategories__ArgsType;
 export const PlasmicSubcategories__ArgProps = new Array<ArgPropType>(
@@ -90,13 +91,14 @@ export const PlasmicSubcategories__ArgProps = new Array<ArgPropType>(
   "center",
   "onCenterChange2",
   "slug",
-  "onCenter"
+  "onCenter",
+  "token"
 );
 
 export type PlasmicSubcategories__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<typeof Header>;
-  apiRequest?: Flex__<typeof ApiRequest>;
+  centers?: Flex__<typeof ApiRequest>;
   item?: Flex__<typeof Item>;
 };
 
@@ -106,6 +108,7 @@ export interface DefaultSubcategoriesProps {
   onCenterChange2?: (val: string) => void;
   slug?: string;
   onCenter?: () => void;
+  token?: string;
   className?: string;
 }
 
@@ -151,19 +154,19 @@ function PlasmicSubcategories__RenderFunc(props: {
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "apiRequest.data",
+        path: "centers.data",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "apiRequest.error",
+        path: "centers.error",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "apiRequest.loading",
+        path: "centers.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -212,9 +215,26 @@ function PlasmicSubcategories__RenderFunc(props: {
 
       <div className={classNames(projectcss.all, sty.freeBox__zwWvt)}>
         <ApiRequest
-          data-plasmic-name={"apiRequest"}
-          data-plasmic-override={overrides.apiRequest}
-          className={classNames("__wab_instance", sty.apiRequest)}
+          data-plasmic-name={"centers"}
+          data-plasmic-override={overrides.centers}
+          className={classNames("__wab_instance", sty.centers)}
+          config={(() => {
+            try {
+              return {
+                headers: {
+                  Authorization: `Bearer ${$props.token}`
+                }
+              };
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
           errorDisplay={null}
           loadingDisplay={(_par =>
             !_par ? [] : Array.isArray(_par) ? _par : [_par])([2, 3, 4]).map(
@@ -235,19 +255,19 @@ function PlasmicSubcategories__RenderFunc(props: {
           )}
           method={"GET"}
           onError={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+            generateStateOnChangeProp($state, ["centers", "error"]).apply(
               null,
               eventArgs
             );
           }}
           onLoading={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
+            generateStateOnChangeProp($state, ["centers", "loading"]).apply(
               null,
               eventArgs
             );
           }}
           onSuccess={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+            generateStateOnChangeProp($state, ["centers", "data"]).apply(
               null,
               eventArgs
             );
@@ -285,7 +305,7 @@ function PlasmicSubcategories__RenderFunc(props: {
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {
               try {
-                return $state.apiRequest.data.result;
+                return $state.centers.data.result;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -381,9 +401,9 @@ function PlasmicSubcategories__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "apiRequest", "item"],
+  root: ["root", "header", "centers", "item"],
   header: ["header"],
-  apiRequest: ["apiRequest", "item"],
+  centers: ["centers", "item"],
   item: ["item"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -392,7 +412,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
-  apiRequest: typeof ApiRequest;
+  centers: typeof ApiRequest;
   item: typeof Item;
 };
 
@@ -459,7 +479,7 @@ export const PlasmicSubcategories = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
-    apiRequest: makeNodeComponent("apiRequest"),
+    centers: makeNodeComponent("centers"),
     item: makeNodeComponent("item"),
 
     // Metadata about props expected for PlasmicSubcategories

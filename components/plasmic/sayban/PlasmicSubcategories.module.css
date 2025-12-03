@@ -57,7 +57,7 @@
     padding: 0px;
   }
 }
-.apiRequest:global(.__wab_instance) {
+.centers:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
 }

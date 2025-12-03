@@ -104,19 +104,21 @@ export type PlasmicCenter__ArgsType = {
   center?: any;
   id?: string;
   jalali?: any;
+  token?: string;
 };
 type ArgPropType = keyof PlasmicCenter__ArgsType;
 export const PlasmicCenter__ArgProps = new Array<ArgPropType>(
   "subcatgori",
   "center",
   "id",
-  "jalali"
+  "jalali",
+  "token"
 );
 
 export type PlasmicCenter__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<typeof Header>;
-  apiRequest?: Flex__<typeof ApiRequest>;
+  full?: Flex__<typeof ApiRequest>;
   swiperSlider?: Flex__<typeof SwiperSlider>;
   topics?: Flex__<typeof Topics>;
   service?: Flex__<typeof Service>;
@@ -138,6 +140,7 @@ export interface DefaultCenterProps {
   center?: any;
   id?: string;
   jalali?: any;
+  token?: string;
   top?: SingleBooleanChoiceArg<"top">;
   className?: string;
 }
@@ -162,7 +165,10 @@ function PlasmicCenter__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
+        {
+          token:
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwaXJlIjoxNzY0NTA2MjczfQ.A6wRqW0jMYVg_rZ4OMZ5oXrcOVwKq3BG4i_wmvKf_8A"
+        },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -210,7 +216,7 @@ function PlasmicCenter__RenderFunc(props: {
                   value: "Description"
                 },
                 {
-                  label: `نظرات <span style="font-size: 11px;">( ${$state.apiRequest?.data?.result?.rating_avg}⭐️)</span>`,
+                  label: `نظرات <span style="font-size: 11px;">( ${$state.full?.data?.result?.rating_avg}⭐️)</span>`,
                   value: "Comments"
                 }
               ];
@@ -263,7 +269,7 @@ function PlasmicCenter__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state?.apiRequest?.data?.result?.rating_avg;
+              return $state.full?.data?.result?.rating_avg;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -276,19 +282,19 @@ function PlasmicCenter__RenderFunc(props: {
           })()
       },
       {
-        path: "apiRequest.data",
+        path: "full.data",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "apiRequest.error",
+        path: "full.error",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "apiRequest.loading",
+        path: "full.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -550,7 +556,7 @@ function PlasmicCenter__RenderFunc(props: {
             <React.Fragment>
               {(() => {
                 try {
-                  return $state?.apiRequest?.data?.result?.name;
+                  return $state.full?.data?.result?.name;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -568,9 +574,26 @@ function PlasmicCenter__RenderFunc(props: {
       />
 
       <ApiRequest
-        data-plasmic-name={"apiRequest"}
-        data-plasmic-override={overrides.apiRequest}
-        className={classNames("__wab_instance", sty.apiRequest)}
+        data-plasmic-name={"full"}
+        data-plasmic-override={overrides.full}
+        className={classNames("__wab_instance", sty.full)}
+        config={(() => {
+          try {
+            return {
+              headers: {
+                Authorization: `Bearer ${$props.token}`
+              }
+            };
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
         errorDisplay={null}
         loadingDisplay={
           <div className={classNames(projectcss.all, sty.freeBox__ba1Jk)}>
@@ -709,19 +732,19 @@ function PlasmicCenter__RenderFunc(props: {
         }
         method={"GET"}
         onError={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+          generateStateOnChangeProp($state, ["full", "error"]).apply(
             null,
             eventArgs
           );
         }}
         onLoading={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
+          generateStateOnChangeProp($state, ["full", "loading"]).apply(
             null,
             eventArgs
           );
         }}
         onSuccess={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+          generateStateOnChangeProp($state, ["full", "data"]).apply(
             null,
             eventArgs
           );
@@ -800,7 +823,7 @@ function PlasmicCenter__RenderFunc(props: {
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {
                   try {
-                    return $state.apiRequest.data.result.image;
+                    return $state.full.data.result.image;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -876,7 +899,7 @@ function PlasmicCenter__RenderFunc(props: {
                 loading={"lazy"}
                 src={(() => {
                   try {
-                    return $state.apiRequest.data.result.main_image;
+                    return $state.full.data.result.main_image;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -905,7 +928,7 @@ function PlasmicCenter__RenderFunc(props: {
                 )}
               >
                 <React.Fragment>
-                  {$state?.apiRequest?.data?.result?.name}
+                  {$state.full?.data?.result?.name}
                 </React.Fragment>
               </div>
               <div
@@ -1003,7 +1026,7 @@ function PlasmicCenter__RenderFunc(props: {
                       <React.Fragment>
                         {(() => {
                           try {
-                            return $state.apiRequest.data?.result?.description;
+                            return $state.full.data?.result?.description;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1056,7 +1079,7 @@ function PlasmicCenter__RenderFunc(props: {
                         !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                         (() => {
                           try {
-                            return $state.apiRequest.data.result.services;
+                            return $state.full.data.result.services;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1180,7 +1203,7 @@ function PlasmicCenter__RenderFunc(props: {
                       <React.Fragment>
                         {(() => {
                           try {
-                            return $state.apiRequest?.data?.result?.phone;
+                            return $state.full?.data?.result?.phone;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1239,8 +1262,7 @@ function PlasmicCenter__RenderFunc(props: {
                       <React.Fragment>
                         {(() => {
                           try {
-                            return $state.apiRequest?.data?.result
-                              ?.working_hours;
+                            return $state.full?.data?.result?.working_hours;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1294,7 +1316,7 @@ function PlasmicCenter__RenderFunc(props: {
                       <React.Fragment>
                         {(() => {
                           try {
-                            return $state.apiRequest.data.result.address;
+                            return $state.full.data.result.address;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1320,10 +1342,8 @@ function PlasmicCenter__RenderFunc(props: {
                         src={(() => {
                           try {
                             return (() => {
-                              var lat =
-                                $state.apiRequest?.data?.result?.latitude;
-                              var lng =
-                                $state.apiRequest?.data?.result?.longitude;
+                              var lat = $state.full?.data?.result?.latitude;
+                              var lng = $state.full?.data?.result?.longitude;
                               var neshanUrl = `https://neshan.org/maps/iframe/places/#c${lat}-${lng}-18z-0p/${lat}/${lng}`;
                               return neshanUrl;
                             })();
@@ -1356,10 +1376,8 @@ function PlasmicCenter__RenderFunc(props: {
                         href={(() => {
                           try {
                             return (() => {
-                              var lat =
-                                $state.apiRequest?.data?.result?.latitude;
-                              var lng =
-                                $state.apiRequest?.data?.result?.longitude;
+                              var lat = $state.full?.data?.result?.latitude;
+                              var lng = $state.full?.data?.result?.longitude;
                               if (
                                 /iPhone|iPad|iPod/i.test(
                                   window.navigator.userAgent
@@ -1412,7 +1430,7 @@ function PlasmicCenter__RenderFunc(props: {
                   >
                     {(() => {
                       try {
-                        return !$state.apiRequest.data.reviews[0].total_reviews;
+                        return !$state.full.data.reviews[0].total_reviews;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -1449,8 +1467,7 @@ function PlasmicCenter__RenderFunc(props: {
 
                         {(() => {
                           try {
-                            return !$state.apiRequest.data.reviews[0]
-                              .total_reviews;
+                            return !$state.full.data.reviews[0].total_reviews;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1477,7 +1494,7 @@ function PlasmicCenter__RenderFunc(props: {
                     ) : null}
                     {(() => {
                       try {
-                        return $state.apiRequest.data.reviews[0].total_reviews;
+                        return $state.full.data.reviews[0].total_reviews;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -1638,7 +1655,7 @@ drawRating(${$state.rate});
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return `${$state.apiRequest.data.reviews[0].total_reviews} نفر `;
+                                  return `${$state.full.data.reviews[0].total_reviews} نفر `;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -1671,7 +1688,7 @@ drawRating(${$state.rate});
                                     }));
                                   }
                                   const reviewsArray = buildReviewArray(
-                                    $state?.apiRequest?.data?.reviews[0]
+                                    $state.full?.data?.reviews[0]
                                   );
                                   return reviewsArray;
                                 })();
@@ -1763,7 +1780,7 @@ drawRating(${$state.rate});
                       !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                       (() => {
                         try {
-                          return $state.apiRequest.data.reviews.filter(
+                          return $state.full.data.reviews.filter(
                             i => i.comment != null
                           );
                         } catch (e) {
@@ -1798,7 +1815,7 @@ drawRating(${$state.rate});
       </ApiRequest>
       {(() => {
         try {
-          return $state.apiRequest?.data?.result && $state.service;
+          return $state.full?.data?.result && $state.service;
         } catch (e) {
           if (
             e instanceof TypeError ||
@@ -2288,6 +2305,23 @@ drawRating(${$state.rate});
               data-plasmic-name={"date"}
               data-plasmic-override={overrides.date}
               className={classNames("__wab_instance", sty.date)}
+              config={(() => {
+                try {
+                  return {
+                    headers: {
+                      Authorization: `Bearer ${$props.token}`
+                    }
+                  };
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
               errorDisplay={null}
               loadingDisplay={null}
               method={"GET"}
@@ -2543,7 +2577,7 @@ const PlasmicDescendants = {
   root: [
     "root",
     "header",
-    "apiRequest",
+    "full",
     "swiperSlider",
     "topics",
     "service",
@@ -2560,8 +2594,8 @@ const PlasmicDescendants = {
     "button2"
   ],
   header: ["header"],
-  apiRequest: [
-    "apiRequest",
+  full: [
+    "full",
     "swiperSlider",
     "topics",
     "service",
@@ -2591,7 +2625,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
-  apiRequest: typeof ApiRequest;
+  full: typeof ApiRequest;
   swiperSlider: typeof SwiperSlider;
   topics: typeof Topics;
   service: typeof Service;
@@ -2671,7 +2705,7 @@ export const PlasmicCenter = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
-    apiRequest: makeNodeComponent("apiRequest"),
+    full: makeNodeComponent("full"),
     swiperSlider: makeNodeComponent("swiperSlider"),
     topics: makeNodeComponent("topics"),
     service: makeNodeComponent("service"),
