@@ -20,6 +20,7 @@ import { Chart, chartMeta } from "@/fragment/components/chart";
 import { Textarea, textareaMeta } from "@/fragment/components/textarea";
 import {SwiperSlider,SwiperSliderMeta} from "@/components/SwiperSlider";
 import {TextCollapse,TextCollapseMeta} from "@/components/TextCollapse";
+import {JalaliMoment ,JalaliMomentMeta} from "@/components/JalaliMoment ";
 
 
 
@@ -42,5 +43,7 @@ registerComponent(Chart, chartMeta);
 registerComponent(Textarea, textareaMeta);
 registerComponent(SwiperSlider,SwiperSliderMeta);
 registerComponent(TextCollapse,TextCollapseMeta);
+registerComponent(JalaliMoment ,JalaliMomentMeta);
+
 
 
