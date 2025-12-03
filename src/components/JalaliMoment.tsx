@@ -1,0 +1,74 @@
+import React from "react";
+import moment from "jalali-moment";
+import { classNames } from "@plasmicapp/react-web";
+import { CodeComponentMeta } from "@plasmicapp/host";
+
+type JalaliMomentProps = {
+  date?: string;        // تاریخ ورودی
+  format?: string;      // فرمت خروجی
+  action?: string;      // اسم فانکشن moment
+  amount?: number;      // مقدار برای add/subtract
+  unit?: string;        // واحد add/subtract مثل days
+  className?: string;   // استایل در پلازمیک
+};
+
+export const JalaliMoment = (props: JalaliMomentProps) => {
+  const {
+    date,
+    format = "jYYYY/jMM/jDD",
+    action = "format",
+    amount = 0,
+    unit = "days",
+    className,
+  } = props;
+
+  // پایه moment
+  let m = date ? moment(date) : moment();
+
+  // اجرای اکشن‌های moment
+  if (action === "add") {
+    m = m.add(amount, unit);
+  } else if (action === "subtract") {
+    m = m.subtract(amount, unit);
+  } else if (action === "fromNow") {
+    return <span className={classNames(className)}>{m.fromNow()}</span>;
+  }
+
+  // خروجی نهایی با فرمت
+  return <span className={classNames(className)}>{m.locale("fa").format(format)}</span>;
+};
+
+export const JalaliMomentMeta: CodeComponentMeta<JalaliMomentProps> = {
+  name: "JalaliMoment",
+  importPath: "@/components/JalaliMoment",
+  props: {
+    date: {
+      type: "string",
+      displayName: "Date (Gregorian or Jalali)",
+      defaultValue: "",
+    },
+    format: {
+      type: "string",
+      displayName: "Format Output",
+      defaultValue: "jYYYY/jMM/jDD",
+    },
+    action: {
+      type: "choice",
+      options: ["format", "add", "subtract", "fromNow"],
+      defaultValue: "format",
+    },
+    amount: {
+      type: "number",
+      displayName: "Amount (for add/subtract)",
+      defaultValue: 0,
+    },
+    unit: {
+      type: "string",
+      displayName: "Unit (days / months / years ...)",
+      defaultValue: "days",
+    },
+    className: {
+      type: "class",
+    },
+  },
+};
