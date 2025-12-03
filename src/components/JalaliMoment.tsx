@@ -4,12 +4,12 @@ import { classNames } from "@plasmicapp/react-web";
 import { CodeComponentMeta } from "@plasmicapp/host";
 
 type JalaliMomentProps = {
-  date?: string;        // تاریخ ورودی
-  format?: string;      // فرمت خروجی
-  action?: string;      // اسم فانکشن moment
-  amount?: number;      // مقدار برای add/subtract
-  unit?: string;        // واحد add/subtract مثل days
-  className?: string;   // استایل در پلازمیک
+  date?: string;        
+  format?: string;      
+  action?: string;      
+  amount?: number;      
+  unit?: moment.unitOfTime.DurationConstructor; // <-- fix here
+  className?: string;   
 };
 
 export const JalaliMoment = (props: JalaliMomentProps) => {
@@ -22,10 +22,8 @@ export const JalaliMoment = (props: JalaliMomentProps) => {
     className,
   } = props;
 
-  // پایه moment
   let m = date ? moment(date) : moment();
 
-  // اجرای اکشن‌های moment
   if (action === "add") {
     m = m.add(amount, unit);
   } else if (action === "subtract") {
@@ -34,7 +32,6 @@ export const JalaliMoment = (props: JalaliMomentProps) => {
     return <span className={classNames(className)}>{m.fromNow()}</span>;
   }
 
-  // خروجی نهایی با فرمت
   return <span className={classNames(className)}>{m.locale("fa").format(format)}</span>;
 };
 
