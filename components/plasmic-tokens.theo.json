@@ -2993,7 +2993,7 @@
     {
       "name": "title",
       "type": "color",
-      "value": "#1D1B1E",
+      "value": "#000000",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",

@@ -1963,6 +1963,31 @@
           "id": "mY1x2mJnCMIY",
           "name": "Icon39Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon39.tsx"
+        },
+        {
+          "id": "tPjj0M4ASjTF",
+          "name": "Icon40Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon40.tsx"
+        },
+        {
+          "id": "7tSc9T-_GLBf",
+          "name": "ChatGptImageDec32025023519PmSvgIcon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__ChatGptImageDec32025023519PmSvg.tsx"
+        },
+        {
+          "id": "zrMlcn-h3sCF",
+          "name": "Icon41Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon41.tsx"
+        },
+        {
+          "id": "jkq895Pwga0g",
+          "name": "Icon42Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon42.tsx"
+        },
+        {
+          "id": "Sb1rSupvjrST",
+          "name": "Icon43Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon43.tsx"
         }
       ],
       "images": [
