@@ -80,13 +80,15 @@ export type PlasmicCalendar__ArgsType = {
   selected?: number;
   onSelectedChange?: (val: string) => void;
   clearTime?: () => void;
+  holidays?: any;
 };
 type ArgPropType = keyof PlasmicCalendar__ArgsType;
 export const PlasmicCalendar__ArgProps = new Array<ArgPropType>(
   "days",
   "selected",
   "onSelectedChange",
-  "clearTime"
+  "clearTime",
+  "holidays"
 );
 
 export type PlasmicCalendar__OverridesType = {
@@ -99,6 +101,7 @@ export interface DefaultCalendarProps {
   selected?: number;
   onSelectedChange?: (val: string) => void;
   clearTime?: () => void;
+  holidays?: any;
   className?: string;
 }
 
@@ -150,6 +153,11 @@ function PlasmicCalendar__RenderFunc(props: {
 
         valueProp: "selected",
         onChangeProp: "onSelectedChange"
+      },
+      {
+        path: "dayItem[].disable",
+        type: "private",
+        variableType: "boolean"
       }
     ],
     [$props, $ctx, $refs]
@@ -175,7 +183,8 @@ function PlasmicCalendar__RenderFunc(props: {
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        "container-scroll"
       )}
     >
       {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -195,12 +204,10 @@ function PlasmicCalendar__RenderFunc(props: {
       ).map((__plasmic_item_0, __plasmic_idx_0) => {
         const currentItem = __plasmic_item_0;
         const currentIndex = __plasmic_idx_0;
-        return (
-          <DayItem
-            data-plasmic-name={"dayItem"}
-            data-plasmic-override={overrides.dayItem}
-            className={classNames("__wab_instance", sty.dayItem)}
-            data={(() => {
+        return (() => {
+          const child$Props = {
+            className: classNames("__wab_instance", sty.dayItem),
+            data: (() => {
               try {
                 return currentItem;
               } catch (e) {
@@ -212,12 +219,17 @@ function PlasmicCalendar__RenderFunc(props: {
                 }
                 throw e;
               }
-            })()}
-            key={currentIndex}
-            onClick={async event => {
+            })(),
+            disable: generateStateValueProp($state, [
+              "dayItem",
+              __plasmic_idx_0,
+              "disable"
+            ]),
+            key: currentIndex,
+            onClick: async event => {
               const $steps = {};
 
-              $steps["updateSelected"] = true
+              $steps["updateSelected"] = !$state.dayItem[currentIndex].disable
                 ? (() => {
                     const actionArgs = {
                       variable: {
@@ -246,7 +258,7 @@ function PlasmicCalendar__RenderFunc(props: {
                 $steps["updateSelected"] = await $steps["updateSelected"];
               }
 
-              $steps["updateSelected2"] = true
+              $steps["updateSelected2"] = !$state.dayItem[currentIndex].disable
                 ? (() => {
                     const actionArgs = { eventRef: $props["clearTime"] };
                     return (({ eventRef, args }) => {
@@ -261,8 +273,23 @@ function PlasmicCalendar__RenderFunc(props: {
               ) {
                 $steps["updateSelected2"] = await $steps["updateSelected2"];
               }
-            }}
-            select={(() => {
+            },
+            onDisableChange: async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "dayItem",
+                __plasmic_idx_0,
+                "disable"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            },
+            select: (() => {
               try {
                 return $state.selected == currentItem.formatted;
               } catch (e) {
@@ -274,9 +301,43 @@ function PlasmicCalendar__RenderFunc(props: {
                 }
                 throw e;
               }
-            })()}
-          />
-        );
+            })()
+          };
+
+          initializePlasmicStates(
+            $state,
+            [
+              {
+                name: "dayItem[].disable",
+                initFunc: ({ $props, $state, $queries }) =>
+                  (() => {
+                    try {
+                      return (
+                        $props.holidays?.includes(currentItem.formatted) ||
+                        false
+                      );
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()
+              }
+            ],
+            [__plasmic_idx_0]
+          );
+          return (
+            <DayItem
+              data-plasmic-name={"dayItem"}
+              data-plasmic-override={overrides.dayItem}
+              {...child$Props}
+            />
+          );
+        })();
       })}
     </div>
   ) as React.ReactElement | null;

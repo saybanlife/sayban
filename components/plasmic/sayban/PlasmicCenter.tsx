@@ -130,7 +130,8 @@ export type PlasmicCenter__OverridesType = {
   comment?: Flex__<typeof Comment>;
   button?: Flex__<typeof Button>;
   dialog2?: Flex__<typeof Dialog>;
-  apiRequest?: Flex__<typeof ApiRequest>;
+  holidays?: Flex__<typeof ApiRequest>;
+  topics3?: Flex__<typeof Topics>;
   calendar?: Flex__<typeof Calendar>;
   topics2?: Flex__<typeof Topics>;
   date?: Flex__<typeof ApiRequest>;
@@ -318,7 +319,8 @@ function PlasmicCenter__RenderFunc(props: {
         path: "dialog2.opendialog",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          hasVariant(globalVariants, "screen", "mobileOnly") ? false : false
       },
       {
         path: "topics2.data",
@@ -471,22 +473,64 @@ function PlasmicCenter__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => ``
       },
       {
-        path: "apiRequest.data",
+        path: "holidays.data",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "apiRequest.error",
+        path: "holidays.error",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "apiRequest.loading",
+        path: "holidays.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "topics3.data",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                const times = [
+                  {
+                    label: "صبح",
+                    value: "morning"
+                  },
+                  {
+                    label: "ظهر",
+                    value: "noon"
+                  },
+                  {
+                    label: "عصر و شب",
+                    value: "evening_night"
+                  }
+                ];
+
+                return times;
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "topics3.selected",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "morning"
       }
     ],
     [$props, $ctx, $refs]
@@ -1849,43 +1893,73 @@ drawRating(${$state.rate});
           </div>
           <div className={classNames(projectcss.all, sty.freeBox__vEytZ)}>
             <div className={classNames(projectcss.all, sty.freeBox__qyVud)}>
-              <div className={classNames(projectcss.all, sty.freeBox___9YXKs)}>
+              {(() => {
+                try {
+                  return (
+                    $state.service.discount_percent != 0 &&
+                    $state.service.discount_percent != null
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })() ? (
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___49QVu
-                  )}
+                  className={classNames(projectcss.all, sty.freeBox___9YXKs)}
                 >
-                  <React.Fragment>
-                    {$state.service?.price?.toLocaleString() + " تومان"}
-                  </React.Fragment>
-                </div>
-                <div className={classNames(projectcss.all, sty.freeBox__gEpo7)}>
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__qJkM
+                      sty.text___49QVu
                     )}
                   >
                     <React.Fragment>
-                      {(() => {
-                        try {
-                          return $state.service.discount_percent + "%";
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "1";
-                          }
-                          throw e;
-                        }
-                      })()}
+                      {$state.service?.price?.toLocaleString() + " تومان"}
                     </React.Fragment>
                   </div>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__gEpo7)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__qJkM
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return $state.service.discount_percent + "%";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "1";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                  </div>
                 </div>
+              ) : null}
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__fyof
+                )}
+              >
+                <React.Fragment>{$state.service.name}</React.Fragment>
               </div>
               <div
                 className={classNames(
@@ -1993,51 +2067,295 @@ drawRating(${$state.rate});
         opendialog={generateStateValueProp($state, ["dialog2", "opendialog"])}
       >
         <ApiRequest
-          data-plasmic-name={"apiRequest"}
-          data-plasmic-override={overrides.apiRequest}
-          className={classNames("__wab_instance", sty.apiRequest)}
-          errorDisplay={
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__pTXm3
-              )}
-            >
-              {"Error fetching data"}
-            </div>
-          }
+          data-plasmic-name={"holidays"}
+          data-plasmic-override={overrides.holidays}
+          className={classNames("__wab_instance", sty.holidays)}
+          errorDisplay={null}
           loadingDisplay={
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__mjmEp
-              )}
-            >
-              {"Loading..."}
+            <div className={classNames(projectcss.all, sty.freeBox__k6H4)}>
+              <div className={classNames(projectcss.all, sty.freeBox__sU6Yr)}>
+                <div className={classNames(projectcss.all, sty.freeBox__rh5BE)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__hRrf3
+                    )}
+                  >
+                    {
+                      "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u0645\u0627\u0646 "
+                    }
+                  </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___73AMx
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return `(${$state.service.duration_minutes} دقیقه)`;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u0645\u0627\u0646 ";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
+                </div>
+                <div
+                  className={classNames(projectcss.all, sty.freeBox___7JoCu)}
+                >
+                  <Next
+                    active={(() => {
+                      try {
+                        return $state.year.month == $state.yearActive.month + 1;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()}
+                    className={classNames("__wab_instance", sty.next__lN9NM)}
+                    dir={"righte"}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["updateYearMonth"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["year", "month"]
+                              },
+                              operation: 3
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              const oldValue = $stateGet(objRoot, variablePath);
+                              $stateSet(objRoot, variablePath, oldValue - 1);
+                              return oldValue - 1;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateYearMonth"] != null &&
+                        typeof $steps["updateYearMonth"] === "object" &&
+                        typeof $steps["updateYearMonth"].then === "function"
+                      ) {
+                        $steps["updateYearMonth"] =
+                          await $steps["updateYearMonth"];
+                      }
+                    }}
+                  >
+                    {"\u0645\u0627\u0647 \u0642\u0628\u0644"}
+                  </Next>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__u9Bmb
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return (() => {
+                            const persianMonthsFa = [
+                              "فروردین",
+                              "اردیبهشت",
+                              "خرداد",
+                              "تیر",
+                              "مرداد",
+                              "شهریور",
+                              "مهر",
+                              "آبان",
+                              "آذر",
+                              "دی",
+                              "بهمن",
+                              "اسفند"
+                            ];
+
+                            return `${persianMonthsFa[$state.year.month - 1]}  ${$state.year.year}`;
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u0645\u0627\u0646 ";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
+                  <Next
+                    active={(() => {
+                      try {
+                        return $state.year.month == $state.yearActive.month;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()}
+                    children2={"\u0645\u0627\u0647 \u0628\u0639\u062f"}
+                    className={classNames("__wab_instance", sty.next__qqfN)}
+                    dir={"left"}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["updateYearMonth"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["year", "month"]
+                              },
+                              operation: 2
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              const oldValue = $stateGet(objRoot, variablePath);
+                              $stateSet(objRoot, variablePath, oldValue + 1);
+                              return oldValue + 1;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateYearMonth"] != null &&
+                        typeof $steps["updateYearMonth"] === "object" &&
+                        typeof $steps["updateYearMonth"].then === "function"
+                      ) {
+                        $steps["updateYearMonth"] =
+                          await $steps["updateYearMonth"];
+                      }
+                    }}
+                  />
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    sty.freeBox__bO5PZ,
+                    "shimmer"
+                  )}
+                />
+              </div>
+              <Topics
+                data-plasmic-name={"topics3"}
+                data-plasmic-override={overrides.topics3}
+                className={classNames("__wab_instance", sty.topics3)}
+                data={generateStateValueProp($state, ["topics3", "data"])}
+                onDataChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["topics3", "data"]).apply(
+                    null,
+                    eventArgs
+                  );
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                onSelectedChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "topics3",
+                    "selected"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                selected={generateStateValueProp($state, [
+                  "topics3",
+                  "selected"
+                ])}
+                size={"small"}
+              />
+
+              <div className={classNames(projectcss.all, sty.freeBox__nUoQh)} />
             </div>
           }
           method={"GET"}
           onError={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+            generateStateOnChangeProp($state, ["holidays", "error"]).apply(
               null,
               eventArgs
             );
           }}
           onLoading={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
+            generateStateOnChangeProp($state, ["holidays", "loading"]).apply(
               null,
               eventArgs
             );
           }}
           onSuccess={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+            generateStateOnChangeProp($state, ["holidays", "data"]).apply(
               null,
               eventArgs
             );
           }}
+          params={(() => {
+            try {
+              return {
+                year: $state.year.year,
+                month: $state.year.month,
+                id: $state.service.id
+              };
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
           shouldFetch={true}
+          url={"https://sayban.darkube.app/webhook/service/holiday"}
         >
           <div className={classNames(projectcss.all, sty.freeBox__eh9J7)}>
             <div className={classNames(projectcss.all, sty.freeBox__n49Dk)}>
@@ -2262,21 +2580,35 @@ drawRating(${$state.rate});
                 days={(() => {
                   try {
                     return (() => {
-                      function getNext7DaysJalali() {
+                      function getRemainingDaysOfJalaliMonth(jy, jm) {
                         const result = [];
                         const today = new Date();
-                        for (let i = 0; i < 7; i++) {
-                          const date = new Date();
-                          date.setDate(today.getDate() + i);
-                          const { jy, jm, jd } = window.jalaali.toJalaali(
-                            date.getFullYear(),
-                            date.getMonth() + 1,
-                            date.getDate()
+                        const {
+                          jy: currentJY,
+                          jm: currentJM,
+                          jd: currentJD
+                        } = window.jalaali.toJalaali(
+                          today.getFullYear(),
+                          today.getMonth() + 1,
+                          today.getDate()
+                        );
+                        const monthLength = window.jalaali.jalaaliMonthLength(
+                          jy,
+                          jm
+                        );
+                        const startDay =
+                          jy === currentJY && jm === currentJM ? currentJD : 1;
+                        for (let day = startDay; day <= monthLength; day++) {
+                          const { gy, gm, gd } = window.jalaali.toGregorian(
+                            jy,
+                            jm,
+                            day
                           );
+                          const date = new Date(gy, gm - 1, gd);
                           result.push({
-                            gy: date.getFullYear(),
-                            gm: date.getMonth() + 1,
-                            gd: date.getDate(),
+                            gy,
+                            gm,
+                            gd,
                             month: date.toLocaleString("fa-IR", {
                               month: "long"
                             }),
@@ -2285,14 +2617,30 @@ drawRating(${$state.rate});
                             }),
                             jy,
                             jm,
-                            jd,
-                            formatted: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+                            jd: day,
+                            formatted: `${gy}-${String(gm).padStart(2, "0")}-${String(gd).padStart(2, "0")}`
                           });
                         }
                         return result;
                       }
-                      return getNext7DaysJalali();
+                      return getRemainingDaysOfJalaliMonth(
+                        $state.year.year,
+                        $state.year.month
+                      );
                     })();
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                holidays={(() => {
+                  try {
+                    return $state.holidays.data.result;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -2383,7 +2731,41 @@ drawRating(${$state.rate});
                   }
                 })()}
                 errorDisplay={null}
-                loadingDisplay={null}
+                loadingDisplay={
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__arkkl)}
+                  >
+                    {(_par =>
+                      !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                      (() => {
+                        try {
+                          return [2, 3, 4, 5, 6, 7];
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()
+                    ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                      const currentItem = __plasmic_item_0;
+                      const currentIndex = __plasmic_idx_0;
+                      return (
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__i8Bhq,
+                            "shimmer"
+                          )}
+                          key={currentIndex}
+                        />
+                      );
+                    })}
+                  </div>
+                }
                 method={"GET"}
                 onError={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, ["date", "error"]).apply(
@@ -2460,43 +2842,46 @@ drawRating(${$state.rate});
                     }
                   })()}
                 />
-              </ApiRequest>
-              {(() => {
-                try {
-                  return (
-                    $state.date.data.result.find(
-                      i => i.period == $state.topics2.selected
-                    ).slots.length == 0
-                  );
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div className={classNames(projectcss.all, sty.freeBox__g1OB3)}>
-                  <Icon42Icon
-                    className={classNames(projectcss.all, sty.svg__svfFn)}
-                    role={"img"}
-                  />
 
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__d7Ov8
-                    )}
-                  >
-                    {
-                      "\u0646\u0648\u0628\u062a\u06cc \u0628\u0631\u0627\u06cc \u0627\u06cc\u0646 \u062a\u0627\u0631\u06cc\u062e \u0645\u0648\u062c\u0648\u062f \u0646\u06cc\u0633\u062a."
+                {(() => {
+                  try {
+                    return (
+                      $state.date.data.result.find(
+                        i => i.period == $state.topics2.selected
+                      ).slots.length == 0
+                    );
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
                     }
+                    throw e;
+                  }
+                })() ? (
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__g1OB3)}
+                  >
+                    <Icon42Icon
+                      className={classNames(projectcss.all, sty.svg__svfFn)}
+                      role={"img"}
+                    />
+
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__d7Ov8
+                      )}
+                    >
+                      {
+                        "\u0646\u0648\u0628\u062a\u06cc \u0628\u0631\u0627\u06cc \u0627\u06cc\u0646 \u062a\u0627\u0631\u06cc\u062e \u0645\u0648\u062c\u0648\u062f \u0646\u06cc\u0633\u062a."
+                      }
+                    </div>
                   </div>
-                </div>
-              ) : null}
+                ) : null}
+              </ApiRequest>
             </div>
             <section className={classNames(projectcss.all, sty.section__lYw80)}>
               <div
@@ -2696,7 +3081,8 @@ const PlasmicDescendants = {
     "comment",
     "button",
     "dialog2",
-    "apiRequest",
+    "holidays",
+    "topics3",
     "calendar",
     "topics2",
     "date",
@@ -2724,21 +3110,24 @@ const PlasmicDescendants = {
   button: ["button"],
   dialog2: [
     "dialog2",
-    "apiRequest",
+    "holidays",
+    "topics3",
     "calendar",
     "topics2",
     "date",
     "selectTime",
     "button2"
   ],
-  apiRequest: [
-    "apiRequest",
+  holidays: [
+    "holidays",
+    "topics3",
     "calendar",
     "topics2",
     "date",
     "selectTime",
     "button2"
   ],
+  topics3: ["topics3"],
   calendar: ["calendar"],
   topics2: ["topics2"],
   date: ["date", "selectTime"],
@@ -2761,7 +3150,8 @@ type NodeDefaultElementType = {
   comment: typeof Comment;
   button: typeof Button;
   dialog2: typeof Dialog;
-  apiRequest: typeof ApiRequest;
+  holidays: typeof ApiRequest;
+  topics3: typeof Topics;
   calendar: typeof Calendar;
   topics2: typeof Topics;
   date: typeof ApiRequest;
@@ -2842,7 +3232,8 @@ export const PlasmicCenter = Object.assign(
     comment: makeNodeComponent("comment"),
     button: makeNodeComponent("button"),
     dialog2: makeNodeComponent("dialog2"),
-    apiRequest: makeNodeComponent("apiRequest"),
+    holidays: makeNodeComponent("holidays"),
+    topics3: makeNodeComponent("topics3"),
     calendar: makeNodeComponent("calendar"),
     topics2: makeNodeComponent("topics2"),
     date: makeNodeComponent("date"),

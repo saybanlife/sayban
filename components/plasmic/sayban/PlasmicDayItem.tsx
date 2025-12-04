@@ -86,11 +86,13 @@ export const PlasmicDayItem__VariantProps = new Array<VariantPropType>(
 );
 
 export type PlasmicDayItem__ArgsType = {
+  onDisableChange?: (val: any) => void;
   onClick?: (event: any) => void;
   data?: any;
 };
 type ArgPropType = keyof PlasmicDayItem__ArgsType;
 export const PlasmicDayItem__ArgProps = new Array<ArgPropType>(
+  "onDisableChange",
   "onClick",
   "data"
 );
@@ -101,6 +103,7 @@ export type PlasmicDayItem__OverridesType = {
 };
 
 export interface DefaultDayItemProps {
+  onDisableChange?: (val: any) => void;
   onClick?: (event: any) => void;
   data?: any;
   select?: SingleBooleanChoiceArg<"select">;
@@ -157,9 +160,11 @@ function PlasmicDayItem__RenderFunc(props: {
       },
       {
         path: "disable",
-        type: "private",
+        type: "writable",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.disable
+
+        valueProp: "disable",
+        onChangeProp: "onDisableChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -194,7 +199,14 @@ function PlasmicDayItem__RenderFunc(props: {
         className={classNames(
           projectcss.all,
           projectcss.__wab_text,
-          sty.text__lsz5S
+          sty.text__lsz5S,
+          {
+            [sty.textdisable__lsz5SiAfLv]: hasVariant(
+              $state,
+              "disable",
+              "disable"
+            )
+          }
         )}
       >
         <React.Fragment>
