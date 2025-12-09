@@ -52,12 +52,7 @@
   }
 }
 .freeBoxsoft__lHkfyFgJuq {
-  background: linear-gradient(
-    0deg,
-    #00121b00 0%,
-    var(--token-KPGXdu9o7llP) 63%,
-    var(--token-KPGXdu9o7llP) 99%
-  );
+  background: linear-gradient(0deg, #00121b00 0%, #1c281f99 63%, #1c281fcc 99%);
   box-shadow: none;
 }
 .freeBox__ameEp {

@@ -1,0 +1,48 @@
+/* eslint-disable */
+/* tslint:disable */
+// @ts-nocheck
+/* prettier-ignore-start */
+import React from "react";
+import { classNames } from "@plasmicapp/react-web";
+
+export type Icon47IconProps = React.ComponentProps<"svg"> & {
+  title?: string;
+};
+
+export function Icon47Icon(props: Icon47IconProps) {
+  const { className, style, title, ...restProps } = props;
+  return (
+    <svg
+      xmlns={"http://www.w3.org/2000/svg"}
+      fill={"none"}
+      viewBox={"0 0 192 192"}
+      height={"1em"}
+      className={classNames("plasmic-default__svg", className)}
+      style={style}
+      {...restProps}
+    >
+      {title && <title>{title}</title>}
+
+      <path
+        stroke={"currentColor"}
+        strokeWidth={"12"}
+        d={
+          "M96 162c-14.152 0-24.336-.007-32.276-.777-7.849-.761-12.87-2.223-16.877-4.741a36 36 0 0 1-11.33-11.329c-2.517-4.007-3.98-9.028-4.74-16.877C30.007 120.336 30 110.152 30 96s.007-24.336.777-32.276c.76-7.849 2.223-12.87 4.74-16.877a36 36 0 0 1 11.33-11.33c4.007-2.517 9.028-3.98 16.877-4.74C71.663 30.007 81.847 30 96 30c14.152 0 24.336.007 32.276.777 7.849.76 12.87 2.223 16.877 4.74a36 36 0 0 1 11.329 11.33c2.518 4.007 3.98 9.028 4.741 16.877.77 7.94.777 18.124.777 32.276s-.007 24.336-.777 32.276c-.761 7.849-2.223 12.87-4.741 16.877a36 36 0 0 1-11.329 11.329c-4.007 2.518-9.028 3.98-16.877 4.741-7.94.77-18.124.777-32.276.777Z"
+        }
+      ></path>
+
+      <circle
+        cx={"96"}
+        cy={"96"}
+        r={"30"}
+        stroke={"currentColor"}
+        strokeWidth={"12"}
+      ></circle>
+
+      <circle cx={"135"} cy={"57"} r={"9"} fill={"currentColor"}></circle>
+    </svg>
+  );
+}
+
+export default Icon47Icon;
+/* prettier-ignore-end */

@@ -1988,6 +1988,26 @@
           "id": "Sb1rSupvjrST",
           "name": "Icon43Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon43.tsx"
+        },
+        {
+          "id": "TXT38s96iX-V",
+          "name": "Icon44Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon44.tsx"
+        },
+        {
+          "id": "0UNxaBC1ldAm",
+          "name": "Icon45Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon45.tsx"
+        },
+        {
+          "id": "XXLRyRbzty2W",
+          "name": "Icon46Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon46.tsx"
+        },
+        {
+          "id": "na93YR5AD4rQ",
+          "name": "Icon47Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon47.tsx"
         }
       ],
       "images": [

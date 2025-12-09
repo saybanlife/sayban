@@ -65,6 +65,7 @@ import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-impor
 import { SwiperSlider } from "@/components/SwiperSlider"; // plasmic-import: byElilYJKEPk/codeComponent
 import Topics from "../../Topics"; // plasmic-import: K08M_vX52xMI/component
 import Service from "../../Service"; // plasmic-import: 0JNfyGRvC0FA/component
+import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
 import { Iframe } from "@plasmicpkgs/plasmic-basic-components";
 import { AntdProgress } from "@plasmicpkgs/antd5/skinny/registerProgress";
 import Comment from "../../Comment"; // plasmic-import: 4NLVwAuHCB3Q/component
@@ -124,6 +125,7 @@ export type PlasmicCenter__OverridesType = {
   swiperSlider?: Flex__<typeof SwiperSlider>;
   topics?: Flex__<typeof Topics>;
   service?: Flex__<typeof Service>;
+  menuIcon?: Flex__<typeof MenuIcon>;
   iframe?: Flex__<typeof Iframe>;
   link?: Flex__<"a"> & Partial<LinkProps>;
   progress?: Flex__<typeof AntdProgress>;
@@ -1281,12 +1283,69 @@ function PlasmicCenter__RenderFunc(props: {
                         })()}
                       </React.Fragment>
                     </div>
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__e7D8L)}
+                    >
+                      {(_par =>
+                        !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                        (() => {
+                          try {
+                            return $state.full.data.result.contacts;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()
+                      ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                        const currentItem = __plasmic_item_0;
+                        const currentIndex = __plasmic_idx_0;
+                        return (
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__j6Xyh
+                            )}
+                            key={currentIndex}
+                          >
+                            <MenuIcon
+                              data-plasmic-name={"menuIcon"}
+                              data-plasmic-override={overrides.menuIcon}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.menuIcon
+                              )}
+                              color={"praimery"}
+                              icons={(() => {
+                                try {
+                                  return currentItem.type;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return [];
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              size={"_25"}
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__dgu5Y
+                      sty.text__kTnk4
                     )}
                   >
                     {""}
@@ -1870,7 +1929,9 @@ drawRating(${$state.rate});
       </ApiRequest>
       {(() => {
         try {
-          return $state.full?.data?.result && $state.service;
+          return (
+            $state.full?.data?.result && Object.keys($state.service).length > 0
+          );
         } catch (e) {
           if (
             e instanceof TypeError ||
@@ -3075,6 +3136,7 @@ const PlasmicDescendants = {
     "swiperSlider",
     "topics",
     "service",
+    "menuIcon",
     "iframe",
     "link",
     "progress",
@@ -3095,6 +3157,7 @@ const PlasmicDescendants = {
     "swiperSlider",
     "topics",
     "service",
+    "menuIcon",
     "iframe",
     "link",
     "progress",
@@ -3103,6 +3166,7 @@ const PlasmicDescendants = {
   swiperSlider: ["swiperSlider"],
   topics: ["topics"],
   service: ["service"],
+  menuIcon: ["menuIcon"],
   iframe: ["iframe"],
   link: ["link"],
   progress: ["progress"],
@@ -3144,6 +3208,7 @@ type NodeDefaultElementType = {
   swiperSlider: typeof SwiperSlider;
   topics: typeof Topics;
   service: typeof Service;
+  menuIcon: typeof MenuIcon;
   iframe: typeof Iframe;
   link: "a";
   progress: typeof AntdProgress;
@@ -3226,6 +3291,7 @@ export const PlasmicCenter = Object.assign(
     swiperSlider: makeNodeComponent("swiperSlider"),
     topics: makeNodeComponent("topics"),
     service: makeNodeComponent("service"),
+    menuIcon: makeNodeComponent("menuIcon"),
     iframe: makeNodeComponent("iframe"),
     link: makeNodeComponent("link"),
     progress: makeNodeComponent("progress"),
