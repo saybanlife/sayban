@@ -285,6 +285,12 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "center.id2",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -1007,7 +1013,7 @@ function PlasmicHomepage__RenderFunc(props: {
                       })()}/${(() => {
                         try {
                           return (() => {
-                            $state.slug.push(`pay_${id || ""}`);
+                            $state.slug.push(`pay_${$state.center.id2}`);
                             return $state.slug.join("/");
                           })();
                         } catch (e) {
@@ -1082,6 +1088,21 @@ function PlasmicHomepage__RenderFunc(props: {
                     }
                   })()
             }
+            id2={generateStateValueProp($state, ["center", "id2"])}
+            onId2Change={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["center", "id2"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
             subcatgori={(() => {
               try {
                 return $state.categories.subcategories;

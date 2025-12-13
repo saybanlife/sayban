@@ -109,6 +109,8 @@ export type PlasmicCenter__ArgsType = {
   jalali?: any;
   token?: string;
   goToPayment?: (id: string) => void;
+  id2?: string;
+  onId2Change?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicCenter__ArgsType;
 export const PlasmicCenter__ArgProps = new Array<ArgPropType>(
@@ -117,7 +119,9 @@ export const PlasmicCenter__ArgProps = new Array<ArgPropType>(
   "id",
   "jalali",
   "token",
-  "goToPayment"
+  "goToPayment",
+  "id2",
+  "onId2Change"
 );
 
 export type PlasmicCenter__OverridesType = {
@@ -150,6 +154,8 @@ export interface DefaultCenterProps {
   jalali?: any;
   token?: string;
   goToPayment?: (id: string) => void;
+  id2?: string;
+  onId2Change?: (val: string) => void;
   top?: SingleBooleanChoiceArg<"top">;
   className?: string;
 }
@@ -624,6 +630,14 @@ function PlasmicCenter__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => "morning"
+      },
+      {
+        path: "id2",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "id2",
+        onChangeProp: "onId2Change"
       }
     ],
     [$props, $ctx, $refs]
@@ -3289,7 +3303,7 @@ drawRating(${$state.rate});
                   onClick={async event => {
                     const $steps = {};
 
-                    $steps["runCode"] = true
+                    $steps["loading2"] = true
                       ? (() => {
                           const actionArgs = {
                             customFunction: async () => {
@@ -3302,11 +3316,11 @@ drawRating(${$state.rate});
                         })()
                       : undefined;
                     if (
-                      $steps["runCode"] != null &&
-                      typeof $steps["runCode"] === "object" &&
-                      typeof $steps["runCode"].then === "function"
+                      $steps["loading2"] != null &&
+                      typeof $steps["loading2"] === "object" &&
+                      typeof $steps["loading2"].then === "function"
                     ) {
-                      $steps["runCode"] = await $steps["runCode"];
+                      $steps["loading2"] = await $steps["loading2"];
                     }
 
                     $steps["reserv"] = true
@@ -3370,6 +3384,40 @@ drawRating(${$state.rate});
                       $steps["reserv"] = await $steps["reserv"];
                     }
 
+                    $steps["updateId2"] = $steps.reserv?.data?.success
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["id2"]
+                            },
+                            operation: 0,
+                            value: $steps.reserv?.data?.id
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateId2"] != null &&
+                      typeof $steps["updateId2"] === "object" &&
+                      typeof $steps["updateId2"].then === "function"
+                    ) {
+                      $steps["updateId2"] = await $steps["updateId2"];
+                    }
+
                     $steps["runGoToPayment"] = $steps.reserv?.data?.success
                       ? (() => {
                           const actionArgs = {
@@ -3377,7 +3425,7 @@ drawRating(${$state.rate});
                             args: [
                               (() => {
                                 try {
-                                  return $steps.reserv?.data?.id;
+                                  return $state.id2;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -3404,7 +3452,7 @@ drawRating(${$state.rate});
                       $steps["runGoToPayment"] = await $steps["runGoToPayment"];
                     }
 
-                    $steps["updateSwiperSliderActiveSlideIndex2"] = true
+                    $steps["loading"] = true
                       ? (() => {
                           const actionArgs = {
                             customFunction: async () => {
@@ -3417,14 +3465,47 @@ drawRating(${$state.rate});
                         })()
                       : undefined;
                     if (
-                      $steps["updateSwiperSliderActiveSlideIndex2"] != null &&
-                      typeof $steps["updateSwiperSliderActiveSlideIndex2"] ===
-                        "object" &&
-                      typeof $steps["updateSwiperSliderActiveSlideIndex2"]
-                        .then === "function"
+                      $steps["loading"] != null &&
+                      typeof $steps["loading"] === "object" &&
+                      typeof $steps["loading"].then === "function"
                     ) {
-                      $steps["updateSwiperSliderActiveSlideIndex2"] =
-                        await $steps["updateSwiperSliderActiveSlideIndex2"];
+                      $steps["loading"] = await $steps["loading"];
+                    }
+
+                    $steps["updateDialog2Opendialog"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["dialog2", "opendialog"]
+                            },
+                            operation: 0,
+                            value: false
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateDialog2Opendialog"] != null &&
+                      typeof $steps["updateDialog2Opendialog"] === "object" &&
+                      typeof $steps["updateDialog2Opendialog"].then ===
+                        "function"
+                    ) {
+                      $steps["updateDialog2Opendialog"] =
+                        await $steps["updateDialog2Opendialog"];
                     }
                   }}
                   onLoadingChange={async (...eventArgs: any) => {
