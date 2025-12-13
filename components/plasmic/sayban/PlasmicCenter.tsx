@@ -108,6 +108,7 @@ export type PlasmicCenter__ArgsType = {
   id?: string;
   jalali?: any;
   token?: string;
+  goToPayment?: (id: string) => void;
 };
 type ArgPropType = keyof PlasmicCenter__ArgsType;
 export const PlasmicCenter__ArgProps = new Array<ArgPropType>(
@@ -115,7 +116,8 @@ export const PlasmicCenter__ArgProps = new Array<ArgPropType>(
   "center",
   "id",
   "jalali",
-  "token"
+  "token",
+  "goToPayment"
 );
 
 export type PlasmicCenter__OverridesType = {
@@ -147,6 +149,7 @@ export interface DefaultCenterProps {
   id?: string;
   jalali?: any;
   token?: string;
+  goToPayment?: (id: string) => void;
   top?: SingleBooleanChoiceArg<"top">;
   className?: string;
 }
@@ -194,6 +197,8 @@ function PlasmicCenter__RenderFunc(props: {
   const $refs = refsRef.current;
 
   const globalVariants = _useGlobalVariants();
+
+  const $globalActions = useGlobalActions?.();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
@@ -364,13 +369,99 @@ function PlasmicCenter__RenderFunc(props: {
         path: "topics2.selected",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "morning"
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                function getCurrentTimePeriod() {
+                  const hour = new Date().getHours();
+                  if (hour >= 5 && hour < 12) {
+                    return "morning";
+                  } else if (hour >= 12 && hour < 17) {
+                    return "noon";
+                  } else {
+                    return "evening_night";
+                  }
+                }
+                const currentTime = getCurrentTimePeriod();
+                return currentTime;
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "calendar.selected",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 0
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                function getFirstWorkingDayOfJalaliMonth(jy, jm, holidays) {
+                  const today = new Date();
+                  const {
+                    jy: currentJY,
+                    jm: currentJM,
+                    jd: currentJD
+                  } = window.jalaali.toJalaali(
+                    today.getFullYear(),
+                    today.getMonth() + 1,
+                    today.getDate()
+                  );
+                  const monthLength = window.jalaali.jalaaliMonthLength(jy, jm);
+                  let day =
+                    jy === currentJY && jm === currentJM ? currentJD : 1;
+                  while (day <= monthLength) {
+                    const { gy, gm, gd } = window.jalaali.toGregorian(
+                      jy,
+                      jm,
+                      day
+                    );
+                    const date = new Date(gy, gm - 1, gd);
+                    const formatted = `${gy}-${String(gm).padStart(2, "0")}-${String(gd).padStart(2, "0")}`;
+                    const isHoliday = holidays.some(h => h.date === formatted);
+                    if (!isHoliday) {
+                      return {
+                        gy,
+                        gm,
+                        gd,
+                        month: date.toLocaleString("fa-IR", { month: "long" }),
+                        week: date.toLocaleString("fa-IR", { weekday: "long" }),
+                        jy,
+                        jm,
+                        jd: day,
+                        formatted
+                      };
+                    }
+                    day++;
+                  }
+                  return null;
+                }
+                const firstValidDay = getFirstWorkingDayOfJalaliMonth(
+                  $state.year.year,
+                  $state.year.month,
+                  $state.holidays.data.result
+                ).formatted;
+                return firstValidDay;
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return 0;
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "year",
@@ -2510,6 +2601,26 @@ drawRating(${$state.rate});
                       $steps["updateYearMonth"] =
                         await $steps["updateYearMonth"];
                     }
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return ($state.selectTime.selected = "");
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
                   }}
                 >
                   {"\u0645\u0627\u0647 \u0642\u0628\u0644"}
@@ -2608,129 +2719,240 @@ drawRating(${$state.rate});
                       $steps["updateYearMonth"] =
                         await $steps["updateYearMonth"];
                     }
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return ($state.selectTime.selected = "");
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
                   }}
                 />
               </div>
-              <Calendar
-                data-plasmic-name={"calendar"}
-                data-plasmic-override={overrides.calendar}
-                className={classNames("__wab_instance", sty.calendar)}
-                clearTime={async () => {
-                  const $steps = {};
+              {(() => {
+                const child$Props = {
+                  className: classNames("__wab_instance", sty.calendar),
+                  clearTime: async () => {
+                    const $steps = {};
 
-                  $steps["runCode"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          customFunction: async () => {
-                            return ($state.selectTime.selected = "");
-                          }
-                        };
-                        return (({ customFunction }) => {
-                          return customFunction();
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runCode"] != null &&
-                    typeof $steps["runCode"] === "object" &&
-                    typeof $steps["runCode"].then === "function"
-                  ) {
-                    $steps["runCode"] = await $steps["runCode"];
-                  }
-                }}
-                days={(() => {
-                  try {
-                    return (() => {
-                      function getRemainingDaysOfJalaliMonth(jy, jm) {
-                        const result = [];
-                        const today = new Date();
-                        const {
-                          jy: currentJY,
-                          jm: currentJM,
-                          jd: currentJD
-                        } = window.jalaali.toJalaali(
-                          today.getFullYear(),
-                          today.getMonth() + 1,
-                          today.getDate()
-                        );
-                        const monthLength = window.jalaali.jalaaliMonthLength(
-                          jy,
-                          jm
-                        );
-                        const startDay =
-                          jy === currentJY && jm === currentJM ? currentJD : 1;
-                        for (let day = startDay; day <= monthLength; day++) {
-                          const { gy, gm, gd } = window.jalaali.toGregorian(
-                            jy,
-                            jm,
-                            day
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return ($state.selectTime.selected = "");
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+                  },
+                  days: (() => {
+                    try {
+                      return (() => {
+                        function getRemainingDaysOfJalaliMonth(jy, jm) {
+                          const result = [];
+                          const today = new Date();
+                          const {
+                            jy: currentJY,
+                            jm: currentJM,
+                            jd: currentJD
+                          } = window.jalaali.toJalaali(
+                            today.getFullYear(),
+                            today.getMonth() + 1,
+                            today.getDate()
                           );
-                          const date = new Date(gy, gm - 1, gd);
-                          result.push({
-                            gy,
-                            gm,
-                            gd,
-                            month: date.toLocaleString("fa-IR", {
-                              month: "long"
-                            }),
-                            week: date.toLocaleString("fa-IR", {
-                              weekday: "long"
-                            }),
+                          const monthLength = window.jalaali.jalaaliMonthLength(
                             jy,
-                            jm,
-                            jd: day,
-                            formatted: `${gy}-${String(gm).padStart(2, "0")}-${String(gd).padStart(2, "0")}`
-                          });
+                            jm
+                          );
+                          const startDay =
+                            jy === currentJY && jm === currentJM
+                              ? currentJD
+                              : 1;
+                          for (let day = startDay; day <= monthLength; day++) {
+                            const { gy, gm, gd } = window.jalaali.toGregorian(
+                              jy,
+                              jm,
+                              day
+                            );
+                            const date = new Date(gy, gm - 1, gd);
+                            result.push({
+                              gy,
+                              gm,
+                              gd,
+                              month: date.toLocaleString("fa-IR", {
+                                month: "long"
+                              }),
+                              week: date.toLocaleString("fa-IR", {
+                                weekday: "long"
+                              }),
+                              jy,
+                              jm,
+                              jd: day,
+                              formatted: `${gy}-${String(gm).padStart(2, "0")}-${String(gd).padStart(2, "0")}`
+                            });
+                          }
+                          return result;
                         }
-                        return result;
+                        return getRemainingDaysOfJalaliMonth(
+                          $state.year.year,
+                          $state.year.month
+                        );
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
                       }
-                      return getRemainingDaysOfJalaliMonth(
-                        $state.year.year,
-                        $state.year.month
-                      );
-                    })();
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()}
-                holidays={(() => {
-                  try {
-                    return $state.holidays.data.result;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+                  })(),
+                  holidays: (() => {
+                    try {
+                      return $state.holidays.data.result;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()}
-                onSelectedChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
+                  })(),
+                  onSelectedChange: async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "calendar",
+                      "selected"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  },
+                  selected: generateStateValueProp($state, [
                     "calendar",
                     "selected"
-                  ]).apply(null, eventArgs);
+                  ])
+                };
 
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                selected={generateStateValueProp($state, [
-                  "calendar",
-                  "selected"
-                ])}
-              />
+                initializePlasmicStates(
+                  $state,
+                  [
+                    {
+                      name: "calendar.selected",
+                      initFunc: ({ $props, $state, $queries }) =>
+                        (() => {
+                          try {
+                            return (() => {
+                              function getFirstWorkingDayOfJalaliMonth(
+                                jy,
+                                jm,
+                                holidays
+                              ) {
+                                const today = new Date();
+                                const {
+                                  jy: currentJY,
+                                  jm: currentJM,
+                                  jd: currentJD
+                                } = window.jalaali.toJalaali(
+                                  today.getFullYear(),
+                                  today.getMonth() + 1,
+                                  today.getDate()
+                                );
+                                const monthLength =
+                                  window.jalaali.jalaaliMonthLength(jy, jm);
+                                let day =
+                                  jy === currentJY && jm === currentJM
+                                    ? currentJD
+                                    : 1;
+                                while (day <= monthLength) {
+                                  const { gy, gm, gd } =
+                                    window.jalaali.toGregorian(jy, jm, day);
+                                  const date = new Date(gy, gm - 1, gd);
+                                  const formatted = `${gy}-${String(gm).padStart(2, "0")}-${String(gd).padStart(2, "0")}`;
+                                  const isHoliday = holidays.some(
+                                    h => h.date === formatted
+                                  );
+                                  if (!isHoliday) {
+                                    return {
+                                      gy,
+                                      gm,
+                                      gd,
+                                      month: date.toLocaleString("fa-IR", {
+                                        month: "long"
+                                      }),
+                                      week: date.toLocaleString("fa-IR", {
+                                        weekday: "long"
+                                      }),
+                                      jy,
+                                      jm,
+                                      jd: day,
+                                      formatted
+                                    };
+                                  }
+                                  day++;
+                                }
+                                return null;
+                              }
+                              const firstValidDay =
+                                getFirstWorkingDayOfJalaliMonth(
+                                  $state.year.year,
+                                  $state.year.month,
+                                  $state.holidays.data.result
+                                ).formatted;
+                              return firstValidDay;
+                            })();
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return 0;
+                            }
+                            throw e;
+                          }
+                        })()
+                    }
+                  ],
+                  []
+                );
+                return (
+                  <Calendar
+                    data-plasmic-name={"calendar"}
+                    data-plasmic-override={overrides.calendar}
+                    {...child$Props}
+                  />
+                );
+              })()}
             </div>
             <Topics
               data-plasmic-name={"topics2"}
@@ -3067,40 +3289,142 @@ drawRating(${$state.rate});
                   onClick={async event => {
                     const $steps = {};
 
-                    $steps["updateDialog2Opendialog"] = true
+                    $steps["runCode"] = true
                       ? (() => {
                           const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["dialog2", "opendialog"]
-                            },
-                            operation: 0,
-                            value: false
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
+                            customFunction: async () => {
+                              return ($state.button2.loading = true);
                             }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
                           })?.apply(null, [actionArgs]);
                         })()
                       : undefined;
                     if (
-                      $steps["updateDialog2Opendialog"] != null &&
-                      typeof $steps["updateDialog2Opendialog"] === "object" &&
-                      typeof $steps["updateDialog2Opendialog"].then ===
-                        "function"
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
                     ) {
-                      $steps["updateDialog2Opendialog"] =
-                        await $steps["updateDialog2Opendialog"];
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+
+                    $steps["reserv"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "POST",
+                              "https://sayban.darkube.app/webhook/reservations",
+                              undefined,
+                              (() => {
+                                try {
+                                  return {
+                                    center_id: $props.id,
+                                    service_id: $state.service.id,
+                                    start_time: `${$state.calendar.selected} ${$state.selectTime.selected.slot_start}`,
+                                    end_time: `${$state.calendar.selected} ${$state.selectTime.selected.slot_end}`,
+                                    final_price: $state.service.final_price
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })(),
+                              (() => {
+                                try {
+                                  return {
+                                    headers: {
+                                      Authorization: `Bearer ${$props.token}`
+                                    }
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["reserv"] != null &&
+                      typeof $steps["reserv"] === "object" &&
+                      typeof $steps["reserv"].then === "function"
+                    ) {
+                      $steps["reserv"] = await $steps["reserv"];
+                    }
+
+                    $steps["runGoToPayment"] = $steps.reserv?.data?.success
+                      ? (() => {
+                          const actionArgs = {
+                            eventRef: $props["goToPayment"],
+                            args: [
+                              (() => {
+                                try {
+                                  return $steps.reserv?.data?.id;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return (({ eventRef, args }) => {
+                            return eventRef?.(...(args ?? []));
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runGoToPayment"] != null &&
+                      typeof $steps["runGoToPayment"] === "object" &&
+                      typeof $steps["runGoToPayment"].then === "function"
+                    ) {
+                      $steps["runGoToPayment"] = await $steps["runGoToPayment"];
+                    }
+
+                    $steps["updateSwiperSliderActiveSlideIndex2"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return ($state.button2.loading = false);
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateSwiperSliderActiveSlideIndex2"] != null &&
+                      typeof $steps["updateSwiperSliderActiveSlideIndex2"] ===
+                        "object" &&
+                      typeof $steps["updateSwiperSliderActiveSlideIndex2"]
+                        .then === "function"
+                    ) {
+                      $steps["updateSwiperSliderActiveSlideIndex2"] =
+                        await $steps["updateSwiperSliderActiveSlideIndex2"];
                     }
                   }}
                   onLoadingChange={async (...eventArgs: any) => {

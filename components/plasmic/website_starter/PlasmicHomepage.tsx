@@ -67,6 +67,7 @@ import Subcategories from "../../Subcategories"; // plasmic-import: JM9_woEGqy8m
 import Center from "../../Center"; // plasmic-import: Lh-Py4-EsRhC/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Home from "../../Home"; // plasmic-import: m-UDUThzN-63/component
+import Payment from "../../Payment"; // plasmic-import: BVIyToFh1miy/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -81,10 +82,10 @@ import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHz
 createPlasmicElementProxy;
 
 export type PlasmicHomepage__VariantMembers = {
-  page: "categories" | "subcategories" | "center";
+  page: "categories" | "subcategories" | "center" | "payment";
 };
 export type PlasmicHomepage__VariantsArgs = {
-  page?: SingleChoiceArg<"categories" | "subcategories" | "center">;
+  page?: SingleChoiceArg<"categories" | "subcategories" | "center" | "payment">;
 };
 type VariantPropType = keyof PlasmicHomepage__VariantsArgs;
 export const PlasmicHomepage__VariantProps = new Array<VariantPropType>("page");
@@ -105,6 +106,7 @@ export type PlasmicHomepage__OverridesType = {
   center?: Flex__<typeof Center>;
   apiRequest?: Flex__<typeof ApiRequest>;
   home?: Flex__<typeof Home>;
+  payment?: Flex__<typeof Payment>;
   search?: Flex__<typeof ApiRequest>;
 };
 
@@ -193,6 +195,8 @@ function PlasmicHomepage__RenderFunc(props: {
           (() => {
             try {
               return (() => {
+                if ($ctx.params?.slug?.find(i => i.includes("pay_")))
+                  return "payment";
                 if ($ctx.params?.slug?.includes("center")) return "center";
                 if ($ctx.params?.slug?.[1] != undefined) return "subcategories";
                 if ($ctx.params?.slug?.[0] != undefined) return "categories";
@@ -324,6 +328,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 "categories"
               ),
               [sty.rootpage_center]: hasVariant($state, "page", "center"),
+              [sty.rootpage_payment]: hasVariant($state, "page", "payment"),
               [sty.rootpage_subcategories]: hasVariant(
                 $state,
                 "page",
@@ -421,6 +426,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 "categories"
               ),
               [sty.homePagepage_center]: hasVariant($state, "page", "center"),
+              [sty.homePagepage_payment]: hasVariant($state, "page", "payment"),
               [sty.homePagepage_subcategories]: hasVariant(
                 $state,
                 "page",
@@ -710,6 +716,11 @@ function PlasmicHomepage__RenderFunc(props: {
                 "categories"
               ),
               [sty.categoriespage_center]: hasVariant($state, "page", "center"),
+              [sty.categoriespage_payment]: hasVariant(
+                $state,
+                "page",
+                "payment"
+              ),
               [sty.categoriespage_subcategories]: hasVariant(
                 $state,
                 "page",
@@ -968,12 +979,70 @@ function PlasmicHomepage__RenderFunc(props: {
             }
             className={classNames("__wab_instance", sty.center, {
               [sty.centerpage_center]: hasVariant($state, "page", "center"),
+              [sty.centerpage_payment]: hasVariant($state, "page", "payment"),
               [sty.centerpage_subcategories]: hasVariant(
                 $state,
                 "page",
                 "subcategories"
               )
             })}
+            goToPayment={async id => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            $state.slug.push(`pay_${id || ""}`);
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
             id={
               hasVariant($state, "page", "center")
                 ? (() => {
@@ -1041,7 +1110,7 @@ function PlasmicHomepage__RenderFunc(props: {
                       throw e;
                     }
                   })()
-                : undefined
+                : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwaXJlIjoxNzY0NTA2MjczfQ.A6wRqW0jMYVg_rZ4OMZ5oXrcOVwKq3BG4i_wmvKf_8A"
             }
           />
 
@@ -1055,6 +1124,11 @@ function PlasmicHomepage__RenderFunc(props: {
                 "categories"
               ),
               [sty.apiRequestpage_center]: hasVariant($state, "page", "center"),
+              [sty.apiRequestpage_payment]: hasVariant(
+                $state,
+                "page",
+                "payment"
+              ),
               [sty.apiRequestpage_subcategories]: hasVariant(
                 $state,
                 "page",
@@ -1186,6 +1260,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   "categories"
                 ),
                 [sty.homepage_center]: hasVariant($state, "page", "center"),
+                [sty.homepage_payment]: hasVariant($state, "page", "payment"),
                 [sty.homepage_subcategories]: hasVariant(
                   $state,
                   "page",
@@ -1356,6 +1431,51 @@ function PlasmicHomepage__RenderFunc(props: {
               ])}
             />
           </ApiRequest>
+          <Payment
+            data-plasmic-name={"payment"}
+            data-plasmic-override={overrides.payment}
+            className={classNames("__wab_instance", sty.payment, {
+              [sty.paymentpage_center]: hasVariant($state, "page", "center"),
+              [sty.paymentpage_payment]: hasVariant($state, "page", "payment")
+            })}
+            id={
+              hasVariant($state, "page", "payment")
+                ? (() => {
+                    try {
+                      return $ctx.params.slug
+                        .find(i => i.includes("pay_"))
+                        .split("pay_")[1];
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()
+                : undefined
+            }
+            token={
+              hasVariant($state, "page", "payment")
+                ? (() => {
+                    try {
+                      return $state.token;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()
+                : undefined
+            }
+          />
+
           <ApiRequest
             data-plasmic-name={"search"}
             data-plasmic-override={overrides.search}
@@ -1380,6 +1500,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 "categories"
               ),
               [sty.searchpage_center]: hasVariant($state, "page", "center"),
+              [sty.searchpage_payment]: hasVariant($state, "page", "payment"),
               [sty.searchpage_subcategories]: hasVariant(
                 $state,
                 "page",
@@ -1458,6 +1579,7 @@ const PlasmicDescendants = {
     "center",
     "apiRequest",
     "home",
+    "payment",
     "search"
   ],
   sideEffect: ["sideEffect"],
@@ -1470,6 +1592,7 @@ const PlasmicDescendants = {
   center: ["center"],
   apiRequest: ["apiRequest", "home"],
   home: ["home"],
+  payment: ["payment"],
   search: ["search"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -1487,6 +1610,7 @@ type NodeDefaultElementType = {
   center: typeof Center;
   apiRequest: typeof ApiRequest;
   home: typeof Home;
+  payment: typeof Payment;
   search: typeof ApiRequest;
 };
 
@@ -1562,6 +1686,7 @@ export const PlasmicHomepage = Object.assign(
     center: makeNodeComponent("center"),
     apiRequest: makeNodeComponent("apiRequest"),
     home: makeNodeComponent("home"),
+    payment: makeNodeComponent("payment"),
     search: makeNodeComponent("search"),
 
     // Metadata about props expected for PlasmicHomepage

@@ -60,6 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { BaseCheckbox } from "@plasmicpkgs/react-aria/skinny/registerCheckbox";
+import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -73,10 +74,16 @@ import MinusIcon from "./icons/PlasmicIcon__Minus"; // plasmic-import: taAusar-8
 
 createPlasmicElementProxy;
 
-export type PlasmicCheckbox__VariantMembers = {};
-export type PlasmicCheckbox__VariantsArgs = {};
+export type PlasmicCheckbox__VariantMembers = {
+  shape: "circle";
+};
+export type PlasmicCheckbox__VariantsArgs = {
+  shape?: SingleChoiceArg<"circle">;
+};
 type VariantPropType = keyof PlasmicCheckbox__VariantsArgs;
-export const PlasmicCheckbox__VariantProps = new Array<VariantPropType>();
+export const PlasmicCheckbox__VariantProps = new Array<VariantPropType>(
+  "shape"
+);
 
 export type PlasmicCheckbox__ArgsType = {
   value?: string;
@@ -85,7 +92,9 @@ export type PlasmicCheckbox__ArgsType = {
   ariaLabel?: string;
   isSelected?: boolean;
   onChange?: (val: boolean) => void;
+  icon?: string;
   label?: React.ReactNode;
+  children?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicCheckbox__ArgsType;
 export const PlasmicCheckbox__ArgProps = new Array<ArgPropType>(
@@ -95,12 +104,14 @@ export const PlasmicCheckbox__ArgProps = new Array<ArgPropType>(
   "ariaLabel",
   "isSelected",
   "onChange",
-  "label"
+  "icon",
+  "label",
+  "children"
 );
 
 export type PlasmicCheckbox__OverridesType = {
   ariaCheckbox?: Flex__<typeof BaseCheckbox>;
-  freeBox?: Flex__<"div">;
+  menuIcon?: Flex__<typeof MenuIcon>;
 };
 
 export interface DefaultCheckboxProps {
@@ -110,7 +121,10 @@ export interface DefaultCheckboxProps {
   ariaLabel?: string;
   isSelected?: boolean;
   onChange?: (val: boolean) => void;
+  icon?: string;
   label?: React.ReactNode;
+  children?: React.ReactNode;
+  shape?: SingleChoiceArg<"circle">;
   className?: string;
 }
 
@@ -155,6 +169,8 @@ function PlasmicCheckbox__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const globalVariants = _useGlobalVariants();
+
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -164,6 +180,12 @@ function PlasmicCheckbox__RenderFunc(props: {
 
         valueProp: "isSelected",
         onChangeProp: "onChange"
+      },
+      {
+        path: "shape",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.shape
       }
     ],
     [$props, $ctx, $refs]
@@ -215,7 +237,10 @@ function PlasmicCheckbox__RenderFunc(props: {
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
         styleTokensClassNames,
-        sty.ariaCheckbox
+        sty.ariaCheckbox,
+        {
+          [sty.ariaCheckboxshape_circle]: hasVariant($state, "shape", "circle")
+        }
       )}
       defaultSelected={false}
       isDisabled={args.disabled}
@@ -233,10 +258,50 @@ function PlasmicCheckbox__RenderFunc(props: {
       plasmicUpdateVariant={updateVariant}
       value={args.value}
     >
+      <div className={classNames(projectcss.all, sty.freeBox__hwK1P)}>
+        <MenuIcon
+          data-plasmic-name={"menuIcon"}
+          data-plasmic-override={overrides.menuIcon}
+          className={classNames("__wab_instance", sty.menuIcon)}
+          icons={(() => {
+            try {
+              return $props.icon;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()}
+          size={"_25"}
+        />
+
+        <div className={classNames(projectcss.all, sty.freeBox__u9IWo)}>
+          {renderPlasmicSlot({
+            defaultContents: "Option",
+            value: args.label,
+            className: classNames(sty.slotTargetLabel)
+          })}
+          <div className={classNames(projectcss.all, sty.freeBox__b9WAl)}>
+            {renderPlasmicSlot({
+              defaultContents: "Enter some text",
+              value: args.children,
+              className: classNames(sty.slotTargetChildren)
+            })}
+          </div>
+        </div>
+      </div>
       <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
+        className={classNames(projectcss.all, sty.freeBox__iZwZo, {
+          [sty.freeBoxshape_circle__iZwZo7C5HX]: hasVariant(
+            $state,
+            "shape",
+            "circle"
+          )
+        })}
       >
         {(
           $ccVariants["selected"] && $ccVariants["indeterminate"]
@@ -246,7 +311,13 @@ function PlasmicCheckbox__RenderFunc(props: {
               : false
         ) ? (
           <CheckIcon
-            className={classNames(projectcss.all, sty.svg__ait2B)}
+            className={classNames(projectcss.all, sty.svg__ait2B, {
+              [sty.svgshape_circle__ait2B7C5HX]: hasVariant(
+                $state,
+                "shape",
+                "circle"
+              )
+            })}
             role={"img"}
           />
         ) : null}
@@ -257,24 +328,20 @@ function PlasmicCheckbox__RenderFunc(props: {
           />
         ) : null}
       </div>
-      {renderPlasmicSlot({
-        defaultContents: "Option",
-        value: args.label
-      })}
     </BaseCheckbox>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  ariaCheckbox: ["ariaCheckbox", "freeBox"],
-  freeBox: ["freeBox"]
+  ariaCheckbox: ["ariaCheckbox", "menuIcon"],
+  menuIcon: ["menuIcon"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   ariaCheckbox: typeof BaseCheckbox;
-  freeBox: "div";
+  menuIcon: typeof MenuIcon;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -339,7 +406,7 @@ export const PlasmicCheckbox = Object.assign(
   makeNodeComponent("ariaCheckbox"),
   {
     // Helper components rendering sub-elements
-    freeBox: makeNodeComponent("freeBox"),
+    menuIcon: makeNodeComponent("menuIcon"),
 
     // Metadata about props expected for PlasmicCheckbox
     internalVariantProps: PlasmicCheckbox__VariantProps,

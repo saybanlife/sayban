@@ -1501,6 +1501,32 @@
           "cssFilePath": "plasmic/sayban/PlasmicCalendar.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "BVIyToFh1miy",
+          "name": "Payment",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicPayment.tsx",
+          "importSpec": {
+            "modulePath": "Payment.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicPayment.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "-12Fp4g9XO2-",
+          "name": "Service2",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicService2.tsx",
+          "importSpec": {
+            "modulePath": "Service2.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicService2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -2008,6 +2034,11 @@
           "id": "na93YR5AD4rQ",
           "name": "Icon47Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon47.tsx"
+        },
+        {
+          "id": "JOXztgoCHKlh",
+          "name": "Icon48Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon48.tsx"
         }
       ],
       "images": [
