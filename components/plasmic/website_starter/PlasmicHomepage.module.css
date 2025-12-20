@@ -483,6 +483,7 @@
 .home:global(.__wab_instance) {
   position: relative;
   width: 98%;
+  margin-bottom: 10rem;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .home:global(.__wab_instance) {

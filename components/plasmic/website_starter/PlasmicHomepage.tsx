@@ -1013,7 +1013,7 @@ function PlasmicHomepage__RenderFunc(props: {
                       })()}/${(() => {
                         try {
                           return (() => {
-                            $state.slug.push(`pay_${$state.center.id2}`);
+                            $state.slug.push(`pay_${id}`);
                             return $state.slug.join("/");
                           })();
                         } catch (e) {
@@ -1131,7 +1131,19 @@ function PlasmicHomepage__RenderFunc(props: {
                       throw e;
                     }
                   })()
-                : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwaXJlIjoxNzY0NTA2MjczfQ.A6wRqW0jMYVg_rZ4OMZ5oXrcOVwKq3BG4i_wmvKf_8A"
+                : (() => {
+                    try {
+                      return $state.token;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()
             }
           />
 

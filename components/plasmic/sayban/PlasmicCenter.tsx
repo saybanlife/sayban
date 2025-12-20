@@ -3425,7 +3425,7 @@ drawRating(${$state.rate});
                             args: [
                               (() => {
                                 try {
-                                  return $state.id2;
+                                  return $steps.reserv?.data?.id;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
