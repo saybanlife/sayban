@@ -1,6 +1,16 @@
 {
   "props": [
     {
+      "name": "",
+      "type": "color",
+      "value": "#ffffff",
+      "category": "color",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "W0eejbtvb0xw"
+      }
+    },
+    {
       "name": "1",
       "type": "spacing",
       "value": "0.75rem",
@@ -53,11 +63,21 @@
     {
       "name": "Accent",
       "type": "color",
-      "value": "#F5F0DC",
+      "value": "#2F361E",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
         "id": "9M5jRUPt8Msb"
+      }
+    },
+    {
+      "name": "Accent lighte",
+      "type": "color",
+      "value": "#F9F8D7",
+      "category": "color",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "k-47TemksE2v"
       }
     },
     {
@@ -193,7 +213,7 @@
     {
       "name": "Dark Border",
       "type": "color",
-      "value": "#505F3A",
+      "value": "#3D5A2A",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -463,7 +483,7 @@
     {
       "name": "Second",
       "type": "color",
-      "value": "#505F3A",
+      "value": "#ECC33D",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -2691,6 +2711,16 @@
       }
     },
     {
+      "name": "Unnamed Style Token 3",
+      "type": "color",
+      "value": "#ffffff",
+      "category": "color",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "l0hcBbEdQjWD"
+      }
+    },
+    {
       "name": "Warning/Warning",
       "type": "color",
       "value": "#FACC15",
@@ -2723,7 +2753,7 @@
     {
       "name": "Warning/Warning-Soft",
       "type": "color",
-      "value": "#FEF9C3",
+      "value": "#58743A17",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -2753,7 +2783,7 @@
     {
       "name": "base",
       "type": "color",
-      "value": "#1F2A23",
+      "value": "#58743A",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -2783,7 +2813,7 @@
     {
       "name": "bg",
       "type": "color",
-      "value": "#1C281F",
+      "value": "#FEF1CF",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -2823,7 +2853,7 @@
     {
       "name": "gray",
       "type": "color",
-      "value": "#E4D9C5",
+      "value": "#AFA491",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -2853,7 +2883,7 @@
     {
       "name": "input placeholder",
       "type": "color",
-      "value": "#8254C61A",
+      "value": "#E1DFBD",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -2873,7 +2903,7 @@
     {
       "name": "lighe base",
       "type": "color",
-      "value": "#505F3A",
+      "value": "#859B50",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -2881,43 +2911,13 @@
       }
     },
     {
-      "name": "page bg",
+      "name": "lighe mask",
       "type": "color",
-      "value": "rgb(245,245,245)",
+      "value": "#E8FFAF6E",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
-        "id": "50e0UYaEbeQX"
-      }
-    },
-    {
-      "name": "page bg dark",
-      "type": "color",
-      "value": "rgb(0,0,0)",
-      "category": "color",
-      "meta": {
-        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
-        "id": "pL3jgXQgAS-1"
-      }
-    },
-    {
-      "name": "primary",
-      "type": "color",
-      "value": "#8254C6",
-      "category": "color",
-      "meta": {
-        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
-        "id": "fni3nTjgVNW-"
-      }
-    },
-    {
-      "name": "purple",
-      "type": "color",
-      "value": "#8254C6",
-      "category": "color",
-      "meta": {
-        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
-        "id": "L5Hgrtuy-ukv"
+        "id": "oMej9DCdGzNU"
       }
     },
     {
@@ -2983,11 +2983,21 @@
     {
       "name": "text",
       "type": "color",
-      "value": "#C4BEA4",
+      "value": "#424C29",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
         "id": "KjATzAYJ5IB7"
+      }
+    },
+    {
+      "name": "text lighte",
+      "type": "color",
+      "value": "#E1DFBD",
+      "category": "color",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "A-PNbaadkZKd"
       }
     },
     {

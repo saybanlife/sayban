@@ -247,6 +247,11 @@ function PlasmicHeader__RenderFunc(props: {
             value: args.children
           })}
         </div>
+        <div
+          className={classNames(projectcss.all, sty.freeBox__m7Yl, {
+            [sty.freeBoxsoft__m7YlFgJuq]: hasVariant($state, "soft", "soft")
+          })}
+        />
       </div>
       <div
         data-plasmic-name={"text"}

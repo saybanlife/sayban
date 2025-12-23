@@ -10,7 +10,6 @@
   position: relative;
   min-width: 0;
   padding: var(--token-rfsFxiclAtek);
-  border-bottom: 1px solid #e4d9c533;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .root {
@@ -191,4 +190,20 @@
   .text__h7X7L {
     animation: none;
   }
+}
+.text__ezwo {
+  animation: none;
+  position: absolute;
+  width: auto;
+  height: 1px;
+  max-width: 100%;
+  opacity: 0.2;
+  left: 0;
+  top: auto;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  flex-shrink: 0;
+  padding: 0px;
+  border-bottom: 1px solid var(--token-C6B6ZAuqICKE);
 }

@@ -109,6 +109,7 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>(
 export type PlasmicHome__OverridesType = {
   root?: Flex__<"div">;
   swiperSlider2?: Flex__<typeof SwiperSlider>;
+  text?: Flex__<"div">;
   toolsItem?: Flex__<typeof ToolsItem>;
   reveal?: Flex__<typeof Reveal>;
   item?: Flex__<typeof Item>;
@@ -354,14 +355,17 @@ function PlasmicHome__RenderFunc(props: {
         })}
       >
         <div
-          className={classNames(projectcss.all, sty.freeBox___0GJcQ, {
-            [sty.freeBoxsearch___0GJcQMh4IK]: hasVariant(
-              $state,
-              "search",
-              "search"
-            )
-          })}
+          data-plasmic-name={"text"}
+          data-plasmic-override={overrides.text}
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text
+          )}
         >
+          {"\u062e\u062f\u0645\u0627\u062a"}
+        </div>
+        <div className={classNames(projectcss.all, sty.freeBox___0N18J)}>
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {
               try {
@@ -579,8 +583,9 @@ function PlasmicHome__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "swiperSlider2", "toolsItem", "reveal", "item"],
+  root: ["root", "swiperSlider2", "text", "toolsItem", "reveal", "item"],
   swiperSlider2: ["swiperSlider2"],
+  text: ["text"],
   toolsItem: ["toolsItem"],
   reveal: ["reveal", "item"],
   item: ["item"]
@@ -591,6 +596,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   swiperSlider2: typeof SwiperSlider;
+  text: "div";
   toolsItem: typeof ToolsItem;
   reveal: typeof Reveal;
   item: typeof Item;
@@ -659,6 +665,7 @@ export const PlasmicHome = Object.assign(
   {
     // Helper components rendering sub-elements
     swiperSlider2: makeNodeComponent("swiperSlider2"),
+    text: makeNodeComponent("text"),
     toolsItem: makeNodeComponent("toolsItem"),
     reveal: makeNodeComponent("reveal"),
     item: makeNodeComponent("item"),

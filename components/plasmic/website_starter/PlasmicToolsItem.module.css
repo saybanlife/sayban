@@ -23,7 +23,7 @@
   row-gap: var(--token-I0Xtb9z7Q0X3);
   column-gap: 0px;
   border-radius: var(--token-rfsFxiclAtek);
-  padding: var(--token-gLYiSvxc94NR);
+  padding: 0px;
 }
 .freeBox {
   position: relative;
@@ -37,15 +37,11 @@
   background: none;
 }
 .freeBoxback {
+  box-shadow: 0px 2px 10px 0px #00000033;
   width: auto;
   height: auto;
   max-width: 100%;
-  background: linear-gradient(
-    30deg,
-    var(--token--ieHgGbFH1Fa) 0%,
-    var(--token--ieHgGbFH1Fa) 100%
-  );
-  box-shadow: 0px 4px 16px 0px #1717174d;
+  background: var(--token-k-47TemksE2v);
   column-gap: 0px;
   row-gap: var(--token-I0Xtb9z7Q0X3);
   flex-direction: column;
@@ -63,7 +59,7 @@
   height: auto;
   max-width: 100%;
   text-align: center;
-  color: var(--token-C6B6ZAuqICKE);
+  color: var(--token-9M5jRUPt8Msb);
   font-weight: 600;
   min-width: 0;
 }

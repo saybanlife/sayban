@@ -1192,7 +1192,14 @@ function PlasmicCenter__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.__wab_text,
-                        sty.text___5Ois5
+                        sty.text___5Ois5,
+                        {
+                          [sty.texttop___5Ois5Y7HPh]: hasVariant(
+                            $state,
+                            "top",
+                            "top"
+                          )
+                        }
                       )}
                     >
                       <React.Fragment>
@@ -1216,7 +1223,14 @@ function PlasmicCenter__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__fdjfu
+                      sty.text__fdjfu,
+                      {
+                        [sty.texttop__fdjfuY7HPh]: hasVariant(
+                          $state,
+                          "top",
+                          "top"
+                        )
+                      }
                     )}
                   >
                     {""}

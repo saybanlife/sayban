@@ -17,7 +17,7 @@
   border-width: 0px;
 }
 .rootselectedLine {
-  border-color: var(--token-L5Hgrtuy-ukv);
+  border-color: #8254c6;
 }
 .rootdisable {
   background: var(--token-lvtosLib60Mj);
@@ -74,7 +74,7 @@
 .rootstyle2_lineligt_selected {
   background: var(--token-6Lhw5mK6wolF);
   border-width: 1px;
-  border-color: var(--token-L5Hgrtuy-ukv);
+  border-color: #8254c6;
 }
 .rootchoise_selected {
   background: var(--token-kI60KiRr_Lur);
@@ -175,7 +175,7 @@
   font-size: 12px;
 }
 .slotTargetChildrenselected_color_light {
-  color: var(--token-fni3nTjgVNW-);
+  color: #8254c6;
 }
 .slotTargetChildrenstyle2_lineligt_selected {
   color: #535353;

@@ -4,7 +4,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background: var(--token-fni3nTjgVNW-);
+  background: #8254c6;
   cursor: pointer;
   transition-property: background;
   transition-duration: 0.1s;
@@ -90,7 +90,7 @@
 .rootcolor_line {
   background: none;
   border-width: 2px;
-  border-color: var(--token-L5Hgrtuy-ukv);
+  border-color: #8254c6;
 }
 .rootcolor_orange {
   background: #fa8214;
@@ -130,7 +130,7 @@
   border-color: var(--token-kI60KiRr_Lur);
 }
 .rootbuttonDataaa {
-  background: linear-gradient(#682c2c00, #682c2c00), var(--token-fni3nTjgVNW-);
+  background: linear-gradient(#682c2c00, #682c2c00), #8254c6;
 }
 .rootserface {
   background: var(--token-O-9PmcwkoIXk);
@@ -160,12 +160,12 @@
   outline: none;
 }
 .root:hover {
-  background: var(--token-L5Hgrtuy-ukv);
+  background: #8254c6;
   backdrop-filter: grayscale(15%);
   -webkit-backdrop-filter: grayscale(15%);
 }
 .root:active {
-  background: var(--token-L5Hgrtuy-ukv);
+  background: #8254c6;
   backdrop-filter: grayscale(21%);
   -webkit-backdrop-filter: grayscale(21%);
 }
@@ -431,10 +431,10 @@
   color: #0091ff;
 }
 .slotTargetChildrencolor_perper {
-  color: var(--token-pL3jgXQgAS-1);
+  color: rgb(0, 0, 0);
 }
 .slotTargetChildrencolor_line {
-  color: var(--token-L5Hgrtuy-ukv);
+  color: #8254c6;
   font-weight: 700;
 }
 .slotTargetChildrencolor_softBlack {

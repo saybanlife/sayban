@@ -370,6 +370,15 @@ function PlasmicComment__RenderFunc(props: {
           })()}
         </React.Fragment>
       </div>
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__ezwo
+        )}
+      >
+        {""}
+      </div>
     </div>
   ) as React.ReactElement | null;
 }

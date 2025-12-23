@@ -9,11 +9,13 @@
   row-gap: var(--token-73iLa06AE6f4);
   position: relative;
   min-width: 0;
-  padding: 14rem 0px 0px;
+  padding: 14rem var(--token-kD77h-2NGSqI) 0px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .root {
     width: 100%;
+    padding-right: var(--token-D_3fp_JIDs1G);
+    padding-left: var(--token-D_3fp_JIDs1G);
     grid-column-start: 1 !important;
     grid-column-end: -1 !important;
   }
@@ -23,7 +25,6 @@
 }
 .freeBox__dzcLe {
   animation: none;
-  display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
@@ -34,6 +35,7 @@
   overflow: hidden;
   min-width: 0;
   flex-shrink: 0;
+  display: none;
   border-radius: var(--token-kD77h-2NGSqI);
   padding: 0px;
 }
@@ -54,6 +56,7 @@
   height: 150px;
   min-width: 0;
   flex-shrink: 0;
+  display: none;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .swiperSlider2:global(.__wab_instance) {
@@ -109,14 +112,14 @@
 }
 .freeBox__muDck {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   position: relative;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: auto;
   max-width: 100%;
-  column-gap: var(--token-rfsFxiclAtek);
+  row-gap: 0px;
   min-width: 0;
   padding: 0px;
 }
@@ -130,28 +133,33 @@
 .freeBoxsearch__muDckMh4IK {
   display: none;
 }
-.freeBox___0GJcQ {
-  display: grid;
+.text {
   position: relative;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
   width: 100%;
   height: auto;
   max-width: 100%;
-  grid-row-gap: var(--token-rfsFxiclAtek);
-  grid-column-gap: var(--token-rfsFxiclAtek);
+  text-align: right;
+  font-weight: 700;
+  font-size: var(--token-9jx4RULNbWhl);
+  color: var(--token-k-47TemksE2v);
+  min-width: 0;
+}
+.freeBox___0N18J {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow: auto;
+  column-gap: var(--token-rfsFxiclAtek);
   min-width: 0;
   padding: 0px;
 }
-@media (min-width: 0px) and (max-width: 768px) {
-  .freeBox___0GJcQ {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-row-gap: var(--token-D_3fp_JIDs1G);
-  }
-}
 .toolsItem:global(.__wab_instance) {
-  position: relative;
-  width: 100%;
-  min-width: 0;
+  width: auto;
 }
 .freeBox___8ZSjn {
   flex-direction: column;

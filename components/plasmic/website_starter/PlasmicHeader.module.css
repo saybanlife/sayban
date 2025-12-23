@@ -39,10 +39,10 @@
   justify-content: space-between;
   align-items: center;
   column-gap: var(--token-kD77h-2NGSqI);
-  background: var(--token-KPGXdu9o7llP);
-  box-shadow: 0px 4px 16px 0px #00000045;
+  background: var(--token-9M5jRUPt8Msb);
+  box-shadow: none;
   min-width: 0;
-  padding: var(--token-kD77h-2NGSqI) var(--token-rfsFxiclAtek);
+  padding: var(--token-kD77h-2NGSqI) var(--token-rfsFxiclAtek) 2.5rem;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__lHkfy {
@@ -100,7 +100,7 @@
   max-width: 100%;
   width: 25px;
   height: 25px;
-  color: var(--token-9M5jRUPt8Msb);
+  color: var(--token-k-47TemksE2v);
   flex-shrink: 0;
 }
 .svgsoft {
@@ -119,7 +119,7 @@
 .slotTargetSlot {
   font-size: var(--token-Tca_MqWoqq_b);
   font-weight: 600;
-  color: var(--token-80wG4y4sryg5);
+  color: var(--token-k-47TemksE2v);
   text-align: center;
 }
 .freeBox__o586O {
@@ -133,6 +133,27 @@
   align-items: center;
   flex-shrink: 0;
   padding: 0px;
+}
+.freeBox__m7Yl {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: auto;
+  height: 20px;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  left: 0;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  background: var(--token-KPGXdu9o7llP);
+  border-top-right-radius: var(--token-zOTmRNiLzxBx);
+  border-top-left-radius: var(--token-zOTmRNiLzxBx);
+  padding: 8px;
+}
+.freeBoxsoft__m7YlFgJuq {
+  display: none;
 }
 .text {
   animation: none;

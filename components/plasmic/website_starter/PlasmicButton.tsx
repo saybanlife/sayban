@@ -75,7 +75,13 @@ import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-impor
 createPlasmicElementProxy;
 
 export type PlasmicButton__VariantMembers = {
-  color: "neutral" | "muted" | "success" | "warning" | "errorDestructive";
+  color:
+    | "neutral"
+    | "muted"
+    | "success"
+    | "warning"
+    | "errorDestructive"
+    | "second";
   type: "soft" | "bordered";
   size: "extraSmall" | "small" | "large" | "extraLarge";
   iconStart: "iconStart";
@@ -86,7 +92,7 @@ export type PlasmicButton__VariantMembers = {
 };
 export type PlasmicButton__VariantsArgs = {
   color?: SingleChoiceArg<
-    "neutral" | "muted" | "success" | "warning" | "errorDestructive"
+    "neutral" | "muted" | "success" | "warning" | "errorDestructive" | "second"
   >;
   type?: SingleChoiceArg<"soft" | "bordered">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -157,7 +163,7 @@ export interface DefaultButtonProps {
   label?: React.ReactNode;
   end?: React.ReactNode;
   color?: SingleChoiceArg<
-    "neutral" | "muted" | "success" | "warning" | "errorDestructive"
+    "neutral" | "muted" | "success" | "warning" | "errorDestructive" | "second"
   >;
   type?: SingleChoiceArg<"soft" | "bordered">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -318,6 +324,7 @@ function PlasmicButton__RenderFunc(props: {
           ),
           [sty.rootcolor_muted]: hasVariant($state, "color", "muted"),
           [sty.rootcolor_neutral]: hasVariant($state, "color", "neutral"),
+          [sty.rootcolor_second]: hasVariant($state, "color", "second"),
           [sty.rootcolor_success]: hasVariant($state, "color", "success"),
           [sty.rootcolor_warning]: hasVariant($state, "color", "warning"),
           [sty.rootflatSide_bottom]: hasVariant($state, "flatSide", "bottom"),

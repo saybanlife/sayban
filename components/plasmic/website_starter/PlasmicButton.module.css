@@ -1,6 +1,6 @@
 .root:global(.__wab_instance) {
   position: relative;
-  background: var(--token--ieHgGbFH1Fa);
+  background: var(--token-9M5jRUPt8Msb);
   display: flex;
   cursor: pointer;
   box-sizing: border-box;
@@ -37,6 +37,9 @@
 }
 .rootcolor_errorDestructive:global(.__wab_instance) {
   background: var(--token-FCYaeT_sNnHr);
+}
+.rootcolor_second:global(.__wab_instance) {
+  background: var(--token-Yo4gdKCgyuAu);
 }
 .roottype_soft:global(.__wab_instance) {
   background: none;
@@ -374,6 +377,7 @@
 }
 .text__nirJc {
   white-space: pre;
+  color: var(--token-9M5jRUPt8Msb);
 }
 .freeBox__dzv7U {
   flex-direction: column;

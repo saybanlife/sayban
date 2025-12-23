@@ -416,7 +416,6 @@ function PlasmicPayment__RenderFunc(props: {
             }
           </div>
         }
-        soft={true}
       />
 
       <div className={classNames(projectcss.all, sty.freeBox__vxiP)}>

@@ -68,9 +68,6 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJu
 import sty from "./PlasmicMenueIcon.module.css"; // plasmic-import: 8E0dazXQIYne/css
 
 import Icon24Icon from "../sayban/icons/PlasmicIcon__Icon24"; // plasmic-import: Zol8GIsmVO1W/icon
-import Icon14Icon from "./icons/PlasmicIcon__Icon14"; // plasmic-import: Rdo3c9b8zHVR/icon
-import Icon15Icon from "./icons/PlasmicIcon__Icon15"; // plasmic-import: uAXK4fWyRv8m/icon
-import Icon16Icon from "./icons/PlasmicIcon__Icon16"; // plasmic-import: h4Q2RYIs-wbf/icon
 import Icon4Icon from "./icons/PlasmicIcon__Icon4"; // plasmic-import: XYEdqsKT1Z5t/icon
 import Icon5Icon from "./icons/PlasmicIcon__Icon5"; // plasmic-import: 8vOA1S70pHdl/icon
 import Icon6Icon from "./icons/PlasmicIcon__Icon6"; // plasmic-import: wfu5dAZKgp8n/icon
@@ -126,7 +123,6 @@ export const PlasmicMenueIcon__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicMenueIcon__OverridesType = {
   root?: Flex__<"div">;
-  freeBox?: Flex__<"div">;
   svg?: Flex__<"svg">;
   img?: Flex__<typeof PlasmicImg__>;
 };
@@ -253,20 +249,19 @@ function PlasmicMenueIcon__RenderFunc(props: {
             "rehabilitation"
           ),
           [sty.rooticons_settings]: hasVariant($state, "icons", "settings"),
+          [sty.rooticons_settings_select]:
+            hasVariant($state, "icons", "settings") &&
+            hasVariant($state, "select", "select"),
           [sty.rooticons_supportive]: hasVariant($state, "icons", "supportive"),
+          [sty.rooticons_user]: hasVariant($state, "icons", "user"),
+          [sty.rooticons_user_select]:
+            hasVariant($state, "select", "select") &&
+            hasVariant($state, "icons", "user"),
           [sty.rootselect]: hasVariant($state, "select", "select"),
           [sty.rootsize_max]: hasVariant($state, "size", "max")
         }
       )}
     >
-      <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox, {
-          [sty.freeBoxselect]: hasVariant($state, "select", "select")
-        })}
-      />
-
       <PlasmicIcon__
         data-plasmic-name={"svg"}
         data-plasmic-override={overrides.svg}
@@ -289,11 +284,11 @@ function PlasmicMenueIcon__RenderFunc(props: {
                       : hasVariant($state, "icons", "supportive")
                         ? Icon27Icon
                         : hasVariant($state, "icons", "home")
-                          ? Icon14Icon
+                          ? Icon4Icon
                           : hasVariant($state, "icons", "user")
-                            ? Icon15Icon
+                            ? Icon5Icon
                             : hasVariant($state, "icons", "settings")
-                              ? Icon16Icon
+                              ? Icon6Icon
                               : Icon24Icon
         }
         className={classNames(projectcss.all, sty.svg, {
@@ -403,8 +398,7 @@ function PlasmicMenueIcon__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox", "svg", "img"],
-  freeBox: ["freeBox"],
+  root: ["root", "svg", "img"],
   svg: ["svg"],
   img: ["img"]
 } as const;
@@ -413,7 +407,6 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  freeBox: "div";
   svg: "svg";
   img: typeof PlasmicImg__;
 };
@@ -480,7 +473,6 @@ export const PlasmicMenueIcon = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    freeBox: makeNodeComponent("freeBox"),
     svg: makeNodeComponent("svg"),
     img: makeNodeComponent("img"),
 

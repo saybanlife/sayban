@@ -62,6 +62,7 @@ import {
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import Menu2 from "../../Menu2"; // plasmic-import: z9yXgH-e4ant/component
 import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import Categories from "../../Categories"; // plasmic-import: R95SHqmqnvX5/component
 import Subcategories from "../../Subcategories"; // plasmic-import: JM9_woEGqy8m/component
 import Center from "../../Center"; // plasmic-import: Lh-Py4-EsRhC/component
@@ -76,8 +77,10 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: qQJONu9yTCat/css
 
-import Icon9Icon from "./icons/PlasmicIcon__Icon9"; // plasmic-import: C4Cciq7DgQq7/icon
+import Icon49Icon from "../sayban/icons/PlasmicIcon__Icon49"; // plasmic-import: GiSR5zfG8C_s/icon
 import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 
 createPlasmicElementProxy;
 
@@ -99,8 +102,9 @@ export type PlasmicHomepage__OverridesType = {
   sideEffect?: Flex__<typeof SideEffect>;
   homePage?: Flex__<"div">;
   menu2?: Flex__<typeof Menu2>;
-  img?: Flex__<typeof PlasmicImg__>;
   textInput?: Flex__<typeof TextInput>;
+  button?: Flex__<typeof Button>;
+  img?: Flex__<typeof PlasmicImg__>;
   categories?: Flex__<typeof Categories>;
   subcategories?: Flex__<typeof Subcategories>;
   center?: Flex__<typeof Center>;
@@ -150,8 +154,6 @@ function PlasmicHomepage__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
-
-  const globalVariants = _useGlobalVariants();
 
   const $globalActions = useGlobalActions?.();
 
@@ -291,6 +293,12 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "button.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -453,65 +461,6 @@ function PlasmicHomepage__RenderFunc(props: {
                 id={"headerMain"}
               >
                 <div
-                  className={classNames(projectcss.all, sty.freeBox__r7UPf)}
-                />
-
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    sty.freeBox___4JaU4,
-                    (() => {
-                      try {
-                        return $state.home.search != true
-                          ? "fade-in"
-                          : "fade-out";
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()
-                  )}
-                >
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox___2Pth2)}
-                  />
-
-                  <PlasmicImg__
-                    data-plasmic-name={"img"}
-                    data-plasmic-override={overrides.img}
-                    alt={""}
-                    className={classNames(sty.img, {
-                      [sty.imgpage_categories]: hasVariant(
-                        $state,
-                        "page",
-                        "categories"
-                      )
-                    })}
-                    displayHeight={"auto"}
-                    displayMaxHeight={"none"}
-                    displayMaxWidth={"100%"}
-                    displayMinHeight={"0"}
-                    displayMinWidth={"0"}
-                    displayWidth={
-                      hasVariant(globalVariants, "screen", "mobileOnly")
-                        ? "120px"
-                        : "120px"
-                    }
-                    loading={"lazy"}
-                    src={{
-                      src: "/plasmic/website_starter/images/untitledPicturePng2.png",
-                      fullWidth: 3629,
-                      fullHeight: 2887,
-                      aspectRatio: undefined
-                    }}
-                  />
-                </div>
-                <div
                   className={classNames(projectcss.all, sty.freeBox___9C3Gw)}
                 >
                   <TextInput
@@ -607,7 +556,7 @@ function PlasmicHomepage__RenderFunc(props: {
                     ])}
                   />
 
-                  <Icon9Icon
+                  <Icon49Icon
                     className={classNames(projectcss.all, sty.svg___0GKYj)}
                     role={"img"}
                   />
@@ -692,8 +641,127 @@ function PlasmicHomepage__RenderFunc(props: {
                   ) : null}
                 </div>
                 <div
-                  className={classNames(projectcss.all, sty.freeBox__ciskU)}
-                />
+                  className={classNames(
+                    projectcss.all,
+                    sty.freeBox___4JaU4,
+                    (() => {
+                      try {
+                        return $state.home.search != true
+                          ? "fade-in"
+                          : "fade-out";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  )}
+                >
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__k4OH1)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__fmPbl
+                      )}
+                    >
+                      {
+                        "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645\r"
+                      }
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__qxfk
+                      )}
+                    >
+                      {
+                        "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645 \u0645\u062a\u0646 \u0633\u0627\u062e\u062a\u06af\u06cc \u0628\u0627 \u062a\u0648\u0644\u06cc\u062f \u0633\u0627\u062f\u06af\u06cc \u0646\u0627\u0645\u0641\u0647\u0648\u0645 \r\n"
+                      }
+                    </div>
+                    <Button
+                      data-plasmic-name={"button"}
+                      data-plasmic-override={overrides.button}
+                      className={classNames("__wab_instance", sty.button)}
+                      color={"second"}
+                      label={
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__ekymK
+                          )}
+                        >
+                          {
+                            "\u0645\u0634\u0627\u0647\u062f\u0647 \u0628\u06cc\u0634\u062a\u0631"
+                          }
+                        </div>
+                      }
+                      loading={generateStateValueProp($state, [
+                        "button",
+                        "loading"
+                      ])}
+                      onLoadingChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "button",
+                          "loading"
+                        ]).apply(null, eventArgs);
+
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
+                          return;
+                        }
+                      }}
+                      roundedFull={true}
+                    />
+                  </div>
+                  <PlasmicImg__
+                    data-plasmic-name={"img"}
+                    data-plasmic-override={overrides.img}
+                    alt={""}
+                    className={classNames(sty.img)}
+                    displayHeight={"150px"}
+                    displayMaxHeight={"none"}
+                    displayMaxWidth={"100%"}
+                    displayMinHeight={"0"}
+                    displayMinWidth={"0"}
+                    displayWidth={"150px"}
+                    loading={"lazy"}
+                    src={{
+                      src: "/plasmic/sayban/images/chatGptImageDec232025112923AmPng.png",
+                      fullWidth: 1024,
+                      fullHeight: 998,
+                      aspectRatio: undefined
+                    }}
+                  />
+                </div>
+                {(() => {
+                  try {
+                    return $state.home.search;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__t0TZ)}
+                  />
+                ) : null}
               </div>
             </section>
           </div>
@@ -1605,8 +1673,9 @@ const PlasmicDescendants = {
     "sideEffect",
     "homePage",
     "menu2",
-    "img",
     "textInput",
+    "button",
+    "img",
     "categories",
     "subcategories",
     "center",
@@ -1616,10 +1685,11 @@ const PlasmicDescendants = {
     "search"
   ],
   sideEffect: ["sideEffect"],
-  homePage: ["homePage", "menu2", "img", "textInput"],
+  homePage: ["homePage", "menu2", "textInput", "button", "img"],
   menu2: ["menu2"],
-  img: ["img"],
   textInput: ["textInput"],
+  button: ["button"],
+  img: ["img"],
   categories: ["categories"],
   subcategories: ["subcategories"],
   center: ["center"],
@@ -1636,8 +1706,9 @@ type NodeDefaultElementType = {
   sideEffect: typeof SideEffect;
   homePage: "div";
   menu2: typeof Menu2;
-  img: typeof PlasmicImg__;
   textInput: typeof TextInput;
+  button: typeof Button;
+  img: typeof PlasmicImg__;
   categories: typeof Categories;
   subcategories: typeof Subcategories;
   center: typeof Center;
@@ -1712,8 +1783,9 @@ export const PlasmicHomepage = Object.assign(
     sideEffect: makeNodeComponent("sideEffect"),
     homePage: makeNodeComponent("homePage"),
     menu2: makeNodeComponent("menu2"),
-    img: makeNodeComponent("img"),
     textInput: makeNodeComponent("textInput"),
+    button: makeNodeComponent("button"),
+    img: makeNodeComponent("img"),
     categories: makeNodeComponent("categories"),
     subcategories: makeNodeComponent("subcategories"),
     center: makeNodeComponent("center"),
