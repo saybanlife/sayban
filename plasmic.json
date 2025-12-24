@@ -1553,6 +1553,59 @@
           "cssFilePath": "plasmic/sayban/PlasmicItemUser.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "UG_cnsXdRiaM",
+          "name": "Panel",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicPanel.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/panel.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicPanel.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/panel"
+        },
+        {
+          "id": "H67gJZiYVEqw",
+          "name": "PanelMenu",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicPanelMenu.tsx",
+          "importSpec": {
+            "modulePath": "PanelMenu.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicPanelMenu.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "tm4UWCfc9LMS",
+          "name": "PanelMenuItem",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicPanelMenuItem.tsx",
+          "importSpec": {
+            "modulePath": "PanelMenuItem.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicPanelMenuItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "gmp4wRUyxyG1",
+          "name": "PanelMenuSubItem",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicPanelMenuSubItem.tsx",
+          "importSpec": {
+            "modulePath": "PanelMenuSubItem.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicPanelMenuSubItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -2070,6 +2123,11 @@
           "id": "GiSR5zfG8C_s",
           "name": "Icon49Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon49.tsx"
+        },
+        {
+          "id": "WJRkqS_3bYMM",
+          "name": "Icon50Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon50.tsx"
         }
       ],
       "images": [

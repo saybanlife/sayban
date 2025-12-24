@@ -365,7 +365,7 @@ function PlasmicHome__RenderFunc(props: {
         >
           {"\u062e\u062f\u0645\u0627\u062a"}
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__iMftm)}>
+        <div className={classNames(projectcss.all, sty.freeBox___0N18J)}>
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {
               try {
@@ -462,7 +462,6 @@ function PlasmicHome__RenderFunc(props: {
             );
           })}
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox___0N18J)} />
       </div>
       <div
         className={classNames(projectcss.all, sty.freeBox___8ZSjn, {

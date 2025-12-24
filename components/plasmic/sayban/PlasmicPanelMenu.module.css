@@ -1,0 +1,47 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: var(--token-CVjaMVgIQl_G);
+}
+.freeBox {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  column-gap: var(--token-rfsFxiclAtek);
+  min-width: 0;
+  padding: 0px 0px 4rem;
+}
+.img {
+  object-fit: cover;
+  max-width: 100%;
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+}
+.img > picture > img {
+  object-fit: cover;
+}
+.text {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  text-align: right;
+  font-weight: 700;
+  font-size: var(--token-bucIARGmMoc6);
+  color: var(--token-ee2TuxDknsJj);
+}
+.panelMenuItem:global(.__wab_instance) {
+  position: relative;
+}
