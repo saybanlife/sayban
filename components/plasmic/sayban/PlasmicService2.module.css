@@ -1,5 +1,5 @@
 .root {
-  box-shadow: 0px 2px 10px 0px #00000033;
+  box-shadow: 0px 2px 10px 0px #afa491;
   background: var(--token-k-47TemksE2v);
   display: inline-flex;
   flex-direction: column;
@@ -14,7 +14,6 @@
   min-height: 0;
   border-radius: var(--token-rfsFxiclAtek);
   padding: var(--token-Vi8cDx7an2mh);
-  border: 2px solid #c4bea433;
 }
 .rootselect {
   background: #505f3a4d;

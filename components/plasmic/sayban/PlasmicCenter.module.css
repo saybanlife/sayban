@@ -124,6 +124,7 @@
     top: auto;
     z-index: 1;
     position: relative;
+    background: #ffffff00;
     border-radius: 0px;
   }
 }

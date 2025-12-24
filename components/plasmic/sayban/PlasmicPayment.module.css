@@ -76,7 +76,7 @@
   align-items: center;
   row-gap: var(--token-73iLa06AE6f4);
   min-width: 0;
-  padding: var(--token-73iLa06AE6f4) 0px 10rem;
+  padding: 5rem 0px 10rem;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__sPnkG {
@@ -151,6 +151,7 @@
   height: 3rem;
   flex-shrink: 0;
   border-radius: 50%;
+  border: 2px solid var(--token-fr7DwvJwRjZb);
 }
 .img > picture > img {
   object-fit: cover;
@@ -182,7 +183,7 @@
   width: 100%;
   height: auto;
   font-size: var(--token-U1UvBDD-VoLt);
-  color: var(--token-EfBA1Z63plMe);
+  color: var(--token-KjATzAYJ5IB7);
   text-align: center;
   min-width: 0;
 }
@@ -306,6 +307,9 @@
 }
 .option1:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
+}
+.text__xa1Le {
+  color: var(--token-ee2TuxDknsJj);
 }
 .text__rItN4 {
   animation: none;

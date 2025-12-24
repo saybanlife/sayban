@@ -23,5 +23,8 @@
   max-width: 100%;
   font-size: var(--token-U1UvBDD-VoLt);
   font-weight: 700;
+  text-align: right;
+  white-space: pre;
+  user-select: none;
   min-width: 0;
 }

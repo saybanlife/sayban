@@ -144,6 +144,24 @@
   color: var(--token-k-47TemksE2v);
   min-width: 0;
 }
+.freeBox__iMftm {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__iMftm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.toolsItem:global(.__wab_instance) {
+  width: auto;
+}
 .freeBox___0N18J {
   display: flex;
   flex-direction: row;
@@ -155,11 +173,9 @@
   align-items: flex-start;
   overflow: auto;
   column-gap: var(--token-rfsFxiclAtek);
+  z-index: 2;
   min-width: 0;
   padding: 0px;
-}
-.toolsItem:global(.__wab_instance) {
-  width: auto;
 }
 .freeBox___8ZSjn {
   flex-direction: column;

@@ -11,7 +11,7 @@
   min-width: 0;
   padding: 0px;
 }
-.freeBox__kPnDw {
+.freeBox__wtrUa {
   max-width: 100%;
   display: flex;
   flex-direction: row;
@@ -35,7 +35,7 @@
   object-fit: cover;
   object-position: 100% 100%;
 }
-.freeBox__andtq {
+.freeBox__esdg {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -48,7 +48,7 @@
   min-width: 0;
   padding: 0px;
 }
-.freeBox__x5A1M {
+.freeBox__kQGtr {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -61,20 +61,20 @@
   min-width: 0;
   padding: 0px;
 }
-.freeBox__xrzdc {
+.freeBox__pMeYq {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   position: relative;
   width: 100%;
   height: auto;
   max-width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  column-gap: var(--token-rfsFxiclAtek);
+  justify-content: flex-start;
+  align-items: flex-start;
+  row-gap: var(--token-rfsFxiclAtek);
   min-width: 0;
   padding: 0px;
 }
-.text__agEiw {
+.text___6B5Mo {
   width: auto;
   height: auto;
   max-width: 100%;
@@ -83,8 +83,16 @@
   font-size: var(--token-ehIkf6s-dMLU);
   text-align: right;
 }
-.freeBox__z5Dw1 {
-  display: flex;
+.text__fgacD {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-9M5jRUPt8Msb);
+  font-weight: 600;
+  font-size: var(--token-ehIkf6s-dMLU);
+  text-align: right;
+}
+.freeBox__a203T {
   flex-direction: row;
   position: relative;
   align-items: center;
@@ -93,9 +101,10 @@
   height: auto;
   max-width: 100%;
   column-gap: var(--token-D_3fp_JIDs1G);
+  display: none;
   padding: 0px;
 }
-.svg__utGn {
+.svg__u903O {
   object-fit: cover;
   max-width: 100%;
   color: var(--token-gzfwquJiFTd8);
@@ -103,7 +112,7 @@
   height: 15px;
   flex-shrink: 0;
 }
-.text__urzHj {
+.text__joTJ {
   width: auto;
   height: auto;
   max-width: 100%;
@@ -114,7 +123,6 @@
 }
 .status:global(.__wab_instance) {
   position: relative;
-  display: none;
 }
 .textCollapse:global(.__wab_instance) {
   max-width: 100%;
@@ -125,7 +133,7 @@
   color: var(--token-KjATzAYJ5IB7);
   min-width: 0;
 }
-.freeBox__b41Xr {
+.freeBox__cOazM {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -136,7 +144,7 @@
   align-items: center;
   padding: 0px;
 }
-.svg__miLsI {
+.svg__uscPm {
   object-fit: cover;
   max-width: 100%;
   color: var(--token-9M5jRUPt8Msb);
@@ -144,7 +152,7 @@
   height: 20px;
   flex-shrink: 0;
 }
-.text___8D7Sn {
+.text___4KXEf {
   position: relative;
   width: 100%;
   height: 1px;

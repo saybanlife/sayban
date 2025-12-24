@@ -698,6 +698,46 @@ function PlasmicPayment__RenderFunc(props: {
                         ) {
                           return;
                         }
+
+                        (async val => {
+                          const $steps = {};
+
+                          $steps["updateCheckboxGroupValue"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["checkboxGroup", "value"]
+                                  },
+                                  operation: 0
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateCheckboxGroupValue"] != null &&
+                            typeof $steps["updateCheckboxGroupValue"] ===
+                              "object" &&
+                            typeof $steps["updateCheckboxGroupValue"].then ===
+                              "function"
+                          ) {
+                            $steps["updateCheckboxGroupValue"] =
+                              await $steps["updateCheckboxGroupValue"];
+                          }
+                        }).apply(null, eventArgs);
                       }}
                       options={(_par =>
                         !_par ? [] : Array.isArray(_par) ? _par : [_par])(
@@ -776,22 +816,30 @@ function PlasmicPayment__RenderFunc(props: {
                                   "isSelected"
                                 ]),
                                 label: (
-                                  <React.Fragment>
-                                    {(() => {
-                                      try {
-                                        return currentItem.label;
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return "Option 1";
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.__wab_text,
+                                      sty.text__xa1Le
+                                    )}
+                                  >
+                                    <React.Fragment>
+                                      {(() => {
+                                        try {
+                                          return currentItem.label;
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return "Option 1";
+                                          }
+                                          throw e;
                                         }
-                                        throw e;
-                                      }
-                                    })()}
-                                  </React.Fragment>
+                                      })()}
+                                    </React.Fragment>
+                                  </div>
                                 ),
                                 onChange: async (...eventArgs: any) => {
                                   generateStateOnChangeProp($state, [

@@ -86,12 +86,17 @@ createPlasmicElementProxy;
 
 export type PlasmicHomepage__VariantMembers = {
   page: "categories" | "subcategories" | "center" | "payment";
+  search2: "search2";
 };
 export type PlasmicHomepage__VariantsArgs = {
   page?: SingleChoiceArg<"categories" | "subcategories" | "center" | "payment">;
+  search2?: SingleBooleanChoiceArg<"search2">;
 };
 type VariantPropType = keyof PlasmicHomepage__VariantsArgs;
-export const PlasmicHomepage__VariantProps = new Array<VariantPropType>("page");
+export const PlasmicHomepage__VariantProps = new Array<VariantPropType>(
+  "page",
+  "search2"
+);
 
 export type PlasmicHomepage__ArgsType = {};
 type ArgPropType = keyof PlasmicHomepage__ArgsType;
@@ -299,6 +304,12 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "search2",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.search2
       }
     ],
     [$props, $ctx, $refs]
@@ -457,7 +468,13 @@ function PlasmicHomepage__RenderFunc(props: {
             </section>
             <section className={classNames(projectcss.all, sty.section__pJCrL)}>
               <div
-                className={classNames(projectcss.all, sty.freeBox__ibbNl)}
+                className={classNames(projectcss.all, sty.freeBox__ibbNl, {
+                  [sty.freeBoxsearch2__ibbNlUfPhZ]: hasVariant(
+                    $state,
+                    "search2",
+                    "search2"
+                  )
+                })}
                 id={"headerMain"}
               >
                 <div
@@ -528,7 +545,10 @@ function PlasmicHomepage__RenderFunc(props: {
                         ? (() => {
                             const actionArgs = {
                               customFunction: async () => {
-                                return ($state.home.search = true);
+                                return (() => {
+                                  $state.home.search = true;
+                                  return ($state.search2 = true);
+                                })();
                               }
                             };
                             return (({ customFunction }) => {
@@ -579,6 +599,31 @@ function PlasmicHomepage__RenderFunc(props: {
                       onClick={async event => {
                         const $steps = {};
 
+                        $steps["updateTextInputValue2"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return (() => {
+                                    $state.home.search = false;
+                                    return ($state.search2 = false);
+                                  })();
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateTextInputValue2"] != null &&
+                          typeof $steps["updateTextInputValue2"] === "object" &&
+                          typeof $steps["updateTextInputValue2"].then ===
+                            "function"
+                        ) {
+                          $steps["updateTextInputValue2"] =
+                            await $steps["updateTextInputValue2"];
+                        }
+
                         $steps["updateTextInputValue"] = true
                           ? (() => {
                               const actionArgs = {
@@ -612,28 +657,6 @@ function PlasmicHomepage__RenderFunc(props: {
                         ) {
                           $steps["updateTextInputValue"] =
                             await $steps["updateTextInputValue"];
-                        }
-
-                        $steps["updateTextInputValue2"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                customFunction: async () => {
-                                  return ($state.home.search = false);
-                                }
-                              };
-                              return (({ customFunction }) => {
-                                return customFunction();
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateTextInputValue2"] != null &&
-                          typeof $steps["updateTextInputValue2"] === "object" &&
-                          typeof $steps["updateTextInputValue2"].then ===
-                            "function"
-                        ) {
-                          $steps["updateTextInputValue2"] =
-                            await $steps["updateTextInputValue2"];
                         }
                       }}
                       role={"img"}
@@ -1081,7 +1104,9 @@ function PlasmicHomepage__RenderFunc(props: {
                       })()}/${(() => {
                         try {
                           return (() => {
-                            $state.slug.push(`pay_${id}`);
+                            $state.slug.push(
+                              `pay_${id || window.sessionStorage.getItem("payId")}`
+                            );
                             return $state.slug.join("/");
                           })();
                         } catch (e) {
@@ -1257,18 +1282,12 @@ function PlasmicHomepage__RenderFunc(props: {
             loadingDisplay={
               <div className={classNames(projectcss.all, sty.freeBox__sCmYa)}>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    sty.freeBox___1WXlA,
-                    "shimmer"
-                  )}
-                />
-
-                <div className={classNames(projectcss.all, sty.freeBox__aTvDo)}>
+                  className={classNames(projectcss.all, sty.freeBox___19TiU)}
+                >
                   {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                     (() => {
                       try {
-                        return [2, 3, 4, 5, 7, 8];
+                        return [2, 3, 4, 5];
                       } catch (e) {
                         if (
                           e instanceof TypeError ||

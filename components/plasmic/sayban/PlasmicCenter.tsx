@@ -3398,38 +3398,27 @@ drawRating(${$state.rate});
                       $steps["reserv"] = await $steps["reserv"];
                     }
 
-                    $steps["updateId2"] = $steps.reserv?.data?.success
+                    $steps["runCode"] = $steps.reserv?.data?.success
                       ? (() => {
                           const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["id2"]
-                            },
-                            operation: 0,
-                            value: $steps.reserv?.data?.id
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
+                            customFunction: async () => {
+                              return window.sessionStorage.setItem(
+                                "payId",
+                                $steps.reserv?.data?.result
+                              );
                             }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
                           })?.apply(null, [actionArgs]);
                         })()
                       : undefined;
                     if (
-                      $steps["updateId2"] != null &&
-                      typeof $steps["updateId2"] === "object" &&
-                      typeof $steps["updateId2"].then === "function"
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
                     ) {
-                      $steps["updateId2"] = await $steps["updateId2"];
+                      $steps["runCode"] = await $steps["runCode"];
                     }
 
                     $steps["runGoToPayment"] = $steps.reserv?.data?.success
@@ -3439,7 +3428,7 @@ drawRating(${$state.rate});
                             args: [
                               (() => {
                                 try {
-                                  return $steps.reserv?.data?.id;
+                                  return $steps.reserv?.data?.result;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
