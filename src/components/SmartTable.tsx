@@ -224,7 +224,6 @@ export const SmartTableMeta: CodeComponentMeta<SmartTableProps> = {
       type: "array",
       itemType: {
         type: "object",
-        // دیتا آزاد → Plasmic اجازه میده
         fields: {},
       },
     },
@@ -238,7 +237,9 @@ export const SmartTableMeta: CodeComponentMeta<SmartTableProps> = {
 
     selectedRowIndexes: {
       type: "array",
-      itemType: "number",
+      itemType: {
+        type: "number",
+      },
     },
 
     onSelectedRowIndexesChange: {
@@ -256,4 +257,3 @@ export const SmartTableMeta: CodeComponentMeta<SmartTableProps> = {
     },
   },
 };
-
