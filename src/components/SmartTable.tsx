@@ -236,11 +236,13 @@ export const SmartTableMeta: CodeComponentMeta<SmartTableProps> = {
     autoDetectColumnType: { type: "boolean", defaultValue: false },
 
     selectedRowIndexes: {
-      type: "array",
-      itemType: {
-        type: "number",
-      },
-    },
+  type: "array",
+  itemType: {
+    type: "object",
+    of: "number",
+    fields: {},
+  },
+},
 
     onSelectedRowIndexesChange: {
       type: "eventHandler",
