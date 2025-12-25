@@ -205,8 +205,30 @@ export const SmartTableMeta: CodeComponentMeta<SmartTableProps> = {
   name: "SmartTable",
   importPath: "@/components/SmartTable",
   props: {
-    columns: { type: "array", itemType: "object" },
-    data: { type: "array", itemType: "object" },
+    columns: {
+      type: "array",
+      itemType: {
+        type: "object",
+        fields: {
+          key: { type: "string" },
+          title: { type: "string" },
+          type: {
+            type: "choice",
+            options: ["text", "number", "price", "checkbox"],
+          },
+        },
+      },
+    },
+
+    data: {
+      type: "array",
+      itemType: {
+        type: "object",
+        // دیتا آزاد → Plasmic اجازه میده
+        fields: {},
+      },
+    },
+
     className: { type: "class" },
 
     sortable: { type: "boolean", defaultValue: false },
@@ -214,12 +236,17 @@ export const SmartTableMeta: CodeComponentMeta<SmartTableProps> = {
     selectableRows: { type: "boolean", defaultValue: false },
     autoDetectColumnType: { type: "boolean", defaultValue: false },
 
-    selectedRowIndexes: { type: "array", itemType: "number" },
+    selectedRowIndexes: {
+      type: "array",
+      itemType: "number",
+    },
+
     onSelectedRowIndexesChange: {
       type: "eventHandler",
       argTypes: [{ name: "rows", type: "array" }],
     },
   },
+
   states: {
     selectedRowIndexes: {
       type: "writable",
@@ -229,3 +256,4 @@ export const SmartTableMeta: CodeComponentMeta<SmartTableProps> = {
     },
   },
 };
+
