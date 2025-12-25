@@ -21,6 +21,9 @@ import { Textarea, textareaMeta } from "@/fragment/components/textarea";
 import {SwiperSlider,SwiperSliderMeta} from "@/components/SwiperSlider";
 import {TextCollapse,TextCollapseMeta} from "@/components/TextCollapse";
 import {JalaliMoment ,JalaliMomentMeta} from "@/components/JalaliMoment";
+import {SmartTable ,SmartTableMeta} from "@/components/SmartTable";
+
+
 
 
 
@@ -44,6 +47,9 @@ registerComponent(Textarea, textareaMeta);
 registerComponent(SwiperSlider,SwiperSliderMeta);
 registerComponent(TextCollapse,TextCollapseMeta);
 registerComponent(JalaliMoment ,JalaliMomentMeta);
+registerComponent(SmartTable,SmartTableMeta);
+
+
 
 
 
