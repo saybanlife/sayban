@@ -239,7 +239,6 @@ export const SmartTableMeta: CodeComponentMeta<SmartTableProps> = {
   type: "array",
   itemType: {
     type: "object",
-    of: "number",
     fields: {},
   },
 },
