@@ -243,11 +243,11 @@ export const SmartTableMeta: CodeComponentMeta<SmartTableProps> = {
   },
 },
 
-    onSelectedRowIndexesChange: {
-      type: "eventHandler",
-      argTypes: [{ name: "rows", type: "array" }],
-    },
-  },
+onSelectedRowIndexesChange: {
+  type: "eventHandler",
+  argTypes: [{ name: "rows", type: "object" }], // ✅ use object instead of array
+},
+
 
   states: {
     selectedRowIndexes: {
