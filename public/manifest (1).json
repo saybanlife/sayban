@@ -1,0 +1,98 @@
+{
+  "id": "/",
+  "scope": "https://web.sayban.app/",
+  "name": "سایبان",
+  "short_name": "سایبان",
+  "description": "تقویم قاعدگی و بارداری",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay"],
+  "start_url": "https://web.sayban.app/login/",
+  "theme_color": "#7444BC",
+  "background_color": "#7444BC",
+  "orientation": "portrait-primary",
+  "dir": "rtl",
+  "lang": "fa",
+  "categories": ["اجتماعی", "خدمات"],
+  "iarc_rating_id": "your_iarc_rating_id_here",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "scope_extensions": [{"origin": "https://web.sayban.app/", "type": "wildcard"}],
+  
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  
+  "icons": [
+    {
+      "src": "https://site-assets.plasmic.app/1efb20da13dc901df2ae2f3b7a43de6e.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "https://site-assets.plasmic.app/1efb20da13dc901df2ae2f3b7a43de6e.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "https://site-assets.plasmic.app/1efb20da13dc901df2ae2f3b7a43de6e.ico",
+      "sizes": "128x128",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  
+  "screenshots": [
+    {
+      "src": "/splash/Frame.png",
+      "sizes": "1617x1012",
+      "type": "image/png",
+      "label": "نمایی از برنامه سایبان"
+    }
+  ],
+  
+  "features": [
+    "کراس پلتفرم",
+    "سریع",
+    "کاربرپسند"
+  ],
+  
+  "shortcuts": [
+    {
+      "name": "صفحه درباره ما",
+      "short_name": "درباره",
+      "description": "مشاهده اطلاعات درباره برنامه",
+      "url": "/about",
+      "icons": [{ "src": "assets/icons/192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  
+  "widgets": [
+    {
+      "name": "ویجت لیوم",
+      "tag": "liomWidget",
+      "description": "ویجت نمونه برای برنامه لیوم",
+      "icons": [
+        {
+          "src": "https://site-assets.plasmic.app/1efb20da13dc901df2ae2f3b7a43de6e.ico",
+          "sizes": "48x48"
+        }
+      ],
+      "screenshots": [
+        {
+          "src": "/splash/Frame.png",
+          "sizes": "500x500",
+          "label": "تصویر ویجت"
+        }
+      ]
+    }
+  ]
+}
