@@ -1,27 +1,26 @@
-import React, { useState } from "react";
-import { classNames } from "@plasmicapp/react-web";
-import { CodeComponentMeta } from "@plasmicapp/host";
-import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
-import L from "leaflet";
+"use client";
 
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import React, { useState } from "react";
+import { MapContainer as LeafletMapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-// fix leaflet icon
+// آیکون‌های پیش‌فرض Leaflet
+import markerIconUrl from "leaflet/dist/images/marker-icon.png";
+import markerShadowUrl from "leaflet/dist/images/marker-shadow.png";
+
+// رفع مشکل آیکون پیش‌فرض
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow,
+  iconUrl: markerIconUrl,
+  shadowUrl: markerShadowUrl,
 });
 
 type MapPickerProps = {
   latitude?: number;
   longitude?: number;
   zoom?: number;
-
   onChange?: (lat: number, lng: number) => void;
-
   className?: string;
   mapClassName?: string;
 };
@@ -42,18 +41,16 @@ const LocationMarker = ({
   return position ? <Marker position={position} /> : null;
 };
 
-export const MapPicker = (props: MapPickerProps) => {
-  const {
-    latitude,
-    longitude,
-    zoom = 13,
-    onChange,
-    className,
-    mapClassName,
-  } = props;
-
+export const MapPicker = ({
+  latitude,
+  longitude,
+  zoom = 13,
+  onChange,
+  className,
+  mapClassName,
+}: MapPickerProps) => {
   const [position, setPosition] = useState<[number, number] | null>(
-    latitude && longitude ? [latitude, longitude] : null
+    latitude !== undefined && longitude !== undefined ? [latitude, longitude] : null
   );
 
   const handleSelect = (lat: number, lng: number) => {
@@ -62,22 +59,23 @@ export const MapPicker = (props: MapPickerProps) => {
   };
 
   return (
-    <div className={classNames("map-picker-wrapper", className)}>
-      <MapContainer
+    <div className={`map-picker-wrapper ${className || ""}`}>
+      <LeafletMapContainer
         center={position || [35.6892, 51.3890]} // Tehran
         zoom={zoom}
-        className={classNames("map-picker-map", mapClassName)}
+        className={`map-picker-map ${mapClassName || ""}`}
         style={{ width: "100%", height: "400px" }}
       >
         <TileLayer
-          attribution="© OpenStreetMap"
+          attribution='© OpenStreetMap contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <LocationMarker position={position} onSelect={handleSelect} />
-      </MapContainer>
+      </LeafletMapContainer>
     </div>
   );
 };
+
 export const MapPickerMeta: CodeComponentMeta<MapPickerProps> = {
   name: "MapPicker",
   importPath: "@/components/MapPicker",
