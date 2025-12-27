@@ -91,10 +91,22 @@ export const PlasmicPanelMenuItem__VariantProps = new Array<VariantPropType>(
   "opensubItem"
 );
 
-export type PlasmicPanelMenuItem__ArgsType = { subitems?: any };
+export type PlasmicPanelMenuItem__ArgsType = {
+  subitems?: any;
+  item?: any;
+  openItem?: () => void;
+  openpage?: () => void;
+  openSubItem?: (event: any) => void;
+  children?: React.ReactNode;
+};
 type ArgPropType = keyof PlasmicPanelMenuItem__ArgsType;
 export const PlasmicPanelMenuItem__ArgProps = new Array<ArgPropType>(
-  "subitems"
+  "subitems",
+  "item",
+  "openItem",
+  "openpage",
+  "openSubItem",
+  "children"
 );
 
 export type PlasmicPanelMenuItem__OverridesType = {
@@ -102,11 +114,15 @@ export type PlasmicPanelMenuItem__OverridesType = {
   menuIcon?: Flex__<typeof MenuIcon>;
   text?: Flex__<"div">;
   svg?: Flex__<"svg">;
-  panelMenuSubItem?: Flex__<typeof PanelMenuSubItem>;
 };
 
 export interface DefaultPanelMenuItemProps {
   subitems?: any;
+  item?: any;
+  openItem?: () => void;
+  openpage?: () => void;
+  openSubItem?: (event: any) => void;
+  children?: React.ReactNode;
   select?: SingleBooleanChoiceArg<"select">;
   haveSubItem?: SingleBooleanChoiceArg<"haveSubItem">;
   opensubItem?: SingleBooleanChoiceArg<"opensubItem">;
@@ -217,6 +233,9 @@ function PlasmicPanelMenuItem__RenderFunc(props: {
             hasVariant($state, "select", "select")
         }
       )}
+      onClick={async event => {
+        const $steps = {};
+      }}
     >
       <div
         className={classNames(projectcss.all, sty.freeBox__jkFp4, {
@@ -234,6 +253,48 @@ function PlasmicPanelMenuItem__RenderFunc(props: {
             "select"
           )
         })}
+        onClick={async event => {
+          const $steps = {};
+
+          $steps["runOpenpage"] = true
+            ? (() => {
+                const actionArgs = { eventRef: $props["openpage"] };
+                return (({ eventRef, args }) => {
+                  return eventRef?.(...(args ?? []));
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["runOpenpage"] != null &&
+            typeof $steps["runOpenpage"] === "object" &&
+            typeof $steps["runOpenpage"].then === "function"
+          ) {
+            $steps["runOpenpage"] = await $steps["runOpenpage"];
+          }
+
+          $steps["updateOpensubItem"] =
+            $props.item.children.length > 0
+              ? (() => {
+                  const actionArgs = { vgroup: "opensubItem", operation: 2 };
+                  return (({ vgroup, value }) => {
+                    if (typeof value === "string") {
+                      value = [value];
+                    }
+
+                    const oldValue = $stateGet($state, vgroup);
+                    $stateSet($state, vgroup, !oldValue);
+                    return !oldValue;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+          if (
+            $steps["updateOpensubItem"] != null &&
+            typeof $steps["updateOpensubItem"] === "object" &&
+            typeof $steps["updateOpensubItem"].then === "function"
+          ) {
+            $steps["updateOpensubItem"] = await $steps["updateOpensubItem"];
+          }
+        }}
       >
         <MenuIcon
           data-plasmic-name={"menuIcon"}
@@ -244,6 +305,19 @@ function PlasmicPanelMenuItem__RenderFunc(props: {
           color={
             hasVariant($state, "select", "select") ? "praimery" : "iconColor"
           }
+          icons={(() => {
+            try {
+              return $props.item.icon;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()}
         />
 
         <div
@@ -256,7 +330,7 @@ function PlasmicPanelMenuItem__RenderFunc(props: {
             { [sty.textselect]: hasVariant($state, "select", "select") }
           )}
         >
-          {"Enter some text"}
+          <React.Fragment>{$props.item.label}</React.Fragment>
         </div>
         <PlasmicIcon__
           data-plasmic-name={"svg"}
@@ -282,38 +356,90 @@ function PlasmicPanelMenuItem__RenderFunc(props: {
               hasVariant($state, "opensubItem", "opensubItem") &&
               hasVariant($state, "haveSubItem", "haveSubItem")
           })}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["runCode"] = true
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return (() => {
+                        event.stopPropagation();
+                        return ($state.opensubItem = !$state.opensubItem);
+                      })();
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runCode"] != null &&
+              typeof $steps["runCode"] === "object" &&
+              typeof $steps["runCode"].then === "function"
+            ) {
+              $steps["runCode"] = await $steps["runCode"];
+            }
+          }}
           role={"img"}
         />
       </div>
       <div
         className={classNames(projectcss.all, sty.freeBox__auT2X, {
+          [sty.freeBoxhaveSubItem__auT2XS82RI]: hasVariant(
+            $state,
+            "haveSubItem",
+            "haveSubItem"
+          ),
           [sty.freeBoxopensubItem_haveSubItem__auT2X4WtVyS82RI]:
             hasVariant($state, "opensubItem", "opensubItem") &&
             hasVariant($state, "haveSubItem", "haveSubItem")
         })}
       >
-        {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))([
-          2, 3, 4
-        ]).map((__plasmic_item_0, __plasmic_idx_0) => {
-          const currentItem = __plasmic_item_0;
-          const currentIndex = __plasmic_idx_0;
-          return (
-            <PanelMenuSubItem
-              data-plasmic-name={"panelMenuSubItem"}
-              data-plasmic-override={overrides.panelMenuSubItem}
-              className={classNames("__wab_instance", sty.panelMenuSubItem, {
-                [sty.panelMenuSubItemhaveSubItem]: hasVariant(
-                  $state,
-                  "haveSubItem",
-                  "haveSubItem"
-                ),
-                [sty.panelMenuSubItemopensubItem_haveSubItem]:
-                  hasVariant($state, "opensubItem", "opensubItem") &&
-                  hasVariant($state, "haveSubItem", "haveSubItem")
-              })}
-              key={currentIndex}
-            />
-          );
+        {renderPlasmicSlot({
+          defaultContents: (_par =>
+            !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+            (() => {
+              try {
+                return $props.item.children;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
+              }
+            })()
+          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+            const currentItem = __plasmic_item_0;
+            const currentIndex = __plasmic_idx_0;
+            return (
+              <PanelMenuSubItem
+                className={classNames(
+                  "__wab_instance",
+                  sty.panelMenuSubItem__gnAcw
+                )}
+                item={(() => {
+                  try {
+                    return currentItem;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                key={currentIndex}
+              />
+            );
+          }),
+          value: args.children
         })}
       </div>
     </div>
@@ -321,11 +447,10 @@ function PlasmicPanelMenuItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "menuIcon", "text", "svg", "panelMenuSubItem"],
+  root: ["root", "menuIcon", "text", "svg"],
   menuIcon: ["menuIcon"],
   text: ["text"],
-  svg: ["svg"],
-  panelMenuSubItem: ["panelMenuSubItem"]
+  svg: ["svg"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -335,7 +460,6 @@ type NodeDefaultElementType = {
   menuIcon: typeof MenuIcon;
   text: "div";
   svg: "svg";
-  panelMenuSubItem: typeof PanelMenuSubItem;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -403,7 +527,6 @@ export const PlasmicPanelMenuItem = Object.assign(
     menuIcon: makeNodeComponent("menuIcon"),
     text: makeNodeComponent("text"),
     svg: makeNodeComponent("svg"),
-    panelMenuSubItem: makeNodeComponent("panelMenuSubItem"),
 
     // Metadata about props expected for PlasmicPanelMenuItem
     internalVariantProps: PlasmicPanelMenuItem__VariantProps,

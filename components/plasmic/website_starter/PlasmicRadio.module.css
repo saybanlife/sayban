@@ -27,12 +27,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: none;
   border-radius: 99px;
-  border: 2px solid var(--token-kDIwDSo33bsK);
+  border: 2px solid var(--token-6Lhw5mK6wolF);
 }
 .ariaRadio[data-selected] .freeBox__mhm1M {
-  background: var(--token-xZK-xLPCiE1W);
-  border-color: var(--token-xZK-xLPCiE1W);
+  background: none;
+  border-width: 3px;
+  border-color: var(--token-ee2TuxDknsJj);
 }
 .ariaRadio[data-focus-visible] .freeBox__mhm1M {
   outline-offset: 1px;
@@ -47,8 +49,9 @@
   border-radius: 99px;
 }
 .ariaRadio[data-selected] .freeBox___1P7Rh {
-  width: var(--token-6F5DR5OsTPi0);
-  height: var(--token-6F5DR5OsTPi0);
+  width: var(--token-gLYiSvxc94NR);
+  height: var(--token-gLYiSvxc94NR);
+  background: var(--token-ee2TuxDknsJj);
   flex-shrink: 0;
   display: block;
 }

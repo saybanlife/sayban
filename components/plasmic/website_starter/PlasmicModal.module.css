@@ -1,6 +1,9 @@
 .ariaDialogTrigger:global(.__wab_instance) {
   position: relative;
 }
+.button__ydSv:global(.__wab_instance):global(.__wab_instance) {
+  display: none;
+}
 .svg___0Sd3D {
   position: relative;
   height: 1em;

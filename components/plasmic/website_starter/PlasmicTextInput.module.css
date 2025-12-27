@@ -24,8 +24,9 @@
   box-shadow: none;
 }
 .ariaInputtype_soft:global(.__wab_instance) {
-  background: var(--token-liD1vsX_5V6S);
+  background: var(--token-h2xt7bB598yU);
   box-shadow: none;
+  color: var(--token-9M5jRUPt8Msb);
 }
 .ariaInputtype_soft[data-hovered]:global(.__wab_instance) {
   background: var(--token-EGJ4yk4AuJam);
@@ -35,6 +36,17 @@
 }
 .ariaInputtype_plain[data-hovered]:global(.__wab_instance) {
   background: var(--token-liD1vsX_5V6S);
+}
+.ariaInputtype_line:global(.__wab_instance) {
+  background: none;
+  color: var(--token-9M5jRUPt8Msb);
+  border-radius: 0px;
+  border-bottom: 1px solid var(--token-Xzi5OT07e2_1);
+}
+.ariaInputtype_line[data-focused]:global(.__wab_instance) {
+  outline-style: none;
+  border-bottom-color: var(--token-Yo4gdKCgyuAu);
+  color: var(--token-s6JDWwNdkMmO);
 }
 .ariaInputflat_top:global(.__wab_instance) {
   border-top-left-radius: 0rem;

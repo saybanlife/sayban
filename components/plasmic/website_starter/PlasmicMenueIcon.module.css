@@ -30,6 +30,11 @@
 .rooticons_home {
   padding: var(--token-D_3fp_JIDs1G);
 }
+.rootsize_max {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0px;
+}
 .rooticons_settings_select {
   background: none;
 }
@@ -111,4 +116,9 @@
 }
 .imgicons_medicalcompletion {
   display: block;
+}
+.imgsize_max {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
 }

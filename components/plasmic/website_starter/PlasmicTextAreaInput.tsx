@@ -72,12 +72,12 @@ import sty from "./PlasmicTextAreaInput.module.css"; // plasmic-import: qqmK9B2O
 createPlasmicElementProxy;
 
 export type PlasmicTextAreaInput__VariantMembers = {
-  type: "soft" | "plain";
+  type: "soft" | "plain" | "line";
   flat: "top" | "right" | "bottom" | "left";
   padded: "left" | "right";
 };
 export type PlasmicTextAreaInput__VariantsArgs = {
-  type?: SingleChoiceArg<"soft" | "plain">;
+  type?: SingleChoiceArg<"soft" | "plain" | "line">;
   flat?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   padded?: MultiChoiceArg<"left" | "right">;
 };
@@ -139,7 +139,7 @@ export interface DefaultTextAreaInputProps {
     | "search";
   ariaLabel?: string;
   onChange?: (val: string) => void;
-  type?: SingleChoiceArg<"soft" | "plain">;
+  type?: SingleChoiceArg<"soft" | "plain" | "line">;
   flat?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   padded?: MultiChoiceArg<"left" | "right">;
   className?: string;
@@ -264,6 +264,7 @@ function PlasmicTextAreaInput__RenderFunc(props: {
           [sty.ariaTextAreaflat_top]: hasVariant($state, "flat", "top"),
           [sty.ariaTextAreapadded_left]: hasVariant($state, "padded", "left"),
           [sty.ariaTextAreapadded_right]: hasVariant($state, "padded", "right"),
+          [sty.ariaTextAreatype_line]: hasVariant($state, "type", "line"),
           [sty.ariaTextAreatype_plain]: hasVariant($state, "type", "plain"),
           [sty.ariaTextAreatype_soft]: hasVariant($state, "type", "soft")
         }

@@ -405,7 +405,12 @@ function PlasmicModal__RenderFunc(props: {
       trigger={
         (hasVariant($state, "noTrigger", "noTrigger") ? false : true)
           ? renderPlasmicSlot({
-              defaultContents: <Button label={"Open Modal"} />,
+              defaultContents: (
+                <Button
+                  className={classNames("__wab_instance", sty.button__ydSv)}
+                  label={"Open Modal"}
+                />
+              ),
 
               value: args.trigger
             })

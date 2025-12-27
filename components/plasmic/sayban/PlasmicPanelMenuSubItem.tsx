@@ -89,9 +89,15 @@ export const PlasmicPanelMenuSubItem__VariantProps = new Array<VariantPropType>(
   "opensubItem"
 );
 
-export type PlasmicPanelMenuSubItem__ArgsType = {};
+export type PlasmicPanelMenuSubItem__ArgsType = {
+  item?: any;
+  onClick?: (event: any) => void;
+};
 type ArgPropType = keyof PlasmicPanelMenuSubItem__ArgsType;
-export const PlasmicPanelMenuSubItem__ArgProps = new Array<ArgPropType>();
+export const PlasmicPanelMenuSubItem__ArgProps = new Array<ArgPropType>(
+  "item",
+  "onClick"
+);
 
 export type PlasmicPanelMenuSubItem__OverridesType = {
   root?: Flex__<"div">;
@@ -100,6 +106,8 @@ export type PlasmicPanelMenuSubItem__OverridesType = {
 };
 
 export interface DefaultPanelMenuSubItemProps {
+  item?: any;
+  onClick?: (event: any) => void;
   select?: SingleBooleanChoiceArg<"select">;
   haveSubItem?: SingleBooleanChoiceArg<"haveSubItem">;
   opensubItem?: SingleBooleanChoiceArg<"opensubItem">;
@@ -210,6 +218,7 @@ function PlasmicPanelMenuSubItem__RenderFunc(props: {
           [sty.rootselect]: hasVariant($state, "select", "select")
         }
       )}
+      onClick={args.onClick}
     >
       <div
         className={classNames(projectcss.all, sty.freeBox__fjODh, {
@@ -238,7 +247,7 @@ function PlasmicPanelMenuSubItem__RenderFunc(props: {
             { [sty.textselect]: hasVariant($state, "select", "select") }
           )}
         >
-          {"Enter some text"}
+          <React.Fragment>{$props.item.label}</React.Fragment>
         </div>
         <PlasmicIcon__
           data-plasmic-name={"svg"}

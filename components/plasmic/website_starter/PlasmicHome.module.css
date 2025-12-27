@@ -142,6 +142,8 @@
   font-weight: 700;
   font-size: var(--token-9jx4RULNbWhl);
   color: var(--token-k-47TemksE2v);
+  z-index: 2;
+  padding-bottom: var(--token-rfsFxiclAtek);
   min-width: 0;
 }
 .freeBox___0N18J {

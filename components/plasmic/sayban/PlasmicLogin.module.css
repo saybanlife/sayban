@@ -52,7 +52,7 @@
   justify-content: center;
   align-items: center;
   row-gap: 3rem;
-  background: var(--token--ieHgGbFH1Fa);
+  background: var(--token-ee2TuxDknsJj);
   left: 0;
   top: 0;
   z-index: 1;
@@ -134,7 +134,6 @@
   }
 }
 .freeBox__yXneK {
-  display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
@@ -143,6 +142,7 @@
   justify-content: flex-start;
   align-items: center;
   min-width: 0;
+  display: none;
   padding: 0px;
 }
 .freeBoxpage_mobile__yXneKmKfXs {

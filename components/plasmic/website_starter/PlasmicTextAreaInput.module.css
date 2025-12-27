@@ -2,16 +2,18 @@
   box-sizing: border-box;
   object-fit: cover;
   position: relative;
-  box-shadow: inset 0px 0px 0px 1px var(--token-kI60KiRr_Lur);
+  box-shadow: none;
   font-size: var(--token-ehIkf6s-dMLU);
   line-height: var(--token-tyha1eTxLLSq);
   width: 100%;
   color: var(--token-s6JDWwNdkMmO);
   font-family: var(--token-8ld_RqqV9anD);
+  background: var(--token-h2xt7bB598yU);
+  text-align: right;
   min-width: 0;
   border-radius: var(--token-6F5DR5OsTPi0);
   padding: var(--token-6F5DR5OsTPi0) var(--token-UWj1h_kV6SQI);
-  border-style: none;
+  border-bottom: 1px solid var(--token-as44I7WwR-rZ);
 }
 .ariaTextArea[data-focused]:global(.__wab_instance) {
   outline-width: 2px;
@@ -34,6 +36,14 @@
 }
 .ariaTextAreatype_plain[data-hovered]:global(.__wab_instance) {
   background: var(--token-liD1vsX_5V6S);
+}
+.ariaTextAreatype_line:global(.__wab_instance) {
+  border-radius: 0px;
+}
+.ariaTextAreatype_line[data-focused]:global(.__wab_instance) {
+  outline-width: 0px;
+  outline-style: none;
+  border-bottom-color: var(--token-Yo4gdKCgyuAu);
 }
 .ariaTextAreaflat_top:global(.__wab_instance) {
   border-top-left-radius: 0rem;

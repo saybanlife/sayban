@@ -211,11 +211,12 @@
   -webkit-transition-property: all;
   -webkit-transition-timing-function: ease-in-out;
   -webkit-transition-duration: 0.3s;
-  padding: var(--token-xsiin-peP6fP) var(--token-xsiin-peP6fP) 5.5rem;
+  padding: var(--token-xsiin-peP6fP) var(--token-xsiin-peP6fP) 5rem;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__ibbNl {
     width: 100%;
+    padding-bottom: 4.5rem;
     grid-column-start: 1 !important;
     grid-column-end: -1 !important;
   }

@@ -60,6 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import PanelMenuItem from "../../PanelMenuItem"; // plasmic-import: tm4UWCfc9LMS/component
+import PanelMenuSubItem from "../../PanelMenuSubItem"; // plasmic-import: gmp4wRUyxyG1/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -75,19 +76,30 @@ export type PlasmicPanelMenu__VariantsArgs = {};
 type VariantPropType = keyof PlasmicPanelMenu__VariantsArgs;
 export const PlasmicPanelMenu__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicPanelMenu__ArgsType = {};
+export type PlasmicPanelMenu__ArgsType = {
+  menu?: any;
+  selecteItem?: string;
+  onSelecteItemChange?: (val: string) => void;
+};
 type ArgPropType = keyof PlasmicPanelMenu__ArgsType;
-export const PlasmicPanelMenu__ArgProps = new Array<ArgPropType>();
+export const PlasmicPanelMenu__ArgProps = new Array<ArgPropType>(
+  "menu",
+  "selecteItem",
+  "onSelecteItemChange"
+);
 
 export type PlasmicPanelMenu__OverridesType = {
   root?: Flex__<"div">;
-  freeBox?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
   text?: Flex__<"div">;
   panelMenuItem?: Flex__<typeof PanelMenuItem>;
+  panelMenuSubItem?: Flex__<typeof PanelMenuSubItem>;
 };
 
 export interface DefaultPanelMenuProps {
+  menu?: any;
+  selecteItem?: string;
+  onSelecteItemChange?: (val: string) => void;
   className?: string;
 }
 
@@ -130,6 +142,32 @@ function PlasmicPanelMenu__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "selecteItem",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "selecteItem",
+        onChangeProp: "onSelecteItemChange"
+      },
+      {
+        path: "subItemSelect",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $refs
+  });
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
@@ -160,22 +198,18 @@ function PlasmicPanelMenu__RenderFunc(props: {
         }
       })()}
     >
-      <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__hoGtv)}>
         <PlasmicImg__
           data-plasmic-name={"img"}
           data-plasmic-override={overrides.img}
           alt={""}
           className={classNames(sty.img)}
-          displayHeight={"4rem"}
+          displayHeight={"3rem"}
           displayMaxHeight={"none"}
           displayMaxWidth={"100%"}
           displayMinHeight={"0"}
           displayMinWidth={"0"}
-          displayWidth={"4rem"}
+          displayWidth={"3rem"}
           loading={"lazy"}
           src={{
             src: "/plasmic/website_starter/images/untitledPicturePng.png",
@@ -197,33 +231,260 @@ function PlasmicPanelMenu__RenderFunc(props: {
           {"\u0633\u0627\u06cc\u0628\u0627\u0646"}
         </div>
       </div>
-      <PanelMenuItem
-        data-plasmic-name={"panelMenuItem"}
-        data-plasmic-override={overrides.panelMenuItem}
-        className={classNames("__wab_instance", sty.panelMenuItem)}
-        haveSubItem={true}
-        select={true}
-      />
+      <div className={classNames(projectcss.all, sty.freeBox__z2LUv)}>
+        {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+          (() => {
+            try {
+              return $props.menu;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
+        ).map((__plasmic_item_0, __plasmic_idx_0) => {
+          const currentItem = __plasmic_item_0;
+          const currentIndex = __plasmic_idx_0;
+          return (
+            <PanelMenuItem
+              data-plasmic-name={"panelMenuItem"}
+              data-plasmic-override={overrides.panelMenuItem}
+              className={classNames("__wab_instance", sty.panelMenuItem)}
+              haveSubItem={(() => {
+                try {
+                  return currentItem.children?.length > 0;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "haveSubItem";
+                  }
+                  throw e;
+                }
+              })()}
+              item={(() => {
+                try {
+                  return currentItem;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              key={currentIndex}
+              openpage={async () => {
+                const $steps = {};
+
+                $steps["updateSelecteItem"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["selecteItem"]
+                        },
+                        operation: 0,
+                        value: currentItem.value
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateSelecteItem"] != null &&
+                  typeof $steps["updateSelecteItem"] === "object" &&
+                  typeof $steps["updateSelecteItem"].then === "function"
+                ) {
+                  $steps["updateSelecteItem"] =
+                    await $steps["updateSelecteItem"];
+                }
+              }}
+              select={(() => {
+                try {
+                  return currentItem.value == $state.selecteItem;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()}
+            >
+              {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                (() => {
+                  try {
+                    return currentItem.children;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()
+              ).map((__plasmic_item_1, __plasmic_idx_1) => {
+                const item = __plasmic_item_1;
+                const index = __plasmic_idx_1;
+                return (
+                  <PanelMenuSubItem
+                    data-plasmic-name={"panelMenuSubItem"}
+                    data-plasmic-override={overrides.panelMenuSubItem}
+                    className={classNames(
+                      "__wab_instance",
+                      sty.panelMenuSubItem
+                    )}
+                    item={(() => {
+                      try {
+                        return item;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    key={index}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["updateSubItemSelect"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["subItemSelect"]
+                              },
+                              operation: 0,
+                              value: item.value
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateSubItemSelect"] != null &&
+                        typeof $steps["updateSubItemSelect"] === "object" &&
+                        typeof $steps["updateSubItemSelect"].then === "function"
+                      ) {
+                        $steps["updateSubItemSelect"] =
+                          await $steps["updateSubItemSelect"];
+                      }
+
+                      $steps["updateSelecteItem"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["selecteItem"]
+                              },
+                              operation: 0,
+                              value: currentItem.value
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateSelecteItem"] != null &&
+                        typeof $steps["updateSelecteItem"] === "object" &&
+                        typeof $steps["updateSelecteItem"].then === "function"
+                      ) {
+                        $steps["updateSelecteItem"] =
+                          await $steps["updateSelecteItem"];
+                      }
+                    }}
+                    select={(() => {
+                      try {
+                        return item.value == $state.subItemSelect;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()}
+                  />
+                );
+              })}
+            </PanelMenuItem>
+          );
+        })}
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox", "img", "text", "panelMenuItem"],
-  freeBox: ["freeBox", "img", "text"],
+  root: ["root", "img", "text", "panelMenuItem", "panelMenuSubItem"],
   img: ["img"],
   text: ["text"],
-  panelMenuItem: ["panelMenuItem"]
+  panelMenuItem: ["panelMenuItem", "panelMenuSubItem"],
+  panelMenuSubItem: ["panelMenuSubItem"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  freeBox: "div";
   img: typeof PlasmicImg__;
   text: "div";
   panelMenuItem: typeof PanelMenuItem;
+  panelMenuSubItem: typeof PanelMenuSubItem;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -288,10 +549,10 @@ export const PlasmicPanelMenu = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    freeBox: makeNodeComponent("freeBox"),
     img: makeNodeComponent("img"),
     text: makeNodeComponent("text"),
     panelMenuItem: makeNodeComponent("panelMenuItem"),
+    panelMenuSubItem: makeNodeComponent("panelMenuSubItem"),
 
     // Metadata about props expected for PlasmicPanelMenu
     internalVariantProps: PlasmicPanelMenu__VariantProps,

@@ -356,6 +356,7 @@ function PlasmicMenueIcon__RenderFunc(props: {
             "rehabilitation"
           ),
           [sty.imgicons_supportive]: hasVariant($state, "icons", "supportive"),
+          [sty.imgsize_max]: hasVariant($state, "size", "max"),
           [sty.imgsize_max_icons_medical]:
             hasVariant($state, "size", "max") &&
             hasVariant($state, "icons", "medical"),
@@ -363,12 +364,12 @@ function PlasmicMenueIcon__RenderFunc(props: {
             hasVariant($state, "size", "max") &&
             hasVariant($state, "icons", "rehabilitation")
         })}
-        displayHeight={"2rem"}
+        displayHeight={hasVariant($state, "size", "max") ? "2.5rem" : "2rem"}
         displayMaxHeight={"none"}
         displayMaxWidth={"100%"}
         displayMinHeight={"0"}
         displayMinWidth={"0"}
-        displayWidth={"2rem"}
+        displayWidth={hasVariant($state, "size", "max") ? "2.5rem" : "2rem"}
         loading={"lazy"}
         src={
           hasVariant($state, "icons", "medicalcompletion")

@@ -24,13 +24,13 @@
   cursor: not-allowed;
 }
 .rootcolor_neutral:global(.__wab_instance) {
-  background: var(--token-ygRHI2d5KsR3);
+  background: var(--token-h2xt7bB598yU);
 }
 .rootcolor_muted:global(.__wab_instance) {
   background: var(--token-m-R84nL6Jb9a);
 }
 .rootcolor_success:global(.__wab_instance) {
-  background: var(--token-7SzLzuTwCxD0);
+  background: var(--token-ee2TuxDknsJj);
 }
 .rootcolor_warning:global(.__wab_instance) {
   background: var(--token-gzfwquJiFTd8);
@@ -39,10 +39,10 @@
   background: var(--token-FCYaeT_sNnHr);
 }
 .rootcolor_second:global(.__wab_instance) {
-  background: var(--token-Yo4gdKCgyuAu);
+  background: var(--token-Ws0-_dtROA6x);
 }
 .roottype_soft:global(.__wab_instance) {
-  background: none;
+  background: var(--token-as44I7WwR-rZ);
 }
 .roottype_bordered:global(.__wab_instance) {
   background: none;
@@ -90,6 +90,9 @@
 }
 .rootloading:global(.__wab_instance) {
   cursor: not-allowed;
+}
+.roottype_soft_color_neutral:global(.__wab_instance) {
+  background: var(--token-k-47TemksE2v);
 }
 .softBackground {
   display: block;
@@ -377,7 +380,7 @@
 }
 .text__nirJc {
   white-space: pre;
-  color: var(--token-9M5jRUPt8Msb);
+  color: var(--token-1aP3XjRZIKFV);
 }
 .freeBox__dzv7U {
   flex-direction: column;

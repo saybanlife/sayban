@@ -9,6 +9,9 @@
   border-radius: var(--token-UWj1h_kV6SQI);
   padding: var(--token-6F5DR5OsTPi0);
 }
+.rootcolor_soft:global(.__wab_instance) {
+  background: var(--token-KPGXdu9o7llP);
+}
 .ariaListBox:global(.__wab_instance) {
   box-sizing: border-box;
   object-fit: cover;

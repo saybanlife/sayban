@@ -1,0 +1,44 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: var(--token-CVjaMVgIQl_G);
+  min-width: 0;
+  padding: var(--token-73iLa06AE6f4);
+}
+.svg__l4HHx {
+  object-fit: cover;
+  max-width: 100%;
+  width: var(--token-CVjaMVgIQl_G);
+  height: var(--token-CVjaMVgIQl_G);
+  color: var(--token-ccqYe7dhXoNZ);
+  flex-shrink: 0;
+}
+.svg__kgj09 {
+  object-fit: cover;
+  max-width: 100%;
+  width: var(--token-CVjaMVgIQl_G);
+  height: var(--token-CVjaMVgIQl_G);
+  color: var(--token-ccqYe7dhXoNZ);
+  flex-shrink: 0;
+}
+.avatar:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+  align-self: flex-end;
+}

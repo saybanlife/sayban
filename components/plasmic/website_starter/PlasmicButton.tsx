@@ -565,6 +565,11 @@ function PlasmicButton__RenderFunc(props: {
             "color",
             "neutral"
           ),
+          [sty.freeBoxcolor_second__vNlPWcigMl]: hasVariant(
+            $state,
+            "color",
+            "second"
+          ),
           [sty.freeBoxloading__vNlPwCdmbs]: hasVariant(
             $state,
             "loading",

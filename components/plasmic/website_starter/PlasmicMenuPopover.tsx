@@ -74,10 +74,16 @@ import sty from "./PlasmicMenuPopover.module.css"; // plasmic-import: QhIoYy7qJm
 
 createPlasmicElementProxy;
 
-export type PlasmicMenuPopover__VariantMembers = {};
-export type PlasmicMenuPopover__VariantsArgs = {};
+export type PlasmicMenuPopover__VariantMembers = {
+  color: "soft";
+};
+export type PlasmicMenuPopover__VariantsArgs = {
+  color?: SingleChoiceArg<"soft">;
+};
 type VariantPropType = keyof PlasmicMenuPopover__VariantsArgs;
-export const PlasmicMenuPopover__VariantProps = new Array<VariantPropType>();
+export const PlasmicMenuPopover__VariantProps = new Array<VariantPropType>(
+  "color"
+);
 
 export type PlasmicMenuPopover__ArgsType = {
   offset?: number;
@@ -100,6 +106,7 @@ export interface DefaultMenuPopoverProps {
   offset?: number;
   menuItems?: React.ReactNode;
   initialSelectedKey?: "Dynamic options";
+  color?: SingleChoiceArg<"soft">;
   className?: string;
 }
 
@@ -154,6 +161,12 @@ function PlasmicMenuPopover__RenderFunc(props: {
           $props["initialSelectedKey"],
 
         onMutate: generateOnMutateForSpec("selectedValue", BaseListBox_Helpers)
+      },
+      {
+        path: "color",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.color
       }
     ],
     [$props, $ctx, $refs]
@@ -179,7 +192,8 @@ function PlasmicMenuPopover__RenderFunc(props: {
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        { [sty.rootcolor_soft]: hasVariant($state, "color", "soft") }
       )}
       matchTriggerWidth={true}
       offset={args.offset}

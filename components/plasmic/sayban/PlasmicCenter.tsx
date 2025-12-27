@@ -333,7 +333,7 @@ function PlasmicCenter__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? false : false
+          hasVariant(globalVariants, "screen", "mobileOnly") ? false : true
       },
       {
         path: "topics2.data",

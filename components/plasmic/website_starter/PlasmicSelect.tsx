@@ -80,10 +80,10 @@ import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-impor
 createPlasmicElementProxy;
 
 export type PlasmicSelect__VariantMembers = {
-  type: "soft" | "plain";
+  type: "soft" | "plain" | "line";
 };
 export type PlasmicSelect__VariantsArgs = {
-  type?: SingleChoiceArg<"soft" | "plain">;
+  type?: SingleChoiceArg<"soft" | "plain" | "line">;
 };
 type VariantPropType = keyof PlasmicSelect__VariantsArgs;
 export const PlasmicSelect__VariantProps = new Array<VariantPropType>("type");
@@ -143,7 +143,7 @@ export interface DefaultSelectProps {
   label?: React.ReactNode;
   description?: React.ReactNode;
   items?: React.ReactNode;
-  type?: SingleChoiceArg<"soft" | "plain">;
+  type?: SingleChoiceArg<"soft" | "plain" | "line">;
   className?: string;
 }
 
@@ -259,7 +259,10 @@ function PlasmicSelect__RenderFunc(props: {
         projectcss.plasmic_mixins,
         styleTokensClassNames,
         sty.ariaSelect,
-        { [sty.ariaSelecttype_soft]: hasVariant($state, "type", "soft") }
+        {
+          [sty.ariaSelecttype_line]: hasVariant($state, "type", "line"),
+          [sty.ariaSelecttype_soft]: hasVariant($state, "type", "soft")
+        }
       )}
       isDisabled={args.disabled}
       isOpen={generateStateValueProp($state, ["ariaSelect", "isOpen"])}
@@ -297,6 +300,7 @@ function PlasmicSelect__RenderFunc(props: {
         data-plasmic-name={"ariaButton"}
         data-plasmic-override={overrides.ariaButton}
         className={classNames("__wab_instance", sty.ariaButton, {
+          [sty.ariaButtontype_line]: hasVariant($state, "type", "line"),
           [sty.ariaButtontype_soft]: hasVariant($state, "type", "soft")
         })}
       >
@@ -349,7 +353,10 @@ function PlasmicSelect__RenderFunc(props: {
         <Description
           data-plasmic-name={"description"}
           data-plasmic-override={overrides.description}
-          className={classNames("__wab_instance", sty.description)}
+          className={classNames("__wab_instance", sty.description, {
+            [sty.descriptiontype_line]: hasVariant($state, "type", "line"),
+            [sty.descriptiontype_soft]: hasVariant($state, "type", "soft")
+          })}
         >
           {renderPlasmicSlot({
             defaultContents: "Description...",
@@ -360,7 +367,17 @@ function PlasmicSelect__RenderFunc(props: {
       <MenuPopover
         data-plasmic-name={"menuPopover"}
         data-plasmic-override={overrides.menuPopover}
-        className={classNames("__wab_instance", sty.menuPopover)}
+        className={classNames("__wab_instance", sty.menuPopover, {
+          [sty.menuPopovertype_line]: hasVariant($state, "type", "line"),
+          [sty.menuPopovertype_soft]: hasVariant($state, "type", "soft")
+        })}
+        color={
+          hasVariant($state, "type", "line")
+            ? "soft"
+            : hasVariant($state, "type", "soft")
+              ? "soft"
+              : undefined
+        }
         menuItems={renderPlasmicSlot({
           defaultContents: (
             <React.Fragment>

@@ -15,7 +15,7 @@
   box-sizing: border-box;
   cursor: pointer;
   width: 100%;
-  box-shadow: inset 0px 0px 0px 2px var(--token-C6B6ZAuqICKE);
+  box-shadow: none;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -48,6 +48,14 @@
   border-radius: var(--token-6F5DR5OsTPi0);
   padding: var(--token-6F5DR5OsTPi0) var(--token-UWj1h_kV6SQI);
   border: 1px solid var(--token-ee2TuxDknsJj);
+}
+.ariaButtontype_soft:global(.__wab_instance) {
+  background: var(--token-h2xt7bB598yU);
+}
+.ariaButtontype_line:global(.__wab_instance) {
+  background: none;
+  border-radius: 0px;
+  border-bottom: 1px solid var(--token-DbGdjBpQ6R_X);
 }
 .ariaSelectedValue:global(.__wab_instance) {
   font-size: var(--token-ehIkf6s-dMLU);
