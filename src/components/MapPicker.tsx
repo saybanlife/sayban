@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import type { CodeComponentMeta } from "@plasmicapp/host";
 import { MapContainer as LeafletMapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
