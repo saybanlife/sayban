@@ -69,12 +69,14 @@ import Service from "../../Service"; // plasmic-import: 0JNfyGRvC0FA/component
 import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
 import { Iframe } from "@plasmicpkgs/plasmic-basic-components";
 import { AntdProgress } from "@plasmicpkgs/antd5/skinny/registerProgress";
-import Comment from "../../Comment"; // plasmic-import: 4NLVwAuHCB3Q/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import Comment from "../../Comment"; // plasmic-import: 4NLVwAuHCB3Q/component
 import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
 import Next from "../../Next"; // plasmic-import: gLmxuN6lLlgW/component
 import Calendar from "../../Calendar"; // plasmic-import: Ne_OAR5Gww2F/component
 import SelectTime from "../../SelectTime"; // plasmic-import: gjWWc9BL-2Ke/component
+import SelectStars from "../../SelectStars"; // plasmic-import: rIv-AfQad6sO/component
+import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -89,6 +91,7 @@ import Icon22Icon from "./icons/PlasmicIcon__Icon22"; // plasmic-import: 5JSOkqx
 import Icon12Icon from "../website_starter/icons/PlasmicIcon__Icon12"; // plasmic-import: BFmheOgAQHY6/icon
 import Icon43Icon from "./icons/PlasmicIcon__Icon43"; // plasmic-import: Sb1rSupvjrST/icon
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import Icon63Icon from "./icons/PlasmicIcon__Icon63"; // plasmic-import: I3nE9VH2SfXs/icon
 import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import Icon42Icon from "./icons/PlasmicIcon__Icon42"; // plasmic-import: jkq895Pwga0g/icon
 
@@ -137,9 +140,9 @@ export type PlasmicCenter__OverridesType = {
   iframe?: Flex__<typeof Iframe>;
   link?: Flex__<"a"> & Partial<LinkProps>;
   progress?: Flex__<typeof AntdProgress>;
-  comment?: Flex__<typeof Comment>;
+  button3?: Flex__<typeof Button>;
   button?: Flex__<typeof Button>;
-  dialog2?: Flex__<typeof Dialog>;
+  entry?: Flex__<typeof Dialog>;
   holidays?: Flex__<typeof ApiRequest>;
   topics3?: Flex__<typeof Topics>;
   calendar?: Flex__<typeof Calendar>;
@@ -147,6 +150,10 @@ export type PlasmicCenter__OverridesType = {
   date?: Flex__<typeof ApiRequest>;
   selectTime?: Flex__<typeof SelectTime>;
   button2?: Flex__<typeof Button>;
+  comment?: Flex__<typeof Dialog>;
+  selectStars?: Flex__<typeof SelectStars>;
+  commentArea?: Flex__<typeof TextAreaInput>;
+  commentEntry?: Flex__<typeof Button>;
 };
 
 export interface DefaultCenterProps {
@@ -331,7 +338,7 @@ function PlasmicCenter__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       },
       {
-        path: "dialog2.opendialog",
+        path: "entry.opendialog",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
@@ -640,6 +647,36 @@ function PlasmicCenter__RenderFunc(props: {
 
         valueProp: "id2",
         onChangeProp: "onId2Change"
+      },
+      {
+        path: "button3.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "comment.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "selectStars.rate",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $ctx }) => 0
+      },
+      {
+        path: "commentArea.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "commentEntry.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -2006,6 +2043,121 @@ drawRating(${$state.rate});
                             );
                           })}
                         </div>
+                        <section
+                          className={classNames(
+                            projectcss.all,
+                            sty.section__n1J5
+                          )}
+                        >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__yks7U,
+                              "fixed-box"
+                            )}
+                          >
+                            <Button
+                              data-plasmic-name={"button3"}
+                              data-plasmic-override={overrides.button3}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.button3
+                              )}
+                              color={"second"}
+                              end={
+                                <Icon63Icon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg___8KXjF
+                                  )}
+                                  role={"img"}
+                                />
+                              }
+                              iconEnd={true}
+                              label={
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__zo2Mt
+                                  )}
+                                >
+                                  {"\u062b\u0628\u062a \u0646\u0638\u0631"}
+                                </div>
+                              }
+                              loading={generateStateValueProp($state, [
+                                "button3",
+                                "loading"
+                              ])}
+                              onClick={async event => {
+                                const $steps = {};
+
+                                $steps["updateCommentOpendialog"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: [
+                                            "comment",
+                                            "opendialog"
+                                          ]
+                                        },
+                                        operation: 4
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        const oldValue = $stateGet(
+                                          objRoot,
+                                          variablePath
+                                        );
+                                        $stateSet(
+                                          objRoot,
+                                          variablePath,
+                                          !oldValue
+                                        );
+                                        return !oldValue;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateCommentOpendialog"] != null &&
+                                  typeof $steps["updateCommentOpendialog"] ===
+                                    "object" &&
+                                  typeof $steps["updateCommentOpendialog"]
+                                    .then === "function"
+                                ) {
+                                  $steps["updateCommentOpendialog"] =
+                                    await $steps["updateCommentOpendialog"];
+                                }
+                              }}
+                              onLoadingChange={async (...eventArgs: any) => {
+                                generateStateOnChangeProp($state, [
+                                  "button3",
+                                  "loading"
+                                ]).apply(null, eventArgs);
+
+                                if (
+                                  eventArgs.length > 1 &&
+                                  eventArgs[1] &&
+                                  eventArgs[1]._plasmic_state_init_
+                                ) {
+                                  return;
+                                }
+                              }}
+                              roundedFull={true}
+                            />
+                          </div>
+                        </section>
                       </div>
                     ) : null}
                     {(_par =>
@@ -2030,9 +2182,10 @@ drawRating(${$state.rate});
                       const currentIndex = __plasmic_idx_0;
                       return (
                         <Comment
-                          data-plasmic-name={"comment"}
-                          data-plasmic-override={overrides.comment}
-                          className={classNames("__wab_instance", sty.comment)}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.comment__cnN4W
+                          )}
                           key={currentIndex}
                           user={user}
                         />
@@ -2176,7 +2329,7 @@ drawRating(${$state.rate});
                       const actionArgs = {
                         variable: {
                           objRoot: $state,
-                          variablePath: ["dialog2", "opendialog"]
+                          variablePath: ["entry", "opendialog"]
                         },
                         operation: 0,
                         value: true
@@ -2225,12 +2378,12 @@ drawRating(${$state.rate});
         </section>
       ) : null}
       <Dialog
-        data-plasmic-name={"dialog2"}
-        data-plasmic-override={overrides.dialog2}
-        className={classNames("__wab_instance", sty.dialog2)}
+        data-plasmic-name={"entry"}
+        data-plasmic-override={overrides.entry}
+        className={classNames("__wab_instance", sty.entry)}
         nopadding={true}
         onOpendialogChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["dialog2", "opendialog"]).apply(
+          generateStateOnChangeProp($state, ["entry", "opendialog"]).apply(
             null,
             eventArgs
           );
@@ -2243,7 +2396,7 @@ drawRating(${$state.rate});
             return;
           }
         }}
-        opendialog={generateStateValueProp($state, ["dialog2", "opendialog"])}
+        opendialog={generateStateValueProp($state, ["entry", "opendialog"])}
       >
         <ApiRequest
           data-plasmic-name={"holidays"}
@@ -3479,7 +3632,7 @@ drawRating(${$state.rate});
                           const actionArgs = {
                             variable: {
                               objRoot: $state,
-                              variablePath: ["dialog2", "opendialog"]
+                              variablePath: ["entry", "opendialog"]
                             },
                             operation: 0,
                             value: false
@@ -3531,6 +3684,308 @@ drawRating(${$state.rate});
           </div>
         </ApiRequest>
       </Dialog>
+      <Dialog
+        data-plasmic-name={"comment"}
+        data-plasmic-override={overrides.comment}
+        className={classNames("__wab_instance", sty.comment)}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["comment", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["comment", "opendialog"])}
+      >
+        <div className={classNames(projectcss.all, sty.freeBox__anS6)}>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__onguD
+            )}
+          >
+            {
+              "\u062b\u0628\u062a \u0627\u0645\u062a\u06cc\u0627\u0632 \u0648 \u0646\u0638\u0631"
+            }
+          </div>
+          <SelectStars
+            data-plasmic-name={"selectStars"}
+            data-plasmic-override={overrides.selectStars}
+            className={classNames("__wab_instance", sty.selectStars)}
+            onRateChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["selectStars", "rate"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            rate={generateStateValueProp($state, ["selectStars", "rate"])}
+          />
+
+          <div
+            className={classNames(projectcss.all, sty.freeBox__kscoM, "dark")}
+          >
+            <TextAreaInput
+              data-plasmic-name={"commentArea"}
+              data-plasmic-override={overrides.commentArea}
+              className={classNames("__wab_instance", sty.commentArea)}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "commentArea",
+                  "value"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              placeholder={
+                "\u0646\u0638\u0631 \u062e\u0648\u062f \u0631\u0627 \u062f\u0631\u0628\u0627\u0631\u0647 \u0627\u06cc\u0646 \u0645\u0631\u06a9\u0632 \u06cc\u0627 \u062e\u062f\u0645\u0627\u062a \u0622\u0646 \u0628\u0627 \u0633\u0627\u06cc\u0631 \u06a9\u0627\u0631\u0628\u0631\u0627\u0646 \u0628\u0647 \u0627\u0634\u062a\u0631\u0627\u06a9 \u0628\u06af\u0630\u0627\u0631\u06cc\u062f."
+              }
+              type={"line"}
+              value={generateStateValueProp($state, ["commentArea", "value"])}
+            />
+          </div>
+          <Button
+            data-plasmic-name={"commentEntry"}
+            data-plasmic-override={overrides.commentEntry}
+            className={classNames("__wab_instance", sty.commentEntry)}
+            disabled={(() => {
+              try {
+                return $state.selectStars.rate < 1;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            label={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__dx49K
+                )}
+              >
+                {"\u062b\u0628\u062a \u0646\u0638\u0631"}
+              </div>
+            }
+            loading={generateStateValueProp($state, [
+              "commentEntry",
+              "loading"
+            ])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateCommentEntryLoading"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["commentEntry", "loading"]
+                      },
+                      operation: 0,
+                      value: true
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateCommentEntryLoading"] != null &&
+                typeof $steps["updateCommentEntryLoading"] === "object" &&
+                typeof $steps["updateCommentEntryLoading"].then === "function"
+              ) {
+                $steps["updateCommentEntryLoading"] =
+                  await $steps["updateCommentEntryLoading"];
+              }
+
+              $steps["api"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "https://sayban.darkube.app/webhook/set/comment/",
+                        undefined,
+                        (() => {
+                          try {
+                            return {
+                              center_id: $state.full.data.result.id,
+                              rate: $state.selectStars.rate,
+                              comment: $state.commentArea.value
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        (() => {
+                          try {
+                            return {
+                              headers: {
+                                Authorization: `Bearer ${$props.token}`
+                              }
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["api"] != null &&
+                typeof $steps["api"] === "object" &&
+                typeof $steps["api"].then === "function"
+              ) {
+                $steps["api"] = await $steps["api"];
+              }
+
+              $steps["invokeGlobalAction"] = $steps.api.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "success",
+                        "\u0645\u0645\u0646\u0648\u0646 \u0627\u0632 \u0648\u0642\u062a\u06cc \u06a9\u0647 \u06af\u0630\u0627\u0634\u062a\u06cc\u062f\u060c \u0646\u0638\u0631 \u0634\u0645\u0627 \u062b\u0628\u062a \u0634\u062f",
+                        "bottom-center",
+                        3000
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["runCode"] = $steps.api.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.comment.opendialog = false;
+                          return $state.full.data.reviews.unshift({
+                            id: $steps.api.data.result.insertId,
+                            user_name: "من",
+                            rating: $state.selectStars.rate,
+                            comment: $state.commentArea.value,
+                            created_at: new Date().toISOString()
+                          });
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["updateCommentEntryLoading2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["commentEntry", "loading"]
+                      },
+                      operation: 0,
+                      value: false
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateCommentEntryLoading2"] != null &&
+                typeof $steps["updateCommentEntryLoading2"] === "object" &&
+                typeof $steps["updateCommentEntryLoading2"].then === "function"
+              ) {
+                $steps["updateCommentEntryLoading2"] =
+                  await $steps["updateCommentEntryLoading2"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "commentEntry",
+                "loading"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </Dialog>
     </div>
   ) as React.ReactElement | null;
 }
@@ -3548,16 +4003,20 @@ const PlasmicDescendants = {
     "iframe",
     "link",
     "progress",
-    "comment",
+    "button3",
     "button",
-    "dialog2",
+    "entry",
     "holidays",
     "topics3",
     "calendar",
     "topics2",
     "date",
     "selectTime",
-    "button2"
+    "button2",
+    "comment",
+    "selectStars",
+    "commentArea",
+    "commentEntry"
   ],
   header: ["header"],
   full: [
@@ -3570,7 +4029,7 @@ const PlasmicDescendants = {
     "iframe",
     "link",
     "progress",
-    "comment"
+    "button3"
   ],
   swiperSlider: ["swiperSlider"],
   topics: ["topics"],
@@ -3580,10 +4039,10 @@ const PlasmicDescendants = {
   iframe: ["iframe"],
   link: ["link"],
   progress: ["progress"],
-  comment: ["comment"],
+  button3: ["button3"],
   button: ["button"],
-  dialog2: [
-    "dialog2",
+  entry: [
+    "entry",
     "holidays",
     "topics3",
     "calendar",
@@ -3606,7 +4065,11 @@ const PlasmicDescendants = {
   topics2: ["topics2"],
   date: ["date", "selectTime"],
   selectTime: ["selectTime"],
-  button2: ["button2"]
+  button2: ["button2"],
+  comment: ["comment", "selectStars", "commentArea", "commentEntry"],
+  selectStars: ["selectStars"],
+  commentArea: ["commentArea"],
+  commentEntry: ["commentEntry"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -3623,9 +4086,9 @@ type NodeDefaultElementType = {
   iframe: typeof Iframe;
   link: "a";
   progress: typeof AntdProgress;
-  comment: typeof Comment;
+  button3: typeof Button;
   button: typeof Button;
-  dialog2: typeof Dialog;
+  entry: typeof Dialog;
   holidays: typeof ApiRequest;
   topics3: typeof Topics;
   calendar: typeof Calendar;
@@ -3633,6 +4096,10 @@ type NodeDefaultElementType = {
   date: typeof ApiRequest;
   selectTime: typeof SelectTime;
   button2: typeof Button;
+  comment: typeof Dialog;
+  selectStars: typeof SelectStars;
+  commentArea: typeof TextAreaInput;
+  commentEntry: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -3707,9 +4174,9 @@ export const PlasmicCenter = Object.assign(
     iframe: makeNodeComponent("iframe"),
     link: makeNodeComponent("link"),
     progress: makeNodeComponent("progress"),
-    comment: makeNodeComponent("comment"),
+    button3: makeNodeComponent("button3"),
     button: makeNodeComponent("button"),
-    dialog2: makeNodeComponent("dialog2"),
+    entry: makeNodeComponent("entry"),
     holidays: makeNodeComponent("holidays"),
     topics3: makeNodeComponent("topics3"),
     calendar: makeNodeComponent("calendar"),
@@ -3717,6 +4184,10 @@ export const PlasmicCenter = Object.assign(
     date: makeNodeComponent("date"),
     selectTime: makeNodeComponent("selectTime"),
     button2: makeNodeComponent("button2"),
+    comment: makeNodeComponent("comment"),
+    selectStars: makeNodeComponent("selectStars"),
+    commentArea: makeNodeComponent("commentArea"),
+    commentEntry: makeNodeComponent("commentEntry"),
 
     // Metadata about props expected for PlasmicCenter
     internalVariantProps: PlasmicCenter__VariantProps,

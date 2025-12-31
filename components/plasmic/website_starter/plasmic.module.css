@@ -388,6 +388,10 @@
   --plasmic-mixin-box_white-space: var(--mixin-Z226BNHiP0Mh_white-space);
   --mixin-xKyFr016E9_5_white-space: pre-wrap;
   --plasmic-mixin-shimmer_white-space: var(--mixin-xKyFr016E9_5_white-space);
+  --mixin-5eLyb6rEyNb7_white-space: pre-wrap;
+  --plasmic-mixin-header-text_white-space: var(
+    --mixin-5eLyb6rEyNb7_white-space
+  );
 }
 
 :where(.all) {

@@ -264,7 +264,7 @@ function PlasmicComment__RenderFunc(props: {
               <React.Fragment>
                 {(() => {
                   try {
-                    return $props.user.name || "کاربر بی‌نام";
+                    return $props.user.user_name || "کاربر بی‌نام";
                   } catch (e) {
                     if (
                       e instanceof TypeError ||

@@ -274,7 +274,7 @@ function PlasmicSelectStars__RenderFunc(props: {
                 { [sty.textlable]: hasVariant($state, "lable", "lable") }
               )}
             >
-              {"Enter some text"}
+              <React.Fragment>{currentItem}</React.Fragment>
             </div>
           </Stars>
         );
