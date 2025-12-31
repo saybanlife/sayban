@@ -523,12 +523,17 @@
   font-size: var(--token-9jx4RULNbWhl);
   min-width: 0;
 }
-.text___3RPmo {
-  position: relative;
-  width: 100%;
-  height: auto;
+.checkboxGroup:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
-  min-width: 0;
+}
+.freeBox__kbnyY {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--token-rfsFxiclAtek);
+}
+.option1:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
 }
 .freeBox__pzO9W {
   display: flex;

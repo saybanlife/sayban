@@ -258,7 +258,11 @@ function PlasmicMenueIcon__RenderFunc(props: {
             hasVariant($state, "select", "select") &&
             hasVariant($state, "icons", "user"),
           [sty.rootselect]: hasVariant($state, "select", "select"),
-          [sty.rootsize_max]: hasVariant($state, "size", "max")
+          [sty.rootsize_max]: hasVariant($state, "size", "max"),
+          [sty.rootsize_max_icons_rehabilitation]:
+            hasVariant($state, "size", "max") &&
+            hasVariant($state, "icons", "rehabilitation"),
+          [sty.rootsize_min]: hasVariant($state, "size", "min")
         }
       )}
     >
@@ -317,7 +321,17 @@ function PlasmicMenueIcon__RenderFunc(props: {
           [sty.svgicons_settings_select]:
             hasVariant($state, "icons", "settings") &&
             hasVariant($state, "select", "select"),
+          [sty.svgicons_settings_size_min]:
+            hasVariant($state, "size", "min") &&
+            hasVariant($state, "icons", "settings"),
+          [sty.svgicons_settings_size_min_select]:
+            hasVariant($state, "size", "min") &&
+            hasVariant($state, "select", "select") &&
+            hasVariant($state, "icons", "settings"),
           [sty.svgicons_supportive]: hasVariant($state, "icons", "supportive"),
+          [sty.svgicons_supportive_size_min]:
+            hasVariant($state, "size", "min") &&
+            hasVariant($state, "icons", "supportive"),
           [sty.svgicons_user]: hasVariant($state, "icons", "user"),
           [sty.svgicons_user_select]:
             hasVariant($state, "icons", "user") &&
@@ -334,7 +348,25 @@ function PlasmicMenueIcon__RenderFunc(props: {
             hasVariant($state, "icons", "medical"),
           [sty.svgsize_max_icons_rehabilitation]:
             hasVariant($state, "icons", "rehabilitation") &&
-            hasVariant($state, "size", "max")
+            hasVariant($state, "size", "max"),
+          [sty.svgsize_min]: hasVariant($state, "size", "min"),
+          [sty.svgsize_min_icons_home]:
+            hasVariant($state, "icons", "home") &&
+            hasVariant($state, "size", "min"),
+          [sty.svgsize_min_icons_home_select]:
+            hasVariant($state, "size", "min") &&
+            hasVariant($state, "select", "select") &&
+            hasVariant($state, "icons", "home"),
+          [sty.svgsize_min_icons_user]:
+            hasVariant($state, "icons", "user") &&
+            hasVariant($state, "size", "min"),
+          [sty.svgsize_min_icons_user_select]:
+            hasVariant($state, "size", "min") &&
+            hasVariant($state, "icons", "user") &&
+            hasVariant($state, "select", "select"),
+          [sty.svgsize_min_select]:
+            hasVariant($state, "size", "min") &&
+            hasVariant($state, "select", "select")
         })}
         role={"img"}
       />
@@ -362,14 +394,17 @@ function PlasmicMenueIcon__RenderFunc(props: {
             hasVariant($state, "icons", "medical"),
           [sty.imgsize_max_icons_rehabilitation]:
             hasVariant($state, "size", "max") &&
-            hasVariant($state, "icons", "rehabilitation")
+            hasVariant($state, "icons", "rehabilitation"),
+          [sty.imgsize_max_icons_supportive]:
+            hasVariant($state, "size", "max") &&
+            hasVariant($state, "icons", "supportive")
         })}
-        displayHeight={hasVariant($state, "size", "max") ? "2.5rem" : "2rem"}
+        displayHeight={hasVariant($state, "size", "max") ? "100%" : "2rem"}
         displayMaxHeight={"none"}
         displayMaxWidth={"100%"}
         displayMinHeight={"0"}
         displayMinWidth={"0"}
-        displayWidth={hasVariant($state, "size", "max") ? "2.5rem" : "2rem"}
+        displayWidth={hasVariant($state, "size", "max") ? "100%" : "2rem"}
         loading={"lazy"}
         src={
           hasVariant($state, "icons", "medicalcompletion")

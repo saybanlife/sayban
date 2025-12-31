@@ -76,13 +76,16 @@ createPlasmicElementProxy;
 
 export type PlasmicCheckbox__VariantMembers = {
   shape: "circle";
+  tims: "tims";
 };
 export type PlasmicCheckbox__VariantsArgs = {
   shape?: SingleChoiceArg<"circle">;
+  tims?: SingleBooleanChoiceArg<"tims">;
 };
 type VariantPropType = keyof PlasmicCheckbox__VariantsArgs;
 export const PlasmicCheckbox__VariantProps = new Array<VariantPropType>(
-  "shape"
+  "shape",
+  "tims"
 );
 
 export type PlasmicCheckbox__ArgsType = {
@@ -125,6 +128,7 @@ export interface DefaultCheckboxProps {
   label?: React.ReactNode;
   children?: React.ReactNode;
   shape?: SingleChoiceArg<"circle">;
+  tims?: SingleBooleanChoiceArg<"tims">;
   className?: string;
 }
 
@@ -186,6 +190,12 @@ function PlasmicCheckbox__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $ctx }) => $props.shape
+      },
+      {
+        path: "tims",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.tims
       }
     ],
     [$props, $ctx, $refs]
@@ -239,7 +249,8 @@ function PlasmicCheckbox__RenderFunc(props: {
         styleTokensClassNames,
         sty.ariaCheckbox,
         {
-          [sty.ariaCheckboxshape_circle]: hasVariant($state, "shape", "circle")
+          [sty.ariaCheckboxshape_circle]: hasVariant($state, "shape", "circle"),
+          [sty.ariaCheckboxtims]: hasVariant($state, "tims", "tims")
         }
       )}
       defaultSelected={false}
@@ -258,11 +269,17 @@ function PlasmicCheckbox__RenderFunc(props: {
       plasmicUpdateVariant={updateVariant}
       value={args.value}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__hwK1P)}>
+      <div
+        className={classNames(projectcss.all, sty.freeBox__hwK1P, {
+          [sty.freeBoxtims__hwK1Pyo6L6]: hasVariant($state, "tims", "tims")
+        })}
+      >
         <MenuIcon
           data-plasmic-name={"menuIcon"}
           data-plasmic-override={overrides.menuIcon}
-          className={classNames("__wab_instance", sty.menuIcon)}
+          className={classNames("__wab_instance", sty.menuIcon, {
+            [sty.menuIcontims]: hasVariant($state, "tims", "tims")
+          })}
           icons={(() => {
             try {
               return $props.icon;
@@ -279,17 +296,27 @@ function PlasmicCheckbox__RenderFunc(props: {
           size={"_25"}
         />
 
-        <div className={classNames(projectcss.all, sty.freeBox__u9IWo)}>
+        <div
+          className={classNames(projectcss.all, sty.freeBox__u9IWo, {
+            [sty.freeBoxtims__u9IWOyo6L6]: hasVariant($state, "tims", "tims")
+          })}
+        >
           {renderPlasmicSlot({
             defaultContents: "Option",
             value: args.label,
             className: classNames(sty.slotTargetLabel)
           })}
-          <div className={classNames(projectcss.all, sty.freeBox__b9WAl)}>
+          <div
+            className={classNames(projectcss.all, sty.freeBox__b9WAl, {
+              [sty.freeBoxtims__b9WAlyo6L6]: hasVariant($state, "tims", "tims")
+            })}
+          >
             {renderPlasmicSlot({
               defaultContents: "Enter some text",
               value: args.children,
-              className: classNames(sty.slotTargetChildren)
+              className: classNames(sty.slotTargetChildren, {
+                [sty.slotTargetChildrentims]: hasVariant($state, "tims", "tims")
+              })
             })}
           </div>
         </div>
@@ -300,7 +327,8 @@ function PlasmicCheckbox__RenderFunc(props: {
             $state,
             "shape",
             "circle"
-          )
+          ),
+          [sty.freeBoxtims__iZwZOyo6L6]: hasVariant($state, "tims", "tims")
         })}
       >
         {(

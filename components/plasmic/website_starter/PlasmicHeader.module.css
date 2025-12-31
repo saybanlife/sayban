@@ -31,18 +31,21 @@
     grid-column: 4;
   }
 }
+.rootsearch > * {
+  grid-column: 4;
+}
 .freeBox__lHkfy {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   height: auto;
   justify-content: space-between;
   align-items: center;
-  column-gap: var(--token-kD77h-2NGSqI);
-  background: var(--token-9M5jRUPt8Msb);
+  background: var(--token-fr7DwvJwRjZb);
   box-shadow: none;
+  row-gap: var(--token-kD77h-2NGSqI);
   min-width: 0;
-  padding: var(--token-kD77h-2NGSqI) var(--token-rfsFxiclAtek) 2.5rem;
+  padding: 0px 0px var(--token-gzhQ56cI3Art);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__lHkfy {
@@ -55,10 +58,27 @@
   background: linear-gradient(0deg, #00121b00 0%, #1c281f99 63%, #1c281fcc 99%);
   box-shadow: none;
 }
+.freeBox___3BRFj {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  background: none;
+  box-shadow: none;
+  column-gap: var(--token-kD77h-2NGSqI);
+  min-width: 0;
+  padding: var(--token-kD77h-2NGSqI) var(--token-rfsFxiclAtek) 0rem;
+}
+.freeBoxsoft___3BRFjFgJuq {
+  background: none;
+}
 .freeBox__ameEp {
   display: flex;
   flex-direction: column;
-  position: relative;
   width: auto;
   height: auto;
   max-width: 100%;
@@ -134,6 +154,24 @@
   flex-shrink: 0;
   padding: 0px;
 }
+.freeBox__zzjpZ {
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--token-9M5jRUPt8Msb);
+  box-shadow: none;
+  row-gap: var(--token-kD77h-2NGSqI);
+  min-width: 0;
+  display: none;
+  padding: 0px var(--token-rfsFxiclAtek) 0rem;
+}
+.freeBoxsearch__zzjpZBrJu {
+  display: flex;
+}
 .freeBox__m7Yl {
   display: flex;
   flex-direction: column;
@@ -145,11 +183,12 @@
   align-items: center;
   left: 0;
   top: auto;
-  right: 0;
-  bottom: 0;
   background: var(--token-KPGXdu9o7llP);
   border-top-right-radius: var(--token-zOTmRNiLzxBx);
   border-top-left-radius: var(--token-zOTmRNiLzxBx);
+  right: 0;
+  bottom: 0;
+  flex-shrink: 0;
   padding: 8px;
 }
 .freeBoxsoft__m7YlFgJuq {
@@ -163,6 +202,7 @@
   max-width: 100%;
   opacity: 0.2;
   min-width: 0;
+  display: none;
   border-bottom: 1px solid var(--token-C6B6ZAuqICKE);
 }
 @media (min-width: 0px) and (max-width: 768px) {

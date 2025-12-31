@@ -10,6 +10,10 @@
   min-width: 0;
   padding: 0px;
 }
+.rootselect {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  overflow: auto;
+}
 .timeShow:global(.__wab_instance) {
   max-width: 100%;
   width: auto;

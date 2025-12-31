@@ -1,8 +1,8 @@
 .root {
   background: var(--token-k-47TemksE2v);
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
-  width: 100%;
+  width: auto;
   height: 100%;
   max-width: 100%;
   justify-content: center;
@@ -10,10 +10,10 @@
   position: relative;
   outline-width: 0px;
   row-gap: var(--token-rfsFxiclAtek);
-  min-width: 0;
+  justify-self: flex-start;
   min-height: 0;
   border-radius: var(--token-rfsFxiclAtek);
-  padding: var(--token-gLYiSvxc94NR) var(--token-Vi8cDx7an2mh);
+  padding: var(--token-gLYiSvxc94NR) var(--token-0tl2H1TRPHhV);
   border: 2px solid var(--token-A-PNbaadkZKd);
 }
 .rootselect {
@@ -32,4 +32,5 @@
   font-size: var(--token-9jx4RULNbWhl);
   line-height: 1;
   margin-top: 2px;
+  white-space: pre;
 }

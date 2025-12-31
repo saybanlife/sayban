@@ -673,7 +673,7 @@
     {
       "name": "Accent lighte",
       "type": "color",
-      "value": "#F9F8D7",
+      "value": "#F5F1E3",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -693,7 +693,7 @@
     {
       "name": "Background Light",
       "type": "color",
-      "value": "#F5F1E3",
+      "value": "#F5EFDB",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -3431,6 +3431,16 @@
       }
     },
     {
+      "name": "Unnamed Style Token 4",
+      "type": "color",
+      "value": "#ffffff",
+      "category": "color",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "v1iW1n7zvyWu"
+      }
+    },
+    {
       "name": "Warning/Warning",
       "type": "color",
       "value": "#FACC15",
@@ -5271,6 +5281,16 @@
       }
     },
     {
+      "name": "simmer",
+      "type": "color",
+      "value": "#E3E3D2",
+      "category": "color",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "6PgHWThSeskT"
+      }
+    },
+    {
       "name": "sky-100",
       "type": "color",
       "value": "#E0F2FE",
@@ -5623,7 +5643,7 @@
     {
       "name": "task-text-dark",
       "type": "color",
-      "value": "rgb(245,245,245)",
+      "value": "#EEEDCE",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",

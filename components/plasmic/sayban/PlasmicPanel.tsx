@@ -79,6 +79,8 @@ import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/compo
 import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
 import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
 import AddServise from "../../AddServise"; // plasmic-import: GoiLccUqO4vp/component
+import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo/component
+import Checkbox from "../../Checkbox"; // plasmic-import: 7eMtZduHzknK/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -122,6 +124,8 @@ export type PlasmicPanel__OverridesType = {
   radio?: Flex__<typeof Radio>;
   loaction?: Flex__<typeof Loaction>;
   addServise?: Flex__<typeof AddServise>;
+  checkboxGroup?: Flex__<typeof CheckboxGroup>;
+  option1?: Flex__<typeof Checkbox>;
   button2?: Flex__<typeof Button>;
   button4?: Flex__<typeof Button>;
   button3?: Flex__<typeof Button>;
@@ -273,6 +277,17 @@ function PlasmicPanel__RenderFunc(props: {
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $ctx }) => []
+      },
+      {
+        path: "checkboxGroup.value",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => []
+      },
+      {
+        path: "option1[].isSelected",
+        type: "private",
+        variableType: "boolean"
       }
     ],
     [$props, $ctx, $refs]
@@ -1282,15 +1297,180 @@ function PlasmicPanel__RenderFunc(props: {
                       </div>
                     }
                   >
-                    <div
+                    <CheckboxGroup
+                      data-plasmic-name={"checkboxGroup"}
+                      data-plasmic-override={overrides.checkboxGroup}
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text___3RPmo
+                        "__wab_instance",
+                        sty.checkboxGroup
                       )}
-                    >
-                      {"Tab Children 1"}
-                    </div>
+                      onChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "checkboxGroup",
+                          "value"
+                        ]).apply(null, eventArgs);
+
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
+                          return;
+                        }
+                      }}
+                      options={
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__kbnyY
+                          )}
+                        >
+                          {(_par =>
+                            !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                            (() => {
+                              try {
+                                return [
+                                  {
+                                    label: "شنبه",
+                                    value: "sat",
+                                    isHoliday: false
+                                  },
+                                  {
+                                    label: "یکشنبه",
+                                    value: "sun",
+                                    isHoliday: false
+                                  },
+                                  {
+                                    label: "دوشنبه",
+                                    value: "mon",
+                                    isHoliday: false
+                                  },
+                                  {
+                                    label: "سه‌شنبه",
+                                    value: "tue",
+                                    isHoliday: false
+                                  },
+                                  {
+                                    label: "چهارشنبه",
+                                    value: "wed",
+                                    isHoliday: false
+                                  },
+                                  {
+                                    label: "پنج‌شنبه",
+                                    value: "thu",
+                                    isHoliday: false
+                                  },
+                                  {
+                                    label: "جمعه",
+                                    value: "fri",
+                                    isHoliday: true
+                                  }
+                                ];
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return [];
+                                }
+                                throw e;
+                              }
+                            })()
+                          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                            const currentItem = __plasmic_item_0;
+                            const currentIndex = __plasmic_idx_0;
+                            return (() => {
+                              const child$Props = {
+                                children: null,
+                                className: classNames(
+                                  "__wab_instance",
+                                  sty.option1
+                                ),
+                                disabled: false,
+                                isSelected: generateStateValueProp($state, [
+                                  "option1",
+                                  __plasmic_idx_0,
+                                  "isSelected"
+                                ]),
+                                key: currentIndex,
+                                label: (
+                                  <React.Fragment>
+                                    {(() => {
+                                      try {
+                                        return currentItem.label;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return "Option 1";
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                  </React.Fragment>
+                                ),
+                                onChange: async (...eventArgs: any) => {
+                                  generateStateOnChangeProp($state, [
+                                    "option1",
+                                    __plasmic_idx_0,
+                                    "isSelected"
+                                  ]).apply(null, eventArgs);
+
+                                  if (
+                                    eventArgs.length > 1 &&
+                                    eventArgs[1] &&
+                                    eventArgs[1]._plasmic_state_init_
+                                  ) {
+                                    return;
+                                  }
+                                },
+                                tims: true,
+                                value: (() => {
+                                  try {
+                                    return currentItem.value;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              };
+
+                              initializePlasmicStates(
+                                $state,
+                                [
+                                  {
+                                    name: "option1[].isSelected",
+                                    initFunc: ({ $props, $state, $queries }) =>
+                                      false
+                                  }
+                                ],
+                                [__plasmic_idx_0]
+                              );
+                              return (
+                                <Checkbox
+                                  data-plasmic-name={"option1"}
+                                  data-plasmic-override={overrides.option1}
+                                  {...child$Props}
+                                />
+                              );
+                            })();
+                          })}
+                        </div>
+                      }
+                      showLabel={false}
+                      value={generateStateValueProp($state, [
+                        "checkboxGroup",
+                        "value"
+                      ])}
+                    />
                   </AntdTabItem>
                 </React.Fragment>
               }
@@ -1547,6 +1727,8 @@ const PlasmicDescendants = {
     "radio",
     "loaction",
     "addServise",
+    "checkboxGroup",
+    "option1",
     "button2",
     "button4",
     "button3"
@@ -1568,6 +1750,8 @@ const PlasmicDescendants = {
     "radio",
     "loaction",
     "addServise",
+    "checkboxGroup",
+    "option1",
     "button2",
     "button4",
     "button3"
@@ -1584,7 +1768,9 @@ const PlasmicDescendants = {
     "img",
     "radio",
     "loaction",
-    "addServise"
+    "addServise",
+    "checkboxGroup",
+    "option1"
   ],
   titleInput: ["titleInput"],
   descriptionEditor: ["descriptionEditor"],
@@ -1597,6 +1783,8 @@ const PlasmicDescendants = {
   radio: ["radio"],
   loaction: ["loaction"],
   addServise: ["addServise"],
+  checkboxGroup: ["checkboxGroup", "option1"],
+  option1: ["option1"],
   button2: ["button2"],
   button4: ["button4"],
   button3: ["button3"]
@@ -1622,6 +1810,8 @@ type NodeDefaultElementType = {
   radio: typeof Radio;
   loaction: typeof Loaction;
   addServise: typeof AddServise;
+  checkboxGroup: typeof CheckboxGroup;
+  option1: typeof Checkbox;
   button2: typeof Button;
   button4: typeof Button;
   button3: typeof Button;
@@ -1705,6 +1895,8 @@ export const PlasmicPanel = Object.assign(
     radio: makeNodeComponent("radio"),
     loaction: makeNodeComponent("loaction"),
     addServise: makeNodeComponent("addServise"),
+    checkboxGroup: makeNodeComponent("checkboxGroup"),
+    option1: makeNodeComponent("option1"),
     button2: makeNodeComponent("button2"),
     button4: makeNodeComponent("button4"),
     button3: makeNodeComponent("button3"),

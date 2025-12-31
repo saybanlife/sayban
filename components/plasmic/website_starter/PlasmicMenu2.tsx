@@ -208,7 +208,7 @@ function PlasmicMenu2__RenderFunc(props: {
         projectcss.plasmic_mixins,
         styleTokensClassNames,
         sty.root,
-        "phone"
+        "fixed-box"
       )}
     >
       <div

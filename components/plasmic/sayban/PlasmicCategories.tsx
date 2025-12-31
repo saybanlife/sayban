@@ -61,6 +61,7 @@ import {
 
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
+import { SwiperSlider } from "@/components/SwiperSlider"; // plasmic-import: byElilYJKEPk/codeComponent
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -68,8 +69,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicCategories.module.css"; // plasmic-import: R95SHqmqnvX5/css
-
-import Icon19Icon from "../website_starter/icons/PlasmicIcon__Icon19"; // plasmic-import: gxz20slK6TmF/icon
 
 createPlasmicElementProxy;
 
@@ -96,9 +95,7 @@ export type PlasmicCategories__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<typeof Header>;
   textCollapse?: Flex__<typeof TextCollapse>;
-  text?: Flex__<"div">;
-  img?: Flex__<typeof PlasmicImg__>;
-  svg?: Flex__<"svg">;
+  swiperSlider?: Flex__<typeof SwiperSlider>;
 };
 
 export interface DefaultCategoriesProps {
@@ -157,6 +154,18 @@ function PlasmicCategories__RenderFunc(props: {
 
         valueProp: "subcategories",
         onChangeProp: "onSubcategoriesChange"
+      },
+      {
+        path: "swiperSlider.activeSlideIndex",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $ctx }) => 0
+      },
+      {
+        path: "swiperSlider.lockSlides",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -231,6 +240,198 @@ function PlasmicCategories__RenderFunc(props: {
               }
             })()}
           />
+
+          <SwiperSlider
+            data-plasmic-name={"swiperSlider"}
+            data-plasmic-override={overrides.swiperSlider}
+            activeBulletColor={true ? "#6F8A3A" : undefined}
+            activeSlideIndex={generateStateValueProp($state, [
+              "swiperSlider",
+              "activeSlideIndex"
+            ])}
+            autoplay={true}
+            autoplayDelay={3000}
+            bulletColor={true ? "#ECECD8" : undefined}
+            className={classNames("__wab_instance", sty.swiperSlider)}
+            disablePaginationClick={false}
+            lockSlides={generateStateValueProp($state, [
+              "swiperSlider",
+              "lockSlides"
+            ])}
+            loop={true}
+            onActiveSlideIndexChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "swiperSlider",
+                "activeSlideIndex"
+              ]).apply(null, eventArgs);
+            }}
+            onLockSlidesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "swiperSlider",
+                "lockSlides"
+              ]).apply(null, eventArgs);
+            }}
+            showNavigationButtons={false}
+            showPagination={true}
+          >
+            {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+              (() => {
+                try {
+                  return $props.categories.subcategories;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()
+            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+              const currentItem = __plasmic_item_0;
+              const currentIndex = __plasmic_idx_0;
+              return (
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__ptkrJ)}
+                  key={currentIndex}
+                >
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__jxhyW)}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["updateSubcategories"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["subcategories"]
+                              },
+                              operation: 0,
+                              value: currentItem
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateSubcategories"] != null &&
+                        typeof $steps["updateSubcategories"] === "object" &&
+                        typeof $steps["updateSubcategories"].then === "function"
+                      ) {
+                        $steps["updateSubcategories"] =
+                          await $steps["updateSubcategories"];
+                      }
+
+                      $steps["runOnSubcategories"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              eventRef: $props["onSubcategories"]
+                            };
+                            return (({ eventRef, args }) => {
+                              return eventRef?.(...(args ?? []));
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runOnSubcategories"] != null &&
+                        typeof $steps["runOnSubcategories"] === "object" &&
+                        typeof $steps["runOnSubcategories"].then === "function"
+                      ) {
+                        $steps["runOnSubcategories"] =
+                          await $steps["runOnSubcategories"];
+                      }
+                    }}
+                  >
+                    <PlasmicImg__
+                      alt={""}
+                      className={classNames(sty.img__gnzcp)}
+                      displayHeight={"5rem"}
+                      displayMaxHeight={"none"}
+                      displayMaxWidth={"100%"}
+                      displayMinHeight={"0"}
+                      displayMinWidth={"0"}
+                      displayWidth={"5rem"}
+                      loading={"lazy"}
+                      src={{
+                        src: "/plasmic/website_starter/images/untitledPicturePng.png",
+                        fullWidth: 3629,
+                        fullHeight: 2887,
+                        aspectRatio: undefined
+                      }}
+                    />
+
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        sty.freeBox___5NiWc
+                      )}
+                    >
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__lxFx
+                        )}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return currentItem.name;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "\u06a9\u0644\u06cc\u0646\u06cc\u06a9";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text___0Jyrm
+                        )}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return currentItem.description;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "\u06a9\u0644\u06cc\u0646\u06cc\u06a9";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </SwiperSlider>
         </div>
         <div className={classNames(projectcss.all, sty.freeBox__xcchq)}>
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -312,13 +513,29 @@ function PlasmicCategories__RenderFunc(props: {
                   }
                 }}
               >
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__frUfu)}
+                  displayHeight={"5rem"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"5rem"}
+                  loading={"lazy"}
+                  src={{
+                    src: "/plasmic/website_starter/images/untitledPicturePng.png",
+                    fullWidth: 3629,
+                    fullHeight: 2887,
+                    aspectRatio: undefined
+                  }}
+                />
+
                 <div
-                  data-plasmic-name={"text"}
-                  data-plasmic-override={overrides.text}
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text
+                    sty.text__n4XQt
                   )}
                 >
                   <React.Fragment>
@@ -337,47 +554,6 @@ function PlasmicCategories__RenderFunc(props: {
                     })()}
                   </React.Fragment>
                 </div>
-                <div className={classNames(projectcss.all, sty.freeBox__buwE7)}>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__gah5R)}
-                  >
-                    {(_par =>
-                      !_par ? [] : Array.isArray(_par) ? _par : [_par])([
-                      2, 3, 4
-                    ]).map((__plasmic_item_1, __plasmic_idx_1) => {
-                      const currentItem = __plasmic_item_1;
-                      const currentIndex = __plasmic_idx_1;
-                      return (
-                        <PlasmicImg__
-                          data-plasmic-name={"img"}
-                          data-plasmic-override={overrides.img}
-                          alt={""}
-                          className={classNames(sty.img)}
-                          displayHeight={"30px"}
-                          displayMaxHeight={"none"}
-                          displayMaxWidth={"100%"}
-                          displayMinHeight={"0"}
-                          displayMinWidth={"0"}
-                          displayWidth={"30px"}
-                          key={currentIndex}
-                          loading={"lazy"}
-                          src={{
-                            src: "/plasmic/website_starter/images/image4.png",
-                            fullWidth: 251,
-                            fullHeight: 201,
-                            aspectRatio: undefined
-                          }}
-                        />
-                      );
-                    })}
-                  </div>
-                  <Icon19Icon
-                    data-plasmic-name={"svg"}
-                    data-plasmic-override={overrides.svg}
-                    className={classNames(projectcss.all, sty.svg)}
-                    role={"img"}
-                  />
-                </div>
               </div>
             );
           })}
@@ -388,12 +564,10 @@ function PlasmicCategories__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "textCollapse", "text", "img", "svg"],
+  root: ["root", "header", "textCollapse", "swiperSlider"],
   header: ["header"],
   textCollapse: ["textCollapse"],
-  text: ["text"],
-  img: ["img"],
-  svg: ["svg"]
+  swiperSlider: ["swiperSlider"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -402,9 +576,7 @@ type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
   textCollapse: typeof TextCollapse;
-  text: "div";
-  img: typeof PlasmicImg__;
-  svg: "svg";
+  swiperSlider: typeof SwiperSlider;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -471,9 +643,7 @@ export const PlasmicCategories = Object.assign(
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
     textCollapse: makeNodeComponent("textCollapse"),
-    text: makeNodeComponent("text"),
-    img: makeNodeComponent("img"),
-    svg: makeNodeComponent("svg"),
+    swiperSlider: makeNodeComponent("swiperSlider"),
 
     // Metadata about props expected for PlasmicCategories
     internalVariantProps: PlasmicCategories__VariantProps,

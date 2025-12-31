@@ -64,6 +64,7 @@ import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { SwiperSlider } from "@/components/SwiperSlider"; // plasmic-import: byElilYJKEPk/codeComponent
 import Topics from "../../Topics"; // plasmic-import: K08M_vX52xMI/component
+import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import Service from "../../Service"; // plasmic-import: 0JNfyGRvC0FA/component
 import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
 import { Iframe } from "@plasmicpkgs/plasmic-basic-components";
@@ -82,9 +83,9 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicCenter.module.css"; // plasmic-import: Lh-Py4-EsRhC/css
 
+import Icon21Icon from "./icons/PlasmicIcon__Icon21"; // plasmic-import: sT28siWhYupd/icon
 import Icon35Icon from "./icons/PlasmicIcon__Icon35"; // plasmic-import: gD26CTYCiCfq/icon
 import Icon22Icon from "./icons/PlasmicIcon__Icon22"; // plasmic-import: 5JSOkqxEUr2H/icon
-import Icon21Icon from "./icons/PlasmicIcon__Icon21"; // plasmic-import: sT28siWhYupd/icon
 import Icon12Icon from "../website_starter/icons/PlasmicIcon__Icon12"; // plasmic-import: BFmheOgAQHY6/icon
 import Icon43Icon from "./icons/PlasmicIcon__Icon43"; // plasmic-import: Sb1rSupvjrST/icon
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
@@ -130,6 +131,7 @@ export type PlasmicCenter__OverridesType = {
   full?: Flex__<typeof ApiRequest>;
   swiperSlider?: Flex__<typeof SwiperSlider>;
   topics?: Flex__<typeof Topics>;
+  line?: Flex__<typeof Line>;
   service?: Flex__<typeof Service>;
   menuIcon?: Flex__<typeof MenuIcon>;
   iframe?: Flex__<typeof Iframe>;
@@ -1121,13 +1123,18 @@ function PlasmicCenter__RenderFunc(props: {
                 })}
               >
                 <div
-                  className={classNames(projectcss.all, sty.freeBox__tCriU, {
-                    [sty.freeBoxtop__tCriUy7HPh]: hasVariant(
-                      $state,
-                      "top",
-                      "top"
-                    )
-                  })}
+                  className={classNames(
+                    projectcss.all,
+                    sty.freeBox__tCriU,
+                    "fixed-box",
+                    {
+                      [sty.freeBoxtop__tCriUy7HPh]: hasVariant(
+                        $state,
+                        "top",
+                        "top"
+                      )
+                    }
+                  )}
                 >
                   <Topics
                     data-plasmic-name={"topics"}
@@ -1219,18 +1226,69 @@ function PlasmicCenter__RenderFunc(props: {
                       </React.Fragment>
                     </div>
                   </div>
+                  <Line
+                    data-plasmic-name={"line"}
+                    data-plasmic-override={overrides.line}
+                    className={classNames("__wab_instance", sty.line, {
+                      [sty.linetop]: hasVariant($state, "top", "top")
+                    })}
+                  />
+
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__jiz5)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        sty.freeBox___2Gdl9
+                      )}
+                    >
+                      <Icon21Icon
+                        className={classNames(projectcss.all, sty.svg___0EBpn)}
+                        role={"img"}
+                      />
+
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__ybfEv
+                        )}
+                      >
+                        {
+                          "\u0633\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u06cc"
+                        }
+                      </div>
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__d4Bt4
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return $state.full?.data?.result?.working_hours;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u0634\u0646\u0628\u0647 \u062a\u0627 \u0686\u0647\u0627\u0631\u0634\u0646\u0628\u0647 \u06f8:\u06f0\u06f0 \u2014 \u06f1\u06f7:\u06f0\u06f0\r\n\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647 \u06f8:\u06f0\u06f0 \u2014 \u06f1\u06f3:\u06f0\u06f0";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                  </div>
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__fdjfu,
-                      {
-                        [sty.texttop__fdjfuY7HPh]: hasVariant(
-                          $state,
-                          "top",
-                          "top"
-                        )
-                      }
+                      sty.text__vim8U
                     )}
                   >
                     {""}
@@ -1465,65 +1523,6 @@ function PlasmicCenter__RenderFunc(props: {
                       projectcss.all,
                       projectcss.__wab_text,
                       sty.text__kTnk4
-                    )}
-                  >
-                    {""}
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__jiz5)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___2Gdl9
-                      )}
-                    >
-                      <Icon21Icon
-                        className={classNames(projectcss.all, sty.svg___0EBpn)}
-                        role={"img"}
-                      />
-
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__ybfEv
-                        )}
-                      >
-                        {
-                          "\u0633\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u06cc"
-                        }
-                      </div>
-                    </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__d4Bt4
-                      )}
-                    >
-                      <React.Fragment>
-                        {(() => {
-                          try {
-                            return $state.full?.data?.result?.working_hours;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return "\u0634\u0646\u0628\u0647 \u062a\u0627 \u0686\u0647\u0627\u0631\u0634\u0646\u0628\u0647 \u06f8:\u06f0\u06f0 \u2014 \u06f1\u06f7:\u06f0\u06f0\r\n\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647 \u06f8:\u06f0\u06f0 \u2014 \u06f1\u06f3:\u06f0\u06f0";
-                            }
-                            throw e;
-                          }
-                        })()}
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__vim8U
                     )}
                   >
                     {""}
@@ -3543,6 +3542,7 @@ const PlasmicDescendants = {
     "full",
     "swiperSlider",
     "topics",
+    "line",
     "service",
     "menuIcon",
     "iframe",
@@ -3564,6 +3564,7 @@ const PlasmicDescendants = {
     "full",
     "swiperSlider",
     "topics",
+    "line",
     "service",
     "menuIcon",
     "iframe",
@@ -3573,6 +3574,7 @@ const PlasmicDescendants = {
   ],
   swiperSlider: ["swiperSlider"],
   topics: ["topics"],
+  line: ["line"],
   service: ["service"],
   menuIcon: ["menuIcon"],
   iframe: ["iframe"],
@@ -3615,6 +3617,7 @@ type NodeDefaultElementType = {
   full: typeof ApiRequest;
   swiperSlider: typeof SwiperSlider;
   topics: typeof Topics;
+  line: typeof Line;
   service: typeof Service;
   menuIcon: typeof MenuIcon;
   iframe: typeof Iframe;
@@ -3698,6 +3701,7 @@ export const PlasmicCenter = Object.assign(
     full: makeNodeComponent("full"),
     swiperSlider: makeNodeComponent("swiperSlider"),
     topics: makeNodeComponent("topics"),
+    line: makeNodeComponent("line"),
     service: makeNodeComponent("service"),
     menuIcon: makeNodeComponent("menuIcon"),
     iframe: makeNodeComponent("iframe"),

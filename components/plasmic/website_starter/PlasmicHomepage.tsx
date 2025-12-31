@@ -346,6 +346,7 @@ function PlasmicHomepage__RenderFunc(props: {
             projectcss.plasmic_mixins,
             styleTokensClassNames,
             sty.root,
+            "page ",
             {
               [sty.rootpage_categories]: hasVariant(
                 $state,
@@ -460,21 +461,42 @@ function PlasmicHomepage__RenderFunc(props: {
             })}
           >
             <section className={classNames(projectcss.all, sty.section__iGcIn)}>
-              <Menu2
-                data-plasmic-name={"menu2"}
-                data-plasmic-override={overrides.menu2}
-                className={classNames("__wab_instance", sty.menu2)}
-              />
-            </section>
-            <section className={classNames(projectcss.all, sty.section__pJCrL)}>
               <div
-                className={classNames(projectcss.all, sty.freeBox__ibbNl, {
-                  [sty.freeBoxsearch2__ibbNlUfPhZ]: hasVariant(
-                    $state,
-                    "search2",
-                    "search2"
-                  )
-                })}
+                className={classNames(
+                  projectcss.all,
+                  sty.freeBox__rU92E,
+                  "fixed-box"
+                )}
+              >
+                <Menu2
+                  data-plasmic-name={"menu2"}
+                  data-plasmic-override={overrides.menu2}
+                  className={classNames("__wab_instance", sty.menu2)}
+                />
+              </div>
+            </section>
+            <section
+              className={classNames(projectcss.all, sty.section__pJCrL, {
+                [sty.sectionpage_categories__pJCrLnaUaI]: hasVariant(
+                  $state,
+                  "page",
+                  "categories"
+                )
+              })}
+            >
+              <div
+                className={classNames(
+                  projectcss.all,
+                  sty.freeBox__ibbNl,
+                  "fixed-box",
+                  {
+                    [sty.freeBoxsearch2__ibbNlUfPhZ]: hasVariant(
+                      $state,
+                      "search2",
+                      "search2"
+                    )
+                  }
+                )}
                 id={"headerMain"}
               >
                 <div
@@ -566,7 +588,7 @@ function PlasmicHomepage__RenderFunc(props: {
                     }}
                     padded={["left", "right"]}
                     placeholder={
-                      "\u062f\u0646\u0628\u0627\u0644 \u0686\u06cc \u0645\u06cc \u06af\u0631\u062f\u06cc\u061f \u0627\u0632 \u0645\u0646 \u06cc\u067e\u0631\u0633"
+                      "\u0646\u0627\u0645 \u0645\u0631\u06a9\u0632\u060c \u062e\u062f\u0645\u062a ..."
                     }
                     size={"langh"}
                     style2={"rounded"}
@@ -1305,7 +1327,8 @@ function PlasmicHomepage__RenderFunc(props: {
                       <div
                         className={classNames(
                           projectcss.all,
-                          sty.freeBox__y0Iqc
+                          sty.freeBox__y0Iqc,
+                          ``
                         )}
                         key={currentIndex}
                       >

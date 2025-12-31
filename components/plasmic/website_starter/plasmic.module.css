@@ -139,7 +139,7 @@
   --plasmic-token-basic-overlay-background: var(--token-a9mEyVfKVz5O);
   --token-mlLJkT4QtOoz: #171717;
   --plasmic-token-basic-container-background-dark: var(--token-mlLJkT4QtOoz);
-  --token-KPGXdu9o7llP: #f5f1e3;
+  --token-KPGXdu9o7llP: #f5efdb;
   --plasmic-token-background-light: var(--token-KPGXdu9o7llP);
   --token-6xZrMIMSyTjQ: 2px;
   --plasmic-token-unnamed-style-token: var(--token-6xZrMIMSyTjQ);
@@ -171,7 +171,7 @@
   --plasmic-token-red: var(--token-sdHWFpeV8MAu);
   --token-8IZ3P-rlJFBA: #00c371;
   --plasmic-token-green: var(--token-8IZ3P-rlJFBA);
-  --token-NWiHR7h0ClTY: rgb(245, 245, 245);
+  --token-NWiHR7h0ClTY: #eeedce;
   --plasmic-token-task-text-dark: var(--token-NWiHR7h0ClTY);
   --token-O-9PmcwkoIXk: #f8edff;
   --plasmic-token-serface: var(--token-O-9PmcwkoIXk);
@@ -189,7 +189,7 @@
   --plasmic-token-gradient-7: var(--token-G2OXqM4Nes36);
   --token-W0eejbtvb0xw: #ffffff;
   --plasmic-token-: var(--token-W0eejbtvb0xw);
-  --token-k-47TemksE2v: #f9f8d7;
+  --token-k-47TemksE2v: var(--token-h2xt7bB598yU);
   --plasmic-token-accent-lighte: var(--token-k-47TemksE2v);
   --token-A-PNbaadkZKd: #ececd8;
   --plasmic-token-text-secondary-on-dark: var(--token-A-PNbaadkZKd);
@@ -209,6 +209,10 @@
   --plasmic-token-icon-active: var(--token-ccqYe7dhXoNZ);
   --token-Es3BYpS8XP38: #a3b18a;
   --plasmic-token-icon-inactive: var(--token-Es3BYpS8XP38);
+  --token-v1iW1n7zvyWu: #ffffff;
+  --plasmic-token-unnamed-style-token-4: var(--token-v1iW1n7zvyWu);
+  --token-6PgHWThSeskT: #e3e3d2;
+  --plasmic-token-simmer: var(--token-6PgHWThSeskT);
 }
 
 @media (min-width: 0px) and (max-width: 768px) {
@@ -376,7 +380,7 @@
   --plasmic-mixin-body_white-space: var(--mixin-cA0u77yacnoF_white-space);
   --mixin-dKZORp5JkCYE_white-space: pre-wrap;
   --plasmic-mixin-cicle_white-space: var(--mixin-dKZORp5JkCYE_white-space);
-  --mixin-oV2OuOGaz07K_box-shadow: 0px 2px 10px 0px #afa491;
+  --mixin-oV2OuOGaz07K_box-shadow: 0px 2px 5px 0px #afa49199;
   --plasmic-mixin-box-shadow_box-shadow: var(--mixin-oV2OuOGaz07K_box-shadow);
   --mixin-oV2OuOGaz07K_white-space: pre-wrap;
   --plasmic-mixin-box-shadow_white-space: var(--mixin-oV2OuOGaz07K_white-space);

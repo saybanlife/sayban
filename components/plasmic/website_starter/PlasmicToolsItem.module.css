@@ -37,7 +37,7 @@
   background: none;
 }
 .freeBoxback {
-  box-shadow: 0px 2px 10px 0px #afa491;
+  box-shadow: 0px 2px 5px 0px #afa49199;
   width: auto;
   height: auto;
   max-width: 100%;
@@ -52,9 +52,10 @@
 }
 .menueIcon:global(.__wab_instance) {
   max-width: 100%;
-  flex-shrink: 0;
 }
 .menueIconback:global(.__wab_instance) {
+  width: 3.8rem;
+  height: 3.8rem;
   flex-shrink: 0;
 }
 .text {

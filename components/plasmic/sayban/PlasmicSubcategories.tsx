@@ -60,8 +60,12 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
+import Search from "../../Search"; // plasmic-import: kFfVHLyoRXeP/component
+import ItemShow from "../../ItemShow"; // plasmic-import: hegjECXSYJcF/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Item from "../../Item"; // plasmic-import: lqR7VxT6h9YH/component
+import Filter from "../../Filter"; // plasmic-import: TmisqS8piGSB/component
+import Sort from "../../Sort"; // plasmic-import: V2In34aoYVht/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -69,6 +73,11 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicSubcategories.module.css"; // plasmic-import: JM9_woEGqy8m/css
+
+import Icon54Icon from "./icons/PlasmicIcon__Icon54"; // plasmic-import: 4na0R6L_flPD/icon
+import Icon10Icon from "../website_starter/icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
+import Icon62Icon from "./icons/PlasmicIcon__Icon62"; // plasmic-import: DmL_SuYFROX3/icon
+import Icon11Icon from "../website_starter/icons/PlasmicIcon__Icon11"; // plasmic-import: TLjQehPXSyaR/icon
 
 createPlasmicElementProxy;
 
@@ -98,8 +107,11 @@ export const PlasmicSubcategories__ArgProps = new Array<ArgPropType>(
 export type PlasmicSubcategories__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<typeof Header>;
+  search?: Flex__<typeof Search>;
   centers?: Flex__<typeof ApiRequest>;
   item?: Flex__<typeof Item>;
+  filter?: Flex__<typeof Filter>;
+  sort?: Flex__<typeof Sort>;
 };
 
 export interface DefaultSubcategoriesProps {
@@ -178,6 +190,65 @@ function PlasmicSubcategories__RenderFunc(props: {
 
         valueProp: "center",
         onChangeProp: "onCenterChange2"
+      },
+      {
+        path: "filter.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "sort.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "sort.radioGroupValue",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "null"
+      },
+      {
+        path: "sort.item",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => [
+          { label: "\u067e\u06cc\u0634\u200c\u0641\u0631\u0636", value: null },
+          {
+            label:
+              "\u0628\u06cc\u0634\u062a\u0631\u06cc\u0646 \u0627\u0645\u062a\u06cc\u0627\u0632",
+            value: "highest_rate"
+          },
+          {
+            label:
+              "\u06a9\u0645\u200c\u0647\u0632\u06cc\u0646\u0647\u200c\u062a\u0631\u06cc\u0646",
+            value: "lowest_price"
+          },
+          {
+            label:
+              "\u0645\u062d\u0628\u0648\u0628\u200c\u062a\u0631\u06cc\u0646",
+            value: "most_popular"
+          }
+        ]
+      },
+      {
+        path: "filter.filtes",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "search.textInputValue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "search.text",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -209,8 +280,263 @@ function PlasmicSubcategories__RenderFunc(props: {
       <Header
         data-plasmic-name={"header"}
         data-plasmic-override={overrides.header}
+        children={null}
         className={classNames("__wab_instance", sty.header)}
+        search={true}
         slot={"\u06a9\u0644\u06cc\u0646\u06cc\u06a9 \u0647\u0627"}
+        slot2={
+          <React.Fragment>
+            <Search
+              data-plasmic-name={"search"}
+              data-plasmic-override={overrides.search}
+              className={classNames("__wab_instance", sty.search)}
+              onTextChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["search", "text"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              onTextInputValueChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "search",
+                  "textInputValue"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              text={generateStateValueProp($state, ["search", "text"])}
+            />
+
+            <div className={classNames(projectcss.all, sty.freeBox__w1FkG)}>
+              <div className={classNames(projectcss.all, sty.freeBox__bq5Fi)}>
+                <ItemShow
+                  className={classNames("__wab_instance", sty.itemShow__iFbc5)}
+                  currentItem={(() => {
+                    try {
+                      return (
+                        $state.sort.item.find(
+                          i => i.value == $state.sort.radioGroupValue
+                        )?.label || "مرتب سازی"
+                      );
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "\u0645\u0631\u062a\u0628 \u0633\u0627\u0632\u06cc";
+                      }
+                      throw e;
+                    }
+                  })()}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateSortOpendialog"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["sort", "opendialog"]
+                            },
+                            operation: 0,
+                            value: true
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateSortOpendialog"] != null &&
+                      typeof $steps["updateSortOpendialog"] === "object" &&
+                      typeof $steps["updateSortOpendialog"].then === "function"
+                    ) {
+                      $steps["updateSortOpendialog"] =
+                        await $steps["updateSortOpendialog"];
+                    }
+                  }}
+                >
+                  <Icon54Icon
+                    className={classNames(projectcss.all, sty.svg__jUbny)}
+                    role={"img"}
+                  />
+                </ItemShow>
+                <ItemShow
+                  className={classNames("__wab_instance", sty.itemShow___0H250)}
+                  currentItem={"\u0641\u06cc\u0644\u062a\u0631"}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateFilterOpendialog"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["filter", "opendialog"]
+                            },
+                            operation: 0,
+                            value: true
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateFilterOpendialog"] != null &&
+                      typeof $steps["updateFilterOpendialog"] === "object" &&
+                      typeof $steps["updateFilterOpendialog"].then ===
+                        "function"
+                    ) {
+                      $steps["updateFilterOpendialog"] =
+                        await $steps["updateFilterOpendialog"];
+                    }
+                  }}
+                  slot={null}
+                >
+                  <Icon62Icon
+                    className={classNames(projectcss.all, sty.svg__dNr1K)}
+                    role={"img"}
+                  />
+                </ItemShow>
+              </div>
+              {(() => {
+                try {
+                  return Object.keys($state.filter.filtes).length > 0;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    sty.freeBox__atFlk,
+                    "container-scroll"
+                  )}
+                >
+                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                    (() => {
+                      try {
+                        return Object.keys($state.filter.filtes);
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()
+                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                    const currentItem = __plasmic_item_0;
+                    const currentIndex = __plasmic_idx_0;
+                    return (
+                      <ItemShow
+                        children={null}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.itemShow__dYLic
+                        )}
+                        currentItem={(() => {
+                          try {
+                            return $state.filter.filtes[currentItem].label;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u0641\u06cc\u0644\u062a\u0631";
+                            }
+                            throw e;
+                          }
+                        })()}
+                        key={currentIndex}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["runCode"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  customFunction: async () => {
+                                    return delete $state.filter.filtes[
+                                      currentItem
+                                    ];
+                                  }
+                                };
+                                return (({ customFunction }) => {
+                                  return customFunction();
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["runCode"] != null &&
+                            typeof $steps["runCode"] === "object" &&
+                            typeof $steps["runCode"].then === "function"
+                          ) {
+                            $steps["runCode"] = await $steps["runCode"];
+                          }
+                        }}
+                        select={true}
+                        slot={
+                          <Icon11Icon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__sykTg
+                            )}
+                            role={"img"}
+                          />
+                        }
+                      />
+                    );
+                  })}
+                </div>
+              ) : null}
+            </div>
+          </React.Fragment>
+        }
       />
 
       <div className={classNames(projectcss.all, sty.freeBox__zwWvt)}>
@@ -274,9 +600,28 @@ function PlasmicSubcategories__RenderFunc(props: {
           }}
           params={(() => {
             try {
-              return {
-                subcategory: $props.slug
-              };
+              return (() => {
+                const payload = {
+                  subcategory: $props.slug,
+                  search: $state.search.text,
+                  filter: $state.filter.filtes,
+                  sort: $state.sort.radioGroupValue
+                };
+                const result = Object.fromEntries(
+                  Object.entries(payload).filter(
+                    ([_, value]) =>
+                      value !== undefined &&
+                      value !== null &&
+                      value !== "null" &&
+                      value !== "" &&
+                      !(
+                        typeof value === "object" &&
+                        Object.keys(value).length === 0
+                      )
+                  )
+                );
+                return result;
+              })();
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -396,15 +741,107 @@ function PlasmicSubcategories__RenderFunc(props: {
           })}
         </ApiRequest>
       </div>
+      <Filter
+        data-plasmic-name={"filter"}
+        data-plasmic-override={overrides.filter}
+        className={classNames("__wab_instance", sty.filter)}
+        filtes={generateStateValueProp($state, ["filter", "filtes"])}
+        onFiltesChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["filter", "filtes"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["filter", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["filter", "opendialog"])}
+      />
+
+      <Sort
+        data-plasmic-name={"sort"}
+        data-plasmic-override={overrides.sort}
+        className={classNames("__wab_instance", sty.sort)}
+        item={generateStateValueProp($state, ["sort", "item"])}
+        onItemChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["sort", "item"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["sort", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onRadioGroupValueChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["sort", "radioGroupValue"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["sort", "opendialog"])}
+        radioGroupValue={generateStateValueProp($state, [
+          "sort",
+          "radioGroupValue"
+        ])}
+      />
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "centers", "item"],
-  header: ["header"],
+  root: ["root", "header", "search", "centers", "item", "filter", "sort"],
+  header: ["header", "search"],
+  search: ["search"],
   centers: ["centers", "item"],
-  item: ["item"]
+  item: ["item"],
+  filter: ["filter"],
+  sort: ["sort"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -412,8 +849,11 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
+  search: typeof Search;
   centers: typeof ApiRequest;
   item: typeof Item;
+  filter: typeof Filter;
+  sort: typeof Sort;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -479,8 +919,11 @@ export const PlasmicSubcategories = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
+    search: makeNodeComponent("search"),
     centers: makeNodeComponent("centers"),
     item: makeNodeComponent("item"),
+    filter: makeNodeComponent("filter"),
+    sort: makeNodeComponent("sort"),
 
     // Metadata about props expected for PlasmicSubcategories
     internalVariantProps: PlasmicSubcategories__VariantProps,

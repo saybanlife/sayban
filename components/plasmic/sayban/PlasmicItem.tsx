@@ -162,12 +162,12 @@ function PlasmicItem__RenderFunc(props: {
           data-plasmic-override={overrides.img}
           alt={""}
           className={classNames(sty.img)}
-          displayHeight={"2.5rem"}
+          displayHeight={"3rem"}
           displayMaxHeight={"none"}
           displayMaxWidth={"100%"}
           displayMinHeight={"0"}
           displayMinWidth={"0"}
-          displayWidth={"2.5rem"}
+          displayWidth={"3rem"}
           height={"100%"}
           loading={"lazy"}
           src={(() => {

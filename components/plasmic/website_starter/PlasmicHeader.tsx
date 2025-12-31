@@ -73,21 +73,28 @@ createPlasmicElementProxy;
 
 export type PlasmicHeader__VariantMembers = {
   soft: "soft";
+  search: "search";
 };
 export type PlasmicHeader__VariantsArgs = {
   soft?: SingleBooleanChoiceArg<"soft">;
+  search?: SingleBooleanChoiceArg<"search">;
 };
 type VariantPropType = keyof PlasmicHeader__VariantsArgs;
-export const PlasmicHeader__VariantProps = new Array<VariantPropType>("soft");
+export const PlasmicHeader__VariantProps = new Array<VariantPropType>(
+  "soft",
+  "search"
+);
 
 export type PlasmicHeader__ArgsType = {
   slot?: React.ReactNode;
   children?: React.ReactNode;
+  slot2?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicHeader__ArgsType;
 export const PlasmicHeader__ArgProps = new Array<ArgPropType>(
   "slot",
-  "children"
+  "children",
+  "slot2"
 );
 
 export type PlasmicHeader__OverridesType = {
@@ -99,7 +106,9 @@ export type PlasmicHeader__OverridesType = {
 export interface DefaultHeaderProps {
   slot?: React.ReactNode;
   children?: React.ReactNode;
+  slot2?: React.ReactNode;
   soft?: SingleBooleanChoiceArg<"soft">;
+  search?: SingleBooleanChoiceArg<"search">;
   className?: string;
 }
 
@@ -149,6 +158,12 @@ function PlasmicHeader__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $ctx }) => $props.soft
+      },
+      {
+        path: "search",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.search
       }
     ],
     [$props, $ctx, $refs]
@@ -175,76 +190,108 @@ function PlasmicHeader__RenderFunc(props: {
         projectcss.plasmic_mixins,
         styleTokensClassNames,
         sty.root,
-        { [sty.rootsoft]: hasVariant($state, "soft", "soft") }
+        {
+          [sty.rootsearch]: hasVariant($state, "search", "search"),
+          [sty.rootsoft]: hasVariant($state, "soft", "soft")
+        }
       )}
     >
       <div
-        className={classNames(projectcss.all, sty.freeBox__lHkfy, {
+        className={classNames(projectcss.all, sty.freeBox__lHkfy, "fixed-box", {
+          [sty.freeBoxsearch__lHkfyBrJu]: hasVariant(
+            $state,
+            "search",
+            "search"
+          ),
           [sty.freeBoxsoft__lHkfyFgJuq]: hasVariant($state, "soft", "soft")
         })}
       >
         <div
-          className={classNames(projectcss.all, sty.freeBox__ameEp, {
-            [sty.freeBoxsoft__ameEpFgJuq]: hasVariant($state, "soft", "soft")
+          className={classNames(projectcss.all, sty.freeBox___3BRFj, {
+            [sty.freeBoxsoft___3BRFjFgJuq]: hasVariant($state, "soft", "soft")
           })}
-          onClick={async event => {
-            const $steps = {};
-
-            $steps["runCode"] = true
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return (() => {
-                        return window.history.back();
-                      })();
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode"] != null &&
-              typeof $steps["runCode"] === "object" &&
-              typeof $steps["runCode"].then === "function"
-            ) {
-              $steps["runCode"] = await $steps["runCode"];
-            }
-          }}
         >
           <div
-            className={classNames(projectcss.all, sty.freeBox__yjSXj, {
-              [sty.freeBoxsoft__yjSXjFgJuq]: hasVariant($state, "soft", "soft")
+            className={classNames(projectcss.all, sty.freeBox__ameEp, {
+              [sty.freeBoxsoft__ameEpFgJuq]: hasVariant($state, "soft", "soft")
             })}
-          />
+            onClick={async event => {
+              const $steps = {};
 
-          <Icon33Icon
-            data-plasmic-name={"svg"}
-            data-plasmic-override={overrides.svg}
-            className={classNames(projectcss.all, sty.svg, {
-              [sty.svgsoft]: hasVariant($state, "soft", "soft")
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          return window.history.back();
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+          >
+            <div
+              className={classNames(projectcss.all, sty.freeBox__yjSXj, {
+                [sty.freeBoxsoft__yjSXjFgJuq]: hasVariant(
+                  $state,
+                  "soft",
+                  "soft"
+                )
+              })}
+            />
+
+            <Icon33Icon
+              data-plasmic-name={"svg"}
+              data-plasmic-override={overrides.svg}
+              className={classNames(projectcss.all, sty.svg, {
+                [sty.svgsoft]: hasVariant($state, "soft", "soft")
+              })}
+              role={"img"}
+            />
+          </div>
+          <div
+            className={classNames(projectcss.all, sty.freeBox___07Lui, {
+              [sty.freeBoxsoft___07LuiFgJuq]: hasVariant($state, "soft", "soft")
             })}
-            role={"img"}
-          />
+          >
+            {renderPlasmicSlot({
+              defaultContents: "Enter some text",
+              value: args.slot,
+              className: classNames(sty.slotTargetSlot, {
+                [sty.slotTargetSlotsoft]: hasVariant($state, "soft", "soft")
+              })
+            })}
+          </div>
+          <div className={classNames(projectcss.all, sty.freeBox__o586O)}>
+            {renderPlasmicSlot({
+              defaultContents: null,
+              value: args.children
+            })}
+          </div>
         </div>
         <div
-          className={classNames(projectcss.all, sty.freeBox___07Lui, {
-            [sty.freeBoxsoft___07LuiFgJuq]: hasVariant($state, "soft", "soft")
+          className={classNames(projectcss.all, sty.freeBox__zzjpZ, {
+            [sty.freeBoxsearch__zzjpZBrJu]: hasVariant(
+              $state,
+              "search",
+              "search"
+            )
           })}
         >
           {renderPlasmicSlot({
-            defaultContents: "Enter some text",
-            value: args.slot,
-            className: classNames(sty.slotTargetSlot, {
-              [sty.slotTargetSlotsoft]: hasVariant($state, "soft", "soft")
-            })
-          })}
-        </div>
-        <div className={classNames(projectcss.all, sty.freeBox__o586O)}>
-          {renderPlasmicSlot({
             defaultContents: null,
-            value: args.children
+            value: args.slot2
           })}
         </div>
         <div
