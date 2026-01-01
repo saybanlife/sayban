@@ -72,13 +72,16 @@ createPlasmicElementProxy;
 
 export type PlasmicToolsItem__VariantMembers = {
   back: "back";
+  top: "top";
 };
 export type PlasmicToolsItem__VariantsArgs = {
   back?: SingleBooleanChoiceArg<"back">;
+  top?: SingleBooleanChoiceArg<"top">;
 };
 type VariantPropType = keyof PlasmicToolsItem__VariantsArgs;
 export const PlasmicToolsItem__VariantProps = new Array<VariantPropType>(
-  "back"
+  "back",
+  "top"
 );
 
 export type PlasmicToolsItem__ArgsType = {
@@ -95,13 +98,13 @@ export type PlasmicToolsItem__OverridesType = {
   root?: Flex__<"div">;
   freeBox?: Flex__<"div">;
   menueIcon?: Flex__<typeof MenueIcon>;
-  text?: Flex__<"div">;
 };
 
 export interface DefaultToolsItemProps {
   data?: any;
   onClick?: (event: any) => void;
   back?: SingleBooleanChoiceArg<"back">;
+  top?: SingleBooleanChoiceArg<"top">;
   className?: string;
 }
 
@@ -151,6 +154,12 @@ function PlasmicToolsItem__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $ctx }) => $props.back
+      },
+      {
+        path: "top",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.top
       }
     ],
     [$props, $ctx, $refs]
@@ -185,14 +194,16 @@ function PlasmicToolsItem__RenderFunc(props: {
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
         className={classNames(projectcss.all, sty.freeBox, {
-          [sty.freeBoxback]: hasVariant($state, "back", "back")
+          [sty.freeBoxback]: hasVariant($state, "back", "back"),
+          [sty.freeBoxtop]: hasVariant($state, "top", "top")
         })}
       >
         <MenueIcon
           data-plasmic-name={"menueIcon"}
           data-plasmic-override={overrides.menueIcon}
           className={classNames("__wab_instance", sty.menueIcon, {
-            [sty.menueIconback]: hasVariant($state, "back", "back")
+            [sty.menueIconback]: hasVariant($state, "back", "back"),
+            [sty.menueIcontop]: hasVariant($state, "top", "top")
           })}
           icons={(() => {
             try {
@@ -209,13 +220,48 @@ function PlasmicToolsItem__RenderFunc(props: {
           })()}
           size={"max"}
         />
+
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__rTf3,
+            {
+              [sty.textback__rTf3Uwnsz]: hasVariant($state, "back", "back"),
+              [sty.textback_top__rTf3UwnszP8Vh4]:
+                hasVariant($state, "top", "top") &&
+                hasVariant($state, "back", "back"),
+              [sty.texttop__rTf3P8Vh4]: hasVariant($state, "top", "top")
+            }
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.data.name;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
       </div>
       <div
-        data-plasmic-name={"text"}
-        data-plasmic-override={overrides.text}
-        className={classNames(projectcss.all, projectcss.__wab_text, sty.text, {
-          [sty.textback]: hasVariant($state, "back", "back")
-        })}
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__dXFsZ,
+          {
+            [sty.textback__dXFsZuwnsz]: hasVariant($state, "back", "back"),
+            [sty.texttop__dXFsZp8Vh4]: hasVariant($state, "top", "top")
+          }
+        )}
       >
         <React.Fragment>
           {(() => {
@@ -238,10 +284,9 @@ function PlasmicToolsItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox", "menueIcon", "text"],
+  root: ["root", "freeBox", "menueIcon"],
   freeBox: ["freeBox", "menueIcon"],
-  menueIcon: ["menueIcon"],
-  text: ["text"]
+  menueIcon: ["menueIcon"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -250,7 +295,6 @@ type NodeDefaultElementType = {
   root: "div";
   freeBox: "div";
   menueIcon: typeof MenueIcon;
-  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -317,7 +361,6 @@ export const PlasmicToolsItem = Object.assign(
     // Helper components rendering sub-elements
     freeBox: makeNodeComponent("freeBox"),
     menueIcon: makeNodeComponent("menueIcon"),
-    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicToolsItem
     internalVariantProps: PlasmicToolsItem__VariantProps,

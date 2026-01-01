@@ -72,9 +72,11 @@ import Icon4Icon from "./icons/PlasmicIcon__Icon4"; // plasmic-import: XYEdqsKT1
 import Icon5Icon from "./icons/PlasmicIcon__Icon5"; // plasmic-import: 8vOA1S70pHdl/icon
 import Icon6Icon from "./icons/PlasmicIcon__Icon6"; // plasmic-import: wfu5dAZKgp8n/icon
 import Icon27Icon from "../sayban/icons/PlasmicIcon__Icon27"; // plasmic-import: H0kX6aZGCrcz/icon
-import Icon31Icon from "../sayban/icons/PlasmicIcon__Icon31"; // plasmic-import: Sa8vocL0DW8J/icon
+import Icon64Icon from "../sayban/icons/PlasmicIcon__Icon64"; // plasmic-import: tYY1FY7sJenE/icon
 import Icon25Icon from "../sayban/icons/PlasmicIcon__Icon25"; // plasmic-import: 2CSyPCl98YLt/icon
 import Icon26Icon from "../sayban/icons/PlasmicIcon__Icon26"; // plasmic-import: tI_PZ_NW7AQQ/icon
+import Icon65Icon from "../sayban/icons/PlasmicIcon__Icon65"; // plasmic-import: bl1s3pli_u18/icon
+import Icon66Icon from "../sayban/icons/PlasmicIcon__Icon66"; // plasmic-import: qbseceHg9g0h/icon
 
 createPlasmicElementProxy;
 
@@ -257,6 +259,11 @@ function PlasmicMenueIcon__RenderFunc(props: {
           [sty.rooticons_user_select]:
             hasVariant($state, "select", "select") &&
             hasVariant($state, "icons", "user"),
+          [sty.rooticons_welfareservices]: hasVariant(
+            $state,
+            "icons",
+            "welfareservices"
+          ),
           [sty.rootselect]: hasVariant($state, "select", "select"),
           [sty.rootsize_max]: hasVariant($state, "size", "max"),
           [sty.rootsize_max_icons_rehabilitation]:
@@ -279,21 +286,25 @@ function PlasmicMenueIcon__RenderFunc(props: {
               : hasVariant($state, "icons", "settings") &&
                   hasVariant($state, "select", "select")
                 ? Icon6Icon
-                : hasVariant($state, "icons", "medicalcompletion")
-                  ? Icon26Icon
-                  : hasVariant($state, "icons", "medical")
-                    ? Icon25Icon
-                    : hasVariant($state, "icons", "rehabilitation")
-                      ? Icon31Icon
-                      : hasVariant($state, "icons", "supportive")
-                        ? Icon27Icon
-                        : hasVariant($state, "icons", "home")
-                          ? Icon4Icon
-                          : hasVariant($state, "icons", "user")
-                            ? Icon5Icon
-                            : hasVariant($state, "icons", "settings")
-                              ? Icon6Icon
-                              : Icon24Icon
+                : hasVariant($state, "icons", "recreationaltourism")
+                  ? Icon66Icon
+                  : hasVariant($state, "icons", "welfareservices")
+                    ? Icon65Icon
+                    : hasVariant($state, "icons", "medicalcompletion")
+                      ? Icon26Icon
+                      : hasVariant($state, "icons", "medical")
+                        ? Icon25Icon
+                        : hasVariant($state, "icons", "rehabilitation")
+                          ? Icon64Icon
+                          : hasVariant($state, "icons", "supportive")
+                            ? Icon27Icon
+                            : hasVariant($state, "icons", "home")
+                              ? Icon4Icon
+                              : hasVariant($state, "icons", "user")
+                                ? Icon5Icon
+                                : hasVariant($state, "icons", "settings")
+                                  ? Icon6Icon
+                                  : Icon24Icon
         }
         className={classNames(projectcss.all, sty.svg, {
           [sty.svgcolor_dark]: hasVariant($state, "color", "dark"),
@@ -346,8 +357,14 @@ function PlasmicMenueIcon__RenderFunc(props: {
           [sty.svgsize_max_icons_medical]:
             hasVariant($state, "size", "max") &&
             hasVariant($state, "icons", "medical"),
+          [sty.svgsize_max_icons_recreationaltourism]:
+            hasVariant($state, "icons", "recreationaltourism") &&
+            hasVariant($state, "size", "max"),
           [sty.svgsize_max_icons_rehabilitation]:
             hasVariant($state, "icons", "rehabilitation") &&
+            hasVariant($state, "size", "max"),
+          [sty.svgsize_max_icons_welfareservices]:
+            hasVariant($state, "icons", "welfareservices") &&
             hasVariant($state, "size", "max"),
           [sty.svgsize_min]: hasVariant($state, "size", "min"),
           [sty.svgsize_min_icons_home]:
@@ -409,14 +426,14 @@ function PlasmicMenueIcon__RenderFunc(props: {
         src={
           hasVariant($state, "icons", "medicalcompletion")
             ? {
-                src: "/plasmic/sayban/images/image11.svg",
-                fullWidth: 24,
-                fullHeight: 24,
+                src: "/plasmic/sayban/images/image17.svg",
+                fullWidth: 100,
+                fullHeight: 100,
                 aspectRatio: undefined
               }
             : hasVariant($state, "icons", "medical")
               ? {
-                  src: "/plasmic/sayban/images/image16.svg",
+                  src: "/plasmic/sayban/images/image18.svg",
                   fullWidth: 100,
                   fullHeight: 100,
                   aspectRatio: undefined
@@ -429,9 +446,9 @@ function PlasmicMenueIcon__RenderFunc(props: {
                     aspectRatio: undefined
                   }
                 : {
-                    src: "/plasmic/sayban/images/image10.svg",
-                    fullWidth: 24,
-                    fullHeight: 24,
+                    src: "/plasmic/sayban/images/image17.svg",
+                    fullWidth: 100,
+                    fullHeight: 100,
                     aspectRatio: undefined
                   }
         }

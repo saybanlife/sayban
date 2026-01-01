@@ -168,7 +168,7 @@
   grid-row-gap: var(--token-kD77h-2NGSqI);
   grid-column-gap: var(--token-kD77h-2NGSqI);
   min-width: 0;
-  padding: 0px;
+  padding: 0px 8px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__xcchq {

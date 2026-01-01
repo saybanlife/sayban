@@ -109,7 +109,6 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>(
 export type PlasmicHome__OverridesType = {
   root?: Flex__<"div">;
   swiperSlider2?: Flex__<typeof SwiperSlider>;
-  toolsItem?: Flex__<typeof ToolsItem>;
   reveal?: Flex__<typeof Reveal>;
   item?: Flex__<typeof Item>;
 };
@@ -388,11 +387,13 @@ function PlasmicHome__RenderFunc(props: {
             const currentIndex = __plasmic_idx_0;
             return (
               <ToolsItem
-                data-plasmic-name={"toolsItem"}
-                data-plasmic-override={overrides.toolsItem}
                 back={true}
-                className={classNames("__wab_instance", sty.toolsItem, {
-                  [sty.toolsItemsearch]: hasVariant($state, "search", "search")
+                className={classNames("__wab_instance", sty.toolsItem___1Kg6M, {
+                  [sty.toolsItemsearch___1Kg6MMh4IK]: hasVariant(
+                    $state,
+                    "search",
+                    "search"
+                  )
                 })}
                 data={(() => {
                   try {
@@ -469,7 +470,14 @@ function PlasmicHome__RenderFunc(props: {
           className={classNames(
             projectcss.all,
             projectcss.__wab_text,
-            sty.text___26Ec
+            sty.text___26Ec,
+            {
+              [sty.textsearch___26EcMh4IK]: hasVariant(
+                $state,
+                "search",
+                "search"
+              )
+            }
           )}
         >
           {
@@ -477,7 +485,104 @@ function PlasmicHome__RenderFunc(props: {
           }
         </div>
         <div className={classNames(projectcss.all, sty.freeBox__ozEqI)}>
-          <div className={classNames(projectcss.all, sty.freeBox__yJxqw)} />
+          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+            (() => {
+              try {
+                return $props.categories.filter(i => i.is_popular);
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
+              }
+            })()
+          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+            const currentItem = __plasmic_item_0;
+            const currentIndex = __plasmic_idx_0;
+            return (
+              <ToolsItem
+                back={true}
+                className={classNames("__wab_instance", sty.toolsItem__eZt82, {
+                  [sty.toolsItemsearch__eZt82Mh4IK]: hasVariant(
+                    $state,
+                    "search",
+                    "search"
+                  )
+                })}
+                data={(() => {
+                  try {
+                    return currentItem;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                key={currentIndex}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateCategori"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["categori"]
+                          },
+                          operation: 0,
+                          value: currentItem
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateCategori"] != null &&
+                    typeof $steps["updateCategori"] === "object" &&
+                    typeof $steps["updateCategori"].then === "function"
+                  ) {
+                    $steps["updateCategori"] = await $steps["updateCategori"];
+                  }
+
+                  $steps["runOnCategori"] = true
+                    ? (() => {
+                        const actionArgs = { eventRef: $props["onCategori"] };
+                        return (({ eventRef, args }) => {
+                          return eventRef?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runOnCategori"] != null &&
+                    typeof $steps["runOnCategori"] === "object" &&
+                    typeof $steps["runOnCategori"].then === "function"
+                  ) {
+                    $steps["runOnCategori"] = await $steps["runOnCategori"];
+                  }
+                }}
+                top={true}
+              />
+            );
+          })}
         </div>
       </div>
       <div
@@ -600,9 +705,8 @@ function PlasmicHome__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "swiperSlider2", "toolsItem", "reveal", "item"],
+  root: ["root", "swiperSlider2", "reveal", "item"],
   swiperSlider2: ["swiperSlider2"],
-  toolsItem: ["toolsItem"],
   reveal: ["reveal", "item"],
   item: ["item"]
 } as const;
@@ -612,7 +716,6 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   swiperSlider2: typeof SwiperSlider;
-  toolsItem: typeof ToolsItem;
   reveal: typeof Reveal;
   item: typeof Item;
 };
@@ -680,7 +783,6 @@ export const PlasmicHome = Object.assign(
   {
     // Helper components rendering sub-elements
     swiperSlider2: makeNodeComponent("swiperSlider2"),
-    toolsItem: makeNodeComponent("toolsItem"),
     reveal: makeNodeComponent("reveal"),
     item: makeNodeComponent("item"),
 

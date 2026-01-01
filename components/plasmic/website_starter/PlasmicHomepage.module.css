@@ -470,8 +470,8 @@
   align-items: center;
   flex-direction: column;
   display: flex;
-  height: 80px;
-  width: 80px;
+  height: 100px;
+  width: 100px;
   box-shadow: none;
   outline-width: 0px;
   flex-shrink: 0;
@@ -479,8 +479,9 @@
   padding: var(--token-0tl2H1TRPHhV);
 }
 .home:global(.__wab_instance) {
-  width: auto;
+  width: 100%;
   position: relative;
+  min-width: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .home:global(.__wab_instance) {
