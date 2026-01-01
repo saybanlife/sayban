@@ -46,13 +46,7 @@ registerComponent(Textarea, textareaMeta);
 registerComponent(SwiperSlider,SwiperSliderMeta);
 registerComponent(TextCollapse,TextCollapseMeta);
 registerComponent(JalaliMoment ,JalaliMomentMeta);
-if (typeof window !== "undefined") {
-  import("@/components/MapPicker").then(
-    ({ default: MapPicker, MapPickerMeta }) => {
-      registerComponent(MapPicker, MapPickerMeta);
-    }
-  );
-}
+
 
 
 
