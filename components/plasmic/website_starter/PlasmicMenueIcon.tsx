@@ -414,19 +414,26 @@ function PlasmicMenueIcon__RenderFunc(props: {
                 fullHeight: 24,
                 aspectRatio: undefined
               }
-            : hasVariant($state, "icons", "supportive")
+            : hasVariant($state, "icons", "medical")
               ? {
-                  src: "/plasmic/sayban/images/image12.svg",
-                  fullWidth: 24,
-                  fullHeight: 24,
+                  src: "/plasmic/sayban/images/image16.svg",
+                  fullWidth: 100,
+                  fullHeight: 100,
                   aspectRatio: undefined
                 }
-              : {
-                  src: "/plasmic/sayban/images/image10.svg",
-                  fullWidth: 24,
-                  fullHeight: 24,
-                  aspectRatio: undefined
-                }
+              : hasVariant($state, "icons", "supportive")
+                ? {
+                    src: "/plasmic/sayban/images/image15.svg",
+                    fullWidth: 100,
+                    fullHeight: 100,
+                    aspectRatio: undefined
+                  }
+                : {
+                    src: "/plasmic/sayban/images/image10.svg",
+                    fullWidth: 24,
+                    fullHeight: 24,
+                    aspectRatio: undefined
+                  }
         }
       />
     </div>

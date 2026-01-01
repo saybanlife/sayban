@@ -2441,6 +2441,16 @@
           "id": "XVPFimrA56lu",
           "name": "image 14",
           "filePath": "../public/plasmic/sayban/images/image14.svg"
+        },
+        {
+          "id": "NzuYkf2Pv5x1",
+          "name": "image 15",
+          "filePath": "../public/plasmic/sayban/images/image15.svg"
+        },
+        {
+          "id": "pkEWGweOUbRR",
+          "name": "image 16",
+          "filePath": "../public/plasmic/sayban/images/image16.svg"
         }
       ],
       "indirect": false,
