@@ -60,6 +60,29 @@
 .name:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
+.freeBox___70NkI {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 0px;
+}
+.text__znjeA {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: right;
+  font-size: var(--token-w-4Gcj0_UzPS);
+  color: var(--token-KjATzAYJ5IB7);
+  min-width: 0;
+}
+.description:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
 .freeBox__sOwUn {
   display: flex;
   flex-direction: row;
@@ -174,7 +197,7 @@
   color: var(--token-KjATzAYJ5IB7);
   min-width: 0;
 }
-.prise2:global(.__wab_instance):global(.__wab_instance) {
+.off:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
 .svg__vcPcy {

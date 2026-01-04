@@ -537,7 +537,7 @@ function PlasmicMainPage__RenderFunc(props: {
                   RichTable_Helpers
                 ).apply(null, eventArgs);
               },
-              pageSize: 100,
+              pageSize: 20,
               rowActions: [],
               scopeClassName: sty["table__instance"],
               selectedRowKey: generateStateValueProp($state, [

@@ -78,9 +78,23 @@ export type PlasmicLoaction__VariantsArgs = {};
 type VariantPropType = keyof PlasmicLoaction__VariantsArgs;
 export const PlasmicLoaction__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicLoaction__ArgsType = {};
+export type PlasmicLoaction__ArgsType = {
+  onAddressChange?: (val: string) => void;
+  onCallChange?: (val: string) => void;
+  onLatChange?: (val: string) => void;
+  onLonChange?: (val: string) => void;
+  onStateChange?: (val: string) => void;
+  onCityChange?: (val: string) => void;
+};
 type ArgPropType = keyof PlasmicLoaction__ArgsType;
-export const PlasmicLoaction__ArgProps = new Array<ArgPropType>();
+export const PlasmicLoaction__ArgProps = new Array<ArgPropType>(
+  "onAddressChange",
+  "onCallChange",
+  "onLatChange",
+  "onLonChange",
+  "onStateChange",
+  "onCityChange"
+);
 
 export type PlasmicLoaction__OverridesType = {
   root?: Flex__<"div">;
@@ -93,6 +107,12 @@ export type PlasmicLoaction__OverridesType = {
 };
 
 export interface DefaultLoactionProps {
+  onAddressChange?: (val: string) => void;
+  onCallChange?: (val: string) => void;
+  onLatChange?: (val: string) => void;
+  onLonChange?: (val: string) => void;
+  onStateChange?: (val: string) => void;
+  onCityChange?: (val: string) => void;
   className?: string;
 }
 
@@ -139,27 +159,35 @@ function PlasmicLoaction__RenderFunc(props: {
     () => [
       {
         path: "loaction.value",
-        type: "private",
+        type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onChangeProp: "onAddressChange"
       },
       {
         path: "call.value",
-        type: "private",
+        type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onChangeProp: "onCallChange"
       },
       {
         path: "lat",
-        type: "private",
+        type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $ctx }) => "",
+
+        onChangeProp: "onLatChange"
       },
       {
         path: "lon",
-        type: "private",
+        type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $ctx }) => "",
+
+        onChangeProp: "onLonChange"
       },
       {
         path: "apiRequest.data",
@@ -181,15 +209,19 @@ function PlasmicLoaction__RenderFunc(props: {
       },
       {
         path: "state.value",
-        type: "private",
+        type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onChangeProp: "onStateChange"
       },
       {
         path: "city.value",
-        type: "private",
+        type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onChangeProp: "onCityChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -223,7 +255,7 @@ function PlasmicLoaction__RenderFunc(props: {
         data-plasmic-override={overrides.embedHtml}
         className={classNames("__wab_instance", sty.embedHtml)}
         code={
-          '\r\n<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />\r\n\r\n<style>\r\n  html, body {\r\n    height: 100%;\r\n    margin: 0;\r\n  }\r\n  #map {\r\n    width: 100%;\r\n    height: 100%;\r\n  }\r\n\r\n  .map-btn {\r\n    width: 30px;\r\n    height: 30px;\r\n    background: white;\r\n    border: none;\r\n    border-radius: 50%;\r\n    box-shadow: 0 2px 6px rgba(0,0,0,0.3);\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-size: 20px;\r\n  }\r\n\r\n  .map-btn:hover {\r\n    background: #f0f0f0;\r\n  }\r\n</style>\r\n</head>\r\n\r\n<body>\r\n\r\n<div id="map"></div>\r\n\r\n<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>\r\n<script>\r\n/* ================== SVG ICON (METHOD 2) ================== */\r\nconst locationIcon = L.divIcon({\r\n  className: \'\',\r\n  html: `\r\n    <svg width="32" height="32" viewBox="0 0 24 24" fill="#e53935">\r\n      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>\r\n    </svg>\r\n  `,\r\n  iconSize: [32, 32],\r\n  iconAnchor: [16, 32] // \u0646\u0648\u06a9 \u067e\u06cc\u0646\r\n});\r\n\r\n/* ================== MAP ================== */\r\nconst map = L.map(\'map\', {\r\n  zoomControl: false\r\n}).setView([35.6892, 51.389], 13);\r\n\r\nL.tileLayer(\'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\', {\r\n  attribution: \'\'\r\n}).addTo(map);\r\n\r\nlet marker = null;\r\n\r\n/* \u06a9\u0644\u06cc\u06a9 \u0631\u0648\u06cc \u0646\u0642\u0634\u0647 */\r\nmap.on(\'click\', e => {\r\n        const selLat = e.latlng.lat;\r\n      const selLng = e.latlng.lng;\r\n      window.selLat = selLat;\r\n      window.selLng = selLng;\r\n  if (!marker) {\r\n    marker = L.marker(e.latlng, { icon: locationIcon }).addTo(map);\r\n  } else {\r\n    marker.setLatLng(e.latlng);\r\n  }\r\n      document.getElementById("click_location").click();\r\n\r\n});\r\n\r\n/* ================== LOCATION CONTROL ================== */\r\nconst LocationControl = L.Control.extend({\r\n  options: { position: \'bottomright\' },\r\n\r\n  onAdd() {\r\n    const btn = L.DomUtil.create(\'button\', \'map-btn\');\r\n    btn.innerHTML = `<svg viewBox="-7.2 -7.2 38.40 38.40" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 8.25C9.92893 8.25 8.25 9.92893 8.25 12C8.25 14.0711 9.92893 15.75 12 15.75C14.0711 15.75 15.75 14.0711 15.75 12C15.75 9.92893 14.0711 8.25 12 8.25Z" fill="#545454"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.25C12.4142 1.25 12.75 1.58579 12.75 2V3.28169C16.9842 3.64113 20.3589 7.01581 20.7183 11.25H22C22.4142 11.25 22.75 11.5858 22.75 12C22.75 12.4142 22.4142 12.75 22 12.75H20.7183C20.3589 16.9842 16.9842 20.3589 12.75 20.7183V22C12.75 22.4142 12.4142 22.75 12 22.75C11.5858 22.75 11.25 22.4142 11.25 22V20.7183C7.01581 20.3589 3.64113 16.9842 3.28169 12.75H2C1.58579 12.75 1.25 12.4142 1.25 12C1.25 11.5858 1.58579 11.25 2 11.25H3.28169C3.64113 7.01581 7.01581 3.64113 11.25 3.28169V2C11.25 1.58579 11.5858 1.25 12 1.25ZM4.75 12C4.75 16.0041 7.99594 19.25 12 19.25C16.0041 19.25 19.25 16.0041 19.25 12C19.25 7.99594 16.0041 4.75 12 4.75C7.99594 4.75 4.75 7.99594 4.75 12Z" fill="#545454"></path> </g></svg>`;\r\n\r\n    L.DomEvent.on(btn, \'click\', e => {\r\n      L.DomEvent.stop(e);\r\n\r\n      if (!navigator.geolocation) {\r\n        alert(\'\u0645\u0648\u0642\u0639\u06cc\u062a\u200c\u06cc\u0627\u0628\u06cc \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u0646\u0645\u06cc\u200c\u0634\u0648\u062f\');\r\n        return;\r\n      }\r\n\r\n      navigator.geolocation.getCurrentPosition(\r\n        pos => {\r\n          const latlng = [pos.coords.latitude, pos.coords.longitude];\r\n          map.setView(latlng, 15);\r\n\r\n          if (!marker) {\r\n            marker = L.marker(latlng, { icon: locationIcon }).addTo(map);\r\n          } else {\r\n            marker.setLatLng(latlng);\r\n          }\r\n        },\r\n        err => {\r\n          if (err.code === 1) alert(\'\u062f\u0633\u062a\u0631\u0633\u06cc \u0628\u0647 \u0645\u0648\u0642\u0639\u06cc\u062a \u0645\u06a9\u0627\u0646\u06cc \u0631\u062f \u0634\u062f\');\r\n          else alert(\'\u062e\u0637\u0627 \u062f\u0631 \u0645\u0648\u0642\u0639\u06cc\u062a\u200c\u06cc\u0627\u0628\u06cc\');\r\n        }\r\n      );\r\n    });\r\n\r\n    L.DomEvent.disableClickPropagation(btn);\r\n    return btn;\r\n  }\r\n});\r\n\r\nmap.addControl(new LocationControl());\r\n\r\n/* ================== ZOOM CONTROL ================== */\r\nconst ZoomControl = L.Control.extend({\r\n  options: { position: \'topleft\' },\r\n\r\n  onAdd(map) {\r\n    const container = L.DomUtil.create(\'div\');\r\n    container.style.display = \'flex\';\r\n    container.style.flexDirection = \'column\';\r\n    container.style.gap = \'6px\';\r\n\r\n    const zoomIn = this._btn(\'+\', () => map.zoomIn());\r\n    const zoomOut = this._btn(\'\u2212\', () => map.zoomOut());\r\n\r\n    container.appendChild(zoomIn);\r\n    container.appendChild(zoomOut);\r\n\r\n    L.DomEvent.disableClickPropagation(container);\r\n    L.DomEvent.disableScrollPropagation(container);\r\n\r\n    return container;\r\n  },\r\n\r\n  _btn(text, action) {\r\n    const btn = L.DomUtil.create(\'button\', \'map-btn\');\r\n    btn.innerHTML = text;\r\n\r\n    L.DomEvent.on(btn, \'click\', e => {\r\n      L.DomEvent.stop(e);\r\n      action();\r\n    });\r\n\r\n    return btn;\r\n  }\r\n});\r\n\r\nmap.addControl(new ZoomControl());\r\n</script>\r\n'
+          '\r\n<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />\r\n\r\n<style>\r\n  html, body {\r\n    height: 100%;\r\n    margin: 0;\r\n  }\r\n  #map {\r\n    width: 100%;\r\n    height: 100%;\r\n  }\r\n\r\n  .map-btn {\r\n    width: 30px;\r\n    height: 30px;\r\n    background: white;\r\n    border: none;\r\n    border-radius: 50%;\r\n    box-shadow: 0 2px 6px rgba(0,0,0,0.3);\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-size: 20px;\r\n  }\r\n\r\n  .map-btn:hover {\r\n    background: #f0f0f0;\r\n  }\r\n</style>\r\n</head>\r\n\r\n<body>\r\n\r\n<div id="map"></div>\r\n\r\n<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>\r\n<script>\r\n/* ================== SVG ICON (METHOD 2) ================== */\r\nconst locationIcon = L.divIcon({\r\n  className: \'\',\r\n  html: `\r\n    <svg width="32" height="32" viewBox="0 0 24 24" fill="#e53935">\r\n      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>\r\n    </svg>\r\n  `,\r\n  iconSize: [32, 32],\r\n  iconAnchor: [16, 32] // \u0646\u0648\u06a9 \u067e\u06cc\u0646\r\n});\r\n\r\n/* ================== MAP ================== */\r\nconst map = L.map(\'map\', {\r\n  zoomControl: false\r\n}).setView([35.6892, 51.389], 13);\r\n\r\nL.tileLayer(\'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\', {\r\n  attribution: \'\'\r\n}).addTo(map);\r\n\r\nlet marker = null;\r\n\r\n/* \u06a9\u0644\u06cc\u06a9 \u0631\u0648\u06cc \u0646\u0642\u0634\u0647 */\r\nmap.on(\'click\', e => {\r\n        const selLat = e.latlng.lat;\r\n      const selLng = e.latlng.lng;\r\n      window.selLat = selLat;\r\n      window.selLng = selLng;\r\n  if (!marker) {\r\n    marker = L.marker(e.latlng, { icon: locationIcon }).addTo(map);\r\n  } else {\r\n    marker.setLatLng(e.latlng);\r\n  }\r\n      document.getElementById("click_location").click();\r\n\r\n});\r\n\r\n/* ================== LOCATION CONTROL ================== */\r\nconst LocationControl = L.Control.extend({\r\n  options: { position: \'bottomright\' },\r\n\r\n  onAdd() {\r\n    const btn = L.DomUtil.create(\'button\', \'map-btn\');\r\n    btn.innerHTML = `<svg viewBox="-7.2 -7.2 38.40 38.40" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 8.25C9.92893 8.25 8.25 9.92893 8.25 12C8.25 14.0711 9.92893 15.75 12 15.75C14.0711 15.75 15.75 14.0711 15.75 12C15.75 9.92893 14.0711 8.25 12 8.25Z" fill="#545454"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.25C12.4142 1.25 12.75 1.58579 12.75 2V3.28169C16.9842 3.64113 20.3589 7.01581 20.7183 11.25H22C22.4142 11.25 22.75 11.5858 22.75 12C22.75 12.4142 22.4142 12.75 22 12.75H20.7183C20.3589 16.9842 16.9842 20.3589 12.75 20.7183V22C12.75 22.4142 12.4142 22.75 12 22.75C11.5858 22.75 11.25 22.4142 11.25 22V20.7183C7.01581 20.3589 3.64113 16.9842 3.28169 12.75H2C1.58579 12.75 1.25 12.4142 1.25 12C1.25 11.5858 1.58579 11.25 2 11.25H3.28169C3.64113 7.01581 7.01581 3.64113 11.25 3.28169V2C11.25 1.58579 11.5858 1.25 12 1.25ZM4.75 12C4.75 16.0041 7.99594 19.25 12 19.25C16.0041 19.25 19.25 16.0041 19.25 12C19.25 7.99594 16.0041 4.75 12 4.75C7.99594 4.75 4.75 7.99594 4.75 12Z" fill="#545454"></path> </g></svg>`;\r\n\r\n    L.DomEvent.on(btn, \'click\', e => {\r\n      L.DomEvent.stop(e);\r\n\r\n      if (!navigator.geolocation) {\r\n        alert(\'\u0645\u0648\u0642\u0639\u06cc\u062a\u200c\u06cc\u0627\u0628\u06cc \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u0646\u0645\u06cc\u200c\u0634\u0648\u062f\');\r\n        return;\r\n      }\r\n\r\n      navigator.geolocation.getCurrentPosition(\r\n        pos => {\r\n          const latlng = [pos.coords.latitude, pos.coords.longitude];\r\n          map.setView(latlng, 15);\r\n                  window.selLat = pos.coords.latitude;\r\n                  window.selLng = pos.coords.longitude;\r\n          if (!marker) {\r\n            marker = L.marker(latlng, { icon: locationIcon }).addTo(map);\r\n          } else {\r\n            marker.setLatLng(latlng);\r\n          }\r\n                document.getElementById("click_location").click();\r\n        },\r\n        err => {\r\n          if (err.code === 1) alert(\'\u062f\u0633\u062a\u0631\u0633\u06cc \u0628\u0647 \u0645\u0648\u0642\u0639\u06cc\u062a \u0645\u06a9\u0627\u0646\u06cc \u0631\u062f \u0634\u062f\');\r\n          else alert(\'\u062e\u0637\u0627 \u062f\u0631 \u0645\u0648\u0642\u0639\u06cc\u062a\u200c\u06cc\u0627\u0628\u06cc\');\r\n        }\r\n      );\r\n    });\r\n\r\n    L.DomEvent.disableClickPropagation(btn);\r\n    return btn;\r\n  }\r\n});\r\n\r\nmap.addControl(new LocationControl());\r\n\r\n/* ================== ZOOM CONTROL ================== */\r\nconst ZoomControl = L.Control.extend({\r\n  options: { position: \'topleft\' },\r\n\r\n  onAdd(map) {\r\n    const container = L.DomUtil.create(\'div\');\r\n    container.style.display = \'flex\';\r\n    container.style.flexDirection = \'column\';\r\n    container.style.gap = \'6px\';\r\n\r\n    const zoomIn = this._btn(\'+\', () => map.zoomIn());\r\n    const zoomOut = this._btn(\'\u2212\', () => map.zoomOut());\r\n\r\n    container.appendChild(zoomIn);\r\n    container.appendChild(zoomOut);\r\n\r\n    L.DomEvent.disableClickPropagation(container);\r\n    L.DomEvent.disableScrollPropagation(container);\r\n\r\n    return container;\r\n  },\r\n\r\n  _btn(text, action) {\r\n    const btn = L.DomUtil.create(\'button\', \'map-btn\');\r\n    btn.innerHTML = text;\r\n\r\n    L.DomEvent.on(btn, \'click\', e => {\r\n      L.DomEvent.stop(e);\r\n      action();\r\n    });\r\n\r\n    return btn;\r\n  }\r\n});\r\n\r\nmap.addControl(new ZoomControl());\r\n</script>\r\n'
         }
       />
 

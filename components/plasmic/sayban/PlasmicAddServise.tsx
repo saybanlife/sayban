@@ -96,10 +96,11 @@ export type PlasmicAddServise__OverridesType = {
   root?: Flex__<"div">;
   collapse?: Flex__<typeof AntdSingleCollapse>;
   name?: Flex__<typeof TextInput>;
+  description?: Flex__<typeof TextInput>;
   time?: Flex__<typeof TextInput>;
   time2?: Flex__<typeof TextInput>;
   prise?: Flex__<typeof TextInput>;
-  prise2?: Flex__<typeof TextInput>;
+  off?: Flex__<typeof TextInput>;
   button5?: Flex__<typeof Button>;
 };
 
@@ -192,7 +193,12 @@ function PlasmicAddServise__RenderFunc(props: {
         variableType: "text"
       },
       {
-        path: "prise2[].value",
+        path: "off[].value",
+        type: "private",
+        variableType: "text"
+      },
+      {
+        path: "description[].value",
         type: "private",
         variableType: "text"
       }
@@ -433,6 +439,91 @@ function PlasmicAddServise__RenderFunc(props: {
                     );
                   })()}
                 </div>
+                <div
+                  className={classNames(projectcss.all, sty.freeBox___70NkI)}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__znjeA
+                    )}
+                  >
+                    {"\u062a\u0648\u0636\u06cc\u062d\u0627\u062a"}
+                  </div>
+                  {(() => {
+                    const child$Props = {
+                      className: classNames("__wab_instance", sty.description),
+                      inputType: "text",
+                      onChange: async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "description",
+                          __plasmic_idx_0,
+                          "value"
+                        ]).apply(null, eventArgs);
+
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
+                          return;
+                        }
+
+                        (async val => {
+                          const $steps = {};
+
+                          $steps["runCode"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  customFunction: async () => {
+                                    return ($state.servises[
+                                      currentIndex
+                                    ].description =
+                                      $state.description[currentIndex].value);
+                                  }
+                                };
+                                return (({ customFunction }) => {
+                                  return customFunction();
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["runCode"] != null &&
+                            typeof $steps["runCode"] === "object" &&
+                            typeof $steps["runCode"].then === "function"
+                          ) {
+                            $steps["runCode"] = await $steps["runCode"];
+                          }
+                        }).apply(null, eventArgs);
+                      },
+                      type: "line",
+                      value: generateStateValueProp($state, [
+                        "description",
+                        __plasmic_idx_0,
+                        "value"
+                      ])
+                    };
+
+                    initializePlasmicStates(
+                      $state,
+                      [
+                        {
+                          name: "description[].value",
+                          initFunc: ({ $props, $state, $queries }) => undefined
+                        }
+                      ],
+                      [__plasmic_idx_0]
+                    );
+                    return (
+                      <TextInput
+                        data-plasmic-name={"description"}
+                        data-plasmic-override={overrides.description}
+                        {...child$Props}
+                      />
+                    );
+                  })()}
+                </div>
                 <div className={classNames(projectcss.all, sty.freeBox__sOwUn)}>
                   <div
                     className={classNames(projectcss.all, sty.freeBox___74Hf)}
@@ -465,6 +556,32 @@ function PlasmicAddServise__RenderFunc(props: {
                           ) {
                             return;
                           }
+
+                          (async val => {
+                            const $steps = {};
+
+                            $steps["runCode"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    customFunction: async () => {
+                                      return ($state.servises[
+                                        currentIndex
+                                      ].time = $state.time[currentIndex].value);
+                                    }
+                                  };
+                                  return (({ customFunction }) => {
+                                    return customFunction();
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["runCode"] != null &&
+                              typeof $steps["runCode"] === "object" &&
+                              typeof $steps["runCode"].then === "function"
+                            ) {
+                              $steps["runCode"] = await $steps["runCode"];
+                            }
+                          }).apply(null, eventArgs);
                         },
                         placeholder: "0 \u062f\u0642\u06cc\u0642\u0647",
                         type: "line",
@@ -528,6 +645,33 @@ function PlasmicAddServise__RenderFunc(props: {
                           ) {
                             return;
                           }
+
+                          (async val => {
+                            const $steps = {};
+
+                            $steps["runCode"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    customFunction: async () => {
+                                      return ($state.servises[
+                                        currentIndex
+                                      ].time2 =
+                                        $state.time2[currentIndex].value);
+                                    }
+                                  };
+                                  return (({ customFunction }) => {
+                                    return customFunction();
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["runCode"] != null &&
+                              typeof $steps["runCode"] === "object" &&
+                              typeof $steps["runCode"].then === "function"
+                            ) {
+                              $steps["runCode"] = await $steps["runCode"];
+                            }
+                          }).apply(null, eventArgs);
                         },
                         placeholder: "15 \u062f\u0642\u06cc\u0642\u0647",
                         type: "line",
@@ -591,6 +735,33 @@ function PlasmicAddServise__RenderFunc(props: {
                           ) {
                             return;
                           }
+
+                          (async val => {
+                            const $steps = {};
+
+                            $steps["runCode"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    customFunction: async () => {
+                                      return ($state.servises[
+                                        currentIndex
+                                      ].prise =
+                                        $state.prise[currentIndex].value);
+                                    }
+                                  };
+                                  return (({ customFunction }) => {
+                                    return customFunction();
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["runCode"] != null &&
+                              typeof $steps["runCode"] === "object" &&
+                              typeof $steps["runCode"].then === "function"
+                            ) {
+                              $steps["runCode"] = await $steps["runCode"];
+                            }
+                          }).apply(null, eventArgs);
                         },
                         type: "line",
                         value: generateStateValueProp($state, [
@@ -648,12 +819,12 @@ function PlasmicAddServise__RenderFunc(props: {
                     </div>
                     {(() => {
                       const child$Props = {
-                        className: classNames("__wab_instance", sty.prise2),
+                        className: classNames("__wab_instance", sty.off),
                         inputMode: "numeric",
                         inputType: "text",
                         onChange: async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
-                            "prise2",
+                            "off",
                             __plasmic_idx_0,
                             "value"
                           ]).apply(null, eventArgs);
@@ -665,10 +836,36 @@ function PlasmicAddServise__RenderFunc(props: {
                           ) {
                             return;
                           }
+
+                          (async val => {
+                            const $steps = {};
+
+                            $steps["runCode"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    customFunction: async () => {
+                                      return ($state.servises[
+                                        currentIndex
+                                      ].off = $state.off[currentIndex].value);
+                                    }
+                                  };
+                                  return (({ customFunction }) => {
+                                    return customFunction();
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["runCode"] != null &&
+                              typeof $steps["runCode"] === "object" &&
+                              typeof $steps["runCode"].then === "function"
+                            ) {
+                              $steps["runCode"] = await $steps["runCode"];
+                            }
+                          }).apply(null, eventArgs);
                         },
                         type: "line",
                         value: generateStateValueProp($state, [
-                          "prise2",
+                          "off",
                           __plasmic_idx_0,
                           "value"
                         ])
@@ -678,7 +875,7 @@ function PlasmicAddServise__RenderFunc(props: {
                         $state,
                         [
                           {
-                            name: "prise2[].value",
+                            name: "off[].value",
                             initFunc: ({ $props, $state, $queries }) => "0"
                           }
                         ],
@@ -686,8 +883,8 @@ function PlasmicAddServise__RenderFunc(props: {
                       );
                       return (
                         <TextInput
-                          data-plasmic-name={"prise2"}
-                          data-plasmic-override={overrides.prise2}
+                          data-plasmic-name={"off"}
+                          data-plasmic-override={overrides.off}
                           {...child$Props}
                         />
                       );
@@ -799,18 +996,28 @@ const PlasmicDescendants = {
     "root",
     "collapse",
     "name",
+    "description",
     "time",
     "time2",
     "prise",
-    "prise2",
+    "off",
     "button5"
   ],
-  collapse: ["collapse", "name", "time", "time2", "prise", "prise2"],
+  collapse: [
+    "collapse",
+    "name",
+    "description",
+    "time",
+    "time2",
+    "prise",
+    "off"
+  ],
   name: ["name"],
+  description: ["description"],
   time: ["time"],
   time2: ["time2"],
   prise: ["prise"],
-  prise2: ["prise2"],
+  off: ["off"],
   button5: ["button5"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -820,10 +1027,11 @@ type NodeDefaultElementType = {
   root: "div";
   collapse: typeof AntdSingleCollapse;
   name: typeof TextInput;
+  description: typeof TextInput;
   time: typeof TextInput;
   time2: typeof TextInput;
   prise: typeof TextInput;
-  prise2: typeof TextInput;
+  off: typeof TextInput;
   button5: typeof Button;
 };
 
@@ -891,10 +1099,11 @@ export const PlasmicAddServise = Object.assign(
     // Helper components rendering sub-elements
     collapse: makeNodeComponent("collapse"),
     _name: makeNodeComponent("name"),
+    description: makeNodeComponent("description"),
     time: makeNodeComponent("time"),
     time2: makeNodeComponent("time2"),
     prise: makeNodeComponent("prise"),
-    prise2: makeNodeComponent("prise2"),
+    off: makeNodeComponent("off"),
     button5: makeNodeComponent("button5"),
 
     // Metadata about props expected for PlasmicAddServise

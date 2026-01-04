@@ -336,7 +336,7 @@ function PlasmicCheckbox__RenderFunc(props: {
             ? false
             : $ccVariants["selected"]
               ? true
-              : false
+              : true
         ) ? (
           <CheckIcon
             className={classNames(projectcss.all, sty.svg__ait2B, {
