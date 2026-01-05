@@ -62,6 +62,8 @@ import {
 import { AntdSingleCollapse } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import { singleCollapseHelpers as AntdSingleCollapse_Helpers } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
+import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
+import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -101,6 +103,8 @@ export type PlasmicAddServise__OverridesType = {
   time2?: Flex__<typeof TextInput>;
   prise?: Flex__<typeof TextInput>;
   off?: Flex__<typeof TextInput>;
+  select?: Flex__<typeof Select>;
+  menuItem?: Flex__<typeof MenuItem>;
   button5?: Flex__<typeof Button>;
 };
 
@@ -199,6 +203,16 @@ function PlasmicAddServise__RenderFunc(props: {
       },
       {
         path: "description[].value",
+        type: "private",
+        variableType: "text"
+      },
+      {
+        path: "select[].isOpen",
+        type: "private",
+        variableType: "boolean"
+      },
+      {
+        path: "select[].value",
         type: "private",
         variableType: "text"
       }
@@ -891,6 +905,179 @@ function PlasmicAddServise__RenderFunc(props: {
                     })()}
                   </div>
                 </div>
+                <div className={classNames(projectcss.all, sty.freeBox__zs4W4)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__c8G7A
+                    )}
+                  >
+                    {"\u0631\u0648\u0634 \u067e\u0631\u062f\u0627\u062e\u062a"}
+                  </div>
+                  {(() => {
+                    const child$Props = {
+                      className: classNames("__wab_instance", sty.select),
+                      isOpen: generateStateValueProp($state, [
+                        "select",
+                        __plasmic_idx_0,
+                        "isOpen"
+                      ]),
+                      items: (_par =>
+                        !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                        (() => {
+                          try {
+                            return [
+                              {
+                                label: "پرداخت آنلاین",
+                                value: "online"
+                              },
+                              {
+                                label: "پرداخت حضوری",
+                                value: "in_person"
+                              },
+                              {
+                                label: "آنلاین و حضوری",
+                                value: "both"
+                              }
+                            ];
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()
+                      ).map((__plasmic_item_1, __plasmic_idx_1) => {
+                        const currentItem = __plasmic_item_1;
+                        const currentIndex = __plasmic_idx_1;
+                        return (
+                          <MenuItem
+                            data-plasmic-name={"menuItem"}
+                            data-plasmic-override={overrides.menuItem}
+                            key={currentIndex}
+                            label={(() => {
+                              try {
+                                return currentItem.label;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
+                            value={(() => {
+                              try {
+                                return currentItem.value;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
+                          />
+                        );
+                      }),
+                      onChange: async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "select",
+                          __plasmic_idx_0,
+                          "value"
+                        ]).apply(null, eventArgs);
+
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
+                          return;
+                        }
+
+                        (async val => {
+                          const $steps = {};
+
+                          $steps["runCode"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  customFunction: async () => {
+                                    return ($state.servises[
+                                      currentIndex
+                                    ].method =
+                                      $state.select[currentIndex].value);
+                                  }
+                                };
+                                return (({ customFunction }) => {
+                                  return customFunction();
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["runCode"] != null &&
+                            typeof $steps["runCode"] === "object" &&
+                            typeof $steps["runCode"].then === "function"
+                          ) {
+                            $steps["runCode"] = await $steps["runCode"];
+                          }
+                        }).apply(null, eventArgs);
+                      },
+                      onOpenChange: async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "select",
+                          __plasmic_idx_0,
+                          "isOpen"
+                        ]).apply(null, eventArgs);
+
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
+                          return;
+                        }
+                      },
+                      placeholder: ``,
+                      showLabel: false,
+                      type: "line",
+                      value: generateStateValueProp($state, [
+                        "select",
+                        __plasmic_idx_0,
+                        "value"
+                      ])
+                    };
+
+                    initializePlasmicStates(
+                      $state,
+                      [
+                        {
+                          name: "select[].isOpen",
+                          initFunc: ({ $props, $state, $queries }) => false
+                        },
+                        {
+                          name: "select[].value",
+                          initFunc: ({ $props, $state, $queries }) => undefined
+                        }
+                      ],
+                      [__plasmic_idx_0]
+                    );
+                    return (
+                      <Select
+                        data-plasmic-name={"select"}
+                        data-plasmic-override={overrides.select}
+                        {...child$Props}
+                      />
+                    );
+                  })()}
+                </div>
               </div>
             </AntdSingleCollapse>
           );
@@ -1001,6 +1188,8 @@ const PlasmicDescendants = {
     "time2",
     "prise",
     "off",
+    "select",
+    "menuItem",
     "button5"
   ],
   collapse: [
@@ -1010,7 +1199,9 @@ const PlasmicDescendants = {
     "time",
     "time2",
     "prise",
-    "off"
+    "off",
+    "select",
+    "menuItem"
   ],
   name: ["name"],
   description: ["description"],
@@ -1018,6 +1209,8 @@ const PlasmicDescendants = {
   time2: ["time2"],
   prise: ["prise"],
   off: ["off"],
+  select: ["select", "menuItem"],
+  menuItem: ["menuItem"],
   button5: ["button5"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -1032,6 +1225,8 @@ type NodeDefaultElementType = {
   time2: typeof TextInput;
   prise: typeof TextInput;
   off: typeof TextInput;
+  select: typeof Select;
+  menuItem: typeof MenuItem;
   button5: typeof Button;
 };
 
@@ -1104,6 +1299,8 @@ export const PlasmicAddServise = Object.assign(
     time2: makeNodeComponent("time2"),
     prise: makeNodeComponent("prise"),
     off: makeNodeComponent("off"),
+    select: makeNodeComponent("select"),
+    menuItem: makeNodeComponent("menuItem"),
     button5: makeNodeComponent("button5"),
 
     // Metadata about props expected for PlasmicAddServise
