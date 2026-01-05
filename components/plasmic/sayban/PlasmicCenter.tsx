@@ -988,7 +988,7 @@ function PlasmicCenter__RenderFunc(props: {
             throw e;
           }
         })()}
-        url={"https://sayban.darkube.app/webhook/center/full"}
+        url={"https://sayban.darkube.app/webhook/center/"}
       >
         <div
           className={classNames(projectcss.all, sty.freeBox__dmiWu, {
