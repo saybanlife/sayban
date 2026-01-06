@@ -1762,6 +1762,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicSort.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "cN1_ZVwWpEB8",
+          "name": "TimeWeek",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicTimeWeek.tsx",
+          "importSpec": {
+            "modulePath": "TimeWeek.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicTimeWeek.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

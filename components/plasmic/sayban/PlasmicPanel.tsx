@@ -77,10 +77,7 @@ import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/compo
 import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
 import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
 import AddServise from "../../AddServise"; // plasmic-import: GoiLccUqO4vp/component
-import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo/component
-import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
-import { TimePicker } from "@/fragment/components/time-picker"; // plasmic-import: fpe_CT2-ocZX/codeComponent
-import Checkbox from "../../Checkbox"; // plasmic-import: 7eMtZduHzknK/component
+import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -125,12 +122,7 @@ export type PlasmicPanel__OverridesType = {
   radio?: Flex__<typeof Radio>;
   loaction?: Flex__<typeof Loaction>;
   addServise?: Flex__<typeof AddServise>;
-  checkboxGroup?: Flex__<typeof CheckboxGroup>;
-  start?: Flex__<typeof AntdPopover>;
-  timePickerStart?: Flex__<typeof TimePicker>;
-  end?: Flex__<typeof AntdPopover>;
-  timePickerEnd?: Flex__<typeof TimePicker>;
-  option1?: Flex__<typeof Checkbox>;
+  timeWeek?: Flex__<typeof TimeWeek>;
   button2?: Flex__<typeof Button>;
   submit?: Flex__<typeof Button>;
   button3?: Flex__<typeof Button>;
@@ -270,44 +262,26 @@ function PlasmicPanel__RenderFunc(props: {
         path: "radioGroup.value",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "missing(1)"
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $state.upload.files[0].uid;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return "rc-upload-1767682163299-5";
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "addServise.servises",
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $ctx }) => []
-      },
-      {
-        path: "checkboxGroup.value",
-        type: "private",
-        variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
-      },
-      {
-        path: "option1[].isSelected",
-        type: "private",
-        variableType: "boolean"
-      },
-      {
-        path: "timePickerStart[].value",
-        type: "private",
-        variableType: "text"
-      },
-      {
-        path: "start[].open",
-        type: "private",
-        variableType: "boolean"
-      },
-      {
-        path: "end[].open",
-        type: "private",
-        variableType: "boolean"
-      },
-      {
-        path: "timePickerEnd[].value",
-        type: "private",
-        variableType: "text"
       },
       {
         path: "textAreaInput.value",
@@ -387,6 +361,40 @@ function PlasmicPanel__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "timeWeek.week",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => [
+          { label: "\u0634\u0646\u0628\u0647", value: "sat", isHoliday: false },
+          {
+            label: "\u06cc\u06a9\u0634\u0646\u0628\u0647",
+            value: "sun",
+            isHoliday: false
+          },
+          {
+            label: "\u062f\u0648\u0634\u0646\u0628\u0647",
+            value: "mon",
+            isHoliday: false
+          },
+          {
+            label: "\u0633\u0647\u200c\u0634\u0646\u0628\u0647",
+            value: "tue",
+            isHoliday: false
+          },
+          {
+            label: "\u0686\u0647\u0627\u0631\u0634\u0646\u0628\u0647",
+            value: "wed",
+            isHoliday: false
+          },
+          {
+            label: "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647",
+            value: "thu",
+            isHoliday: false
+          },
+          { label: "\u062c\u0645\u0639\u0647", value: "fri", isHoliday: false }
+        ]
       }
     ],
     [$props, $ctx, $refs]
@@ -1100,6 +1108,37 @@ function PlasmicPanel__RenderFunc(props: {
                             "upload",
                             "files"
                           ]).apply(null, eventArgs);
+
+                          (async files => {
+                            const $steps = {};
+
+                            $steps["runCode"] = !$state.upload.files.find(
+                              i => i.main
+                            )
+                              ? (() => {
+                                  const actionArgs = {
+                                    customFunction: async () => {
+                                      return (() => {
+                                        $state.upload.files[0].main = true;
+                                        return $state.upload.files.forEach(
+                                          (i, index) => (i.order = index)
+                                        );
+                                      })();
+                                    }
+                                  };
+                                  return (({ customFunction }) => {
+                                    return customFunction();
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["runCode"] != null &&
+                              typeof $steps["runCode"] === "object" &&
+                              typeof $steps["runCode"].then === "function"
+                            ) {
+                              $steps["runCode"] = await $steps["runCode"];
+                            }
+                          }).apply(null, eventArgs);
                         }}
                         showUploadList={false}
                       >
@@ -1244,46 +1283,32 @@ function PlasmicPanel__RenderFunc(props: {
                               (async val => {
                                 const $steps = {};
 
-                                $steps["updatePanelMenuSelecteItem"] = true
+                                $steps["runCode"] = true
                                   ? (() => {
                                       const actionArgs = {
-                                        variable: {
-                                          objRoot: $state,
-                                          variablePath: [
-                                            "panelMenu",
-                                            "selecteItem"
-                                          ]
-                                        },
-                                        operation: 0
-                                      };
-                                      return (({
-                                        variable,
-                                        value,
-                                        startIndex,
-                                        deleteCount
-                                      }) => {
-                                        if (!variable) {
-                                          return;
+                                        customFunction: async () => {
+                                          return $state.upload.files.forEach(
+                                            i => {
+                                              if (
+                                                i.uid == $state.radioGroup.value
+                                              )
+                                                i.main = true;
+                                              else delete i.main;
+                                            }
+                                          );
                                         }
-                                        const { objRoot, variablePath } =
-                                          variable;
-
-                                        $stateSet(objRoot, variablePath, value);
-                                        return value;
+                                      };
+                                      return (({ customFunction }) => {
+                                        return customFunction();
                                       })?.apply(null, [actionArgs]);
                                     })()
                                   : undefined;
                                 if (
-                                  $steps["updatePanelMenuSelecteItem"] !=
-                                    null &&
-                                  typeof $steps[
-                                    "updatePanelMenuSelecteItem"
-                                  ] === "object" &&
-                                  typeof $steps["updatePanelMenuSelecteItem"]
-                                    .then === "function"
+                                  $steps["runCode"] != null &&
+                                  typeof $steps["runCode"] === "object" &&
+                                  typeof $steps["runCode"].then === "function"
                                 ) {
-                                  $steps["updatePanelMenuSelecteItem"] =
-                                    await $steps["updatePanelMenuSelecteItem"];
+                                  $steps["runCode"] = await $steps["runCode"];
                                 }
                               }).apply(null, eventArgs);
                             }}
@@ -1348,7 +1373,7 @@ function PlasmicPanel__RenderFunc(props: {
                                                 customFunction: async () => {
                                                   return (() => {
                                                     const list =
-                                                      document.getElementById(
+                                                      window.document.getElementById(
                                                         "list"
                                                       );
                                                     if (!list) {
@@ -1454,6 +1479,20 @@ function PlasmicPanel__RenderFunc(props: {
                                             {""}
                                           </div>
                                         }
+                                        value={(() => {
+                                          try {
+                                            return currentItem.uid;
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return undefined;
+                                            }
+                                            throw e;
+                                          }
+                                        })()}
                                       />
 
                                       <div
@@ -1692,709 +1731,29 @@ function PlasmicPanel__RenderFunc(props: {
                       </div>
                     }
                   >
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__mbQql)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox___6TcLn
-                        )}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__tkXj
-                          )}
-                        >
-                          {"\u0631\u0648\u0632 \u0647\u0641\u062a\u0647"}
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__hnHh
-                          )}
-                        >
-                          {"\u0634\u0631\u0648\u0639"}
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__ouPzH
-                          )}
-                        >
-                          {"\u067e\u0627\u06cc\u0627\u0646"}
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__jcior
-                          )}
-                        >
-                          {"\u062a\u0639\u0637\u06cc\u0644"}
-                        </div>
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox___5RocU
-                        )}
-                      >
-                        <CheckboxGroup
-                          data-plasmic-name={"checkboxGroup"}
-                          data-plasmic-override={overrides.checkboxGroup}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.checkboxGroup
-                          )}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "checkboxGroup",
-                              "value"
-                            ]).apply(null, eventArgs);
+                    <TimeWeek
+                      data-plasmic-name={"timeWeek"}
+                      data-plasmic-override={overrides.timeWeek}
+                      className={classNames("__wab_instance", sty.timeWeek)}
+                      onWeekChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "timeWeek",
+                          "week"
+                        ]).apply(null, eventArgs);
 
-                            if (
-                              eventArgs.length > 1 &&
-                              eventArgs[1] &&
-                              eventArgs[1]._plasmic_state_init_
-                            ) {
-                              return;
-                            }
-                          }}
-                          options={
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__kbnyY
-                              )}
-                            >
-                              {(_par =>
-                                !_par
-                                  ? []
-                                  : Array.isArray(_par)
-                                    ? _par
-                                    : [_par])(
-                                (() => {
-                                  try {
-                                    return [
-                                      {
-                                        label: "شنبه",
-                                        value: "sat",
-                                        isHoliday: false
-                                      },
-                                      {
-                                        label: "یکشنبه",
-                                        value: "sun",
-                                        isHoliday: false
-                                      },
-                                      {
-                                        label: "دوشنبه",
-                                        value: "mon",
-                                        isHoliday: false
-                                      },
-                                      {
-                                        label: "سه‌شنبه",
-                                        value: "tue",
-                                        isHoliday: false
-                                      },
-                                      {
-                                        label: "چهارشنبه",
-                                        value: "wed",
-                                        isHoliday: false
-                                      },
-                                      {
-                                        label: "پنج‌شنبه",
-                                        value: "thu",
-                                        isHoliday: false
-                                      },
-                                      {
-                                        label: "جمعه",
-                                        value: "fri",
-                                        isHoliday: true
-                                      }
-                                    ];
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return [];
-                                    }
-                                    throw e;
-                                  }
-                                })()
-                              ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                                const currentItem = __plasmic_item_0;
-                                const currentIndex = __plasmic_idx_0;
-                                return (
-                                  <div
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.freeBox__l3H9D
-                                    )}
-                                    key={currentIndex}
-                                  >
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        projectcss.__wab_text,
-                                        sty.text__iP5Fu
-                                      )}
-                                    >
-                                      <React.Fragment>
-                                        {currentItem.label}
-                                      </React.Fragment>
-                                    </div>
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.freeBox__dgyDw
-                                      )}
-                                    >
-                                      {(() => {
-                                        const child$Props = {
-                                          arrow: true,
-                                          className: classNames(
-                                            "__wab_instance",
-                                            sty.start
-                                          ),
-                                          content: (() => {
-                                            const child$Props = {
-                                              className: classNames(
-                                                "__wab_instance",
-                                                sty.timePickerStart
-                                              ),
-                                              notShowExclude: false,
-                                              onChange: async (
-                                                ...eventArgs: any
-                                              ) => {
-                                                generateStateOnChangeProp(
-                                                  $state,
-                                                  [
-                                                    "timePickerStart",
-                                                    __plasmic_idx_0,
-                                                    "value"
-                                                  ]
-                                                ).apply(null, eventArgs);
-
-                                                (async time => {
-                                                  const $steps = {};
-
-                                                  $steps["runCode"] =
-                                                    currentIndex == 0
-                                                      ? (() => {
-                                                          const actionArgs = {
-                                                            customFunction:
-                                                              async () => {
-                                                                return $state.timePickerStart.forEach(
-                                                                  i =>
-                                                                    (i.value =
-                                                                      $state.timePickerStart[
-                                                                        currentIndex
-                                                                      ].value)
-                                                                );
-                                                              }
-                                                          };
-                                                          return (({
-                                                            customFunction
-                                                          }) => {
-                                                            return customFunction();
-                                                          })?.apply(null, [
-                                                            actionArgs
-                                                          ]);
-                                                        })()
-                                                      : undefined;
-                                                  if (
-                                                    $steps["runCode"] != null &&
-                                                    typeof $steps["runCode"] ===
-                                                      "object" &&
-                                                    typeof $steps["runCode"]
-                                                      .then === "function"
-                                                  ) {
-                                                    $steps["runCode"] =
-                                                      await $steps["runCode"];
-                                                  }
-                                                }).apply(null, eventArgs);
-                                              },
-                                              value: generateStateValueProp(
-                                                $state,
-                                                [
-                                                  "timePickerStart",
-                                                  __plasmic_idx_0,
-                                                  "value"
-                                                ]
-                                              )
-                                            };
-                                            initializeCodeComponentStates(
-                                              $state,
-                                              [
-                                                {
-                                                  name: "value",
-                                                  plasmicStateName:
-                                                    "timePickerStart[].value"
-                                                }
-                                              ],
-                                              [__plasmic_idx_0],
-                                              undefined ?? {},
-                                              child$Props
-                                            );
-                                            initializePlasmicStates(
-                                              $state,
-                                              [
-                                                {
-                                                  name: "timePickerStart[].value",
-                                                  initFunc: ({
-                                                    $props,
-                                                    $state,
-                                                    $queries
-                                                  }) => "00:00"
-                                                }
-                                              ],
-                                              [__plasmic_idx_0]
-                                            );
-                                            return (
-                                              <TimePicker
-                                                data-plasmic-name={
-                                                  "timePickerStart"
-                                                }
-                                                data-plasmic-override={
-                                                  overrides.timePickerStart
-                                                }
-                                                {...child$Props}
-                                              />
-                                            );
-                                          })(),
-                                          contentText: "Popover contents",
-                                          defaultOpen: false,
-                                          defaultStylesClassName: classNames(
-                                            projectcss.root_reset,
-                                            projectcss.plasmic_default_styles,
-                                            projectcss.plasmic_mixins,
-                                            styleTokensClassNames
-                                          ),
-                                          mouseEnterDelay: 0,
-                                          mouseLeaveDelay: 0,
-                                          onOpenChange: async (
-                                            ...eventArgs: any
-                                          ) => {
-                                            generateStateOnChangeProp($state, [
-                                              "start",
-                                              __plasmic_idx_0,
-                                              "open"
-                                            ]).apply(null, eventArgs);
-                                          },
-                                          open: generateStateValueProp($state, [
-                                            "start",
-                                            __plasmic_idx_0,
-                                            "open"
-                                          ]),
-                                          popoverScopeClassName:
-                                            sty["start__popover"],
-                                          title: null,
-                                          trigger: "click"
-                                        };
-                                        initializeCodeComponentStates(
-                                          $state,
-                                          [
-                                            {
-                                              name: "open",
-                                              plasmicStateName: "start[].open"
-                                            }
-                                          ],
-                                          [__plasmic_idx_0],
-                                          undefined ?? {},
-                                          child$Props
-                                        );
-                                        initializePlasmicStates(
-                                          $state,
-                                          [
-                                            {
-                                              name: "start[].open",
-                                              initFunc: ({
-                                                $props,
-                                                $state,
-                                                $queries
-                                              }) => false
-                                            }
-                                          ],
-                                          [__plasmic_idx_0]
-                                        );
-                                        return (
-                                          <AntdPopover
-                                            data-plasmic-name={"start"}
-                                            data-plasmic-override={
-                                              overrides.start
-                                            }
-                                            {...child$Props}
-                                          >
-                                            <div
-                                              className={classNames(
-                                                projectcss.all,
-                                                sty.freeBox__pb2Ez
-                                              )}
-                                            >
-                                              <div
-                                                className={classNames(
-                                                  projectcss.all,
-                                                  projectcss.__wab_text,
-                                                  sty.text__iOsIg
-                                                )}
-                                              >
-                                                <React.Fragment>
-                                                  {(() => {
-                                                    try {
-                                                      return $state
-                                                        .timePickerStart[
-                                                        currentIndex
-                                                      ].value;
-                                                    } catch (e) {
-                                                      if (
-                                                        e instanceof
-                                                          TypeError ||
-                                                        e?.plasmicType ===
-                                                          "PlasmicUndefinedDataError"
-                                                      ) {
-                                                        return "11:22";
-                                                      }
-                                                      throw e;
-                                                    }
-                                                  })()}
-                                                </React.Fragment>
-                                              </div>
-                                            </div>
-                                          </AntdPopover>
-                                        );
-                                      })()}
-                                      {(() => {
-                                        const child$Props = {
-                                          arrow: true,
-                                          className: classNames(
-                                            "__wab_instance",
-                                            sty.end
-                                          ),
-                                          content: (() => {
-                                            const child$Props = {
-                                              className: classNames(
-                                                "__wab_instance",
-                                                sty.timePickerEnd
-                                              ),
-                                              onChange: async (
-                                                ...eventArgs: any
-                                              ) => {
-                                                generateStateOnChangeProp(
-                                                  $state,
-                                                  [
-                                                    "timePickerEnd",
-                                                    __plasmic_idx_0,
-                                                    "value"
-                                                  ]
-                                                ).apply(null, eventArgs);
-
-                                                (async time => {
-                                                  const $steps = {};
-
-                                                  $steps["runCode"] =
-                                                    currentIndex == 0
-                                                      ? (() => {
-                                                          const actionArgs = {
-                                                            customFunction:
-                                                              async () => {
-                                                                return $state.timePickerEnd.forEach(
-                                                                  i =>
-                                                                    (i.value =
-                                                                      $state.timePickerEnd[
-                                                                        currentIndex
-                                                                      ].value)
-                                                                );
-                                                              }
-                                                          };
-                                                          return (({
-                                                            customFunction
-                                                          }) => {
-                                                            return customFunction();
-                                                          })?.apply(null, [
-                                                            actionArgs
-                                                          ]);
-                                                        })()
-                                                      : undefined;
-                                                  if (
-                                                    $steps["runCode"] != null &&
-                                                    typeof $steps["runCode"] ===
-                                                      "object" &&
-                                                    typeof $steps["runCode"]
-                                                      .then === "function"
-                                                  ) {
-                                                    $steps["runCode"] =
-                                                      await $steps["runCode"];
-                                                  }
-                                                }).apply(null, eventArgs);
-                                              },
-                                              value: generateStateValueProp(
-                                                $state,
-                                                [
-                                                  "timePickerEnd",
-                                                  __plasmic_idx_0,
-                                                  "value"
-                                                ]
-                                              )
-                                            };
-                                            initializeCodeComponentStates(
-                                              $state,
-                                              [
-                                                {
-                                                  name: "value",
-                                                  plasmicStateName:
-                                                    "timePickerEnd[].value"
-                                                }
-                                              ],
-                                              [__plasmic_idx_0],
-                                              undefined ?? {},
-                                              child$Props
-                                            );
-                                            initializePlasmicStates(
-                                              $state,
-                                              [
-                                                {
-                                                  name: "timePickerEnd[].value",
-                                                  initFunc: ({
-                                                    $props,
-                                                    $state,
-                                                    $queries
-                                                  }) => "00:00"
-                                                }
-                                              ],
-                                              [__plasmic_idx_0]
-                                            );
-                                            return (
-                                              <TimePicker
-                                                data-plasmic-name={
-                                                  "timePickerEnd"
-                                                }
-                                                data-plasmic-override={
-                                                  overrides.timePickerEnd
-                                                }
-                                                {...child$Props}
-                                              />
-                                            );
-                                          })(),
-                                          contentText: "Popover contents",
-                                          defaultOpen: false,
-                                          defaultStylesClassName: classNames(
-                                            projectcss.root_reset,
-                                            projectcss.plasmic_default_styles,
-                                            projectcss.plasmic_mixins,
-                                            styleTokensClassNames
-                                          ),
-                                          mouseEnterDelay: 0,
-                                          mouseLeaveDelay: 0,
-                                          onOpenChange: async (
-                                            ...eventArgs: any
-                                          ) => {
-                                            generateStateOnChangeProp($state, [
-                                              "end",
-                                              __plasmic_idx_0,
-                                              "open"
-                                            ]).apply(null, eventArgs);
-                                          },
-                                          open: generateStateValueProp($state, [
-                                            "end",
-                                            __plasmic_idx_0,
-                                            "open"
-                                          ]),
-                                          popoverScopeClassName:
-                                            sty["end__popover"],
-                                          title: null,
-                                          trigger: "click"
-                                        };
-                                        initializeCodeComponentStates(
-                                          $state,
-                                          [
-                                            {
-                                              name: "open",
-                                              plasmicStateName: "end[].open"
-                                            }
-                                          ],
-                                          [__plasmic_idx_0],
-                                          undefined ?? {},
-                                          child$Props
-                                        );
-                                        initializePlasmicStates(
-                                          $state,
-                                          [
-                                            {
-                                              name: "end[].open",
-                                              initFunc: ({
-                                                $props,
-                                                $state,
-                                                $queries
-                                              }) => false
-                                            }
-                                          ],
-                                          [__plasmic_idx_0]
-                                        );
-                                        return (
-                                          <AntdPopover
-                                            data-plasmic-name={"end"}
-                                            data-plasmic-override={
-                                              overrides.end
-                                            }
-                                            {...child$Props}
-                                          >
-                                            <div
-                                              className={classNames(
-                                                projectcss.all,
-                                                sty.freeBox__t5Bp
-                                              )}
-                                            >
-                                              <div
-                                                className={classNames(
-                                                  projectcss.all,
-                                                  projectcss.__wab_text,
-                                                  sty.text__wUXaq
-                                                )}
-                                              >
-                                                <React.Fragment>
-                                                  {(() => {
-                                                    try {
-                                                      return $state
-                                                        .timePickerEnd[
-                                                        currentIndex
-                                                      ].value;
-                                                    } catch (e) {
-                                                      if (
-                                                        e instanceof
-                                                          TypeError ||
-                                                        e?.plasmicType ===
-                                                          "PlasmicUndefinedDataError"
-                                                      ) {
-                                                        return "11:22";
-                                                      }
-                                                      throw e;
-                                                    }
-                                                  })()}
-                                                </React.Fragment>
-                                              </div>
-                                            </div>
-                                          </AntdPopover>
-                                        );
-                                      })()}
-                                    </div>
-                                    {(() => {
-                                      const child$Props = {
-                                        children: null,
-                                        className: classNames(
-                                          "__wab_instance",
-                                          sty.option1
-                                        ),
-                                        disabled: false,
-                                        isSelected: generateStateValueProp(
-                                          $state,
-                                          [
-                                            "option1",
-                                            __plasmic_idx_0,
-                                            "isSelected"
-                                          ]
-                                        ),
-                                        label: (
-                                          <div
-                                            className={classNames(
-                                              projectcss.all,
-                                              projectcss.__wab_text,
-                                              sty.text__lBvja
-                                            )}
-                                          >
-                                            <React.Fragment>
-                                              {(() => {
-                                                try {
-                                                  return currentItem.label;
-                                                } catch (e) {
-                                                  if (
-                                                    e instanceof TypeError ||
-                                                    e?.plasmicType ===
-                                                      "PlasmicUndefinedDataError"
-                                                  ) {
-                                                    return "Option 1";
-                                                  }
-                                                  throw e;
-                                                }
-                                              })()}
-                                            </React.Fragment>
-                                          </div>
-                                        ),
-                                        onChange: async (...eventArgs: any) => {
-                                          generateStateOnChangeProp($state, [
-                                            "option1",
-                                            __plasmic_idx_0,
-                                            "isSelected"
-                                          ]).apply(null, eventArgs);
-
-                                          if (
-                                            eventArgs.length > 1 &&
-                                            eventArgs[1] &&
-                                            eventArgs[1]._plasmic_state_init_
-                                          ) {
-                                            return;
-                                          }
-                                        },
-                                        tims: true,
-                                        value: (() => {
-                                          try {
-                                            return currentItem.value;
-                                          } catch (e) {
-                                            if (
-                                              e instanceof TypeError ||
-                                              e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                            ) {
-                                              return undefined;
-                                            }
-                                            throw e;
-                                          }
-                                        })()
-                                      };
-
-                                      initializePlasmicStates(
-                                        $state,
-                                        [
-                                          {
-                                            name: "option1[].isSelected",
-                                            initFunc: ({
-                                              $props,
-                                              $state,
-                                              $queries
-                                            }) => false
-                                          }
-                                        ],
-                                        [__plasmic_idx_0]
-                                      );
-                                      return (
-                                        <Checkbox
-                                          data-plasmic-name={"option1"}
-                                          data-plasmic-override={
-                                            overrides.option1
-                                          }
-                                          {...child$Props}
-                                        />
-                                      );
-                                    })()}
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          }
-                          showLabel={false}
-                          value={generateStateValueProp($state, [
-                            "checkboxGroup",
-                            "value"
-                          ])}
-                        />
-                      </div>
-                    </div>
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
+                          return;
+                        }
+                      }}
+                      week={generateStateValueProp($state, [
+                        "timeWeek",
+                        "week"
+                      ])}
+                    />
                   </AntdTabItem>
                 </React.Fragment>
               }
@@ -2581,6 +1940,7 @@ function PlasmicPanel__RenderFunc(props: {
                                     longitude: $state.loaction.lon,
                                     phone: $state.loaction.call2,
                                     image: $state.upload.files,
+                                    week: $state.timeWeek.week,
                                     service: $state.addServise.servises
                                   };
                                 } catch (e) {
@@ -2827,12 +2187,7 @@ const PlasmicDescendants = {
     "radio",
     "loaction",
     "addServise",
-    "checkboxGroup",
-    "start",
-    "timePickerStart",
-    "end",
-    "timePickerEnd",
-    "option1",
+    "timeWeek",
     "button2",
     "submit",
     "button3",
@@ -2855,12 +2210,7 @@ const PlasmicDescendants = {
     "radio",
     "loaction",
     "addServise",
-    "checkboxGroup",
-    "start",
-    "timePickerStart",
-    "end",
-    "timePickerEnd",
-    "option1",
+    "timeWeek",
     "button2",
     "submit",
     "button3"
@@ -2878,12 +2228,7 @@ const PlasmicDescendants = {
     "radio",
     "loaction",
     "addServise",
-    "checkboxGroup",
-    "start",
-    "timePickerStart",
-    "end",
-    "timePickerEnd",
-    "option1"
+    "timeWeek"
   ],
   titleInput: ["titleInput"],
   textAreaInput: ["textAreaInput"],
@@ -2896,19 +2241,7 @@ const PlasmicDescendants = {
   radio: ["radio"],
   loaction: ["loaction"],
   addServise: ["addServise"],
-  checkboxGroup: [
-    "checkboxGroup",
-    "start",
-    "timePickerStart",
-    "end",
-    "timePickerEnd",
-    "option1"
-  ],
-  start: ["start", "timePickerStart"],
-  timePickerStart: ["timePickerStart"],
-  end: ["end", "timePickerEnd"],
-  timePickerEnd: ["timePickerEnd"],
-  option1: ["option1"],
+  timeWeek: ["timeWeek"],
   button2: ["button2"],
   submit: ["submit"],
   button3: ["button3"],
@@ -2935,12 +2268,7 @@ type NodeDefaultElementType = {
   radio: typeof Radio;
   loaction: typeof Loaction;
   addServise: typeof AddServise;
-  checkboxGroup: typeof CheckboxGroup;
-  start: typeof AntdPopover;
-  timePickerStart: typeof TimePicker;
-  end: typeof AntdPopover;
-  timePickerEnd: typeof TimePicker;
-  option1: typeof Checkbox;
+  timeWeek: typeof TimeWeek;
   button2: typeof Button;
   submit: typeof Button;
   button3: typeof Button;
@@ -3025,12 +2353,7 @@ export const PlasmicPanel = Object.assign(
     radio: makeNodeComponent("radio"),
     loaction: makeNodeComponent("loaction"),
     addServise: makeNodeComponent("addServise"),
-    checkboxGroup: makeNodeComponent("checkboxGroup"),
-    start: makeNodeComponent("start"),
-    timePickerStart: makeNodeComponent("timePickerStart"),
-    end: makeNodeComponent("end"),
-    timePickerEnd: makeNodeComponent("timePickerEnd"),
-    option1: makeNodeComponent("option1"),
+    timeWeek: makeNodeComponent("timeWeek"),
     button2: makeNodeComponent("button2"),
     submit: makeNodeComponent("submit"),
     button3: makeNodeComponent("button3"),

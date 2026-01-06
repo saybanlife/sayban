@@ -613,7 +613,7 @@ function PlasmicMainPage__RenderFunc(props: {
           </div>
           {(() => {
             const child$Props = {
-              canSelectRows: "multiple",
+              canSelectRows: "click",
               className: classNames("__wab_instance", sty.table),
               data: (() => {
                 try {
@@ -672,7 +672,7 @@ function PlasmicMainPage__RenderFunc(props: {
                   RichTable_Helpers
                 ).apply(null, eventArgs);
               },
-              pageSize: 20,
+              pageSize: 15,
               rowActions: (() => {
                 const __composite = [
                   { type: null, label: null, children: null },
