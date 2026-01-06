@@ -1240,6 +1240,52 @@ function PlasmicPanel__RenderFunc(props: {
                               ) {
                                 return;
                               }
+
+                              (async val => {
+                                const $steps = {};
+
+                                $steps["updatePanelMenuSelecteItem"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: [
+                                            "panelMenu",
+                                            "selecteItem"
+                                          ]
+                                        },
+                                        operation: 0
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updatePanelMenuSelecteItem"] !=
+                                    null &&
+                                  typeof $steps[
+                                    "updatePanelMenuSelecteItem"
+                                  ] === "object" &&
+                                  typeof $steps["updatePanelMenuSelecteItem"]
+                                    .then === "function"
+                                ) {
+                                  $steps["updatePanelMenuSelecteItem"] =
+                                    await $steps["updatePanelMenuSelecteItem"];
+                                }
+                              }).apply(null, eventArgs);
                             }}
                             options={
                               <div
@@ -2534,7 +2580,8 @@ function PlasmicPanel__RenderFunc(props: {
                                     latitude: $state.loaction.lat,
                                     longitude: $state.loaction.lon,
                                     phone: $state.loaction.call2,
-                                    servise: $state.addServise.servises
+                                    image: $state.upload.files,
+                                    service: $state.addServise.servises
                                   };
                                 } catch (e) {
                                   if (
