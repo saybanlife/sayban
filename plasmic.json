@@ -1827,6 +1827,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicImage.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "ldHafC0LATYt",
+          "name": "AddServise2",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicAddServise2.tsx",
+          "importSpec": {
+            "modulePath": "AddServise2.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicAddServise2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

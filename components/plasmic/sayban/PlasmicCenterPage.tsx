@@ -67,6 +67,7 @@ import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-impor
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import Tags from "../../Tags"; // plasmic-import: Lr-0_vYS3Xmt/component
 import Image from "../../Image"; // plasmic-import: NaIiCw46_M0t/component
+import AddServise2 from "../../AddServise2"; // plasmic-import: ldHafC0LATYt/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -78,6 +79,7 @@ import sty from "./PlasmicCenterPage.module.css"; // plasmic-import: fRNzpZPnnIL
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 import Icon67Icon from "./icons/PlasmicIcon__Icon67"; // plasmic-import: 6d1G1xHnP3D8/icon
+import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 
 createPlasmicElementProxy;
 
@@ -111,7 +113,9 @@ export type PlasmicCenterPage__OverridesType = {
   apiRequest?: Flex__<typeof ApiRequest>;
   img?: Flex__<typeof PlasmicImg__>;
   tags?: Flex__<typeof Tags>;
+  button2?: Flex__<typeof Button>;
   image?: Flex__<typeof Image>;
+  addServise2?: Flex__<typeof AddServise2>;
 };
 
 export interface DefaultCenterPageProps {
@@ -223,6 +227,31 @@ function PlasmicCenterPage__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "button2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "addServise2.servises",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $state.apiRequest.data.result.services;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -788,6 +817,43 @@ function PlasmicCenterPage__RenderFunc(props: {
                 >
                   {"\u062a\u0635\u0627\u0648\u06cc\u0631"}
                 </div>
+                <Button
+                  data-plasmic-name={"button2"}
+                  data-plasmic-override={overrides.button2}
+                  className={classNames("__wab_instance", sty.button2)}
+                  color={"second"}
+                  label={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__evnOr
+                      )}
+                    >
+                      {
+                        "\u0627\u0641\u0632\u0648\u062f\u0646 \u062a\u0635\u0648\u06cc\u0631"
+                      }
+                    </div>
+                  }
+                  loading={generateStateValueProp($state, [
+                    "button2",
+                    "loading"
+                  ])}
+                  onLoadingChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "button2",
+                      "loading"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                />
               </div>
               <Image
                 data-plasmic-name={"image"}
@@ -807,15 +873,48 @@ function PlasmicCenterPage__RenderFunc(props: {
                   }
                 })()}
               />
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox__eog3I)}>
+              <div className={classNames(projectcss.all, sty.freeBox__ebxKq)}>
+                <Icon67Icon
+                  className={classNames(projectcss.all, sty.svg__maIez)}
+                  role={"img"}
+                />
 
-              <Line
-                className={classNames("__wab_instance", sty.line___2NqJx)}
-                size={"small"}
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__o85Jn
+                  )}
+                >
+                  {"\u062e\u062f\u0645\u0627\u062a"}
+                </div>
+              </div>
+              <AddServise2
+                data-plasmic-name={"addServise2"}
+                data-plasmic-override={overrides.addServise2}
+                className={classNames("__wab_instance", sty.addServise2)}
+                onServisesChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "addServise2",
+                    "servises"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                servises={generateStateValueProp($state, [
+                  "addServise2",
+                  "servises"
+                ])}
               />
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox__akLiz)} />
-
-            <div className={classNames(projectcss.all, sty.freeBox__tBDdX)} />
           </div>
         </div>
       </ApiRequest>
@@ -833,16 +932,20 @@ const PlasmicDescendants = {
     "apiRequest",
     "img",
     "tags",
-    "image"
+    "button2",
+    "image",
+    "addServise2"
   ],
   select2: ["select2", "menuSection"],
   menuSection: ["menuSection"],
   button: ["button"],
   select: ["select"],
-  apiRequest: ["apiRequest", "img", "tags", "image"],
+  apiRequest: ["apiRequest", "img", "tags", "button2", "image", "addServise2"],
   img: ["img"],
   tags: ["tags"],
-  image: ["image"]
+  button2: ["button2"],
+  image: ["image"],
+  addServise2: ["addServise2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -856,7 +959,9 @@ type NodeDefaultElementType = {
   apiRequest: typeof ApiRequest;
   img: typeof PlasmicImg__;
   tags: typeof Tags;
+  button2: typeof Button;
   image: typeof Image;
+  addServise2: typeof AddServise2;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -928,7 +1033,9 @@ export const PlasmicCenterPage = Object.assign(
     apiRequest: makeNodeComponent("apiRequest"),
     img: makeNodeComponent("img"),
     tags: makeNodeComponent("tags"),
+    button2: makeNodeComponent("button2"),
     image: makeNodeComponent("image"),
+    addServise2: makeNodeComponent("addServise2"),
 
     // Metadata about props expected for PlasmicCenterPage
     internalVariantProps: PlasmicCenterPage__VariantProps,
