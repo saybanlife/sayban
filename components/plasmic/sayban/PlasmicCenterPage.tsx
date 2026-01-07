@@ -77,11 +77,12 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicCenterPage.module.css"; // plasmic-import: fRNzpZPnnILn/css
 
+import ArrowNarrowRightIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__ArrowNarrowRight"; // plasmic-import: deFMwOdoPOwL/icon
+import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 import Icon115Icon from "./icons/PlasmicIcon__Icon115"; // plasmic-import: K82EqXtBnJoL/icon
 import Icon67Icon from "./icons/PlasmicIcon__Icon67"; // plasmic-import: 6d1G1xHnP3D8/icon
-import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 
 createPlasmicElementProxy;
 
@@ -110,6 +111,7 @@ export const PlasmicCenterPage__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicCenterPage__OverridesType = {
   root?: Flex__<"div">;
+  button3?: Flex__<typeof Button>;
   button?: Flex__<typeof Button>;
   select?: Flex__<typeof Select>;
   apiRequest?: Flex__<typeof ApiRequest>;
@@ -278,6 +280,12 @@ function PlasmicCenterPage__RenderFunc(props: {
           },
           { label: "\u062c\u0645\u0639\u0647", value: "fri", isHoliday: false }
         ]
+      },
+      {
+        path: "button3.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -320,8 +328,70 @@ function PlasmicCenterPage__RenderFunc(props: {
       })()}
     >
       <div className={classNames(projectcss.all, sty.freeBox__yQc6U)}>
-        <div className={classNames(projectcss.all, sty.freeBox___9VrRj)} />
+        <div className={classNames(projectcss.all, sty.freeBox___9VrRj)}>
+          <Button
+            data-plasmic-name={"button3"}
+            data-plasmic-override={overrides.button3}
+            className={classNames("__wab_instance", sty.button3)}
+            color={"neutral"}
+            iconStart={true}
+            label={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__hNk07
+                )}
+              >
+                {"\u0644\u06cc\u0633\u062a \u0645\u0631\u0627\u06a9\u0632"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button3", "loading"])}
+            onClick={async event => {
+              const $steps = {};
 
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return window.history.back();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button3", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            start={
+              <ArrowNarrowRightIcon
+                className={classNames(projectcss.all, sty.svg__dpeVn)}
+                role={"img"}
+              />
+            }
+          />
+        </div>
         <div className={classNames(projectcss.all, sty.freeBox__yx618)}>
           <Button
             data-plasmic-name={"button"}
@@ -843,6 +913,7 @@ function PlasmicCenterPage__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "button3",
     "button",
     "select",
     "apiRequest",
@@ -853,6 +924,7 @@ const PlasmicDescendants = {
     "addServise2",
     "timeWeek"
   ],
+  button3: ["button3"],
   button: ["button"],
   select: ["select"],
   apiRequest: [
@@ -876,6 +948,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  button3: typeof Button;
   button: typeof Button;
   select: typeof Select;
   apiRequest: typeof ApiRequest;
@@ -949,6 +1022,7 @@ export const PlasmicCenterPage = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    button3: makeNodeComponent("button3"),
     button: makeNodeComponent("button"),
     select: makeNodeComponent("select"),
     apiRequest: makeNodeComponent("apiRequest"),
