@@ -68,6 +68,7 @@ import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import Tags from "../../Tags"; // plasmic-import: Lr-0_vYS3Xmt/component
 import Image from "../../Image"; // plasmic-import: NaIiCw46_M0t/component
 import AddServise2 from "../../AddServise2"; // plasmic-import: ldHafC0LATYt/component
+import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -116,6 +117,7 @@ export type PlasmicCenterPage__OverridesType = {
   button2?: Flex__<typeof Button>;
   image?: Flex__<typeof Image>;
   addServise2?: Flex__<typeof AddServise2>;
+  timeWeek?: Flex__<typeof TimeWeek>;
 };
 
 export interface DefaultCenterPageProps {
@@ -252,6 +254,40 @@ function PlasmicCenterPage__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "timeWeek.week",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => [
+          { label: "\u0634\u0646\u0628\u0647", value: "sat", isHoliday: false },
+          {
+            label: "\u06cc\u06a9\u0634\u0646\u0628\u0647",
+            value: "sun",
+            isHoliday: false
+          },
+          {
+            label: "\u062f\u0648\u0634\u0646\u0628\u0647",
+            value: "mon",
+            isHoliday: false
+          },
+          {
+            label: "\u0633\u0647\u200c\u0634\u0646\u0628\u0647",
+            value: "tue",
+            isHoliday: false
+          },
+          {
+            label: "\u0686\u0647\u0627\u0631\u0634\u0646\u0628\u0647",
+            value: "wed",
+            isHoliday: false
+          },
+          {
+            label: "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647",
+            value: "thu",
+            isHoliday: false
+          },
+          { label: "\u062c\u0645\u0639\u0647", value: "fri", isHoliday: false }
+        ]
       }
     ],
     [$props, $ctx, $refs]
@@ -617,7 +653,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                   loading={"lazy"}
                   src={(() => {
                     try {
-                      return $state.apiRequest.data.result.main_image;
+                      return $state.apiRequest.data?.result?.main_image;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -641,7 +677,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                     )}
                   >
                     <React.Fragment>
-                      {$state.apiRequest.data.result.name}
+                      {$state.apiRequest.data?.result?.name}
                     </React.Fragment>
                   </div>
                   <div
@@ -652,7 +688,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                     )}
                   >
                     <React.Fragment>
-                      {$state.apiRequest.data.result.description}
+                      {$state.apiRequest.data?.result?.description}
                     </React.Fragment>
                   </div>
                 </div>
@@ -691,7 +727,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                   )}
                 >
                   <React.Fragment>
-                    {$state.apiRequest.data.result.address}
+                    {$state.apiRequest.data?.result?.address}
                   </React.Fragment>
                 </div>
                 <div
@@ -702,7 +738,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                   )}
                 >
                   <React.Fragment>
-                    {$state.apiRequest.data.result.phone}
+                    {$state.apiRequest.data?.result?.phone}
                   </React.Fragment>
                 </div>
               </div>
@@ -750,7 +786,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                     )}
                   >
                     <React.Fragment>
-                      {$state.apiRequest.data.result.category_name}
+                      {$state.apiRequest.data?.result?.category_name}
                     </React.Fragment>
                   </div>
                 </div>
@@ -772,7 +808,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                     )}
                   >
                     <React.Fragment>
-                      {$state.apiRequest.data.result.subcategory_name}
+                      {$state.apiRequest.data?.result?.subcategory_name}
                     </React.Fragment>
                   </div>
                 </div>
@@ -915,6 +951,44 @@ function PlasmicCenterPage__RenderFunc(props: {
                 ])}
               />
             </div>
+            <div className={classNames(projectcss.all, sty.freeBox__oArX)}>
+              <div className={classNames(projectcss.all, sty.freeBox__qKaeg)}>
+                <Icon67Icon
+                  className={classNames(projectcss.all, sty.svg___5QmeG)}
+                  role={"img"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__fmP7H
+                  )}
+                >
+                  {"\u0633\u0627\u0639\u062a \u06a9\u0627\u0631"}
+                </div>
+              </div>
+              <TimeWeek
+                data-plasmic-name={"timeWeek"}
+                data-plasmic-override={overrides.timeWeek}
+                className={classNames("__wab_instance", sty.timeWeek)}
+                onWeekChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["timeWeek", "week"]).apply(
+                    null,
+                    eventArgs
+                  );
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                week={generateStateValueProp($state, ["timeWeek", "week"])}
+              />
+            </div>
           </div>
         </div>
       </ApiRequest>
@@ -934,18 +1008,28 @@ const PlasmicDescendants = {
     "tags",
     "button2",
     "image",
-    "addServise2"
+    "addServise2",
+    "timeWeek"
   ],
   select2: ["select2", "menuSection"],
   menuSection: ["menuSection"],
   button: ["button"],
   select: ["select"],
-  apiRequest: ["apiRequest", "img", "tags", "button2", "image", "addServise2"],
+  apiRequest: [
+    "apiRequest",
+    "img",
+    "tags",
+    "button2",
+    "image",
+    "addServise2",
+    "timeWeek"
+  ],
   img: ["img"],
   tags: ["tags"],
   button2: ["button2"],
   image: ["image"],
-  addServise2: ["addServise2"]
+  addServise2: ["addServise2"],
+  timeWeek: ["timeWeek"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -962,6 +1046,7 @@ type NodeDefaultElementType = {
   button2: typeof Button;
   image: typeof Image;
   addServise2: typeof AddServise2;
+  timeWeek: typeof TimeWeek;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1036,6 +1121,7 @@ export const PlasmicCenterPage = Object.assign(
     button2: makeNodeComponent("button2"),
     image: makeNodeComponent("image"),
     addServise2: makeNodeComponent("addServise2"),
+    timeWeek: makeNodeComponent("timeWeek"),
 
     // Metadata about props expected for PlasmicCenterPage
     internalVariantProps: PlasmicCenterPage__VariantProps,

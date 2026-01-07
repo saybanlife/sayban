@@ -6,12 +6,12 @@
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
-  background: var(--token-as44I7WwR-rZ);
+  background: none;
   row-gap: var(--token-RuQNZpYm0Yds);
   position: relative;
   min-width: 0;
   border-radius: var(--token-rfsFxiclAtek);
-  padding: var(--token-rfsFxiclAtek);
+  padding: 0px;
 }
 .freeBox___5TBp9 {
   display: flex;

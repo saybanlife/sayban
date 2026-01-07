@@ -441,7 +441,20 @@ function PlasmicAddServise2__RenderFunc(props: {
                       [
                         {
                           name: "name[].value",
-                          initFunc: ({ $props, $state, $queries }) => undefined
+                          initFunc: ({ $props, $state, $queries }) =>
+                            (() => {
+                              try {
+                                return currentItem.name;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
                         }
                       ],
                       [__plasmic_idx_0]
@@ -524,7 +537,20 @@ function PlasmicAddServise2__RenderFunc(props: {
                       [
                         {
                           name: "description[].value",
-                          initFunc: ({ $props, $state, $queries }) => undefined
+                          initFunc: ({ $props, $state, $queries }) =>
+                            (() => {
+                              try {
+                                return currentItem.description;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
                         }
                       ],
                       [__plasmic_idx_0]
@@ -612,7 +638,20 @@ function PlasmicAddServise2__RenderFunc(props: {
                           {
                             name: "time[].value",
                             initFunc: ({ $props, $state, $queries }) =>
-                              undefined
+                              (() => {
+                                try {
+                                  return currentItem.duration_minutes;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
                           }
                         ],
                         [__plasmic_idx_0]
@@ -702,7 +741,20 @@ function PlasmicAddServise2__RenderFunc(props: {
                           {
                             name: "time2[].value",
                             initFunc: ({ $props, $state, $queries }) =>
-                              undefined
+                              (() => {
+                                try {
+                                  return currentItem.buffer_minutes;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
                           }
                         ],
                         [__plasmic_idx_0]
@@ -791,7 +843,20 @@ function PlasmicAddServise2__RenderFunc(props: {
                           {
                             name: "prise[].value",
                             initFunc: ({ $props, $state, $queries }) =>
-                              undefined
+                              (() => {
+                                try {
+                                  return currentItem.price;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
                           }
                         ],
                         [__plasmic_idx_0]
@@ -890,7 +955,21 @@ function PlasmicAddServise2__RenderFunc(props: {
                         [
                           {
                             name: "off[].value",
-                            initFunc: ({ $props, $state, $queries }) => "0"
+                            initFunc: ({ $props, $state, $queries }) =>
+                              (() => {
+                                try {
+                                  return currentItem.discount_percent;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
                           }
                         ],
                         [__plasmic_idx_0]
@@ -1064,7 +1143,20 @@ function PlasmicAddServise2__RenderFunc(props: {
                         },
                         {
                           name: "select[].value",
-                          initFunc: ({ $props, $state, $queries }) => undefined
+                          initFunc: ({ $props, $state, $queries }) =>
+                            (() => {
+                              try {
+                                return currentItem.payment_method;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
                         }
                       ],
                       [__plasmic_idx_0]
