@@ -79,6 +79,7 @@ import sty from "./PlasmicCenterPage.module.css"; // plasmic-import: fRNzpZPnnIL
 
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
+import Icon115Icon from "./icons/PlasmicIcon__Icon115"; // plasmic-import: K82EqXtBnJoL/icon
 import Icon67Icon from "./icons/PlasmicIcon__Icon67"; // plasmic-import: 6d1G1xHnP3D8/icon
 import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 
@@ -95,6 +96,7 @@ export type PlasmicCenterPage__ArgsType = {
   onCategptyChange?: (val: string) => void;
   id?: string;
   token?: string;
+  tagsitem?: any;
 };
 type ArgPropType = keyof PlasmicCenterPage__ArgsType;
 export const PlasmicCenterPage__ArgProps = new Array<ArgPropType>(
@@ -102,7 +104,8 @@ export const PlasmicCenterPage__ArgProps = new Array<ArgPropType>(
   "categpty",
   "onCategptyChange",
   "id",
-  "token"
+  "token",
+  "tagsitem"
 );
 
 export type PlasmicCenterPage__OverridesType = {
@@ -126,6 +129,7 @@ export interface DefaultCenterPageProps {
   onCategptyChange?: (val: string) => void;
   id?: string;
   token?: string;
+  tagsitem?: any;
   className?: string;
 }
 
@@ -591,7 +595,14 @@ function PlasmicCenterPage__RenderFunc(props: {
           }
         })()}
         errorDisplay={null}
-        loadingDisplay={null}
+        loadingDisplay={
+          <div className={classNames(projectcss.all, sty.freeBox___4Dx8)}>
+            <Icon115Icon
+              className={classNames(projectcss.all, sty.svg__ku2CT)}
+              role={"img"}
+            />
+          </div>
+        }
         method={"GET"}
         onError={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
@@ -833,6 +844,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                 data-plasmic-override={overrides.tags}
                 className={classNames("__wab_instance", sty.tags)}
                 lable={true}
+                tagsitem={args.tagsitem}
               />
             </div>
           </div>

@@ -86,15 +86,21 @@ type VariantPropType = keyof PlasmicMainPage__VariantsArgs;
 export const PlasmicMainPage__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicMainPage__ArgsType = {
+  selectedRow?: any;
+  onSelectedRowChange?: (val: any) => void;
   openEdit?: (event: any) => void;
   categpty?: any;
   onCategptyChange?: (val: string) => void;
+  onRowClicked?: (rowKey: string, row: any, event: any) => void;
 };
 type ArgPropType = keyof PlasmicMainPage__ArgsType;
 export const PlasmicMainPage__ArgProps = new Array<ArgPropType>(
+  "selectedRow",
+  "onSelectedRowChange",
   "openEdit",
   "categpty",
-  "onCategptyChange"
+  "onCategptyChange",
+  "onRowClicked"
 );
 
 export type PlasmicMainPage__OverridesType = {
@@ -111,9 +117,12 @@ export type PlasmicMainPage__OverridesType = {
 };
 
 export interface DefaultMainPageProps {
+  selectedRow?: any;
+  onSelectedRowChange?: (val: any) => void;
   openEdit?: (event: any) => void;
   categpty?: any;
   onCategptyChange?: (val: string) => void;
+  onRowClicked?: (rowKey: string, row: any, event: any) => void;
   className?: string;
 }
 
@@ -234,9 +243,11 @@ function PlasmicMainPage__RenderFunc(props: {
       },
       {
         path: "table.selectedRow",
-        type: "private",
+        type: "writable",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        valueProp: "selectedRow",
+        onChangeProp: "onSelectedRowChange",
 
         onMutate: generateOnMutateForSpec("selectedRow", RichTable_Helpers)
       },
@@ -645,6 +656,22 @@ function PlasmicMainPage__RenderFunc(props: {
               hideDensity: true,
               onRowClick: async (rowKey, row, event) => {
                 const $steps = {};
+
+                $steps["runOnRowClicked"] = true
+                  ? (() => {
+                      const actionArgs = { eventRef: $props["onRowClicked"] };
+                      return (({ eventRef, args }) => {
+                        return eventRef?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runOnRowClicked"] != null &&
+                  typeof $steps["runOnRowClicked"] === "object" &&
+                  typeof $steps["runOnRowClicked"].then === "function"
+                ) {
+                  $steps["runOnRowClicked"] = await $steps["runOnRowClicked"];
+                }
               },
               onRowSelectionChanged: async (...eventArgs: any) => {
                 generateStateOnChangePropForCodeComponents(

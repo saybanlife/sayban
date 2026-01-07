@@ -1561,7 +1561,7 @@
           "projectId": "qARqpE4p5tZmJuNxFbTaPz",
           "renderModuleFilePath": "plasmic/sayban/PlasmicPanel.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/panel.tsx"
+            "modulePath": "../src/pages/panel/[[...page]].tsx"
           },
           "cssFilePath": "plasmic/sayban/PlasmicPanel.module.css",
           "scheme": "blackbox",
@@ -1838,6 +1838,19 @@
             "modulePath": "AddServise2.tsx"
           },
           "cssFilePath": "plasmic/sayban/PlasmicAddServise2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "FYuKeNpu5zZ7",
+          "name": "Main",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicMain.tsx",
+          "importSpec": {
+            "modulePath": "Main.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicMain.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
@@ -29075,6 +29088,55 @@
           "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
         }
       ],
+      "customFunctions": []
+    },
+    {
+      "projectId": "5dGW8Awro3qq8Hh5MveXLP",
+      "projectApiToken": "wVHvHSTRyoO1MQddr5ypmW8AfwiMMy7h0Iaj4Q2YmYLLEo2A4L6pLn8Fydm8wQkTAJV9uAD5bJPo8bmGg",
+      "projectName": "lottie-react",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/lottie_react/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "styleTokensProviderFilePath": "plasmic/lottie_react/PlasmicStyleTokensProvider.tsx",
+      "dataTokensFilePath": "",
+      "projectModuleFilePath": "plasmic/lottie_react/plasmic.tsx",
+      "codeComponents": [
+        {
+          "id": "BPNsJ2qis6",
+          "name": "LottieWrapper",
+          "displayName": "hostless-lottie-react",
+          "componentImportPath": "@plasmicpkgs/lottie-react"
+        },
+        {
+          "id": "vbTFHH9P-cuM",
+          "name": "AsyncLottieWrapper",
+          "displayName": "hostless-lottie-async-react",
+          "componentImportPath": "@plasmicpkgs/lottie-react"
+        }
+      ],
+      "customFunctions": []
+    },
+    {
+      "projectId": "cAAqA2dcbTMWwuLSmjs7ss",
+      "projectApiToken": "oyacAaVecJdMPUeXvpMt6bcF62NaBXN1XCN354hPj8ehAfCkcQ3kWRhsqiIY9O4Us2SHa5ajZxgO1C10l8wYQ",
+      "projectName": "md5",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/md_5/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "styleTokensProviderFilePath": "plasmic/md_5/PlasmicStyleTokensProvider.tsx",
+      "dataTokensFilePath": "",
+      "projectModuleFilePath": "plasmic/md_5/plasmic.tsx",
+      "codeComponents": [],
       "customFunctions": []
     }
   ],
