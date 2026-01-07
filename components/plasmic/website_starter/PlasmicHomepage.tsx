@@ -1408,7 +1408,8 @@ function PlasmicHomepage__RenderFunc(props: {
                   $state,
                   "page",
                   "subcategories"
-                )
+                ),
+                [sty.homesearch2]: hasVariant($state, "search2", "search2")
               })}
               onCategori={async () => {
                 const $steps = {};

@@ -71,13 +71,11 @@ import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4
 import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
-import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
-import { Embed } from "@plasmicpkgs/plasmic-basic-components";
-import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
-import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
+import Imag from "../../Imag"; // plasmic-import: ScLhJpeVxPbk/component
 import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
 import AddServise from "../../AddServise"; // plasmic-import: GoiLccUqO4vp/component
 import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
+import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -89,9 +87,6 @@ import sty from "./PlasmicPanel.module.css"; // plasmic-import: UG_cnsXdRiaM/css
 
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
-import Icon57Icon from "./icons/PlasmicIcon__Icon57"; // plasmic-import: C1TEH47I7uws/icon
-import Icon58Icon from "./icons/PlasmicIcon__Icon58"; // plasmic-import: ZZecBkDFVPaA/icon
-import Icon60Icon from "./icons/PlasmicIcon__Icon60"; // plasmic-import: JXYPgQmPQkxF/icon
 
 createPlasmicElementProxy;
 
@@ -116,16 +111,14 @@ export type PlasmicPanel__OverridesType = {
   category?: Flex__<typeof Select>;
   subcategory?: Flex__<typeof Select>;
   tags?: Flex__<typeof AntdSelect>;
-  upload?: Flex__<typeof UploadWrapper>;
-  radioGroup?: Flex__<typeof RadioGroup>;
-  img?: Flex__<typeof PlasmicImg__>;
-  radio?: Flex__<typeof Radio>;
+  imag?: Flex__<typeof Imag>;
   loaction?: Flex__<typeof Loaction>;
   addServise?: Flex__<typeof AddServise>;
   timeWeek?: Flex__<typeof TimeWeek>;
   button2?: Flex__<typeof Button>;
   submit?: Flex__<typeof Button>;
   button3?: Flex__<typeof Button>;
+  embedHtml?: Flex__<typeof Embed>;
   categories?: Flex__<typeof ApiRequest>;
 };
 
@@ -226,7 +219,7 @@ function PlasmicPanel__RenderFunc(props: {
         path: "addCenter.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) => true
       },
       {
         path: "button.loading",
@@ -251,31 +244,6 @@ function PlasmicPanel__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "upload.files",
-        type: "private",
-        variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
-      },
-      {
-        path: "radioGroup.value",
-        type: "private",
-        variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          (() => {
-            try {
-              return $state.upload.files[0].uid;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return "rc-upload-1767682163299-5";
-              }
-              throw e;
-            }
-          })()
       },
       {
         path: "addServise.servises",
@@ -395,6 +363,12 @@ function PlasmicPanel__RenderFunc(props: {
           },
           { label: "\u062c\u0645\u0639\u0647", value: "fri", isHoliday: false }
         ]
+      },
+      {
+        path: "imag.uploadFiles",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => []
       }
     ],
     [$props, $ctx, $refs]
@@ -1088,485 +1062,29 @@ function PlasmicPanel__RenderFunc(props: {
                       </div>
                     }
                   >
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__qxV6V)}
-                    >
-                      <UploadWrapper
-                        data-plasmic-name={"upload"}
-                        data-plasmic-override={overrides.upload}
-                        accept={"image/*"}
-                        className={classNames("__wab_instance", sty.upload)}
-                        dragAndDropFiles={true}
-                        files={generateStateValueProp($state, [
-                          "upload",
-                          "files"
-                        ])}
-                        listType={"picture"}
-                        multiple={true}
-                        onFilesChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "upload",
-                            "files"
-                          ]).apply(null, eventArgs);
+                    <Imag
+                      data-plasmic-name={"imag"}
+                      data-plasmic-override={overrides.imag}
+                      className={classNames("__wab_instance", sty.imag)}
+                      onUploadFilesChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "imag",
+                          "uploadFiles"
+                        ]).apply(null, eventArgs);
 
-                          (async files => {
-                            const $steps = {};
-
-                            $steps["runCode"] = !$state.upload.files.find(
-                              i => i.main
-                            )
-                              ? (() => {
-                                  const actionArgs = {
-                                    customFunction: async () => {
-                                      return (() => {
-                                        $state.upload.files[0].main = true;
-                                        return $state.upload.files.forEach(
-                                          (i, index) => (i.order = index)
-                                        );
-                                      })();
-                                    }
-                                  };
-                                  return (({ customFunction }) => {
-                                    return customFunction();
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["runCode"] != null &&
-                              typeof $steps["runCode"] === "object" &&
-                              typeof $steps["runCode"].then === "function"
-                            ) {
-                              $steps["runCode"] = await $steps["runCode"];
-                            }
-                          }).apply(null, eventArgs);
-                        }}
-                        showUploadList={false}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__uc3Ys
-                          )}
-                        >
-                          <Icon57Icon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__oHAe
-                            )}
-                            role={"img"}
-                          />
-
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__uJds0
-                            )}
-                          >
-                            {
-                              "\u0641\u0627\u06cc\u0644 \u0631\u0627 \u0628\u06a9\u0634\u06cc\u062f \u0648 \u0631\u0647\u0627 \u06a9\u0646\u06cc\u062f \u06cc\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
-                            }
-                          </div>
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox___8Naey
-                            )}
-                          >
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text___6UW7G
-                              )}
-                            >
-                              {
-                                "\u0627\u0646\u062a\u062e\u0627\u0628 \u062a\u0635\u0648\u06cc\u0631"
-                              }
-                            </div>
-                          </div>
-                        </div>
-                      </UploadWrapper>
-                      {(() => {
-                        try {
-                          return $state.upload.files.length > 0;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return true;
-                          }
-                          throw e;
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
+                          return;
                         }
-                      })() ? (
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__hdHxP
-                          )}
-                        >
-                          <Embed
-                            className={classNames(
-                              "__wab_instance",
-                              sty.embedHtml__hLMV
-                            )}
-                            code={
-                              '<script>\r\nnew Sortable(document.getElementById("list"), {\r\n  animation: 150,\r\n  handle: ".handle", // \u0627\u06af\u0647 \u0641\u0642\u0637 \u0628\u0627 \u0622\u06cc\u06a9\u0646 \u062e\u0627\u0635 \u0628\u062e\u0648\u0627\u06cc\r\n});\r\n</script>\r\n'
-                            }
-                          />
-
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__wWvwf
-                            )}
-                          >
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text___6PiQz
-                              )}
-                            >
-                              {"\u0631\u0648\u0632 \u0647\u0641\u062a\u0647"}
-                            </div>
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text___3UmQ2
-                              )}
-                            >
-                              {"\u0645\u06a9\u0627\u0646"}
-                            </div>
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__bUlD
-                              )}
-                            >
-                              {"\u0627\u0635\u0644\u06cc"}
-                            </div>
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__idTja
-                              )}
-                            >
-                              {"\u062a\u0639\u0637\u06cc\u0644"}
-                            </div>
-                          </div>
-                          <RadioGroup
-                            data-plasmic-name={"radioGroup"}
-                            data-plasmic-override={overrides.radioGroup}
-                            className={classNames(
-                              "__wab_instance",
-                              sty.radioGroup
-                            )}
-                            onChange={async (...eventArgs: any) => {
-                              generateStateOnChangeProp($state, [
-                                "radioGroup",
-                                "value"
-                              ]).apply(null, eventArgs);
-
-                              if (
-                                eventArgs.length > 1 &&
-                                eventArgs[1] &&
-                                eventArgs[1]._plasmic_state_init_
-                              ) {
-                                return;
-                              }
-
-                              (async val => {
-                                const $steps = {};
-
-                                $steps["runCode"] = true
-                                  ? (() => {
-                                      const actionArgs = {
-                                        customFunction: async () => {
-                                          return $state.upload.files.forEach(
-                                            i => {
-                                              if (
-                                                i.uid == $state.radioGroup.value
-                                              )
-                                                i.main = true;
-                                              else delete i.main;
-                                            }
-                                          );
-                                        }
-                                      };
-                                      return (({ customFunction }) => {
-                                        return customFunction();
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                                if (
-                                  $steps["runCode"] != null &&
-                                  typeof $steps["runCode"] === "object" &&
-                                  typeof $steps["runCode"].then === "function"
-                                ) {
-                                  $steps["runCode"] = await $steps["runCode"];
-                                }
-                              }).apply(null, eventArgs);
-                            }}
-                            options={
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.freeBox__oqt6
-                                )}
-                                id={"list"}
-                              >
-                                {(_par =>
-                                  !_par
-                                    ? []
-                                    : Array.isArray(_par)
-                                      ? _par
-                                      : [_par])(
-                                  (() => {
-                                    try {
-                                      return $state.upload.files;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return [];
-                                      }
-                                      throw e;
-                                    }
-                                  })()
-                                ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                                  const currentItem = __plasmic_item_0;
-                                  const currentIndex = __plasmic_idx_0;
-                                  return (
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.freeBox__yKxem
-                                      )}
-                                      data-id={(() => {
-                                        try {
-                                          return currentItem.uid;
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return undefined;
-                                          }
-                                          throw e;
-                                        }
-                                      })()}
-                                      key={currentIndex}
-                                      onDragEnd={async event => {
-                                        const $steps = {};
-
-                                        $steps["runCode"] = true
-                                          ? (() => {
-                                              const actionArgs = {
-                                                customFunction: async () => {
-                                                  return (() => {
-                                                    const list =
-                                                      window.document.getElementById(
-                                                        "list"
-                                                      );
-                                                    if (!list) {
-                                                      return;
-                                                    }
-                                                    const children = Array.from(
-                                                      list.children
-                                                    );
-                                                    const files = [
-                                                      ...$state.upload.files
-                                                    ];
-                                                    children.forEach(
-                                                      (child, index) => {
-                                                        const id =
-                                                          child.dataset.id;
-                                                        const fileIndex =
-                                                          files.findIndex(
-                                                            f => f.uid == id
-                                                          );
-                                                        if (fileIndex !== -1) {
-                                                          files[
-                                                            fileIndex
-                                                          ].order = index;
-                                                        }
-                                                      }
-                                                    );
-                                                    return ($state.upload.files =
-                                                      files);
-                                                  })();
-                                                }
-                                              };
-                                              return (({ customFunction }) => {
-                                                return customFunction();
-                                              })?.apply(null, [actionArgs]);
-                                            })()
-                                          : undefined;
-                                        if (
-                                          $steps["runCode"] != null &&
-                                          typeof $steps["runCode"] ===
-                                            "object" &&
-                                          typeof $steps["runCode"].then ===
-                                            "function"
-                                        ) {
-                                          $steps["runCode"] =
-                                            await $steps["runCode"];
-                                        }
-                                      }}
-                                    >
-                                      <PlasmicImg__
-                                        data-plasmic-name={"img"}
-                                        data-plasmic-override={overrides.img}
-                                        alt={""}
-                                        className={classNames(sty.img)}
-                                        displayHeight={"50px"}
-                                        displayMaxHeight={"none"}
-                                        displayMaxWidth={"100%"}
-                                        displayMinHeight={"0"}
-                                        displayMinWidth={"0"}
-                                        displayWidth={"50px"}
-                                        loading={"lazy"}
-                                        src={(() => {
-                                          try {
-                                            return `data:${currentItem.type};base64,${currentItem.contents}`;
-                                          } catch (e) {
-                                            if (
-                                              e instanceof TypeError ||
-                                              e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                            ) {
-                                              return undefined;
-                                            }
-                                            throw e;
-                                          }
-                                        })()}
-                                      />
-
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          projectcss.__wab_text,
-                                          sty.text__yXFed
-                                        )}
-                                      >
-                                        <React.Fragment>
-                                          {currentItem.order ?? currentIndex}
-                                        </React.Fragment>
-                                      </div>
-                                      <Radio
-                                        data-plasmic-name={"radio"}
-                                        data-plasmic-override={overrides.radio}
-                                        className={classNames(
-                                          "__wab_instance",
-                                          sty.radio
-                                        )}
-                                        label={
-                                          <div
-                                            className={classNames(
-                                              projectcss.all,
-                                              projectcss.__wab_text,
-                                              sty.text__ziRco
-                                            )}
-                                          >
-                                            {""}
-                                          </div>
-                                        }
-                                        value={(() => {
-                                          try {
-                                            return currentItem.uid;
-                                          } catch (e) {
-                                            if (
-                                              e instanceof TypeError ||
-                                              e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                            ) {
-                                              return undefined;
-                                            }
-                                            throw e;
-                                          }
-                                        })()}
-                                      />
-
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          sty.freeBox__llFun
-                                        )}
-                                      >
-                                        <Icon58Icon
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.svg__rcRuj
-                                          )}
-                                          onClick={async event => {
-                                            const $steps = {};
-
-                                            $steps["runCode"] = true
-                                              ? (() => {
-                                                  const actionArgs = {
-                                                    customFunction:
-                                                      async () => {
-                                                        return ($state.upload.files =
-                                                          $state.upload.files.filter(
-                                                            i =>
-                                                              i.uid !=
-                                                              currentItem.uid
-                                                          ));
-                                                      }
-                                                  };
-                                                  return (({
-                                                    customFunction
-                                                  }) => {
-                                                    return customFunction();
-                                                  })?.apply(null, [actionArgs]);
-                                                })()
-                                              : undefined;
-                                            if (
-                                              $steps["runCode"] != null &&
-                                              typeof $steps["runCode"] ===
-                                                "object" &&
-                                              typeof $steps["runCode"].then ===
-                                                "function"
-                                            ) {
-                                              $steps["runCode"] =
-                                                await $steps["runCode"];
-                                            }
-                                          }}
-                                          role={"img"}
-                                        />
-
-                                        <Icon60Icon
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.svg___0G1Bv,
-                                            "handle"
-                                          )}
-                                          role={"img"}
-                                        />
-                                      </div>
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            }
-                            showDescription={false}
-                            showLabel={false}
-                            value={generateStateValueProp($state, [
-                              "radioGroup",
-                              "value"
-                            ])}
-                          />
-                        </div>
-                      ) : null}
-                    </div>
+                      }}
+                      uploadFiles={generateStateValueProp($state, [
+                        "imag",
+                        "uploadFiles"
+                      ])}
+                    />
                   </AntdTabItem>
                   <AntdTabItem
                     className={classNames("__wab_instance", sty.tabItem__l7DEp)}
@@ -1939,7 +1457,7 @@ function PlasmicPanel__RenderFunc(props: {
                                     latitude: $state.loaction.lat,
                                     longitude: $state.loaction.lon,
                                     phone: $state.loaction.call2,
-                                    image: $state.upload.files,
+                                    image: $state.imag.uploadFiles,
                                     week: $state.timeWeek.week,
                                     service: $state.addServise.servises
                                   };
@@ -2116,7 +1634,9 @@ function PlasmicPanel__RenderFunc(props: {
         />
 
         <Embed
-          className={classNames("__wab_instance", sty.embedHtml__pB51C)}
+          data-plasmic-name={"embedHtml"}
+          data-plasmic-override={overrides.embedHtml}
+          className={classNames("__wab_instance", sty.embedHtml)}
           code={
             '<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>\r\n'
           }
@@ -2181,16 +1701,14 @@ const PlasmicDescendants = {
     "category",
     "subcategory",
     "tags",
-    "upload",
-    "radioGroup",
-    "img",
-    "radio",
+    "imag",
     "loaction",
     "addServise",
     "timeWeek",
     "button2",
     "submit",
     "button3",
+    "embedHtml",
     "categories"
   ],
   panelMenu: ["panelMenu"],
@@ -2204,10 +1722,7 @@ const PlasmicDescendants = {
     "category",
     "subcategory",
     "tags",
-    "upload",
-    "radioGroup",
-    "img",
-    "radio",
+    "imag",
     "loaction",
     "addServise",
     "timeWeek",
@@ -2222,10 +1737,7 @@ const PlasmicDescendants = {
     "category",
     "subcategory",
     "tags",
-    "upload",
-    "radioGroup",
-    "img",
-    "radio",
+    "imag",
     "loaction",
     "addServise",
     "timeWeek"
@@ -2235,16 +1747,14 @@ const PlasmicDescendants = {
   category: ["category"],
   subcategory: ["subcategory"],
   tags: ["tags"],
-  upload: ["upload"],
-  radioGroup: ["radioGroup", "img", "radio"],
-  img: ["img"],
-  radio: ["radio"],
+  imag: ["imag"],
   loaction: ["loaction"],
   addServise: ["addServise"],
   timeWeek: ["timeWeek"],
   button2: ["button2"],
   submit: ["submit"],
   button3: ["button3"],
+  embedHtml: ["embedHtml"],
   categories: ["categories"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -2262,16 +1772,14 @@ type NodeDefaultElementType = {
   category: typeof Select;
   subcategory: typeof Select;
   tags: typeof AntdSelect;
-  upload: typeof UploadWrapper;
-  radioGroup: typeof RadioGroup;
-  img: typeof PlasmicImg__;
-  radio: typeof Radio;
+  imag: typeof Imag;
   loaction: typeof Loaction;
   addServise: typeof AddServise;
   timeWeek: typeof TimeWeek;
   button2: typeof Button;
   submit: typeof Button;
   button3: typeof Button;
+  embedHtml: typeof Embed;
   categories: typeof ApiRequest;
 };
 
@@ -2347,16 +1855,14 @@ export const PlasmicPanel = Object.assign(
     category: makeNodeComponent("category"),
     subcategory: makeNodeComponent("subcategory"),
     tags: makeNodeComponent("tags"),
-    upload: makeNodeComponent("upload"),
-    radioGroup: makeNodeComponent("radioGroup"),
-    img: makeNodeComponent("img"),
-    radio: makeNodeComponent("radio"),
+    imag: makeNodeComponent("imag"),
     loaction: makeNodeComponent("loaction"),
     addServise: makeNodeComponent("addServise"),
     timeWeek: makeNodeComponent("timeWeek"),
     button2: makeNodeComponent("button2"),
     submit: makeNodeComponent("submit"),
     button3: makeNodeComponent("button3"),
+    embedHtml: makeNodeComponent("embedHtml"),
     categories: makeNodeComponent("categories"),
 
     // Metadata about props expected for PlasmicPanel

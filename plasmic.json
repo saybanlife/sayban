@@ -1775,6 +1775,32 @@
           "cssFilePath": "plasmic/sayban/PlasmicTimeWeek.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "fRNzpZPnnILn",
+          "name": "CenterPage",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicCenterPage.tsx",
+          "importSpec": {
+            "modulePath": "CenterPage.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicCenterPage.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "ScLhJpeVxPbk",
+          "name": "Imag",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicImag.tsx",
+          "importSpec": {
+            "modulePath": "Imag.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicImag.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
