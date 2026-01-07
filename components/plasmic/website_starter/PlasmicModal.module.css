@@ -1,5 +1,6 @@
 .ariaDialogTrigger:global(.__wab_instance) {
   position: relative;
+  width: 500px;
 }
 .button__ydSv:global(.__wab_instance):global(.__wab_instance) {
   display: none;

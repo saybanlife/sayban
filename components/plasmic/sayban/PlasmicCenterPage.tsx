@@ -65,6 +65,8 @@ import MenuSection from "../../MenuSection"; // plasmic-import: PvgERH0q4dKA/com
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
+import Tags from "../../Tags"; // plasmic-import: Lr-0_vYS3Xmt/component
+import Image from "../../Image"; // plasmic-import: NaIiCw46_M0t/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -75,6 +77,7 @@ import sty from "./PlasmicCenterPage.module.css"; // plasmic-import: fRNzpZPnnIL
 
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
+import Icon67Icon from "./icons/PlasmicIcon__Icon67"; // plasmic-import: 6d1G1xHnP3D8/icon
 
 createPlasmicElementProxy;
 
@@ -104,10 +107,11 @@ export type PlasmicCenterPage__OverridesType = {
   select2?: Flex__<typeof Select>;
   menuSection?: Flex__<typeof MenuSection>;
   button?: Flex__<typeof Button>;
-  svg?: Flex__<"svg">;
   select?: Flex__<typeof Select>;
   apiRequest?: Flex__<typeof ApiRequest>;
   img?: Flex__<typeof PlasmicImg__>;
+  tags?: Flex__<typeof Tags>;
+  image?: Flex__<typeof Image>;
 };
 
 export interface DefaultCenterPageProps {
@@ -425,9 +429,7 @@ function PlasmicCenterPage__RenderFunc(props: {
             color={"success"}
             end={
               <Icon56Icon
-                data-plasmic-name={"svg"}
-                data-plasmic-override={overrides.svg}
-                className={classNames(projectcss.all, sty.svg)}
+                className={classNames(projectcss.all, sty.svg__oqSyu)}
                 role={"img"}
               />
             }
@@ -701,27 +703,49 @@ function PlasmicCenterPage__RenderFunc(props: {
                     {"\u0648\u06cc\u0631\u0627\u06cc\u0634"}
                   </div>
                 </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__v0ArU
-                  )}
-                >
-                  <React.Fragment>
-                    {$state.apiRequest.data.result.address}
-                  </React.Fragment>
+                <div className={classNames(projectcss.all, sty.freeBox__bXyVs)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__v0ArU
+                    )}
+                  >
+                    <React.Fragment>{"دسته بندی اصلی : "}</React.Fragment>
+                  </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___9M0Do
+                    )}
+                  >
+                    <React.Fragment>
+                      {$state.apiRequest.data.result.category_name}
+                    </React.Fragment>
+                  </div>
                 </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___9M0Do
-                  )}
-                >
-                  <React.Fragment>
-                    {$state.apiRequest.data.result.phone}
-                  </React.Fragment>
+                <div className={classNames(projectcss.all, sty.freeBox__mDgHr)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__h9VvD
+                    )}
+                  >
+                    <React.Fragment>{"زیر دسته بندی  : "}</React.Fragment>
+                  </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__iG7VU
+                    )}
+                  >
+                    <React.Fragment>
+                      {$state.apiRequest.data.result.subcategory_name}
+                    </React.Fragment>
+                  </div>
                 </div>
               </div>
               <Line
@@ -729,11 +753,66 @@ function PlasmicCenterPage__RenderFunc(props: {
                 size={"small"}
               />
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox___24Voz)} />
+            <div className={classNames(projectcss.all, sty.freeBox___24Voz)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___4Cini
+                )}
+              >
+                {"\u062a\u06af \u0647\u0627"}
+              </div>
+              <Tags
+                data-plasmic-name={"tags"}
+                data-plasmic-override={overrides.tags}
+                className={classNames("__wab_instance", sty.tags)}
+                lable={true}
+              />
+            </div>
           </div>
           <div className={classNames(projectcss.all, sty.freeBox___58887)}>
-            <div className={classNames(projectcss.all, sty.freeBox__vRowu)} />
+            <div className={classNames(projectcss.all, sty.freeBox__vRowu)}>
+              <div className={classNames(projectcss.all, sty.freeBox__vofcQ)}>
+                <Icon67Icon
+                  className={classNames(projectcss.all, sty.svg__qlCms)}
+                  role={"img"}
+                />
 
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__plc6J
+                  )}
+                >
+                  {"\u062a\u0635\u0627\u0648\u06cc\u0631"}
+                </div>
+              </div>
+              <Image
+                data-plasmic-name={"image"}
+                data-plasmic-override={overrides.image}
+                className={classNames("__wab_instance", sty.image)}
+                images={(() => {
+                  try {
+                    return $state.apiRequest.data.result.image;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+              />
+
+              <Line
+                className={classNames("__wab_instance", sty.line___2NqJx)}
+                size={"small"}
+              />
+            </div>
             <div className={classNames(projectcss.all, sty.freeBox__akLiz)} />
 
             <div className={classNames(projectcss.all, sty.freeBox__tBDdX)} />
@@ -750,18 +829,20 @@ const PlasmicDescendants = {
     "select2",
     "menuSection",
     "button",
-    "svg",
     "select",
     "apiRequest",
-    "img"
+    "img",
+    "tags",
+    "image"
   ],
   select2: ["select2", "menuSection"],
   menuSection: ["menuSection"],
-  button: ["button", "svg"],
-  svg: ["svg"],
+  button: ["button"],
   select: ["select"],
-  apiRequest: ["apiRequest", "img"],
-  img: ["img"]
+  apiRequest: ["apiRequest", "img", "tags", "image"],
+  img: ["img"],
+  tags: ["tags"],
+  image: ["image"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -771,10 +852,11 @@ type NodeDefaultElementType = {
   select2: typeof Select;
   menuSection: typeof MenuSection;
   button: typeof Button;
-  svg: "svg";
   select: typeof Select;
   apiRequest: typeof ApiRequest;
   img: typeof PlasmicImg__;
+  tags: typeof Tags;
+  image: typeof Image;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -842,10 +924,11 @@ export const PlasmicCenterPage = Object.assign(
     select2: makeNodeComponent("select2"),
     menuSection: makeNodeComponent("menuSection"),
     button: makeNodeComponent("button"),
-    svg: makeNodeComponent("svg"),
     select: makeNodeComponent("select"),
     apiRequest: makeNodeComponent("apiRequest"),
     img: makeNodeComponent("img"),
+    tags: makeNodeComponent("tags"),
+    image: makeNodeComponent("image"),
 
     // Metadata about props expected for PlasmicCenterPage
     internalVariantProps: PlasmicCenterPage__VariantProps,

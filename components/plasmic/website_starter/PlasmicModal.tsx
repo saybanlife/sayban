@@ -235,6 +235,7 @@ function PlasmicModal__RenderFunc(props: {
           )
         }
       )}
+      defaultOpen={true}
       dialog={
         <BaseModal
           data-plasmic-name={"ariaModal"}

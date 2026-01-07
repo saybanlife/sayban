@@ -70,7 +70,7 @@ import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/compone
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
 import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
-import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
+import Tags from "../../Tags"; // plasmic-import: Lr-0_vYS3Xmt/component
 import Imag from "../../Imag"; // plasmic-import: ScLhJpeVxPbk/component
 import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
 import AddServise from "../../AddServise"; // plasmic-import: GoiLccUqO4vp/component
@@ -110,7 +110,7 @@ export type PlasmicPanel__OverridesType = {
   textAreaInput?: Flex__<typeof TextAreaInput>;
   category?: Flex__<typeof Select>;
   subcategory?: Flex__<typeof Select>;
-  tags?: Flex__<typeof AntdSelect>;
+  tags?: Flex__<typeof Tags>;
   imag?: Flex__<typeof Imag>;
   loaction?: Flex__<typeof Loaction>;
   addServise?: Flex__<typeof AddServise>;
@@ -193,12 +193,6 @@ function PlasmicPanel__RenderFunc(props: {
       },
       {
         path: "subcategory.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "tags.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -992,57 +986,26 @@ function PlasmicPanel__RenderFunc(props: {
                       <div
                         className={classNames(
                           projectcss.all,
-                          sty.freeBox__fIkLl
+                          sty.freeBox__naGo9
                         )}
                       >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__xDGwP
-                          )}
-                        >
-                          {"\u062a\u06af \u0647\u0627"}
-                        </div>
-                        <AntdSelect
+                        <Tags
                           data-plasmic-name={"tags"}
                           data-plasmic-override={overrides.tags}
                           className={classNames("__wab_instance", sty.tags)}
-                          defaultStylesClassName={classNames(
-                            projectcss.root_reset,
-                            projectcss.plasmic_default_styles,
-                            projectcss.plasmic_mixins,
-                            styleTokensClassNames
-                          )}
-                          mode={"tags"}
-                          onChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "tags",
-                              "value"
-                            ]).apply(null, eventArgs);
-                          }}
-                          options={(() => {
+                          tagsitem={(() => {
                             try {
-                              return $state.categories.data.tag.map(i => ({
-                                label: i.name,
-                                value: i.id
-                              }));
+                              return $state.categories.data.tag;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
                                 e?.plasmicType === "PlasmicUndefinedDataError"
                               ) {
-                                return [{ type: "option" }];
+                                return undefined;
                               }
                               throw e;
                             }
                           })()}
-                          placeholder={"Select..."}
-                          popupScopeClassName={sty["tags__popup"]}
-                          value={generateStateValueProp($state, [
-                            "tags",
-                            "value"
-                          ])}
                         />
                       </div>
                     </div>
@@ -1771,7 +1734,7 @@ type NodeDefaultElementType = {
   textAreaInput: typeof TextAreaInput;
   category: typeof Select;
   subcategory: typeof Select;
-  tags: typeof AntdSelect;
+  tags: typeof Tags;
   imag: typeof Imag;
   loaction: typeof Loaction;
   addServise: typeof AddServise;
