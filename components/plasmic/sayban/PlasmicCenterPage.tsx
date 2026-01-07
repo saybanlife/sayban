@@ -59,10 +59,10 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import MenuSection from "../../MenuSection"; // plasmic-import: PvgERH0q4dKA/component
-import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import Tags from "../../Tags"; // plasmic-import: Lr-0_vYS3Xmt/component
@@ -110,8 +110,6 @@ export const PlasmicCenterPage__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicCenterPage__OverridesType = {
   root?: Flex__<"div">;
-  select2?: Flex__<typeof Select>;
-  menuSection?: Flex__<typeof MenuSection>;
   button?: Flex__<typeof Button>;
   select?: Flex__<typeof Select>;
   apiRequest?: Flex__<typeof ApiRequest>;
@@ -194,18 +192,6 @@ function PlasmicCenterPage__RenderFunc(props: {
         path: "button.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "select2.isOpen",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
-      },
-      {
-        path: "select2.value",
-        type: "private",
-        variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
@@ -334,162 +320,8 @@ function PlasmicCenterPage__RenderFunc(props: {
       })()}
     >
       <div className={classNames(projectcss.all, sty.freeBox__yQc6U)}>
-        <div className={classNames(projectcss.all, sty.freeBox___9VrRj)}>
-          <Select
-            data-plasmic-name={"select2"}
-            data-plasmic-override={overrides.select2}
-            className={classNames("__wab_instance", sty.select2)}
-            isOpen={generateStateValueProp($state, ["select2", "isOpen"])}
-            items={
-              <React.Fragment>
-                <MenuItem
-                  className={classNames("__wab_instance", sty.menuItem__vZt21)}
-                  label={"\u0647\u0645\u0647"}
-                  value={(() => {
-                    try {
-                      return null;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
-                    }
-                  })()}
-                />
+        <div className={classNames(projectcss.all, sty.freeBox___9VrRj)} />
 
-                {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                  (() => {
-                    try {
-                      return $state.categpty;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return [];
-                      }
-                      throw e;
-                    }
-                  })()
-                ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                  const categptyItem = __plasmic_item_0;
-                  const categptyIndex = __plasmic_idx_0;
-                  return (
-                    <MenuSection
-                      data-plasmic-name={"menuSection"}
-                      data-plasmic-override={overrides.menuSection}
-                      className={classNames("__wab_instance", sty.menuSection)}
-                      header={
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return categptyItem.name;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "Section Header";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
-                      }
-                      items={(_par =>
-                        !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                        (() => {
-                          try {
-                            return categptyItem.subcategories;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return [];
-                            }
-                            throw e;
-                          }
-                        })()
-                      ).map((__plasmic_item_1, __plasmic_idx_1) => {
-                        const currentItem = __plasmic_item_1;
-                        const currentIndex = __plasmic_idx_1;
-                        return (
-                          <MenuItem
-                            key={currentIndex}
-                            label={(() => {
-                              try {
-                                return currentItem.name;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()}
-                            value={(() => {
-                              try {
-                                return currentItem.id;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()}
-                          />
-                        );
-                      })}
-                      key={categptyIndex}
-                    />
-                  );
-                })}
-              </React.Fragment>
-            }
-            onChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["select2", "value"]).apply(
-                null,
-                eventArgs
-              );
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            onOpenChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["select2", "isOpen"]).apply(
-                null,
-                eventArgs
-              );
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            placeholder={"\u0647\u0645\u0647"}
-            showDescription={false}
-            showLabel={false}
-            type={"soft"}
-            value={generateStateValueProp($state, ["select2", "value"])}
-          />
-        </div>
         <div className={classNames(projectcss.all, sty.freeBox__yx618)}>
           <Button
             data-plasmic-name={"button"}
@@ -1011,8 +843,6 @@ function PlasmicCenterPage__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "select2",
-    "menuSection",
     "button",
     "select",
     "apiRequest",
@@ -1023,8 +853,6 @@ const PlasmicDescendants = {
     "addServise2",
     "timeWeek"
   ],
-  select2: ["select2", "menuSection"],
-  menuSection: ["menuSection"],
   button: ["button"],
   select: ["select"],
   apiRequest: [
@@ -1048,8 +876,6 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  select2: typeof Select;
-  menuSection: typeof MenuSection;
   button: typeof Button;
   select: typeof Select;
   apiRequest: typeof ApiRequest;
@@ -1123,8 +949,6 @@ export const PlasmicCenterPage = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    select2: makeNodeComponent("select2"),
-    menuSection: makeNodeComponent("menuSection"),
     button: makeNodeComponent("button"),
     select: makeNodeComponent("select"),
     apiRequest: makeNodeComponent("apiRequest"),
