@@ -2213,7 +2213,9 @@ drawRating(${$state.rate});
           throw e;
         }
       })() ? (
-        <section className={classNames(projectcss.all, sty.section__novko)}>
+        <section
+          className={classNames(projectcss.all, sty.section__novko, "page")}
+        >
           <div
             className={classNames(
               projectcss.all,
@@ -2402,6 +2404,11 @@ drawRating(${$state.rate});
           data-plasmic-name={"holidays"}
           data-plasmic-override={overrides.holidays}
           className={classNames("__wab_instance", sty.holidays)}
+          config={{
+            headers: {
+              Authorization: `Bearer ${$props.token}`
+            }
+          }}
           errorDisplay={null}
           loadingDisplay={
             <div className={classNames(projectcss.all, sty.freeBox__k6H4)}>

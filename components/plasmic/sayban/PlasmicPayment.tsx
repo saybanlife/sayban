@@ -1086,7 +1086,7 @@ function PlasmicPayment__RenderFunc(props: {
           <section
             data-plasmic-name={"section"}
             data-plasmic-override={overrides.section}
-            className={classNames(projectcss.all, sty.section)}
+            className={classNames(projectcss.all, sty.section, "page")}
           >
             <div
               className={classNames(

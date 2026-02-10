@@ -43,7 +43,6 @@
   grid-column: 4;
 }
 .loading {
-  display: flex;
   flex-direction: column;
   position: fixed;
   width: auto;
@@ -61,6 +60,7 @@
   transition-property: all;
   transition-duration: 1s;
   transition-timing-function: ease-in-out;
+  display: none;
   -webkit-transition-property: all;
   -webkit-transition-timing-function: ease-in-out;
   -webkit-transition-duration: 1s;
@@ -78,6 +78,7 @@
   padding-left: 0px;
   row-gap: var(--token-73iLa06AE6f4);
   column-gap: 0px;
+  display: flex;
 }
 .loadingpage_code {
   position: fixed;
@@ -91,6 +92,7 @@
   padding-left: 0px;
   row-gap: var(--token-73iLa06AE6f4);
   column-gap: 0px;
+  display: flex;
 }
 .loadingpage_name {
   position: fixed;
@@ -104,6 +106,7 @@
   padding-left: 0px;
   row-gap: var(--token-73iLa06AE6f4);
   column-gap: 0px;
+  display: flex;
 }
 .freeBox__pRd {
   display: flex;

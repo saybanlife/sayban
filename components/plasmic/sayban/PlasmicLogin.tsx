@@ -1739,6 +1739,7 @@ function PlasmicLogin__RenderFunc(props: {
                 }
                 readOnly={false}
                 size={"langh"}
+                type={"soft"}
                 value={generateStateValueProp($state, ["code", "value"])}
               />
 
@@ -1850,6 +1851,7 @@ function PlasmicLogin__RenderFunc(props: {
                   }}
                   placeholder={"\u062c\u0646\u0633\u06cc\u062a"}
                   showLabel={false}
+                  type={"soft"}
                   value={generateStateValueProp($state, [
                     "selectGender",
                     "value"
@@ -1961,6 +1963,7 @@ function PlasmicLogin__RenderFunc(props: {
                   }}
                   placeholder={"\u062a\u0627\u0647\u0644"}
                   showLabel={false}
+                  type={"soft"}
                   value={generateStateValueProp($state, [
                     "selectMarital",
                     "value"

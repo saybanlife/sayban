@@ -113,7 +113,7 @@ export type PlasmicHomepage__OverridesType = {
   categories?: Flex__<typeof Categories>;
   subcategories?: Flex__<typeof Subcategories>;
   center?: Flex__<typeof Center>;
-  apiRequest?: Flex__<typeof ApiRequest>;
+  categories2?: Flex__<typeof ApiRequest>;
   home?: Flex__<typeof Home>;
   payment?: Flex__<typeof Payment>;
   search?: Flex__<typeof ApiRequest>;
@@ -177,19 +177,19 @@ function PlasmicHomepage__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "apiRequest.data",
+        path: "categories2.data",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "apiRequest.error",
+        path: "categories2.error",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "apiRequest.loading",
+        path: "categories2.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -815,7 +815,7 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-override={overrides.categories}
             categories={(() => {
               try {
-                return $state.apiRequest?.data?.result?.find(
+                return $state.categories2?.data?.result?.find(
                   i => i.slug == ($state.slug[0] || "")
                 );
               } catch (e) {
@@ -1263,21 +1263,25 @@ function PlasmicHomepage__RenderFunc(props: {
           />
 
           <ApiRequest
-            data-plasmic-name={"apiRequest"}
-            data-plasmic-override={overrides.apiRequest}
-            className={classNames("__wab_instance", sty.apiRequest, {
-              [sty.apiRequestpage_categories]: hasVariant(
+            data-plasmic-name={"categories2"}
+            data-plasmic-override={overrides.categories2}
+            className={classNames("__wab_instance", sty.categories2, {
+              [sty.categories2page_categories]: hasVariant(
                 $state,
                 "page",
                 "categories"
               ),
-              [sty.apiRequestpage_center]: hasVariant($state, "page", "center"),
-              [sty.apiRequestpage_payment]: hasVariant(
+              [sty.categories2page_center]: hasVariant(
+                $state,
+                "page",
+                "center"
+              ),
+              [sty.categories2page_payment]: hasVariant(
                 $state,
                 "page",
                 "payment"
               ),
-              [sty.apiRequestpage_subcategories]: hasVariant(
+              [sty.categories2page_subcategories]: hasVariant(
                 $state,
                 "page",
                 "subcategories"
@@ -1347,19 +1351,19 @@ function PlasmicHomepage__RenderFunc(props: {
             }
             method={"GET"}
             onError={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+              generateStateOnChangeProp($state, ["categories2", "error"]).apply(
                 null,
                 eventArgs
               );
             }}
             onLoading={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
-                "apiRequest",
+                "categories2",
                 "loading"
               ]).apply(null, eventArgs);
             }}
             onSuccess={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+              generateStateOnChangeProp($state, ["categories2", "data"]).apply(
                 null,
                 eventArgs
               );
@@ -1385,7 +1389,7 @@ function PlasmicHomepage__RenderFunc(props: {
               categori={generateStateValueProp($state, ["home", "categori"])}
               categories={(() => {
                 try {
-                  return $state.apiRequest.data.result;
+                  return $state.categories2.data.result;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -1722,7 +1726,7 @@ const PlasmicDescendants = {
     "categories",
     "subcategories",
     "center",
-    "apiRequest",
+    "categories2",
     "home",
     "payment",
     "search"
@@ -1736,7 +1740,7 @@ const PlasmicDescendants = {
   categories: ["categories"],
   subcategories: ["subcategories"],
   center: ["center"],
-  apiRequest: ["apiRequest", "home"],
+  categories2: ["categories2", "home"],
   home: ["home"],
   payment: ["payment"],
   search: ["search"]
@@ -1755,7 +1759,7 @@ type NodeDefaultElementType = {
   categories: typeof Categories;
   subcategories: typeof Subcategories;
   center: typeof Center;
-  apiRequest: typeof ApiRequest;
+  categories2: typeof ApiRequest;
   home: typeof Home;
   payment: typeof Payment;
   search: typeof ApiRequest;
@@ -1832,7 +1836,7 @@ export const PlasmicHomepage = Object.assign(
     categories: makeNodeComponent("categories"),
     subcategories: makeNodeComponent("subcategories"),
     center: makeNodeComponent("center"),
-    apiRequest: makeNodeComponent("apiRequest"),
+    categories2: makeNodeComponent("categories2"),
     home: makeNodeComponent("home"),
     payment: makeNodeComponent("payment"),
     search: makeNodeComponent("search"),

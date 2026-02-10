@@ -191,7 +191,7 @@ function PlasmicFilter__RenderFunc(props: {
                 e instanceof TypeError ||
                 e?.plasmicType === "PlasmicUndefinedDataError"
               ) {
-                return undefined;
+                return false;
               }
               throw e;
             }
@@ -311,7 +311,7 @@ function PlasmicFilter__RenderFunc(props: {
             e instanceof TypeError ||
             e?.plasmicType === "PlasmicUndefinedDataError"
           ) {
-            return undefined;
+            return false;
           }
           throw e;
         }
