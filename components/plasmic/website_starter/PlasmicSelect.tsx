@@ -301,6 +301,7 @@ function PlasmicSelect__RenderFunc(props: {
         data-plasmic-override={overrides.ariaButton}
         className={classNames("__wab_instance", sty.ariaButton, {
           [sty.ariaButtontype_line]: hasVariant($state, "type", "line"),
+          [sty.ariaButtontype_plain]: hasVariant($state, "type", "plain"),
           [sty.ariaButtontype_soft]: hasVariant($state, "type", "soft")
         })}
       >
