@@ -360,7 +360,7 @@ function PlasmicPanel__RenderFunc(props: {
                   e instanceof TypeError ||
                   e?.plasmicType === "PlasmicUndefinedDataError"
                 ) {
-                  return [];
+                  return "centerList";
                 }
                 throw e;
               }

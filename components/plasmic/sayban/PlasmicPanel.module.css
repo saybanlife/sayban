@@ -24,7 +24,6 @@
   grid-column: 4;
 }
 .freeBox__xVUwR {
-  display: flex;
   flex-direction: row;
   position: relative;
   align-items: stretch;
@@ -34,6 +33,7 @@
   max-width: 100%;
   grid-column-start: 1 !important;
   grid-column-end: -1 !important;
+  display: none;
   padding: 0px;
 }
 .panelMenu:global(.__wab_instance) {

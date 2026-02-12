@@ -1681,6 +1681,7 @@ function PlasmicCenter__RenderFunc(props: {
                             throw e;
                           }
                         })()}
+                        legacyBehavior={false}
                         platform={"nextjs"}
                         target={"_blank"}
                       />

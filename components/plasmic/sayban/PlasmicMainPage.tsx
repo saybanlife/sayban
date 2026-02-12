@@ -113,7 +113,7 @@ export type PlasmicMainPage__OverridesType = {
   textInput?: Flex__<typeof TextInput>;
   select3?: Flex__<typeof Select>;
   table?: Flex__<typeof RichTable>;
-  apiRequest?: Flex__<typeof ApiRequest>;
+  centers?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultMainPageProps {
@@ -216,19 +216,19 @@ function PlasmicMainPage__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => "item2"
       },
       {
-        path: "apiRequest.data",
+        path: "centers.data",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "apiRequest.error",
+        path: "centers.error",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "apiRequest.loading",
+        path: "centers.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -628,7 +628,7 @@ function PlasmicMainPage__RenderFunc(props: {
               className: classNames("__wab_instance", sty.table),
               data: (() => {
                 try {
-                  return $state.apiRequest.data.result;
+                  return $state.centers.data.result;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -763,27 +763,27 @@ function PlasmicMainPage__RenderFunc(props: {
             );
           })()}
           <ApiRequest
-            data-plasmic-name={"apiRequest"}
-            data-plasmic-override={overrides.apiRequest}
+            data-plasmic-name={"centers"}
+            data-plasmic-override={overrides.centers}
             children={null}
-            className={classNames("__wab_instance", sty.apiRequest)}
+            className={classNames("__wab_instance", sty.centers)}
             errorDisplay={null}
             loadingDisplay={null}
             method={"GET"}
             onError={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+              generateStateOnChangeProp($state, ["centers", "error"]).apply(
                 null,
                 eventArgs
               );
             }}
             onLoading={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "apiRequest",
-                "loading"
-              ]).apply(null, eventArgs);
+              generateStateOnChangeProp($state, ["centers", "loading"]).apply(
+                null,
+                eventArgs
+              );
             }}
             onSuccess={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+              generateStateOnChangeProp($state, ["centers", "data"]).apply(
                 null,
                 eventArgs
               );
@@ -906,7 +906,7 @@ const PlasmicDescendants = {
     "textInput",
     "select3",
     "table",
-    "apiRequest"
+    "centers"
   ],
   select2: ["select2", "menuSection"],
   menuSection: ["menuSection"],
@@ -916,7 +916,7 @@ const PlasmicDescendants = {
   textInput: ["textInput"],
   select3: ["select3"],
   table: ["table"],
-  apiRequest: ["apiRequest"]
+  centers: ["centers"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -931,7 +931,7 @@ type NodeDefaultElementType = {
   textInput: typeof TextInput;
   select3: typeof Select;
   table: typeof RichTable;
-  apiRequest: typeof ApiRequest;
+  centers: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1004,7 +1004,7 @@ export const PlasmicMainPage = Object.assign(
     textInput: makeNodeComponent("textInput"),
     select3: makeNodeComponent("select3"),
     table: makeNodeComponent("table"),
-    apiRequest: makeNodeComponent("apiRequest"),
+    centers: makeNodeComponent("centers"),
 
     // Metadata about props expected for PlasmicMainPage
     internalVariantProps: PlasmicMainPage__VariantProps,

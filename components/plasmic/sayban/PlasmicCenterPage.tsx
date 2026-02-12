@@ -286,6 +286,12 @@ function PlasmicCenterPage__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "tags.select3Value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -746,6 +752,24 @@ function PlasmicCenterPage__RenderFunc(props: {
                 data-plasmic-override={overrides.tags}
                 className={classNames("__wab_instance", sty.tags)}
                 lable={true}
+                onSelect3ValueChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "tags",
+                    "select3Value"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                select3Value={generateStateValueProp($state, [
+                  "tags",
+                  "select3Value"
+                ])}
                 tagsitem={args.tagsitem}
               />
             </div>

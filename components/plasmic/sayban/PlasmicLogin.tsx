@@ -667,6 +667,7 @@ function PlasmicLogin__RenderFunc(props: {
               autoFocus={false}
               className={classNames("__wab_instance", sty.mobile, {
                 [sty.mobilepage_code]: hasVariant($state, "page", "code"),
+                [sty.mobilepage_loading]: hasVariant($state, "page", "loading"),
                 [sty.mobilepage_mobile]: hasVariant($state, "page", "mobile"),
                 [sty.mobilepage_name]: hasVariant($state, "page", "name")
               })}
@@ -1739,7 +1740,7 @@ function PlasmicLogin__RenderFunc(props: {
                 }
                 readOnly={false}
                 size={"langh"}
-                type={"soft"}
+                type={"plain"}
                 value={generateStateValueProp($state, ["code", "value"])}
               />
 
@@ -1851,7 +1852,7 @@ function PlasmicLogin__RenderFunc(props: {
                   }}
                   placeholder={"\u062c\u0646\u0633\u06cc\u062a"}
                   showLabel={false}
-                  type={"soft"}
+                  type={"plain"}
                   value={generateStateValueProp($state, [
                     "selectGender",
                     "value"
@@ -1963,7 +1964,7 @@ function PlasmicLogin__RenderFunc(props: {
                   }}
                   placeholder={"\u062a\u0627\u0647\u0644"}
                   showLabel={false}
-                  type={"soft"}
+                  type={"plain"}
                   value={generateStateValueProp($state, [
                     "selectMarital",
                     "value"

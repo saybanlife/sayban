@@ -217,7 +217,8 @@ function PlasmicMain__RenderFunc(props: {
         path: "addCenter.isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          hasVariant($state, "page", "centerList") ? true : false
       },
       {
         path: "button2.loading",
@@ -385,6 +386,12 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $ctx }) => []
+      },
+      {
+        path: "tags.select3Value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -763,7 +770,7 @@ function PlasmicMain__RenderFunc(props: {
                               })()}
                               value={(() => {
                                 try {
-                                  return currentItem.id;
+                                  return currentItem.category_id;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -845,7 +852,7 @@ function PlasmicMain__RenderFunc(props: {
                           (() => {
                             try {
                               return $state.categories.data.result.find(
-                                i => i.id == $state.category.value
+                                i => i.category_id == $state.category.value
                               ).subcategories;
                             } catch (e) {
                               if (
@@ -941,6 +948,24 @@ function PlasmicMain__RenderFunc(props: {
                         data-plasmic-name={"tags"}
                         data-plasmic-override={overrides.tags}
                         className={classNames("__wab_instance", sty.tags)}
+                        onSelect3ValueChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "tags",
+                            "select3Value"
+                          ]).apply(null, eventArgs);
+
+                          if (
+                            eventArgs.length > 1 &&
+                            eventArgs[1] &&
+                            eventArgs[1]._plasmic_state_init_
+                          ) {
+                            return;
+                          }
+                        }}
+                        select3Value={generateStateValueProp($state, [
+                          "tags",
+                          "select3Value"
+                        ])}
                         tagsitem={(() => {
                           try {
                             return $state.categories.data.tag;
@@ -1217,7 +1242,13 @@ function PlasmicMain__RenderFunc(props: {
               <Button
                 data-plasmic-name={"button2"}
                 data-plasmic-override={overrides.button2}
-                className={classNames("__wab_instance", sty.button2)}
+                className={classNames("__wab_instance", sty.button2, {
+                  [sty.button2page_centerList]: hasVariant(
+                    $state,
+                    "page",
+                    "centerList"
+                  )
+                })}
                 color={"success"}
                 label={
                   <div
@@ -1345,7 +1376,7 @@ function PlasmicMain__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://sayban.darkube.app/webhook-test/panel/center/add",
+                            "https://sayban.darkube.app/webhook/panel/center/add",
                             undefined,
                             (() => {
                               try {
@@ -1361,6 +1392,7 @@ function PlasmicMain__RenderFunc(props: {
                                   phone: $state.loaction.call2,
                                   image: $state.imag.uploadFiles,
                                   week: $state.timeWeek.week,
+                                  tag: $state.tags.select3Value,
                                   service: $state.addServise.servises
                                 };
                               } catch (e) {

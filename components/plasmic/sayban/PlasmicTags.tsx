@@ -79,9 +79,17 @@ export type PlasmicTags__VariantsArgs = {
 type VariantPropType = keyof PlasmicTags__VariantsArgs;
 export const PlasmicTags__VariantProps = new Array<VariantPropType>("lable");
 
-export type PlasmicTags__ArgsType = { tagsitem?: any };
+export type PlasmicTags__ArgsType = {
+  select3Value?: string;
+  onSelect3ValueChange?: (val: string) => void;
+  tagsitem?: any;
+};
 type ArgPropType = keyof PlasmicTags__ArgsType;
-export const PlasmicTags__ArgProps = new Array<ArgPropType>("tagsitem");
+export const PlasmicTags__ArgProps = new Array<ArgPropType>(
+  "select3Value",
+  "onSelect3ValueChange",
+  "tagsitem"
+);
 
 export type PlasmicTags__OverridesType = {
   root?: Flex__<"div">;
@@ -90,6 +98,8 @@ export type PlasmicTags__OverridesType = {
 };
 
 export interface DefaultTagsProps {
+  select3Value?: string;
+  onSelect3ValueChange?: (val: string) => void;
   tagsitem?: any;
   lable?: SingleBooleanChoiceArg<"lable">;
   className?: string;
@@ -138,9 +148,11 @@ function PlasmicTags__RenderFunc(props: {
     () => [
       {
         path: "tags.value",
-        type: "private",
+        type: "writable",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+
+        valueProp: "select3Value",
+        onChangeProp: "onSelect3ValueChange"
       },
       {
         path: "lable",

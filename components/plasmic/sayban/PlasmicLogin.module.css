@@ -372,6 +372,9 @@
     flex-shrink: 0;
   }
 }
+.mobilepage_loading:global(.__wab_instance):global(.__wab_instance) {
+  flex-shrink: 0;
+}
 .mobilepage_mobile:global(.__wab_instance):global(.__wab_instance) {
   flex-shrink: 0;
 }
