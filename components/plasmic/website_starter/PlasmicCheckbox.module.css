@@ -73,6 +73,9 @@
   flex-shrink: 0;
   display: none;
 }
+.menuIcondir_ltr:global(.__wab_instance) {
+  flex-shrink: 0;
+}
 .freeBox__u9IWo {
   display: flex;
   flex-direction: column;

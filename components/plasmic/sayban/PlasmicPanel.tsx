@@ -61,9 +61,7 @@ import {
 
 import PanelMenu from "../../PanelMenu"; // plasmic-import: H67gJZiYVEqw/component
 import Main from "../../Main"; // plasmic-import: FYuKeNpu5zZ7/component
-import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
-import Hide from "../../Hide"; // plasmic-import: 6tyxrSjs9tps/component
-import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import LoginPanel from "../../LoginPanel"; // plasmic-import: hZEy0JIfmlF9/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -71,9 +69,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicPanel.module.css"; // plasmic-import: UG_cnsXdRiaM/css
-
-import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
-import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 
 import __lib_md5 from "md5";
 
@@ -116,10 +111,7 @@ export type PlasmicPanel__OverridesType = {
   root?: Flex__<"div">;
   panelMenu?: Flex__<typeof PanelMenu>;
   main?: Flex__<typeof Main>;
-  userName?: Flex__<typeof TextInput>;
-  password?: Flex__<typeof TextInput>;
-  hide?: Flex__<typeof Hide>;
-  button?: Flex__<typeof Button>;
+  loginPanel?: Flex__<typeof LoginPanel>;
 };
 
 export interface DefaultPanelProps {}
@@ -165,8 +157,6 @@ function PlasmicPanel__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const $globalActions = useGlobalActions?.();
-
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -174,36 +164,6 @@ function PlasmicPanel__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => "dashboard"
-      },
-      {
-        path: "userName.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "password.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "button.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "hide.show",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "hide.type",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "password"
       }
     ],
     [$props, $ctx, $refs]
@@ -456,342 +416,11 @@ function PlasmicPanel__RenderFunc(props: {
             throw e;
           }
         })() ? (
-          <section className={classNames(projectcss.all, sty.section__mrUr6)}>
-            <div className={classNames(projectcss.all, sty.freeBox__lFqh)}>
-              <div className={classNames(projectcss.all, sty.freeBox__ru5Ln)}>
-                <div className={classNames(projectcss.all, sty.freeBox__tavdF)}>
-                  <PlasmicImg__
-                    alt={""}
-                    className={classNames(sty.img___0Qcmh)}
-                    displayHeight={"3rem"}
-                    displayMaxHeight={"none"}
-                    displayMaxWidth={"100%"}
-                    displayMinHeight={"0"}
-                    displayMinWidth={"0"}
-                    displayWidth={"3rem"}
-                    loading={"lazy"}
-                    src={{
-                      src: "/plasmic/website_starter/images/untitledPicturePng.png",
-                      fullWidth: 3629,
-                      fullHeight: 2887,
-                      aspectRatio: undefined
-                    }}
-                  />
-
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__t3Pug
-                    )}
-                  >
-                    {"\u0633\u0627\u06cc\u0628\u0627\u0646"}
-                  </div>
-                </div>
-                <section
-                  className={classNames(projectcss.all, sty.section__tnZhc)}
-                >
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      sty.freeBox__zFb11,
-                      "dark"
-                    )}
-                  >
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__npjjp)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text___0Hyaz
-                        )}
-                      >
-                        {
-                          "\u0648\u0631\u0648\u062f \u0628\u0647 \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc"
-                        }
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text___9SyY
-                        )}
-                      >
-                        {
-                          "\u0628\u0647 \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc \u062e\u0648\u062f \u0648\u0627\u0631\u062f \u0634\u0648\u06cc\u062f."
-                        }
-                      </div>
-                    </div>
-                    <TextInput
-                      data-plasmic-name={"userName"}
-                      data-plasmic-override={overrides.userName}
-                      className={classNames("__wab_instance", sty.userName)}
-                      onChange={async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "userName",
-                          "value"
-                        ]).apply(null, eventArgs);
-
-                        if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
-                        ) {
-                          return;
-                        }
-                      }}
-                      placeholder={
-                        "\u0646\u0627\u0645 \u06a9\u0627\u0631\u0628\u0631\u06cc"
-                      }
-                      size={"langh"}
-                      type={"soft"}
-                      value={generateStateValueProp($state, [
-                        "userName",
-                        "value"
-                      ])}
-                    />
-
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___4UnaS
-                      )}
-                    >
-                      <TextInput
-                        data-plasmic-name={"password"}
-                        data-plasmic-override={overrides.password}
-                        className={classNames("__wab_instance", sty.password)}
-                        inputType={(() => {
-                          try {
-                            return $state.hide.type;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return "password";
-                            }
-                            throw e;
-                          }
-                        })()}
-                        onChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "password",
-                            "value"
-                          ]).apply(null, eventArgs);
-
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        }}
-                        placeholder={
-                          "\u0631\u0645\u0632 \u0639\u0628\u0648\u0631"
-                        }
-                        size={"langh"}
-                        type={"soft"}
-                        value={generateStateValueProp($state, [
-                          "password",
-                          "value"
-                        ])}
-                      />
-
-                      <Hide
-                        data-plasmic-name={"hide"}
-                        data-plasmic-override={overrides.hide}
-                        className={classNames("__wab_instance", sty.hide)}
-                        onClick={async event => {
-                          const $steps = {};
-
-                          $steps["runCode"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  customFunction: async () => {
-                                    return (() => {
-                                      $state.hide.show = !$state.hide.show;
-                                      return ($state.hide.type = "text");
-                                    })();
-                                  }
-                                };
-                                return (({ customFunction }) => {
-                                  return customFunction();
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["runCode"] != null &&
-                            typeof $steps["runCode"] === "object" &&
-                            typeof $steps["runCode"].then === "function"
-                          ) {
-                            $steps["runCode"] = await $steps["runCode"];
-                          }
-
-                          $steps["invokeGlobalAction"] = true
-                            ? (() => {
-                                const actionArgs = { args: [3000] };
-                                return $globalActions["Fragment.wait"]?.apply(
-                                  null,
-                                  [...actionArgs.args]
-                                );
-                              })()
-                            : undefined;
-                          if (
-                            $steps["invokeGlobalAction"] != null &&
-                            typeof $steps["invokeGlobalAction"] === "object" &&
-                            typeof $steps["invokeGlobalAction"].then ===
-                              "function"
-                          ) {
-                            $steps["invokeGlobalAction"] =
-                              await $steps["invokeGlobalAction"];
-                          }
-
-                          $steps["runCode2"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  customFunction: async () => {
-                                    return (() => {
-                                      $state.hide.show = !$state.hide.show;
-                                      return ($state.hide.type = "password");
-                                    })();
-                                  }
-                                };
-                                return (({ customFunction }) => {
-                                  return customFunction();
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["runCode2"] != null &&
-                            typeof $steps["runCode2"] === "object" &&
-                            typeof $steps["runCode2"].then === "function"
-                          ) {
-                            $steps["runCode2"] = await $steps["runCode2"];
-                          }
-                        }}
-                        onShowChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "hide",
-                            "show"
-                          ]).apply(null, eventArgs);
-
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        }}
-                        onTypeChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "hide",
-                            "type"
-                          ]).apply(null, eventArgs);
-
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        }}
-                        show={generateStateValueProp($state, ["hide", "show"])}
-                        type={generateStateValueProp($state, ["hide", "type"])}
-                      />
-                    </div>
-                    <Button
-                      data-plasmic-name={"button"}
-                      data-plasmic-override={overrides.button}
-                      className={classNames("__wab_instance", sty.button)}
-                      label={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text___6Oh
-                          )}
-                        >
-                          {"\u0648\u0631\u0648\u062f"}
-                        </div>
-                      }
-                      loading={generateStateValueProp($state, [
-                        "button",
-                        "loading"
-                      ])}
-                      onClick={async event => {
-                        const $steps = {};
-
-                        $steps["goToPanel"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                destination: `/panel/${"center-list"}`
-                              };
-                              return (({ destination }) => {
-                                if (
-                                  typeof destination === "string" &&
-                                  destination.startsWith("#")
-                                ) {
-                                  document
-                                    .getElementById(destination.substr(1))
-                                    .scrollIntoView({ behavior: "smooth" });
-                                } else {
-                                  __nextRouter?.push(destination);
-                                }
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["goToPanel"] != null &&
-                          typeof $steps["goToPanel"] === "object" &&
-                          typeof $steps["goToPanel"].then === "function"
-                        ) {
-                          $steps["goToPanel"] = await $steps["goToPanel"];
-                        }
-                      }}
-                      onLoadingChange={async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "button",
-                          "loading"
-                        ]).apply(null, eventArgs);
-
-                        if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
-                        ) {
-                          return;
-                        }
-                      }}
-                      size={"extraLarge"}
-                    />
-                  </div>
-                </section>
-              </div>
-              <PlasmicImg__
-                alt={""}
-                className={classNames(sty.img___4CmNs)}
-                displayHeight={"auto"}
-                displayMaxHeight={"none"}
-                displayMaxWidth={"100%"}
-                displayMinHeight={"0"}
-                displayMinWidth={"0"}
-                displayWidth={"100%"}
-                loading={"lazy"}
-                src={{
-                  src: "/plasmic/sayban/images/image22.svg",
-                  fullWidth: 353.82,
-                  fullHeight: 246.38,
-                  aspectRatio: undefined
-                }}
-              />
-            </div>
-          </section>
+          <LoginPanel
+            data-plasmic-name={"loginPanel"}
+            data-plasmic-override={overrides.loginPanel}
+            className={classNames("__wab_instance", sty.loginPanel)}
+          />
         ) : null}
       </div>
     </React.Fragment>
@@ -799,13 +428,10 @@ function PlasmicPanel__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "panelMenu", "main", "userName", "password", "hide", "button"],
+  root: ["root", "panelMenu", "main", "loginPanel"],
   panelMenu: ["panelMenu"],
   main: ["main"],
-  userName: ["userName"],
-  password: ["password"],
-  hide: ["hide"],
-  button: ["button"]
+  loginPanel: ["loginPanel"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -814,10 +440,7 @@ type NodeDefaultElementType = {
   root: "div";
   panelMenu: typeof PanelMenu;
   main: typeof Main;
-  userName: typeof TextInput;
-  password: typeof TextInput;
-  hide: typeof Hide;
-  button: typeof Button;
+  loginPanel: typeof LoginPanel;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -884,10 +507,7 @@ export const PlasmicPanel = Object.assign(
     // Helper components rendering sub-elements
     panelMenu: makeNodeComponent("panelMenu"),
     main: makeNodeComponent("main"),
-    userName: makeNodeComponent("userName"),
-    password: makeNodeComponent("password"),
-    hide: makeNodeComponent("hide"),
-    button: makeNodeComponent("button"),
+    loginPanel: makeNodeComponent("loginPanel"),
 
     // Metadata about props expected for PlasmicPanel
     internalVariantProps: PlasmicPanel__VariantProps,

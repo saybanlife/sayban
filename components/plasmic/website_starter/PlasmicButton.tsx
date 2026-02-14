@@ -81,7 +81,8 @@ export type PlasmicButton__VariantMembers = {
     | "success"
     | "warning"
     | "errorDestructive"
-    | "second";
+    | "second"
+    | "clear";
   type: "soft" | "bordered";
   size: "extraSmall" | "small" | "large" | "extraLarge";
   iconStart: "iconStart";
@@ -92,7 +93,13 @@ export type PlasmicButton__VariantMembers = {
 };
 export type PlasmicButton__VariantsArgs = {
   color?: SingleChoiceArg<
-    "neutral" | "muted" | "success" | "warning" | "errorDestructive" | "second"
+    | "neutral"
+    | "muted"
+    | "success"
+    | "warning"
+    | "errorDestructive"
+    | "second"
+    | "clear"
   >;
   type?: SingleChoiceArg<"soft" | "bordered">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -163,7 +170,13 @@ export interface DefaultButtonProps {
   label?: React.ReactNode;
   end?: React.ReactNode;
   color?: SingleChoiceArg<
-    "neutral" | "muted" | "success" | "warning" | "errorDestructive" | "second"
+    | "neutral"
+    | "muted"
+    | "success"
+    | "warning"
+    | "errorDestructive"
+    | "second"
+    | "clear"
   >;
   type?: SingleChoiceArg<"soft" | "bordered">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -318,6 +331,7 @@ function PlasmicButton__RenderFunc(props: {
         styleTokensClassNames,
         sty.root,
         {
+          [sty.rootcolor_clear]: hasVariant($state, "color", "clear"),
           [sty.rootcolor_errorDestructive]: hasVariant(
             $state,
             "color",

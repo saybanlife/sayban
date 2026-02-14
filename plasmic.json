@@ -1867,6 +1867,45 @@
           "cssFilePath": "plasmic/sayban/PlasmicHide.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "jHhGioxaI9lI",
+          "name": "Check",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicCheck.tsx",
+          "importSpec": {
+            "modulePath": "Check.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicCheck.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "hZEy0JIfmlF9",
+          "name": "LoginPanel",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicLoginPanel.tsx",
+          "importSpec": {
+            "modulePath": "LoginPanel.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicLoginPanel.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "e-nYBMaX6lLd",
+          "name": "Login2",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicLogin2.tsx",
+          "importSpec": {
+            "modulePath": "Login2.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicLogin2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
