@@ -153,13 +153,13 @@ function PlasmicToolsItem__RenderFunc(props: {
         path: "back",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.back
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.back
       },
       {
         path: "top",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.top
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.top
       }
     ],
     [$props, $ctx, $refs]
@@ -168,6 +168,7 @@ function PlasmicToolsItem__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

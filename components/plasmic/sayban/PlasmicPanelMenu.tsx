@@ -156,7 +156,7 @@ function PlasmicPanelMenu__RenderFunc(props: {
         path: "subItemSelect",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -165,6 +165,7 @@ function PlasmicPanelMenu__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

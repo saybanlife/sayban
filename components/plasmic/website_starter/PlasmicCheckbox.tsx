@@ -189,13 +189,13 @@ function PlasmicCheckbox__RenderFunc(props: {
         path: "shape",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.shape
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.shape
       },
       {
         path: "tims",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.tims
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.tims
       }
     ],
     [$props, $ctx, $refs]
@@ -204,6 +204,7 @@ function PlasmicCheckbox__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

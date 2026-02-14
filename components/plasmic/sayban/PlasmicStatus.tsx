@@ -143,13 +143,13 @@ function PlasmicStatus__RenderFunc(props: {
         path: "ok",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.ok
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.ok
       },
       {
         path: "nok",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.nok
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.nok
       }
     ],
     [$props, $ctx, $refs]
@@ -158,6 +158,7 @@ function PlasmicStatus__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

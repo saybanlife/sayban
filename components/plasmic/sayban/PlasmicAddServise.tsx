@@ -174,7 +174,7 @@ function PlasmicAddServise__RenderFunc(props: {
         path: "button5.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "collapse[].open",
@@ -223,6 +223,7 @@ function PlasmicAddServise__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -361,7 +362,7 @@ function PlasmicAddServise__RenderFunc(props: {
             [
               {
                 name: "collapse[].open",
-                initFunc: ({ $props, $state, $queries }) => false
+                initFunc: ({ $props, $state, $queries, $q }) => false
               }
             ],
             [__plasmic_idx_0]
@@ -440,7 +441,8 @@ function PlasmicAddServise__RenderFunc(props: {
                       [
                         {
                           name: "name[].value",
-                          initFunc: ({ $props, $state, $queries }) => undefined
+                          initFunc: ({ $props, $state, $queries, $q }) =>
+                            undefined
                         }
                       ],
                       [__plasmic_idx_0]
@@ -525,7 +527,8 @@ function PlasmicAddServise__RenderFunc(props: {
                       [
                         {
                           name: "description[].value",
-                          initFunc: ({ $props, $state, $queries }) => undefined
+                          initFunc: ({ $props, $state, $queries, $q }) =>
+                            undefined
                         }
                       ],
                       [__plasmic_idx_0]
@@ -612,7 +615,7 @@ function PlasmicAddServise__RenderFunc(props: {
                         [
                           {
                             name: "time[].value",
-                            initFunc: ({ $props, $state, $queries }) =>
+                            initFunc: ({ $props, $state, $queries, $q }) =>
                               undefined
                           }
                         ],
@@ -702,7 +705,7 @@ function PlasmicAddServise__RenderFunc(props: {
                         [
                           {
                             name: "time2[].value",
-                            initFunc: ({ $props, $state, $queries }) =>
+                            initFunc: ({ $props, $state, $queries, $q }) =>
                               undefined
                           }
                         ],
@@ -791,7 +794,7 @@ function PlasmicAddServise__RenderFunc(props: {
                         [
                           {
                             name: "prise[].value",
-                            initFunc: ({ $props, $state, $queries }) =>
+                            initFunc: ({ $props, $state, $queries, $q }) =>
                               undefined
                           }
                         ],
@@ -891,7 +894,7 @@ function PlasmicAddServise__RenderFunc(props: {
                         [
                           {
                             name: "off[].value",
-                            initFunc: ({ $props, $state, $queries }) => "0"
+                            initFunc: ({ $props, $state, $queries, $q }) => "0"
                           }
                         ],
                         [__plasmic_idx_0]
@@ -1061,11 +1064,12 @@ function PlasmicAddServise__RenderFunc(props: {
                       [
                         {
                           name: "select[].isOpen",
-                          initFunc: ({ $props, $state, $queries }) => false
+                          initFunc: ({ $props, $state, $queries, $q }) => false
                         },
                         {
                           name: "select[].value",
-                          initFunc: ({ $props, $state, $queries }) => undefined
+                          initFunc: ({ $props, $state, $queries, $q }) =>
+                            undefined
                         }
                       ],
                       [__plasmic_idx_0]

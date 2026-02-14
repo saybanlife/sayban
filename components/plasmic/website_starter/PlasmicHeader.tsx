@@ -157,13 +157,13 @@ function PlasmicHeader__RenderFunc(props: {
         path: "soft",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.soft
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.soft
       },
       {
         path: "search",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.search
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.search
       }
     ],
     [$props, $ctx, $refs]
@@ -172,6 +172,7 @@ function PlasmicHeader__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

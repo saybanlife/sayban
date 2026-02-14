@@ -164,7 +164,7 @@ function PlasmicReminderCategory__RenderFunc(props: {
         path: "select",
         type: "readonly",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({}),
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({}),
 
         onChangeProp: "onSelectChange"
       },
@@ -172,7 +172,7 @@ function PlasmicReminderCategory__RenderFunc(props: {
         path: "more3",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "show",
@@ -210,7 +210,7 @@ function PlasmicReminderCategory__RenderFunc(props: {
         path: "scroll",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => true
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
       }
     ],
     [$props, $ctx, $refs]
@@ -219,6 +219,7 @@ function PlasmicReminderCategory__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

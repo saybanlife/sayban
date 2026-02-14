@@ -158,7 +158,7 @@ function PlasmicTags__RenderFunc(props: {
         path: "lable",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.lable
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.lable
       }
     ],
     [$props, $ctx, $refs]
@@ -167,6 +167,7 @@ function PlasmicTags__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

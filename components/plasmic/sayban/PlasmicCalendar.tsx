@@ -166,6 +166,7 @@ function PlasmicCalendar__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -309,7 +310,7 @@ function PlasmicCalendar__RenderFunc(props: {
             [
               {
                 name: "dayItem[].disable",
-                initFunc: ({ $props, $state, $queries }) =>
+                initFunc: ({ $props, $state, $queries, $q }) =>
                   (() => {
                     try {
                       return (

@@ -156,13 +156,13 @@ function PlasmicNext__RenderFunc(props: {
         path: "active",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.active
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.active
       },
       {
         path: "dir",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.dir
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.dir
       }
     ],
     [$props, $ctx, $refs]
@@ -171,6 +171,7 @@ function PlasmicNext__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

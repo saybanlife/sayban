@@ -142,7 +142,7 @@ function PlasmicFilterIcon__RenderFunc(props: {
         path: "filtered",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.filtered
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.filtered
       }
     ],
     [$props, $ctx, $refs]
@@ -151,6 +151,7 @@ function PlasmicFilterIcon__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

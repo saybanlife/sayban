@@ -187,6 +187,7 @@ function PlasmicTooltip__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

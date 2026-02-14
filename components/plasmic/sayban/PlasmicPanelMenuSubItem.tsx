@@ -159,19 +159,19 @@ function PlasmicPanelMenuSubItem__RenderFunc(props: {
         path: "select",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.select
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.select
       },
       {
         path: "haveSubItem",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.haveSubItem
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.haveSubItem
       },
       {
         path: "opensubItem",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.opensubItem
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.opensubItem
       }
     ],
     [$props, $ctx, $refs]
@@ -180,6 +180,7 @@ function PlasmicPanelMenuSubItem__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

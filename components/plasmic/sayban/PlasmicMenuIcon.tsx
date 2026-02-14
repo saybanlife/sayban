@@ -376,43 +376,43 @@ function PlasmicMenuIcon__RenderFunc(props: {
         path: "select",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.select
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.select
       },
       {
         path: "icons",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.icons
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.icons
       },
       {
         path: "color",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.color
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.color
       },
       {
         path: "size",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.size
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.size
       },
       {
         path: "outline",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.outline
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.outline
       },
       {
         path: "mono",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.mono
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.mono
       },
       {
         path: "_3D",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props._3D
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props._3D
       }
     ],
     [$props, $ctx, $refs]
@@ -421,6 +421,7 @@ function PlasmicMenuIcon__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

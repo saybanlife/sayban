@@ -160,7 +160,7 @@ function PlasmicImag__RenderFunc(props: {
         path: "radioGroup.value",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.upload.files[0].uid;
@@ -182,6 +182,7 @@ function PlasmicImag__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

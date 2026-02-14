@@ -161,7 +161,7 @@ function PlasmicLoaction__RenderFunc(props: {
         path: "loaction.value",
         type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onChangeProp: "onAddressChange"
       },
@@ -169,7 +169,7 @@ function PlasmicLoaction__RenderFunc(props: {
         path: "call.value",
         type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onChangeProp: "onCallChange"
       },
@@ -177,7 +177,7 @@ function PlasmicLoaction__RenderFunc(props: {
         path: "lat",
         type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "",
 
         onChangeProp: "onLatChange"
       },
@@ -185,7 +185,7 @@ function PlasmicLoaction__RenderFunc(props: {
         path: "lon",
         type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "",
 
         onChangeProp: "onLonChange"
       },
@@ -193,25 +193,25 @@ function PlasmicLoaction__RenderFunc(props: {
         path: "apiRequest.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "apiRequest.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "apiRequest.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "state.value",
         type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onChangeProp: "onStateChange"
       },
@@ -219,7 +219,7 @@ function PlasmicLoaction__RenderFunc(props: {
         path: "city.value",
         type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onChangeProp: "onCityChange"
       }
@@ -230,6 +230,7 @@ function PlasmicLoaction__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

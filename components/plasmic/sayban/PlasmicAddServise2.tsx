@@ -174,7 +174,7 @@ function PlasmicAddServise2__RenderFunc(props: {
         path: "button5.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "collapse[].open",
@@ -223,6 +223,7 @@ function PlasmicAddServise2__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -361,7 +362,7 @@ function PlasmicAddServise2__RenderFunc(props: {
             [
               {
                 name: "collapse[].open",
-                initFunc: ({ $props, $state, $queries }) => false
+                initFunc: ({ $props, $state, $queries, $q }) => false
               }
             ],
             [__plasmic_idx_0]
@@ -442,7 +443,7 @@ function PlasmicAddServise2__RenderFunc(props: {
                       [
                         {
                           name: "name[].value",
-                          initFunc: ({ $props, $state, $queries }) =>
+                          initFunc: ({ $props, $state, $queries, $q }) =>
                             (() => {
                               try {
                                 return currentItem.name;
@@ -538,7 +539,7 @@ function PlasmicAddServise2__RenderFunc(props: {
                       [
                         {
                           name: "description[].value",
-                          initFunc: ({ $props, $state, $queries }) =>
+                          initFunc: ({ $props, $state, $queries, $q }) =>
                             (() => {
                               try {
                                 return currentItem.description;
@@ -638,7 +639,7 @@ function PlasmicAddServise2__RenderFunc(props: {
                         [
                           {
                             name: "time[].value",
-                            initFunc: ({ $props, $state, $queries }) =>
+                            initFunc: ({ $props, $state, $queries, $q }) =>
                               (() => {
                                 try {
                                   return currentItem.duration_minutes;
@@ -741,7 +742,7 @@ function PlasmicAddServise2__RenderFunc(props: {
                         [
                           {
                             name: "time2[].value",
-                            initFunc: ({ $props, $state, $queries }) =>
+                            initFunc: ({ $props, $state, $queries, $q }) =>
                               (() => {
                                 try {
                                   return currentItem.buffer_minutes;
@@ -843,7 +844,7 @@ function PlasmicAddServise2__RenderFunc(props: {
                         [
                           {
                             name: "prise[].value",
-                            initFunc: ({ $props, $state, $queries }) =>
+                            initFunc: ({ $props, $state, $queries, $q }) =>
                               (() => {
                                 try {
                                   return currentItem.price;
@@ -956,7 +957,7 @@ function PlasmicAddServise2__RenderFunc(props: {
                         [
                           {
                             name: "off[].value",
-                            initFunc: ({ $props, $state, $queries }) =>
+                            initFunc: ({ $props, $state, $queries, $q }) =>
                               (() => {
                                 try {
                                   return currentItem.discount_percent;
@@ -1140,11 +1141,11 @@ function PlasmicAddServise2__RenderFunc(props: {
                       [
                         {
                           name: "select[].isOpen",
-                          initFunc: ({ $props, $state, $queries }) => false
+                          initFunc: ({ $props, $state, $queries, $q }) => false
                         },
                         {
                           name: "select[].value",
-                          initFunc: ({ $props, $state, $queries }) =>
+                          initFunc: ({ $props, $state, $queries, $q }) =>
                             (() => {
                               try {
                                 return currentItem.payment_method;

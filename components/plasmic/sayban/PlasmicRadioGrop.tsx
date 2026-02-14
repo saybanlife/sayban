@@ -198,73 +198,74 @@ function PlasmicRadioGrop__RenderFunc(props: {
         path: "selected",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.selected
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.selected
       },
       {
         path: "selectedLine",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.selectedLine
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $props.selectedLine
       },
       {
         path: "disable",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.disable
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.disable
       },
       {
         path: "color",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.color
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.color
       },
       {
         path: "style2",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.style2
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.style2
       },
       {
         path: "size",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.size
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.size
       },
       {
         path: "choise",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.choise
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.choise
       },
       {
         path: "pair",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.pair
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.pair
       },
       {
         path: "comingSoon",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.comingSoon
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.comingSoon
       },
       {
         path: "icon",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.icon
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.icon
       },
       {
         path: "style3",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.style3
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.style3
       },
       {
         path: "direction",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.direction
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.direction
       }
     ],
     [$props, $ctx, $refs]
@@ -273,6 +274,7 @@ function PlasmicRadioGrop__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

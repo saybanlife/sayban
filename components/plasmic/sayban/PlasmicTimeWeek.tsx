@@ -149,7 +149,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
         path: "checkboxGroup.value",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "option1[].isSelected",
@@ -191,6 +191,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -452,8 +453,12 @@ function PlasmicTimeWeek__RenderFunc(props: {
                               [
                                 {
                                   name: "timePickerStart[].value",
-                                  initFunc: ({ $props, $state, $queries }) =>
-                                    "00:00"
+                                  initFunc: ({
+                                    $props,
+                                    $state,
+                                    $queries,
+                                    $q
+                                  }) => "00:00"
                                 }
                               ],
                               [__plasmic_idx_0]
@@ -511,7 +516,8 @@ function PlasmicTimeWeek__RenderFunc(props: {
                           [
                             {
                               name: "start[].open",
-                              initFunc: ({ $props, $state, $queries }) => false
+                              initFunc: ({ $props, $state, $queries, $q }) =>
+                                false
                             }
                           ],
                           [__plasmic_idx_0]
@@ -666,8 +672,12 @@ function PlasmicTimeWeek__RenderFunc(props: {
                               [
                                 {
                                   name: "timePickerEnd[].value",
-                                  initFunc: ({ $props, $state, $queries }) =>
-                                    "00:00"
+                                  initFunc: ({
+                                    $props,
+                                    $state,
+                                    $queries,
+                                    $q
+                                  }) => "00:00"
                                 }
                               ],
                               [__plasmic_idx_0]
@@ -723,7 +733,8 @@ function PlasmicTimeWeek__RenderFunc(props: {
                           [
                             {
                               name: "end[].open",
-                              initFunc: ({ $props, $state, $queries }) => false
+                              initFunc: ({ $props, $state, $queries, $q }) =>
+                                false
                             }
                           ],
                           [__plasmic_idx_0]
@@ -869,7 +880,8 @@ function PlasmicTimeWeek__RenderFunc(props: {
                         [
                           {
                             name: "option1[].isSelected",
-                            initFunc: ({ $props, $state, $queries }) => false
+                            initFunc: ({ $props, $state, $queries, $q }) =>
+                              false
                           }
                         ],
                         [__plasmic_idx_0]

@@ -196,7 +196,8 @@ function PlasmicRadioGroupLiom__RenderFunc(props: {
         path: "unnamedVariant",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.unnamedVariant
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $props.unnamedVariant
       },
       {
         path: "selected",
@@ -218,7 +219,7 @@ function PlasmicRadioGroupLiom__RenderFunc(props: {
         path: "size",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.size
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.size
       },
       {
         path: "selects",
@@ -232,37 +233,37 @@ function PlasmicRadioGroupLiom__RenderFunc(props: {
         path: "moulty",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.moulty
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.moulty
       },
       {
         path: "color",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.color
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.color
       },
       {
         path: "icon",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.icon
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.icon
       },
       {
         path: "style2",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.style2
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.style2
       },
       {
         path: "direction",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.direction
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.direction
       },
       {
         path: "noselect",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.noselect
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.noselect
       }
     ],
     [$props, $ctx, $refs]
@@ -271,6 +272,7 @@ function PlasmicRadioGroupLiom__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

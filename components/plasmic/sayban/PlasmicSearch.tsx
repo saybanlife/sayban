@@ -147,7 +147,7 @@ function PlasmicSearch__RenderFunc(props: {
         path: "textInput.value",
         type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onChangeProp: "onTextInputValueChange"
       },
@@ -166,6 +166,7 @@ function PlasmicSearch__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
