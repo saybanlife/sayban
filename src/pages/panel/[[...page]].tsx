@@ -2,10 +2,10 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
-import GlobalContextsProvider from "../../components/plasmic/website_starter/PlasmicGlobalContextsProvider";
-import { StyleTokensProvider } from "../../components/plasmic/website_starter/PlasmicStyleTokensProvider";
+import GlobalContextsProvider from "../../../components/plasmic/website_starter/PlasmicGlobalContextsProvider";
+import { StyleTokensProvider } from "../../../components/plasmic/website_starter/PlasmicStyleTokensProvider";
 
-import { PlasmicPanel } from "../../components/plasmic/sayban/PlasmicPanel";
+import { PlasmicPanel } from "../../../components/plasmic/sayban/PlasmicPanel";
 import { useRouter } from "next/router";
 
 function Panel() {
