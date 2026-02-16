@@ -120,6 +120,28 @@
     grid-column: 4;
   }
 }
+.reveal:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+  width: 100%;
+  min-width: 0;
+}
+.loginLogin:global(.__wab_instance) {
+  width: 100%;
+  min-width: 0;
+}
+.loginLoginpage_create:global(.__wab_instance) {
+  display: none;
+}
+.createAccont:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+  display: none;
+}
+.createAccontpage_create:global(.__wab_instance) {
+  display: flex;
+}
 .img__mo6Uf {
   object-fit: cover;
   max-width: 100%;

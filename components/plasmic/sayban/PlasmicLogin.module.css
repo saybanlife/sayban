@@ -350,11 +350,11 @@
   height: auto;
   max-width: 100%;
   text-align: right;
-  color: var(--token-C6B6ZAuqICKE);
+  color: var(--token-s6JDWwNdkMmO);
   min-width: 0;
 }
 .textpage_mobile___8IauOmKfXs {
-  font-weight: 700;
+  font-weight: 400;
   font-size: var(--token-9jx4RULNbWhl);
 }
 .textpage_code___8IauOohvpc {
@@ -518,9 +518,9 @@
   height: auto;
   max-width: 100%;
   text-align: right;
-  color: var(--token-C6B6ZAuqICKE);
+  color: var(--token-s6JDWwNdkMmO);
   font-size: var(--token-9jx4RULNbWhl);
-  font-weight: 600;
+  font-weight: 400;
   min-width: 0;
 }
 .embedHtml:global(.__wab_instance) {
@@ -640,6 +640,9 @@
 }
 .textpage_code__fOToOhvpc {
   display: none;
+}
+.textpage_name__fOToaq9MH {
+  color: var(--token-s6JDWwNdkMmO);
 }
 .name:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;

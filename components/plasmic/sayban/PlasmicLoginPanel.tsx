@@ -59,7 +59,9 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import Login2 from "../../Login2"; // plasmic-import: e-nYBMaX6lLd/component
+import CreateAccont from "../../CreateAccont"; // plasmic-import: nYNI2TNqh_0W/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -70,10 +72,16 @@ import sty from "./PlasmicLoginPanel.module.css"; // plasmic-import: hZEy0JIfmlF
 
 createPlasmicElementProxy;
 
-export type PlasmicLoginPanel__VariantMembers = {};
-export type PlasmicLoginPanel__VariantsArgs = {};
+export type PlasmicLoginPanel__VariantMembers = {
+  page: "login" | "create";
+};
+export type PlasmicLoginPanel__VariantsArgs = {
+  page?: SingleChoiceArg<"login" | "create">;
+};
 type VariantPropType = keyof PlasmicLoginPanel__VariantsArgs;
-export const PlasmicLoginPanel__VariantProps = new Array<VariantPropType>();
+export const PlasmicLoginPanel__VariantProps = new Array<VariantPropType>(
+  "page"
+);
 
 export type PlasmicLoginPanel__ArgsType = {};
 type ArgPropType = keyof PlasmicLoginPanel__ArgsType;
@@ -83,10 +91,13 @@ export type PlasmicLoginPanel__OverridesType = {
   root?: Flex__<"section">;
   text?: Flex__<"div">;
   section?: Flex__<"section">;
-  login2?: Flex__<typeof Login2>;
+  reveal?: Flex__<typeof Reveal>;
+  loginLogin?: Flex__<typeof Login2>;
+  createAccont?: Flex__<typeof CreateAccont>;
 };
 
 export interface DefaultLoginPanelProps {
+  page?: SingleChoiceArg<"login" | "create">;
   className?: string;
 }
 
@@ -130,6 +141,25 @@ function PlasmicLoginPanel__RenderFunc(props: {
   const $refs = refsRef.current;
 
   const globalVariants = _useGlobalVariants();
+
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "page",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.page
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $q: {},
+    $refs
+  });
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -186,11 +216,41 @@ function PlasmicLoginPanel__RenderFunc(props: {
             data-plasmic-override={overrides.section}
             className={classNames(projectcss.all, sty.section)}
           >
-            <Login2
-              data-plasmic-name={"login2"}
-              data-plasmic-override={overrides.login2}
-              className={classNames("__wab_instance", sty.login2)}
-            />
+            <Reveal
+              data-plasmic-name={"reveal"}
+              data-plasmic-override={overrides.reveal}
+              className={classNames("__wab_instance", sty.reveal)}
+              triggerOnce={true}
+            >
+              <Login2
+                data-plasmic-name={"loginLogin"}
+                data-plasmic-override={overrides.loginLogin}
+                className={classNames("__wab_instance", sty.loginLogin, {
+                  [sty.loginLoginpage_create]: hasVariant(
+                    $state,
+                    "page",
+                    "create"
+                  ),
+                  [sty.loginLoginpage_login]: hasVariant(
+                    $state,
+                    "page",
+                    "login"
+                  )
+                })}
+              />
+
+              <CreateAccont
+                data-plasmic-name={"createAccont"}
+                data-plasmic-override={overrides.createAccont}
+                className={classNames("__wab_instance", sty.createAccont, {
+                  [sty.createAccontpage_create]: hasVariant(
+                    $state,
+                    "page",
+                    "create"
+                  )
+                })}
+              />
+            </Reveal>
           </section>
         </div>
         <PlasmicImg__
@@ -218,10 +278,12 @@ function PlasmicLoginPanel__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "text", "section", "login2"],
+  root: ["root", "text", "section", "reveal", "loginLogin", "createAccont"],
   text: ["text"],
-  section: ["section", "login2"],
-  login2: ["login2"]
+  section: ["section", "reveal", "loginLogin", "createAccont"],
+  reveal: ["reveal", "loginLogin", "createAccont"],
+  loginLogin: ["loginLogin"],
+  createAccont: ["createAccont"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -230,7 +292,9 @@ type NodeDefaultElementType = {
   root: "section";
   text: "div";
   section: "section";
-  login2: typeof Login2;
+  reveal: typeof Reveal;
+  loginLogin: typeof Login2;
+  createAccont: typeof CreateAccont;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -297,7 +361,9 @@ export const PlasmicLoginPanel = Object.assign(
     // Helper components rendering sub-elements
     text: makeNodeComponent("text"),
     section: makeNodeComponent("section"),
-    login2: makeNodeComponent("login2"),
+    reveal: makeNodeComponent("reveal"),
+    loginLogin: makeNodeComponent("loginLogin"),
+    createAccont: makeNodeComponent("createAccont"),
 
     // Metadata about props expected for PlasmicLoginPanel
     internalVariantProps: PlasmicLoginPanel__VariantProps,

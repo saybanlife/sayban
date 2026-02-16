@@ -1906,6 +1906,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicLogin2.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "nYNI2TNqh_0W",
+          "name": "CreateAccont",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicCreateAccont.tsx",
+          "importSpec": {
+            "modulePath": "CreateAccont.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicCreateAccont.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

@@ -668,6 +668,11 @@ function PlasmicLogin__RenderFunc(props: {
                     "page",
                     "code"
                   ),
+                  [sty.textpage_loading___8IauOEyvhu]: hasVariant(
+                    $state,
+                    "page",
+                    "loading"
+                  ),
                   [sty.textpage_mobile___8IauOmKfXs]: hasVariant(
                     $state,
                     "page",
@@ -2436,6 +2441,11 @@ function PlasmicLogin__RenderFunc(props: {
             data-plasmic-override={overrides.sideEffect}
             className={classNames("__wab_instance", sty.sideEffect, {
               [sty.sideEffectpage_code]: hasVariant($state, "page", "code"),
+              [sty.sideEffectpage_loading]: hasVariant(
+                $state,
+                "page",
+                "loading"
+              ),
               [sty.sideEffectpage_mobile]: hasVariant($state, "page", "mobile"),
               [sty.sideEffectpage_name]: hasVariant($state, "page", "name")
             })}
