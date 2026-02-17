@@ -62,6 +62,7 @@ import {
 import PanelMenu from "../../PanelMenu"; // plasmic-import: H67gJZiYVEqw/component
 import Main from "../../Main"; // plasmic-import: FYuKeNpu5zZ7/component
 import LoginPanel from "../../LoginPanel"; // plasmic-import: hZEy0JIfmlF9/component
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -112,6 +113,7 @@ export type PlasmicPanel__OverridesType = {
   panelMenu?: Flex__<typeof PanelMenu>;
   main?: Flex__<typeof Main>;
   loginPanel?: Flex__<typeof LoginPanel>;
+  sideEffect?: Flex__<typeof SideEffect>;
 };
 
 export interface DefaultPanelProps {}
@@ -157,6 +159,8 @@ function PlasmicPanel__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const $globalActions = useGlobalActions?.();
+
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -164,6 +168,177 @@ function PlasmicPanel__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => "dashboard"
+      },
+      {
+        path: "loginPanel.userinfo",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "userInfo",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "menu",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
+          {
+            label: "\u062f\u0627\u0634\u0628\u0648\u0631\u062f",
+            value: "dashboard",
+            icon: "dashboard",
+            permissions: ["super_admin", "center_admin", "staff"]
+          },
+          {
+            label:
+              "\u0645\u062f\u06cc\u0631\u06cc\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
+            value: "users",
+            icon: "users",
+            permissions: ["super_admin"],
+            children: [
+              {
+                label:
+                  "\u0644\u06cc\u0633\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
+                value: "users_list",
+                icon: "list",
+                permissions: ["super_admin"]
+              },
+              {
+                label:
+                  "\u06a9\u0627\u0631\u0628\u0631\u0627\u0646 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644",
+                value: "users_inactive",
+                icon: "user-x",
+                permissions: ["super_admin"]
+              }
+            ]
+          },
+          {
+            label:
+              "\u0645\u062f\u06cc\u0631\u06cc\u062a \u0645\u0631\u0627\u06a9\u0632",
+            value: "centers",
+            icon: "building-2",
+            permissions: ["super_admin"],
+            children: [
+              {
+                label:
+                  "\u0644\u06cc\u0633\u062a \u0645\u0631\u0627\u06a9\u0632",
+                value: "centers_list",
+                icon: "list",
+                permissions: ["super_admin"]
+              },
+              {
+                label:
+                  "\u0645\u0631\u0627\u06a9\u0632 \u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0627\u06cc\u06cc\u062f",
+                value: "centers_pending",
+                icon: "clock",
+                permissions: ["super_admin"]
+              },
+              {
+                label:
+                  "\u0645\u0631\u0627\u06a9\u0632 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644",
+                value: "centers_inactive",
+                icon: "ban",
+                permissions: ["super_admin"]
+              }
+            ]
+          },
+          {
+            label:
+              "\u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc\u200c\u0647\u0627",
+            value: "categories",
+            icon: "layers",
+            permissions: ["super_admin"],
+            children: [
+              {
+                label:
+                  "\u062f\u0633\u062a\u0647\u200c\u0647\u0627\u06cc \u0627\u0635\u0644\u06cc",
+                value: "main_categories",
+                icon: "folder",
+                permissions: ["super_admin"]
+              },
+              {
+                label:
+                  "\u0632\u06cc\u0631\u200c\u062f\u0633\u062a\u0647\u200c\u0647\u0627",
+                value: "sub_categories",
+                icon: "folder-tree",
+                permissions: ["super_admin"]
+              }
+            ]
+          },
+          {
+            label: "\u0631\u0632\u0631\u0648\u0647\u0627",
+            value: "reservations",
+            icon: "calendar-check",
+            permissions: ["super_admin", "center_admin", "staff"],
+            children: [
+              {
+                label:
+                  "\u0647\u0645\u0647 \u0631\u0632\u0631\u0648\u0647\u0627",
+                value: "reservations_all",
+                icon: "list",
+                permissions: ["super_admin", "center_admin"]
+              },
+              {
+                label:
+                  "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632",
+                value: "reservations_today",
+                icon: "calendar",
+                permissions: ["super_admin", "center_admin", "staff"]
+              },
+              {
+                label:
+                  "\u0644\u063a\u0648 \u0634\u062f\u0647\u200c\u0647\u0627",
+                value: "reservations_canceled",
+                icon: "calendar-x",
+                permissions: ["super_admin", "center_admin"]
+              }
+            ]
+          },
+          {
+            label: "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627",
+            value: "payments",
+            icon: "credit-card",
+            permissions: ["super_admin", "center_admin"],
+            children: [
+              {
+                label:
+                  "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0645\u0648\u0641\u0642",
+                value: "payments_success",
+                icon: "check-circle",
+                permissions: ["super_admin", "center_admin"]
+              },
+              {
+                label:
+                  "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0646\u0627\u0645\u0648\u0641\u0642",
+                value: "payments_failed",
+                icon: "x-circle",
+                permissions: ["super_admin"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        path: "main.role",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.userInfo.role;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -238,124 +413,138 @@ function PlasmicPanel__RenderFunc(props: {
               data-plasmic-name={"panelMenu"}
               data-plasmic-override={overrides.panelMenu}
               className={classNames("__wab_instance", sty.panelMenu)}
-              menu={[
-                {
-                  label: "\u062f\u0627\u0634\u0628\u0648\u0631\u062f",
-                  value: "dashboard",
-                  icon: "dashboard"
-                },
-                {
-                  label:
-                    "\u0645\u062f\u06cc\u0631\u06cc\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
-                  value: "users",
-                  icon: "users",
-                  children: [
-                    {
-                      label:
-                        "\u0644\u06cc\u0633\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
-                      value: "users_list",
-                      icon: "list"
-                    },
-                    {
-                      label:
-                        "\u06a9\u0627\u0631\u0628\u0631\u0627\u0646 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644",
-                      value: "users_inactive",
-                      icon: "user-x"
-                    }
-                  ]
-                },
-                {
-                  label:
-                    "\u0645\u062f\u06cc\u0631\u06cc\u062a \u0645\u0631\u0627\u06a9\u0632",
-                  value: "centers",
-                  icon: "building-2",
-                  children: [
-                    {
-                      label:
-                        "\u0644\u06cc\u0633\u062a \u0645\u0631\u0627\u06a9\u0632",
-                      value: "centers_list",
-                      icon: "list"
-                    },
-                    {
-                      label:
-                        "\u0645\u0631\u0627\u06a9\u0632 \u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0627\u06cc\u06cc\u062f",
-                      value: "centers_pending",
-                      icon: "clock"
-                    },
-                    {
-                      label:
-                        "\u0645\u0631\u0627\u06a9\u0632 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644",
-                      value: "centers_inactive",
-                      icon: "ban"
-                    }
-                  ]
-                },
-                {
-                  label:
-                    "\u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc\u200c\u0647\u0627",
-                  value: "categories",
-                  icon: "layers",
-                  children: [
-                    {
-                      label:
-                        "\u062f\u0633\u062a\u0647\u200c\u0647\u0627\u06cc \u0627\u0635\u0644\u06cc",
-                      value: "main_categories",
-                      icon: "folder"
-                    },
-                    {
-                      label:
-                        "\u0632\u06cc\u0631\u200c\u062f\u0633\u062a\u0647\u200c\u0647\u0627",
-                      value: "sub_categories",
-                      icon: "folder-tree"
-                    }
-                  ]
-                },
-                {
-                  label: "\u0631\u0632\u0631\u0648\u0647\u0627",
-                  value: "reservations",
-                  icon: "calendar-check",
-                  children: [
-                    {
-                      label:
-                        "\u0647\u0645\u0647 \u0631\u0632\u0631\u0648\u0647\u0627",
-                      value: "reservations_all",
-                      icon: "list"
-                    },
-                    {
-                      label:
-                        "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632",
-                      value: "reservations_today",
-                      icon: "calendar"
-                    },
-                    {
-                      label:
-                        "\u0644\u063a\u0648 \u0634\u062f\u0647\u200c\u0647\u0627",
-                      value: "reservations_canceled",
-                      icon: "calendar-x"
-                    }
-                  ]
-                },
-                {
-                  label:
-                    "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627",
-                  value: "payments",
-                  icon: "credit-card",
-                  children: [
-                    {
-                      label:
-                        "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0645\u0648\u0641\u0642",
-                      value: "payments_success",
-                      icon: "check-circle"
-                    },
-                    {
-                      label:
-                        "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0646\u0627\u0645\u0648\u0641\u0642",
-                      value: "payments_failed",
-                      icon: "x-circle"
-                    }
-                  ]
+              menu={(() => {
+                try {
+                  return $state.menu.filter(i =>
+                    i.permissions.includes($state.userInfo.role)
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [
+                      {
+                        label: "\u062f\u0627\u0634\u0628\u0648\u0631\u062f",
+                        value: "dashboard",
+                        icon: "dashboard"
+                      },
+                      {
+                        label:
+                          "\u0645\u062f\u06cc\u0631\u06cc\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
+                        value: "users",
+                        icon: "users",
+                        children: [
+                          {
+                            label:
+                              "\u0644\u06cc\u0633\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
+                            value: "users_list",
+                            icon: "list"
+                          },
+                          {
+                            label:
+                              "\u06a9\u0627\u0631\u0628\u0631\u0627\u0646 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644",
+                            value: "users_inactive",
+                            icon: "user-x"
+                          }
+                        ]
+                      },
+                      {
+                        label:
+                          "\u0645\u062f\u06cc\u0631\u06cc\u062a \u0645\u0631\u0627\u06a9\u0632",
+                        value: "centers",
+                        icon: "building-2",
+                        children: [
+                          {
+                            label:
+                              "\u0644\u06cc\u0633\u062a \u0645\u0631\u0627\u06a9\u0632",
+                            value: "centers_list",
+                            icon: "list"
+                          },
+                          {
+                            label:
+                              "\u0645\u0631\u0627\u06a9\u0632 \u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0627\u06cc\u06cc\u062f",
+                            value: "centers_pending",
+                            icon: "clock"
+                          },
+                          {
+                            label:
+                              "\u0645\u0631\u0627\u06a9\u0632 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644",
+                            value: "centers_inactive",
+                            icon: "ban"
+                          }
+                        ]
+                      },
+                      {
+                        label:
+                          "\u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc\u200c\u0647\u0627",
+                        value: "categories",
+                        icon: "layers",
+                        children: [
+                          {
+                            label:
+                              "\u062f\u0633\u062a\u0647\u200c\u0647\u0627\u06cc \u0627\u0635\u0644\u06cc",
+                            value: "main_categories",
+                            icon: "folder"
+                          },
+                          {
+                            label:
+                              "\u0632\u06cc\u0631\u200c\u062f\u0633\u062a\u0647\u200c\u0647\u0627",
+                            value: "sub_categories",
+                            icon: "folder-tree"
+                          }
+                        ]
+                      },
+                      {
+                        label: "\u0631\u0632\u0631\u0648\u0647\u0627",
+                        value: "reservations",
+                        icon: "calendar-check",
+                        children: [
+                          {
+                            label:
+                              "\u0647\u0645\u0647 \u0631\u0632\u0631\u0648\u0647\u0627",
+                            value: "reservations_all",
+                            icon: "list"
+                          },
+                          {
+                            label:
+                              "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632",
+                            value: "reservations_today",
+                            icon: "calendar"
+                          },
+                          {
+                            label:
+                              "\u0644\u063a\u0648 \u0634\u062f\u0647\u200c\u0647\u0627",
+                            value: "reservations_canceled",
+                            icon: "calendar-x"
+                          }
+                        ]
+                      },
+                      {
+                        label:
+                          "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627",
+                        value: "payments",
+                        icon: "credit-card",
+                        children: [
+                          {
+                            label:
+                              "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0645\u0648\u0641\u0642",
+                            value: "payments_success",
+                            icon: "check-circle"
+                          },
+                          {
+                            label:
+                              "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0646\u0627\u0645\u0648\u0641\u0642",
+                            value: "payments_failed",
+                            icon: "x-circle"
+                          }
+                        ]
+                      }
+                    ];
+                  }
+                  throw e;
                 }
-              ]}
+              })()}
               onSelecteItemChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "panelMenu",
@@ -395,6 +584,20 @@ function PlasmicPanel__RenderFunc(props: {
                 }
               })()}
               className={classNames("__wab_instance", sty.main)}
+              onRoleChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["main", "role"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
               page={(() => {
                 try {
                   return (() => {
@@ -413,6 +616,7 @@ function PlasmicPanel__RenderFunc(props: {
                   throw e;
                 }
               })()}
+              role={generateStateValueProp($state, ["main", "role"])}
             />
           </div>
         ) : null}
@@ -435,6 +639,58 @@ function PlasmicPanel__RenderFunc(props: {
             data-plasmic-name={"loginPanel"}
             data-plasmic-override={overrides.loginPanel}
             className={classNames("__wab_instance", sty.loginPanel)}
+            onUserinfoChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "loginPanel",
+                "userinfo"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+
+              (async val => {
+                const $steps = {};
+
+                $steps["updateUserInfo"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["userInfo"]
+                        },
+                        operation: 0,
+                        value: $state.loginPanel.userinfo
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateUserInfo"] != null &&
+                  typeof $steps["updateUserInfo"] === "object" &&
+                  typeof $steps["updateUserInfo"].then === "function"
+                ) {
+                  $steps["updateUserInfo"] = await $steps["updateUserInfo"];
+                }
+              }).apply(null, eventArgs);
+            }}
             page={(() => {
               try {
                 return $ctx.params?.page?.[1];
@@ -448,18 +704,47 @@ function PlasmicPanel__RenderFunc(props: {
                 throw e;
               }
             })()}
+            userinfo={generateStateValueProp($state, [
+              "loginPanel",
+              "userinfo"
+            ])}
           />
         ) : null}
+        <SideEffect
+          data-plasmic-name={"sideEffect"}
+          data-plasmic-override={overrides.sideEffect}
+          className={classNames("__wab_instance", sty.sideEffect)}
+          onMount={async () => {
+            const $steps = {};
+
+            $steps["invokeGlobalAction"] = true
+              ? (() => {
+                  const actionArgs = { args: ["panelToken"] };
+                  return $globalActions["Fragment.getCookie"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["invokeGlobalAction"] != null &&
+              typeof $steps["invokeGlobalAction"] === "object" &&
+              typeof $steps["invokeGlobalAction"].then === "function"
+            ) {
+              $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
+            }
+          }}
+        />
       </div>
     </React.Fragment>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "panelMenu", "main", "loginPanel"],
+  root: ["root", "panelMenu", "main", "loginPanel", "sideEffect"],
   panelMenu: ["panelMenu"],
   main: ["main"],
-  loginPanel: ["loginPanel"]
+  loginPanel: ["loginPanel"],
+  sideEffect: ["sideEffect"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -469,6 +754,7 @@ type NodeDefaultElementType = {
   panelMenu: typeof PanelMenu;
   main: typeof Main;
   loginPanel: typeof LoginPanel;
+  sideEffect: typeof SideEffect;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -536,6 +822,7 @@ export const PlasmicPanel = Object.assign(
     panelMenu: makeNodeComponent("panelMenu"),
     main: makeNodeComponent("main"),
     loginPanel: makeNodeComponent("loginPanel"),
+    sideEffect: makeNodeComponent("sideEffect"),
 
     // Metadata about props expected for PlasmicPanel
     internalVariantProps: PlasmicPanel__VariantProps,

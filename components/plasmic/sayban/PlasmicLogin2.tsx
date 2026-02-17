@@ -81,9 +81,15 @@ export type PlasmicLogin2__VariantsArgs = {};
 type VariantPropType = keyof PlasmicLogin2__VariantsArgs;
 export const PlasmicLogin2__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicLogin2__ArgsType = {};
+export type PlasmicLogin2__ArgsType = {
+  userinfo?: any;
+  onUserinfoChange?: (val: string) => void;
+};
 type ArgPropType = keyof PlasmicLogin2__ArgsType;
-export const PlasmicLogin2__ArgProps = new Array<ArgPropType>();
+export const PlasmicLogin2__ArgProps = new Array<ArgPropType>(
+  "userinfo",
+  "onUserinfoChange"
+);
 
 export type PlasmicLogin2__OverridesType = {
   root?: Flex__<"div">;
@@ -92,11 +98,13 @@ export type PlasmicLogin2__OverridesType = {
   hide?: Flex__<typeof Hide>;
   check?: Flex__<typeof Check>;
   button2?: Flex__<typeof Button>;
-  button?: Flex__<typeof Button>;
+  loginBtn?: Flex__<typeof Button>;
   button3?: Flex__<typeof Button>;
 };
 
 export interface DefaultLogin2Props {
+  userinfo?: any;
+  onUserinfoChange?: (val: string) => void;
   className?: string;
 }
 
@@ -156,7 +164,7 @@ function PlasmicLogin2__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "button.loading",
+        path: "loginBtn.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
@@ -190,6 +198,14 @@ function PlasmicLogin2__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "userinfo",
+        type: "writable",
+        variableType: "object",
+
+        valueProp: "userinfo",
+        onChangeProp: "onUserinfoChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -478,9 +494,9 @@ function PlasmicLogin2__RenderFunc(props: {
         />
       </div>
       <Button
-        data-plasmic-name={"button"}
-        data-plasmic-override={overrides.button}
-        className={classNames("__wab_instance", sty.button)}
+        data-plasmic-name={"loginBtn"}
+        data-plasmic-override={overrides.loginBtn}
+        className={classNames("__wab_instance", sty.loginBtn)}
         label={
           <div
             className={classNames(
@@ -492,28 +508,107 @@ function PlasmicLogin2__RenderFunc(props: {
             {"\u0648\u0631\u0648\u062f"}
           </div>
         }
-        loading={generateStateValueProp($state, ["button", "loading"])}
+        loading={generateStateValueProp($state, ["loginBtn", "loading"])}
         onClick={async event => {
           const $steps = {};
 
-          $steps["goToPanel"] =
-            $state.userName.value == "admin" && $state.password.value == "admin"
-              ? (() => {
-                  const actionArgs = { destination: `/panel/${"center-list"}` };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
+          $steps["loading"] = true
+            ? (() => {
+                const actionArgs = {
+                  variable: {
+                    objRoot: $state,
+                    variablePath: ["loginBtn", "loading"]
+                  },
+                  operation: 0,
+                  value: true
+                };
+                return (({ variable, value, startIndex, deleteCount }) => {
+                  if (!variable) {
+                    return;
+                  }
+                  const { objRoot, variablePath } = variable;
+
+                  $stateSet(objRoot, variablePath, value);
+                  return value;
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["loading"] != null &&
+            typeof $steps["loading"] === "object" &&
+            typeof $steps["loading"].then === "function"
+          ) {
+            $steps["loading"] = await $steps["loading"];
+          }
+
+          $steps["loginApi"] = true
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    "POST",
+                    "https://sayban.darkube.app/webhook/panel/user/login",
+                    undefined,
+                    {
+                      userName: $state.userName.value,
+                      password: $state.password.value
                     }
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
+                  ]
+                };
+                return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["loginApi"] != null &&
+            typeof $steps["loginApi"] === "object" &&
+            typeof $steps["loginApi"].then === "function"
+          ) {
+            $steps["loginApi"] = await $steps["loginApi"];
+          }
+
+          $steps["goToPanel"] = $steps.loginApi?.data?.success
+            ? (() => {
+                const actionArgs = {
+                  destination: `/panel/${(() => {
+                    try {
+                      return (() => {
+                        const role = $steps.loginApi?.data?.result?.role;
+                        const centerId =
+                          $steps.loginApi?.data?.result?.center_id;
+                        let result;
+                        if (role === "super_admin") {
+                          result = "center-list";
+                        } else if (role === "center_admin") {
+                          result = `center-${centerId}`;
+                        }
+                        return result;
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}`
+                };
+                return (({ destination }) => {
+                  if (
+                    typeof destination === "string" &&
+                    destination.startsWith("#")
+                  ) {
+                    document
+                      .getElementById(destination.substr(1))
+                      .scrollIntoView({ behavior: "smooth" });
+                  } else {
+                    __nextRouter?.push(destination);
+                  }
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
           if (
             $steps["goToPanel"] != null &&
             typeof $steps["goToPanel"] === "object" &&
@@ -522,31 +617,66 @@ function PlasmicLogin2__RenderFunc(props: {
             $steps["goToPanel"] = await $steps["goToPanel"];
           }
 
-          $steps["invokeGlobalAction"] =
-            $state.userName.value != "admin" || $state.password.value != "admin"
-              ? (() => {
-                  const actionArgs = {
-                    args: [
-                      "error",
-                      "\u0646\u0627\u0645 \u06a9\u0627\u0631\u0628\u0631\u06cc \u06cc\u0627 \u0631\u0645\u0632 \u0639\u0628\u0648\u0631 \u0646\u0627\u062f\u0631\u0633\u062a \u0627\u0633\u062a.",
-                      "top-center"
-                    ]
-                  };
-                  return $globalActions["Fragment.showToast"]?.apply(null, [
-                    ...actionArgs.args
-                  ]);
-                })()
-              : undefined;
+          $steps["updateUserinfo"] = $steps.loginApi?.data?.success
+            ? (() => {
+                const actionArgs = {
+                  variable: {
+                    objRoot: $state,
+                    variablePath: ["userinfo"]
+                  },
+                  operation: 0,
+                  value: $steps.loginApi?.data?.result
+                };
+                return (({ variable, value, startIndex, deleteCount }) => {
+                  if (!variable) {
+                    return;
+                  }
+                  const { objRoot, variablePath } = variable;
+
+                  $stateSet(objRoot, variablePath, value);
+                  return value;
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
           if (
-            $steps["invokeGlobalAction"] != null &&
-            typeof $steps["invokeGlobalAction"] === "object" &&
-            typeof $steps["invokeGlobalAction"].then === "function"
+            $steps["updateUserinfo"] != null &&
+            typeof $steps["updateUserinfo"] === "object" &&
+            typeof $steps["updateUserinfo"].then === "function"
           ) {
-            $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
+            $steps["updateUserinfo"] = await $steps["updateUserinfo"];
+          }
+
+          $steps["loading2"] = true
+            ? (() => {
+                const actionArgs = {
+                  variable: {
+                    objRoot: $state,
+                    variablePath: ["loginBtn", "loading"]
+                  },
+                  operation: 0,
+                  value: false
+                };
+                return (({ variable, value, startIndex, deleteCount }) => {
+                  if (!variable) {
+                    return;
+                  }
+                  const { objRoot, variablePath } = variable;
+
+                  $stateSet(objRoot, variablePath, value);
+                  return value;
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["loading2"] != null &&
+            typeof $steps["loading2"] === "object" &&
+            typeof $steps["loading2"].then === "function"
+          ) {
+            $steps["loading2"] = await $steps["loading2"];
           }
         }}
         onLoadingChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["button", "loading"]).apply(
+          generateStateOnChangeProp($state, ["loginBtn", "loading"]).apply(
             null,
             eventArgs
           );
@@ -648,7 +778,7 @@ const PlasmicDescendants = {
     "hide",
     "check",
     "button2",
-    "button",
+    "loginBtn",
     "button3"
   ],
   userName: ["userName"],
@@ -656,7 +786,7 @@ const PlasmicDescendants = {
   hide: ["hide"],
   check: ["check"],
   button2: ["button2"],
-  button: ["button"],
+  loginBtn: ["loginBtn"],
   button3: ["button3"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -669,7 +799,7 @@ type NodeDefaultElementType = {
   hide: typeof Hide;
   check: typeof Check;
   button2: typeof Button;
-  button: typeof Button;
+  loginBtn: typeof Button;
   button3: typeof Button;
 };
 
@@ -740,7 +870,7 @@ export const PlasmicLogin2 = Object.assign(
     hide: makeNodeComponent("hide"),
     check: makeNodeComponent("check"),
     button2: makeNodeComponent("button2"),
-    button: makeNodeComponent("button"),
+    loginBtn: makeNodeComponent("loginBtn"),
     button3: makeNodeComponent("button3"),
 
     // Metadata about props expected for PlasmicLogin2

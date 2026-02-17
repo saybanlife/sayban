@@ -99,9 +99,17 @@ export type PlasmicMain__VariantsArgs = {
 type VariantPropType = keyof PlasmicMain__VariantsArgs;
 export const PlasmicMain__VariantProps = new Array<VariantPropType>("page");
 
-export type PlasmicMain__ArgsType = { centerId?: string };
+export type PlasmicMain__ArgsType = {
+  centerId?: string;
+  role?: string;
+  onRoleChange?: (val: string) => void;
+};
 type ArgPropType = keyof PlasmicMain__ArgsType;
-export const PlasmicMain__ArgProps = new Array<ArgPropType>("centerId");
+export const PlasmicMain__ArgProps = new Array<ArgPropType>(
+  "centerId",
+  "role",
+  "onRoleChange"
+);
 
 export type PlasmicMain__OverridesType = {
   root?: Flex__<"div">;
@@ -128,6 +136,8 @@ export type PlasmicMain__OverridesType = {
 
 export interface DefaultMainProps {
   centerId?: string;
+  role?: string;
+  onRoleChange?: (val: string) => void;
   page?: SingleChoiceArg<"centerList" | "center">;
   className?: string;
 }
@@ -392,6 +402,14 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "role",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "role",
+        onChangeProp: "onRoleChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -577,6 +595,32 @@ function PlasmicMain__RenderFunc(props: {
             return;
           }
         }}
+        role={(() => {
+          try {
+            return (() => {
+              {
+                {
+                  return (() => {
+                    const parts = $state.role.split("_");
+                    return (
+                      parts[0] +
+                      parts[1].charAt(0).toUpperCase() +
+                      parts[1].slice(1)
+                    );
+                  })();
+                }
+              }
+            })();
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return [];
+            }
+            throw e;
+          }
+        })()}
         tagsitem={(() => {
           try {
             return $state.categories.data.tag;
@@ -1574,17 +1618,7 @@ function PlasmicMain__RenderFunc(props: {
         className={classNames("__wab_instance", sty.categories, {
           [sty.categoriespage_center]: hasVariant($state, "page", "center")
         })}
-        errorDisplay={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__eoiop
-            )}
-          >
-            {"Error fetching data"}
-          </div>
-        }
+        errorDisplay={null}
         loadingDisplay={null}
         method={"GET"}
         onError={async (...eventArgs: any) => {

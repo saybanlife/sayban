@@ -64,3 +64,7 @@
   right: 0;
   z-index: 1;
 }
+.sideEffect:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}

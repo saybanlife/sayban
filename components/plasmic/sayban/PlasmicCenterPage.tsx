@@ -86,10 +86,16 @@ import Icon67Icon from "./icons/PlasmicIcon__Icon67"; // plasmic-import: 6d1G1xH
 
 createPlasmicElementProxy;
 
-export type PlasmicCenterPage__VariantMembers = {};
-export type PlasmicCenterPage__VariantsArgs = {};
+export type PlasmicCenterPage__VariantMembers = {
+  role: "superAdmin" | "centerAdmin";
+};
+export type PlasmicCenterPage__VariantsArgs = {
+  role?: SingleChoiceArg<"superAdmin" | "centerAdmin">;
+};
 type VariantPropType = keyof PlasmicCenterPage__VariantsArgs;
-export const PlasmicCenterPage__VariantProps = new Array<VariantPropType>();
+export const PlasmicCenterPage__VariantProps = new Array<VariantPropType>(
+  "role"
+);
 
 export type PlasmicCenterPage__ArgsType = {
   openEdit?: (event: any) => void;
@@ -130,6 +136,7 @@ export interface DefaultCenterPageProps {
   id?: string;
   token?: string;
   tagsitem?: any;
+  role?: SingleChoiceArg<"superAdmin" | "centerAdmin">;
   className?: string;
 }
 
@@ -292,6 +299,12 @@ function PlasmicCenterPage__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "role",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.role
       }
     ],
     [$props, $ctx, $refs]
@@ -334,8 +347,24 @@ function PlasmicCenterPage__RenderFunc(props: {
         }
       })()}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__yQc6U)}>
-        <div className={classNames(projectcss.all, sty.freeBox___9VrRj)}>
+      <div
+        className={classNames(projectcss.all, sty.freeBox__yQc6U, {
+          [sty.freeBoxrole_centerAdmin__yQc6U2AC0]: hasVariant(
+            $state,
+            "role",
+            "centerAdmin"
+          )
+        })}
+      >
+        <div
+          className={classNames(projectcss.all, sty.freeBox___9VrRj, {
+            [sty.freeBoxrole_centerAdmin___9VrRj2AC0]: hasVariant(
+              $state,
+              "role",
+              "centerAdmin"
+            )
+          })}
+        >
           <Button
             data-plasmic-name={"button3"}
             data-plasmic-override={overrides.button3}
@@ -399,7 +428,15 @@ function PlasmicCenterPage__RenderFunc(props: {
             }
           />
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__yx618)}>
+        <div
+          className={classNames(projectcss.all, sty.freeBox__yx618, {
+            [sty.freeBoxrole_centerAdmin__yx6182AC0]: hasVariant(
+              $state,
+              "role",
+              "centerAdmin"
+            )
+          })}
+        >
           <Button
             data-plasmic-name={"button"}
             data-plasmic-override={overrides.button}

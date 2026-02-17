@@ -343,13 +343,6 @@
   max-width: 100%;
   object-fit: cover;
 }
-.text__eoiop {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  min-width: 0;
-}
 .embedHtml:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
