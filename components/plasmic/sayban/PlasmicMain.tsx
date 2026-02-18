@@ -571,6 +571,19 @@ function PlasmicMain__RenderFunc(props: {
       <CenterPage
         data-plasmic-name={"centerPage"}
         data-plasmic-override={overrides.centerPage}
+        categories={(() => {
+          try {
+            return $state.categories.data.result;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return [];
+            }
+            throw e;
+          }
+        })()}
         categpty={generateStateValueProp($state, ["centerPage", "categpty"])}
         className={classNames("__wab_instance", sty.centerPage, {
           [sty.centerPagepage_centerList]: hasVariant(
