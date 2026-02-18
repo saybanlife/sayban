@@ -277,35 +277,105 @@ function PlasmicCenterPage__RenderFunc(props: {
         path: "timeWeek.week",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
-          { label: "\u0634\u0646\u0628\u0647", value: "sat", isHoliday: false },
-          {
-            label: "\u06cc\u06a9\u0634\u0646\u0628\u0647",
-            value: "sun",
-            isHoliday: false
-          },
-          {
-            label: "\u062f\u0648\u0634\u0646\u0628\u0647",
-            value: "mon",
-            isHoliday: false
-          },
-          {
-            label: "\u0633\u0647\u200c\u0634\u0646\u0628\u0647",
-            value: "tue",
-            isHoliday: false
-          },
-          {
-            label: "\u0686\u0647\u0627\u0631\u0634\u0646\u0628\u0647",
-            value: "wed",
-            isHoliday: false
-          },
-          {
-            label: "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647",
-            value: "thu",
-            isHoliday: false
-          },
-          { label: "\u062c\u0645\u0639\u0647", value: "fri", isHoliday: false }
-        ]
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                var week = [
+                  {
+                    label: "شنبه",
+                    value: "Sat",
+                    isHoliday: false
+                  },
+                  {
+                    label: "یکشنبه",
+                    value: "Sun",
+                    isHoliday: false
+                  },
+                  {
+                    label: "دوشنبه",
+                    value: "Mon",
+                    isHoliday: false
+                  },
+                  {
+                    label: "سه‌شنبه",
+                    value: "Tue",
+                    isHoliday: false
+                  },
+                  {
+                    label: "چهارشنبه",
+                    value: "Wed",
+                    isHoliday: false
+                  },
+                  {
+                    label: "پنج‌شنبه",
+                    value: "Thu",
+                    isHoliday: false
+                  },
+                  {
+                    label: "جمعه",
+                    value: "Fri",
+                    isHoliday: false
+                  }
+                ];
+
+                const apiWeek = $state.apiRequest?.data?.result?.week || [];
+                week.forEach(i => {
+                  const match = apiWeek.find(j => j.day_of_week === i.value);
+                  if (match) {
+                    i.isHoliday = match.is_closed;
+                    i.start = match.open_time;
+                    i.end = match.close_time;
+                  }
+                });
+                return week;
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [
+                  {
+                    label: "\u0634\u0646\u0628\u0647",
+                    value: "sat",
+                    isHoliday: false
+                  },
+                  {
+                    label: "\u06cc\u06a9\u0634\u0646\u0628\u0647",
+                    value: "sun",
+                    isHoliday: false
+                  },
+                  {
+                    label: "\u062f\u0648\u0634\u0646\u0628\u0647",
+                    value: "mon",
+                    isHoliday: false
+                  },
+                  {
+                    label: "\u0633\u0647\u200c\u0634\u0646\u0628\u0647",
+                    value: "tue",
+                    isHoliday: false
+                  },
+                  {
+                    label: "\u0686\u0647\u0627\u0631\u0634\u0646\u0628\u0647",
+                    value: "wed",
+                    isHoliday: false
+                  },
+                  {
+                    label: "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647",
+                    value: "thu",
+                    isHoliday: false
+                  },
+                  {
+                    label: "\u062c\u0645\u0639\u0647",
+                    value: "fri",
+                    isHoliday: false
+                  }
+                ];
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "button3.loading",

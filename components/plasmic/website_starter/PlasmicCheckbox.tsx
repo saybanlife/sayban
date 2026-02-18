@@ -267,7 +267,7 @@ function PlasmicCheckbox__RenderFunc(props: {
       )}
       defaultSelected={false}
       isDisabled={args.disabled}
-      isIndeterminate={$ccVariants["indeterminate"] ? true : undefined}
+      isIndeterminate={$ccVariants["indeterminate"] ? true : false}
       isSelected={generateStateValueProp($state, [
         "ariaCheckbox",
         "isSelected"

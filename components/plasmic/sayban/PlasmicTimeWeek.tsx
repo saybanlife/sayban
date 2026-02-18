@@ -274,43 +274,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {
                   try {
-                    return [
-                      {
-                        label: "شنبه",
-                        value: "sat",
-                        isHoliday: false
-                      },
-                      {
-                        label: "یکشنبه",
-                        value: "sun",
-                        isHoliday: false
-                      },
-                      {
-                        label: "دوشنبه",
-                        value: "mon",
-                        isHoliday: false
-                      },
-                      {
-                        label: "سه‌شنبه",
-                        value: "tue",
-                        isHoliday: false
-                      },
-                      {
-                        label: "چهارشنبه",
-                        value: "wed",
-                        isHoliday: false
-                      },
-                      {
-                        label: "پنج‌شنبه",
-                        value: "thu",
-                        isHoliday: false
-                      },
-                      {
-                        label: "جمعه",
-                        value: "fri",
-                        isHoliday: true
-                      }
-                    ];
+                    return $state.week;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -544,9 +508,11 @@ function PlasmicTimeWeek__RenderFunc(props: {
                                 <React.Fragment>
                                   {(() => {
                                     try {
-                                      return $state.timePickerStart[
-                                        currentIndex
-                                      ].value;
+                                      return (
+                                        currentItem.start ||
+                                        $state.timePickerStart[currentIndex]
+                                          .value
+                                      );
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -761,8 +727,10 @@ function PlasmicTimeWeek__RenderFunc(props: {
                                 <React.Fragment>
                                   {(() => {
                                     try {
-                                      return $state.timePickerEnd[currentIndex]
-                                        .value;
+                                      return (
+                                        currentItem.end ||
+                                        $state.timePickerEnd[currentIndex].value
+                                      );
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -799,22 +767,25 @@ function PlasmicTimeWeek__RenderFunc(props: {
                               sty.text__iGha3
                             )}
                           >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return currentItem.label;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "Option 1";
+                            <div
+                              className={projectcss.__wab_expr_html_text}
+                              dangerouslySetInnerHTML={{
+                                __html: (() => {
+                                  try {
+                                    return currentItem.label;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "Option 1";
+                                    }
+                                    throw e;
                                   }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
+                                })()
+                              }}
+                            />
                           </div>
                         ),
                         onChange: async (...eventArgs: any) => {
