@@ -317,7 +317,8 @@ function PlasmicCenterPage__RenderFunc(props: {
         path: "tags.select3Value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          ($state.apiRequest?.data?.result?.tags || []).map(i => i.tag_id)
       },
       {
         path: "role",
@@ -365,7 +366,8 @@ function PlasmicCenterPage__RenderFunc(props: {
         path: "centerInfo.tag",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          ($state.apiRequest?.data?.result?.tags || []).map(i => i.tag_id)
       },
       {
         path: "centerInfo.categories",
@@ -779,7 +781,7 @@ function PlasmicCenterPage__RenderFunc(props: {
           }
         })()}
         shouldFetch={true}
-        url={"https://sayban.darkube.app/webhook/center/"}
+        url={"https://sayban.darkube.app/webhook/panel/center"}
       >
         <div className={classNames(projectcss.all, sty.freeBox___4GkoJ)}>
           <div className={classNames(projectcss.all, sty.freeBox___8TiSu)}>
