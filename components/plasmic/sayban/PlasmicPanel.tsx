@@ -416,7 +416,9 @@ function PlasmicPanel__RenderFunc(props: {
               menu={(() => {
                 try {
                   return $state.menu.filter(i =>
-                    i.permissions.includes($state.userInfo.role)
+                    i.permissions.includes(
+                      $state.userInfo.role ?? "super_admin"
+                    )
                   );
                 } catch (e) {
                   if (

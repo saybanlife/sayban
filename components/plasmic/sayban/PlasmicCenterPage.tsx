@@ -67,6 +67,7 @@ import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-impor
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import Tags from "../../Tags"; // plasmic-import: Lr-0_vYS3Xmt/component
 import Image from "../../Image"; // plasmic-import: NaIiCw46_M0t/component
+import ImageEdit from "../../ImageEdit"; // plasmic-import: PU02M3FSmgy6/component
 import AddServise2 from "../../AddServise2"; // plasmic-import: ldHafC0LATYt/component
 import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
 import Modal from "../../Modal"; // plasmic-import: Oo9r7A7X8FP7/component
@@ -132,6 +133,7 @@ export type PlasmicCenterPage__OverridesType = {
   tags?: Flex__<typeof Tags>;
   button2?: Flex__<typeof Button>;
   image?: Flex__<typeof Image>;
+  imageEdit?: Flex__<typeof ImageEdit>;
   addServise2?: Flex__<typeof AddServise2>;
   timeWeek?: Flex__<typeof TimeWeek>;
   info?: Flex__<typeof Modal>;
@@ -1467,6 +1469,13 @@ function PlasmicCenterPage__RenderFunc(props: {
                   }
                 })()}
               />
+
+              <ImageEdit
+                data-plasmic-name={"imageEdit"}
+                data-plasmic-override={overrides.imageEdit}
+                className={classNames("__wab_instance", sty.imageEdit)}
+                images={undefined}
+              />
             </div>
             <div className={classNames(projectcss.all, sty.freeBox__eog3I)}>
               <div className={classNames(projectcss.all, sty.freeBox__ebxKq)}>
@@ -2048,6 +2057,7 @@ const PlasmicDescendants = {
     "tags",
     "button2",
     "image",
+    "imageEdit",
     "addServise2",
     "timeWeek",
     "info",
@@ -2070,6 +2080,7 @@ const PlasmicDescendants = {
     "tags",
     "button2",
     "image",
+    "imageEdit",
     "addServise2",
     "timeWeek"
   ],
@@ -2079,6 +2090,7 @@ const PlasmicDescendants = {
   tags: ["tags"],
   button2: ["button2"],
   image: ["image"],
+  imageEdit: ["imageEdit"],
   addServise2: ["addServise2"],
   timeWeek: ["timeWeek"],
   info: ["info", "centerInfo", "button4", "button5"],
@@ -2105,6 +2117,7 @@ type NodeDefaultElementType = {
   tags: typeof Tags;
   button2: typeof Button;
   image: typeof Image;
+  imageEdit: typeof ImageEdit;
   addServise2: typeof AddServise2;
   timeWeek: typeof TimeWeek;
   info: typeof Modal;
@@ -2189,6 +2202,7 @@ export const PlasmicCenterPage = Object.assign(
     tags: makeNodeComponent("tags"),
     button2: makeNodeComponent("button2"),
     image: makeNodeComponent("image"),
+    imageEdit: makeNodeComponent("imageEdit"),
     addServise2: makeNodeComponent("addServise2"),
     timeWeek: makeNodeComponent("timeWeek"),
     info: makeNodeComponent("info"),

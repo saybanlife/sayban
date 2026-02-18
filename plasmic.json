@@ -1949,6 +1949,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicCenterInfo.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "PU02M3FSmgy6",
+          "name": "ImageEdit",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicImageEdit.tsx",
+          "importSpec": {
+            "modulePath": "ImageEdit.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicImageEdit.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
