@@ -66,11 +66,7 @@ import Modal from "../../Modal"; // plasmic-import: Oo9r7A7X8FP7/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { AntdTabs } from "@plasmicpkgs/antd5/skinny/registerTabs";
 import { AntdTabItem } from "@plasmicpkgs/antd5/skinny/registerTabs";
-import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
-import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
-import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
-import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
-import Tags from "../../Tags"; // plasmic-import: Lr-0_vYS3Xmt/component
+import CenterInfo from "../../CenterInfo"; // plasmic-import: 5fhUfrSk0s6y/component
 import Imag from "../../Imag"; // plasmic-import: ScLhJpeVxPbk/component
 import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
 import AddServise from "../../AddServise"; // plasmic-import: GoiLccUqO4vp/component
@@ -118,15 +114,12 @@ export type PlasmicMain__OverridesType = {
   centerPage?: Flex__<typeof CenterPage>;
   addCenter?: Flex__<typeof Modal>;
   tabs?: Flex__<typeof AntdTabs>;
-  titleInput?: Flex__<typeof TextInput>;
-  textAreaInput?: Flex__<typeof TextAreaInput>;
-  category?: Flex__<typeof Select>;
-  subcategory?: Flex__<typeof Select>;
-  tags?: Flex__<typeof Tags>;
+  centerInfo?: Flex__<typeof CenterInfo>;
   imag?: Flex__<typeof Imag>;
   loaction?: Flex__<typeof Loaction>;
   addServise?: Flex__<typeof AddServise>;
   timeWeek?: Flex__<typeof TimeWeek>;
+  freeBox?: Flex__<"div">;
   button2?: Flex__<typeof Button>;
   submit?: Flex__<typeof Button>;
   button3?: Flex__<typeof Button>;
@@ -194,36 +187,6 @@ function PlasmicMain__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => "1"
       },
       {
-        path: "titleInput.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "subcategory.isOpen",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
-      {
-        path: "subcategory.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "category.isOpen",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
-      {
-        path: "category.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
         path: "addCenter.isOpen",
         type: "private",
         variableType: "boolean",
@@ -253,12 +216,6 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
-      },
-      {
-        path: "textAreaInput.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "categories.data",
@@ -398,18 +355,61 @@ function PlasmicMain__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
-        path: "tags.select3Value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
         path: "role",
         type: "writable",
         variableType: "text",
 
         valueProp: "role",
         onChangeProp: "onRoleChange"
+      },
+      {
+        path: "centerInfo.title",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "centerInfo.subcategory2",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "1"
+      },
+      {
+        path: "centerInfo.categorie",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "1"
+      },
+      {
+        path: "centerInfo.description",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "centerInfo.tag",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "centerInfo.categories",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.categories?.data?.result;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -675,358 +675,117 @@ function PlasmicMain__RenderFunc(props: {
                     </div>
                   }
                 >
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox___1NAuf)}
-                  >
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__zCibQ)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__jEhvN
-                        )}
-                      >
-                        {"\u0646\u0627\u0645 \u0645\u0631\u06a9\u0632"}
-                      </div>
-                      <TextInput
-                        data-plasmic-name={"titleInput"}
-                        data-plasmic-override={overrides.titleInput}
-                        className={classNames("__wab_instance", sty.titleInput)}
-                        inputType={"text"}
-                        onChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "titleInput",
-                            "value"
-                          ]).apply(null, eventArgs);
+                  <CenterInfo
+                    data-plasmic-name={"centerInfo"}
+                    data-plasmic-override={overrides.centerInfo}
+                    categorie={generateStateValueProp($state, [
+                      "centerInfo",
+                      "categorie"
+                    ])}
+                    categories={generateStateValueProp($state, [
+                      "centerInfo",
+                      "categories"
+                    ])}
+                    className={classNames("__wab_instance", sty.centerInfo)}
+                    description={generateStateValueProp($state, [
+                      "centerInfo",
+                      "description"
+                    ])}
+                    onCategorieChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "centerInfo",
+                        "categorie"
+                      ]).apply(null, eventArgs);
 
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        }}
-                        type={"line"}
-                        value={generateStateValueProp($state, [
-                          "titleInput",
-                          "value"
-                        ])}
-                      />
-                    </div>
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__gWx4J)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__tgyV
-                        )}
-                      >
-                        {"\u062a\u0648\u0636\u06cc\u062d\u0627\u062a"}
-                      </div>
-                      <TextAreaInput
-                        data-plasmic-name={"textAreaInput"}
-                        data-plasmic-override={overrides.textAreaInput}
-                        className={classNames(
-                          "__wab_instance",
-                          sty.textAreaInput
-                        )}
-                        onChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "textAreaInput",
-                            "value"
-                          ]).apply(null, eventArgs);
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    onCategoriesChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "centerInfo",
+                        "categories"
+                      ]).apply(null, eventArgs);
 
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        }}
-                        type={"line"}
-                        value={generateStateValueProp($state, [
-                          "textAreaInput",
-                          "value"
-                        ])}
-                      />
-                    </div>
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__aduUk)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__mMyXk
-                        )}
-                      >
-                        {
-                          "\u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc \u0627\u0635\u0644\u06cc"
-                        }
-                      </div>
-                      <Select
-                        data-plasmic-name={"category"}
-                        data-plasmic-override={overrides.category}
-                        className={classNames("__wab_instance", sty.category)}
-                        isOpen={generateStateValueProp($state, [
-                          "category",
-                          "isOpen"
-                        ])}
-                        items={(_par =>
-                          !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                          (() => {
-                            try {
-                              return $state.categories.data.result;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return [];
-                              }
-                              throw e;
-                            }
-                          })()
-                        ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                          const currentItem = __plasmic_item_0;
-                          const currentIndex = __plasmic_idx_0;
-                          return (
-                            <MenuItem
-                              key={currentIndex}
-                              label={(() => {
-                                try {
-                                  return currentItem.name;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                              value={(() => {
-                                try {
-                                  return currentItem.category_id;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            />
-                          );
-                        })}
-                        onChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "category",
-                            "value"
-                          ]).apply(null, eventArgs);
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    onDescriptionChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "centerInfo",
+                        "description"
+                      ]).apply(null, eventArgs);
 
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        }}
-                        onOpenChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "category",
-                            "isOpen"
-                          ]).apply(null, eventArgs);
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    onSubcategory2Change={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "centerInfo",
+                        "subcategory2"
+                      ]).apply(null, eventArgs);
 
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        }}
-                        placeholder={``}
-                        showLabel={false}
-                        type={"line"}
-                        value={generateStateValueProp($state, [
-                          "category",
-                          "value"
-                        ])}
-                      />
-                    </div>
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__qmPnN)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__gyDcs
-                        )}
-                      >
-                        {
-                          "\u0632\u06cc\u0631\u200c\u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc"
-                        }
-                      </div>
-                      <Select
-                        data-plasmic-name={"subcategory"}
-                        data-plasmic-override={overrides.subcategory}
-                        className={classNames(
-                          "__wab_instance",
-                          sty.subcategory
-                        )}
-                        isOpen={generateStateValueProp($state, [
-                          "subcategory",
-                          "isOpen"
-                        ])}
-                        items={(_par =>
-                          !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                          (() => {
-                            try {
-                              return $state.categories.data.result.find(
-                                i => i.category_id == $state.category.value
-                              ).subcategories;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return [];
-                              }
-                              throw e;
-                            }
-                          })()
-                        ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                          const currentItem = __plasmic_item_0;
-                          const currentIndex = __plasmic_idx_0;
-                          return (
-                            <MenuItem
-                              key={currentIndex}
-                              label={(() => {
-                                try {
-                                  return currentItem.name;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                              value={(() => {
-                                try {
-                                  return currentItem.id;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            />
-                          );
-                        })}
-                        onChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "subcategory",
-                            "value"
-                          ]).apply(null, eventArgs);
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    onTagChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "centerInfo",
+                        "tag"
+                      ]).apply(null, eventArgs);
 
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        }}
-                        onOpenChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "subcategory",
-                            "isOpen"
-                          ]).apply(null, eventArgs);
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    onTitleChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "centerInfo",
+                        "title"
+                      ]).apply(null, eventArgs);
 
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        }}
-                        placeholder={``}
-                        showLabel={false}
-                        type={"line"}
-                        value={generateStateValueProp($state, [
-                          "subcategory",
-                          "value"
-                        ])}
-                      />
-                    </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___2Parf
-                      )}
-                    >
-                      <Tags
-                        data-plasmic-name={"tags"}
-                        data-plasmic-override={overrides.tags}
-                        className={classNames("__wab_instance", sty.tags)}
-                        onSelect3ValueChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "tags",
-                            "select3Value"
-                          ]).apply(null, eventArgs);
-
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        }}
-                        select3Value={generateStateValueProp($state, [
-                          "tags",
-                          "select3Value"
-                        ])}
-                        tagsitem={(() => {
-                          try {
-                            return $state.categories.data.tag;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}
-                      />
-                    </div>
-                  </div>
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    subcategory2={generateStateValueProp($state, [
+                      "centerInfo",
+                      "subcategory2"
+                    ])}
+                    tag={generateStateValueProp($state, ["centerInfo", "tag"])}
+                    tagsitem={$state.categories?.data?.tag}
+                    title={generateStateValueProp($state, [
+                      "centerInfo",
+                      "title"
+                    ])}
+                  />
                 </AntdTabItem>
                 <AntdTabItem
                   className={classNames("__wab_instance", sty.tabItem___9Pwwy)}
@@ -1087,6 +846,18 @@ function PlasmicMain__RenderFunc(props: {
                   <Loaction
                     data-plasmic-name={"loaction"}
                     data-plasmic-override={overrides.loaction}
+                    address={generateStateValueProp($state, [
+                      "loaction",
+                      "address"
+                    ])}
+                    call2={generateStateValueProp($state, [
+                      "loaction",
+                      "call2"
+                    ])}
+                    city2={generateStateValueProp($state, [
+                      "loaction",
+                      "city2"
+                    ])}
                     className={classNames("__wab_instance", sty.loaction)}
                     onAddressChange={async (...eventArgs: any) => {
                       generateStateOnChangeProp($state, [
@@ -1172,6 +943,10 @@ function PlasmicMain__RenderFunc(props: {
                         return;
                       }
                     }}
+                    state2={generateStateValueProp($state, [
+                      "loaction",
+                      "state2"
+                    ])}
                   />
                 </AntdTabItem>
                 <AntdTabItem
@@ -1270,7 +1045,11 @@ function PlasmicMain__RenderFunc(props: {
           />
         }
         footer={
-          <div className={classNames(projectcss.all, sty.freeBox__cGp8Z)}>
+          <div
+            data-plasmic-name={"freeBox"}
+            data-plasmic-override={overrides.freeBox}
+            className={classNames(projectcss.all, sty.freeBox)}
+          >
             {(() => {
               try {
                 return $state.tabs.activeKey != "5";
@@ -1426,9 +1205,10 @@ function PlasmicMain__RenderFunc(props: {
                             (() => {
                               try {
                                 return {
-                                  name: $state.titleInput.value,
-                                  description: $state.textAreaInput.value,
-                                  subcategory_id: $state.subcategory.value,
+                                  name: $state.centerInfo.title,
+                                  description: $state.centerInfo.description,
+                                  subcategory_id:
+                                    $state.centerInfo.subcategory2,
                                   address: $state.loaction.address,
                                   city: $state.loaction.city2,
                                   state: $state.loaction.state2,
@@ -1437,7 +1217,7 @@ function PlasmicMain__RenderFunc(props: {
                                   phone: $state.loaction.call2,
                                   image: $state.imag.uploadFiles,
                                   week: $state.timeWeek.week,
-                                  tag: $state.tags.select3Value,
+                                  tag: $state.centerInfo.tag,
                                   service: $state.addServise.servises
                                 };
                               } catch (e) {
@@ -1663,15 +1443,12 @@ const PlasmicDescendants = {
     "centerPage",
     "addCenter",
     "tabs",
-    "titleInput",
-    "textAreaInput",
-    "category",
-    "subcategory",
-    "tags",
+    "centerInfo",
     "imag",
     "loaction",
     "addServise",
     "timeWeek",
+    "freeBox",
     "button2",
     "submit",
     "button3",
@@ -1684,40 +1461,23 @@ const PlasmicDescendants = {
   addCenter: [
     "addCenter",
     "tabs",
-    "titleInput",
-    "textAreaInput",
-    "category",
-    "subcategory",
-    "tags",
+    "centerInfo",
     "imag",
     "loaction",
     "addServise",
     "timeWeek",
+    "freeBox",
     "button2",
     "submit",
     "button3"
   ],
-  tabs: [
-    "tabs",
-    "titleInput",
-    "textAreaInput",
-    "category",
-    "subcategory",
-    "tags",
-    "imag",
-    "loaction",
-    "addServise",
-    "timeWeek"
-  ],
-  titleInput: ["titleInput"],
-  textAreaInput: ["textAreaInput"],
-  category: ["category"],
-  subcategory: ["subcategory"],
-  tags: ["tags"],
+  tabs: ["tabs", "centerInfo", "imag", "loaction", "addServise", "timeWeek"],
+  centerInfo: ["centerInfo"],
   imag: ["imag"],
   loaction: ["loaction"],
   addServise: ["addServise"],
   timeWeek: ["timeWeek"],
+  freeBox: ["freeBox", "button2", "submit", "button3"],
   button2: ["button2"],
   submit: ["submit"],
   button3: ["button3"],
@@ -1734,15 +1494,12 @@ type NodeDefaultElementType = {
   centerPage: typeof CenterPage;
   addCenter: typeof Modal;
   tabs: typeof AntdTabs;
-  titleInput: typeof TextInput;
-  textAreaInput: typeof TextAreaInput;
-  category: typeof Select;
-  subcategory: typeof Select;
-  tags: typeof Tags;
+  centerInfo: typeof CenterInfo;
   imag: typeof Imag;
   loaction: typeof Loaction;
   addServise: typeof AddServise;
   timeWeek: typeof TimeWeek;
+  freeBox: "div";
   button2: typeof Button;
   submit: typeof Button;
   button3: typeof Button;
@@ -1817,15 +1574,12 @@ export const PlasmicMain = Object.assign(
     centerPage: makeNodeComponent("centerPage"),
     addCenter: makeNodeComponent("addCenter"),
     tabs: makeNodeComponent("tabs"),
-    titleInput: makeNodeComponent("titleInput"),
-    textAreaInput: makeNodeComponent("textAreaInput"),
-    category: makeNodeComponent("category"),
-    subcategory: makeNodeComponent("subcategory"),
-    tags: makeNodeComponent("tags"),
+    centerInfo: makeNodeComponent("centerInfo"),
     imag: makeNodeComponent("imag"),
     loaction: makeNodeComponent("loaction"),
     addServise: makeNodeComponent("addServise"),
     timeWeek: makeNodeComponent("timeWeek"),
+    freeBox: makeNodeComponent("freeBox"),
     button2: makeNodeComponent("button2"),
     submit: makeNodeComponent("submit"),
     button3: makeNodeComponent("button3"),

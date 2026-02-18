@@ -274,10 +274,15 @@ function PlasmicImage__RenderFunc(props: {
                   ? (() => {
                       const actionArgs = {
                         customFunction: async () => {
-                          return $props.images.forEach(i => {
-                            if (i.id == $state.radioGroup.value) i.main = true;
-                            else delete i.main;
-                          });
+                          return (() => {
+                            try {
+                              return $props.images.forEach(i => {
+                                if (i.id == $state.radioGroup.value)
+                                  i.main = true;
+                                else delete i.main;
+                              });
+                            } catch {}
+                          })();
                         }
                       };
                       return (({ customFunction }) => {

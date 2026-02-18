@@ -1936,6 +1936,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicLoadingPanel.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "5fhUfrSk0s6y",
+          "name": "CenterInfo",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicCenterInfo.tsx",
+          "importSpec": {
+            "modulePath": "CenterInfo.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicCenterInfo.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

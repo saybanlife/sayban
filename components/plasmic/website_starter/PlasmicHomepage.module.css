@@ -67,6 +67,9 @@
     grid-column: 4;
   }
 }
+.rootsearch2 > * {
+  grid-column: 4;
+}
 .sideEffect:global(.__wab_instance) {
   animation: none;
   max-width: 100%;

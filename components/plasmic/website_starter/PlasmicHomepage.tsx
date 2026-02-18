@@ -389,7 +389,8 @@ function PlasmicHomepage__RenderFunc(props: {
                 $state,
                 "page",
                 "subcategories"
-              )
+              ),
+              [sty.rootsearch2]: hasVariant($state, "search2", "search2")
             }
           )}
         >

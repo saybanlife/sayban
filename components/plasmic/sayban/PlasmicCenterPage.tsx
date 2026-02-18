@@ -69,6 +69,9 @@ import Tags from "../../Tags"; // plasmic-import: Lr-0_vYS3Xmt/component
 import Image from "../../Image"; // plasmic-import: NaIiCw46_M0t/component
 import AddServise2 from "../../AddServise2"; // plasmic-import: ldHafC0LATYt/component
 import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
+import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
+import CenterInfo from "../../CenterInfo"; // plasmic-import: 5fhUfrSk0s6y/component
+import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -122,11 +125,21 @@ export type PlasmicCenterPage__OverridesType = {
   select?: Flex__<typeof Select>;
   apiRequest?: Flex__<typeof ApiRequest>;
   img?: Flex__<typeof PlasmicImg__>;
+  edit?: Flex__<typeof Button>;
+  edit2?: Flex__<typeof Button>;
   tags?: Flex__<typeof Tags>;
   button2?: Flex__<typeof Button>;
   image?: Flex__<typeof Image>;
   addServise2?: Flex__<typeof AddServise2>;
   timeWeek?: Flex__<typeof TimeWeek>;
+  info?: Flex__<typeof Dialog>;
+  centerInfo?: Flex__<typeof CenterInfo>;
+  button4?: Flex__<typeof Button>;
+  button5?: Flex__<typeof Button>;
+  map?: Flex__<typeof Dialog>;
+  loaction?: Flex__<typeof Loaction>;
+  button6?: Flex__<typeof Button>;
+  button7?: Flex__<typeof Button>;
 };
 
 export interface DefaultCenterPageProps {
@@ -182,6 +195,8 @@ function PlasmicCenterPage__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
+
+  const $globalActions = useGlobalActions?.();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
@@ -305,6 +320,126 @@ function PlasmicCenterPage__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.role
+      },
+      {
+        path: "edit.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "edit2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "info.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "centerInfo.title",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "centerInfo.subcategory2",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "1"
+      },
+      {
+        path: "centerInfo.categorie",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "1"
+      },
+      {
+        path: "centerInfo.description",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "centerInfo.tag",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "centerInfo.categories",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "button4.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button5.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "map.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "button6.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button7.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "loaction.address",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "loaction.call2",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "loaction.lat",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "loaction.lon",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "loaction.state2",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "loaction.city2",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -331,7 +466,8 @@ function PlasmicCenterPage__RenderFunc(props: {
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        { [sty.rootrole_superAdmin]: hasVariant($state, "role", "superAdmin") }
       )}
       style={(() => {
         try {
@@ -353,6 +489,11 @@ function PlasmicCenterPage__RenderFunc(props: {
             $state,
             "role",
             "centerAdmin"
+          ),
+          [sty.freeBoxrole_superAdmin__yQc6UjtYNs]: hasVariant(
+            $state,
+            "role",
+            "superAdmin"
           )
         })}
       >
@@ -368,7 +509,13 @@ function PlasmicCenterPage__RenderFunc(props: {
           <Button
             data-plasmic-name={"button3"}
             data-plasmic-override={overrides.button3}
-            className={classNames("__wab_instance", sty.button3)}
+            className={classNames("__wab_instance", sty.button3, {
+              [sty.button3role_superAdmin]: hasVariant(
+                $state,
+                "role",
+                "superAdmin"
+              )
+            })}
             color={"neutral"}
             iconStart={true}
             label={
@@ -440,24 +587,47 @@ function PlasmicCenterPage__RenderFunc(props: {
           <Button
             data-plasmic-name={"button"}
             data-plasmic-override={overrides.button}
-            className={classNames("__wab_instance", sty.button)}
+            className={classNames("__wab_instance", sty.button, {
+              [sty.buttonrole_superAdmin]: hasVariant(
+                $state,
+                "role",
+                "superAdmin"
+              )
+            })}
             color={"success"}
             end={
               <Icon56Icon
-                className={classNames(projectcss.all, sty.svg__oqSyu)}
+                className={classNames(projectcss.all, sty.svg__oqSyu, {
+                  [sty.svgrole_superAdmin__oqSyUjtYNs]: hasVariant(
+                    $state,
+                    "role",
+                    "superAdmin"
+                  )
+                })}
                 role={"img"}
               />
             }
-            iconEnd={true}
+            iconEnd={
+              hasVariant($state, "role", "superAdmin") ? undefined : undefined
+            }
             label={
               <div
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__auq3U
+                  sty.text__auq3U,
+                  {
+                    [sty.textrole_superAdmin__auq3UjtYNs]: hasVariant(
+                      $state,
+                      "role",
+                      "superAdmin"
+                    )
+                  }
                 )}
               >
-                {"\u0645\u0631\u06a9\u0632 \u062c\u062f\u06cc\u062f"}
+                {hasVariant($state, "role", "superAdmin")
+                  ? "\u0630\u062e\u06cc\u0631\u0647"
+                  : "\u0630\u062e\u06cc\u0631\u0647"}
               </div>
             }
             loading={generateStateValueProp($state, ["button", "loading"])}
@@ -478,11 +648,25 @@ function PlasmicCenterPage__RenderFunc(props: {
             }}
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox__seame)}>
+          <div
+            className={classNames(projectcss.all, sty.freeBox__seame, {
+              [sty.freeBoxrole_superAdmin__seamejtYNs]: hasVariant(
+                $state,
+                "role",
+                "superAdmin"
+              )
+            })}
+          >
             <Select
               data-plasmic-name={"select"}
               data-plasmic-override={overrides.select}
-              className={classNames("__wab_instance", sty.select)}
+              className={classNames("__wab_instance", sty.select, {
+                [sty.selectrole_superAdmin]: hasVariant(
+                  $state,
+                  "role",
+                  "superAdmin"
+                )
+              })}
               isOpen={generateStateValueProp($state, ["select", "isOpen"])}
               onChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, ["select", "value"]).apply(
@@ -522,7 +706,13 @@ function PlasmicCenterPage__RenderFunc(props: {
       <ApiRequest
         data-plasmic-name={"apiRequest"}
         data-plasmic-override={overrides.apiRequest}
-        className={classNames("__wab_instance", sty.apiRequest)}
+        className={classNames("__wab_instance", sty.apiRequest, {
+          [sty.apiRequestrole_centerAdmin]: hasVariant(
+            $state,
+            "role",
+            "centerAdmin"
+          )
+        })}
         config={(() => {
           try {
             return {
@@ -592,7 +782,14 @@ function PlasmicCenterPage__RenderFunc(props: {
               className={classNames(
                 projectcss.all,
                 sty.freeBox__zx7Mo,
-                "container-scroll"
+                "container-scroll",
+                {
+                  [sty.freeBoxrole_centerAdmin__zx7Mo2AC0]: hasVariant(
+                    $state,
+                    "role",
+                    "centerAdmin"
+                  )
+                }
               )}
             >
               <div className={classNames(projectcss.all, sty.freeBox__ijfen)}>
@@ -666,15 +863,161 @@ function PlasmicCenterPage__RenderFunc(props: {
                   >
                     {"\u0622\u062f\u0631\u0633 \u0648 \u062a\u0645\u0627\u0633"}
                   </div>
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__nhQDa
-                    )}
-                  >
-                    {"\u0648\u06cc\u0631\u0627\u06cc\u0634"}
-                  </div>
+                  <Button
+                    data-plasmic-name={"edit"}
+                    data-plasmic-override={overrides.edit}
+                    className={classNames("__wab_instance", sty.edit)}
+                    color={"clear"}
+                    label={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text___14QDg
+                        )}
+                      >
+                        {"\u0648\u06cc\u0631\u0627\u06cc\u0634"}
+                      </div>
+                    }
+                    loading={generateStateValueProp($state, [
+                      "edit",
+                      "loading"
+                    ])}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["runCode"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return (() => {
+                                  $state.loaction.address =
+                                    $state.apiRequest.data.result.address;
+                                  $state.loaction.city2 =
+                                    $state.apiRequest.data.result.city;
+                                  $state.loaction.state2 =
+                                    $state.apiRequest.data.result.state;
+                                  $state.loaction.call2 =
+                                    $state.apiRequest.data.result.phone;
+                                  $state.loaction.lat =
+                                    $state.apiRequest.data.result.latitude;
+                                  return ($state.loaction.lon =
+                                    $state.apiRequest.data.result.longitude);
+                                })();
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runCode"] != null &&
+                        typeof $steps["runCode"] === "object" &&
+                        typeof $steps["runCode"].then === "function"
+                      ) {
+                        $steps["runCode"] = await $steps["runCode"];
+                      }
+
+                      $steps["updateMapOpendialog"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["map", "opendialog"]
+                              },
+                              operation: 4
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              const oldValue = $stateGet(objRoot, variablePath);
+                              $stateSet(objRoot, variablePath, !oldValue);
+                              return !oldValue;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateMapOpendialog"] != null &&
+                        typeof $steps["updateMapOpendialog"] === "object" &&
+                        typeof $steps["updateMapOpendialog"].then === "function"
+                      ) {
+                        $steps["updateMapOpendialog"] =
+                          await $steps["updateMapOpendialog"];
+                      }
+
+                      $steps["invokeGlobalAction"] = true
+                        ? (() => {
+                            const actionArgs = { args: [1000] };
+                            return $globalActions["Fragment.wait"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["invokeGlobalAction"] != null &&
+                        typeof $steps["invokeGlobalAction"] === "object" &&
+                        typeof $steps["invokeGlobalAction"].then === "function"
+                      ) {
+                        $steps["invokeGlobalAction"] =
+                          await $steps["invokeGlobalAction"];
+                      }
+
+                      $steps["runCode2"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return (() => {
+                                  if (
+                                    $state.apiRequest.data.result.latitude &&
+                                    $state.apiRequest.data.result.longitude
+                                  ) {
+                                    console.log("x,sanxklanxla");
+                                    return window.goToLocation(
+                                      $state.apiRequest.data.result.latitude,
+                                      $state.apiRequest.data.result.longitude
+                                    );
+                                  }
+                                })();
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runCode2"] != null &&
+                        typeof $steps["runCode2"] === "object" &&
+                        typeof $steps["runCode2"].then === "function"
+                      ) {
+                        $steps["runCode2"] = await $steps["runCode2"];
+                      }
+                    }}
+                    onLoadingChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "edit",
+                        "loading"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                  />
                 </div>
                 <div
                   className={classNames(
@@ -715,22 +1058,131 @@ function PlasmicCenterPage__RenderFunc(props: {
                   >
                     {"\u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc"}
                   </div>
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__dt6Yy
-                    )}
-                  >
-                    {"\u0648\u06cc\u0631\u0627\u06cc\u0634"}
-                  </div>
+                  <Button
+                    data-plasmic-name={"edit2"}
+                    data-plasmic-override={overrides.edit2}
+                    className={classNames("__wab_instance", sty.edit2)}
+                    color={"clear"}
+                    label={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__a1U2G
+                        )}
+                      >
+                        {"\u0648\u06cc\u0631\u0627\u06cc\u0634"}
+                      </div>
+                    }
+                    loading={generateStateValueProp($state, [
+                      "edit2",
+                      "loading"
+                    ])}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["runCode"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return (() => {
+                                  $state.centerInfo.title =
+                                    $state.apiRequest.data.result.name;
+                                  $state.centerInfo.description =
+                                    $state.apiRequest.data.result.description;
+                                  $state.centerInfo.categorie =
+                                    $state.apiRequest.data.result.category_id;
+                                  return ($state.centerInfo.subcategory2 =
+                                    $state.apiRequest.data.result.subcategory_id);
+                                })();
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runCode"] != null &&
+                        typeof $steps["runCode"] === "object" &&
+                        typeof $steps["runCode"].then === "function"
+                      ) {
+                        $steps["runCode"] = await $steps["runCode"];
+                      }
+
+                      $steps["updateInfoOpendialog"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["info", "opendialog"]
+                              },
+                              operation: 4
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              const oldValue = $stateGet(objRoot, variablePath);
+                              $stateSet(objRoot, variablePath, !oldValue);
+                              return !oldValue;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateInfoOpendialog"] != null &&
+                        typeof $steps["updateInfoOpendialog"] === "object" &&
+                        typeof $steps["updateInfoOpendialog"].then ===
+                          "function"
+                      ) {
+                        $steps["updateInfoOpendialog"] =
+                          await $steps["updateInfoOpendialog"];
+                      }
+                    }}
+                    onLoadingChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "edit2",
+                        "loading"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                  />
                 </div>
-                <div className={classNames(projectcss.all, sty.freeBox__bXyVs)}>
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__bXyVs, {
+                    [sty.freeBoxrole_centerAdmin__bXyVs2AC0]: hasVariant(
+                      $state,
+                      "role",
+                      "centerAdmin"
+                    )
+                  })}
+                >
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__v0ArU
+                      sty.text__v0ArU,
+                      {
+                        [sty.textrole_centerAdmin__v0ArU2AC0]: hasVariant(
+                          $state,
+                          "role",
+                          "centerAdmin"
+                        )
+                      }
                     )}
                   >
                     <React.Fragment>{"دسته بندی اصلی : "}</React.Fragment>
@@ -739,7 +1191,14 @@ function PlasmicCenterPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text___9M0Do
+                      sty.text___9M0Do,
+                      {
+                        [sty.textrole_centerAdmin___9M0Do2AC0]: hasVariant(
+                          $state,
+                          "role",
+                          "centerAdmin"
+                        )
+                      }
                     )}
                   >
                     <React.Fragment>
@@ -747,12 +1206,27 @@ function PlasmicCenterPage__RenderFunc(props: {
                     </React.Fragment>
                   </div>
                 </div>
-                <div className={classNames(projectcss.all, sty.freeBox__mDgHr)}>
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__mDgHr, {
+                    [sty.freeBoxrole_centerAdmin__mDgHr2AC0]: hasVariant(
+                      $state,
+                      "role",
+                      "centerAdmin"
+                    )
+                  })}
+                >
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__h9VvD
+                      sty.text__h9VvD,
+                      {
+                        [sty.textrole_centerAdmin__h9VvD2AC0]: hasVariant(
+                          $state,
+                          "role",
+                          "centerAdmin"
+                        )
+                      }
                     )}
                   >
                     <React.Fragment>{"زیر دسته بندی  : "}</React.Fragment>
@@ -761,7 +1235,14 @@ function PlasmicCenterPage__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__iG7VU
+                      sty.text__iG7VU,
+                      {
+                        [sty.textrole_centerAdmin__iG7VU2AC0]: hasVariant(
+                          $state,
+                          "role",
+                          "centerAdmin"
+                        )
+                      }
                     )}
                   >
                     <React.Fragment>
@@ -771,7 +1252,13 @@ function PlasmicCenterPage__RenderFunc(props: {
                 </div>
               </div>
               <Line
-                className={classNames("__wab_instance", sty.line__xb9X6)}
+                className={classNames("__wab_instance", sty.line__xb9X6, {
+                  [sty.linerole_centerAdmin__xb9X62AC0]: hasVariant(
+                    $state,
+                    "role",
+                    "centerAdmin"
+                  )
+                })}
                 size={"small"}
               />
             </div>
@@ -788,7 +1275,13 @@ function PlasmicCenterPage__RenderFunc(props: {
               <Tags
                 data-plasmic-name={"tags"}
                 data-plasmic-override={overrides.tags}
-                className={classNames("__wab_instance", sty.tags)}
+                className={classNames("__wab_instance", sty.tags, {
+                  [sty.tagsrole_centerAdmin]: hasVariant(
+                    $state,
+                    "role",
+                    "centerAdmin"
+                  )
+                })}
                 lable={true}
                 onSelect3ValueChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
@@ -968,6 +1461,455 @@ function PlasmicCenterPage__RenderFunc(props: {
           </div>
         </div>
       </ApiRequest>
+      <Dialog
+        data-plasmic-name={"info"}
+        data-plasmic-override={overrides.info}
+        className={classNames("__wab_instance", sty.info)}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["info", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["info", "opendialog"])}
+      >
+        <div className={classNames(projectcss.all, sty.freeBox__uBam)}>
+          <CenterInfo
+            data-plasmic-name={"centerInfo"}
+            data-plasmic-override={overrides.centerInfo}
+            categorie={generateStateValueProp($state, [
+              "centerInfo",
+              "categorie"
+            ])}
+            categories={generateStateValueProp($state, [
+              "centerInfo",
+              "categories"
+            ])}
+            className={classNames("__wab_instance", sty.centerInfo)}
+            description={generateStateValueProp($state, [
+              "centerInfo",
+              "description"
+            ])}
+            onCategorieChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "centerInfo",
+                "categorie"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onCategoriesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "centerInfo",
+                "categories"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onDescriptionChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "centerInfo",
+                "description"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onSubcategory2Change={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "centerInfo",
+                "subcategory2"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onTagChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["centerInfo", "tag"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onTitleChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["centerInfo", "title"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            subcategory2={generateStateValueProp($state, [
+              "centerInfo",
+              "subcategory2"
+            ])}
+            tag={generateStateValueProp($state, ["centerInfo", "tag"])}
+            tagsitem={args.tagsitem}
+            title={generateStateValueProp($state, ["centerInfo", "title"])}
+          />
+        </div>
+        <div className={classNames(projectcss.all, sty.freeBox__rG4Ay)}>
+          <Button
+            data-plasmic-name={"button4"}
+            data-plasmic-override={overrides.button4}
+            className={classNames("__wab_instance", sty.button4)}
+            color={"success"}
+            label={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___2Xuka
+                )}
+              >
+                {"\u0630\u062e\u06cc\u0631\u0647"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button4", "loading"])}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button4", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+
+          <Button
+            data-plasmic-name={"button5"}
+            data-plasmic-override={overrides.button5}
+            className={classNames("__wab_instance", sty.button5)}
+            color={"neutral"}
+            label={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__twHqy
+                )}
+              >
+                {"\u0644\u063a\u0648"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button5", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateInfoOpendialog"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["info", "opendialog"]
+                      },
+                      operation: 4,
+                      value: true
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateInfoOpendialog"] != null &&
+                typeof $steps["updateInfoOpendialog"] === "object" &&
+                typeof $steps["updateInfoOpendialog"].then === "function"
+              ) {
+                $steps["updateInfoOpendialog"] =
+                  await $steps["updateInfoOpendialog"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button5", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </Dialog>
+      <Dialog
+        data-plasmic-name={"map"}
+        data-plasmic-override={overrides.map}
+        className={classNames("__wab_instance", sty.map)}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["map", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["map", "opendialog"])}
+      >
+        <div className={classNames(projectcss.all, sty.freeBox__dx3R4)}>
+          <Loaction
+            data-plasmic-name={"loaction"}
+            data-plasmic-override={overrides.loaction}
+            address={generateStateValueProp($state, ["loaction", "address"])}
+            call2={generateStateValueProp($state, ["loaction", "call2"])}
+            city2={generateStateValueProp($state, ["loaction", "city2"])}
+            className={classNames("__wab_instance", sty.loaction)}
+            onAddressChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["loaction", "address"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onCallChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["loaction", "call2"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onCityChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["loaction", "city2"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onLatChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["loaction", "lat"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onLonChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["loaction", "lon"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onStateChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["loaction", "state2"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            state2={generateStateValueProp($state, ["loaction", "state2"])}
+          />
+        </div>
+        <div className={classNames(projectcss.all, sty.freeBox__fLkSw)}>
+          <Button
+            data-plasmic-name={"button6"}
+            data-plasmic-override={overrides.button6}
+            className={classNames("__wab_instance", sty.button6)}
+            color={"success"}
+            label={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__ro0NO
+                )}
+              >
+                {"\u0630\u062e\u06cc\u0631\u0647"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button6", "loading"])}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button6", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+
+          <Button
+            data-plasmic-name={"button7"}
+            data-plasmic-override={overrides.button7}
+            className={classNames("__wab_instance", sty.button7)}
+            color={"neutral"}
+            label={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__yHAgV
+                )}
+              >
+                {"\u0644\u063a\u0648"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button7", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateInfoOpendialog"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["map", "opendialog"]
+                      },
+                      operation: 4,
+                      value: true
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateInfoOpendialog"] != null &&
+                typeof $steps["updateInfoOpendialog"] === "object" &&
+                typeof $steps["updateInfoOpendialog"].then === "function"
+              ) {
+                $steps["updateInfoOpendialog"] =
+                  await $steps["updateInfoOpendialog"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button7", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </Dialog>
     </div>
   ) as React.ReactElement | null;
 }
@@ -980,11 +1922,21 @@ const PlasmicDescendants = {
     "select",
     "apiRequest",
     "img",
+    "edit",
+    "edit2",
     "tags",
     "button2",
     "image",
     "addServise2",
-    "timeWeek"
+    "timeWeek",
+    "info",
+    "centerInfo",
+    "button4",
+    "button5",
+    "map",
+    "loaction",
+    "button6",
+    "button7"
   ],
   button3: ["button3"],
   button: ["button"],
@@ -992,6 +1944,8 @@ const PlasmicDescendants = {
   apiRequest: [
     "apiRequest",
     "img",
+    "edit",
+    "edit2",
     "tags",
     "button2",
     "image",
@@ -999,11 +1953,21 @@ const PlasmicDescendants = {
     "timeWeek"
   ],
   img: ["img"],
+  edit: ["edit"],
+  edit2: ["edit2"],
   tags: ["tags"],
   button2: ["button2"],
   image: ["image"],
   addServise2: ["addServise2"],
-  timeWeek: ["timeWeek"]
+  timeWeek: ["timeWeek"],
+  info: ["info", "centerInfo", "button4", "button5"],
+  centerInfo: ["centerInfo"],
+  button4: ["button4"],
+  button5: ["button5"],
+  map: ["map", "loaction", "button6", "button7"],
+  loaction: ["loaction"],
+  button6: ["button6"],
+  button7: ["button7"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1015,11 +1979,21 @@ type NodeDefaultElementType = {
   select: typeof Select;
   apiRequest: typeof ApiRequest;
   img: typeof PlasmicImg__;
+  edit: typeof Button;
+  edit2: typeof Button;
   tags: typeof Tags;
   button2: typeof Button;
   image: typeof Image;
   addServise2: typeof AddServise2;
   timeWeek: typeof TimeWeek;
+  info: typeof Dialog;
+  centerInfo: typeof CenterInfo;
+  button4: typeof Button;
+  button5: typeof Button;
+  map: typeof Dialog;
+  loaction: typeof Loaction;
+  button6: typeof Button;
+  button7: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1089,11 +2063,21 @@ export const PlasmicCenterPage = Object.assign(
     select: makeNodeComponent("select"),
     apiRequest: makeNodeComponent("apiRequest"),
     img: makeNodeComponent("img"),
+    edit: makeNodeComponent("edit"),
+    edit2: makeNodeComponent("edit2"),
     tags: makeNodeComponent("tags"),
     button2: makeNodeComponent("button2"),
     image: makeNodeComponent("image"),
     addServise2: makeNodeComponent("addServise2"),
     timeWeek: makeNodeComponent("timeWeek"),
+    info: makeNodeComponent("info"),
+    centerInfo: makeNodeComponent("centerInfo"),
+    button4: makeNodeComponent("button4"),
+    button5: makeNodeComponent("button5"),
+    map: makeNodeComponent("map"),
+    loaction: makeNodeComponent("loaction"),
+    button6: makeNodeComponent("button6"),
+    button7: makeNodeComponent("button7"),
 
     // Metadata about props expected for PlasmicCenterPage
     internalVariantProps: PlasmicCenterPage__VariantProps,
