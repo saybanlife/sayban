@@ -66,12 +66,12 @@ import MenuSection from "../../MenuSection"; // plasmic-import: PvgERH0q4dKA/com
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import Tags from "../../Tags"; // plasmic-import: Lr-0_vYS3Xmt/component
-import Image from "../../Image"; // plasmic-import: NaIiCw46_M0t/component
 import ImageEdit from "../../ImageEdit"; // plasmic-import: PU02M3FSmgy6/component
 import AddServise2 from "../../AddServise2"; // plasmic-import: ldHafC0LATYt/component
 import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
 import Modal from "../../Modal"; // plasmic-import: Oo9r7A7X8FP7/component
 import CenterInfo from "../../CenterInfo"; // plasmic-import: 5fhUfrSk0s6y/component
+import Imag from "../../Imag"; // plasmic-import: ScLhJpeVxPbk/component
 import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -132,7 +132,6 @@ export type PlasmicCenterPage__OverridesType = {
   edit2?: Flex__<typeof Button>;
   tags?: Flex__<typeof Tags>;
   button2?: Flex__<typeof Button>;
-  image?: Flex__<typeof Image>;
   imageEdit?: Flex__<typeof ImageEdit>;
   addServise2?: Flex__<typeof AddServise2>;
   timeWeek?: Flex__<typeof TimeWeek>;
@@ -140,6 +139,10 @@ export type PlasmicCenterPage__OverridesType = {
   centerInfo?: Flex__<typeof CenterInfo>;
   button4?: Flex__<typeof Button>;
   button5?: Flex__<typeof Button>;
+  imageinsert?: Flex__<typeof Modal>;
+  imag?: Flex__<typeof Imag>;
+  button8?: Flex__<typeof Button>;
+  button9?: Flex__<typeof Button>;
   map?: Flex__<typeof Modal>;
   loaction?: Flex__<typeof Loaction>;
   button6?: Flex__<typeof Button>;
@@ -519,6 +522,30 @@ function PlasmicCenterPage__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "imageinsert.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "button8.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button9.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "imag.uploadFiles",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       }
     ],
     [$props, $ctx, $refs]
@@ -1435,6 +1462,45 @@ function PlasmicCenterPage__RenderFunc(props: {
                     "button2",
                     "loading"
                   ])}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateImageinsertIsOpen"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["imageinsert", "isOpen"]
+                            },
+                            operation: 4
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            const oldValue = $stateGet(objRoot, variablePath);
+                            $stateSet(objRoot, variablePath, !oldValue);
+                            return !oldValue;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateImageinsertIsOpen"] != null &&
+                      typeof $steps["updateImageinsertIsOpen"] === "object" &&
+                      typeof $steps["updateImageinsertIsOpen"].then ===
+                        "function"
+                    ) {
+                      $steps["updateImageinsertIsOpen"] =
+                        await $steps["updateImageinsertIsOpen"];
+                    }
+                  }}
                   onLoadingChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "button2",
@@ -1451,30 +1517,11 @@ function PlasmicCenterPage__RenderFunc(props: {
                   }}
                 />
               </div>
-              <Image
-                data-plasmic-name={"image"}
-                data-plasmic-override={overrides.image}
-                className={classNames("__wab_instance", sty.image)}
-                images={(() => {
-                  try {
-                    return $state.apiRequest.data.result.image;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-              />
-
               <ImageEdit
                 data-plasmic-name={"imageEdit"}
                 data-plasmic-override={overrides.imageEdit}
                 className={classNames("__wab_instance", sty.imageEdit)}
-                images={undefined}
+                images={$state.apiRequest?.data?.result?.image}
               />
             </div>
             <div className={classNames(projectcss.all, sty.freeBox__eog3I)}>
@@ -1807,6 +1854,168 @@ function PlasmicCenterPage__RenderFunc(props: {
       />
 
       <Modal
+        data-plasmic-name={"imageinsert"}
+        data-plasmic-override={overrides.imageinsert}
+        className={classNames("__wab_instance", sty.imageinsert)}
+        closeOnBackdropClick={false}
+        content={
+          <React.Fragment>
+            <div className={classNames(projectcss.all, sty.freeBox__qpFsK)}>
+              <Imag
+                data-plasmic-name={"imag"}
+                data-plasmic-override={overrides.imag}
+                className={classNames("__wab_instance", sty.imag)}
+                onUploadFilesChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "imag",
+                    "uploadFiles"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                uploadFiles={generateStateValueProp($state, [
+                  "imag",
+                  "uploadFiles"
+                ])}
+              />
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox__wRei)}>
+              <Button
+                data-plasmic-name={"button8"}
+                data-plasmic-override={overrides.button8}
+                className={classNames("__wab_instance", sty.button8)}
+                color={"success"}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__r01PT
+                    )}
+                  >
+                    {"\u0630\u062e\u06cc\u0631\u0647"}
+                  </div>
+                }
+                loading={generateStateValueProp($state, ["button8", "loading"])}
+                onLoadingChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "button8",
+                    "loading"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+              />
+
+              <Button
+                data-plasmic-name={"button9"}
+                data-plasmic-override={overrides.button9}
+                className={classNames("__wab_instance", sty.button9)}
+                color={"neutral"}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__vRhVw
+                    )}
+                  >
+                    {"\u0644\u063a\u0648"}
+                  </div>
+                }
+                loading={generateStateValueProp($state, ["button9", "loading"])}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateModalIsOpen"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["imageinsert", "isOpen"]
+                          },
+                          operation: 4,
+                          value: true
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, !oldValue);
+                          return !oldValue;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateModalIsOpen"] != null &&
+                    typeof $steps["updateModalIsOpen"] === "object" &&
+                    typeof $steps["updateModalIsOpen"].then === "function"
+                  ) {
+                    $steps["updateModalIsOpen"] =
+                      await $steps["updateModalIsOpen"];
+                  }
+                }}
+                onLoadingChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "button9",
+                    "loading"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+              />
+            </div>
+          </React.Fragment>
+        }
+        footer={null}
+        heading={null}
+        isOpen={generateStateValueProp($state, ["imageinsert", "isOpen"])}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["imageinsert", "isOpen"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        showFooter={false}
+        showHeader={false}
+        trigger={null}
+      />
+
+      <Modal
         data-plasmic-name={"map"}
         data-plasmic-override={overrides.map}
         className={classNames("__wab_instance", sty.map)}
@@ -2056,7 +2265,6 @@ const PlasmicDescendants = {
     "edit2",
     "tags",
     "button2",
-    "image",
     "imageEdit",
     "addServise2",
     "timeWeek",
@@ -2064,6 +2272,10 @@ const PlasmicDescendants = {
     "centerInfo",
     "button4",
     "button5",
+    "imageinsert",
+    "imag",
+    "button8",
+    "button9",
     "map",
     "loaction",
     "button6",
@@ -2079,7 +2291,6 @@ const PlasmicDescendants = {
     "edit2",
     "tags",
     "button2",
-    "image",
     "imageEdit",
     "addServise2",
     "timeWeek"
@@ -2089,7 +2300,6 @@ const PlasmicDescendants = {
   edit2: ["edit2"],
   tags: ["tags"],
   button2: ["button2"],
-  image: ["image"],
   imageEdit: ["imageEdit"],
   addServise2: ["addServise2"],
   timeWeek: ["timeWeek"],
@@ -2097,6 +2307,10 @@ const PlasmicDescendants = {
   centerInfo: ["centerInfo"],
   button4: ["button4"],
   button5: ["button5"],
+  imageinsert: ["imageinsert", "imag", "button8", "button9"],
+  imag: ["imag"],
+  button8: ["button8"],
+  button9: ["button9"],
   map: ["map", "loaction", "button6", "button7"],
   loaction: ["loaction"],
   button6: ["button6"],
@@ -2116,7 +2330,6 @@ type NodeDefaultElementType = {
   edit2: typeof Button;
   tags: typeof Tags;
   button2: typeof Button;
-  image: typeof Image;
   imageEdit: typeof ImageEdit;
   addServise2: typeof AddServise2;
   timeWeek: typeof TimeWeek;
@@ -2124,6 +2337,10 @@ type NodeDefaultElementType = {
   centerInfo: typeof CenterInfo;
   button4: typeof Button;
   button5: typeof Button;
+  imageinsert: typeof Modal;
+  imag: typeof Imag;
+  button8: typeof Button;
+  button9: typeof Button;
   map: typeof Modal;
   loaction: typeof Loaction;
   button6: typeof Button;
@@ -2201,7 +2418,6 @@ export const PlasmicCenterPage = Object.assign(
     edit2: makeNodeComponent("edit2"),
     tags: makeNodeComponent("tags"),
     button2: makeNodeComponent("button2"),
-    image: makeNodeComponent("image"),
     imageEdit: makeNodeComponent("imageEdit"),
     addServise2: makeNodeComponent("addServise2"),
     timeWeek: makeNodeComponent("timeWeek"),
@@ -2209,6 +2425,10 @@ export const PlasmicCenterPage = Object.assign(
     centerInfo: makeNodeComponent("centerInfo"),
     button4: makeNodeComponent("button4"),
     button5: makeNodeComponent("button5"),
+    imageinsert: makeNodeComponent("imageinsert"),
+    imag: makeNodeComponent("imag"),
+    button8: makeNodeComponent("button8"),
+    button9: makeNodeComponent("button9"),
     map: makeNodeComponent("map"),
     loaction: makeNodeComponent("loaction"),
     button6: makeNodeComponent("button6"),
