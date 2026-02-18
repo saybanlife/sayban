@@ -330,7 +330,10 @@ function PlasmicTimeWeek__RenderFunc(props: {
                                   const $steps = {};
 
                                   $steps["runCode"] =
-                                    currentIndex == 0
+                                    currentIndex === 0 &&
+                                    (currentItem?.start ??
+                                      $state.timePickerStart?.[currentIndex]
+                                        ?.value) === "00:00"
                                       ? (() => {
                                           const actionArgs = {
                                             customFunction: async () => {
@@ -366,6 +369,10 @@ function PlasmicTimeWeek__RenderFunc(props: {
                                   }
 
                                   $steps["runCode2"] =
+                                    (currentIndex == 0 &&
+                                      (currentItem?.start ??
+                                        $state.timePickerStart?.[currentIndex]
+                                          ?.value) != "00:00") ||
                                     currentIndex != 0
                                       ? (() => {
                                           const actionArgs = {
@@ -551,7 +558,10 @@ function PlasmicTimeWeek__RenderFunc(props: {
                                   const $steps = {};
 
                                   $steps["runCode"] =
-                                    currentIndex == 0
+                                    currentIndex === 0 &&
+                                    (currentItem?.end ??
+                                      $state.timePickerEnd?.[currentIndex]
+                                        ?.value) === "00:00"
                                       ? (() => {
                                           const actionArgs = {
                                             customFunction: async () => {
@@ -587,6 +597,10 @@ function PlasmicTimeWeek__RenderFunc(props: {
                                   }
 
                                   $steps["runCode2"] =
+                                    (currentIndex == 0 &&
+                                      (currentItem?.end ??
+                                        $state.timePickerEnd?.[currentIndex]
+                                          ?.value) != "00:00") ||
                                     currentIndex != 0
                                       ? (() => {
                                           const actionArgs = {
