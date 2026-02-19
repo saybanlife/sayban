@@ -137,7 +137,7 @@ export type PlasmicCenterPage__OverridesType = {
   timeWeek?: Flex__<typeof TimeWeek>;
   info?: Flex__<typeof Modal>;
   centerInfo?: Flex__<typeof CenterInfo>;
-  button4?: Flex__<typeof Button>;
+  saveInfo?: Flex__<typeof Button>;
   button5?: Flex__<typeof Button>;
   imageinsert?: Flex__<typeof Modal>;
   imag?: Flex__<typeof Imag>;
@@ -452,7 +452,7 @@ function PlasmicCenterPage__RenderFunc(props: {
           $props["categories"]
       },
       {
-        path: "button4.loading",
+        path: "saveInfo.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
@@ -1725,9 +1725,9 @@ function PlasmicCenterPage__RenderFunc(props: {
             </div>
             <div className={classNames(projectcss.all, sty.freeBox__rG4Ay)}>
               <Button
-                data-plasmic-name={"button4"}
-                data-plasmic-override={overrides.button4}
-                className={classNames("__wab_instance", sty.button4)}
+                data-plasmic-name={"saveInfo"}
+                data-plasmic-override={overrides.saveInfo}
+                className={classNames("__wab_instance", sty.saveInfo)}
                 color={"success"}
                 label={
                   <div
@@ -1740,11 +1740,49 @@ function PlasmicCenterPage__RenderFunc(props: {
                     {"\u0630\u062e\u06cc\u0631\u0647"}
                   </div>
                 }
-                loading={generateStateValueProp($state, ["button4", "loading"])}
+                loading={generateStateValueProp($state, [
+                  "saveInfo",
+                  "loading"
+                ])}
                 onClick={async event => {
                   const $steps = {};
 
-                  $steps["invokeGlobalAction"] = true
+                  $steps["updateSaveInfoLoading"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["saveInfo", "loading"]
+                          },
+                          operation: 4
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, !oldValue);
+                          return !oldValue;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateSaveInfoLoading"] != null &&
+                    typeof $steps["updateSaveInfoLoading"] === "object" &&
+                    typeof $steps["updateSaveInfoLoading"].then === "function"
+                  ) {
+                    $steps["updateSaveInfoLoading"] =
+                      await $steps["updateSaveInfoLoading"];
+                  }
+
+                  $steps["update"] = true
                     ? (() => {
                         const actionArgs = {
                           args: [
@@ -1753,22 +1791,15 @@ function PlasmicCenterPage__RenderFunc(props: {
                             undefined,
                             (() => {
                               const data = {
-                                id: $state.apiRequest.data.result.id,
-                                subcategory_id: $state.centerInfo.subcategory2,
-                                name: $state.centerInfo.title,
-                                description: $state.centerInfo.description
+                                info: {
+                                  id: $state.apiRequest.data.result.id,
+                                  subcategory_id:
+                                    $state.centerInfo.subcategory2,
+                                  name: $state.centerInfo.title,
+                                  description: $state.centerInfo.description
+                                },
+                                tags: $state.centerInfo.tag
                               };
-                              const tags = (
-                                $state.apiRequest.data.result.tags || []
-                              ).filter(
-                                i =>
-                                  !($state.centerInfo.tag || []).includes(
-                                    i.tag_id
-                                  )
-                              );
-                              if (tags.length > 0) {
-                                data.tags = tags;
-                              }
                               return data;
                             })()
                           ]
@@ -1780,17 +1811,51 @@ function PlasmicCenterPage__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["invokeGlobalAction"] != null &&
-                    typeof $steps["invokeGlobalAction"] === "object" &&
-                    typeof $steps["invokeGlobalAction"].then === "function"
+                    $steps["update"] != null &&
+                    typeof $steps["update"] === "object" &&
+                    typeof $steps["update"].then === "function"
                   ) {
-                    $steps["invokeGlobalAction"] =
-                      await $steps["invokeGlobalAction"];
+                    $steps["update"] = await $steps["update"];
+                  }
+
+                  $steps["updateSaveInfoLoading2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["saveInfo", "loading"]
+                          },
+                          operation: 4
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, !oldValue);
+                          return !oldValue;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateSaveInfoLoading2"] != null &&
+                    typeof $steps["updateSaveInfoLoading2"] === "object" &&
+                    typeof $steps["updateSaveInfoLoading2"].then === "function"
+                  ) {
+                    $steps["updateSaveInfoLoading2"] =
+                      await $steps["updateSaveInfoLoading2"];
                   }
                 }}
                 onLoadingChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
-                    "button4",
+                    "saveInfo",
                     "loading"
                   ]).apply(null, eventArgs);
 
@@ -2317,7 +2382,7 @@ const PlasmicDescendants = {
     "timeWeek",
     "info",
     "centerInfo",
-    "button4",
+    "saveInfo",
     "button5",
     "imageinsert",
     "imag",
@@ -2350,9 +2415,9 @@ const PlasmicDescendants = {
   imageEdit: ["imageEdit"],
   addServise2: ["addServise2"],
   timeWeek: ["timeWeek"],
-  info: ["info", "centerInfo", "button4", "button5"],
+  info: ["info", "centerInfo", "saveInfo", "button5"],
   centerInfo: ["centerInfo"],
-  button4: ["button4"],
+  saveInfo: ["saveInfo"],
   button5: ["button5"],
   imageinsert: ["imageinsert", "imag", "button8", "button9"],
   imag: ["imag"],
@@ -2382,7 +2447,7 @@ type NodeDefaultElementType = {
   timeWeek: typeof TimeWeek;
   info: typeof Modal;
   centerInfo: typeof CenterInfo;
-  button4: typeof Button;
+  saveInfo: typeof Button;
   button5: typeof Button;
   imageinsert: typeof Modal;
   imag: typeof Imag;
@@ -2470,7 +2535,7 @@ export const PlasmicCenterPage = Object.assign(
     timeWeek: makeNodeComponent("timeWeek"),
     info: makeNodeComponent("info"),
     centerInfo: makeNodeComponent("centerInfo"),
-    button4: makeNodeComponent("button4"),
+    saveInfo: makeNodeComponent("saveInfo"),
     button5: makeNodeComponent("button5"),
     imageinsert: makeNodeComponent("imageinsert"),
     imag: makeNodeComponent("imag"),
