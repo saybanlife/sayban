@@ -79,7 +79,6 @@
   color: var(--token-W0eejbtvb0xw);
 }
 .freeBox__a8U8E {
-  display: flex;
   flex-direction: column;
   position: relative;
   width: auto;
@@ -88,6 +87,7 @@
   justify-content: flex-start;
   align-items: center;
   align-self: flex-end;
+  display: none;
   padding: 0px;
 }
 .select:global(.__wab_instance):global(.__wab_instance) {

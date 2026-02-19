@@ -1741,6 +1741,53 @@ function PlasmicCenterPage__RenderFunc(props: {
                   </div>
                 }
                 loading={generateStateValueProp($state, ["button4", "loading"])}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["invokeGlobalAction"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "POST",
+                            "https://sayban.darkube.app/webhook-test/panel/update/info",
+                            undefined,
+                            (() => {
+                              const data = {
+                                id: $state.apiRequest.data.result.id,
+                                subcategory_id: $state.centerInfo.subcategory2,
+                                name: $state.centerInfo.title,
+                                description: $state.centerInfo.description
+                              };
+                              const tags = (
+                                $state.apiRequest.data.result.tags || []
+                              ).filter(
+                                i =>
+                                  !($state.centerInfo.tag || []).includes(
+                                    i.tag_id
+                                  )
+                              );
+                              if (tags.length > 0) {
+                                data.tags = tags;
+                              }
+                              return data;
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction"] != null &&
+                    typeof $steps["invokeGlobalAction"] === "object" &&
+                    typeof $steps["invokeGlobalAction"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction"] =
+                      await $steps["invokeGlobalAction"];
+                  }
+                }}
                 onLoadingChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
                     "button4",
