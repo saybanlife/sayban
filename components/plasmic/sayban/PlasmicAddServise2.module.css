@@ -226,9 +226,17 @@
 .svg__nOSac {
   object-fit: cover;
   max-width: 100%;
-  color: var(--token-1aP3XjRZIKFV);
+  color: var(--token-C6B6ZAuqICKE);
   width: var(--token-xsiin-peP6fP);
   height: var(--token-xsiin-peP6fP);
+}
+.svg__an7Lw {
+  object-fit: cover;
+  max-width: 100%;
+  width: var(--token-TONjX_YbO9_T);
+  height: var(--token-TONjX_YbO9_T);
+  color: var(--token-C6B6ZAuqICKE);
+  cursor: pointer;
 }
 .button5:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
@@ -251,4 +259,101 @@
   color: var(--token-1aP3XjRZIKFV);
   width: var(--token-xsiin-peP6fP);
   height: var(--token-xsiin-peP6fP);
+}
+.snackbar:global(.__wab_instance):global(.__wab_instance) {
+  animation: none;
+  max-width: 100%;
+}
+.text__yrHXu {
+  animation: none;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  padding-top: 0px;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--token-Tca_MqWoqq_b);
+  font-weight: 700;
+  font-style: normal;
+  color: #535353;
+  text-align: center;
+  text-transform: none;
+  line-height: 1.5;
+  letter-spacing: normal;
+  white-space: pre-wrap;
+  min-width: 0;
+}
+.text__fQfHc {
+  animation: none;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  font-weight: normal;
+  font-style: normal;
+  color: #535353;
+  text-align: center;
+  text-transform: none;
+  line-height: 1.5;
+  letter-spacing: normal;
+  white-space: pre-wrap;
+  min-width: 0;
+}
+.freeBox__lsFfn {
+  animation: none;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: 45px;
+  max-width: 100%;
+  column-gap: var(--token-LBC0X5IbL9bo);
+  min-width: 0;
+  padding: 0px;
+}
+._delete:global(.__wab_instance):global(.__wab_instance) {
+  animation: none;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.svg__ipGdH {
+  position: relative;
+  height: 1em;
+}
+.text__bKqMq {
+  animation: none;
+  white-space: pre;
+  color: var(--token-A-PNbaadkZKd);
+}
+.svg__o9HrE {
+  position: relative;
+  height: 1em;
+}
+.cansel:global(.__wab_instance):global(.__wab_instance) {
+  animation: none;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.svg___8KkoH {
+  position: relative;
+  height: 1em;
+}
+.text__opG8K {
+  animation: none;
+  white-space: pre;
+  color: var(--token-1aP3XjRZIKFV);
+}
+.svg__rkR8D {
+  position: relative;
+  height: 1em;
 }

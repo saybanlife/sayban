@@ -596,6 +596,12 @@ function PlasmicCenterPage__RenderFunc(props: {
 
         valueProp: "data",
         onChangeProp: "onDataChange"
+      },
+      {
+        path: "addServise2.restart",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -1611,6 +1617,45 @@ function PlasmicCenterPage__RenderFunc(props: {
                 data-plasmic-name={"addServise2"}
                 data-plasmic-override={overrides.addServise2}
                 className={classNames("__wab_instance", sty.addServise2)}
+                onRestartChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "addServise2",
+                    "restart"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+
+                  (async val => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return ($state.restart +=
+                                $state.addServise2.restart);
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+                  }).apply(null, eventArgs);
+                }}
                 onServisesChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
                     "addServise2",
@@ -1625,6 +1670,10 @@ function PlasmicCenterPage__RenderFunc(props: {
                     return;
                   }
                 }}
+                restart={generateStateValueProp($state, [
+                  "addServise2",
+                  "restart"
+                ])}
                 servises={generateStateValueProp($state, [
                   "addServise2",
                   "servises"
@@ -1751,6 +1800,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                       customFunction: async () => {
                         return (() => {
                           $state.centerData = $state.center?.data?.result;
+                          console.log($state.centerData);
                           $state.data = {
                             id: $state.center.data.result.id,
                             name: $state.center.data.result.name
@@ -1770,26 +1820,6 @@ function PlasmicCenterPage__RenderFunc(props: {
               typeof $steps["updateCenters"].then === "function"
             ) {
               $steps["updateCenters"] = await $steps["updateCenters"];
-            }
-
-            $steps["runCode"] = true
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return console.log("cmzbscjkbsk");
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode"] != null &&
-              typeof $steps["runCode"] === "object" &&
-              typeof $steps["runCode"].then === "function"
-            ) {
-              $steps["runCode"] = await $steps["runCode"];
             }
           }).apply(null, eventArgs);
         }}
