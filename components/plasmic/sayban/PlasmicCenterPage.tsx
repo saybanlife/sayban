@@ -85,6 +85,7 @@ import ArrowNarrowRightIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon_
 import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
+import Icon70Icon from "./icons/PlasmicIcon__Icon70"; // plasmic-import: PWsALiD1VW02/icon
 import Icon67Icon from "./icons/PlasmicIcon__Icon67"; // plasmic-import: 6d1G1xHnP3D8/icon
 import Icon115Icon from "./icons/PlasmicIcon__Icon115"; // plasmic-import: K82EqXtBnJoL/icon
 
@@ -986,12 +987,12 @@ function PlasmicCenterPage__RenderFunc(props: {
                       data-plasmic-override={overrides.img}
                       alt={""}
                       className={classNames(sty.img)}
-                      displayHeight={"2.5rem"}
+                      displayHeight={"50px"}
                       displayMaxHeight={"none"}
                       displayMaxWidth={"100%"}
                       displayMinHeight={"0"}
                       displayMinWidth={"0"}
-                      displayWidth={"2.5rem"}
+                      displayWidth={"50px"}
                       loading={"lazy"}
                       src={(() => {
                         try {
@@ -1008,10 +1009,17 @@ function PlasmicCenterPage__RenderFunc(props: {
                       })()}
                     />
 
-                    <svg
-                      className={classNames(projectcss.all, sty.svg___7RwJ)}
-                      role={"img"}
-                    />
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        sty.freeBox___8X2Kn
+                      )}
+                    >
+                      <Icon70Icon
+                        className={classNames(projectcss.all, sty.svg___4S0Jc)}
+                        role={"img"}
+                      />
+                    </div>
                   </div>
                   <div
                     className={classNames(projectcss.all, sty.freeBox___8Izlb)}

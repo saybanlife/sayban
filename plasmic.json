@@ -2607,6 +2607,11 @@
           "id": "YxeaAoarQu20",
           "name": "Icon228Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon228.tsx"
+        },
+        {
+          "id": "PWsALiD1VW02",
+          "name": "Icon70Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon70.tsx"
         }
       ],
       "images": [
