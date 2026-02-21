@@ -978,33 +978,41 @@ function PlasmicCenterPage__RenderFunc(props: {
             >
               <div className={classNames(projectcss.all, sty.freeBox__p34Fn)}>
                 <div className={classNames(projectcss.all, sty.freeBox__ijfen)}>
-                  <PlasmicImg__
-                    data-plasmic-name={"img"}
-                    data-plasmic-override={overrides.img}
-                    alt={""}
-                    className={classNames(sty.img)}
-                    displayHeight={"2.5rem"}
-                    displayMaxHeight={"none"}
-                    displayMaxWidth={"100%"}
-                    displayMinHeight={"0"}
-                    displayMinWidth={"0"}
-                    displayWidth={"2.5rem"}
-                    loading={"lazy"}
-                    src={(() => {
-                      try {
-                        return $state.centerData?.main_image;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__hRmEh)}
+                  >
+                    <PlasmicImg__
+                      data-plasmic-name={"img"}
+                      data-plasmic-override={overrides.img}
+                      alt={""}
+                      className={classNames(sty.img)}
+                      displayHeight={"2.5rem"}
+                      displayMaxHeight={"none"}
+                      displayMaxWidth={"100%"}
+                      displayMinHeight={"0"}
+                      displayMinWidth={"0"}
+                      displayWidth={"2.5rem"}
+                      loading={"lazy"}
+                      src={(() => {
+                        try {
+                          return $state.centerData?.main_image;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}
-                  />
+                      })()}
+                    />
 
+                    <svg
+                      className={classNames(projectcss.all, sty.svg___7RwJ)}
+                      role={"img"}
+                    />
+                  </div>
                   <div
                     className={classNames(projectcss.all, sty.freeBox___8Izlb)}
                   >
