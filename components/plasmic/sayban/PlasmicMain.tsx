@@ -697,7 +697,10 @@ function PlasmicMain__RenderFunc(props: {
             ? (() => {
                 const actionArgs = {
                   customFunction: async () => {
-                    return ($state.deleteSnakbar.opendialog = true);
+                    return (() => {
+                      $state.deleteSnakbar.data = $state.centerPage.data;
+                      return ($state.deleteSnakbar.opendialog = true);
+                    })();
                   }
                 };
                 return (({ customFunction }) => {
