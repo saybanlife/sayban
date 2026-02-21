@@ -112,6 +112,8 @@ export type PlasmicCenterPage__ArgsType = {
   tagsitem?: any;
   categories?: any;
   deleteCenter?: () => void;
+  data?: any;
+  onDataChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicCenterPage__ArgsType;
 export const PlasmicCenterPage__ArgProps = new Array<ArgPropType>(
@@ -124,7 +126,9 @@ export const PlasmicCenterPage__ArgProps = new Array<ArgPropType>(
   "token",
   "tagsitem",
   "categories",
-  "deleteCenter"
+  "deleteCenter",
+  "data",
+  "onDataChange"
 );
 
 export type PlasmicCenterPage__OverridesType = {
@@ -167,6 +171,8 @@ export interface DefaultCenterPageProps {
   tagsitem?: any;
   categories?: any;
   deleteCenter?: () => void;
+  data?: any;
+  onDataChange?: (val: string) => void;
   role?: SingleChoiceArg<"superAdmin" | "centerAdmin">;
   className?: string;
 }
@@ -582,6 +588,14 @@ function PlasmicCenterPage__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
+      },
+      {
+        path: "data",
+        type: "writable",
+        variableType: "object",
+
+        valueProp: "data",
+        onChangeProp: "onDataChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -1735,7 +1749,14 @@ function PlasmicCenterPage__RenderFunc(props: {
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
-                        return undefined;
+                        return (() => {
+                          $state.centerData = $state.center?.data?.result;
+                          $state.data = {
+                            id: $state.center.data.result.id,
+                            name: $state.center.data.result.name
+                          };
+                          return ($state.loading = false);
+                        })();
                       }
                     };
                     return (({ customFunction }) => {

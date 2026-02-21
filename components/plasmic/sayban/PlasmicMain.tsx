@@ -455,6 +455,12 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "centerPage.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -683,6 +689,7 @@ function PlasmicMain__RenderFunc(props: {
           ),
           [sty.centerPagepage_center]: hasVariant($state, "page", "center")
         })}
+        data={generateStateValueProp($state, ["centerPage", "data"])}
         deleteCenter={async () => {
           const $steps = {};
 
@@ -723,6 +730,20 @@ function PlasmicMain__RenderFunc(props: {
         }}
         onCategptyChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["centerPage", "categpty"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onDataChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["centerPage", "data"]).apply(
             null,
             eventArgs
           );
