@@ -511,9 +511,12 @@ function PlasmicLoaction__RenderFunc(props: {
                           address += ", " + amenity;
                         }
                         $state.loaction.value = address;
-                        $state.city.value = $state.apiRequest.data.address.city;
-                        return ($state.state.value =
-                          $state.apiRequest.data.address.state);
+                        $state.city.value = (
+                          $state.apiRequest.data.address.city || ""
+                        ).replace(/^شهر\s*/, "");
+                        return ($state.state.value = (
+                          $state.apiRequest.data.address.state || ""
+                        ).replace("استان", ""));
                       })();
                     }
                   };

@@ -213,6 +213,10 @@
   --plasmic-token-unnamed-style-token-4: var(--token-v1iW1n7zvyWu);
   --token-6PgHWThSeskT: #e3e3d2;
   --plasmic-token-simmer: var(--token-6PgHWThSeskT);
+  --token-N8Pb0ZuDQAeF: 1rem;
+  --plasmic-token-base: var(--token-N8Pb0ZuDQAeF);
+  --token-9Ml0DnVjEcaY: rgb(0, 0, 0);
+  --plasmic-token-page-bg-dark: var(--token-9Ml0DnVjEcaY);
 }
 
 @media (min-width: 0px) and (max-width: 768px) {

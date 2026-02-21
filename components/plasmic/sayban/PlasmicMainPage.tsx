@@ -77,6 +77,7 @@ import sty from "./PlasmicMainPage.module.css"; // plasmic-import: xrEadpE-s6jI/
 
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
+import Icon115Icon from "./icons/PlasmicIcon__Icon115"; // plasmic-import: K82EqXtBnJoL/icon
 
 createPlasmicElementProxy;
 
@@ -92,6 +93,9 @@ export type PlasmicMainPage__ArgsType = {
   categpty?: any;
   onCategptyChange?: (val: string) => void;
   onRowClicked?: (rowKey: string, row: any, event: any) => void;
+  centerDelete?: () => void;
+  restart?: string;
+  onRestartChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicMainPage__ArgsType;
 export const PlasmicMainPage__ArgProps = new Array<ArgPropType>(
@@ -100,7 +104,10 @@ export const PlasmicMainPage__ArgProps = new Array<ArgPropType>(
   "openEdit",
   "categpty",
   "onCategptyChange",
-  "onRowClicked"
+  "onRowClicked",
+  "centerDelete",
+  "restart",
+  "onRestartChange"
 );
 
 export type PlasmicMainPage__OverridesType = {
@@ -108,7 +115,6 @@ export type PlasmicMainPage__OverridesType = {
   select2?: Flex__<typeof Select>;
   menuSection?: Flex__<typeof MenuSection>;
   button?: Flex__<typeof Button>;
-  svg?: Flex__<"svg">;
   select?: Flex__<typeof Select>;
   textInput?: Flex__<typeof TextInput>;
   select3?: Flex__<typeof Select>;
@@ -123,6 +129,9 @@ export interface DefaultMainPageProps {
   categpty?: any;
   onCategptyChange?: (val: string) => void;
   onRowClicked?: (rowKey: string, row: any, event: any) => void;
+  centerDelete?: () => void;
+  restart?: string;
+  onRestartChange?: (val: string) => void;
   className?: string;
 }
 
@@ -274,6 +283,26 @@ function PlasmicMainPage__RenderFunc(props: {
 
         valueProp: "categpty",
         onChangeProp: "onCategptyChange"
+      },
+      {
+        path: "center",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "restart",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "restart",
+        onChangeProp: "onRestartChange"
+      },
+      {
+        path: "loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
       }
     ],
     [$props, $ctx, $refs]
@@ -481,9 +510,7 @@ function PlasmicMainPage__RenderFunc(props: {
             color={"success"}
             end={
               <Icon56Icon
-                data-plasmic-name={"svg"}
-                data-plasmic-override={overrides.svg}
-                className={classNames(projectcss.all, sty.svg)}
+                className={classNames(projectcss.all, sty.svg__olK5Z)}
                 role={"img"}
               />
             }
@@ -624,145 +651,225 @@ function PlasmicMainPage__RenderFunc(props: {
             </div>
           </div>
           {(() => {
-            const child$Props = {
-              canSelectRows: "click",
-              className: classNames("__wab_instance", sty.table),
-              data: (() => {
-                try {
-                  return $state.centers.data.result;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })(),
-              fields: (() => {
-                const __composite = [
-                  { key: "id", fieldId: "id" },
-                  { key: "name", fieldId: "name" },
-                  { key: "address", fieldId: "address" },
-                  { key: "city", fieldId: "city" },
-                  { key: "name subcategories", fieldId: "name subcategories" },
-                  { key: "area", fieldId: "area" },
-                  { key: "main_image", fieldId: "main_image", isHidden: null }
-                ];
-                __composite["6"]["isHidden"] = true;
-                return __composite;
-              })(),
+            try {
+              return !$state.loading;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })()
+            ? (() => {
+                const child$Props = {
+                  canSelectRows: "click",
+                  className: classNames("__wab_instance", sty.table),
+                  data: (() => {
+                    try {
+                      return $state.center;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })(),
+                  fields: (() => {
+                    const __composite = [
+                      { key: "id", fieldId: "id" },
+                      { key: "name", fieldId: "name" },
+                      { key: "address", fieldId: "address" },
+                      { key: "city", fieldId: "city" },
+                      {
+                        key: "name subcategories",
+                        fieldId: "name subcategories"
+                      },
+                      { key: "area", fieldId: "area" },
+                      {
+                        key: "main_image",
+                        fieldId: "main_image",
+                        isHidden: null
+                      }
+                    ];
+                    __composite["6"]["isHidden"] = true;
+                    return __composite;
+                  })(),
 
-              hideDensity: true,
-              onRowClick: async (rowKey, row, event) => {
-                const $steps = {};
+                  hideDensity: true,
+                  onRowClick: async (rowKey, row, event) => {
+                    const $steps = {};
 
-                $steps["runOnRowClicked"] = true
-                  ? (() => {
-                      const actionArgs = { eventRef: $props["onRowClicked"] };
-                      return (({ eventRef, args }) => {
-                        return eventRef?.(...(args ?? []));
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["runOnRowClicked"] != null &&
-                  typeof $steps["runOnRowClicked"] === "object" &&
-                  typeof $steps["runOnRowClicked"].then === "function"
-                ) {
-                  $steps["runOnRowClicked"] = await $steps["runOnRowClicked"];
-                }
-              },
-              onRowSelectionChanged: async (...eventArgs: any) => {
-                generateStateOnChangePropForCodeComponents(
-                  $state,
-                  "selectedRowKey",
-                  ["table", "selectedRowKey"],
-                  RichTable_Helpers
-                ).apply(null, eventArgs);
-                generateStateOnChangePropForCodeComponents(
-                  $state,
-                  "selectedRow",
-                  ["table", "selectedRow"],
-                  RichTable_Helpers
-                ).apply(null, eventArgs);
-                generateStateOnChangePropForCodeComponents(
-                  $state,
-                  "selectedRows",
-                  ["table", "selectedRows"],
-                  RichTable_Helpers
-                ).apply(null, eventArgs);
-                generateStateOnChangePropForCodeComponents(
-                  $state,
-                  "selectedRowKeys",
-                  ["table", "selectedRowKeys"],
-                  RichTable_Helpers
-                ).apply(null, eventArgs);
-              },
-              pageSize: 15,
-              rowActions: (() => {
-                const __composite = [
-                  { type: null, label: null, children: null },
-                  { type: "item", label: null }
-                ];
-                __composite["0"]["type"] = "item";
-                __composite["0"]["label"] = "\u274c";
-                __composite["0"]["children"] = [{}];
-                __composite["1"]["label"] = "\u270f\ufe0f";
-                return __composite;
-              })(),
+                    $steps["runOnRowClicked"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            eventRef: $props["onRowClicked"]
+                          };
+                          return (({ eventRef, args }) => {
+                            return eventRef?.(...(args ?? []));
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runOnRowClicked"] != null &&
+                      typeof $steps["runOnRowClicked"] === "object" &&
+                      typeof $steps["runOnRowClicked"].then === "function"
+                    ) {
+                      $steps["runOnRowClicked"] =
+                        await $steps["runOnRowClicked"];
+                    }
+                  },
+                  onRowSelectionChanged: async (...eventArgs: any) => {
+                    generateStateOnChangePropForCodeComponents(
+                      $state,
+                      "selectedRowKey",
+                      ["table", "selectedRowKey"],
+                      RichTable_Helpers
+                    ).apply(null, eventArgs);
+                    generateStateOnChangePropForCodeComponents(
+                      $state,
+                      "selectedRow",
+                      ["table", "selectedRow"],
+                      RichTable_Helpers
+                    ).apply(null, eventArgs);
+                    generateStateOnChangePropForCodeComponents(
+                      $state,
+                      "selectedRows",
+                      ["table", "selectedRows"],
+                      RichTable_Helpers
+                    ).apply(null, eventArgs);
+                    generateStateOnChangePropForCodeComponents(
+                      $state,
+                      "selectedRowKeys",
+                      ["table", "selectedRowKeys"],
+                      RichTable_Helpers
+                    ).apply(null, eventArgs);
+                  },
+                  pageSize: 15,
+                  rowActions: (() => {
+                    const __composite = [
+                      {
+                        type: null,
+                        label: null,
+                        children: null,
+                        onClick: null
+                      },
+                      { type: "item", label: null }
+                    ];
+                    __composite["0"]["type"] = "item";
+                    __composite["0"]["label"] = "\u274c";
+                    __composite["0"]["children"] = [{}];
+                    __composite["0"]["onClick"] = async (rowKey, row) => {
+                      const $steps = {};
 
-              scopeClassName: sty["table__instance"],
-              selectedRowKey: generateStateValueProp($state, [
-                "table",
-                "selectedRowKey"
-              ]),
-              selectedRowKeys: generateStateValueProp($state, [
-                "table",
-                "selectedRowKeys"
-              ]),
-              themeResetClassName: classNames(
-                projectcss.root_reset,
-                projectcss.root_reset_tags,
-                projectcss.plasmic_default_styles,
-                projectcss.plasmic_mixins,
-                styleTokensClassNames
-              )
-            };
-            initializeCodeComponentStates(
-              $state,
-              [
-                {
-                  name: "selectedRowKey",
-                  plasmicStateName: "table.selectedRowKey"
-                },
-                {
-                  name: "selectedRow",
-                  plasmicStateName: "table.selectedRow"
-                },
-                {
-                  name: "selectedRows",
-                  plasmicStateName: "table.selectedRows"
-                },
-                {
-                  name: "selectedRowKeys",
-                  plasmicStateName: "table.selectedRowKeys"
-                }
-              ],
-              [],
-              RichTable_Helpers ?? {},
-              child$Props
-            );
+                      $steps["runCode"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return (() => {
+                                  const row = event.target.closest("tr");
+                                  const cells = row.querySelectorAll("td");
+                                  const data = {
+                                    id: cells[1].innerText.trim(),
+                                    name: cells[2].innerText.trim()
+                                  };
+                                  console.log(data);
+                                  return ($state.table.selectedRow = data);
+                                })();
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runCode"] != null &&
+                        typeof $steps["runCode"] === "object" &&
+                        typeof $steps["runCode"].then === "function"
+                      ) {
+                        $steps["runCode"] = await $steps["runCode"];
+                      }
 
-            return (
-              <RichTable
-                data-plasmic-name={"table"}
-                data-plasmic-override={overrides.table}
-                {...child$Props}
-              />
-            );
-          })()}
+                      $steps["runCenterDelete"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              eventRef: $props["centerDelete"]
+                            };
+                            return (({ eventRef, args }) => {
+                              return eventRef?.(...(args ?? []));
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runCenterDelete"] != null &&
+                        typeof $steps["runCenterDelete"] === "object" &&
+                        typeof $steps["runCenterDelete"].then === "function"
+                      ) {
+                        $steps["runCenterDelete"] =
+                          await $steps["runCenterDelete"];
+                      }
+                    };
+                    __composite["1"]["label"] = "\u270f\ufe0f";
+                    return __composite;
+                  })(),
+
+                  scopeClassName: sty["table__instance"],
+                  selectedRowKey: generateStateValueProp($state, [
+                    "table",
+                    "selectedRowKey"
+                  ]),
+                  selectedRowKeys: generateStateValueProp($state, [
+                    "table",
+                    "selectedRowKeys"
+                  ]),
+                  themeResetClassName: classNames(
+                    projectcss.root_reset,
+                    projectcss.root_reset_tags,
+                    projectcss.plasmic_default_styles,
+                    projectcss.plasmic_mixins,
+                    styleTokensClassNames
+                  )
+                };
+                initializeCodeComponentStates(
+                  $state,
+                  [
+                    {
+                      name: "selectedRowKey",
+                      plasmicStateName: "table.selectedRowKey"
+                    },
+                    {
+                      name: "selectedRow",
+                      plasmicStateName: "table.selectedRow"
+                    },
+                    {
+                      name: "selectedRows",
+                      plasmicStateName: "table.selectedRows"
+                    },
+                    {
+                      name: "selectedRowKeys",
+                      plasmicStateName: "table.selectedRowKeys"
+                    }
+                  ],
+                  [],
+                  RichTable_Helpers ?? {},
+                  child$Props
+                );
+
+                return (
+                  <RichTable
+                    data-plasmic-name={"table"}
+                    data-plasmic-override={overrides.table}
+                    {...child$Props}
+                  />
+                );
+              })()
+            : null}
           <ApiRequest
             data-plasmic-name={"centers"}
             data-plasmic-override={overrides.centers}
@@ -788,13 +895,72 @@ function PlasmicMainPage__RenderFunc(props: {
                 null,
                 eventArgs
               );
+
+              (async data => {
+                const $steps = {};
+
+                $steps["updateCenter"] = $state.centers?.data?.success
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["center"]
+                        },
+                        operation: 0,
+                        value: $state.centers.data.result
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateCenter"] != null &&
+                  typeof $steps["updateCenter"] === "object" &&
+                  typeof $steps["updateCenter"].then === "function"
+                ) {
+                  $steps["updateCenter"] = await $steps["updateCenter"];
+                }
+
+                $steps["runCode"] = $state.centers?.data?.success
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return ($state.loading = false);
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+              }).apply(null, eventArgs);
             }}
             params={(() => {
               try {
                 return {
                   ...($state.select2.value != "null" && {
                     subcategoriesId: $state.select2.value
-                  })
+                  }),
+                  r: $state.restart
                 };
               } catch (e) {
                 if (
@@ -890,6 +1056,26 @@ function PlasmicMainPage__RenderFunc(props: {
               </div>
             </div>
           </div>
+          {(() => {
+            try {
+              return $state.loading;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })() ? (
+            <div className={classNames(projectcss.all, sty.freeBox___6E0C0)}>
+              <Icon115Icon
+                className={classNames(projectcss.all, sty.svg___2Ngbq)}
+                role={"img"}
+              />
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
@@ -902,7 +1088,6 @@ const PlasmicDescendants = {
     "select2",
     "menuSection",
     "button",
-    "svg",
     "select",
     "textInput",
     "select3",
@@ -911,8 +1096,7 @@ const PlasmicDescendants = {
   ],
   select2: ["select2", "menuSection"],
   menuSection: ["menuSection"],
-  button: ["button", "svg"],
-  svg: ["svg"],
+  button: ["button"],
   select: ["select"],
   textInput: ["textInput"],
   select3: ["select3"],
@@ -927,7 +1111,6 @@ type NodeDefaultElementType = {
   select2: typeof Select;
   menuSection: typeof MenuSection;
   button: typeof Button;
-  svg: "svg";
   select: typeof Select;
   textInput: typeof TextInput;
   select3: typeof Select;
@@ -1000,7 +1183,6 @@ export const PlasmicMainPage = Object.assign(
     select2: makeNodeComponent("select2"),
     menuSection: makeNodeComponent("menuSection"),
     button: makeNodeComponent("button"),
-    svg: makeNodeComponent("svg"),
     select: makeNodeComponent("select"),
     textInput: makeNodeComponent("textInput"),
     select3: makeNodeComponent("select3"),

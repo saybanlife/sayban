@@ -1962,6 +1962,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicImageEdit.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "CaodI8ra68z4",
+          "name": "Snackbar",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicSnackbar.tsx",
+          "importSpec": {
+            "modulePath": "Snackbar.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicSnackbar.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -2574,6 +2587,26 @@
           "id": "2ERJPsF4wgKw",
           "name": "Icon69Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon69.tsx"
+        },
+        {
+          "id": "4LE-kVa-KIGE",
+          "name": "Icon341Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon341.tsx"
+        },
+        {
+          "id": "3cI93FpEy9Rj",
+          "name": "Icon342Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon342.tsx"
+        },
+        {
+          "id": "iU0Fh6xR0zVC",
+          "name": "Icon343Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon343.tsx"
+        },
+        {
+          "id": "YxeaAoarQu20",
+          "name": "Icon228Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon228.tsx"
         }
       ],
       "images": [

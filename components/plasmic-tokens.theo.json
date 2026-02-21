@@ -3611,6 +3611,16 @@
       }
     },
     {
+      "name": "base",
+      "type": "fontsize",
+      "value": "1rem",
+      "category": "fontsize",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "N8Pb0ZuDQAeF"
+      }
+    },
+    {
       "name": "base 2",
       "type": "fontsize",
       "value": "1rem",
@@ -4818,6 +4828,16 @@
       "meta": {
         "projectId": "5ZtnypMovRHeeP3YTdPCYL",
         "id": "FtS9slm6qYr3"
+      }
+    },
+    {
+      "name": "page bg dark",
+      "type": "color",
+      "value": "rgb(0,0,0)",
+      "category": "color",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "9Ml0DnVjEcaY"
       }
     },
     {

@@ -62,6 +62,8 @@ import {
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
 import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
+import Snackbar from "../../Snackbar"; // plasmic-import: CaodI8ra68z4/component
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -72,6 +74,8 @@ import sty from "./PlasmicImageEdit.module.css"; // plasmic-import: PU02M3FSmgy6
 
 import Icon58Icon from "./icons/PlasmicIcon__Icon58"; // plasmic-import: ZZecBkDFVPaA/icon
 import Icon60Icon from "./icons/PlasmicIcon__Icon60"; // plasmic-import: JXYPgQmPQkxF/icon
+import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 
 createPlasmicElementProxy;
 
@@ -90,6 +94,9 @@ export type PlasmicImageEdit__OverridesType = {
   radioGroup?: Flex__<typeof RadioGroup>;
   img?: Flex__<typeof PlasmicImg__>;
   radio?: Flex__<typeof Radio>;
+  snackbar?: Flex__<typeof Snackbar>;
+  _delete?: Flex__<typeof Button>;
+  cansel?: Flex__<typeof Button>;
 };
 
 export interface DefaultImageEditProps {
@@ -136,6 +143,8 @@ function PlasmicImageEdit__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const $globalActions = useGlobalActions?.();
+
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -159,6 +168,36 @@ function PlasmicImageEdit__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "snackbar.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "snackbar.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "snackbar.index",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "_delete.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "cansel.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -480,6 +519,30 @@ function PlasmicImageEdit__RenderFunc(props: {
                             ) {
                               $steps["runCode"] = await $steps["runCode"];
                             }
+
+                            $steps["runCode2"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    customFunction: async () => {
+                                      return (() => {
+                                        $state.snackbar.opendialog = true;
+                                        return ($state.snackbar.data =
+                                          currentItem);
+                                      })();
+                                    }
+                                  };
+                                  return (({ customFunction }) => {
+                                    return customFunction();
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["runCode2"] != null &&
+                              typeof $steps["runCode2"] === "object" &&
+                              typeof $steps["runCode2"].then === "function"
+                            ) {
+                              $steps["runCode2"] = await $steps["runCode2"];
+                            }
                           }}
                           role={"img"}
                         />
@@ -504,16 +567,252 @@ function PlasmicImageEdit__RenderFunc(props: {
           />
         </div>
       ) : null}
+      <Snackbar
+        data-plasmic-name={"snackbar"}
+        data-plasmic-override={overrides.snackbar}
+        className={classNames("__wab_instance", sty.snackbar)}
+        data={generateStateValueProp($state, ["snackbar", "data"])}
+        index={generateStateValueProp($state, ["snackbar", "index"])}
+        onDataChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["snackbar", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onIndexChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["snackbar", "index"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["snackbar", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["snackbar", "opendialog"])}
+        slot={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__gXx2J
+            )}
+          >
+            {"\u062d\u0630\u0641 \u062a\u0635\u0648\u06cc\u0631"}
+          </div>
+        }
+        slot2={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__wEzHj
+            )}
+          >
+            {
+              "\u0622\u06cc\u0627 \u0627\u0632 \u062d\u0630\u0641 \u0627\u06cc\u0646 \u062a\u0635\u0648\u06cc\u0631 \u0645\u0637\u0645\u0626\u0646 \u0647\u0633\u062a\u06cc\u062f\u061f"
+            }
+          </div>
+        }
+        type={"error"}
+      >
+        <div className={classNames(projectcss.all, sty.freeBox__x7OY)}>
+          <Button
+            data-plasmic-name={"_delete"}
+            data-plasmic-override={overrides._delete}
+            className={classNames("__wab_instance", sty._delete)}
+            color={"errorDestructive"}
+            label={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__gTsM
+                )}
+              >
+                {"\u062d\u0630\u0641"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["_delete", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["deleteImage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "https://sayban.darkube.app/webhook/delete/image",
+                        undefined,
+                        {
+                          id: $state.snackbar.data.id
+                        }
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["deleteImage"] != null &&
+                typeof $steps["deleteImage"] === "object" &&
+                typeof $steps["deleteImage"].then === "function"
+              ) {
+                $steps["deleteImage"] = await $steps["deleteImage"];
+              }
+
+              $steps["runCode"] = $steps.deleteImage?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.snackbar.opendialog = false);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["_delete", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+
+          <Button
+            data-plasmic-name={"cansel"}
+            data-plasmic-override={overrides.cansel}
+            className={classNames("__wab_instance", sty.cansel)}
+            color={"neutral"}
+            label={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__f7Mpt
+                )}
+              >
+                {"\u0644\u063a\u0648"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["cansel", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateSnackbarOpendialog"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["snackbar", "opendialog"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSnackbarOpendialog"] != null &&
+                typeof $steps["updateSnackbarOpendialog"] === "object" &&
+                typeof $steps["updateSnackbarOpendialog"].then === "function"
+              ) {
+                $steps["updateSnackbarOpendialog"] =
+                  await $steps["updateSnackbarOpendialog"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["cansel", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </Snackbar>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "embedHtml", "radioGroup", "img", "radio"],
+  root: [
+    "root",
+    "embedHtml",
+    "radioGroup",
+    "img",
+    "radio",
+    "snackbar",
+    "_delete",
+    "cansel"
+  ],
   embedHtml: ["embedHtml"],
   radioGroup: ["radioGroup", "img", "radio"],
   img: ["img"],
-  radio: ["radio"]
+  radio: ["radio"],
+  snackbar: ["snackbar", "_delete", "cansel"],
+  _delete: ["_delete"],
+  cansel: ["cansel"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -524,6 +823,9 @@ type NodeDefaultElementType = {
   radioGroup: typeof RadioGroup;
   img: typeof PlasmicImg__;
   radio: typeof Radio;
+  snackbar: typeof Snackbar;
+  _delete: typeof Button;
+  cansel: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -592,6 +894,9 @@ export const PlasmicImageEdit = Object.assign(
     radioGroup: makeNodeComponent("radioGroup"),
     img: makeNodeComponent("img"),
     radio: makeNodeComponent("radio"),
+    snackbar: makeNodeComponent("snackbar"),
+    _delete: makeNodeComponent("_delete"),
+    cansel: makeNodeComponent("cansel"),
 
     // Metadata about props expected for PlasmicImageEdit
     internalVariantProps: PlasmicImageEdit__VariantProps,

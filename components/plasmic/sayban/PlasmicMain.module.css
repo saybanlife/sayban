@@ -147,7 +147,7 @@
 .timeWeek:global(.__wab_instance) {
   position: relative;
 }
-.freeBox {
+.freeBox__cGp8Z {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -221,4 +221,68 @@
 .embedHtml:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
+}
+.deleteSnakbar:global(.__wab_instance):global(.__wab_instance) {
+  animation: none;
+  max-width: 100%;
+}
+.text__r7Fcm {
+  animation: none;
+  font-weight: 600;
+}
+.freeBox__rkTkx {
+  animation: none;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: 45px;
+  max-width: 100%;
+  column-gap: var(--token-rfsFxiclAtek);
+  min-width: 0;
+  padding: 0px;
+}
+.buttonDelete:global(.__wab_instance):global(.__wab_instance) {
+  animation: none;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.svg__qb7VO {
+  position: relative;
+  height: 1em;
+}
+.text__hFcLz {
+  animation: none;
+  white-space: pre;
+  color: var(--token-A-PNbaadkZKd);
+}
+.svg__lstjX {
+  position: relative;
+  height: 1em;
+}
+.buttonClose:global(.__wab_instance):global(.__wab_instance) {
+  animation: none;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.svg__uwNb {
+  position: relative;
+  height: 1em;
+}
+.text__vbTlK {
+  animation: none;
+  white-space: pre;
+  color: var(--token-1aP3XjRZIKFV);
+}
+.svg__i9TUt {
+  position: relative;
+  height: 1em;
 }
