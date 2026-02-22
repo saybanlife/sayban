@@ -2653,6 +2653,11 @@
           "id": "PWsALiD1VW02",
           "name": "Icon70Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon70.tsx"
+        },
+        {
+          "id": "Rka8OCCW_ISn",
+          "name": "Icon71Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon71.tsx"
         }
       ],
       "images": [
@@ -2790,6 +2795,11 @@
           "id": "nd5W2IgDZnBY",
           "name": "image 22",
           "filePath": "../public/plasmic/sayban/images/image22.svg"
+        },
+        {
+          "id": "r0e2YLtVUQ1-",
+          "name": "image 23",
+          "filePath": "../public/plasmic/sayban/images/image23.svg"
         }
       ],
       "indirect": false,

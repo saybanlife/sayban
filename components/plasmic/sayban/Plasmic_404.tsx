@@ -67,6 +67,8 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./Plasmic_404.module.css"; // plasmic-import: EPyL9Q3Zmjgo/css
 
+import Icon71Icon from "./icons/PlasmicIcon__Icon71"; // plasmic-import: Rka8OCCW_ISn/icon
+
 const emptyProxy: any = new Proxy(() => "", {
   get(_, prop) {
     return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
@@ -104,6 +106,8 @@ export const Plasmic_404__ArgProps = new Array<ArgPropType>();
 
 export type Plasmic_404__OverridesType = {
   root?: Flex__<"div">;
+  svg?: Flex__<"svg">;
+  text?: Flex__<"div">;
 };
 
 export interface Default_404Props {}
@@ -178,20 +182,45 @@ function Plasmic_404__RenderFunc(props: {
             styleTokensClassNames,
             sty.root
           )}
-        />
+        >
+          <Icon71Icon
+            data-plasmic-name={"svg"}
+            data-plasmic-override={overrides.svg}
+            className={classNames(projectcss.all, sty.svg)}
+            role={"img"}
+          />
+
+          <div
+            data-plasmic-name={"text"}
+            data-plasmic-override={overrides.text}
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text
+            )}
+          >
+            {
+              "\u0635\u0641\u062d\u0647 \u06cc\u0627\u0641\u062a \u0646\u0634\u062f"
+            }
+          </div>
+        </div>
       </div>
     </React.Fragment>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root"]
+  root: ["root", "svg", "text"],
+  svg: ["svg"],
+  text: ["text"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  svg: "svg";
+  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -256,6 +285,8 @@ export const Plasmic_404 = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    svg: makeNodeComponent("svg"),
+    text: makeNodeComponent("text"),
 
     // Metadata about props expected for Plasmic_404
     internalVariantProps: Plasmic_404__VariantProps,
