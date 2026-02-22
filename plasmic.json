@@ -1975,6 +1975,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicSnackbar.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "NCgtBMbIwpli",
+          "name": "ImageProfile",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicImageProfile.tsx",
+          "importSpec": {
+            "modulePath": "ImageProfile.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicImageProfile.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

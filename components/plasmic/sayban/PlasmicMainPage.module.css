@@ -18,10 +18,11 @@
   align-items: stretch;
   justify-content: space-between;
   width: 100%;
-  height: auto;
+  height: 40px;
   max-width: 100%;
   column-gap: var(--token-73iLa06AE6f4);
   min-width: 0;
+  flex-shrink: 0;
   padding: 0px 0px 0px var(--token-73iLa06AE6f4);
 }
 .freeBox__t8MpG {

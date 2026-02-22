@@ -461,6 +461,25 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "mainPage.list",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.page == "centerList";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -536,8 +555,23 @@ function PlasmicMain__RenderFunc(props: {
           ),
           [sty.mainPagepage_center]: hasVariant($state, "page", "center")
         })}
+        list={generateStateValueProp($state, ["mainPage", "list"])}
         onCategptyChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["mainPage", "categpty"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onListChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainPage", "list"]).apply(
             null,
             eventArgs
           );

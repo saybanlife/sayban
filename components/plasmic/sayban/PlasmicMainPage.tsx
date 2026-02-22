@@ -96,6 +96,8 @@ export type PlasmicMainPage__ArgsType = {
   centerDelete?: () => void;
   restart?: string;
   onRestartChange?: (val: string) => void;
+  list?: boolean;
+  onListChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicMainPage__ArgsType;
 export const PlasmicMainPage__ArgProps = new Array<ArgPropType>(
@@ -107,7 +109,9 @@ export const PlasmicMainPage__ArgProps = new Array<ArgPropType>(
   "onRowClicked",
   "centerDelete",
   "restart",
-  "onRestartChange"
+  "onRestartChange",
+  "list",
+  "onListChange"
 );
 
 export type PlasmicMainPage__OverridesType = {
@@ -132,6 +136,8 @@ export interface DefaultMainPageProps {
   centerDelete?: () => void;
   restart?: string;
   onRestartChange?: (val: string) => void;
+  list?: boolean;
+  onListChange?: (val: string) => void;
   className?: string;
 }
 
@@ -303,6 +309,14 @@ function PlasmicMainPage__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
+      },
+      {
+        path: "list",
+        type: "writable",
+        variableType: "boolean",
+
+        valueProp: "list",
+        onChangeProp: "onListChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -480,6 +494,30 @@ function PlasmicMainPage__RenderFunc(props: {
               ) {
                 return;
               }
+
+              (async val => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return ($state.restart += "1");
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+              }).apply(null, eventArgs);
             }}
             onOpenChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["select2", "isOpen"]).apply(
@@ -972,7 +1010,19 @@ function PlasmicMainPage__RenderFunc(props: {
                 throw e;
               }
             })()}
-            shouldFetch={true}
+            shouldFetch={(() => {
+              try {
+                return $state.list;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()}
             url={"https://sayban.darkube.app/webhook/panel/centers"}
           />
 

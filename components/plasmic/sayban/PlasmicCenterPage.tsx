@@ -72,6 +72,7 @@ import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-impor
 import Modal from "../../Modal"; // plasmic-import: Oo9r7A7X8FP7/component
 import CenterInfo from "../../CenterInfo"; // plasmic-import: 5fhUfrSk0s6y/component
 import Imag from "../../Imag"; // plasmic-import: ScLhJpeVxPbk/component
+import ImageProfile from "../../ImageProfile"; // plasmic-import: NCgtBMbIwpli/component
 import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -155,6 +156,10 @@ export type PlasmicCenterPage__OverridesType = {
   imag?: Flex__<typeof Imag>;
   saveUpload?: Flex__<typeof Button>;
   close?: Flex__<typeof Button>;
+  imageProfile?: Flex__<typeof Modal>;
+  imageProfile2?: Flex__<typeof ImageProfile>;
+  saveUpload2?: Flex__<typeof Button>;
+  close2?: Flex__<typeof Button>;
   map?: Flex__<typeof Modal>;
   loaction?: Flex__<typeof Loaction>;
   saveInfo2?: Flex__<typeof Button>;
@@ -603,6 +608,30 @@ function PlasmicCenterPage__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "imageProfile.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "saveUpload2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "close2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "imageProfile2.uploadFiles",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       }
     ],
     [$props, $ctx, $refs]
@@ -981,6 +1010,46 @@ function PlasmicCenterPage__RenderFunc(props: {
                 <div className={classNames(projectcss.all, sty.freeBox__ijfen)}>
                   <div
                     className={classNames(projectcss.all, sty.freeBox__hRmEh)}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["updateImageProfileIsOpen"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["imageProfile", "isOpen"]
+                              },
+                              operation: 4
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              const oldValue = $stateGet(objRoot, variablePath);
+                              $stateSet(objRoot, variablePath, !oldValue);
+                              return !oldValue;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateImageProfileIsOpen"] != null &&
+                        typeof $steps["updateImageProfileIsOpen"] ===
+                          "object" &&
+                        typeof $steps["updateImageProfileIsOpen"].then ===
+                          "function"
+                      ) {
+                        $steps["updateImageProfileIsOpen"] =
+                          await $steps["updateImageProfileIsOpen"];
+                      }
+                    }}
                   >
                     <PlasmicImg__
                       data-plasmic-name={"img"}
@@ -1809,6 +1878,22 @@ function PlasmicCenterPage__RenderFunc(props: {
           (async data => {
             const $steps = {};
 
+            $steps["invokeGlobalAction"] = true
+              ? (() => {
+                  const actionArgs = { args: [100] };
+                  return $globalActions["Fragment.wait"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["invokeGlobalAction"] != null &&
+              typeof $steps["invokeGlobalAction"] === "object" &&
+              typeof $steps["invokeGlobalAction"].then === "function"
+            ) {
+              $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
+            }
+
             $steps["updateCenters"] =
               $state.center?.data?.success == true
                 ? (() => {
@@ -2612,6 +2697,308 @@ function PlasmicCenterPage__RenderFunc(props: {
       />
 
       <Modal
+        data-plasmic-name={"imageProfile"}
+        data-plasmic-override={overrides.imageProfile}
+        className={classNames("__wab_instance", sty.imageProfile)}
+        closeOnBackdropClick={false}
+        content={
+          <React.Fragment>
+            <div className={classNames(projectcss.all, sty.freeBox__bwrz)}>
+              <ImageProfile
+                data-plasmic-name={"imageProfile2"}
+                data-plasmic-override={overrides.imageProfile2}
+                className={classNames("__wab_instance", sty.imageProfile2)}
+                onUploadFilesChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "imageProfile2",
+                    "uploadFiles"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                uploadFiles={generateStateValueProp($state, [
+                  "imageProfile2",
+                  "uploadFiles"
+                ])}
+              />
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox__dvgwv)}>
+              <Button
+                data-plasmic-name={"saveUpload2"}
+                data-plasmic-override={overrides.saveUpload2}
+                className={classNames("__wab_instance", sty.saveUpload2)}
+                color={"success"}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__ybQ8U
+                    )}
+                  >
+                    {"\u0630\u062e\u06cc\u0631\u0647"}
+                  </div>
+                }
+                loading={generateStateValueProp($state, [
+                  "saveUpload2",
+                  "loading"
+                ])}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateSaveUploadLoading"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["saveUpload2", "loading"]
+                          },
+                          operation: 4
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, !oldValue);
+                          return !oldValue;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateSaveUploadLoading"] != null &&
+                    typeof $steps["updateSaveUploadLoading"] === "object" &&
+                    typeof $steps["updateSaveUploadLoading"].then === "function"
+                  ) {
+                    $steps["updateSaveUploadLoading"] =
+                      await $steps["updateSaveUploadLoading"];
+                  }
+
+                  $steps["invokeGlobalAction"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "POST",
+                            "https://sayban.darkube.app/webhook-test/panel/update/profile",
+                            undefined,
+                            {
+                              image: $state.imageProfile2.uploadFiles,
+                              center_id: $state.center.data.result.id
+                            }
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction"] != null &&
+                    typeof $steps["invokeGlobalAction"] === "object" &&
+                    typeof $steps["invokeGlobalAction"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction"] =
+                      await $steps["invokeGlobalAction"];
+                  }
+
+                  $steps["updateImageinsertIsOpen"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["imageProfile", "isOpen"]
+                          },
+                          operation: 4
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, !oldValue);
+                          return !oldValue;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateImageinsertIsOpen"] != null &&
+                    typeof $steps["updateImageinsertIsOpen"] === "object" &&
+                    typeof $steps["updateImageinsertIsOpen"].then === "function"
+                  ) {
+                    $steps["updateImageinsertIsOpen"] =
+                      await $steps["updateImageinsertIsOpen"];
+                  }
+
+                  $steps["updateSaveUploadLoading2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["saveUpload2", "loading"]
+                          },
+                          operation: 4
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, !oldValue);
+                          return !oldValue;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateSaveUploadLoading2"] != null &&
+                    typeof $steps["updateSaveUploadLoading2"] === "object" &&
+                    typeof $steps["updateSaveUploadLoading2"].then ===
+                      "function"
+                  ) {
+                    $steps["updateSaveUploadLoading2"] =
+                      await $steps["updateSaveUploadLoading2"];
+                  }
+                }}
+                onLoadingChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "saveUpload2",
+                    "loading"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+              />
+
+              <Button
+                data-plasmic-name={"close2"}
+                data-plasmic-override={overrides.close2}
+                className={classNames("__wab_instance", sty.close2)}
+                color={"neutral"}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__iRdI1
+                    )}
+                  >
+                    {"\u0644\u063a\u0648"}
+                  </div>
+                }
+                loading={generateStateValueProp($state, ["close2", "loading"])}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateModalIsOpen"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["imageProfile", "isOpen"]
+                          },
+                          operation: 4,
+                          value: true
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, !oldValue);
+                          return !oldValue;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateModalIsOpen"] != null &&
+                    typeof $steps["updateModalIsOpen"] === "object" &&
+                    typeof $steps["updateModalIsOpen"].then === "function"
+                  ) {
+                    $steps["updateModalIsOpen"] =
+                      await $steps["updateModalIsOpen"];
+                  }
+                }}
+                onLoadingChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "close2",
+                    "loading"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+              />
+            </div>
+          </React.Fragment>
+        }
+        footer={null}
+        heading={null}
+        isOpen={generateStateValueProp($state, ["imageProfile", "isOpen"])}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["imageProfile", "isOpen"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        showFooter={false}
+        showHeader={false}
+        trigger={null}
+      />
+
+      <Modal
         data-plasmic-name={"map"}
         data-plasmic-override={overrides.map}
         className={classNames("__wab_instance", sty.map)}
@@ -3065,6 +3452,10 @@ const PlasmicDescendants = {
     "imag",
     "saveUpload",
     "close",
+    "imageProfile",
+    "imageProfile2",
+    "saveUpload2",
+    "close2",
     "map",
     "loaction",
     "saveInfo2",
@@ -3091,6 +3482,10 @@ const PlasmicDescendants = {
   imag: ["imag"],
   saveUpload: ["saveUpload"],
   close: ["close"],
+  imageProfile: ["imageProfile", "imageProfile2", "saveUpload2", "close2"],
+  imageProfile2: ["imageProfile2"],
+  saveUpload2: ["saveUpload2"],
+  close2: ["close2"],
   map: ["map", "loaction", "saveInfo2", "button7"],
   loaction: ["loaction"],
   saveInfo2: ["saveInfo2"],
@@ -3122,6 +3517,10 @@ type NodeDefaultElementType = {
   imag: typeof Imag;
   saveUpload: typeof Button;
   close: typeof Button;
+  imageProfile: typeof Modal;
+  imageProfile2: typeof ImageProfile;
+  saveUpload2: typeof Button;
+  close2: typeof Button;
   map: typeof Modal;
   loaction: typeof Loaction;
   saveInfo2: typeof Button;
@@ -3211,6 +3610,10 @@ export const PlasmicCenterPage = Object.assign(
     imag: makeNodeComponent("imag"),
     saveUpload: makeNodeComponent("saveUpload"),
     close: makeNodeComponent("close"),
+    imageProfile: makeNodeComponent("imageProfile"),
+    imageProfile2: makeNodeComponent("imageProfile2"),
+    saveUpload2: makeNodeComponent("saveUpload2"),
+    close2: makeNodeComponent("close2"),
     map: makeNodeComponent("map"),
     loaction: makeNodeComponent("loaction"),
     saveInfo2: makeNodeComponent("saveInfo2"),
