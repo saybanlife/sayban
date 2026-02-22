@@ -139,6 +139,7 @@ export type PlasmicCenterPage__OverridesType = {
   button?: Flex__<typeof Button>;
   button4?: Flex__<typeof Button>;
   select?: Flex__<typeof Select>;
+  active?: Flex__<typeof Select>;
   img?: Flex__<typeof PlasmicImg__>;
   edit?: Flex__<typeof Button>;
   edit2?: Flex__<typeof Button>;
@@ -632,6 +633,19 @@ function PlasmicCenterPage__RenderFunc(props: {
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "active.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "active.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $state.centerData?.is_active?.toString()
       }
     ],
     [$props, $ctx, $refs]
@@ -973,6 +987,61 @@ function PlasmicCenterPage__RenderFunc(props: {
               showLabel={false}
               type={"soft"}
               value={generateStateValueProp($state, ["select", "value"])}
+            />
+          </div>
+          <div className={classNames(projectcss.all, sty.freeBox__vYq1P)}>
+            <Select
+              data-plasmic-name={"active"}
+              data-plasmic-override={overrides.active}
+              className={classNames("__wab_instance", sty.active)}
+              isOpen={generateStateValueProp($state, ["active", "isOpen"])}
+              items={
+                <React.Fragment>
+                  <MenuItem
+                    label={"\ud83d\udfe2 \u0641\u0639\u0627\u0644"}
+                    value={"1"}
+                  />
+
+                  <MenuItem
+                    label={
+                      "\ud83d\udd34 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644"
+                    }
+                    value={"0"}
+                  />
+                </React.Fragment>
+              }
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["active", "value"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              onOpenChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["active", "isOpen"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              placeholder={``}
+              showLabel={false}
+              type={"soft"}
+              value={generateStateValueProp($state, ["active", "value"])}
             />
           </div>
         </div>
@@ -3435,6 +3504,7 @@ const PlasmicDescendants = {
     "button",
     "button4",
     "select",
+    "active",
     "img",
     "edit",
     "edit2",
@@ -3465,6 +3535,7 @@ const PlasmicDescendants = {
   button: ["button"],
   button4: ["button4"],
   select: ["select"],
+  active: ["active"],
   img: ["img"],
   edit: ["edit"],
   edit2: ["edit2"],
@@ -3500,6 +3571,7 @@ type NodeDefaultElementType = {
   button: typeof Button;
   button4: typeof Button;
   select: typeof Select;
+  active: typeof Select;
   img: typeof PlasmicImg__;
   edit: typeof Button;
   edit2: typeof Button;
@@ -3593,6 +3665,7 @@ export const PlasmicCenterPage = Object.assign(
     button: makeNodeComponent("button"),
     button4: makeNodeComponent("button4"),
     select: makeNodeComponent("select"),
+    active: makeNodeComponent("active"),
     img: makeNodeComponent("img"),
     edit: makeNodeComponent("edit"),
     edit2: makeNodeComponent("edit2"),
