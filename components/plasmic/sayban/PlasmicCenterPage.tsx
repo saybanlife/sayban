@@ -901,7 +901,7 @@ function PlasmicCenterPage__RenderFunc(props: {
               >
                 {hasVariant($state, "role", "superAdmin")
                   ? "\u0630\u062e\u06cc\u0631\u0647"
-                  : "\u0628\u0631\u0648\u0632 \u0631\u0633\u0627\u0646\u06cc"}
+                  : "\u0628\u0631\u0648\u0632\u0631\u0633\u0627\u0646\u06cc"}
               </div>
             }
             loading={generateStateValueProp($state, ["button4", "loading"])}
