@@ -137,7 +137,7 @@ export type PlasmicCenterPage__OverridesType = {
   root?: Flex__<"div">;
   button3?: Flex__<typeof Button>;
   button?: Flex__<typeof Button>;
-  button4?: Flex__<typeof Button>;
+  updates?: Flex__<typeof Button>;
   select?: Flex__<typeof Select>;
   active?: Flex__<typeof Select>;
   img?: Flex__<typeof PlasmicImg__>;
@@ -579,7 +579,7 @@ function PlasmicCenterPage__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "button4.loading",
+        path: "updates.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
@@ -873,10 +873,10 @@ function PlasmicCenterPage__RenderFunc(props: {
           />
 
           <Button
-            data-plasmic-name={"button4"}
-            data-plasmic-override={overrides.button4}
-            className={classNames("__wab_instance", sty.button4, {
-              [sty.button4role_superAdmin]: hasVariant(
+            data-plasmic-name={"updates"}
+            data-plasmic-override={overrides.updates}
+            className={classNames("__wab_instance", sty.updates, {
+              [sty.updatesrole_superAdmin]: hasVariant(
                 $state,
                 "role",
                 "superAdmin"
@@ -918,10 +918,96 @@ function PlasmicCenterPage__RenderFunc(props: {
                   : "\u0628\u0631\u0648\u0632\u0631\u0633\u0627\u0646\u06cc"}
               </div>
             }
-            loading={generateStateValueProp($state, ["button4", "loading"])}
-            onClick={args.openEdit}
+            loading={generateStateValueProp($state, ["updates", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateUpdatesLoading"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["updates", "loading"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateUpdatesLoading"] != null &&
+                typeof $steps["updateUpdatesLoading"] === "object" &&
+                typeof $steps["updateUpdatesLoading"].then === "function"
+              ) {
+                $steps["updateUpdatesLoading"] =
+                  await $steps["updateUpdatesLoading"];
+              }
+
+              $steps["invokeGlobalAction"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "https://sayban.darkube.app/webhook/panel/update/service",
+                        undefined,
+                        undefined
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["updateUpdatesLoading2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["updates", "loading"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateUpdatesLoading2"] != null &&
+                typeof $steps["updateUpdatesLoading2"] === "object" &&
+                typeof $steps["updateUpdatesLoading2"].then === "function"
+              ) {
+                $steps["updateUpdatesLoading2"] =
+                  await $steps["updateUpdatesLoading2"];
+              }
+            }}
             onLoadingChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["button4", "loading"]).apply(
+              generateStateOnChangeProp($state, ["updates", "loading"]).apply(
                 null,
                 eventArgs
               );
@@ -991,7 +1077,7 @@ function PlasmicCenterPage__RenderFunc(props: {
           </div>
           {(() => {
             try {
-              return $state.centerData?.is_active;
+              return $state.centerData?.is_active != null;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -1048,8 +1134,10 @@ function PlasmicCenterPage__RenderFunc(props: {
                               "https://sayban.darkube.app/webhook/panel/update/info",
                               undefined,
                               {
-                                is_active: $state.active.value === "1",
-                                id: $state.center.data.result.id
+                                info: {
+                                  is_active: $state.active.value === "1",
+                                  id: $state.center.data.result.id
+                                }
                               }
                             ]
                           };
@@ -3548,7 +3636,7 @@ const PlasmicDescendants = {
     "root",
     "button3",
     "button",
-    "button4",
+    "updates",
     "select",
     "active",
     "img",
@@ -3579,7 +3667,7 @@ const PlasmicDescendants = {
   ],
   button3: ["button3"],
   button: ["button"],
-  button4: ["button4"],
+  updates: ["updates"],
   select: ["select"],
   active: ["active"],
   img: ["img"],
@@ -3615,7 +3703,7 @@ type NodeDefaultElementType = {
   root: "div";
   button3: typeof Button;
   button: typeof Button;
-  button4: typeof Button;
+  updates: typeof Button;
   select: typeof Select;
   active: typeof Select;
   img: typeof PlasmicImg__;
@@ -3709,7 +3797,7 @@ export const PlasmicCenterPage = Object.assign(
     // Helper components rendering sub-elements
     button3: makeNodeComponent("button3"),
     button: makeNodeComponent("button"),
-    button4: makeNodeComponent("button4"),
+    updates: makeNodeComponent("updates"),
     select: makeNodeComponent("select"),
     active: makeNodeComponent("active"),
     img: makeNodeComponent("img"),
