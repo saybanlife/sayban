@@ -952,14 +952,17 @@ function PlasmicCenterPage__RenderFunc(props: {
                   await $steps["updateUpdatesLoading"];
               }
 
-              $steps["invokeGlobalAction"] = true
+              $steps["update"] = true
                 ? (() => {
                     const actionArgs = {
                       args: [
                         "POST",
-                        "https://sayban.darkube.app/webhook/panel/update/service",
+                        "https://sayban.darkube.app/webhook-test/panel/update/service",
                         undefined,
-                        undefined
+                        {
+                          info: $state.addServise2.servises,
+                          times: $state.timeWeek.week
+                        }
                       ]
                     };
                     return $globalActions["Fragment.apiRequest"]?.apply(null, [
@@ -968,12 +971,11 @@ function PlasmicCenterPage__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
+                $steps["update"] != null &&
+                typeof $steps["update"] === "object" &&
+                typeof $steps["update"].then === "function"
               ) {
-                $steps["invokeGlobalAction"] =
-                  await $steps["invokeGlobalAction"];
+                $steps["update"] = await $steps["update"];
               }
 
               $steps["updateUpdatesLoading2"] = true
