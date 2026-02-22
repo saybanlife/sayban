@@ -1895,6 +1895,26 @@
           "assetId": "qARqpE4p5tZmJuNxFbTaPz",
           "type": "projectCss",
           "checksum": "faf95e01d37a2b90efc06122c5a36c59"
+        },
+        {
+          "type": "renderModule",
+          "assetId": "Zvnt2o0Nw1re",
+          "checksum": "9cb8e95b113a4e42ae60d048ec02d793"
+        },
+        {
+          "type": "cssRules",
+          "assetId": "Zvnt2o0Nw1re",
+          "checksum": "9cb8e95b113a4e42ae60d048ec02d793"
+        },
+        {
+          "type": "renderModule",
+          "assetId": "EPyL9Q3Zmjgo",
+          "checksum": "ccb9e9d8d2c1a67a2452f914a321ab05"
+        },
+        {
+          "type": "cssRules",
+          "assetId": "EPyL9Q3Zmjgo",
+          "checksum": "ccb9e9d8d2c1a67a2452f914a321ab05"
         }
       ],
       "codegenVersion": "0.0.3"

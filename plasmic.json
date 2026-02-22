@@ -1988,6 +1988,34 @@
           "cssFilePath": "plasmic/sayban/PlasmicImageProfile.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "Zvnt2o0Nw1re",
+          "name": "_",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/Plasmic_.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/index.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/Plasmic_.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/"
+        },
+        {
+          "id": "EPyL9Q3Zmjgo",
+          "name": "_404",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/Plasmic_404.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/404.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/Plasmic_404.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/404"
         }
       ],
       "icons": [
