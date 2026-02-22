@@ -989,61 +989,107 @@ function PlasmicCenterPage__RenderFunc(props: {
               value={generateStateValueProp($state, ["select", "value"])}
             />
           </div>
-          <div className={classNames(projectcss.all, sty.freeBox__vYq1P)}>
-            <Select
-              data-plasmic-name={"active"}
-              data-plasmic-override={overrides.active}
-              className={classNames("__wab_instance", sty.active)}
-              isOpen={generateStateValueProp($state, ["active", "isOpen"])}
-              items={
-                <React.Fragment>
-                  <MenuItem
-                    label={"\ud83d\udfe2 \u0641\u0639\u0627\u0644"}
-                    value={"1"}
-                  />
-
-                  <MenuItem
-                    label={
-                      "\ud83d\udd34 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644"
-                    }
-                    value={"0"}
-                  />
-                </React.Fragment>
+          {(() => {
+            try {
+              return $state.centerData?.is_active;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
               }
-              onChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["active", "value"]).apply(
-                  null,
-                  eventArgs
-                );
+              throw e;
+            }
+          })() ? (
+            <div className={classNames(projectcss.all, sty.freeBox__vYq1P)}>
+              <Select
+                data-plasmic-name={"active"}
+                data-plasmic-override={overrides.active}
+                className={classNames("__wab_instance", sty.active)}
+                isOpen={generateStateValueProp($state, ["active", "isOpen"])}
+                items={
+                  <React.Fragment>
+                    <MenuItem
+                      label={"\ud83d\udfe2 \u0641\u0639\u0627\u0644"}
+                      value={"1"}
+                    />
 
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
+                    <MenuItem
+                      label={
+                        "\ud83d\udd34 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644"
+                      }
+                      value={"0"}
+                    />
+                  </React.Fragment>
                 }
-              }}
-              onOpenChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["active", "isOpen"]).apply(
-                  null,
-                  eventArgs
-                );
+                onChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["active", "value"]).apply(
+                    null,
+                    eventArgs
+                  );
 
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              placeholder={``}
-              showLabel={false}
-              type={"soft"}
-              value={generateStateValueProp($state, ["active", "value"])}
-            />
-          </div>
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+
+                  (async val => {
+                    const $steps = {};
+
+                    $steps["invokeGlobalAction"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "POST",
+                              "https://sayban.darkube.app/webhook/panel/update/info",
+                              undefined,
+                              {
+                                is_active: $state.active.value === "1",
+                                id: $state.center.data.result.id
+                              }
+                            ]
+                          };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["invokeGlobalAction"] != null &&
+                      typeof $steps["invokeGlobalAction"] === "object" &&
+                      typeof $steps["invokeGlobalAction"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction"] =
+                        await $steps["invokeGlobalAction"];
+                    }
+                  }).apply(null, eventArgs);
+                }}
+                onOpenChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["active", "isOpen"]).apply(
+                    null,
+                    eventArgs
+                  );
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                placeholder={``}
+                showLabel={false}
+                type={"soft"}
+                value={generateStateValueProp($state, ["active", "value"])}
+              />
+            </div>
+          ) : null}
         </div>
       </div>
       {(() => {
