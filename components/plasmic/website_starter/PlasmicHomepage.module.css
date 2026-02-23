@@ -78,18 +78,18 @@
 .homePage {
   display: flex;
   flex-direction: column;
-  position: relative;
   width: auto;
   height: auto;
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
-  top: auto;
-  left: auto;
-  bottom: auto;
-  right: auto;
-  z-index: 1;
   justify-self: flex-start;
+  z-index: 1;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  top: auto;
+  position: relative;
   padding: 0px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -394,38 +394,6 @@
   flex-shrink: 0;
   padding: 8px;
 }
-.categories:global(.__wab_instance) {
-  max-width: 100%;
-  width: 100%;
-  height: 100%;
-  grid-column-start: 1 !important;
-  grid-column-end: -1 !important;
-  min-height: 0;
-  display: none;
-}
-.categoriespage_categories:global(.__wab_instance) {
-  display: grid;
-}
-.subcategories:global(.__wab_instance) {
-  max-width: 100%;
-  width: 100%;
-  grid-column-start: 1 !important;
-  grid-column-end: -1 !important;
-  display: none;
-}
-.subcategoriespage_subcategories:global(.__wab_instance) {
-  display: grid;
-}
-.center:global(.__wab_instance) {
-  max-width: 100%;
-  display: none;
-}
-.centerpage_center:global(.__wab_instance) {
-  width: 100%;
-  grid-column-start: 1 !important;
-  grid-column-end: -1 !important;
-  display: grid;
-}
 .categories2:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
@@ -510,6 +478,38 @@
 }
 .homepage_payment:global(.__wab_instance) {
   display: none;
+}
+.categories:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  grid-column-start: 1 !important;
+  grid-column-end: -1 !important;
+  min-height: 0;
+  display: none;
+}
+.categoriespage_categories:global(.__wab_instance) {
+  display: grid;
+}
+.subcategories:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  grid-column-start: 1 !important;
+  grid-column-end: -1 !important;
+  display: none;
+}
+.subcategoriespage_subcategories:global(.__wab_instance) {
+  display: grid;
+}
+.center:global(.__wab_instance) {
+  max-width: 100%;
+  display: none;
+}
+.centerpage_center:global(.__wab_instance) {
+  width: 100%;
+  grid-column-start: 1 !important;
+  grid-column-end: -1 !important;
+  display: grid;
 }
 .payment:global(.__wab_instance) {
   max-width: 100%;

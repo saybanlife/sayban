@@ -106,6 +106,7 @@ export const Plasmic_404__ArgProps = new Array<ArgPropType>();
 
 export type Plasmic_404__OverridesType = {
   root?: Flex__<"div">;
+  freeBox?: Flex__<"div">;
   svg?: Flex__<"svg">;
   text?: Flex__<"div">;
 };
@@ -183,25 +184,31 @@ function Plasmic_404__RenderFunc(props: {
             sty.root
           )}
         >
-          <Icon71Icon
-            data-plasmic-name={"svg"}
-            data-plasmic-override={overrides.svg}
-            className={classNames(projectcss.all, sty.svg)}
-            role={"img"}
-          />
-
           <div
-            data-plasmic-name={"text"}
-            data-plasmic-override={overrides.text}
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text
-            )}
+            data-plasmic-name={"freeBox"}
+            data-plasmic-override={overrides.freeBox}
+            className={classNames(projectcss.all, sty.freeBox)}
           >
-            {
-              "\u0635\u0641\u062d\u0647 \u06cc\u0627\u0641\u062a \u0646\u0634\u062f"
-            }
+            <Icon71Icon
+              data-plasmic-name={"svg"}
+              data-plasmic-override={overrides.svg}
+              className={classNames(projectcss.all, sty.svg)}
+              role={"img"}
+            />
+
+            <div
+              data-plasmic-name={"text"}
+              data-plasmic-override={overrides.text}
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text
+              )}
+            >
+              {
+                "\u0635\u0641\u062d\u0647 \u06cc\u0627\u0641\u062a \u0646\u0634\u062f"
+              }
+            </div>
           </div>
         </div>
       </div>
@@ -210,7 +217,8 @@ function Plasmic_404__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "svg", "text"],
+  root: ["root", "freeBox", "svg", "text"],
+  freeBox: ["freeBox", "svg", "text"],
   svg: ["svg"],
   text: ["text"]
 } as const;
@@ -219,6 +227,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  freeBox: "div";
   svg: "svg";
   text: "div";
 };
@@ -285,6 +294,7 @@ export const Plasmic_404 = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    freeBox: makeNodeComponent("freeBox"),
     svg: makeNodeComponent("svg"),
     text: makeNodeComponent("text"),
 

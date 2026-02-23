@@ -1,0 +1,57 @@
+.root {
+  display: inline-flex;
+  flex-direction: row;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: var(--token-RuQNZpYm0Yds);
+  background: none;
+  position: relative;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-property: all;
+  -webkit-transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 0.3s;
+  border-radius: 50px;
+  padding: var(--token-RuQNZpYm0Yds) var(--token-rfsFxiclAtek)
+    var(--token-RuQNZpYm0Yds) var(--token-LBC0X5IbL9bo);
+}
+.rootselect {
+  background: var(--token-pyhDq7s0RTkz);
+  padding: var(--token-RuQNZpYm0Yds) var(--token-rfsFxiclAtek)
+    var(--token-RuQNZpYm0Yds) var(--token-LBC0X5IbL9bo);
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  width: var(--token-P3I_D0uxQRnt);
+  height: var(--token-P3I_D0uxQRnt);
+  color: var(--token-Es3BYpS8XP38);
+  flex-shrink: 0;
+}
+.svgselect {
+  color: var(--token-ccqYe7dhXoNZ);
+}
+.text {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: center;
+  color: var(--token-ccqYe7dhXoNZ);
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  min-width: 0;
+  display: none;
+  -webkit-transition-property: all;
+  -webkit-transition-timing-function: ease-in-out;
+  -webkit-transition-duration: 0.3s;
+}
+.textselect {
+  display: block;
+}

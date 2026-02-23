@@ -9,8 +9,7 @@
   position: relative;
   background: none;
   justify-self: flex-start;
-  padding: var(--token-rfsFxiclAtek);
-  border-width: 0px;
+  padding: 0px;
 }
 .rootselect {
   background: var(--token-9M5jRUPt8Msb);

@@ -2016,6 +2016,32 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/404"
+        },
+        {
+          "id": "UH_ArPB1XbBj",
+          "name": "IconMenu",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicIconMenu.tsx",
+          "importSpec": {
+            "modulePath": "IconMenu.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicIconMenu.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "PVZXFz1DIsfR",
+          "name": "User",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicUser.tsx",
+          "importSpec": {
+            "modulePath": "User.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicUser.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -2658,6 +2684,81 @@
           "id": "Rka8OCCW_ISn",
           "name": "Icon71Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon71.tsx"
+        },
+        {
+          "id": "EUwxrMkUGe-J",
+          "name": "Icon72Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon72.tsx"
+        },
+        {
+          "id": "pBMO6x-EN_PM",
+          "name": "Icon73Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon73.tsx"
+        },
+        {
+          "id": "NLq5mGWn43XR",
+          "name": "Icon74Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon74.tsx"
+        },
+        {
+          "id": "_OVYJ9VezPG0",
+          "name": "Icon75Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon75.tsx"
+        },
+        {
+          "id": "PNmvwHPTSPVF",
+          "name": "Icon76Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon76.tsx"
+        },
+        {
+          "id": "rn5Sm-68bTpC",
+          "name": "Icon78Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon78.tsx"
+        },
+        {
+          "id": "CYTzUMH8mI-n",
+          "name": "Icon79Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon79.tsx"
+        },
+        {
+          "id": "085F3u06dwLP",
+          "name": "Icon80Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon80.tsx"
+        },
+        {
+          "id": "JFikrSBW0K-n",
+          "name": "Icon81Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon81.tsx"
+        },
+        {
+          "id": "MnEziarAA6uw",
+          "name": "Icon82Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon82.tsx"
+        },
+        {
+          "id": "Lr0xJJRemopC",
+          "name": "Icon83Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon83.tsx"
+        },
+        {
+          "id": "S2KVA8WxUeNT",
+          "name": "Icon84Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon84.tsx"
+        },
+        {
+          "id": "ZwDSzgb1OoZy",
+          "name": "Icon85Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon85.tsx"
+        },
+        {
+          "id": "-kHGHW3gLlTj",
+          "name": "Icon86Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon86.tsx"
+        },
+        {
+          "id": "DSiKrPvxYlkt",
+          "name": "Icon87Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon87.tsx"
         }
       ],
       "images": [

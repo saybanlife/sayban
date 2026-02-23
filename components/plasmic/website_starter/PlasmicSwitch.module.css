@@ -33,7 +33,7 @@
   height: auto;
   width: var(--token-CVjaMVgIQl_G);
   display: flex;
-  background: var(--token-yy-le7sCm4OC);
+  background: var(--token-pyhDq7s0RTkz);
   cursor: pointer;
   justify-content: flex-start;
   align-items: flex-start;
@@ -42,7 +42,7 @@
   padding: var(--token-I0Xtb9z7Q0X3);
 }
 .ariaSwitch[data-selected] .switchIndicator {
-  background: var(--token-xZK-xLPCiE1W);
+  background: var(--token-Yo4gdKCgyuAu);
 }
 .ariaSwitch[data-focus-visible] .switchIndicator {
   outline-width: 2px;
@@ -72,7 +72,7 @@
   border-radius: 99px;
 }
 .ariaSwitch[data-selected] .thumb {
-  transform: translate3d(12px, 0px, 0px);
+  transform: translate3d(-12px, 0px, 0px);
 }
 .description:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;

@@ -59,7 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import MenueIcon from "../../MenueIcon"; // plasmic-import: 8E0dazXQIYne/component
+import IconMenu from "../../IconMenu"; // plasmic-import: UH_ArPB1XbBj/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -75,16 +75,24 @@ export type PlasmicMenu2__VariantsArgs = {};
 type VariantPropType = keyof PlasmicMenu2__VariantsArgs;
 export const PlasmicMenu2__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicMenu2__ArgsType = {};
+export type PlasmicMenu2__ArgsType = {
+  select?: string;
+  onSelectChange?: (val: string) => void;
+};
 type ArgPropType = keyof PlasmicMenu2__ArgsType;
-export const PlasmicMenu2__ArgProps = new Array<ArgPropType>();
+export const PlasmicMenu2__ArgProps = new Array<ArgPropType>(
+  "select",
+  "onSelectChange"
+);
 
 export type PlasmicMenu2__OverridesType = {
   root?: Flex__<"div">;
-  menueIcon?: Flex__<typeof MenueIcon>;
+  iconMenu?: Flex__<typeof IconMenu>;
 };
 
 export interface DefaultMenu2Props {
+  select?: string;
+  onSelectChange?: (val: string) => void;
   className?: string;
 }
 
@@ -136,22 +144,20 @@ function PlasmicMenu2__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
-              return (() => {
-                return [
-                  {
-                    key: "settings",
-                    label: "تنظیمات"
-                  },
-                  {
-                    key: "home",
-                    label: "خانه"
-                  },
-                  {
-                    key: "user",
-                    label: "کاربر"
-                  }
-                ];
-              })();
+              return [
+                {
+                  key: "reminder",
+                  label: "یادآوری"
+                },
+                {
+                  key: "home",
+                  label: "خانه"
+                },
+                {
+                  key: "user",
+                  label: "کاربر"
+                }
+              ];
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -165,23 +171,11 @@ function PlasmicMenu2__RenderFunc(props: {
       },
       {
         path: "select",
-        type: "private",
+        type: "writable",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "home"
-      },
-      {
-        path: "unnamedGroupOfVariants",
-        type: "private",
-        variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          $props.unnamedGroupOfVariants
-      },
-      {
-        path: "unnamedGroupOfVariants2",
-        type: "private",
-        variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          $props.unnamedGroupOfVariants2
+
+        valueProp: "select",
+        onChangeProp: "onSelectChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -212,13 +206,7 @@ function PlasmicMenu2__RenderFunc(props: {
         "fixed-box"
       )}
     >
-      <div
-        className={classNames(
-          projectcss.all,
-          sty.freeBox__toeWv,
-          "phone_buttons"
-        )}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__eql45)}>
         {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
           (() => {
             try {
@@ -276,12 +264,52 @@ function PlasmicMenu2__RenderFunc(props: {
                 ) {
                   $steps["updateSelect"] = await $steps["updateSelect"];
                 }
+
+                $steps["goToHomepage"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        destination: `/${(() => {
+                          try {
+                            return currentItem.key;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}/${""}`
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToHomepage"] != null &&
+                  typeof $steps["goToHomepage"] === "object" &&
+                  typeof $steps["goToHomepage"].then === "function"
+                ) {
+                  $steps["goToHomepage"] = await $steps["goToHomepage"];
+                }
               }}
             >
-              <MenueIcon
-                data-plasmic-name={"menueIcon"}
-                data-plasmic-override={overrides.menueIcon}
-                className={classNames("__wab_instance", sty.menueIcon)}
+              <IconMenu
+                data-plasmic-name={"iconMenu"}
+                data-plasmic-override={overrides.iconMenu}
+                className={classNames("__wab_instance", sty.iconMenu)}
+                currentItem={currentItem}
                 icons={(() => {
                   try {
                     return currentItem.key;
@@ -308,7 +336,6 @@ function PlasmicMenu2__RenderFunc(props: {
                     throw e;
                   }
                 })()}
-                size={"min"}
               />
             </div>
           );
@@ -319,15 +346,15 @@ function PlasmicMenu2__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "menueIcon"],
-  menueIcon: ["menueIcon"]
+  root: ["root", "iconMenu"],
+  iconMenu: ["iconMenu"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  menueIcon: typeof MenueIcon;
+  iconMenu: typeof IconMenu;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -392,7 +419,7 @@ export const PlasmicMenu2 = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    menueIcon: makeNodeComponent("menueIcon"),
+    iconMenu: makeNodeComponent("iconMenu"),
 
     // Metadata about props expected for PlasmicMenu2
     internalVariantProps: PlasmicMenu2__VariantProps,

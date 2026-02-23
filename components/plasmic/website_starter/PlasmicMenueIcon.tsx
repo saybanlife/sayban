@@ -67,10 +67,9 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicMenueIcon.module.css"; // plasmic-import: 8E0dazXQIYne/css
 
-import Icon24Icon from "../sayban/icons/PlasmicIcon__Icon24"; // plasmic-import: Zol8GIsmVO1W/icon
+import Icon354Icon from "../sayban/icons/PlasmicIcon__Icon354"; // plasmic-import: R6pCnTgSz3fi/icon
 import Icon4Icon from "./icons/PlasmicIcon__Icon4"; // plasmic-import: XYEdqsKT1Z5t/icon
 import Icon5Icon from "./icons/PlasmicIcon__Icon5"; // plasmic-import: 8vOA1S70pHdl/icon
-import Icon6Icon from "./icons/PlasmicIcon__Icon6"; // plasmic-import: wfu5dAZKgp8n/icon
 import Icon27Icon from "../sayban/icons/PlasmicIcon__Icon27"; // plasmic-import: H0kX6aZGCrcz/icon
 import Icon64Icon from "../sayban/icons/PlasmicIcon__Icon64"; // plasmic-import: tYY1FY7sJenE/icon
 import Icon25Icon from "../sayban/icons/PlasmicIcon__Icon25"; // plasmic-import: 2CSyPCl98YLt/icon
@@ -91,7 +90,8 @@ export type PlasmicMenueIcon__VariantMembers = {
     | "medical"
     | "medicalcompletion"
     | "welfareservices"
-    | "recreationaltourism";
+    | "recreationaltourism"
+    | "reminder";
   size: "min" | "max";
   color: "dark";
 };
@@ -107,6 +107,7 @@ export type PlasmicMenueIcon__VariantsArgs = {
     | "medicalcompletion"
     | "welfareservices"
     | "recreationaltourism"
+    | "reminder"
   >;
   size?: SingleChoiceArg<"min" | "max">;
   color?: SingleChoiceArg<"dark">;
@@ -141,6 +142,7 @@ export interface DefaultMenueIconProps {
     | "medicalcompletion"
     | "welfareservices"
     | "recreationaltourism"
+    | "reminder"
   >;
   size?: SingleChoiceArg<"min" | "max">;
   color?: SingleChoiceArg<"dark">;
@@ -286,26 +288,28 @@ function PlasmicMenueIcon__RenderFunc(props: {
               ? Icon5Icon
               : hasVariant($state, "icons", "settings") &&
                   hasVariant($state, "select", "select")
-                ? Icon6Icon
-                : hasVariant($state, "icons", "recreationaltourism")
-                  ? Icon66Icon
-                  : hasVariant($state, "icons", "welfareservices")
-                    ? Icon65Icon
-                    : hasVariant($state, "icons", "medicalcompletion")
-                      ? Icon26Icon
-                      : hasVariant($state, "icons", "medical")
-                        ? Icon25Icon
-                        : hasVariant($state, "icons", "rehabilitation")
-                          ? Icon64Icon
-                          : hasVariant($state, "icons", "supportive")
-                            ? Icon27Icon
-                            : hasVariant($state, "icons", "home")
-                              ? Icon4Icon
-                              : hasVariant($state, "icons", "user")
-                                ? Icon5Icon
-                                : hasVariant($state, "icons", "settings")
-                                  ? Icon6Icon
-                                  : Icon24Icon
+                ? Icon354Icon
+                : hasVariant($state, "icons", "reminder")
+                  ? Icon354Icon
+                  : hasVariant($state, "icons", "recreationaltourism")
+                    ? Icon66Icon
+                    : hasVariant($state, "icons", "welfareservices")
+                      ? Icon65Icon
+                      : hasVariant($state, "icons", "medicalcompletion")
+                        ? Icon26Icon
+                        : hasVariant($state, "icons", "medical")
+                          ? Icon25Icon
+                          : hasVariant($state, "icons", "rehabilitation")
+                            ? Icon64Icon
+                            : hasVariant($state, "icons", "supportive")
+                              ? Icon27Icon
+                              : hasVariant($state, "icons", "home")
+                                ? Icon4Icon
+                                : hasVariant($state, "icons", "user")
+                                  ? Icon5Icon
+                                  : hasVariant($state, "icons", "settings")
+                                    ? Icon354Icon
+                                    : Icon354Icon
         }
         className={classNames(projectcss.all, sty.svg, {
           [sty.svgcolor_dark]: hasVariant($state, "color", "dark"),
@@ -329,6 +333,7 @@ function PlasmicMenueIcon__RenderFunc(props: {
             "icons",
             "rehabilitation"
           ),
+          [sty.svgicons_reminder]: hasVariant($state, "icons", "reminder"),
           [sty.svgicons_settings]: hasVariant($state, "icons", "settings"),
           [sty.svgicons_settings_select]:
             hasVariant($state, "icons", "settings") &&
