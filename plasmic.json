@@ -2906,6 +2906,11 @@
           "id": "r0e2YLtVUQ1-",
           "name": "image 23",
           "filePath": "../public/plasmic/sayban/images/image23.svg"
+        },
+        {
+          "id": "01CE2bWEW0bY",
+          "name": "image 24",
+          "filePath": "../public/plasmic/sayban/images/image24.svg"
         }
       ],
       "indirect": false,

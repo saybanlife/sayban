@@ -67,6 +67,21 @@
     grid-column-end: -1 !important;
   }
 }
+.img {
+  object-fit: cover;
+  max-width: 100%;
+  width: auto;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  height: auto;
+  opacity: 0.1;
+}
+.img > picture > img {
+  object-fit: cover;
+}
 .freeBox__apRfu {
   display: flex;
   flex-direction: column;
