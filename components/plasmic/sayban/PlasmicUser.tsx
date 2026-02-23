@@ -69,7 +69,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicUser.module.css"; // plasmic-import: PVZXFz1DIsfR/css
 
-import Icon75Icon from "./icons/PlasmicIcon__Icon75"; // plasmic-import: _OVYJ9VezPG0/icon
+import Icon88Icon from "./icons/PlasmicIcon__Icon88"; // plasmic-import: aFZZTVjUhsRZ/icon
 import Icon70Icon from "./icons/PlasmicIcon__Icon70"; // plasmic-import: PWsALiD1VW02/icon
 import MessageIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Message"; // plasmic-import: r2jZeTOT_KvL/icon
 import Icon76Icon from "./icons/PlasmicIcon__Icon76"; // plasmic-import: PNmvwHPTSPVF/icon
@@ -95,7 +95,8 @@ type ArgPropType = keyof PlasmicUser__ArgsType;
 export const PlasmicUser__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicUser__OverridesType = {
-  root?: Flex__<"div">;
+  root?: Flex__<"section">;
+  section?: Flex__<"section">;
   _switch?: Flex__<typeof Switch>;
   switch2?: Flex__<typeof Switch>;
 };
@@ -171,7 +172,7 @@ function PlasmicUser__RenderFunc(props: {
   const styleTokensClassNames = _useStyleTokens();
 
   return (
-    <div
+    <section
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
@@ -185,39 +186,45 @@ function PlasmicUser__RenderFunc(props: {
         sty.root
       )}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__wxYE)}>
-        <div className={classNames(projectcss.all, sty.freeBox__apRfu)}>
-          <Icon75Icon
-            className={classNames(projectcss.all, sty.svg__aXau)}
-            role={"img"}
-          />
-
-          <div className={classNames(projectcss.all, sty.freeBox__cY1Mv)}>
-            <Icon70Icon
-              className={classNames(projectcss.all, sty.svg__ji63W)}
+      <section
+        data-plasmic-name={"section"}
+        data-plasmic-override={overrides.section}
+        className={classNames(projectcss.all, sty.section)}
+      >
+        <div className={classNames(projectcss.all, sty.freeBox__wxYE, "page ")}>
+          <div className={classNames(projectcss.all, sty.freeBox__apRfu)}>
+            <Icon88Icon
+              className={classNames(projectcss.all, sty.svg__aXau)}
               role={"img"}
             />
+
+            <div className={classNames(projectcss.all, sty.freeBox__cY1Mv)}>
+              <Icon70Icon
+                className={classNames(projectcss.all, sty.svg__ji63W)}
+                role={"img"}
+              />
+            </div>
+          </div>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__bMlg7
+            )}
+          >
+            {"\u0646\u0627\u0645 \u06a9\u0627\u0631\u0628\u0631\u06cc"}
+          </div>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__hfSiX
+            )}
+          >
+            {"Enter some text"}
           </div>
         </div>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__bMlg7
-          )}
-        >
-          {"\u0646\u0627\u0645 \u06a9\u0627\u0631\u0628\u0631\u06cc"}
-        </div>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__hfSiX
-          )}
-        >
-          {"Enter some text"}
-        </div>
-      </div>
+      </section>
       <div className={classNames(projectcss.all, sty.freeBox___9IFyv)}>
         <div className={classNames(projectcss.all, sty.freeBox___9JjmT)}>
           <div className={classNames(projectcss.all, sty.freeBox___5C91)}>
@@ -509,12 +516,13 @@ function PlasmicUser__RenderFunc(props: {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "_switch", "switch2"],
+  root: ["root", "section", "_switch", "switch2"],
+  section: ["section"],
   _switch: ["_switch"],
   switch2: ["switch2"]
 } as const;
@@ -522,7 +530,8 @@ type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
-  root: "div";
+  root: "section";
+  section: "section";
   _switch: typeof Switch;
   switch2: typeof Switch;
 };
@@ -589,6 +598,7 @@ export const PlasmicUser = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    section: makeNodeComponent("section"),
     _switch: makeNodeComponent("_switch"),
     switch2: makeNodeComponent("switch2"),
 

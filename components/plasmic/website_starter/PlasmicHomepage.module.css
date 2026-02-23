@@ -70,6 +70,18 @@
 .rootsearch2 > * {
   grid-column: 4;
 }
+.roothomePage2_reminder {
+  padding: 0px;
+}
+.roothomePage2_reminder > * {
+  grid-column: 4;
+}
+.roothomePage2_user {
+  padding: 0px;
+}
+.roothomePage2_user > * {
+  grid-column: 4;
+}
 .sideEffect:global(.__wab_instance) {
   animation: none;
   max-width: 100%;
@@ -249,6 +261,12 @@
 .freeBoxsearch2__ibbNlUfPhZ {
   padding-bottom: var(--token-xsiin-peP6fP);
 }
+.freeBoxhomePage2_reminder__ibbNlWvbFy {
+  display: none;
+}
+.freeBoxhomePage2_user__ibbNl33Nz {
+  display: none;
+}
 .freeBox___9C3Gw {
   display: flex;
   flex-direction: column;
@@ -394,6 +412,35 @@
   flex-shrink: 0;
   padding: 8px;
 }
+.reveal:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.revealhomePage2_reminder:global(.__wab_instance) {
+  display: none;
+}
+.user:global(.__wab_instance) {
+  max-width: 100%;
+  z-index: 1;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  top: auto;
+  position: relative;
+  display: none;
+}
+.userhomePage2_reminder:global(.__wab_instance) {
+  width: 100%;
+  min-width: 0;
+  display: grid;
+}
+.userhomePage2_user:global(.__wab_instance) {
+  height: 100%;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+}
 .categories2:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
@@ -477,6 +524,12 @@
   display: none;
 }
 .homepage_payment:global(.__wab_instance) {
+  display: none;
+}
+.homehomePage2_reminder:global(.__wab_instance) {
+  display: none;
+}
+.homehomePage2_user:global(.__wab_instance) {
   display: none;
 }
 .categories:global(.__wab_instance) {

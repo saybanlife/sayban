@@ -63,6 +63,8 @@ import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import Menu2 from "../../Menu2"; // plasmic-import: z9yXgH-e4ant/component
 import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
+import User from "../../User"; // plasmic-import: PVZXFz1DIsfR/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Home from "../../Home"; // plasmic-import: m-UDUThzN-63/component
 import Categories from "../../Categories"; // plasmic-import: R95SHqmqnvX5/component
@@ -111,15 +113,18 @@ createPlasmicElementProxy;
 export type PlasmicHomepage__VariantMembers = {
   page: "categories" | "subcategories" | "center" | "payment";
   search2: "search2";
+  homePage2: "home" | "reminder" | "user";
 };
 export type PlasmicHomepage__VariantsArgs = {
   page?: SingleChoiceArg<"categories" | "subcategories" | "center" | "payment">;
   search2?: SingleBooleanChoiceArg<"search2">;
+  homePage2?: SingleChoiceArg<"home" | "reminder" | "user">;
 };
 type VariantPropType = keyof PlasmicHomepage__VariantsArgs;
 export const PlasmicHomepage__VariantProps = new Array<VariantPropType>(
   "page",
-  "search2"
+  "search2",
+  "homePage2"
 );
 
 export type PlasmicHomepage__ArgsType = {};
@@ -134,6 +139,8 @@ export type PlasmicHomepage__OverridesType = {
   textInput?: Flex__<typeof TextInput>;
   button?: Flex__<typeof Button>;
   img?: Flex__<typeof PlasmicImg__>;
+  reveal?: Flex__<typeof Reveal>;
+  user?: Flex__<typeof User>;
   categories2?: Flex__<typeof ApiRequest>;
   home?: Flex__<typeof Home>;
   categories?: Flex__<typeof Categories>;
@@ -353,6 +360,25 @@ function PlasmicHomepage__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "homePage2",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $ctx.params.page;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })() ?? $props.homePage2
       }
     ],
     [$props, $ctx, $refs]
@@ -397,6 +423,12 @@ function PlasmicHomepage__RenderFunc(props: {
             sty.root,
             "page ",
             {
+              [sty.roothomePage2_reminder]: hasVariant(
+                $state,
+                "homePage2",
+                "reminder"
+              ),
+              [sty.roothomePage2_user]: hasVariant($state, "homePage2", "user"),
               [sty.rootpage_categories]: hasVariant(
                 $state,
                 "page",
@@ -496,6 +528,11 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-name={"homePage"}
             data-plasmic-override={overrides.homePage}
             className={classNames(projectcss.all, sty.homePage, {
+              [sty.homePagehomePage2_reminder]: hasVariant(
+                $state,
+                "homePage2",
+                "reminder"
+              ),
               [sty.homePagepage_categories]: hasVariant(
                 $state,
                 "page",
@@ -520,7 +557,18 @@ function PlasmicHomepage__RenderFunc(props: {
               >
                 {(() => {
                   const child$Props = {
-                    className: classNames("__wab_instance", sty.menu2),
+                    className: classNames("__wab_instance", sty.menu2, {
+                      [sty.menu2homePage2_reminder]: hasVariant(
+                        $state,
+                        "homePage2",
+                        "reminder"
+                      ),
+                      [sty.menu2homePage2_user]: hasVariant(
+                        $state,
+                        "homePage2",
+                        "user"
+                      )
+                    }),
                     onSelectChange: async (...eventArgs: any) => {
                       generateStateOnChangeProp($state, [
                         "menu2",
@@ -571,199 +619,79 @@ function PlasmicHomepage__RenderFunc(props: {
                 })()}
               </div>
             </section>
-            {(() => {
-              try {
-                return $ctx.params.page == "home";
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
-                }
-                throw e;
-              }
-            })() ? (
-              <section
-                className={classNames(projectcss.all, sty.section__pJCrL, {
-                  [sty.sectionpage_categories__pJCrLnaUaI]: hasVariant(
-                    $state,
-                    "page",
-                    "categories"
-                  )
-                })}
+            <section
+              className={classNames(projectcss.all, sty.section__pJCrL, {
+                [sty.sectionpage_categories__pJCrLnaUaI]: hasVariant(
+                  $state,
+                  "page",
+                  "categories"
+                )
+              })}
+            >
+              <div
+                className={classNames(
+                  projectcss.all,
+                  sty.freeBox__ibbNl,
+                  "fixed-box",
+                  {
+                    [sty.freeBoxhomePage2_home__ibbNlRvb1B]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "home"
+                    ),
+                    [sty.freeBoxhomePage2_reminder__ibbNlWvbFy]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "reminder"
+                    ),
+                    [sty.freeBoxhomePage2_user__ibbNl33Nz]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "user"
+                    ),
+                    [sty.freeBoxsearch2__ibbNlUfPhZ]: hasVariant(
+                      $state,
+                      "search2",
+                      "search2"
+                    )
+                  }
+                )}
+                id={"headerMain"}
               >
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    sty.freeBox__ibbNl,
-                    "fixed-box",
-                    {
-                      [sty.freeBoxsearch2__ibbNlUfPhZ]: hasVariant(
-                        $state,
-                        "search2",
-                        "search2"
-                      )
-                    }
-                  )}
-                  id={"headerMain"}
+                  className={classNames(projectcss.all, sty.freeBox___9C3Gw)}
                 >
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox___9C3Gw)}
-                  >
-                    <TextInput
-                      data-plasmic-name={"textInput"}
-                      data-plasmic-override={overrides.textInput}
-                      className={classNames("__wab_instance", sty.textInput)}
-                      onChange={async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "textInput",
-                          "value"
-                        ]).apply(null, eventArgs);
-
-                        if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
-                        ) {
-                          return;
-                        }
-
-                        (async val => {
-                          const $steps = {};
-
-                          $steps["updateKeyword"] =
-                            $state.textInput.value.length % 3 == 0
-                              ? (() => {
-                                  const actionArgs = {
-                                    variable: {
-                                      objRoot: $state,
-                                      variablePath: ["keyword"]
-                                    },
-                                    operation: 0,
-                                    value: $state.textInput.value
-                                  };
-                                  return (({
-                                    variable,
-                                    value,
-                                    startIndex,
-                                    deleteCount
-                                  }) => {
-                                    if (!variable) {
-                                      return;
-                                    }
-                                    const { objRoot, variablePath } = variable;
-
-                                    $stateSet(objRoot, variablePath, value);
-                                    return value;
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                          if (
-                            $steps["updateKeyword"] != null &&
-                            typeof $steps["updateKeyword"] === "object" &&
-                            typeof $steps["updateKeyword"].then === "function"
-                          ) {
-                            $steps["updateKeyword"] =
-                              await $steps["updateKeyword"];
-                          }
-                        }).apply(null, eventArgs);
-                      }}
-                      onFocus={async focusEvent => {
-                        const $steps = {};
-
-                        $steps["runCode"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                customFunction: async () => {
-                                  return (() => {
-                                    $state.home.search = true;
-                                    return ($state.search2 = true);
-                                  })();
-                                }
-                              };
-                              return (({ customFunction }) => {
-                                return customFunction();
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["runCode"] != null &&
-                          typeof $steps["runCode"] === "object" &&
-                          typeof $steps["runCode"].then === "function"
-                        ) {
-                          $steps["runCode"] = await $steps["runCode"];
-                        }
-                      }}
-                      padded={["left", "right"]}
-                      placeholder={
-                        "\u0646\u0627\u0645 \u0645\u0631\u06a9\u0632\u060c \u062e\u062f\u0645\u062a ..."
-                      }
-                      size={"langh"}
-                      style2={"rounded"}
-                      value={generateStateValueProp($state, [
+                  <TextInput
+                    data-plasmic-name={"textInput"}
+                    data-plasmic-override={overrides.textInput}
+                    className={classNames("__wab_instance", sty.textInput)}
+                    onChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
                         "textInput",
                         "value"
-                      ])}
-                    />
+                      ]).apply(null, eventArgs);
 
-                    <Icon49Icon
-                      className={classNames(projectcss.all, sty.svg___0GKYj)}
-                      role={"img"}
-                    />
-
-                    {(() => {
-                      try {
-                        return $state.home.search == true;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
-                        }
-                        throw e;
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
                       }
-                    })() ? (
-                      <Icon10Icon
-                        className={classNames(projectcss.all, sty.svg__gSs9U)}
-                        onClick={async event => {
-                          const $steps = {};
 
-                          $steps["updateTextInputValue2"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  customFunction: async () => {
-                                    return (() => {
-                                      $state.home.search = false;
-                                      return ($state.search2 = false);
-                                    })();
-                                  }
-                                };
-                                return (({ customFunction }) => {
-                                  return customFunction();
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["updateTextInputValue2"] != null &&
-                            typeof $steps["updateTextInputValue2"] ===
-                              "object" &&
-                            typeof $steps["updateTextInputValue2"].then ===
-                              "function"
-                          ) {
-                            $steps["updateTextInputValue2"] =
-                              await $steps["updateTextInputValue2"];
-                          }
+                      (async val => {
+                        const $steps = {};
 
-                          $steps["updateTextInputValue"] = true
+                        $steps["updateKeyword"] =
+                          $state.textInput.value.length % 3 == 0
                             ? (() => {
                                 const actionArgs = {
                                   variable: {
                                     objRoot: $state,
-                                    variablePath: ["textInput", "value"]
+                                    variablePath: ["keyword"]
                                   },
-                                  operation: 1
+                                  operation: 0,
+                                  value: $state.textInput.value
                                 };
                                 return (({
                                   variable,
@@ -776,134 +704,67 @@ function PlasmicHomepage__RenderFunc(props: {
                                   }
                                   const { objRoot, variablePath } = variable;
 
-                                  $stateSet(objRoot, variablePath, undefined);
-                                  return undefined;
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
                                 })?.apply(null, [actionArgs]);
                               })()
                             : undefined;
-                          if (
-                            $steps["updateTextInputValue"] != null &&
-                            typeof $steps["updateTextInputValue"] ===
-                              "object" &&
-                            typeof $steps["updateTextInputValue"].then ===
-                              "function"
-                          ) {
-                            $steps["updateTextInputValue"] =
-                              await $steps["updateTextInputValue"];
-                          }
-                        }}
-                        role={"img"}
-                      />
-                    ) : null}
-                  </div>
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      sty.freeBox___4JaU4,
-                      (() => {
-                        try {
-                          return $state.home.search != true
-                            ? "fade-in"
-                            : "fade-out";
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
+                        if (
+                          $steps["updateKeyword"] != null &&
+                          typeof $steps["updateKeyword"] === "object" &&
+                          typeof $steps["updateKeyword"].then === "function"
+                        ) {
+                          $steps["updateKeyword"] =
+                            await $steps["updateKeyword"];
                         }
-                      })()
-                    )}
-                  >
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__k4OH1)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__fmPbl
-                        )}
-                      >
-                        {
-                          "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645\r"
-                        }
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__qxfk
-                        )}
-                      >
-                        {
-                          "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645 \u0645\u062a\u0646 \u0633\u0627\u062e\u062a\u06af\u06cc \u0628\u0627 \u062a\u0648\u0644\u06cc\u062f \u0633\u0627\u062f\u06af\u06cc \u0646\u0627\u0645\u0641\u0647\u0648\u0645 \r\n"
-                        }
-                      </div>
-                      <Button
-                        data-plasmic-name={"button"}
-                        data-plasmic-override={overrides.button}
-                        className={classNames("__wab_instance", sty.button)}
-                        color={"second"}
-                        label={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__ekymK
-                            )}
-                          >
-                            {
-                              "\u0645\u0634\u0627\u0647\u062f\u0647 \u0628\u06cc\u0634\u062a\u0631"
-                            }
-                          </div>
-                        }
-                        loading={generateStateValueProp($state, [
-                          "button",
-                          "loading"
-                        ])}
-                        onLoadingChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "button",
-                            "loading"
-                          ]).apply(null, eventArgs);
+                      }).apply(null, eventArgs);
+                    }}
+                    onFocus={async focusEvent => {
+                      const $steps = {};
 
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        }}
-                        roundedFull={true}
-                      />
-                    </div>
-                    <PlasmicImg__
-                      data-plasmic-name={"img"}
-                      data-plasmic-override={overrides.img}
-                      alt={""}
-                      className={classNames(sty.img)}
-                      displayHeight={"150px"}
-                      displayMaxHeight={"none"}
-                      displayMaxWidth={"100%"}
-                      displayMinHeight={"0"}
-                      displayMinWidth={"0"}
-                      displayWidth={"150px"}
-                      loading={"lazy"}
-                      src={{
-                        src: "/plasmic/sayban/images/chatGptImageDec232025112923AmPng.png",
-                        fullWidth: 1024,
-                        fullHeight: 998,
-                        aspectRatio: undefined
-                      }}
-                    />
-                  </div>
+                      $steps["runCode"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return (() => {
+                                  $state.home.search = true;
+                                  return ($state.search2 = true);
+                                })();
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runCode"] != null &&
+                        typeof $steps["runCode"] === "object" &&
+                        typeof $steps["runCode"].then === "function"
+                      ) {
+                        $steps["runCode"] = await $steps["runCode"];
+                      }
+                    }}
+                    padded={["left", "right"]}
+                    placeholder={
+                      "\u0646\u0627\u0645 \u0645\u0631\u06a9\u0632\u060c \u062e\u062f\u0645\u062a ..."
+                    }
+                    size={"langh"}
+                    style2={"rounded"}
+                    value={generateStateValueProp($state, [
+                      "textInput",
+                      "value"
+                    ])}
+                  />
+
+                  <Icon49Icon
+                    className={classNames(projectcss.all, sty.svg___0GKYj)}
+                    role={"img"}
+                  />
+
                   {(() => {
                     try {
-                      return $state.home.search;
+                      return $state.home.search == true;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -914,18 +775,251 @@ function PlasmicHomepage__RenderFunc(props: {
                       throw e;
                     }
                   })() ? (
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__t0TZ)}
+                    <Icon10Icon
+                      className={classNames(projectcss.all, sty.svg__gSs9U)}
+                      onClick={async event => {
+                        const $steps = {};
+
+                        $steps["updateTextInputValue2"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return (() => {
+                                    $state.home.search = false;
+                                    return ($state.search2 = false);
+                                  })();
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateTextInputValue2"] != null &&
+                          typeof $steps["updateTextInputValue2"] === "object" &&
+                          typeof $steps["updateTextInputValue2"].then ===
+                            "function"
+                        ) {
+                          $steps["updateTextInputValue2"] =
+                            await $steps["updateTextInputValue2"];
+                        }
+
+                        $steps["updateTextInputValue"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["textInput", "value"]
+                                },
+                                operation: 1
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, undefined);
+                                return undefined;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateTextInputValue"] != null &&
+                          typeof $steps["updateTextInputValue"] === "object" &&
+                          typeof $steps["updateTextInputValue"].then ===
+                            "function"
+                        ) {
+                          $steps["updateTextInputValue"] =
+                            await $steps["updateTextInputValue"];
+                        }
+                      }}
+                      role={"img"}
                     />
                   ) : null}
                 </div>
-              </section>
-            ) : null}
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    sty.freeBox___4JaU4,
+                    (() => {
+                      try {
+                        return $state.home.search != true
+                          ? "fade-in"
+                          : "fade-out";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  )}
+                >
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__k4OH1)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__fmPbl
+                      )}
+                    >
+                      {
+                        "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645\r"
+                      }
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__qxfk
+                      )}
+                    >
+                      {
+                        "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645 \u0645\u062a\u0646 \u0633\u0627\u062e\u062a\u06af\u06cc \u0628\u0627 \u062a\u0648\u0644\u06cc\u062f \u0633\u0627\u062f\u06af\u06cc \u0646\u0627\u0645\u0641\u0647\u0648\u0645 \r\n"
+                      }
+                    </div>
+                    <Button
+                      data-plasmic-name={"button"}
+                      data-plasmic-override={overrides.button}
+                      className={classNames("__wab_instance", sty.button)}
+                      color={"second"}
+                      label={
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__ekymK
+                          )}
+                        >
+                          {
+                            "\u0645\u0634\u0627\u0647\u062f\u0647 \u0628\u06cc\u0634\u062a\u0631"
+                          }
+                        </div>
+                      }
+                      loading={generateStateValueProp($state, [
+                        "button",
+                        "loading"
+                      ])}
+                      onLoadingChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "button",
+                          "loading"
+                        ]).apply(null, eventArgs);
+
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
+                          return;
+                        }
+                      }}
+                      roundedFull={true}
+                    />
+                  </div>
+                  <PlasmicImg__
+                    data-plasmic-name={"img"}
+                    data-plasmic-override={overrides.img}
+                    alt={""}
+                    className={classNames(sty.img)}
+                    displayHeight={"150px"}
+                    displayMaxHeight={"none"}
+                    displayMaxWidth={"100%"}
+                    displayMinHeight={"0"}
+                    displayMinWidth={"0"}
+                    displayWidth={"150px"}
+                    loading={"lazy"}
+                    src={{
+                      src: "/plasmic/sayban/images/chatGptImageDec232025112923AmPng.png",
+                      fullWidth: 1024,
+                      fullHeight: 998,
+                      aspectRatio: undefined
+                    }}
+                  />
+                </div>
+                {(() => {
+                  try {
+                    return $state.home.search;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__t0TZ)}
+                  />
+                ) : null}
+              </div>
+            </section>
+            <Reveal
+              data-plasmic-name={"reveal"}
+              data-plasmic-override={overrides.reveal}
+              className={classNames("__wab_instance", sty.reveal, {
+                [sty.revealhomePage2_reminder]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "reminder"
+                ),
+                [sty.revealhomePage2_user]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "user"
+                )
+              })}
+              damping={
+                hasVariant($state, "homePage2", "user") ? 0.3 : undefined
+              }
+              triggerOnce={true}
+            >
+              <User
+                data-plasmic-name={"user"}
+                data-plasmic-override={overrides.user}
+                className={classNames("__wab_instance", sty.user, {
+                  [sty.userhomePage2_home]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "home"
+                  ),
+                  [sty.userhomePage2_reminder]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "reminder"
+                  ),
+                  [sty.userhomePage2_user]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "user"
+                  )
+                })}
+              />
+            </Reveal>
           </div>
           <ApiRequest
             data-plasmic-name={"categories2"}
             data-plasmic-override={overrides.categories2}
             className={classNames("__wab_instance", sty.categories2, {
+              [sty.categories2homePage2_reminder]: hasVariant(
+                $state,
+                "homePage2",
+                "reminder"
+              ),
               [sty.categories2page_categories]: hasVariant(
                 $state,
                 "page",
@@ -1061,6 +1155,16 @@ function PlasmicHomepage__RenderFunc(props: {
                 }
               })()}
               className={classNames("__wab_instance", sty.home, {
+                [sty.homehomePage2_reminder]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "reminder"
+                ),
+                [sty.homehomePage2_user]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "user"
+                ),
                 [sty.homepage_categories]: hasVariant(
                   $state,
                   "page",
@@ -1526,6 +1630,14 @@ function PlasmicHomepage__RenderFunc(props: {
                   })()
             }
             className={classNames("__wab_instance", sty.center, {
+              [sty.centerhomePage2_user]: hasVariant(
+                $state,
+                "homePage2",
+                "user"
+              ),
+              [sty.centerhomePage2_user_page_center]:
+                hasVariant($state, "homePage2", "user") &&
+                hasVariant($state, "page", "center"),
               [sty.centerpage_center]: hasVariant($state, "page", "center"),
               [sty.centerpage_payment]: hasVariant($state, "page", "payment"),
               [sty.centerpage_subcategories]: hasVariant(
@@ -1754,6 +1866,11 @@ function PlasmicHomepage__RenderFunc(props: {
             })()}
             children={null}
             className={classNames("__wab_instance", sty.search, {
+              [sty.searchhomePage2_reminder]: hasVariant(
+                $state,
+                "homePage2",
+                "reminder"
+              ),
               [sty.searchpage_categories]: hasVariant(
                 $state,
                 "page",
@@ -1835,6 +1952,8 @@ const PlasmicDescendants = {
     "textInput",
     "button",
     "img",
+    "reveal",
+    "user",
     "categories2",
     "home",
     "categories",
@@ -1844,11 +1963,21 @@ const PlasmicDescendants = {
     "search"
   ],
   sideEffect: ["sideEffect"],
-  homePage: ["homePage", "menu2", "textInput", "button", "img"],
+  homePage: [
+    "homePage",
+    "menu2",
+    "textInput",
+    "button",
+    "img",
+    "reveal",
+    "user"
+  ],
   menu2: ["menu2"],
   textInput: ["textInput"],
   button: ["button"],
   img: ["img"],
+  reveal: ["reveal", "user"],
+  user: ["user"],
   categories2: ["categories2", "home"],
   home: ["home"],
   categories: ["categories"],
@@ -1868,6 +1997,8 @@ type NodeDefaultElementType = {
   textInput: typeof TextInput;
   button: typeof Button;
   img: typeof PlasmicImg__;
+  reveal: typeof Reveal;
+  user: typeof User;
   categories2: typeof ApiRequest;
   home: typeof Home;
   categories: typeof Categories;
@@ -1945,6 +2076,8 @@ export const PlasmicHomepage = Object.assign(
     textInput: makeNodeComponent("textInput"),
     button: makeNodeComponent("button"),
     img: makeNodeComponent("img"),
+    reveal: makeNodeComponent("reveal"),
+    user: makeNodeComponent("user"),
     categories2: makeNodeComponent("categories2"),
     home: makeNodeComponent("home"),
     categories: makeNodeComponent("categories"),

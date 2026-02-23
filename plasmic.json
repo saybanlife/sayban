@@ -2759,6 +2759,11 @@
           "id": "DSiKrPvxYlkt",
           "name": "Icon87Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon87.tsx"
+        },
+        {
+          "id": "aFZZTVjUhsRZ",
+          "name": "Icon88Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon88.tsx"
         }
       ],
       "images": [
