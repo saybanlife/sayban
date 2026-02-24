@@ -1284,20 +1284,6 @@
           "componentType": "component"
         },
         {
-          "id": "f1blqtlMCCYK",
-          "name": "NewPage4",
-          "type": "managed",
-          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
-          "renderModuleFilePath": "plasmic/sayban/PlasmicNewPage4.tsx",
-          "importSpec": {
-            "modulePath": "../src/pages/new-page-3.tsx"
-          },
-          "cssFilePath": "plasmic/sayban/PlasmicNewPage4.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/new-page-3"
-        },
-        {
           "id": "Lh-Py4-EsRhC",
           "name": "Center",
           "type": "managed",
@@ -2042,6 +2028,45 @@
           "cssFilePath": "plasmic/sayban/PlasmicUser.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "f1blqtlMCCYK",
+          "name": "Booking",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicBooking.tsx",
+          "importSpec": {
+            "modulePath": "Booking.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicBooking.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "IxvwO5AMD5ex",
+          "name": "UploudeTime",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicUploudeTime.tsx",
+          "importSpec": {
+            "modulePath": "UploudeTime.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicUploudeTime.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "K9ETXxPuQRCy",
+          "name": "BookingHeader",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicBookingHeader.tsx",
+          "importSpec": {
+            "modulePath": "BookingHeader.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicBookingHeader.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -2764,6 +2789,21 @@
           "id": "aFZZTVjUhsRZ",
           "name": "Icon88Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon88.tsx"
+        },
+        {
+          "id": "-H0CR_FOiEdp",
+          "name": "Icon89Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon89.tsx"
+        },
+        {
+          "id": "fhMmwnceyLh4",
+          "name": "Icon90Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon90.tsx"
+        },
+        {
+          "id": "lnClONjnY1AS",
+          "name": "Icon91Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon91.tsx"
         }
       ],
       "images": [

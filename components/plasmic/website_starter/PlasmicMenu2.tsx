@@ -150,6 +150,10 @@ function PlasmicMenu2__RenderFunc(props: {
                   label: "یادآوری"
                 },
                 {
+                  key: "booking",
+                  label: "رزرو"
+                },
+                {
                   key: "home",
                   label: "خانه"
                 },

@@ -61,6 +61,7 @@ import {
 
 import Status from "../../Status"; // plasmic-import: UhSHXabmHrQP/component
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
+import UploudeTime from "../../UploudeTime"; // plasmic-import: IxvwO5AMD5ex/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -74,10 +75,14 @@ import Icon19Icon from "../website_starter/icons/PlasmicIcon__Icon19"; // plasmi
 
 createPlasmicElementProxy;
 
-export type PlasmicItem__VariantMembers = {};
-export type PlasmicItem__VariantsArgs = {};
+export type PlasmicItem__VariantMembers = {
+  booking: "booking";
+};
+export type PlasmicItem__VariantsArgs = {
+  booking?: SingleBooleanChoiceArg<"booking">;
+};
 type VariantPropType = keyof PlasmicItem__VariantsArgs;
-export const PlasmicItem__VariantProps = new Array<VariantPropType>();
+export const PlasmicItem__VariantProps = new Array<VariantPropType>("booking");
 
 export type PlasmicItem__ArgsType = {
   item?: any;
@@ -91,11 +96,13 @@ export type PlasmicItem__OverridesType = {
   img?: Flex__<typeof PlasmicImg__>;
   status?: Flex__<typeof Status>;
   textCollapse?: Flex__<typeof TextCollapse>;
+  uploudeTime?: Flex__<typeof UploudeTime>;
 };
 
 export interface DefaultItemProps {
   item?: any;
   onClick?: (event: any) => void;
+  booking?: SingleBooleanChoiceArg<"booking">;
   className?: string;
 }
 
@@ -138,6 +145,25 @@ function PlasmicItem__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "booking",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.booking
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $q: {},
+    $refs
+  });
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
@@ -152,7 +178,8 @@ function PlasmicItem__RenderFunc(props: {
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        { [sty.rootbooking]: hasVariant($state, "booking", "booking") }
       )}
       onClick={args.onClick}
     >
@@ -217,7 +244,15 @@ function PlasmicItem__RenderFunc(props: {
                   })()}
                 </React.Fragment>
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox__z5Dw1)}>
+              <div
+                className={classNames(projectcss.all, sty.freeBox__z5Dw1, {
+                  [sty.freeBoxbooking__z5Dw1GHeAi]: hasVariant(
+                    $state,
+                    "booking",
+                    "booking"
+                  )
+                })}
+              >
                 <Icon20Icon
                   className={classNames(projectcss.all, sty.svg__utGn)}
                   role={"img"}
@@ -251,33 +286,96 @@ function PlasmicItem__RenderFunc(props: {
             <Status
               data-plasmic-name={"status"}
               data-plasmic-override={overrides.status}
-              className={classNames("__wab_instance", sty.status)}
+              className={classNames("__wab_instance", sty.status, {
+                [sty.statusbooking]: hasVariant($state, "booking", "booking")
+              })}
             />
           </div>
-          <TextCollapse
-            data-plasmic-name={"textCollapse"}
-            data-plasmic-override={overrides.textCollapse}
-            className={classNames("__wab_instance", sty.textCollapse)}
-            enableToggle={false}
-            maxLines={1}
-            text={(() => {
-              try {
-                return $props.item.address;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
+          <div className={classNames(projectcss.all, sty.freeBox__codA)}>
+            <TextCollapse
+              data-plasmic-name={"textCollapse"}
+              data-plasmic-override={overrides.textCollapse}
+              className={classNames("__wab_instance", sty.textCollapse, {
+                [sty.textCollapsebooking]: hasVariant(
+                  $state,
+                  "booking",
+                  "booking"
+                )
+              })}
+              enableToggle={false}
+              maxLines={1}
+              text={
+                hasVariant($state, "booking", "booking")
+                  ? (() => {
+                      try {
+                        return $props.item.service_name;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  : (() => {
+                      try {
+                        return $props.item.address;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
               }
-            })()}
-          />
+            />
+
+            <UploudeTime
+              data-plasmic-name={"uploudeTime"}
+              data-plasmic-override={overrides.uploudeTime}
+              className={classNames("__wab_instance", sty.uploudeTime)}
+              posttime={(() => {
+                function addTime(dateString, addHours = 0, addMinutes = 0) {
+                  const date = new Date(dateString.replace(" ", "T"));
+                  date.setHours(date.getHours() + addHours);
+                  date.setMinutes(date.getMinutes() + addMinutes);
+                  return {
+                    year: date.getFullYear(),
+                    month: date.getMonth() + 1,
+                    day: date.getDate(),
+                    hour: date.getHours(),
+                    minute: date.getMinutes(),
+                    second: date.getSeconds()
+                  };
+                }
+                const newCreatedAt = addTime($props.item.start_time);
+                return newCreatedAt;
+              })()}
+            />
+          </div>
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__b41Xr)}>
+        <div
+          className={classNames(projectcss.all, sty.freeBox__b41Xr, {
+            [sty.freeBoxbooking__b41XrgHeAi]: hasVariant(
+              $state,
+              "booking",
+              "booking"
+            )
+          })}
+        >
           <Icon19Icon
-            className={classNames(projectcss.all, sty.svg__miLsI)}
+            className={classNames(projectcss.all, sty.svg__miLsI, {
+              [sty.svgbooking__miLsIgHeAi]: hasVariant(
+                $state,
+                "booking",
+                "booking"
+              )
+            })}
             role={"img"}
           />
         </div>
@@ -296,10 +394,11 @@ function PlasmicItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "img", "status", "textCollapse"],
+  root: ["root", "img", "status", "textCollapse", "uploudeTime"],
   img: ["img"],
   status: ["status"],
-  textCollapse: ["textCollapse"]
+  textCollapse: ["textCollapse"],
+  uploudeTime: ["uploudeTime"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -309,6 +408,7 @@ type NodeDefaultElementType = {
   img: typeof PlasmicImg__;
   status: typeof Status;
   textCollapse: typeof TextCollapse;
+  uploudeTime: typeof UploudeTime;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -376,6 +476,7 @@ export const PlasmicItem = Object.assign(
     img: makeNodeComponent("img"),
     status: makeNodeComponent("status"),
     textCollapse: makeNodeComponent("textCollapse"),
+    uploudeTime: makeNodeComponent("uploudeTime"),
 
     // Metadata about props expected for PlasmicItem
     internalVariantProps: PlasmicItem__VariantProps,

@@ -98,6 +98,9 @@
   column-gap: var(--token-D_3fp_JIDs1G);
   padding: 0px;
 }
+.freeBoxbooking__z5Dw1GHeAi {
+  display: none;
+}
 .svg__utGn {
   object-fit: cover;
   max-width: 100%;
@@ -119,14 +122,32 @@
   position: relative;
   display: none;
 }
+.statusbooking:global(.__wab_instance) {
+  display: flex;
+}
+.freeBox__codA {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 0;
+  padding: 0px;
+}
 .textCollapse:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
-  width: 100%;
+  width: auto;
   text-align: right;
   font-size: var(--token-U1UvBDD-VoLt);
   color: var(--token-KjATzAYJ5IB7);
-  min-width: 0;
+}
+.uploudeTime:global(.__wab_instance) {
+  animation: none;
+  max-width: 100%;
 }
 .freeBox__b41Xr {
   display: flex;
@@ -138,6 +159,9 @@
   justify-content: flex-start;
   align-items: center;
   padding: 0px;
+}
+.freeBoxbooking__b41XrgHeAi {
+  display: none;
 }
 .svg__miLsI {
   object-fit: cover;

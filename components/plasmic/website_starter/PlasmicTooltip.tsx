@@ -208,6 +208,7 @@ function PlasmicTooltip__RenderFunc(props: {
         sty.ariaTooltip
       )}
       closeDelay={args.closeDelay}
+      defaultOpen={false}
       delay={args.openDelay}
       isDisabled={args.isDisabled}
       isOpen={generateStateValueProp($state, ["ariaTooltip", "isOpen"])}
