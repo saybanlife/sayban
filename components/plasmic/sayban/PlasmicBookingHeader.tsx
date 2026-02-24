@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
 import { DatePicker } from "@/fragment/components/date-picker"; // plasmic-import: NS3tI_-DZdxC/codeComponent
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
@@ -86,12 +87,23 @@ export const PlasmicBookingHeader__VariantProps = new Array<VariantPropType>(
   "filter"
 );
 
-export type PlasmicBookingHeader__ArgsType = {};
+export type PlasmicBookingHeader__ArgsType = {
+  datePickerStart?: number;
+  onDatePickerStartChange?: (val: number) => void;
+  datePickerEnd?: number;
+  onDatePickerEndChange?: (val: number) => void;
+};
 type ArgPropType = keyof PlasmicBookingHeader__ArgsType;
-export const PlasmicBookingHeader__ArgProps = new Array<ArgPropType>();
+export const PlasmicBookingHeader__ArgProps = new Array<ArgPropType>(
+  "datePickerStart",
+  "onDatePickerStartChange",
+  "datePickerEnd",
+  "onDatePickerEndChange"
+);
 
 export type PlasmicBookingHeader__OverridesType = {
   root?: Flex__<"div">;
+  embedHtml?: Flex__<typeof Embed>;
   img?: Flex__<typeof PlasmicImg__>;
   popover?: Flex__<typeof AntdPopover>;
   datePicker?: Flex__<typeof DatePicker>;
@@ -100,6 +112,10 @@ export type PlasmicBookingHeader__OverridesType = {
 };
 
 export interface DefaultBookingHeaderProps {
+  datePickerStart?: number;
+  onDatePickerStartChange?: (val: number) => void;
+  datePickerEnd?: number;
+  onDatePickerEndChange?: (val: number) => void;
   filter?: SingleBooleanChoiceArg<"filter">;
   className?: string;
 }
@@ -153,9 +169,11 @@ function PlasmicBookingHeader__RenderFunc(props: {
       },
       {
         path: "datePicker.value",
-        type: "private",
+        type: "writable",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+
+        valueProp: "datePickerStart",
+        onChangeProp: "onDatePickerStartChange"
       },
       {
         path: "datePicker.values",
@@ -177,9 +195,11 @@ function PlasmicBookingHeader__RenderFunc(props: {
       },
       {
         path: "datePicker2.value",
-        type: "private",
+        type: "writable",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+
+        valueProp: "datePickerEnd",
+        onChangeProp: "onDatePickerEndChange"
       },
       {
         path: "datePicker2.values",
@@ -217,6 +237,15 @@ function PlasmicBookingHeader__RenderFunc(props: {
         { [sty.rootfilter]: hasVariant($state, "filter", "filter") }
       )}
     >
+      <Embed
+        data-plasmic-name={"embedHtml"}
+        data-plasmic-override={overrides.embedHtml}
+        className={classNames("__wab_instance", sty.embedHtml)}
+        code={
+          '<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>\r\n'
+        }
+      />
+
       <PlasmicImg__
         data-plasmic-name={"img"}
         data-plasmic-override={overrides.img}
@@ -444,7 +473,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
           <div className={classNames(projectcss.all, sty.freeBox___0NI0S)}>
             {(() => {
               try {
-                return $state.datePicker2.value;
+                return $state.datePicker.value;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -465,7 +494,15 @@ function PlasmicBookingHeader__RenderFunc(props: {
                 <React.Fragment>
                   {(() => {
                     try {
-                      return $state.datePicker2.value;
+                      return (() => {
+                        var timestamp = $state.datePicker.value;
+                        var date = new Date(timestamp * 1000);
+                        var gy = date.getFullYear();
+                        var gm = date.getMonth() + 1;
+                        var gd = date.getDate();
+                        var j = window.jalaali.toJalaali(gy, gm, gd);
+                        return `${j.jy}/${j.jm}/${j.jd}`;
+                      })();
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -481,7 +518,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
             ) : null}
             {(() => {
               try {
-                return !$state.datePicker2.value;
+                return !$state.datePicker.value;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -502,7 +539,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
                 <React.Fragment>
                   {(() => {
                     try {
-                      return "تا تاریخ";
+                      return "از تاریخ";
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -589,7 +626,15 @@ function PlasmicBookingHeader__RenderFunc(props: {
                 <React.Fragment>
                   {(() => {
                     try {
-                      return $state.datePicker2.value;
+                      return (() => {
+                        var timestamp = $state.datePicker2.value;
+                        var date = new Date(timestamp * 1000);
+                        var gy = date.getFullYear();
+                        var gm = date.getMonth() + 1;
+                        var gd = date.getDate();
+                        var j = window.jalaali.toJalaali(gy, gm, gd);
+                        return `${j.jy}/${j.jm}/${j.jd}`;
+                      })();
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -642,7 +687,70 @@ function PlasmicBookingHeader__RenderFunc(props: {
             ) : null}
           </div>
         </AntdPopover>
-        <div className={classNames(projectcss.all, sty.freeBox__bbdgh)}>
+        <div
+          className={classNames(projectcss.all, sty.freeBox__bbdgh)}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["updateDatePicker2Value"] = true
+              ? (() => {
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["datePicker2", "value"]
+                    },
+                    operation: 1
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
+                    }
+                    const { objRoot, variablePath } = variable;
+
+                    $stateSet(objRoot, variablePath, undefined);
+                    return undefined;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["updateDatePicker2Value"] != null &&
+              typeof $steps["updateDatePicker2Value"] === "object" &&
+              typeof $steps["updateDatePicker2Value"].then === "function"
+            ) {
+              $steps["updateDatePicker2Value"] =
+                await $steps["updateDatePicker2Value"];
+            }
+
+            $steps["updateDatePickerValue"] = true
+              ? (() => {
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["datePicker", "value"]
+                    },
+                    operation: 1
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
+                    }
+                    const { objRoot, variablePath } = variable;
+
+                    $stateSet(objRoot, variablePath, undefined);
+                    return undefined;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["updateDatePickerValue"] != null &&
+              typeof $steps["updateDatePickerValue"] === "object" &&
+              typeof $steps["updateDatePickerValue"].then === "function"
+            ) {
+              $steps["updateDatePickerValue"] =
+                await $steps["updateDatePickerValue"];
+            }
+          }}
+        >
           <Icon91Icon
             className={classNames(projectcss.all, sty.svg__zUGe2)}
             role={"img"}
@@ -654,7 +762,16 @@ function PlasmicBookingHeader__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "img", "popover", "datePicker", "popover2", "datePicker2"],
+  root: [
+    "root",
+    "embedHtml",
+    "img",
+    "popover",
+    "datePicker",
+    "popover2",
+    "datePicker2"
+  ],
+  embedHtml: ["embedHtml"],
   img: ["img"],
   popover: ["popover", "datePicker"],
   datePicker: ["datePicker"],
@@ -666,6 +783,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  embedHtml: typeof Embed;
   img: typeof PlasmicImg__;
   popover: typeof AntdPopover;
   datePicker: typeof DatePicker;
@@ -735,6 +853,7 @@ export const PlasmicBookingHeader = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    embedHtml: makeNodeComponent("embedHtml"),
     img: makeNodeComponent("img"),
     popover: makeNodeComponent("popover"),
     datePicker: makeNodeComponent("datePicker"),

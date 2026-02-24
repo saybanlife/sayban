@@ -155,6 +155,18 @@ function PlasmicBooking__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "bookingHeader.datePickerStart",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "bookingHeader.datePickerEnd",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -283,6 +295,42 @@ function PlasmicBooking__RenderFunc(props: {
           data-plasmic-name={"bookingHeader"}
           data-plasmic-override={overrides.bookingHeader}
           className={classNames("__wab_instance", sty.bookingHeader)}
+          datePickerEnd={generateStateValueProp($state, [
+            "bookingHeader",
+            "datePickerEnd"
+          ])}
+          datePickerStart={generateStateValueProp($state, [
+            "bookingHeader",
+            "datePickerStart"
+          ])}
+          onDatePickerEndChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "bookingHeader",
+              "datePickerEnd"
+            ]).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onDatePickerStartChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "bookingHeader",
+              "datePickerStart"
+            ]).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
         />
       </section>
     </div>
