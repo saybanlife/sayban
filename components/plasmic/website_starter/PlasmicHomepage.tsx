@@ -998,9 +998,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   "user"
                 )
               })}
-              damping={
-                hasVariant($state, "homePage2", "user") ? 0.3 : undefined
-              }
+              damping={hasVariant($state, "homePage2", "user") ? 0.3 : 0.2}
               triggerOnce={true}
             >
               <User
@@ -1048,9 +1046,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   "user"
                 )
               })}
-              damping={
-                hasVariant($state, "homePage2", "user") ? 0.3 : undefined
-              }
+              damping={hasVariant($state, "homePage2", "user") ? 0.3 : 0.2}
               triggerOnce={true}
             >
               <Booking

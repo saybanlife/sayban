@@ -70,18 +70,13 @@ import sty from "./PlasmicStatus.module.css"; // plasmic-import: UhSHXabmHrQP/cs
 createPlasmicElementProxy;
 
 export type PlasmicStatus__VariantMembers = {
-  ok: "ok";
-  nok: "nok";
+  status: "pending" | "confirmed" | "canceled";
 };
 export type PlasmicStatus__VariantsArgs = {
-  ok?: SingleBooleanChoiceArg<"ok">;
-  nok?: SingleBooleanChoiceArg<"nok">;
+  status?: SingleChoiceArg<"pending" | "confirmed" | "canceled">;
 };
 type VariantPropType = keyof PlasmicStatus__VariantsArgs;
-export const PlasmicStatus__VariantProps = new Array<VariantPropType>(
-  "ok",
-  "nok"
-);
+export const PlasmicStatus__VariantProps = new Array<VariantPropType>("status");
 
 export type PlasmicStatus__ArgsType = {};
 type ArgPropType = keyof PlasmicStatus__ArgsType;
@@ -93,8 +88,7 @@ export type PlasmicStatus__OverridesType = {
 };
 
 export interface DefaultStatusProps {
-  ok?: SingleBooleanChoiceArg<"ok">;
-  nok?: SingleBooleanChoiceArg<"nok">;
+  status?: SingleChoiceArg<"pending" | "confirmed" | "canceled">;
   className?: string;
 }
 
@@ -140,16 +134,10 @@ function PlasmicStatus__RenderFunc(props: {
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "ok",
+        path: "status",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.ok
-      },
-      {
-        path: "nok",
-        type: "private",
-        variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.nok
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.status
       }
     ],
     [$props, $ctx, $refs]
@@ -178,8 +166,9 @@ function PlasmicStatus__RenderFunc(props: {
         styleTokensClassNames,
         sty.root,
         {
-          [sty.rootnok]: hasVariant($state, "nok", "nok"),
-          [sty.rootok]: hasVariant($state, "ok", "ok")
+          [sty.rootstatus_canceled]: hasVariant($state, "status", "canceled"),
+          [sty.rootstatus_confirmed]: hasVariant($state, "status", "confirmed"),
+          [sty.rootstatus_pending]: hasVariant($state, "status", "pending")
         }
       )}
     >
@@ -187,16 +176,15 @@ function PlasmicStatus__RenderFunc(props: {
         data-plasmic-name={"text"}
         data-plasmic-override={overrides.text}
         className={classNames(projectcss.all, projectcss.__wab_text, sty.text, {
-          [sty.textnok]: hasVariant($state, "nok", "nok"),
-          [sty.textok]: hasVariant($state, "ok", "ok"),
-          [sty.textok_nok]:
-            hasVariant($state, "nok", "nok") && hasVariant($state, "ok", "ok")
+          [sty.textstatus_canceled]: hasVariant($state, "status", "canceled"),
+          [sty.textstatus_confirmed]: hasVariant($state, "status", "confirmed"),
+          [sty.textstatus_pending]: hasVariant($state, "status", "pending")
         })}
       >
-        {hasVariant($state, "nok", "nok") && hasVariant($state, "ok", "ok")
-          ? "\u0631\u062f \u0634\u062f\u0647"
-          : hasVariant($state, "ok", "ok")
-            ? "\u062a\u0627\u06cc\u06cc\u062f \u0634\u062f\u0647"
+        {hasVariant($state, "status", "canceled")
+          ? "\u0644\u063a\u0648 \u0634\u062f\u0647"
+          : hasVariant($state, "status", "confirmed")
+            ? "\u062a\u0623\u06cc\u06cc\u062f \u0634\u062f\u0647"
             : "\u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0627\u06cc\u06cc\u062f"}
       </div>
     </div>

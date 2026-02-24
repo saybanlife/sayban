@@ -289,6 +289,19 @@ function PlasmicItem__RenderFunc(props: {
               className={classNames("__wab_instance", sty.status, {
                 [sty.statusbooking]: hasVariant($state, "booking", "booking")
               })}
+              status={(() => {
+                try {
+                  return $props.item.status;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()}
             />
           </div>
           <div className={classNames(projectcss.all, sty.freeBox__codA)}>
