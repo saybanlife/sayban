@@ -103,8 +103,8 @@ export const PlasmicBookingHeader__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicBookingHeader__OverridesType = {
   root?: Flex__<"div">;
-  embedHtml?: Flex__<typeof Embed>;
   img?: Flex__<typeof PlasmicImg__>;
+  embedHtml?: Flex__<typeof Embed>;
   popover?: Flex__<typeof AntdPopover>;
   datePicker?: Flex__<typeof DatePicker>;
   popover2?: Flex__<typeof AntdPopover>;
@@ -237,15 +237,6 @@ function PlasmicBookingHeader__RenderFunc(props: {
         { [sty.rootfilter]: hasVariant($state, "filter", "filter") }
       )}
     >
-      <Embed
-        data-plasmic-name={"embedHtml"}
-        data-plasmic-override={overrides.embedHtml}
-        className={classNames("__wab_instance", sty.embedHtml)}
-        code={
-          '<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>\r\n'
-        }
-      />
-
       <PlasmicImg__
         data-plasmic-name={"img"}
         data-plasmic-override={overrides.img}
@@ -351,6 +342,15 @@ function PlasmicBookingHeader__RenderFunc(props: {
             }
           }}
           role={"img"}
+        />
+
+        <Embed
+          data-plasmic-name={"embedHtml"}
+          data-plasmic-override={overrides.embedHtml}
+          className={classNames("__wab_instance", sty.embedHtml)}
+          code={
+            '<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>\r\n'
+          }
         />
       </div>
       <div
@@ -764,15 +764,15 @@ function PlasmicBookingHeader__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "embedHtml",
     "img",
+    "embedHtml",
     "popover",
     "datePicker",
     "popover2",
     "datePicker2"
   ],
-  embedHtml: ["embedHtml"],
   img: ["img"],
+  embedHtml: ["embedHtml"],
   popover: ["popover", "datePicker"],
   datePicker: ["datePicker"],
   popover2: ["popover2", "datePicker2"],
@@ -783,8 +783,8 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  embedHtml: typeof Embed;
   img: typeof PlasmicImg__;
+  embedHtml: typeof Embed;
   popover: typeof AntdPopover;
   datePicker: typeof DatePicker;
   popover2: typeof AntdPopover;
@@ -853,8 +853,8 @@ export const PlasmicBookingHeader = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    embedHtml: makeNodeComponent("embedHtml"),
     img: makeNodeComponent("img"),
+    embedHtml: makeNodeComponent("embedHtml"),
     popover: makeNodeComponent("popover"),
     datePicker: makeNodeComponent("datePicker"),
     popover2: makeNodeComponent("popover2"),

@@ -26,11 +26,6 @@
     grid-column-end: -1 !important;
   }
 }
-.embedHtml:global(.__wab_instance) {
-  animation: none;
-  max-width: 100%;
-  object-fit: cover;
-}
 .img {
   animation: none;
   object-fit: cover;
@@ -99,6 +94,11 @@
 }
 .svgfilter__iiQq6Lrf0Y {
   display: block;
+}
+.embedHtml:global(.__wab_instance) {
+  animation: none;
+  max-width: 100%;
+  object-fit: cover;
 }
 .freeBox__jwSv {
   display: flex;

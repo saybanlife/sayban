@@ -65,6 +65,7 @@ import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/compone
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import User from "../../User"; // plasmic-import: PVZXFz1DIsfR/component
+import Booking from "../../Booking"; // plasmic-import: f1blqtlMCCYK/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Home from "../../Home"; // plasmic-import: m-UDUThzN-63/component
 import Categories from "../../Categories"; // plasmic-import: R95SHqmqnvX5/component
@@ -113,12 +114,12 @@ createPlasmicElementProxy;
 export type PlasmicHomepage__VariantMembers = {
   page: "categories" | "subcategories" | "center" | "payment";
   search2: "search2";
-  homePage2: "home" | "reminder" | "user";
+  homePage2: "home" | "reminder" | "user" | "booking";
 };
 export type PlasmicHomepage__VariantsArgs = {
   page?: SingleChoiceArg<"categories" | "subcategories" | "center" | "payment">;
   search2?: SingleBooleanChoiceArg<"search2">;
-  homePage2?: SingleChoiceArg<"home" | "reminder" | "user">;
+  homePage2?: SingleChoiceArg<"home" | "reminder" | "user" | "booking">;
 };
 type VariantPropType = keyof PlasmicHomepage__VariantsArgs;
 export const PlasmicHomepage__VariantProps = new Array<VariantPropType>(
@@ -139,8 +140,8 @@ export type PlasmicHomepage__OverridesType = {
   textInput?: Flex__<typeof TextInput>;
   button?: Flex__<typeof Button>;
   img?: Flex__<typeof PlasmicImg__>;
-  reveal?: Flex__<typeof Reveal>;
   user?: Flex__<typeof User>;
+  booking?: Flex__<typeof Booking>;
   categories2?: Flex__<typeof ApiRequest>;
   home?: Flex__<typeof Home>;
   categories?: Flex__<typeof Categories>;
@@ -423,6 +424,11 @@ function PlasmicHomepage__RenderFunc(props: {
             sty.root,
             "page ",
             {
+              [sty.roothomePage2_booking]: hasVariant(
+                $state,
+                "homePage2",
+                "booking"
+              ),
               [sty.roothomePage2_reminder]: hasVariant(
                 $state,
                 "homePage2",
@@ -621,6 +627,11 @@ function PlasmicHomepage__RenderFunc(props: {
             </section>
             <section
               className={classNames(projectcss.all, sty.section__pJCrL, {
+                [sty.sectionhomePage2_booking__pJCrLzQze8]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "booking"
+                ),
                 [sty.sectionpage_categories__pJCrLnaUaI]: hasVariant(
                   $state,
                   "page",
@@ -664,7 +675,13 @@ function PlasmicHomepage__RenderFunc(props: {
                   <TextInput
                     data-plasmic-name={"textInput"}
                     data-plasmic-override={overrides.textInput}
-                    className={classNames("__wab_instance", sty.textInput)}
+                    className={classNames("__wab_instance", sty.textInput, {
+                      [sty.textInputhomePage2_home]: hasVariant(
+                        $state,
+                        "homePage2",
+                        "home"
+                      )
+                    })}
                     onChange={async (...eventArgs: any) => {
                       generateStateOnChangeProp($state, [
                         "textInput",
@@ -969,15 +986,13 @@ function PlasmicHomepage__RenderFunc(props: {
               </div>
             </section>
             <Reveal
-              data-plasmic-name={"reveal"}
-              data-plasmic-override={overrides.reveal}
-              className={classNames("__wab_instance", sty.reveal, {
-                [sty.revealhomePage2_reminder]: hasVariant(
+              className={classNames("__wab_instance", sty.reveal__qDdch, {
+                [sty.revealhomePage2_reminder__qDdchWvbFy]: hasVariant(
                   $state,
                   "homePage2",
                   "reminder"
                 ),
-                [sty.revealhomePage2_user]: hasVariant(
+                [sty.revealhomePage2_user__qDdch33Nz]: hasVariant(
                   $state,
                   "homePage2",
                   "user"
@@ -1008,6 +1023,47 @@ function PlasmicHomepage__RenderFunc(props: {
                     "user"
                   )
                 })}
+              />
+            </Reveal>
+            <Reveal
+              className={classNames("__wab_instance", sty.reveal__c55C0, {
+                [sty.revealhomePage2_booking__c55C0ZQze8]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "booking"
+                ),
+                [sty.revealhomePage2_home__c55C0Rvb1B]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "home"
+                ),
+                [sty.revealhomePage2_reminder__c55C0WvbFy]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "reminder"
+                ),
+                [sty.revealhomePage2_user__c55C033Nz]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "user"
+                )
+              })}
+              damping={
+                hasVariant($state, "homePage2", "user") ? 0.3 : undefined
+              }
+              triggerOnce={true}
+            >
+              <Booking
+                data-plasmic-name={"booking"}
+                data-plasmic-override={overrides.booking}
+                className={classNames("__wab_instance", sty.booking, {
+                  [sty.bookinghomePage2_booking]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "booking"
+                  )
+                })}
+                token={$state.token}
               />
             </Reveal>
           </div>
@@ -1155,6 +1211,16 @@ function PlasmicHomepage__RenderFunc(props: {
                 }
               })()}
               className={classNames("__wab_instance", sty.home, {
+                [sty.homehomePage2_booking]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "booking"
+                ),
+                [sty.homehomePage2_home]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "home"
+                ),
                 [sty.homehomePage2_reminder]: hasVariant(
                   $state,
                   "homePage2",
@@ -1952,8 +2018,8 @@ const PlasmicDescendants = {
     "textInput",
     "button",
     "img",
-    "reveal",
     "user",
+    "booking",
     "categories2",
     "home",
     "categories",
@@ -1969,15 +2035,15 @@ const PlasmicDescendants = {
     "textInput",
     "button",
     "img",
-    "reveal",
-    "user"
+    "user",
+    "booking"
   ],
   menu2: ["menu2"],
   textInput: ["textInput"],
   button: ["button"],
   img: ["img"],
-  reveal: ["reveal", "user"],
   user: ["user"],
+  booking: ["booking"],
   categories2: ["categories2", "home"],
   home: ["home"],
   categories: ["categories"],
@@ -1997,8 +2063,8 @@ type NodeDefaultElementType = {
   textInput: typeof TextInput;
   button: typeof Button;
   img: typeof PlasmicImg__;
-  reveal: typeof Reveal;
   user: typeof User;
+  booking: typeof Booking;
   categories2: typeof ApiRequest;
   home: typeof Home;
   categories: typeof Categories;
@@ -2076,8 +2142,8 @@ export const PlasmicHomepage = Object.assign(
     textInput: makeNodeComponent("textInput"),
     button: makeNodeComponent("button"),
     img: makeNodeComponent("img"),
-    reveal: makeNodeComponent("reveal"),
     user: makeNodeComponent("user"),
+    booking: makeNodeComponent("booking"),
     categories2: makeNodeComponent("categories2"),
     home: makeNodeComponent("home"),
     categories: makeNodeComponent("categories"),
