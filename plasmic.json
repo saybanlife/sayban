@@ -2067,6 +2067,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicBookingHeader.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "NnzIun3_VRrR",
+          "name": "ItemBooking",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicItemBooking.tsx",
+          "importSpec": {
+            "modulePath": "ItemBooking.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicItemBooking.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

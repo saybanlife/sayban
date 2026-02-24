@@ -44,6 +44,10 @@
 .rootcolor_clear:global(.__wab_instance) {
   background: #1f2a0f00;
 }
+.rootcolor_line:global(.__wab_instance) {
+  background: none;
+  border: 2px solid var(--token-ee2TuxDknsJj);
+}
 .roottype_soft:global(.__wab_instance) {
   background: var(--token-as44I7WwR-rZ);
 }

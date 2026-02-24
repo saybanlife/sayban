@@ -8,8 +8,8 @@
   align-items: center;
   position: relative;
   background: var(--token-Ws0-_dtROA6x);
-  border-radius: var(--token-73iLa06AE6f4);
-  padding: var(--token-I0Xtb9z7Q0X3) var(--token-rfsFxiclAtek);
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: var(--token-cfon0PHiXQoL) var(--token-rfsFxiclAtek);
 }
 .rootstatus_pending {
   background: var(--token-Ws0-_dtROA6x);
@@ -24,9 +24,9 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  font-size: var(--token-U1UvBDD-VoLt);
-  font-weight: 700;
-  text-align: right;
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  font-weight: 400;
+  text-align: center;
   white-space: pre;
   user-select: none;
   color: var(--token-1aP3XjRZIKFV);

@@ -67,6 +67,9 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicUploudeTime.module.css"; // plasmic-import: IxvwO5AMD5ex/css
 
+import Icon91Icon from "./icons/PlasmicIcon__Icon91"; // plasmic-import: lnClONjnY1AS/icon
+import Icon21Icon from "./icons/PlasmicIcon__Icon21"; // plasmic-import: sT28siWhYupd/icon
+
 createPlasmicElementProxy;
 
 export type PlasmicUploudeTime__VariantMembers = {};
@@ -80,7 +83,6 @@ export const PlasmicUploudeTime__ArgProps = new Array<ArgPropType>("posttime");
 
 export type PlasmicUploudeTime__OverridesType = {
   root?: Flex__<"div">;
-  text?: Flex__<"div">;
 };
 
 export interface DefaultUploudeTimeProps {
@@ -176,81 +178,96 @@ function PlasmicUploudeTime__RenderFunc(props: {
         sty.root
       )}
     >
-      <div
-        data-plasmic-name={"text"}
-        data-plasmic-override={overrides.text}
-        className={classNames(projectcss.all, projectcss.__wab_text, sty.text)}
-      >
-        <React.Fragment>
-          {(() => {
-            try {
-              return (() => {
-                function pad(n) {
-                  return n.toString().padStart(2, "0");
+      <div className={classNames(projectcss.all, sty.freeBox__ts1E)}>
+        <Icon91Icon
+          className={classNames(projectcss.all, sty.svg__zaRex)}
+          role={"img"}
+        />
+
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__fxGzQ
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return (() => {
+                  const updatedAt = $state.time;
+                  const date = new Date(
+                    updatedAt.year,
+                    updatedAt.month - 1,
+                    updatedAt.day
+                  );
+                  const formatter = new Intl.DateTimeFormat("fa-IR", {
+                    weekday: "long",
+                    day: "numeric",
+                    month: "long"
+                  });
+                  return formatter.format(date);
+                })();
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "\u0632\u0645\u0627\u0646 \u0628\u0627\u0631\u06af\u0632\u0627\u0631\u06cc ";
                 }
-                const today = new Date();
-                const updatedAt = $state.time;
-                const postTime =
-                  `${updatedAt.year}-${pad(updatedAt.month)}-${pad(updatedAt.day)}T` +
-                  `${pad(updatedAt.hour)}:${pad(updatedAt.minute)}:${pad(updatedAt.second)}+03:30`;
-                const inputDate = new Date(postTime);
-                const diffInMillis = today.getTime() - inputDate.getTime();
-                const diffInMinutes = Math.floor(diffInMillis / (1000 * 60));
-                const diffInHours = Math.floor(diffInMillis / (1000 * 3600));
-                const diffInDays = Math.floor(
-                  diffInMillis / (1000 * 3600 * 24)
-                );
-                const diffInWeeks = Math.floor(diffInDays / 7);
-                const diffInMonths = Math.floor(diffInDays / 30);
-                let result = "";
-                if (diffInMinutes < 60) {
-                  result = `${diffInMinutes} دقیقه قبل`;
-                } else if (diffInHours < 24) {
-                  result = `${diffInHours} ساعت قبل`;
-                } else if (diffInDays < 7) {
-                  result = `${diffInDays} روز قبل`;
-                } else if (diffInDays < 30) {
-                  const diffInWeeks = Math.floor(diffInDays / 7);
-                  result = `${diffInWeeks} هفته قبل`;
-                } else if (diffInMonths < 12) {
-                  result = `${diffInMonths} ماه قبل`;
-                } else {
-                  const years = Math.floor(diffInMonths / 12);
-                  const remainingMonths = diffInMonths % 12;
-                  if (remainingMonths === 0) {
-                    result = `${years} سال قبل`;
-                  } else {
-                    result = `${years} سال و ${remainingMonths} ماه قبل`;
-                  }
-                }
-                return result;
-              })();
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return "\u0632\u0645\u0627\u0646 \u0628\u0627\u0631\u06af\u0632\u0627\u0631\u06cc ";
+                throw e;
               }
-              throw e;
-            }
-          })()}
-        </React.Fragment>
+            })()}
+          </React.Fragment>
+        </div>
+      </div>
+      <div className={classNames(projectcss.all, sty.freeBox__z37VN)}>
+        <Icon21Icon
+          className={classNames(projectcss.all, sty.svg___8A7Gj)}
+          role={"img"}
+        />
+
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__zajVb
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return (() => {
+                  function pad(n) {
+                    return n.toString().padStart(2, "0");
+                  }
+                  return `${pad($props.posttime.hour)}:${pad($props.posttime.minute)}`;
+                })();
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "\u0632\u0645\u0627\u0646 \u0628\u0627\u0631\u06af\u0632\u0627\u0631\u06cc ";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
       </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "text"],
-  text: ["text"]
+  root: ["root"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -315,7 +332,6 @@ export const PlasmicUploudeTime = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicUploudeTime
     internalVariantProps: PlasmicUploudeTime__VariantProps,

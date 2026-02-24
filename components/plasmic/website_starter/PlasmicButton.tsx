@@ -82,7 +82,8 @@ export type PlasmicButton__VariantMembers = {
     | "warning"
     | "errorDestructive"
     | "second"
-    | "clear";
+    | "clear"
+    | "line";
   type: "soft" | "bordered";
   size: "extraSmall" | "small" | "large" | "extraLarge";
   iconStart: "iconStart";
@@ -100,6 +101,7 @@ export type PlasmicButton__VariantsArgs = {
     | "errorDestructive"
     | "second"
     | "clear"
+    | "line"
   >;
   type?: SingleChoiceArg<"soft" | "bordered">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -177,6 +179,7 @@ export interface DefaultButtonProps {
     | "errorDestructive"
     | "second"
     | "clear"
+    | "line"
   >;
   type?: SingleChoiceArg<"soft" | "bordered">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -337,6 +340,7 @@ function PlasmicButton__RenderFunc(props: {
             "color",
             "errorDestructive"
           ),
+          [sty.rootcolor_line]: hasVariant($state, "color", "line"),
           [sty.rootcolor_muted]: hasVariant($state, "color", "muted"),
           [sty.rootcolor_neutral]: hasVariant($state, "color", "neutral"),
           [sty.rootcolor_second]: hasVariant($state, "color", "second"),

@@ -59,8 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { Embed } from "@plasmicpkgs/plasmic-basic-components";
-import Item from "../../Item"; // plasmic-import: lqR7VxT6h9YH/component
+import ItemBooking from "../../ItemBooking"; // plasmic-import: NnzIun3_VRrR/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import BookingHeader from "../../BookingHeader"; // plasmic-import: K9ETXxPuQRCy/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
@@ -84,9 +83,8 @@ export const PlasmicBooking__ArgProps = new Array<ArgPropType>("token");
 
 export type PlasmicBooking__OverridesType = {
   root?: Flex__<"div">;
-  embedHtml?: Flex__<typeof Embed>;
   freeBox?: Flex__<"div">;
-  item?: Flex__<typeof Item>;
+  itemBooking?: Flex__<typeof ItemBooking>;
   apiRequest?: Flex__<typeof ApiRequest>;
   section?: Flex__<"section">;
   bookingHeader?: Flex__<typeof BookingHeader>;
@@ -196,15 +194,6 @@ function PlasmicBooking__RenderFunc(props: {
         sty.root
       )}
     >
-      <Embed
-        data-plasmic-name={"embedHtml"}
-        data-plasmic-override={overrides.embedHtml}
-        className={classNames("__wab_instance", sty.embedHtml)}
-        code={
-          '<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>\r\n'
-        }
-      />
-
       <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
@@ -228,24 +217,12 @@ function PlasmicBooking__RenderFunc(props: {
           const currentItem = __plasmic_item_0;
           const currentIndex = __plasmic_idx_0;
           return (
-            <Item
-              data-plasmic-name={"item"}
-              data-plasmic-override={overrides.item}
+            <ItemBooking
+              data-plasmic-name={"itemBooking"}
+              data-plasmic-override={overrides.itemBooking}
               booking={true}
-              className={classNames("__wab_instance", sty.item)}
-              item={(() => {
-                try {
-                  return currentItem;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
+              className={classNames("__wab_instance", sty.itemBooking)}
+              item={currentItem}
               key={currentIndex}
             />
           );
@@ -340,16 +317,14 @@ function PlasmicBooking__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "embedHtml",
     "freeBox",
-    "item",
+    "itemBooking",
     "apiRequest",
     "section",
     "bookingHeader"
   ],
-  embedHtml: ["embedHtml"],
-  freeBox: ["freeBox", "item"],
-  item: ["item"],
+  freeBox: ["freeBox", "itemBooking"],
+  itemBooking: ["itemBooking"],
   apiRequest: ["apiRequest"],
   section: ["section", "bookingHeader"],
   bookingHeader: ["bookingHeader"]
@@ -359,9 +334,8 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  embedHtml: typeof Embed;
   freeBox: "div";
-  item: typeof Item;
+  itemBooking: typeof ItemBooking;
   apiRequest: typeof ApiRequest;
   section: "section";
   bookingHeader: typeof BookingHeader;
@@ -429,9 +403,8 @@ export const PlasmicBooking = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    embedHtml: makeNodeComponent("embedHtml"),
     freeBox: makeNodeComponent("freeBox"),
-    item: makeNodeComponent("item"),
+    itemBooking: makeNodeComponent("itemBooking"),
     apiRequest: makeNodeComponent("apiRequest"),
     section: makeNodeComponent("section"),
     bookingHeader: makeNodeComponent("bookingHeader"),
