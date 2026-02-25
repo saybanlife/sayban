@@ -564,6 +564,13 @@
 .homehomePage2_booking:global(.__wab_instance) {
   display: none;
 }
+.profile:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.profilepage_payment:global(.__wab_instance) {
+  display: none;
+}
 .categories:global(.__wab_instance) {
   max-width: 100%;
   width: 100%;

@@ -90,9 +90,9 @@ export type PlasmicUser__VariantsArgs = {};
 type VariantPropType = keyof PlasmicUser__VariantsArgs;
 export const PlasmicUser__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicUser__ArgsType = {};
+export type PlasmicUser__ArgsType = { userinfo?: any };
 type ArgPropType = keyof PlasmicUser__ArgsType;
-export const PlasmicUser__ArgProps = new Array<ArgPropType>();
+export const PlasmicUser__ArgProps = new Array<ArgPropType>("userinfo");
 
 export type PlasmicUser__OverridesType = {
   root?: Flex__<"section">;
@@ -103,6 +103,7 @@ export type PlasmicUser__OverridesType = {
 };
 
 export interface DefaultUserProps {
+  userinfo?: any;
   className?: string;
 }
 
@@ -233,7 +234,21 @@ function PlasmicUser__RenderFunc(props: {
               sty.text__bMlg7
             )}
           >
-            {"\u0646\u0627\u0645 \u06a9\u0627\u0631\u0628\u0631\u06cc"}
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.userinfo?.name;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "\u0646\u0627\u0645 \u06a9\u0627\u0631\u0628\u0631\u06cc";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
           </div>
           <div
             className={classNames(
@@ -242,7 +257,7 @@ function PlasmicUser__RenderFunc(props: {
               sty.text__hfSiX
             )}
           >
-            {"Enter some text"}
+            <React.Fragment>{$props.userinfo?.mobile}</React.Fragment>
           </div>
         </div>
       </section>
@@ -406,9 +421,7 @@ function PlasmicUser__RenderFunc(props: {
                 sty.text__lubJ9
               )}
             >
-              {
-                "\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u062a\u0644\u06af\u0631\u0627\u0645\u06cc"
-              }
+              {"\u062d\u0627\u0644\u062a \u0634\u0628"}
             </div>
             <Switch
               data-plasmic-name={"switch2"}

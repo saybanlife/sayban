@@ -144,6 +144,7 @@ export type PlasmicHomepage__OverridesType = {
   booking?: Flex__<typeof Booking>;
   categories2?: Flex__<typeof ApiRequest>;
   home?: Flex__<typeof Home>;
+  profile?: Flex__<typeof ApiRequest>;
   categories?: Flex__<typeof Categories>;
   subcategories?: Flex__<typeof Subcategories>;
   center?: Flex__<typeof Center>;
@@ -386,6 +387,24 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "profile.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "profile.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "profile.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -1027,6 +1046,7 @@ function PlasmicHomepage__RenderFunc(props: {
                     "user"
                   )
                 })}
+                userinfo={$state.profile?.data?.result}
               />
             </Reveal>
             <Reveal
@@ -1492,6 +1512,83 @@ function PlasmicHomepage__RenderFunc(props: {
               ])}
             />
           </ApiRequest>
+          <ApiRequest
+            data-plasmic-name={"profile"}
+            data-plasmic-override={overrides.profile}
+            children={null}
+            className={classNames("__wab_instance", sty.profile, {
+              [sty.profilehomePage2_reminder]: hasVariant(
+                $state,
+                "homePage2",
+                "reminder"
+              ),
+              [sty.profilepage_categories]: hasVariant(
+                $state,
+                "page",
+                "categories"
+              ),
+              [sty.profilepage_center]: hasVariant($state, "page", "center"),
+              [sty.profilepage_payment]: hasVariant($state, "page", "payment"),
+              [sty.profilepage_subcategories]: hasVariant(
+                $state,
+                "page",
+                "subcategories"
+              )
+            })}
+            config={(() => {
+              try {
+                return {
+                  headers: {
+                    Authorization: `Bearer ${$state.token}`
+                  }
+                };
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            errorDisplay={null}
+            loadingDisplay={null}
+            method={"GET"}
+            onError={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["profile", "error"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            onLoading={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["profile", "loading"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            onSuccess={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["profile", "data"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            shouldFetch={(() => {
+              try {
+                return $state.token != null && $state.token != "";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()}
+            url={"https://sayban.darkube.app/webhook/getProfile"}
+          />
+
           <Categories
             data-plasmic-name={"categories"}
             data-plasmic-override={overrides.categories}
@@ -2105,6 +2202,7 @@ const PlasmicDescendants = {
     "booking",
     "categories2",
     "home",
+    "profile",
     "categories",
     "subcategories",
     "center",
@@ -2129,6 +2227,7 @@ const PlasmicDescendants = {
   booking: ["booking"],
   categories2: ["categories2", "home"],
   home: ["home"],
+  profile: ["profile"],
   categories: ["categories"],
   subcategories: ["subcategories"],
   center: ["center"],
@@ -2150,6 +2249,7 @@ type NodeDefaultElementType = {
   booking: typeof Booking;
   categories2: typeof ApiRequest;
   home: typeof Home;
+  profile: typeof ApiRequest;
   categories: typeof Categories;
   subcategories: typeof Subcategories;
   center: typeof Center;
@@ -2229,6 +2329,7 @@ export const PlasmicHomepage = Object.assign(
     booking: makeNodeComponent("booking"),
     categories2: makeNodeComponent("categories2"),
     home: makeNodeComponent("home"),
+    profile: makeNodeComponent("profile"),
     categories: makeNodeComponent("categories"),
     subcategories: makeNodeComponent("subcategories"),
     center: makeNodeComponent("center"),
