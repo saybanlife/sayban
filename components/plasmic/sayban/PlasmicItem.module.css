@@ -145,10 +145,6 @@
   font-size: var(--token-U1UvBDD-VoLt);
   color: var(--token-KjATzAYJ5IB7);
 }
-.uploudeTime:global(.__wab_instance) {
-  animation: none;
-  max-width: 100%;
-}
 .freeBox__b41Xr {
   display: flex;
   flex-direction: row;

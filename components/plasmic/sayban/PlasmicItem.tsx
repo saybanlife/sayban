@@ -61,7 +61,6 @@ import {
 
 import Status from "../../Status"; // plasmic-import: UhSHXabmHrQP/component
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
-import UploudeTime from "../../UploudeTime"; // plasmic-import: IxvwO5AMD5ex/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -96,7 +95,6 @@ export type PlasmicItem__OverridesType = {
   img?: Flex__<typeof PlasmicImg__>;
   status?: Flex__<typeof Status>;
   textCollapse?: Flex__<typeof TextCollapse>;
-  uploudeTime?: Flex__<typeof UploudeTime>;
 };
 
 export interface DefaultItemProps {
@@ -347,29 +345,6 @@ function PlasmicItem__RenderFunc(props: {
                     })()
               }
             />
-
-            <UploudeTime
-              data-plasmic-name={"uploudeTime"}
-              data-plasmic-override={overrides.uploudeTime}
-              className={classNames("__wab_instance", sty.uploudeTime)}
-              posttime={(() => {
-                function addTime(dateString, addHours = 0, addMinutes = 0) {
-                  const date = new Date(dateString.replace(" ", "T"));
-                  date.setHours(date.getHours() + addHours);
-                  date.setMinutes(date.getMinutes() + addMinutes);
-                  return {
-                    year: date.getFullYear(),
-                    month: date.getMonth() + 1,
-                    day: date.getDate(),
-                    hour: date.getHours(),
-                    minute: date.getMinutes(),
-                    second: date.getSeconds()
-                  };
-                }
-                const newCreatedAt = addTime($props.item.start_time);
-                return newCreatedAt;
-              })()}
-            />
           </div>
         </div>
         <div
@@ -407,11 +382,10 @@ function PlasmicItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "img", "status", "textCollapse", "uploudeTime"],
+  root: ["root", "img", "status", "textCollapse"],
   img: ["img"],
   status: ["status"],
-  textCollapse: ["textCollapse"],
-  uploudeTime: ["uploudeTime"]
+  textCollapse: ["textCollapse"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -421,7 +395,6 @@ type NodeDefaultElementType = {
   img: typeof PlasmicImg__;
   status: typeof Status;
   textCollapse: typeof TextCollapse;
-  uploudeTime: typeof UploudeTime;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -489,7 +462,6 @@ export const PlasmicItem = Object.assign(
     img: makeNodeComponent("img"),
     status: makeNodeComponent("status"),
     textCollapse: makeNodeComponent("textCollapse"),
-    uploudeTime: makeNodeComponent("uploudeTime"),
 
     // Metadata about props expected for PlasmicItem
     internalVariantProps: PlasmicItem__VariantProps,

@@ -95,15 +95,13 @@ export type PlasmicItemBooking__ArgsType = {
   onClick?: (event: any) => void;
   goToCenter?: (event: any) => void;
   goToDetails?: (event: any) => void;
-  goToReservation?: (event: any) => void;
 };
 type ArgPropType = keyof PlasmicItemBooking__ArgsType;
 export const PlasmicItemBooking__ArgProps = new Array<ArgPropType>(
   "item",
   "onClick",
   "goToCenter",
-  "goToDetails",
-  "goToReservation"
+  "goToDetails"
 );
 
 export type PlasmicItemBooking__OverridesType = {
@@ -121,7 +119,6 @@ export interface DefaultItemBookingProps {
   onClick?: (event: any) => void;
   goToCenter?: (event: any) => void;
   goToDetails?: (event: any) => void;
-  goToReservation?: (event: any) => void;
   booking?: SingleBooleanChoiceArg<"booking">;
   className?: string;
 }
@@ -219,26 +216,6 @@ function PlasmicItemBooking__RenderFunc(props: {
         className={classNames(projectcss.all, sty.freeBox__mviwM)}
         onClick={async event => {
           const $steps = {};
-
-          $steps["runCode"] = true
-            ? (() => {
-                const actionArgs = {
-                  customFunction: async () => {
-                    return undefined;
-                  }
-                };
-                return (({ customFunction }) => {
-                  return customFunction();
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
-          if (
-            $steps["runCode"] != null &&
-            typeof $steps["runCode"] === "object" &&
-            typeof $steps["runCode"].then === "function"
-          ) {
-            $steps["runCode"] = await $steps["runCode"];
-          }
 
           $steps["runGoToCenter"] = true
             ? (() => {
@@ -404,14 +381,15 @@ function PlasmicItemBooking__RenderFunc(props: {
           <UploudeTime
             data-plasmic-name={"uploudeTime"}
             data-plasmic-override={overrides.uploudeTime}
-            className={classNames("__wab_instance", sty.uploudeTime, {
-              [sty.uploudeTimebooking]: hasVariant($state, "booking", "booking")
-            })}
+            className={classNames("__wab_instance", sty.uploudeTime)}
             posttime={(() => {
               function addTime(dateString, addHours = 0, addMinutes = 0) {
+                if (!dateString) return null;
                 const date = new Date(dateString.replace(" ", "T"));
-                date.setHours(date.getHours() + addHours);
-                date.setMinutes(date.getMinutes() + addMinutes);
+                if (!date) return null;
+                date.setMinutes(
+                  date.getMinutes() + (addHours * 60 + addMinutes)
+                );
                 return {
                   year: date.getFullYear(),
                   month: date.getMonth() + 1,
@@ -421,7 +399,7 @@ function PlasmicItemBooking__RenderFunc(props: {
                   second: date.getSeconds()
                 };
               }
-              const newCreatedAt = addTime($props.item.start_time);
+              const newCreatedAt = addTime($props?.item?.start_time);
               return newCreatedAt;
             })()}
           />
@@ -539,7 +517,25 @@ function PlasmicItemBooking__RenderFunc(props: {
             </div>
           }
           loading={generateStateValueProp($state, ["button2", "loading"])}
-          onClick={args.goToReservation}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["runGoToCenter"] = true
+              ? (() => {
+                  const actionArgs = { eventRef: $props["goToCenter"] };
+                  return (({ eventRef, args }) => {
+                    return eventRef?.(...(args ?? []));
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runGoToCenter"] != null &&
+              typeof $steps["runGoToCenter"] === "object" &&
+              typeof $steps["runGoToCenter"].then === "function"
+            ) {
+              $steps["runGoToCenter"] = await $steps["runGoToCenter"];
+            }
+          }}
           onLoadingChange={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["button2", "loading"]).apply(
               null,

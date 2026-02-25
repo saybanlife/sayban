@@ -349,7 +349,6 @@ function PlasmicBooking__RenderFunc(props: {
                   }
                 }}
                 goToDetails={args.goToDetails}
-                goToReservation={args.goToReservation}
                 item={currentItem}
                 key={currentIndex}
               />
