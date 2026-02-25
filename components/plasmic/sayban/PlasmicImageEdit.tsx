@@ -60,8 +60,6 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
-import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
-import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
 import Snackbar from "../../Snackbar"; // plasmic-import: CaodI8ra68z4/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
@@ -72,10 +70,10 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicImageEdit.module.css"; // plasmic-import: PU02M3FSmgy6/css
 
-import Icon58Icon from "./icons/PlasmicIcon__Icon58"; // plasmic-import: ZZecBkDFVPaA/icon
-import Icon60Icon from "./icons/PlasmicIcon__Icon60"; // plasmic-import: JXYPgQmPQkxF/icon
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+import Icon58Icon from "./icons/PlasmicIcon__Icon58"; // plasmic-import: ZZecBkDFVPaA/icon
+import Icon60Icon from "./icons/PlasmicIcon__Icon60"; // plasmic-import: JXYPgQmPQkxF/icon
 
 createPlasmicElementProxy;
 
@@ -84,23 +82,31 @@ export type PlasmicImageEdit__VariantsArgs = {};
 type VariantPropType = keyof PlasmicImageEdit__VariantsArgs;
 export const PlasmicImageEdit__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicImageEdit__ArgsType = { images?: any };
+export type PlasmicImageEdit__ArgsType = {
+  images?: any;
+  restart?: string;
+  onRestartChange?: (val: string) => void;
+};
 type ArgPropType = keyof PlasmicImageEdit__ArgsType;
-export const PlasmicImageEdit__ArgProps = new Array<ArgPropType>("images");
+export const PlasmicImageEdit__ArgProps = new Array<ArgPropType>(
+  "images",
+  "restart",
+  "onRestartChange"
+);
 
 export type PlasmicImageEdit__OverridesType = {
   root?: Flex__<"div">;
   embedHtml?: Flex__<typeof Embed>;
-  radioGroup?: Flex__<typeof RadioGroup>;
-  img?: Flex__<typeof PlasmicImg__>;
-  radio?: Flex__<typeof Radio>;
   snackbar?: Flex__<typeof Snackbar>;
   _delete?: Flex__<typeof Button>;
   cansel?: Flex__<typeof Button>;
+  img?: Flex__<typeof PlasmicImg__>;
 };
 
 export interface DefaultImageEditProps {
   images?: any;
+  restart?: string;
+  onRestartChange?: (val: string) => void;
   className?: string;
 }
 
@@ -148,28 +154,6 @@ function PlasmicImageEdit__RenderFunc(props: {
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "radioGroup.value",
-        type: "private",
-        variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          (() => {
-            try {
-              return (
-                $props.images.find(i => i.is_main)?.id.toString() ||
-                $props.images[0].id.toString()
-              );
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return "2";
-              }
-              throw e;
-            }
-          })()
-      },
-      {
         path: "snackbar.opendialog",
         type: "private",
         variableType: "boolean",
@@ -198,6 +182,14 @@ function PlasmicImageEdit__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "restart",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "restart",
+        onChangeProp: "onRestartChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -255,316 +247,30 @@ function PlasmicImageEdit__RenderFunc(props: {
               className={classNames(
                 projectcss.all,
                 projectcss.__wab_text,
-                sty.text__x1Nvu
-              )}
-            >
-              {"\u0631\u0648\u0632 \u0647\u0641\u062a\u0647"}
-            </div>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
                 sty.text___9Qrdc
               )}
             >
-              {"\u0645\u06a9\u0627\u0646"}
+              {"\u062a\u0635\u0627\u0648\u06cc\u0631"}
             </div>
             <div
               className={classNames(
                 projectcss.all,
                 projectcss.__wab_text,
-                sty.text__qMg3K
+                sty.text__zpwwM
               )}
             >
-              {"\u0627\u0635\u0644\u06cc"}
+              {"\u062a\u0631\u062a\u06cc\u0628 \u0646\u0645\u0627\u06cc\u0634"}
             </div>
             <div
               className={classNames(
                 projectcss.all,
                 projectcss.__wab_text,
-                sty.text___8B5Sc
+                sty.text___1Fn92
               )}
             >
-              {"\u062a\u0639\u0637\u06cc\u0644"}
+              {""}
             </div>
           </div>
-          <RadioGroup
-            data-plasmic-name={"radioGroup"}
-            data-plasmic-override={overrides.radioGroup}
-            className={classNames("__wab_instance", sty.radioGroup)}
-            onChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["radioGroup", "value"]).apply(
-                null,
-                eventArgs
-              );
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-
-              (async val => {
-                const $steps = {};
-
-                $steps["runCode"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        customFunction: async () => {
-                          return (() => {
-                            try {
-                              return $props.images.forEach(i => {
-                                if (i.id == $state.radioGroup.value)
-                                  i.main = true;
-                                else delete i.main;
-                              });
-                            } catch {}
-                          })();
-                        }
-                      };
-                      return (({ customFunction }) => {
-                        return customFunction();
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["runCode"] != null &&
-                  typeof $steps["runCode"] === "object" &&
-                  typeof $steps["runCode"].then === "function"
-                ) {
-                  $steps["runCode"] = await $steps["runCode"];
-                }
-              }).apply(null, eventArgs);
-            }}
-            options={
-              <div
-                className={classNames(projectcss.all, sty.freeBox__oBByy)}
-                id={"list"}
-              >
-                {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                  (() => {
-                    try {
-                      return $props.images;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return [];
-                      }
-                      throw e;
-                    }
-                  })()
-                ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                  const currentItem = __plasmic_item_0;
-                  const currentIndex = __plasmic_idx_0;
-                  return (
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__ljbb1)}
-                      data-id={(() => {
-                        try {
-                          return currentItem.id;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                      key={currentIndex}
-                      onDragEnd={async event => {
-                        const $steps = {};
-
-                        $steps["runCode"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                customFunction: async () => {
-                                  return (() => {
-                                    const list =
-                                      window.document.getElementById("list");
-                                    if (!list) {
-                                      return;
-                                    }
-                                    const children = Array.from(list.children);
-                                    const files = [...$props.images];
-                                    children.forEach((child, index) => {
-                                      const id = child.dataset.id;
-                                      const fileIndex = files.findIndex(
-                                        f => f.id == id
-                                      );
-                                      if (fileIndex !== -1) {
-                                        files[fileIndex].order = index;
-                                      }
-                                    });
-                                    return ($props.images = files);
-                                  })();
-                                }
-                              };
-                              return (({ customFunction }) => {
-                                return customFunction();
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["runCode"] != null &&
-                          typeof $steps["runCode"] === "object" &&
-                          typeof $steps["runCode"].then === "function"
-                        ) {
-                          $steps["runCode"] = await $steps["runCode"];
-                        }
-                      }}
-                    >
-                      <PlasmicImg__
-                        data-plasmic-name={"img"}
-                        data-plasmic-override={overrides.img}
-                        alt={""}
-                        className={classNames(sty.img)}
-                        displayHeight={"50px"}
-                        displayMaxHeight={"none"}
-                        displayMaxWidth={"100%"}
-                        displayMinHeight={"0"}
-                        displayMinWidth={"0"}
-                        displayWidth={"50px"}
-                        loading={"lazy"}
-                        src={(() => {
-                          try {
-                            return currentItem.image_url;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}
-                      />
-
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__ltfuv
-                        )}
-                      >
-                        <React.Fragment>{currentItem.order}</React.Fragment>
-                      </div>
-                      <Radio
-                        data-plasmic-name={"radio"}
-                        data-plasmic-override={overrides.radio}
-                        className={classNames("__wab_instance", sty.radio)}
-                        disabled={false}
-                        label={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__gSnSn
-                            )}
-                          >
-                            {""}
-                          </div>
-                        }
-                        value={(() => {
-                          try {
-                            return currentItem.id;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}
-                      />
-
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__tKbJc
-                        )}
-                      >
-                        <Icon58Icon
-                          className={classNames(projectcss.all, sty.svg__wv0Ic)}
-                          onClick={async event => {
-                            const $steps = {};
-
-                            $steps["runCode"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    customFunction: async () => {
-                                      return ($props.images =
-                                        $props.images.filter(
-                                          i => i.id != currentItem.id
-                                        ));
-                                    }
-                                  };
-                                  return (({ customFunction }) => {
-                                    return customFunction();
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["runCode"] != null &&
-                              typeof $steps["runCode"] === "object" &&
-                              typeof $steps["runCode"].then === "function"
-                            ) {
-                              $steps["runCode"] = await $steps["runCode"];
-                            }
-
-                            $steps["runCode2"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    customFunction: async () => {
-                                      return (() => {
-                                        $state.snackbar.opendialog = true;
-                                        return ($state.snackbar.data =
-                                          currentItem);
-                                      })();
-                                    }
-                                  };
-                                  return (({ customFunction }) => {
-                                    return customFunction();
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["runCode2"] != null &&
-                              typeof $steps["runCode2"] === "object" &&
-                              typeof $steps["runCode2"].then === "function"
-                            ) {
-                              $steps["runCode2"] = await $steps["runCode2"];
-                            }
-                          }}
-                          role={"img"}
-                        />
-
-                        <Icon60Icon
-                          className={classNames(
-                            projectcss.all,
-                            sty.svg__sSRm,
-                            "handle"
-                          )}
-                          role={"img"}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            }
-            showDescription={false}
-            showLabel={false}
-            value={generateStateValueProp($state, ["radioGroup", "value"])}
-          />
         </div>
       ) : null}
       <Snackbar
@@ -663,6 +369,36 @@ function PlasmicImageEdit__RenderFunc(props: {
             onClick={async event => {
               const $steps = {};
 
+              $steps["updateDeleteLoading"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["_delete", "loading"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateDeleteLoading"] != null &&
+                typeof $steps["updateDeleteLoading"] === "object" &&
+                typeof $steps["updateDeleteLoading"].then === "function"
+              ) {
+                $steps["updateDeleteLoading"] =
+                  await $steps["updateDeleteLoading"];
+              }
+
               $steps["deleteImage"] = true
                 ? (() => {
                     const actionArgs = {
@@ -692,7 +428,10 @@ function PlasmicImageEdit__RenderFunc(props: {
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
-                        return ($state.snackbar.opendialog = false);
+                        return (() => {
+                          $state.snackbar.opendialog = false;
+                          return ($state.restart += "1");
+                        })();
                       }
                     };
                     return (({ customFunction }) => {
@@ -706,6 +445,36 @@ function PlasmicImageEdit__RenderFunc(props: {
                 typeof $steps["runCode"].then === "function"
               ) {
                 $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["updateDeleteLoading2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["_delete", "loading"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateDeleteLoading2"] != null &&
+                typeof $steps["updateDeleteLoading2"] === "object" &&
+                typeof $steps["updateDeleteLoading2"].then === "function"
+              ) {
+                $steps["updateDeleteLoading2"] =
+                  await $steps["updateDeleteLoading2"];
               }
             }}
             onLoadingChange={async (...eventArgs: any) => {
@@ -791,28 +560,199 @@ function PlasmicImageEdit__RenderFunc(props: {
           />
         </div>
       </Snackbar>
+      <div
+        className={classNames(projectcss.all, sty.freeBox__oBByy)}
+        id={"list"}
+      >
+        {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+          (() => {
+            try {
+              return $props.images;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
+        ).map((__plasmic_item_0, __plasmic_idx_0) => {
+          const currentItem = __plasmic_item_0;
+          const currentIndex = __plasmic_idx_0;
+          return (
+            <div
+              className={classNames(projectcss.all, sty.freeBox__ljbb1)}
+              data-id={(() => {
+                try {
+                  return currentItem.id;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              key={currentIndex}
+              onDragEnd={async event => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            const list = window.document.getElementById("list");
+                            if (!list) {
+                              return;
+                            }
+                            const children = Array.from(list.children);
+                            const files = [...$props.images];
+                            children.forEach((child, index) => {
+                              const id = child.dataset.id;
+                              const fileIndex = files.findIndex(
+                                f => f.id == id
+                              );
+                              if (fileIndex !== -1) {
+                                files[fileIndex].order = index;
+                              }
+                            });
+                            return ($props.images = files);
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+              }}
+            >
+              <PlasmicImg__
+                data-plasmic-name={"img"}
+                data-plasmic-override={overrides.img}
+                alt={""}
+                className={classNames(sty.img)}
+                displayHeight={"50px"}
+                displayMaxHeight={"none"}
+                displayMaxWidth={"100%"}
+                displayMinHeight={"0"}
+                displayMinWidth={"0"}
+                displayWidth={"50px"}
+                loading={"lazy"}
+                src={(() => {
+                  try {
+                    return currentItem.image_url;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+              />
+
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__ltfuv
+                )}
+              >
+                <React.Fragment>{currentItem.order}</React.Fragment>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__tKbJc)}>
+                <Icon58Icon
+                  className={classNames(projectcss.all, sty.svg__wv0Ic)}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return ($props.images = $props.images.filter(
+                                i => i.id != currentItem.id
+                              ));
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+
+                    $steps["runCode2"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return (() => {
+                                $state.snackbar.opendialog = true;
+                                return ($state.snackbar.data = currentItem);
+                              })();
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode2"] != null &&
+                      typeof $steps["runCode2"] === "object" &&
+                      typeof $steps["runCode2"].then === "function"
+                    ) {
+                      $steps["runCode2"] = await $steps["runCode2"];
+                    }
+                  }}
+                  role={"img"}
+                />
+
+                <Icon60Icon
+                  className={classNames(
+                    projectcss.all,
+                    sty.svg__sSRm,
+                    "handle"
+                  )}
+                  role={"img"}
+                />
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: [
-    "root",
-    "embedHtml",
-    "radioGroup",
-    "img",
-    "radio",
-    "snackbar",
-    "_delete",
-    "cansel"
-  ],
+  root: ["root", "embedHtml", "snackbar", "_delete", "cansel", "img"],
   embedHtml: ["embedHtml"],
-  radioGroup: ["radioGroup", "img", "radio"],
-  img: ["img"],
-  radio: ["radio"],
   snackbar: ["snackbar", "_delete", "cansel"],
   _delete: ["_delete"],
-  cansel: ["cansel"]
+  cansel: ["cansel"],
+  img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -820,12 +760,10 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   embedHtml: typeof Embed;
-  radioGroup: typeof RadioGroup;
-  img: typeof PlasmicImg__;
-  radio: typeof Radio;
   snackbar: typeof Snackbar;
   _delete: typeof Button;
   cansel: typeof Button;
+  img: typeof PlasmicImg__;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -891,12 +829,10 @@ export const PlasmicImageEdit = Object.assign(
   {
     // Helper components rendering sub-elements
     embedHtml: makeNodeComponent("embedHtml"),
-    radioGroup: makeNodeComponent("radioGroup"),
-    img: makeNodeComponent("img"),
-    radio: makeNodeComponent("radio"),
     snackbar: makeNodeComponent("snackbar"),
     _delete: makeNodeComponent("_delete"),
     cansel: makeNodeComponent("cansel"),
+    img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicImageEdit
     internalVariantProps: PlasmicImageEdit__VariantProps,

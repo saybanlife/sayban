@@ -646,6 +646,12 @@ function PlasmicCenterPage__RenderFunc(props: {
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           $state.centerData?.is_active?.toString()
+      },
+      {
+        path: "imageEdit.restart",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -1884,6 +1890,49 @@ function PlasmicCenterPage__RenderFunc(props: {
                 data-plasmic-override={overrides.imageEdit}
                 className={classNames("__wab_instance", sty.imageEdit)}
                 images={$state.centerData?.image}
+                onRestartChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "imageEdit",
+                    "restart"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+
+                  (async val => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return ($state.restart +=
+                                $state.imageEdit.restart);
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+                  }).apply(null, eventArgs);
+                }}
+                restart={generateStateValueProp($state, [
+                  "imageEdit",
+                  "restart"
+                ])}
               />
             </div>
             <div className={classNames(projectcss.all, sty.freeBox__eog3I)}>
@@ -2690,7 +2739,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                       await $steps["updateSaveUploadLoading"];
                   }
 
-                  $steps["invokeGlobalAction"] = true
+                  $steps["imageInsert"] = true
                     ? (() => {
                         const actionArgs = {
                           args: [
@@ -2710,47 +2759,34 @@ function PlasmicCenterPage__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["invokeGlobalAction"] != null &&
-                    typeof $steps["invokeGlobalAction"] === "object" &&
-                    typeof $steps["invokeGlobalAction"].then === "function"
+                    $steps["imageInsert"] != null &&
+                    typeof $steps["imageInsert"] === "object" &&
+                    typeof $steps["imageInsert"].then === "function"
                   ) {
-                    $steps["invokeGlobalAction"] =
-                      await $steps["invokeGlobalAction"];
+                    $steps["imageInsert"] = await $steps["imageInsert"];
                   }
 
-                  $steps["updateImageinsertIsOpen"] = true
+                  $steps["runCode"] = $steps.imageInsert?.data?.success
                     ? (() => {
                         const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["imageinsert", "isOpen"]
-                          },
-                          operation: 4
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
+                          customFunction: async () => {
+                            return (() => {
+                              $state.imageinsert.isOpen = false;
+                              return ($state.restart += "1");
+                            })();
                           }
-                          const { objRoot, variablePath } = variable;
-
-                          const oldValue = $stateGet(objRoot, variablePath);
-                          $stateSet(objRoot, variablePath, !oldValue);
-                          return !oldValue;
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
                         })?.apply(null, [actionArgs]);
                       })()
                     : undefined;
                   if (
-                    $steps["updateImageinsertIsOpen"] != null &&
-                    typeof $steps["updateImageinsertIsOpen"] === "object" &&
-                    typeof $steps["updateImageinsertIsOpen"].then === "function"
+                    $steps["runCode"] != null &&
+                    typeof $steps["runCode"] === "object" &&
+                    typeof $steps["runCode"].then === "function"
                   ) {
-                    $steps["updateImageinsertIsOpen"] =
-                      await $steps["updateImageinsertIsOpen"];
+                    $steps["runCode"] = await $steps["runCode"];
                   }
 
                   $steps["updateSaveUploadLoading2"] = true

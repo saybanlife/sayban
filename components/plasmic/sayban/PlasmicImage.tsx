@@ -88,8 +88,8 @@ export type PlasmicImage__OverridesType = {
   root?: Flex__<"div">;
   embedHtml?: Flex__<typeof Embed>;
   radioGroup?: Flex__<typeof RadioGroup>;
-  img?: Flex__<typeof PlasmicImg__>;
   radio?: Flex__<typeof Radio>;
+  img?: Flex__<typeof PlasmicImg__>;
 };
 
 export interface DefaultImageProps {
@@ -253,6 +253,49 @@ function PlasmicImage__RenderFunc(props: {
             data-plasmic-name={"radioGroup"}
             data-plasmic-override={overrides.radioGroup}
             className={classNames("__wab_instance", sty.radioGroup)}
+            label={
+              <React.Fragment>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__sExcu
+                  )}
+                >
+                  {"Label"}
+                </div>
+                <Radio
+                  data-plasmic-name={"radio"}
+                  data-plasmic-override={overrides.radio}
+                  className={classNames("__wab_instance", sty.radio)}
+                  disabled={false}
+                  label={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__h56Kf
+                      )}
+                    >
+                      {""}
+                    </div>
+                  }
+                  value={(() => {
+                    try {
+                      return currentItem.id;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                />
+              </React.Fragment>
+            }
             onChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["radioGroup", "value"]).apply(
                 null,
@@ -299,221 +342,182 @@ function PlasmicImage__RenderFunc(props: {
                 }
               }).apply(null, eventArgs);
             }}
-            options={
-              <div
-                className={classNames(projectcss.all, sty.freeBox__sCqQz)}
-                id={"list"}
-              >
-                {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                  (() => {
-                    try {
-                      return $props.images;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return [];
-                      }
-                      throw e;
-                    }
-                  })()
-                ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                  const currentItem = __plasmic_item_0;
-                  const currentIndex = __plasmic_idx_0;
-                  return (
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__fy4J3)}
-                      data-id={(() => {
-                        try {
-                          return currentItem.id;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                      key={currentIndex}
-                      onDragEnd={async event => {
-                        const $steps = {};
-
-                        $steps["runCode"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                customFunction: async () => {
-                                  return (() => {
-                                    const list =
-                                      window.document.getElementById("list");
-                                    if (!list) {
-                                      return;
-                                    }
-                                    const children = Array.from(list.children);
-                                    const files = [...$props.images];
-                                    children.forEach((child, index) => {
-                                      const id = child.dataset.id;
-                                      const fileIndex = files.findIndex(
-                                        f => f.id == id
-                                      );
-                                      if (fileIndex !== -1) {
-                                        files[fileIndex].order = index;
-                                      }
-                                    });
-                                    return ($props.images = files);
-                                  })();
-                                }
-                              };
-                              return (({ customFunction }) => {
-                                return customFunction();
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["runCode"] != null &&
-                          typeof $steps["runCode"] === "object" &&
-                          typeof $steps["runCode"].then === "function"
-                        ) {
-                          $steps["runCode"] = await $steps["runCode"];
-                        }
-                      }}
-                    >
-                      <PlasmicImg__
-                        data-plasmic-name={"img"}
-                        data-plasmic-override={overrides.img}
-                        alt={""}
-                        className={classNames(sty.img)}
-                        displayHeight={"50px"}
-                        displayMaxHeight={"none"}
-                        displayMaxWidth={"100%"}
-                        displayMinHeight={"0"}
-                        displayMinWidth={"0"}
-                        displayWidth={"50px"}
-                        loading={"lazy"}
-                        src={(() => {
-                          try {
-                            return currentItem.image_url;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}
-                      />
-
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__lI0Ry
-                        )}
-                      >
-                        <React.Fragment>{currentItem.order}</React.Fragment>
-                      </div>
-                      <Radio
-                        data-plasmic-name={"radio"}
-                        data-plasmic-override={overrides.radio}
-                        className={classNames("__wab_instance", sty.radio)}
-                        disabled={false}
-                        label={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__h56Kf
-                            )}
-                          >
-                            {""}
-                          </div>
-                        }
-                        value={(() => {
-                          try {
-                            return currentItem.id;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}
-                      />
-
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__tiFp1
-                        )}
-                      >
-                        <Icon58Icon
-                          className={classNames(projectcss.all, sty.svg__tcXr)}
-                          onClick={async event => {
-                            const $steps = {};
-
-                            $steps["runCode"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    customFunction: async () => {
-                                      return ($props.images =
-                                        $props.images.filter(
-                                          i => i.id != currentItem.id
-                                        ));
-                                    }
-                                  };
-                                  return (({ customFunction }) => {
-                                    return customFunction();
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["runCode"] != null &&
-                              typeof $steps["runCode"] === "object" &&
-                              typeof $steps["runCode"].then === "function"
-                            ) {
-                              $steps["runCode"] = await $steps["runCode"];
-                            }
-                          }}
-                          role={"img"}
-                        />
-
-                        <Icon60Icon
-                          className={classNames(
-                            projectcss.all,
-                            sty.svg___4OZtr,
-                            "handle"
-                          )}
-                          role={"img"}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            }
+            options={null}
             showDescription={false}
             showLabel={false}
             value={generateStateValueProp($state, ["radioGroup", "value"])}
           />
         </div>
       ) : null}
+      <div
+        className={classNames(projectcss.all, sty.freeBox__sCqQz)}
+        id={"list"}
+      >
+        {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+          (() => {
+            try {
+              return $props.images;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
+        ).map((__plasmic_item_0, __plasmic_idx_0) => {
+          const currentItem = __plasmic_item_0;
+          const currentIndex = __plasmic_idx_0;
+          return (
+            <div
+              className={classNames(projectcss.all, sty.freeBox__fy4J3)}
+              data-id={(() => {
+                try {
+                  return currentItem.id;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              key={currentIndex}
+              onDragEnd={async event => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            const list = window.document.getElementById("list");
+                            if (!list) {
+                              return;
+                            }
+                            const children = Array.from(list.children);
+                            const files = [...$props.images];
+                            children.forEach((child, index) => {
+                              const id = child.dataset.id;
+                              const fileIndex = files.findIndex(
+                                f => f.id == id
+                              );
+                              if (fileIndex !== -1) {
+                                files[fileIndex].order = index;
+                              }
+                            });
+                            return ($props.images = files);
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+              }}
+            >
+              <PlasmicImg__
+                data-plasmic-name={"img"}
+                data-plasmic-override={overrides.img}
+                alt={""}
+                className={classNames(sty.img)}
+                displayHeight={"50px"}
+                displayMaxHeight={"none"}
+                displayMaxWidth={"100%"}
+                displayMinHeight={"0"}
+                displayMinWidth={"0"}
+                displayWidth={"50px"}
+                loading={"lazy"}
+                src={(() => {
+                  try {
+                    return currentItem.image_url;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+              />
+
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__lI0Ry
+                )}
+              >
+                <React.Fragment>{currentItem.order}</React.Fragment>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__tiFp1)}>
+                <Icon58Icon
+                  className={classNames(projectcss.all, sty.svg__tcXr)}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return ($props.images = $props.images.filter(
+                                i => i.id != currentItem.id
+                              ));
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+                  }}
+                  role={"img"}
+                />
+
+                <Icon60Icon
+                  className={classNames(
+                    projectcss.all,
+                    sty.svg___4OZtr,
+                    "handle"
+                  )}
+                  role={"img"}
+                />
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "embedHtml", "radioGroup", "img", "radio"],
+  root: ["root", "embedHtml", "radioGroup", "radio", "img"],
   embedHtml: ["embedHtml"],
-  radioGroup: ["radioGroup", "img", "radio"],
-  img: ["img"],
-  radio: ["radio"]
+  radioGroup: ["radioGroup", "radio"],
+  radio: ["radio"],
+  img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -522,8 +526,8 @@ type NodeDefaultElementType = {
   root: "div";
   embedHtml: typeof Embed;
   radioGroup: typeof RadioGroup;
-  img: typeof PlasmicImg__;
   radio: typeof Radio;
+  img: typeof PlasmicImg__;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -590,8 +594,8 @@ export const PlasmicImage = Object.assign(
     // Helper components rendering sub-elements
     embedHtml: makeNodeComponent("embedHtml"),
     radioGroup: makeNodeComponent("radioGroup"),
-    img: makeNodeComponent("img"),
     radio: makeNodeComponent("radio"),
+    img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicImage
     internalVariantProps: PlasmicImage__VariantProps,

@@ -28,7 +28,11 @@
     grid-column: 4;
   }
 }
-.freeBox {
+.reservation:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.freeBox__qIduB {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -43,7 +47,71 @@
   padding: 0px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .freeBox {
+  .freeBox__qIduB {
+    width: 100%;
+    grid-column-start: 1 !important;
+    grid-column-end: -1 !important;
+    padding: 0px var(--token-0tl2H1TRPHhV);
+  }
+}
+.freeBox__egf40 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 200px;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  flex-shrink: 0;
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: 8px;
+}
+.freeBox__mhFwg {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 200px;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  flex-shrink: 0;
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: 8px;
+}
+.freeBox__viKyl {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 200px;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  flex-shrink: 0;
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: 8px;
+}
+.freeBox__t5Rev {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-fEaUg40ICnXp);
+  grid-column-start: 1 !important;
+  grid-column-end: -1 !important;
+  padding: 0px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__t5Rev {
     width: 100%;
     grid-column-start: 1 !important;
     grid-column-end: -1 !important;
@@ -52,10 +120,6 @@
 }
 .itemBooking:global(.__wab_instance) {
   max-width: 100%;
-}
-.apiRequest:global(.__wab_instance) {
-  max-width: 100%;
-  object-fit: cover;
 }
 .section {
   animation: none;

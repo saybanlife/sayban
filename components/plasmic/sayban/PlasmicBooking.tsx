@@ -59,8 +59,8 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import ItemBooking from "../../ItemBooking"; // plasmic-import: NnzIun3_VRrR/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+import ItemBooking from "../../ItemBooking"; // plasmic-import: NnzIun3_VRrR/component
 import BookingHeader from "../../BookingHeader"; // plasmic-import: K9ETXxPuQRCy/component
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -77,21 +77,39 @@ export type PlasmicBooking__VariantsArgs = {};
 type VariantPropType = keyof PlasmicBooking__VariantsArgs;
 export const PlasmicBooking__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicBooking__ArgsType = { token?: string };
+export type PlasmicBooking__ArgsType = {
+  token?: string;
+  selectCenter?: string;
+  onSelectCenterChange?: (val: string) => void;
+  goToDetails?: (event: any) => void;
+  goToReservation?: (event: any) => void;
+  goToCenter?: (id: string) => void;
+};
 type ArgPropType = keyof PlasmicBooking__ArgsType;
-export const PlasmicBooking__ArgProps = new Array<ArgPropType>("token");
+export const PlasmicBooking__ArgProps = new Array<ArgPropType>(
+  "token",
+  "selectCenter",
+  "onSelectCenterChange",
+  "goToDetails",
+  "goToReservation",
+  "goToCenter"
+);
 
 export type PlasmicBooking__OverridesType = {
   root?: Flex__<"div">;
-  freeBox?: Flex__<"div">;
+  reservation?: Flex__<typeof ApiRequest>;
   itemBooking?: Flex__<typeof ItemBooking>;
-  apiRequest?: Flex__<typeof ApiRequest>;
   section?: Flex__<"section">;
   bookingHeader?: Flex__<typeof BookingHeader>;
 };
 
 export interface DefaultBookingProps {
   token?: string;
+  selectCenter?: string;
+  onSelectCenterChange?: (val: string) => void;
+  goToDetails?: (event: any) => void;
+  goToReservation?: (event: any) => void;
+  goToCenter?: (id: string) => void;
   className?: string;
 }
 
@@ -137,19 +155,19 @@ function PlasmicBooking__RenderFunc(props: {
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "apiRequest.data",
+        path: "reservation.data",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "apiRequest.error",
+        path: "reservation.error",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "apiRequest.loading",
+        path: "reservation.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
@@ -165,6 +183,14 @@ function PlasmicBooking__RenderFunc(props: {
         type: "private",
         variableType: "number",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "selectCenter",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "selectCenter",
+        onChangeProp: "onSelectCenterChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -194,75 +220,143 @@ function PlasmicBooking__RenderFunc(props: {
         sty.root
       )}
     >
-      <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
-      >
-        {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-          (() => {
-            try {
-              return $state.apiRequest.data.result;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return [];
-              }
-              throw e;
-            }
-          })()
-        ).map((__plasmic_item_0, __plasmic_idx_0) => {
-          const currentItem = __plasmic_item_0;
-          const currentIndex = __plasmic_idx_0;
-          return (
-            <ItemBooking
-              data-plasmic-name={"itemBooking"}
-              data-plasmic-override={overrides.itemBooking}
-              booking={true}
-              className={classNames("__wab_instance", sty.itemBooking)}
-              item={currentItem}
-              key={currentIndex}
-            />
-          );
-        })}
-      </div>
       <ApiRequest
-        data-plasmic-name={"apiRequest"}
-        data-plasmic-override={overrides.apiRequest}
-        children={null}
-        className={classNames("__wab_instance", sty.apiRequest)}
+        data-plasmic-name={"reservation"}
+        data-plasmic-override={overrides.reservation}
+        className={classNames("__wab_instance", sty.reservation)}
         config={{
           headers: {
             Authorization: `Bearer ${$props.token}`
           }
         }}
         errorDisplay={null}
-        loadingDisplay={null}
+        loadingDisplay={
+          <div className={classNames(projectcss.all, sty.freeBox__qIduB)}>
+            <div
+              className={classNames(
+                projectcss.all,
+                sty.freeBox__egf40,
+                "shimmer"
+              )}
+            />
+
+            <div
+              className={classNames(
+                projectcss.all,
+                sty.freeBox__mhFwg,
+                "shimmer"
+              )}
+            />
+
+            <div
+              className={classNames(
+                projectcss.all,
+                sty.freeBox__viKyl,
+                "shimmer"
+              )}
+            />
+          </div>
+        }
         method={"GET"}
         onError={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+          generateStateOnChangeProp($state, ["reservation", "error"]).apply(
             null,
             eventArgs
           );
         }}
         onLoading={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
+          generateStateOnChangeProp($state, ["reservation", "loading"]).apply(
             null,
             eventArgs
           );
         }}
         onSuccess={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+          generateStateOnChangeProp($state, ["reservation", "data"]).apply(
             null,
             eventArgs
           );
         }}
         shouldFetch={true}
         url={"https://sayban.darkube.app/webhook/Reservation"}
-      />
+      >
+        <div className={classNames(projectcss.all, sty.freeBox__t5Rev)}>
+          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+            (() => {
+              try {
+                return $state.reservation.data.result;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
+              }
+            })()
+          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+            const currentItem = __plasmic_item_0;
+            const currentIndex = __plasmic_idx_0;
+            return (
+              <ItemBooking
+                data-plasmic-name={"itemBooking"}
+                data-plasmic-override={overrides.itemBooking}
+                booking={true}
+                className={classNames("__wab_instance", sty.itemBooking)}
+                goToCenter={async event => {
+                  const $steps = {};
 
+                  $steps["runCode"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return window.sessionStorage.setItem(
+                              "id",
+                              currentItem.center_id
+                            );
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode"] != null &&
+                    typeof $steps["runCode"] === "object" &&
+                    typeof $steps["runCode"].then === "function"
+                  ) {
+                    $steps["runCode"] = await $steps["runCode"];
+                  }
+
+                  $steps["runGoToCenter"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          eventRef: $props["goToCenter"],
+                          args: [currentItem.center_id]
+                        };
+                        return (({ eventRef, args }) => {
+                          return eventRef?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runGoToCenter"] != null &&
+                    typeof $steps["runGoToCenter"] === "object" &&
+                    typeof $steps["runGoToCenter"].then === "function"
+                  ) {
+                    $steps["runGoToCenter"] = await $steps["runGoToCenter"];
+                  }
+                }}
+                goToDetails={args.goToDetails}
+                goToReservation={args.goToReservation}
+                item={currentItem}
+                key={currentIndex}
+              />
+            );
+          })}
+        </div>
+      </ApiRequest>
       <section
         data-plasmic-name={"section"}
         data-plasmic-override={overrides.section}
@@ -315,17 +409,9 @@ function PlasmicBooking__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: [
-    "root",
-    "freeBox",
-    "itemBooking",
-    "apiRequest",
-    "section",
-    "bookingHeader"
-  ],
-  freeBox: ["freeBox", "itemBooking"],
+  root: ["root", "reservation", "itemBooking", "section", "bookingHeader"],
+  reservation: ["reservation", "itemBooking"],
   itemBooking: ["itemBooking"],
-  apiRequest: ["apiRequest"],
   section: ["section", "bookingHeader"],
   bookingHeader: ["bookingHeader"]
 } as const;
@@ -334,9 +420,8 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  freeBox: "div";
+  reservation: typeof ApiRequest;
   itemBooking: typeof ItemBooking;
-  apiRequest: typeof ApiRequest;
   section: "section";
   bookingHeader: typeof BookingHeader;
 };
@@ -403,9 +488,8 @@ export const PlasmicBooking = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    freeBox: makeNodeComponent("freeBox"),
+    reservation: makeNodeComponent("reservation"),
     itemBooking: makeNodeComponent("itemBooking"),
-    apiRequest: makeNodeComponent("apiRequest"),
     section: makeNodeComponent("section"),
     bookingHeader: makeNodeComponent("bookingHeader"),
 

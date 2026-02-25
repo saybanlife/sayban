@@ -380,6 +380,12 @@ function PlasmicHomepage__RenderFunc(props: {
               throw e;
             }
           })() ?? $props.homePage2
+      },
+      {
+        path: "booking.selectCenter",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -1057,8 +1063,89 @@ function PlasmicHomepage__RenderFunc(props: {
                     $state,
                     "homePage2",
                     "booking"
-                  )
+                  ),
+                  [sty.bookingpage_center]: hasVariant($state, "page", "center")
                 })}
+                goToCenter={async id => {
+                  const $steps = {};
+
+                  $steps["goToHomepage"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          destination: `/${(() => {
+                            try {
+                              return $ctx.params.page;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}/${(() => {
+                            try {
+                              return (() => {
+                                if (window.sessionStorage.getItem("id")) {
+                                  $state.slug.push("center");
+                                  $state.slug.push(
+                                    window.sessionStorage.getItem("id")
+                                  );
+                                }
+                                return $state.slug.join("/");
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToHomepage"] != null &&
+                    typeof $steps["goToHomepage"] === "object" &&
+                    typeof $steps["goToHomepage"].then === "function"
+                  ) {
+                    $steps["goToHomepage"] = await $steps["goToHomepage"];
+                  }
+                }}
+                onSelectCenterChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "booking",
+                    "selectCenter"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                selectCenter={generateStateValueProp($state, [
+                  "booking",
+                  "selectCenter"
+                ])}
                 token={$state.token}
               />
             </Reveal>

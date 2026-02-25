@@ -63,6 +63,7 @@ import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4si
 import UploudeTime from "../../UploudeTime"; // plasmic-import: IxvwO5AMD5ex/component
 import Status from "../../Status"; // plasmic-import: UhSHXabmHrQP/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -92,11 +93,17 @@ export const PlasmicItemBooking__VariantProps = new Array<VariantPropType>(
 export type PlasmicItemBooking__ArgsType = {
   item?: any;
   onClick?: (event: any) => void;
+  goToCenter?: (event: any) => void;
+  goToDetails?: (event: any) => void;
+  goToReservation?: (event: any) => void;
 };
 type ArgPropType = keyof PlasmicItemBooking__ArgsType;
 export const PlasmicItemBooking__ArgProps = new Array<ArgPropType>(
   "item",
-  "onClick"
+  "onClick",
+  "goToCenter",
+  "goToDetails",
+  "goToReservation"
 );
 
 export type PlasmicItemBooking__OverridesType = {
@@ -112,6 +119,9 @@ export type PlasmicItemBooking__OverridesType = {
 export interface DefaultItemBookingProps {
   item?: any;
   onClick?: (event: any) => void;
+  goToCenter?: (event: any) => void;
+  goToDetails?: (event: any) => void;
+  goToReservation?: (event: any) => void;
   booking?: SingleBooleanChoiceArg<"booking">;
   className?: string;
 }
@@ -205,7 +215,48 @@ function PlasmicItemBooking__RenderFunc(props: {
       )}
       onClick={args.onClick}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__mviwM)}>
+      <div
+        className={classNames(projectcss.all, sty.freeBox__mviwM)}
+        onClick={async event => {
+          const $steps = {};
+
+          $steps["runCode"] = true
+            ? (() => {
+                const actionArgs = {
+                  customFunction: async () => {
+                    return undefined;
+                  }
+                };
+                return (({ customFunction }) => {
+                  return customFunction();
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["runCode"] != null &&
+            typeof $steps["runCode"] === "object" &&
+            typeof $steps["runCode"].then === "function"
+          ) {
+            $steps["runCode"] = await $steps["runCode"];
+          }
+
+          $steps["runGoToCenter"] = true
+            ? (() => {
+                const actionArgs = { eventRef: $props["goToCenter"] };
+                return (({ eventRef, args }) => {
+                  return eventRef?.(...(args ?? []));
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["runGoToCenter"] != null &&
+            typeof $steps["runGoToCenter"] === "object" &&
+            typeof $steps["runGoToCenter"].then === "function"
+          ) {
+            $steps["runGoToCenter"] = await $steps["runGoToCenter"];
+          }
+        }}
+      >
         <PlasmicImg__
           data-plasmic-name={"img"}
           data-plasmic-override={overrides.img}
@@ -454,6 +505,7 @@ function PlasmicItemBooking__RenderFunc(props: {
             </div>
           }
           loading={generateStateValueProp($state, ["button", "loading"])}
+          onClick={args.goToDetails}
           onLoadingChange={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["button", "loading"]).apply(
               null,
@@ -487,6 +539,7 @@ function PlasmicItemBooking__RenderFunc(props: {
             </div>
           }
           loading={generateStateValueProp($state, ["button2", "loading"])}
+          onClick={args.goToReservation}
           onLoadingChange={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["button2", "loading"]).apply(
               null,
