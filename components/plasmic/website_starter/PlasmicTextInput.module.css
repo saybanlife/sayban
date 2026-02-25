@@ -50,6 +50,7 @@
 }
 .ariaInputtype_lineBox:global(.__wab_instance) {
   background: none;
+  color: var(--token-9M5jRUPt8Msb);
   border: 1px solid var(--token-Pxe4wDL2kJpb);
 }
 .ariaInputflat_top:global(.__wab_instance) {

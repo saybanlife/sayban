@@ -15,11 +15,17 @@
       calc(100% - var(--plsmc-viewport-gap) - var(--plsmc-viewport-gap))
     )
     minmax(0, var(--plsmc-wide-chunk)) 1fr var(--plsmc-viewport-gap);
-  padding: var(--token-CVjaMVgIQl_G) var(--token-kD77h-2NGSqI)
+  padding: var(--token-CVjaMVgIQl_G) var(--token-cfon0PHiXQoL)
     var(--token-73iLa06AE6f4);
 }
 .root > * {
   grid-column: 4;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .root {
+    padding-right: var(--token-0tl2H1TRPHhV);
+    padding-left: var(--token-0tl2H1TRPHhV);
+  }
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .root > * {

@@ -161,13 +161,14 @@ function PlasmicEditUser__RenderFunc(props: {
         path: "name.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props?.data?.name
       },
       {
         path: "code.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $props.data.national_code
       },
       {
         path: "selectGender.isOpen",
@@ -179,7 +180,7 @@ function PlasmicEditUser__RenderFunc(props: {
         path: "selectGender.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.data.gender
       },
       {
         path: "selectMarital.isOpen",
@@ -191,7 +192,8 @@ function PlasmicEditUser__RenderFunc(props: {
         path: "selectMarital.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $props.data.marital_status
       },
       {
         path: "cityInput.value",
@@ -494,11 +496,11 @@ function PlasmicEditUser__RenderFunc(props: {
                 try {
                   return [
                     {
-                      value: "Single",
+                      value: "single",
                       label: "مجرد"
                     },
                     {
-                      value: "Married",
+                      value: "married",
                       label: "متأهل"
                     }
                   ];
