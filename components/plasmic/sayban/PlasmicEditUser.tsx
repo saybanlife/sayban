@@ -84,9 +84,17 @@ export type PlasmicEditUser__VariantsArgs = {};
 type VariantPropType = keyof PlasmicEditUser__VariantsArgs;
 export const PlasmicEditUser__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicEditUser__ArgsType = { data?: any };
+export type PlasmicEditUser__ArgsType = {
+  data?: any;
+  opencity?: (event: any) => void;
+  opencity2?: boolean;
+};
 type ArgPropType = keyof PlasmicEditUser__ArgsType;
-export const PlasmicEditUser__ArgProps = new Array<ArgPropType>("data");
+export const PlasmicEditUser__ArgProps = new Array<ArgPropType>(
+  "data",
+  "opencity",
+  "opencity2"
+);
 
 export type PlasmicEditUser__OverridesType = {
   root?: Flex__<"div">;
@@ -105,6 +113,8 @@ export type PlasmicEditUser__OverridesType = {
 
 export interface DefaultEditUserProps {
   data?: any;
+  opencity?: (event: any) => void;
+  opencity2?: boolean;
   className?: string;
 }
 
@@ -128,7 +138,21 @@ function PlasmicEditUser__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
+        {
+          opencity2: (() => {
+            try {
+              return $ctx.query.city == "true";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()
+        },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -168,7 +192,7 @@ function PlasmicEditUser__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          $props.data.national_code
+          $props?.data?.national_code
       },
       {
         path: "selectGender.isOpen",
@@ -180,7 +204,8 @@ function PlasmicEditUser__RenderFunc(props: {
         path: "selectGender.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.data.gender
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $props.data?.gender
       },
       {
         path: "selectMarital.isOpen",
@@ -193,7 +218,7 @@ function PlasmicEditUser__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          $props.data.marital_status
+          $props.data?.marital_status
       },
       {
         path: "cityInput.value",
@@ -219,19 +244,7 @@ function PlasmicEditUser__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          (() => {
-            try {
-              return $ctx.query.city == "true";
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return false;
-              }
-              throw e;
-            }
-          })()
+          $props["opencity2"]
       },
       {
         path: "city.city",
@@ -618,192 +631,106 @@ function PlasmicEditUser__RenderFunc(props: {
 
           <div
             className={classNames(projectcss.all, sty.freeBox___9Gcq5)}
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["goToLogin"] = true
-                ? (() => {
-                    const actionArgs = {
-                      destination: `/login/${(() => {
-                        try {
-                          return $ctx.params.step?.[0];
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}?city=${"true"}`
-                    };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["goToLogin"] != null &&
-                typeof $steps["goToLogin"] === "object" &&
-                typeof $steps["goToLogin"].then === "function"
-              ) {
-                $steps["goToLogin"] = await $steps["goToLogin"];
-              }
-            }}
+            onClick={args.opencity}
           />
         </div>
       </div>
-      {(() => {
-        const child$Props = {
-          className: classNames("__wab_instance", sty.modal),
-          closeIcon: (
-            <svg
-              data-plasmic-name={"svg"}
-              data-plasmic-override={overrides.svg}
-              className={classNames(projectcss.all, sty.svg)}
-              role={"img"}
-            />
-          ),
+      <AntdModal
+        data-plasmic-name={"modal"}
+        data-plasmic-override={overrides.modal}
+        className={classNames("__wab_instance", sty.modal)}
+        closeIcon={
+          <svg
+            data-plasmic-name={"svg"}
+            data-plasmic-override={overrides.svg}
+            className={classNames(projectcss.all, sty.svg)}
+            role={"img"}
+          />
+        }
+        defaultStylesClassName={classNames(
+          projectcss.root_reset,
+          projectcss.plasmic_default_styles,
+          projectcss.plasmic_mixins,
+          styleTokensClassNames
+        )}
+        hideFooter={true}
+        maskClosable={true}
+        modalContentClassName={classNames({ [sty["pcls_pXWJynLVX1ZX"]]: true })}
+        modalScopeClassName={sty["modal__modal"]}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["modal", "open"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        open={generateStateValueProp($state, ["modal", "open"])}
+        title={null}
+        trigger={null}
+        width={"100vw"}
+      >
+        <City
+          data-plasmic-name={"city"}
+          data-plasmic-override={overrides.city}
+          back={async () => {
+            const $steps = {};
 
-          defaultStylesClassName: classNames(
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
-            styleTokensClassNames
-          ),
-          hideFooter: true,
-          maskClosable: true,
-          modalContentClassName: classNames({
-            [sty["pcls_pXWJynLVX1ZX"]]: true
-          }),
-          modalScopeClassName: sty["modal__modal"],
-          onOpenChange: async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["modal", "open"]).apply(
+            $steps["goToLogin"] = true
+              ? (() => {
+                  const actionArgs = {
+                    destination: `/login/${(() => {
+                      try {
+                        return $ctx.params.step?.[0];
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}?city=${"false"}`
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["goToLogin"] != null &&
+              typeof $steps["goToLogin"] === "object" &&
+              typeof $steps["goToLogin"].then === "function"
+            ) {
+              $steps["goToLogin"] = await $steps["goToLogin"];
+            }
+          }}
+          city={generateStateValueProp($state, ["city", "city"])}
+          className={classNames("__wab_instance", sty.city)}
+          onCityChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["city", "city"]).apply(
               null,
               eventArgs
             );
-          },
-          open: generateStateValueProp($state, ["modal", "open"]),
-          title: null,
-          trigger: null,
-          width: "100vw"
-        };
-        initializeCodeComponentStates(
-          $state,
-          [
-            {
-              name: "open",
-              plasmicStateName: "modal.open"
-            }
-          ],
-          [],
-          undefined ?? {},
-          child$Props
-        );
-        initializePlasmicStates(
-          $state,
-          [
-            {
-              name: "modal.open",
-              initFunc: ({ $props, $state, $queries, $q }) =>
-                (() => {
-                  try {
-                    return $ctx.query.city == "true";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return false;
-                    }
-                    throw e;
-                  }
-                })()
-            }
-          ],
-          []
-        );
-        return (
-          <AntdModal
-            data-plasmic-name={"modal"}
-            data-plasmic-override={overrides.modal}
-            {...child$Props}
-          >
-            <City
-              data-plasmic-name={"city"}
-              data-plasmic-override={overrides.city}
-              back={async () => {
-                const $steps = {};
 
-                $steps["goToLogin"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        destination: `/login/${(() => {
-                          try {
-                            return $ctx.params.step?.[0];
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}?city=${"false"}`
-                      };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToLogin"] != null &&
-                  typeof $steps["goToLogin"] === "object" &&
-                  typeof $steps["goToLogin"].then === "function"
-                ) {
-                  $steps["goToLogin"] = await $steps["goToLogin"];
-                }
-              }}
-              city={generateStateValueProp($state, ["city", "city"])}
-              className={classNames("__wab_instance", sty.city)}
-              onCityChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["city", "city"]).apply(
-                  null,
-                  eventArgs
-                );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-            />
-          </AntdModal>
-        );
-      })()}
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+        />
+      </AntdModal>
       <Header
         data-plasmic-name={"header"}
         data-plasmic-override={overrides.header}

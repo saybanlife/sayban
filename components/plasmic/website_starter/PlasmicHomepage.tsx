@@ -1812,15 +1812,7 @@ function PlasmicHomepage__RenderFunc(props: {
                         }
                       })()}/${(() => {
                         try {
-                          return (() => {
-                            if ($state.subcategories?.center?.id) {
-                              $state.slug.push("center");
-                              $state.slug.push(
-                                $state.subcategories?.center?.id
-                              );
-                            }
-                            return $state.slug.join("/");
-                          })();
+                          return $state.slug.join("/");
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -1830,7 +1822,7 @@ function PlasmicHomepage__RenderFunc(props: {
                           }
                           throw e;
                         }
-                      })()}`
+                      })()}?city=${"true"}`
                     };
                     return (({ destination }) => {
                       if (
@@ -2265,7 +2257,74 @@ function PlasmicHomepage__RenderFunc(props: {
                 "editUser"
               )
             })}
-            data={$state.profile.data.result}
+            data={$state?.profile?.data?.result}
+            opencity={async event => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}/${(() => {
+                        try {
+                          return $ctx.params.slug.join("/");
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}?city=${"true"}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+            opencity2={(() => {
+              try {
+                return $ctx?.query?.city == "true";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })()}
           />
         </div>
       </div>

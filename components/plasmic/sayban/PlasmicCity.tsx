@@ -217,7 +217,8 @@ function PlasmicCity__RenderFunc(props: {
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        "page "
       )}
     >
       <SideEffect
@@ -234,7 +235,7 @@ function PlasmicCity__RenderFunc(props: {
         <section
           data-plasmic-name={"section"}
           data-plasmic-override={overrides.section}
-          className={classNames(projectcss.all, sty.section)}
+          className={classNames(projectcss.all, sty.section, "page ")}
         >
           <div
             className={classNames(projectcss.all, sty.freeBox__gfn1Y)}
@@ -263,8 +264,6 @@ function PlasmicCity__RenderFunc(props: {
               }}
               role={"img"}
             />
-
-            <div className={classNames(projectcss.all, sty.freeBox__udUBb)} />
 
             <div className={classNames(projectcss.all, sty.freeBox___0ZvW)}>
               <TextInput
