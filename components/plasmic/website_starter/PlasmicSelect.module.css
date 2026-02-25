@@ -60,6 +60,11 @@
   border-radius: 0px;
   border-bottom: 1px solid var(--token-DbGdjBpQ6R_X);
 }
+.ariaButtontype_lineBox:global(.__wab_instance) {
+  background: none;
+  border-radius: var(--token-6F5DR5OsTPi0);
+  border: 1px solid var(--token-Pxe4wDL2kJpb);
+}
 .ariaSelectedValue:global(.__wab_instance) {
   font-size: var(--token-ehIkf6s-dMLU);
   line-height: var(--token-tyha1eTxLLSq);

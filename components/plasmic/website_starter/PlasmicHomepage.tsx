@@ -72,6 +72,7 @@ import Categories from "../../Categories"; // plasmic-import: R95SHqmqnvX5/compo
 import Subcategories from "../../Subcategories"; // plasmic-import: JM9_woEGqy8m/component
 import Center from "../../Center"; // plasmic-import: Lh-Py4-EsRhC/component
 import Payment from "../../Payment"; // plasmic-import: BVIyToFh1miy/component
+import EditUser from "../../EditUser"; // plasmic-import: gFlyeK2pwR_U/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -112,12 +113,14 @@ export function generateDynamicMetadata($q: any, $ctx: any) {
 createPlasmicElementProxy;
 
 export type PlasmicHomepage__VariantMembers = {
-  page: "categories" | "subcategories" | "center" | "payment";
+  page: "categories" | "subcategories" | "center" | "payment" | "editUser";
   search2: "search2";
   homePage2: "home" | "reminder" | "user" | "booking";
 };
 export type PlasmicHomepage__VariantsArgs = {
-  page?: SingleChoiceArg<"categories" | "subcategories" | "center" | "payment">;
+  page?: SingleChoiceArg<
+    "categories" | "subcategories" | "center" | "payment" | "editUser"
+  >;
   search2?: SingleBooleanChoiceArg<"search2">;
   homePage2?: SingleChoiceArg<"home" | "reminder" | "user" | "booking">;
 };
@@ -150,6 +153,7 @@ export type PlasmicHomepage__OverridesType = {
   center?: Flex__<typeof Center>;
   payment?: Flex__<typeof Payment>;
   search?: Flex__<typeof ApiRequest>;
+  editUser?: Flex__<typeof EditUser>;
 };
 
 export interface DefaultHomepageProps {}
@@ -238,6 +242,8 @@ function PlasmicHomepage__RenderFunc(props: {
                 if ($ctx.params?.slug?.find(i => i.includes("pay_")))
                   return "payment";
                 if ($ctx.params?.slug?.includes("center")) return "center";
+                if ($ctx.params?.slug?.includes("editProfile"))
+                  return "editUser";
                 if ($ctx.params?.slug?.[1] != undefined) return "subcategories";
                 if ($ctx.params?.slug?.[0] != undefined) return "categories";
               })();
@@ -570,6 +576,11 @@ function PlasmicHomepage__RenderFunc(props: {
                 "categories"
               ),
               [sty.homePagepage_center]: hasVariant($state, "page", "center"),
+              [sty.homePagepage_editUser]: hasVariant(
+                $state,
+                "page",
+                "editUser"
+              ),
               [sty.homePagepage_payment]: hasVariant($state, "page", "payment"),
               [sty.homePagepage_subcategories]: hasVariant(
                 $state,
@@ -1046,6 +1057,60 @@ function PlasmicHomepage__RenderFunc(props: {
                     "user"
                   )
                 })}
+                goToEdit={async event => {
+                  const $steps = {};
+
+                  $steps["goToHomepage"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          destination: `/${(() => {
+                            try {
+                              return $ctx.params.page;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}/${(() => {
+                            try {
+                              return "editProfile";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToHomepage"] != null &&
+                    typeof $steps["goToHomepage"] === "object" &&
+                    typeof $steps["goToHomepage"].then === "function"
+                  ) {
+                    $steps["goToHomepage"] = await $steps["goToHomepage"];
+                  }
+                }}
                 userinfo={$state.profile?.data?.result}
               />
             </Reveal>
@@ -1340,6 +1405,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   "categories"
                 ),
                 [sty.homepage_center]: hasVariant($state, "page", "center"),
+                [sty.homepage_editUser]: hasVariant($state, "page", "editUser"),
                 [sty.homepage_payment]: hasVariant($state, "page", "payment"),
                 [sty.homepage_subcategories]: hasVariant(
                   $state,
@@ -2183,6 +2249,24 @@ function PlasmicHomepage__RenderFunc(props: {
             })()}
             url={"https://sayban.darkube.app/webhook/search"}
           />
+
+          <EditUser
+            data-plasmic-name={"editUser"}
+            data-plasmic-override={overrides.editUser}
+            className={classNames("__wab_instance", sty.editUser, {
+              [sty.editUserhomePage2_user]: hasVariant(
+                $state,
+                "homePage2",
+                "user"
+              ),
+              [sty.editUserpage_editUser]: hasVariant(
+                $state,
+                "page",
+                "editUser"
+              )
+            })}
+            data={$state.profile.data.result}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -2207,7 +2291,8 @@ const PlasmicDescendants = {
     "subcategories",
     "center",
     "payment",
-    "search"
+    "search",
+    "editUser"
   ],
   sideEffect: ["sideEffect"],
   homePage: [
@@ -2232,7 +2317,8 @@ const PlasmicDescendants = {
   subcategories: ["subcategories"],
   center: ["center"],
   payment: ["payment"],
-  search: ["search"]
+  search: ["search"],
+  editUser: ["editUser"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -2255,6 +2341,7 @@ type NodeDefaultElementType = {
   center: typeof Center;
   payment: typeof Payment;
   search: typeof ApiRequest;
+  editUser: typeof EditUser;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -2335,6 +2422,7 @@ export const PlasmicHomepage = Object.assign(
     center: makeNodeComponent("center"),
     payment: makeNodeComponent("payment"),
     search: makeNodeComponent("search"),
+    editUser: makeNodeComponent("editUser"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

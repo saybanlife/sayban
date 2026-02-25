@@ -130,6 +130,9 @@
 .homePagepage_payment {
   display: none;
 }
+.homePagepage_editUser {
+  display: none;
+}
 .section__iGcIn {
   display: grid;
   align-content: flex-start;
@@ -555,6 +558,9 @@
 .homepage_payment:global(.__wab_instance) {
   display: none;
 }
+.homepage_editUser:global(.__wab_instance) {
+  display: none;
+}
 .homehomePage2_reminder:global(.__wab_instance) {
   display: none;
 }
@@ -620,4 +626,11 @@
 .search:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
+}
+.editUser:global(.__wab_instance) {
+  max-width: 100%;
+  display: none;
+}
+.editUserpage_editUser:global(.__wab_instance) {
+  display: grid;
 }

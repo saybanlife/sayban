@@ -90,9 +90,15 @@ export type PlasmicUser__VariantsArgs = {};
 type VariantPropType = keyof PlasmicUser__VariantsArgs;
 export const PlasmicUser__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicUser__ArgsType = { userinfo?: any };
+export type PlasmicUser__ArgsType = {
+  userinfo?: any;
+  goToEdit?: (event: any) => void;
+};
 type ArgPropType = keyof PlasmicUser__ArgsType;
-export const PlasmicUser__ArgProps = new Array<ArgPropType>("userinfo");
+export const PlasmicUser__ArgProps = new Array<ArgPropType>(
+  "userinfo",
+  "goToEdit"
+);
 
 export type PlasmicUser__OverridesType = {
   root?: Flex__<"section">;
@@ -104,6 +110,7 @@ export type PlasmicUser__OverridesType = {
 
 export interface DefaultUserProps {
   userinfo?: any;
+  goToEdit?: (event: any) => void;
   className?: string;
 }
 
@@ -214,9 +221,33 @@ function PlasmicUser__RenderFunc(props: {
             }}
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox__apRfu)}>
+          <div
+            className={classNames(projectcss.all, sty.freeBox__apRfu)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runGoToEdit"] = true
+                ? (() => {
+                    const actionArgs = { eventRef: $props["goToEdit"] };
+                    return (({ eventRef, args }) => {
+                      return eventRef?.(...(args ?? []));
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runGoToEdit"] != null &&
+                typeof $steps["runGoToEdit"] === "object" &&
+                typeof $steps["runGoToEdit"].then === "function"
+              ) {
+                $steps["runGoToEdit"] = await $steps["runGoToEdit"];
+              }
+            }}
+          >
             <Icon88Icon
               className={classNames(projectcss.all, sty.svg__aXau)}
+              onClick={async event => {
+                const $steps = {};
+              }}
               role={"img"}
             />
 

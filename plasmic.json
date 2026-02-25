@@ -2080,6 +2080,33 @@
           "cssFilePath": "plasmic/sayban/PlasmicItemBooking.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "0LHIIQ3CWNxO",
+          "name": "NewPage",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicNewPage.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/new-page.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicNewPage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/new-page"
+        },
+        {
+          "id": "gFlyeK2pwR_U",
+          "name": "EditUser",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicEditUser.tsx",
+          "importSpec": {
+            "modulePath": "EditUser.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicEditUser.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

@@ -48,6 +48,10 @@
   border-bottom-color: var(--token-Yo4gdKCgyuAu);
   color: var(--token-s6JDWwNdkMmO);
 }
+.ariaInputtype_lineBox:global(.__wab_instance) {
+  background: none;
+  border: 1px solid var(--token-Pxe4wDL2kJpb);
+}
 .ariaInputflat_top:global(.__wab_instance) {
   border-top-left-radius: 0rem;
   border-top-right-radius: 0rem;
