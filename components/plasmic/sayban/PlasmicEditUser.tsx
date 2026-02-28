@@ -243,8 +243,7 @@ function PlasmicEditUser__RenderFunc(props: {
         path: "modal.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          $props["opencity2"]
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "city.city",
@@ -673,45 +672,6 @@ function PlasmicEditUser__RenderFunc(props: {
           data-plasmic-override={overrides.city}
           back={async () => {
             const $steps = {};
-
-            $steps["goToLogin"] = true
-              ? (() => {
-                  const actionArgs = {
-                    destination: `/login/${(() => {
-                      try {
-                        return $ctx.params.step?.[0];
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()}?city=${"false"}`
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["goToLogin"] != null &&
-              typeof $steps["goToLogin"] === "object" &&
-              typeof $steps["goToLogin"].then === "function"
-            ) {
-              $steps["goToLogin"] = await $steps["goToLogin"];
-            }
           }}
           city={generateStateValueProp($state, ["city", "city"])}
           className={classNames("__wab_instance", sty.city)}

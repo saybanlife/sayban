@@ -2314,7 +2314,7 @@ function PlasmicHomepage__RenderFunc(props: {
             }}
             opencity2={(() => {
               try {
-                return $ctx?.query?.city == "true";
+                return false;
               } catch (e) {
                 if (
                   e instanceof TypeError ||

@@ -2107,6 +2107,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicEditUser.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "4JcB7p9dG66n",
+          "name": "Reviews",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicReviews.tsx",
+          "importSpec": {
+            "modulePath": "Reviews.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicReviews.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
