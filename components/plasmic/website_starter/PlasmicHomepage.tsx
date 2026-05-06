@@ -1359,7 +1359,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 throw e;
               }
             })()}
-            url={"https://sayban.darkube.app/webhook/categories/full"}
+            url={"https://sayban.darkube.ir/webhook/categories/full"}
           >
             <Home
               data-plasmic-name={"home"}
@@ -1652,7 +1652,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 throw e;
               }
             })()}
-            url={"https://sayban.darkube.app/webhook/getProfile"}
+            url={"https://sayban.darkube.ir/webhook/getProfile"}
           />
 
           <Categories
@@ -2239,7 +2239,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 throw e;
               }
             })()}
-            url={"https://sayban.darkube.app/webhook/search"}
+            url={"https://sayban.darkube.ir/webhook/search"}
           />
 
           <EditUser
