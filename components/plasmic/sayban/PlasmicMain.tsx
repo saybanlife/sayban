@@ -1394,7 +1394,7 @@ function PlasmicMain__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://sayban.darkube.app/webhook/panel/center/add",
+                            "https://sayban.darkube.ir/webhook/panel/center/add",
                             undefined,
                             (() => {
                               try {
@@ -1614,7 +1614,7 @@ function PlasmicMain__RenderFunc(props: {
           );
         }}
         shouldFetch={true}
-        url={"https://sayban.darkube.app/webhook/panel/categories/full"}
+        url={"https://sayban.darkube.ir/webhook/panel/categories/full"}
       />
 
       <Embed
@@ -1767,7 +1767,7 @@ function PlasmicMain__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "POST",
-                        "https://sayban.darkube.app/webhook/delete/center",
+                        "https://sayban.darkube.ir/webhook/delete/center",
                         undefined,
                         {
                           id: $state.deleteSnakbar.data.id
