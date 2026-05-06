@@ -490,7 +490,7 @@ function PlasmicPayment__RenderFunc(props: {
               throw e;
             }
           })()}
-          url={"https://sayban.darkube.app/webhook/reservations/payment"}
+          url={"https://sayban.darkube.ir/webhook/reservations/payment"}
         >
           <div className={classNames(projectcss.all, sty.freeBox__sPnkG)}>
             <div className={classNames(projectcss.all, sty.freeBox__r7Ep)}>
@@ -1249,7 +1249,7 @@ function PlasmicPayment__RenderFunc(props: {
                           const actionArgs = {
                             args: [
                               "POST",
-                              "https://sayban.darkube.app/webhook/reservations/update",
+                              "https://sayban.darkube.ir/webhook/reservations/update",
                               undefined,
                               (() => {
                                 try {
