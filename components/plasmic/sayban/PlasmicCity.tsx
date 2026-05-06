@@ -529,7 +529,7 @@ function PlasmicCity__RenderFunc(props: {
           }).apply(null, eventArgs);
         }}
         shouldFetch={true}
-        url={"https://sayban.darkube.app/webhook/city"}
+        url={"https://sayban.darkube.ir/webhook/city"}
       />
 
       <div className={classNames(projectcss.all, sty.freeBox__aqvRm)}>
