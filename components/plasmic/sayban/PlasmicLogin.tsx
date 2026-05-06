@@ -833,7 +833,7 @@ function PlasmicLogin__RenderFunc(props: {
                       const actionArgs = {
                         args: [
                           "POST",
-                          "https://sayban.darkube.app/webhook/users/auth",
+                          "https://sayban.darkube.ir/webhook/users/auth",
                           undefined,
                           (() => {
                             try {
@@ -1179,7 +1179,7 @@ function PlasmicLogin__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://sayban.darkube.app/webhook/users/auth",
+                            "https://sayban.darkube.ir/webhook/users/auth",
                             undefined,
                             (() => {
                               try {
@@ -1305,7 +1305,7 @@ function PlasmicLogin__RenderFunc(props: {
                           const actionArgs = {
                             args: [
                               "POST",
-                              "https://sayban.darkube.app/webhook/users/validate",
+                              "https://sayban.darkube.ir/webhook/users/validate",
                               undefined,
                               (() => {
                                 try {
@@ -2236,7 +2236,7 @@ function PlasmicLogin__RenderFunc(props: {
                           const actionArgs = {
                             args: [
                               "POST",
-                              "https://sayban.darkube.app/webhook/setProfile",
+                              "https://sayban.darkube.ir/webhook/setProfile",
                               undefined,
                               (() => {
                                 try {
