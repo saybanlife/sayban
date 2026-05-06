@@ -185,7 +185,7 @@
   user-select: text;
   text-decoration-line: none;
   text-overflow: clip;
-  font-family: "Roboto", sans-serif;
+  font-family: "IranSans", sans-serif;
 }
 .freeBox__eflwV {
   display: flex;
@@ -217,7 +217,7 @@
   user-select: text;
   text-decoration-line: none;
   text-overflow: clip;
-  font-family: "Roboto", sans-serif;
+  font-family: "IranSans", sans-serif;
   align-self: flex-start;
   min-width: 0;
 }
@@ -296,7 +296,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  font-family: "Roboto", sans-serif;
+  font-family: "IranSans", sans-serif;
   font-size: 18px;
   font-weight: 700;
   font-style: normal;
@@ -329,7 +329,7 @@
   height: auto;
   max-width: 100%;
   padding-left: 50px;
-  font-family: "Roboto", sans-serif;
+  font-family: "IranSans", sans-serif;
   font-size: 14px;
   font-weight: 400;
   font-style: normal;
@@ -350,7 +350,7 @@
   height: auto;
   max-width: 100%;
   margin-right: 0px;
-  font-family: "Roboto", sans-serif;
+  font-family: "IranSans", sans-serif;
   font-size: 16px;
   font-weight: 700;
   font-style: normal;
@@ -388,7 +388,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  font-family: "Roboto", sans-serif;
+  font-family: "IranSans", sans-serif;
   font-size: 14px;
   font-weight: 400;
   font-style: normal;
@@ -415,7 +415,7 @@
   padding-right: 10px;
   padding-left: 10px;
   color: #8254c6;
-  font-family: "Roboto", sans-serif;
+  font-family: "IranSans", sans-serif;
   font-size: 14px;
   font-style: normal;
   text-transform: none;
@@ -493,7 +493,7 @@
   height: 1em;
 }
 .text__fUjVi {
-  font-family: "Roboto", sans-serif;
+  font-family: "IranSans", sans-serif;
   font-size: 14px;
   font-weight: 500;
   font-style: normal;
@@ -546,7 +546,7 @@
   user-select: text;
   text-decoration-line: none !important;
   text-overflow: clip !important;
-  font-family: "Roboto", sans-serif;
+  font-family: "IranSans", sans-serif;
   min-width: 0;
 }
 .svg__d9IQk {
@@ -570,7 +570,7 @@
   text-decoration-line: none;
   text-overflow: clip;
   cursor: pointer;
-  font-family: "Roboto", sans-serif;
+  font-family: "IranSans", sans-serif;
 }
 .p__nMxnq {
   text-align: center;
@@ -586,7 +586,7 @@
   text-decoration-line: none;
   text-overflow: clip;
   cursor: pointer;
-  font-family: "Roboto", sans-serif;
+  font-family: "IranSans", sans-serif;
   display: none;
 }
 .dialogClose:global(.__wab_instance) {
