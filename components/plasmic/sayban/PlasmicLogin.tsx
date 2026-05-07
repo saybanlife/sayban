@@ -200,7 +200,7 @@ function PlasmicLogin__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
-              return $ctx.params.step[0];
+              return $ctx?.params?.step[0];
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -286,7 +286,7 @@ function PlasmicLogin__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
-              return $state.city.city;
+              return $state?.city?.city;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -306,7 +306,7 @@ function PlasmicLogin__RenderFunc(props: {
           hasVariant($state, "page", "name")
             ? (() => {
                 try {
-                  return $ctx.query.city == "true";
+                  return $ctx?.query?.city == "true";
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -2082,7 +2082,7 @@ function PlasmicLogin__RenderFunc(props: {
                           const actionArgs = {
                             destination: `/login/${(() => {
                               try {
-                                return $ctx.params.step?.[0];
+                                return $ctx?.params?.step?.[0];
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -2600,7 +2600,7 @@ function PlasmicLogin__RenderFunc(props: {
                     hasVariant($state, "page", "name")
                       ? (() => {
                           try {
-                            return $ctx.query.city == "true";
+                            return $ctx?.query?.city == "true";
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -2613,7 +2613,7 @@ function PlasmicLogin__RenderFunc(props: {
                         })()
                       : (() => {
                           try {
-                            return $ctx.query.city == "true";
+                            return $ctx?.query?.city == "true";
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -2645,7 +2645,7 @@ function PlasmicLogin__RenderFunc(props: {
                           const actionArgs = {
                             destination: `/login/${(() => {
                               try {
-                                return $ctx.params.step?.[0];
+                                return $ctx?.params?.step?.[0];
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
