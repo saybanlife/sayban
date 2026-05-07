@@ -319,7 +319,7 @@ function PlasmicLogin__RenderFunc(props: {
               })()
             : (() => {
                 try {
-                  return $ctx.query.city == "true";
+                  return $ctx?.query?.city == "true";
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
