@@ -134,7 +134,9 @@ function PlasmicEditUser__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, overrides, forNode } = props;
+  const __nextRouter = useNextRouter();
 
+  const $ctx = useDataEnv?.() || {};
   const args = React.useMemo(
     () =>
       Object.assign(
@@ -165,9 +167,6 @@ function PlasmicEditUser__RenderFunc(props: {
     ...variants
   };
 
-  const __nextRouter = useNextRouter();
-
-  const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
