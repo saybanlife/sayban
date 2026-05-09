@@ -141,7 +141,7 @@ function PlasmicEditUser__RenderFunc(props: {
         {
           opencity2: (() => {
             try {
-              return $ctx.query.city == "true";
+              return $ctx?.query?.city == "true";
             } catch (e) {
               if (
                 e instanceof TypeError ||
