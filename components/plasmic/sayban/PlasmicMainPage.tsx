@@ -1023,7 +1023,7 @@ function PlasmicMainPage__RenderFunc(props: {
                 throw e;
               }
             })()}
-            url={"https://sayban.darkube.app/webhook/panel/centers"}
+            url={"https://sayban.darkube.ir/webhook/panel/centers"}
           />
 
           <div className={classNames(projectcss.all, sty.freeBox__r4K5X, ``)}>

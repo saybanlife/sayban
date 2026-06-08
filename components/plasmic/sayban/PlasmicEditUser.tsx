@@ -770,7 +770,7 @@ function PlasmicEditUser__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "POST",
-                        "https://sayban.darkube.app/webhook/setProfile",
+                        "https://sayban.darkube.ir/webhook/setProfile",
                         undefined,
                         (() => {
                           try {

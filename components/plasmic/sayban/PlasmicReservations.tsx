@@ -275,7 +275,7 @@ function PlasmicReservations__RenderFunc(props: {
             );
           }}
           shouldFetch={true}
-          url={"https://sayban.darkube.app/webhook-test/user/reservations/"}
+          url={"https://sayban.darkube.ir/webhook-test/user/reservations/"}
         >
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {

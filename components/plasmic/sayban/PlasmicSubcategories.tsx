@@ -639,7 +639,7 @@ function PlasmicSubcategories__RenderFunc(props: {
               throw e;
             }
           })()}
-          url={"https://sayban.darkube.app/webhook/centers"}
+          url={"https://sayban.darkube.ir/webhook/centers"}
         >
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {

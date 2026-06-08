@@ -947,7 +947,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "POST",
-                        "https://sayban.darkube.app/webhook-test/panel/update/service",
+                        "https://sayban.darkube.ir/webhook-test/panel/update/service",
                         undefined,
                         {
                           info: $state.addServise2.servises,
@@ -1123,7 +1123,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                           const actionArgs = {
                             args: [
                               "POST",
-                              "https://sayban.darkube.app/webhook/panel/update/info",
+                              "https://sayban.darkube.ir/webhook/panel/update/info",
                               undefined,
                               {
                                 info: {
@@ -2332,7 +2332,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://sayban.darkube.app/webhook/panel/update/info",
+                            "https://sayban.darkube.ir/webhook/panel/update/info",
                             undefined,
                             (() => {
                               const data = {
@@ -2677,7 +2677,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://sayban.darkube.app/webhook/panel/update/image",
+                            "https://sayban.darkube.ir/webhook/panel/update/image",
                             undefined,
                             {
                               image: $state.imag.uploadFiles,
@@ -2958,7 +2958,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://sayban.darkube.app/webhook-test/panel/update/profile",
+                            "https://sayban.darkube.ir/webhook-test/panel/update/profile",
                             undefined,
                             {
                               image: $state.imageProfile2.uploadFiles,
@@ -3325,7 +3325,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://sayban.darkube.app/webhook/panel/update/info",
+                            "https://sayban.darkube.ir/webhook/panel/update/info",
                             undefined,
                             (() => {
                               const data = {

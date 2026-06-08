@@ -299,7 +299,7 @@ function PlasmicNewPage3__RenderFunc(props: {
                 throw e;
               }
             })()}
-            url={"https://sayban.darkube.app/webhook/centers"}
+            url={"https://sayban.darkube.ir/webhook/centers"}
           />
         </div>
       </div>

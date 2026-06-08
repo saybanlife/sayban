@@ -330,7 +330,7 @@ function PlasmicNewPage4__RenderFunc(props: {
               }
             })()}
             shouldFetch={true}
-            url={"https://sayban.darkube.app/webhook/centers"}
+            url={"https://sayban.darkube.ir/webhook/centers"}
           />
         </div>
       </div>

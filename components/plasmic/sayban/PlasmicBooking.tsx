@@ -259,7 +259,7 @@ function PlasmicBooking__RenderFunc(props: {
           );
         }}
         shouldFetch={true}
-        url={"https://sayban.darkube.app/webhook/Reservation"}
+        url={"https://sayban.darkube.ir/webhook/Reservation"}
       >
         <div className={classNames("all", sty.freeBox__t5Rev)}>
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(

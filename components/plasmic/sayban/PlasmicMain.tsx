@@ -1603,7 +1603,7 @@ function PlasmicMain__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://sayban.darkube.app/webhook/panel/center/add",
+                            "https://sayban.darkube.ir/webhook/panel/center/add",
                             undefined,
                             (() => {
                               try {
@@ -2109,7 +2109,7 @@ function PlasmicMain__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "POST",
-                        "https://sayban.darkube.app/webhook/delete/center",
+                        "https://sayban.darkube.ir/webhook/delete/center",
                         undefined,
                         {
                           id: $state.deleteSnakbar.data.id

@@ -661,7 +661,7 @@ function PlasmicReviews__RenderFunc(props: {
               }
             })()}
             shouldFetch={true}
-            url={"https://sayban.darkube.app/webhook/get/reviews/"}
+            url={"https://sayban.darkube.ir/webhook/get/reviews/"}
           />
 
           {(() => {
