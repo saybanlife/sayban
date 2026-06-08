@@ -67,7 +67,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicBookingHeader.module.css"; // plasmic-import: K9ETXxPuQRCy/css
 
 import Icon90Icon from "./icons/PlasmicIcon__Icon90"; // plasmic-import: fhMmwnceyLh4/icon
@@ -210,6 +209,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -227,10 +227,10 @@ function PlasmicBookingHeader__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         "page ",
@@ -257,14 +257,8 @@ function PlasmicBookingHeader__RenderFunc(props: {
         }}
       />
 
-      <div className={classNames(projectcss.all, sty.freeBox__ftmfq)}>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__ibP8V
-          )}
-        >
+      <div className={classNames("all", sty.freeBox__ftmfq)}>
+        <div className={classNames("all", "__wab_text", sty.text__ibP8V)}>
           {
             "\u0633\u0648\u0627\u0628\u0642 \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a\u200c\u0647\u0627"
           }
@@ -273,7 +267,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
           PlasmicIconType={
             hasVariant($state, "filter", "filter") ? Icon90Icon : Icon90Icon
           }
-          className={classNames(projectcss.all, sty.svg__nOvDd, {
+          className={classNames("all", sty.svg__nOvDd, {
             [sty.svgfilter__nOvDdLrf0Y]: hasVariant($state, "filter", "filter")
           })}
           onClick={async event => {
@@ -309,7 +303,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
         />
 
         <SquareXIcon
-          className={classNames(projectcss.all, sty.svg__iiQq6, {
+          className={classNames("all", sty.svg__iiQq6, {
             [sty.svgfilter__iiQq6Lrf0Y]: hasVariant($state, "filter", "filter")
           })}
           onClick={async event => {
@@ -354,34 +348,22 @@ function PlasmicBookingHeader__RenderFunc(props: {
         />
       </div>
       <div
-        className={classNames(projectcss.all, sty.freeBox__jwSv, {
+        className={classNames("all", sty.freeBox__jwSv, {
           [sty.freeBoxfilter__jwSvLrf0Y]: hasVariant($state, "filter", "filter")
         })}
       >
-        <div className={classNames(projectcss.all, sty.freeBox__axbDb)}>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__hRihg
-            )}
-          >
+        <div className={classNames("all", sty.freeBox__axbDb)}>
+          <div className={classNames("all", "__wab_text", sty.text__hRihg)}>
             {"0"}
           </div>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__c3FG
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__c3FG)}>
             {
               "\u0631\u0632\u0631\u0648\u200c\u0647\u0627\u06cc \u0641\u0639\u0627\u0644"
             }
           </div>
         </div>
         <div
-          className={classNames(projectcss.all, sty.freeBox__xdDPl, {
+          className={classNames("all", sty.freeBox__xdDPl, {
             [sty.freeBoxfilter__xdDPlLrf0Y]: hasVariant(
               $state,
               "filter",
@@ -390,23 +372,11 @@ function PlasmicBookingHeader__RenderFunc(props: {
           })}
         />
 
-        <div className={classNames(projectcss.all, sty.freeBox__v4Y5I)}>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__nRcKx
-            )}
-          >
+        <div className={classNames("all", sty.freeBox__v4Y5I)}>
+          <div className={classNames("all", "__wab_text", sty.text__nRcKx)}>
             {"0"}
           </div>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__ubblM
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__ubblM)}>
             {
               "\u062a\u0639\u062f\u0627\u062f \u06a9\u0644 \u0631\u0632\u0631\u0648\u200c\u0647\u0627"
             }
@@ -414,7 +384,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
         </div>
       </div>
       <div
-        className={classNames(projectcss.all, sty.freeBox__ybn5G, {
+        className={classNames("all", sty.freeBox__ybn5G, {
           [sty.freeBoxfilter__ybn5GLrf0Y]: hasVariant(
             $state,
             "filter",
@@ -451,9 +421,9 @@ function PlasmicBookingHeader__RenderFunc(props: {
           }
           contentText={"Popover contents"}
           defaultStylesClassName={classNames(
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
+            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+            "plasmic_default_styles",
+            "plasmic_mixins",
             styleTokensClassNames
           )}
           mouseEnterDelay={0}
@@ -470,7 +440,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
           title={null}
           trigger={"click"}
         >
-          <div className={classNames(projectcss.all, sty.freeBox___0NI0S)}>
+          <div className={classNames("all", sty.freeBox___0NI0S)}>
             {(() => {
               try {
                 return $state.datePicker.value;
@@ -484,13 +454,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
                 throw e;
               }
             })() ? (
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__a4WeL
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__a4WeL)}>
                 <React.Fragment>
                   {(() => {
                     try {
@@ -529,13 +493,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
                 throw e;
               }
             })() ? (
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__lZZkp
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__lZZkp)}>
                 <React.Fragment>
                   {(() => {
                     try {
@@ -583,9 +541,9 @@ function PlasmicBookingHeader__RenderFunc(props: {
           }
           contentText={"Popover contents"}
           defaultStylesClassName={classNames(
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
+            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+            "plasmic_default_styles",
+            "plasmic_mixins",
             styleTokensClassNames
           )}
           mouseEnterDelay={0}
@@ -602,7 +560,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
           title={null}
           trigger={"click"}
         >
-          <div className={classNames(projectcss.all, sty.freeBox__qIUfI)}>
+          <div className={classNames("all", sty.freeBox__qIUfI)}>
             {(() => {
               try {
                 return $state.datePicker2.value;
@@ -616,13 +574,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
                 throw e;
               }
             })() ? (
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__cdSk7
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__cdSk7)}>
                 <React.Fragment>
                   {(() => {
                     try {
@@ -661,13 +613,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
                 throw e;
               }
             })() ? (
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__m7Qil
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__m7Qil)}>
                 <React.Fragment>
                   {(() => {
                     try {
@@ -688,7 +634,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
           </div>
         </AntdPopover>
         <div
-          className={classNames(projectcss.all, sty.freeBox__bbdgh)}
+          className={classNames("all", sty.freeBox__bbdgh)}
           onClick={async event => {
             const $steps = {};
 
@@ -752,7 +698,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
           }}
         >
           <Icon91Icon
-            className={classNames(projectcss.all, sty.svg__zUGe2)}
+            className={classNames("all", sty.svg__zUGe2)}
             role={"img"}
           />
         </div>

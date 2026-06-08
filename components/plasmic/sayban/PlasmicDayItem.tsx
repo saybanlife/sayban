@@ -64,7 +64,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicDayItem.module.css"; // plasmic-import: KwLDzQVC-NAg/css
 
 import Icon32Icon from "./icons/PlasmicIcon__Icon32"; // plasmic-import: hVogcrNM7Ss9/icon
@@ -169,6 +168,7 @@ function PlasmicDayItem__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -186,10 +186,10 @@ function PlasmicDayItem__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.rootdisable]: hasVariant($state, "disable", "disable") }
@@ -197,18 +197,13 @@ function PlasmicDayItem__RenderFunc(props: {
       onClick={args.onClick}
     >
       <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__lsz5S,
-          {
-            [sty.textdisable__lsz5SiAfLv]: hasVariant(
-              $state,
-              "disable",
-              "disable"
-            )
-          }
-        )}
+        className={classNames("all", "__wab_text", sty.text__lsz5S, {
+          [sty.textdisable__lsz5SiAfLv]: hasVariant(
+            $state,
+            "disable",
+            "disable"
+          )
+        })}
       >
         <React.Fragment>
           {(() => {
@@ -227,7 +222,7 @@ function PlasmicDayItem__RenderFunc(props: {
         </React.Fragment>
       </div>
       <div
-        className={classNames(projectcss.all, sty.freeBox__h8Ix2, {
+        className={classNames("all", sty.freeBox__h8Ix2, {
           [sty.freeBoxdisable__h8Ix2IAfLv]: hasVariant(
             $state,
             "disable",
@@ -236,7 +231,7 @@ function PlasmicDayItem__RenderFunc(props: {
         })}
       >
         <div
-          className={classNames(projectcss.all, sty.freeBox__op8O, {
+          className={classNames("all", sty.freeBox__op8O, {
             [sty.freeBoxselect__op8OQbGhB]: hasVariant(
               $state,
               "select",
@@ -245,18 +240,13 @@ function PlasmicDayItem__RenderFunc(props: {
           })}
         >
           <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__zdFcx,
-              {
-                [sty.textselect__zdFcxQbGhB]: hasVariant(
-                  $state,
-                  "select",
-                  "select"
-                )
-              }
-            )}
+            className={classNames("all", "__wab_text", sty.text__zdFcx, {
+              [sty.textselect__zdFcxQbGhB]: hasVariant(
+                $state,
+                "select",
+                "select"
+              )
+            })}
           >
             <React.Fragment>
               {(() => {
@@ -278,7 +268,7 @@ function PlasmicDayItem__RenderFunc(props: {
         <Icon32Icon
           data-plasmic-name={"svg"}
           data-plasmic-override={overrides.svg}
-          className={classNames(projectcss.all, sty.svg, {
+          className={classNames("all", sty.svg, {
             [sty.svgdisable]: hasVariant($state, "disable", "disable")
           })}
           role={"img"}

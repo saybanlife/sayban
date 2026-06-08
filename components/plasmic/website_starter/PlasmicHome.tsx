@@ -68,7 +68,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicHome.module.css"; // plasmic-import: m-UDUThzN-63/css
 
 createPlasmicElementProxy;
@@ -166,8 +165,6 @@ function PlasmicHome__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const globalVariants = _useGlobalVariants();
-
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -209,6 +206,9 @@ function PlasmicHome__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const globalVariants = _useGlobalVariants();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -226,17 +226,17 @@ function PlasmicHome__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.rootsearch]: hasVariant($state, "search", "search") }
       )}
     >
       <div
-        className={classNames(projectcss.all, sty.freeBox__dzcLe, {
+        className={classNames("all", sty.freeBox__dzcLe, {
           [sty.freeBoxsearch__dzcLeMh4IK]: hasVariant(
             $state,
             "search",
@@ -345,7 +345,7 @@ function PlasmicHome__RenderFunc(props: {
         </SwiperSlider>
       </div>
       <div
-        className={classNames(projectcss.all, sty.freeBox__muDck, {
+        className={classNames("all", sty.freeBox__muDck, {
           [sty.freeBoxsearch__muDckMh4IK]: hasVariant(
             $state,
             "search",
@@ -353,21 +353,11 @@ function PlasmicHome__RenderFunc(props: {
           )
         })}
       >
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__gVzmw
-          )}
-        >
+        <div className={classNames("all", "__wab_text", sty.text__gVzmw)}>
           {"\u062e\u062f\u0645\u0627\u062a"}
         </div>
         <div
-          className={classNames(
-            projectcss.all,
-            sty.freeBox___0N18J,
-            "container-scroll"
-          )}
+          className={classNames("all", sty.freeBox___0N18J, "container-scroll")}
         >
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {
@@ -468,24 +458,15 @@ function PlasmicHome__RenderFunc(props: {
           })}
         </div>
         <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text___26Ec,
-            {
-              [sty.textsearch___26EcMh4IK]: hasVariant(
-                $state,
-                "search",
-                "search"
-              )
-            }
-          )}
+          className={classNames("all", "__wab_text", sty.text___26Ec, {
+            [sty.textsearch___26EcMh4IK]: hasVariant($state, "search", "search")
+          })}
         >
           {
             "\u067e\u0631\u06a9\u0627\u0631\u0628\u0631\u062f \u062a\u0631\u06cc\u0646 \u062e\u062f\u0645\u0627\u062a"
           }
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__ozEqI)}>
+        <div className={classNames("all", sty.freeBox__ozEqI)}>
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {
               try {
@@ -587,7 +568,7 @@ function PlasmicHome__RenderFunc(props: {
         </div>
       </div>
       <div
-        className={classNames(projectcss.all, sty.freeBox___8ZSjn, {
+        className={classNames("all", sty.freeBox___8ZSjn, {
           [sty.freeBoxsearch___8ZSjnMh4IK]: hasVariant(
             $state,
             "search",

@@ -69,7 +69,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicCreateAccont.module.css"; // plasmic-import: nYNI2TNqh_0W/css
 
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
@@ -92,6 +91,8 @@ export type PlasmicCreateAccont__OverridesType = {
   password?: Flex__<typeof TextInput>;
   hide?: Flex__<typeof Hide>;
   progress?: Flex__<typeof AntdProgress>;
+  repeatPassword?: Flex__<typeof TextInput>;
+  hide2?: Flex__<typeof Hide>;
   check?: Flex__<typeof Check>;
   button2?: Flex__<typeof Button>;
   button?: Flex__<typeof Button>;
@@ -140,8 +141,6 @@ function PlasmicCreateAccont__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
-
-  const $globalActions = useGlobalActions?.();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
@@ -198,10 +197,31 @@ function PlasmicCreateAccont__RenderFunc(props: {
         type: "private",
         variableType: "number",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => 0
+      },
+      {
+        path: "repeatPassword.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "hide2.show",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "hide2.type",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "password"
       }
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -219,34 +239,22 @@ function PlasmicCreateAccont__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         "dark"
       )}
     >
-      <div className={classNames(projectcss.all, sty.freeBox___98Omj)}>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__ey6Nd
-          )}
-        >
+      <div className={classNames("all", sty.freeBox___98Omj)}>
+        <div className={classNames("all", "__wab_text", sty.text__ey6Nd)}>
           {
-            "\u0648\u0631\u0648\u062f \u0628\u0647 \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc"
+            "\u0627\u06cc\u062c\u0627\u062f \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc"
           }
         </div>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text___2IjOq
-          )}
-        >
+        <div className={classNames("all", "__wab_text", sty.text___2IjOq)}>
           {
             "\u0628\u0647 \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc \u062e\u0648\u062f \u0648\u0627\u0631\u062f \u0634\u0648\u06cc\u062f."
           }
@@ -276,7 +284,7 @@ function PlasmicCreateAccont__RenderFunc(props: {
         value={generateStateValueProp($state, ["userName", "value"])}
       />
 
-      <div className={classNames(projectcss.all, sty.freeBox__yUlH5)}>
+      <div className={classNames("all", sty.freeBox__yUlH5)}>
         <TextInput
           data-plasmic-name={"password"}
           data-plasmic-override={overrides.password}
@@ -499,20 +507,171 @@ function PlasmicCreateAccont__RenderFunc(props: {
         type={"line"}
       />
 
-      <div className={classNames(projectcss.all, sty.freeBox___0I3Xw)}>
+      <div className={classNames("all", sty.freeBox___0NB5)}>
+        <TextInput
+          data-plasmic-name={"repeatPassword"}
+          data-plasmic-override={overrides.repeatPassword}
+          className={classNames("__wab_instance", sty.repeatPassword)}
+          error={(() => {
+            try {
+              return (
+                $state.repeatPassword.value.length > 0 &&
+                $state.repeatPassword.value != $state.password.value
+              );
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()}
+          inputType={(() => {
+            try {
+              return $state.hide2.type;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return "password";
+              }
+              throw e;
+            }
+          })()}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "repeatPassword",
+              "value"
+            ]).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          placeholder={
+            "\u062a\u06a9\u0631\u0627\u0631 \u0631\u0645\u0632 \u0639\u0628\u0648\u0631"
+          }
+          size={"langh"}
+          type={"soft"}
+          value={generateStateValueProp($state, ["repeatPassword", "value"])}
+        />
+
+        <Hide
+          data-plasmic-name={"hide2"}
+          data-plasmic-override={overrides.hide2}
+          className={classNames("__wab_instance", sty.hide2)}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["runCode"] = true
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return (() => {
+                        $state.hide2.show = !$state.hide2.show;
+                        return ($state.hide2.type = "text");
+                      })();
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runCode"] != null &&
+              typeof $steps["runCode"] === "object" &&
+              typeof $steps["runCode"].then === "function"
+            ) {
+              $steps["runCode"] = await $steps["runCode"];
+            }
+
+            $steps["invokeGlobalAction"] = true
+              ? (() => {
+                  const actionArgs = { args: [3000] };
+                  return $globalActions["Fragment.wait"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["invokeGlobalAction"] != null &&
+              typeof $steps["invokeGlobalAction"] === "object" &&
+              typeof $steps["invokeGlobalAction"].then === "function"
+            ) {
+              $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
+            }
+
+            $steps["runCode2"] = true
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return (() => {
+                        $state.hide2.show = !$state.hide2.show;
+                        return ($state.hide2.type = "password");
+                      })();
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runCode2"] != null &&
+              typeof $steps["runCode2"] === "object" &&
+              typeof $steps["runCode2"].then === "function"
+            ) {
+              $steps["runCode2"] = await $steps["runCode2"];
+            }
+          }}
+          onShowChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["hide2", "show"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onTypeChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["hide2", "type"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          show={generateStateValueProp($state, ["hide2", "show"])}
+          type={generateStateValueProp($state, ["hide2", "type"])}
+        />
+      </div>
+      <div className={classNames("all", sty.freeBox___0I3Xw)}>
         <Check
           data-plasmic-name={"check"}
           data-plasmic-override={overrides.check}
           className={classNames("__wab_instance", sty.check)}
           isSelected={generateStateValueProp($state, ["check", "isSelected"])}
           label={
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text___6BvvT
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text___6BvvT)}>
               {
                 "\u0645\u0631\u0627 \u0628\u0647 \u062e\u0627\u0637\u0631 \u0628\u0633\u067e\u0627\u0631"
               }
@@ -540,13 +699,7 @@ function PlasmicCreateAccont__RenderFunc(props: {
           className={classNames("__wab_instance", sty.button2)}
           color={"clear"}
           label={
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__orpQm
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__orpQm)}>
               {
                 "\u0631\u0645\u0632 \u0631\u0627 \u0641\u0631\u0627\u0645\u0648\u0634 \u06a9\u0631\u062f\u0647\u200c\u0627\u06cc\u062f\u061f"
               }
@@ -574,13 +727,7 @@ function PlasmicCreateAccont__RenderFunc(props: {
         data-plasmic-override={overrides.button}
         className={classNames("__wab_instance", sty.button)}
         label={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__mrUbL
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__mrUbL)}>
             {"\u0648\u0631\u0648\u062f"}
           </div>
         }
@@ -636,31 +783,53 @@ function PlasmicCreateAccont__RenderFunc(props: {
         className={classNames("__wab_instance", sty.button3)}
         color={"clear"}
         label={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text___8PGo
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text___8PGo)}>
             <React.Fragment>
               <React.Fragment>
                 {
-                  "\u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc \u0646\u062f\u0627\u0631\u06cc\u062f\u061f "
+                  "\u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc \u062f\u0627\u0631\u06cc\u062f\u061f "
                 }
               </React.Fragment>
               <span
-                className={"plasmic_default__all plasmic_default__span"}
+                className={
+                  "plasmic_default__all plasmic_default__span plasmic_default__span__qARqp"
+                }
                 style={{ color: "var(--token-ee2TuxDknsJj)", fontWeight: 700 }}
               >
-                {
-                  "\u062b\u0628\u062a\u200c\u0646\u0627\u0645 \u06a9\u0646\u06cc\u062f"
-                }
+                {"\u0648\u0627\u0631\u062f \u0634\u0648\u06cc\u062f"}
               </span>
             </React.Fragment>
           </div>
         }
         loading={generateStateValueProp($state, ["button3", "loading"])}
+        onClick={async event => {
+          const $steps = {};
+
+          $steps["goToPanel"] = true
+            ? (() => {
+                const actionArgs = { destination: `/panel/${"login"}` };
+                return (({ destination }) => {
+                  if (
+                    typeof destination === "string" &&
+                    destination.startsWith("#")
+                  ) {
+                    document
+                      .getElementById(destination.substr(1))
+                      .scrollIntoView({ behavior: "smooth" });
+                  } else {
+                    __nextRouter?.push(destination);
+                  }
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["goToPanel"] != null &&
+            typeof $steps["goToPanel"] === "object" &&
+            typeof $steps["goToPanel"].then === "function"
+          ) {
+            $steps["goToPanel"] = await $steps["goToPanel"];
+          }
+        }}
         onLoadingChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["button3", "loading"]).apply(
             null,
@@ -687,6 +856,8 @@ const PlasmicDescendants = {
     "password",
     "hide",
     "progress",
+    "repeatPassword",
+    "hide2",
     "check",
     "button2",
     "button",
@@ -696,6 +867,8 @@ const PlasmicDescendants = {
   password: ["password"],
   hide: ["hide"],
   progress: ["progress"],
+  repeatPassword: ["repeatPassword"],
+  hide2: ["hide2"],
   check: ["check"],
   button2: ["button2"],
   button: ["button"],
@@ -710,6 +883,8 @@ type NodeDefaultElementType = {
   password: typeof TextInput;
   hide: typeof Hide;
   progress: typeof AntdProgress;
+  repeatPassword: typeof TextInput;
+  hide2: typeof Hide;
   check: typeof Check;
   button2: typeof Button;
   button: typeof Button;
@@ -782,6 +957,8 @@ export const PlasmicCreateAccont = Object.assign(
     password: makeNodeComponent("password"),
     hide: makeNodeComponent("hide"),
     progress: makeNodeComponent("progress"),
+    repeatPassword: makeNodeComponent("repeatPassword"),
+    hide2: makeNodeComponent("hide2"),
     check: makeNodeComponent("check"),
     button2: makeNodeComponent("button2"),
     button: makeNodeComponent("button"),

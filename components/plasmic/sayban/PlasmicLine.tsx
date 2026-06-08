@@ -64,7 +64,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicLine.module.css"; // plasmic-import: XcTsDHGhCv1N/css
 
 createPlasmicElementProxy;
@@ -141,6 +140,7 @@ function PlasmicLine__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -158,11 +158,11 @@ function PlasmicLine__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.__wab_text,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "__wab_text",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.rootsize_small]: hasVariant($state, "size", "small") }

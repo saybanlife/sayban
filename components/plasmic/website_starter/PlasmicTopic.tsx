@@ -64,7 +64,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicTopic.module.css"; // plasmic-import: x_nNzrKWX6O9/css
 
 createPlasmicElementProxy;
@@ -160,6 +159,7 @@ function PlasmicTopic__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -177,10 +177,10 @@ function PlasmicTopic__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         {
@@ -196,7 +196,7 @@ function PlasmicTopic__RenderFunc(props: {
       <div
         data-plasmic-name={"text"}
         data-plasmic-override={overrides.text}
-        className={classNames(projectcss.all, projectcss.__wab_text, sty.text, {
+        className={classNames("all", "__wab_text", sty.text, {
           [sty.textselect]: hasVariant($state, "select", "select"),
           [sty.textsize_small]: hasVariant($state, "size", "small"),
           [sty.textsize_small_select]:
@@ -205,7 +205,7 @@ function PlasmicTopic__RenderFunc(props: {
         })}
       >
         <div
-          className={projectcss.__wab_expr_html_text}
+          className={"__wab_expr_html_text"}
           dangerouslySetInnerHTML={{
             __html: (() => {
               try {
@@ -226,7 +226,7 @@ function PlasmicTopic__RenderFunc(props: {
       <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox, {
+        className={classNames("all", sty.freeBox, {
           [sty.freeBoxselect]: hasVariant($state, "select", "select"),
           [sty.freeBoxsize_small_select]:
             hasVariant($state, "size", "small") &&

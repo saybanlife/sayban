@@ -64,7 +64,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicMenuIcon.module.css"; // plasmic-import: Byb4ZkDGA1E5/css
 
 import StickynoteIcon from "./icons/PlasmicIcon__Stickynote"; // plasmic-import: hwruetSC3nWa/icon
@@ -368,8 +367,6 @@ function PlasmicMenuIcon__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const globalVariants = _useGlobalVariants();
-
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -417,6 +414,9 @@ function PlasmicMenuIcon__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const globalVariants = _useGlobalVariants();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -695,10 +695,10 @@ function PlasmicMenuIcon__RenderFunc(props: {
                                                                                                                   : StickynoteIcon
       }
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         {

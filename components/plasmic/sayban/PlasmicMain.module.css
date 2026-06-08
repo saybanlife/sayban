@@ -16,7 +16,7 @@
   z-index: 1;
   flex-shrink: 0;
 }
-.mainPage:global(.__wab_instance) {
+.mainPageCenter:global(.__wab_instance) {
   max-width: 100%;
   position: absolute;
   left: 0;
@@ -24,7 +24,18 @@
   right: 0;
   display: none;
 }
-.mainPagepage_centerList:global(.__wab_instance) {
+.mainPageCenterpage_centers:global(.__wab_instance) {
+  display: flex;
+}
+.mainPageUser:global(.__wab_instance) {
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  display: none;
+}
+.mainPageUserpage_users:global(.__wab_instance) {
   display: flex;
 }
 .centerPage:global(.__wab_instance) {
@@ -44,7 +55,7 @@
   min-width: 0;
   display: none;
 }
-.addCenterpage_centerList:global(.__wab_instance):global(.__wab_instance) {
+.addCenterpage_centers:global(.__wab_instance):global(.__wab_instance) {
   display: none;
 }
 .addCenterpage_center:global(.__wab_instance):global(.__wab_instance) {
@@ -213,6 +224,28 @@
 .svg__pqJGp {
   position: relative;
   height: 1em;
+}
+.mainPageCategories:global(.__wab_instance) {
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  display: none;
+}
+.mainPageCategoriespage_categories:global(.__wab_instance) {
+  display: flex;
+}
+.mainPageReservations:global(.__wab_instance) {
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  display: none;
+}
+.mainPageReservationspage_reservations:global(.__wab_instance) {
+  display: flex;
 }
 .categories:global(.__wab_instance) {
   max-width: 100%;

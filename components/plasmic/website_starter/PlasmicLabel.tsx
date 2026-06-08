@@ -65,7 +65,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicLabel.module.css"; // plasmic-import: LG0etpgbA-e8/css
 
 createPlasmicElementProxy;
@@ -158,6 +157,7 @@ function PlasmicLabel__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -176,9 +176,9 @@ function PlasmicLabel__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         {
@@ -200,7 +200,7 @@ function PlasmicLabel__RenderFunc(props: {
       <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox, {
+        className={classNames("all", sty.freeBox, {
           [sty.freeBoxrequirementIndicator_optional]: hasVariant(
             $state,
             "requirementIndicator",
@@ -231,23 +231,18 @@ function PlasmicLabel__RenderFunc(props: {
         <div
           data-plasmic-name={"text"}
           data-plasmic-override={overrides.text}
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text,
-            {
-              [sty.textrequirementIndicator_optional]: hasVariant(
-                $state,
-                "requirementIndicator",
-                "optional"
-              ),
-              [sty.textrequirementIndicator_required]: hasVariant(
-                $state,
-                "requirementIndicator",
-                "required"
-              )
-            }
-          )}
+          className={classNames("all", "__wab_text", sty.text, {
+            [sty.textrequirementIndicator_optional]: hasVariant(
+              $state,
+              "requirementIndicator",
+              "optional"
+            ),
+            [sty.textrequirementIndicator_required]: hasVariant(
+              $state,
+              "requirementIndicator",
+              "required"
+            )
+          })}
         >
           {hasVariant($state, "requirementIndicator", "required")
             ? "*"

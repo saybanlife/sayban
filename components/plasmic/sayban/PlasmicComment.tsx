@@ -65,7 +65,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicComment.module.css"; // plasmic-import: 4NLVwAuHCB3Q/css
 
 createPlasmicElementProxy;
@@ -139,17 +138,17 @@ function PlasmicComment__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__ueb4J)}>
+      <div className={classNames("all", sty.freeBox__ueb4J)}>
         <div
-          className={classNames(projectcss.all, sty.freeBox__jmH8N)}
+          className={classNames("all", sty.freeBox__jmH8N)}
           style={
             hasVariant(globalVariants, "screen", "mobileOnly")
               ? (() => {
@@ -228,13 +227,7 @@ function PlasmicComment__RenderFunc(props: {
                 })()
           }
         >
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__bMM
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__bMM)}>
             <React.Fragment>
               {(() => {
                 try {
@@ -252,15 +245,9 @@ function PlasmicComment__RenderFunc(props: {
             </React.Fragment>
           </div>
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__mjAw1)}>
-          <div className={classNames(projectcss.all, sty.freeBox__mvcG)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__qSc5D
-              )}
-            >
+        <div className={classNames("all", sty.freeBox__mjAw1)}>
+          <div className={classNames("all", sty.freeBox__mvcG)}>
+            <div className={classNames("all", "__wab_text", sty.text__qSc5D)}>
               <React.Fragment>
                 {(() => {
                   try {
@@ -277,13 +264,7 @@ function PlasmicComment__RenderFunc(props: {
                 })()}
               </React.Fragment>
             </div>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__v6Sse
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__v6Sse)}>
               <React.Fragment>
                 {(() => {
                   try {
@@ -303,7 +284,7 @@ function PlasmicComment__RenderFunc(props: {
               </React.Fragment>
             </div>
           </div>
-          <div className={classNames(projectcss.all, sty.freeBox__poXve)}>
+          <div className={classNames("all", sty.freeBox__poXve)}>
             {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
               (() => {
                 try {
@@ -347,13 +328,7 @@ function PlasmicComment__RenderFunc(props: {
           </div>
         </div>
       </div>
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__h7X7L
-        )}
-      >
+      <div className={classNames("all", "__wab_text", sty.text__h7X7L)}>
         <React.Fragment>
           {(() => {
             try {
@@ -370,13 +345,7 @@ function PlasmicComment__RenderFunc(props: {
           })()}
         </React.Fragment>
       </div>
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__ezwo
-        )}
-      >
+      <div className={classNames("all", "__wab_text", sty.text__ezwo)}>
         {""}
       </div>
     </div>

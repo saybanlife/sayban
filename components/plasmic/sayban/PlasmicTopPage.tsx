@@ -65,7 +65,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicTopPage.module.css"; // plasmic-import: g_3hTxUM0f5d/css
 
 import Icon53Icon from "./icons/PlasmicIcon__Icon53"; // plasmic-import: TLGayeiIYfbW/icon
@@ -140,10 +139,10 @@ function PlasmicTopPage__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -151,15 +150,15 @@ function PlasmicTopPage__RenderFunc(props: {
       <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
+        className={classNames("all", sty.freeBox)}
       >
         <Icon53Icon
-          className={classNames(projectcss.all, sty.svg__l4HHx)}
+          className={classNames("all", sty.svg__l4HHx)}
           role={"img"}
         />
 
         <Icon270Icon
-          className={classNames(projectcss.all, sty.svg__kgj09)}
+          className={classNames("all", sty.svg__kgj09)}
           role={"img"}
         />
 

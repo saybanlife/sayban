@@ -66,7 +66,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicImageProfile.module.css"; // plasmic-import: NCgtBMbIwpli/css
 
 import Icon70Icon from "./icons/PlasmicIcon__Icon70"; // plasmic-import: PWsALiD1VW02/icon
@@ -160,6 +159,7 @@ function PlasmicImageProfile__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -177,10 +177,10 @@ function PlasmicImageProfile__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -198,12 +198,9 @@ function PlasmicImageProfile__RenderFunc(props: {
           throw e;
         }
       })() ? (
-        <div
-          className={classNames(projectcss.all, sty.freeBox__sbTC)}
-          id={"list"}
-        >
+        <div className={classNames("all", sty.freeBox__sbTC)} id={"list"}>
           <div
-            className={classNames(projectcss.all, sty.freeBox___2WiRe)}
+            className={classNames("all", sty.freeBox___2WiRe)}
             onClick={async event => {
               const $steps = {};
 
@@ -258,9 +255,9 @@ function PlasmicImageProfile__RenderFunc(props: {
               })()}
             />
 
-            <div className={classNames(projectcss.all, sty.freeBox__gXv3P)}>
+            <div className={classNames("all", sty.freeBox__gXv3P)}>
               <Icon70Icon
-                className={classNames(projectcss.all, sty.svg___1T0M4)}
+                className={classNames("all", sty.svg___1T0M4)}
                 role={"img"}
               />
             </div>
@@ -301,31 +298,19 @@ function PlasmicImageProfile__RenderFunc(props: {
           }}
           showUploadList={false}
         >
-          <div className={classNames(projectcss.all, sty.freeBox__rl1HK)}>
+          <div className={classNames("all", sty.freeBox__rl1HK)}>
             <Icon57Icon
-              className={classNames(projectcss.all, sty.svg__urAae)}
+              className={classNames("all", sty.svg__urAae)}
               role={"img"}
             />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__cEbj7
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__cEbj7)}>
               {
                 "\u0641\u0627\u06cc\u0644 \u0631\u0627 \u0628\u06a9\u0634\u06cc\u062f \u0648 \u0631\u0647\u0627 \u06a9\u0646\u06cc\u062f \u06cc\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
               }
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox___0FhIl)}>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__xMqsr
-                )}
-              >
+            <div className={classNames("all", sty.freeBox___0FhIl)}>
+              <div className={classNames("all", "__wab_text", sty.text__xMqsr)}>
                 {
                   "\u0627\u0646\u062a\u062e\u0627\u0628 \u062a\u0635\u0648\u06cc\u0631"
                 }

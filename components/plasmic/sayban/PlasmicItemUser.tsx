@@ -66,7 +66,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicItemUser.module.css"; // plasmic-import: HGGsJyRvknge/css
 
 import Icon20Icon from "../website_starter/icons/PlasmicIcon__Icon20"; // plasmic-import: Sy9FntGzJUck/icon
@@ -150,16 +149,16 @@ function PlasmicItemUser__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
       onClick={args.onClick}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__wtrUa)}>
+      <div className={classNames("all", sty.freeBox__wtrUa)}>
         <PlasmicImg__
           data-plasmic-name={"img"}
           data-plasmic-override={overrides.img}
@@ -194,15 +193,11 @@ function PlasmicItemUser__RenderFunc(props: {
           width={"100%"}
         />
 
-        <div className={classNames(projectcss.all, sty.freeBox__esdg)}>
-          <div className={classNames(projectcss.all, sty.freeBox__kQGtr)}>
-            <div className={classNames(projectcss.all, sty.freeBox__pMeYq)}>
+        <div className={classNames("all", sty.freeBox__esdg)}>
+          <div className={classNames("all", sty.freeBox__kQGtr)}>
+            <div className={classNames("all", sty.freeBox__pMeYq)}>
               <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text___6B5Mo
-                )}
+                className={classNames("all", "__wab_text", sty.text___6B5Mo)}
               >
                 <React.Fragment>
                   {(() => {
@@ -220,13 +215,7 @@ function PlasmicItemUser__RenderFunc(props: {
                   })()}
                 </React.Fragment>
               </div>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__fgacD
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__fgacD)}>
                 <React.Fragment>
                   {(() => {
                     try {
@@ -243,18 +232,14 @@ function PlasmicItemUser__RenderFunc(props: {
                   })()}
                 </React.Fragment>
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox__a203T)}>
+              <div className={classNames("all", sty.freeBox__a203T)}>
                 <Icon20Icon
-                  className={classNames(projectcss.all, sty.svg__u903O)}
+                  className={classNames("all", sty.svg__u903O)}
                   role={"img"}
                 />
 
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__joTJ
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__joTJ)}
                 >
                   <React.Fragment>
                     {(() => {
@@ -301,20 +286,14 @@ function PlasmicItemUser__RenderFunc(props: {
             })()}
           />
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__cOazM)}>
+        <div className={classNames("all", sty.freeBox__cOazM)}>
           <Icon19Icon
-            className={classNames(projectcss.all, sty.svg__uscPm)}
+            className={classNames("all", sty.svg__uscPm)}
             role={"img"}
           />
         </div>
       </div>
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text___4KXEf
-        )}
-      >
+      <div className={classNames("all", "__wab_text", sty.text___4KXEf)}>
         {""}
       </div>
     </div>

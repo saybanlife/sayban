@@ -64,7 +64,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicFilterIcon.module.css"; // plasmic-import: 4vSLtg9E7r2G/css
 
 import Icon61Icon from "./icons/PlasmicIcon__Icon61"; // plasmic-import: El7wkbicDor1/icon
@@ -147,6 +146,7 @@ function PlasmicFilterIcon__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -164,10 +164,10 @@ function PlasmicFilterIcon__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.rootfiltered]: hasVariant($state, "filtered", "filtered") }
@@ -177,7 +177,7 @@ function PlasmicFilterIcon__RenderFunc(props: {
       <Icon61Icon
         data-plasmic-name={"svg"}
         data-plasmic-override={overrides.svg}
-        className={classNames(projectcss.all, sty.svg, {
+        className={classNames("all", sty.svg, {
           [sty.svgfiltered]: hasVariant($state, "filtered", "filtered")
         })}
         role={"img"}

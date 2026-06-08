@@ -66,7 +66,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicPanelMenu.module.css"; // plasmic-import: H67gJZiYVEqw/css
 
 createPlasmicElementProxy;
@@ -80,12 +79,16 @@ export type PlasmicPanelMenu__ArgsType = {
   menu?: any;
   selecteItem?: string;
   onSelecteItemChange?: (val: string) => void;
+  onSubItemSelectChange?: (val: string) => void;
+  onsub?: () => void;
 };
 type ArgPropType = keyof PlasmicPanelMenu__ArgsType;
 export const PlasmicPanelMenu__ArgProps = new Array<ArgPropType>(
   "menu",
   "selecteItem",
-  "onSelecteItemChange"
+  "onSelecteItemChange",
+  "onSubItemSelectChange",
+  "onsub"
 );
 
 export type PlasmicPanelMenu__OverridesType = {
@@ -100,6 +103,8 @@ export interface DefaultPanelMenuProps {
   menu?: any;
   selecteItem?: string;
   onSelecteItemChange?: (val: string) => void;
+  onSubItemSelectChange?: (val: string) => void;
+  onsub?: () => void;
   className?: string;
 }
 
@@ -154,13 +159,30 @@ function PlasmicPanelMenu__RenderFunc(props: {
       },
       {
         path: "subItemSelect",
-        type: "private",
+        type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $props.menu.find(i => i.value == $state.selecteItem)
+                .children[0].value;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })(),
+
+        onChangeProp: "onSubItemSelectChange"
       }
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -178,10 +200,10 @@ function PlasmicPanelMenu__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -199,7 +221,7 @@ function PlasmicPanelMenu__RenderFunc(props: {
         }
       })()}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__hoGtv)}>
+      <div className={classNames("all", sty.freeBox__hoGtv)}>
         <PlasmicImg__
           data-plasmic-name={"img"}
           data-plasmic-override={overrides.img}
@@ -223,16 +245,12 @@ function PlasmicPanelMenu__RenderFunc(props: {
         <div
           data-plasmic-name={"text"}
           data-plasmic-override={overrides.text}
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text
-          )}
+          className={classNames("all", "__wab_text", sty.text)}
         >
           {"\u0633\u0627\u06cc\u0628\u0627\u0646"}
         </div>
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__z2LUv)}>
+      <div className={classNames("all", sty.freeBox__z2LUv)}>
         {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
           (() => {
             try {
@@ -444,6 +462,23 @@ function PlasmicPanelMenu__RenderFunc(props: {
                       ) {
                         $steps["updateSelecteItem"] =
                           await $steps["updateSelecteItem"];
+                      }
+
+                      $steps["updateSelecteItem2"] = true
+                        ? (() => {
+                            const actionArgs = { eventRef: $props["onsub"] };
+                            return (({ eventRef, args }) => {
+                              return eventRef?.(...(args ?? []));
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateSelecteItem2"] != null &&
+                        typeof $steps["updateSelecteItem2"] === "object" &&
+                        typeof $steps["updateSelecteItem2"].then === "function"
+                      ) {
+                        $steps["updateSelecteItem2"] =
+                          await $steps["updateSelecteItem2"];
                       }
                     }}
                     select={(() => {

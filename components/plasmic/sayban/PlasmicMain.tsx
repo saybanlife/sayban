@@ -60,7 +60,8 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import TopPage from "../../TopPage"; // plasmic-import: g_3hTxUM0f5d/component
-import MainPage from "../../MainPage"; // plasmic-import: xrEadpE-s6jI/component
+import MainPageCenter from "../../MainPageCenter"; // plasmic-import: xrEadpE-s6jI/component
+import MainPageUser from "../../MainPageUser"; // plasmic-import: bC8HfGfKThwf/component
 import CenterPage from "../../CenterPage"; // plasmic-import: fRNzpZPnnILn/component
 import Modal from "../../Modal"; // plasmic-import: Oo9r7A7X8FP7/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
@@ -71,6 +72,8 @@ import Imag from "../../Imag"; // plasmic-import: ScLhJpeVxPbk/component
 import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
 import AddServise from "../../AddServise"; // plasmic-import: GoiLccUqO4vp/component
 import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
+import MainPageCategories from "../../MainPageCategories"; // plasmic-import: fn1vTVaTFnJQ/component
+import MainPageReservations from "../../MainPageReservations"; // plasmic-import: TGG8jbyroWy4/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import Snackbar from "../../Snackbar"; // plasmic-import: CaodI8ra68z4/component
@@ -79,7 +82,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicMain.module.css"; // plasmic-import: FYuKeNpu5zZ7/css
 
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
@@ -88,10 +90,12 @@ import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown";
 createPlasmicElementProxy;
 
 export type PlasmicMain__VariantMembers = {
-  page: "centerList" | "center";
+  page: "centers" | "center" | "users" | "reservations" | "categories";
 };
 export type PlasmicMain__VariantsArgs = {
-  page?: SingleChoiceArg<"centerList" | "center">;
+  page?: SingleChoiceArg<
+    "centers" | "center" | "users" | "reservations" | "categories"
+  >;
 };
 type VariantPropType = keyof PlasmicMain__VariantsArgs;
 export const PlasmicMain__VariantProps = new Array<VariantPropType>("page");
@@ -100,18 +104,23 @@ export type PlasmicMain__ArgsType = {
   centerId?: string;
   role?: string;
   onRoleChange?: (val: string) => void;
+  token?: string;
+  state?: string;
 };
 type ArgPropType = keyof PlasmicMain__ArgsType;
 export const PlasmicMain__ArgProps = new Array<ArgPropType>(
   "centerId",
   "role",
-  "onRoleChange"
+  "onRoleChange",
+  "token",
+  "state"
 );
 
 export type PlasmicMain__OverridesType = {
   root?: Flex__<"div">;
   topPage?: Flex__<typeof TopPage>;
-  mainPage?: Flex__<typeof MainPage>;
+  mainPageCenter?: Flex__<typeof MainPageCenter>;
+  mainPageUser?: Flex__<typeof MainPageUser>;
   centerPage?: Flex__<typeof CenterPage>;
   addCenter?: Flex__<typeof Modal>;
   tabs?: Flex__<typeof AntdTabs>;
@@ -123,6 +132,8 @@ export type PlasmicMain__OverridesType = {
   button2?: Flex__<typeof Button>;
   submit?: Flex__<typeof Button>;
   button3?: Flex__<typeof Button>;
+  mainPageCategories?: Flex__<typeof MainPageCategories>;
+  mainPageReservations?: Flex__<typeof MainPageReservations>;
   categories?: Flex__<typeof ApiRequest>;
   embedHtml?: Flex__<typeof Embed>;
   deleteSnakbar?: Flex__<typeof Snackbar>;
@@ -134,7 +145,11 @@ export interface DefaultMainProps {
   centerId?: string;
   role?: string;
   onRoleChange?: (val: string) => void;
-  page?: SingleChoiceArg<"centerList" | "center">;
+  token?: string;
+  state?: string;
+  page?: SingleChoiceArg<
+    "centers" | "center" | "users" | "reservations" | "categories"
+  >;
   className?: string;
 }
 
@@ -179,8 +194,6 @@ function PlasmicMain__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const $globalActions = useGlobalActions?.();
-
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -194,7 +207,7 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          hasVariant($state, "page", "centerList") ? false : false
+          hasVariant($state, "page", "centers") ? false : false
       },
       {
         path: "button2.loading",
@@ -275,7 +288,7 @@ function PlasmicMain__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "mainPage.categpty",
+        path: "mainPageCenter.categpty",
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
@@ -334,7 +347,7 @@ function PlasmicMain__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
-        path: "mainPage.selectedRow",
+        path: "mainPageCenter.selectedRow",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
@@ -445,7 +458,7 @@ function PlasmicMain__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "mainPage.restart",
+        path: "mainPageCenter.restart",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
@@ -463,13 +476,118 @@ function PlasmicMain__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
-        path: "mainPage.list",
+        path: "mainPageCenter.list",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
-              return $state.page == "centerList";
+              return $state.page == "centers";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "mainPageUser.selectedRow",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "mainPageUser.categpty",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "mainPageUser.restart",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "mainPageUser.list",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.page == "users";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "mainPageReservations.selectedRow",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "mainPageReservations.categpty",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "mainPageReservations.restart",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "mainPageReservations.list",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.page == "reservations";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "mainPageCategories.categpty",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "mainPageCategories.restart",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "mainPageCategories.list",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.page == "categories";
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -484,6 +602,9 @@ function PlasmicMain__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -501,10 +622,10 @@ function PlasmicMain__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -513,14 +634,19 @@ function PlasmicMain__RenderFunc(props: {
         data-plasmic-name={"topPage"}
         data-plasmic-override={overrides.topPage}
         className={classNames("__wab_instance", sty.topPage, {
-          [sty.topPagepage_center]: hasVariant($state, "page", "center")
+          [sty.topPagepage_center]: hasVariant($state, "page", "center"),
+          [sty.topPagepage_centers]: hasVariant($state, "page", "centers"),
+          [sty.topPagepage_users]: hasVariant($state, "page", "users")
         })}
       />
 
-      <MainPage
-        data-plasmic-name={"mainPage"}
-        data-plasmic-override={overrides.mainPage}
-        categpty={generateStateValueProp($state, ["mainPage", "categpty"])}
+      <MainPageCenter
+        data-plasmic-name={"mainPageCenter"}
+        data-plasmic-override={overrides.mainPageCenter}
+        categpty={generateStateValueProp($state, [
+          "mainPageCenter",
+          "categpty"
+        ])}
         centerDelete={async () => {
           const $steps = {};
 
@@ -529,7 +655,8 @@ function PlasmicMain__RenderFunc(props: {
                 const actionArgs = {
                   customFunction: async () => {
                     return (() => {
-                      $state.deleteSnakbar.data = $state.mainPage.selectedRow;
+                      $state.deleteSnakbar.data =
+                        $state.mainPageCenter.selectedRow;
                       return ($state.deleteSnakbar.opendialog = true);
                     })();
                   }
@@ -547,20 +674,21 @@ function PlasmicMain__RenderFunc(props: {
             $steps["runCode"] = await $steps["runCode"];
           }
         }}
-        className={classNames("__wab_instance", sty.mainPage, {
-          [sty.mainPagepage_centerList]: hasVariant(
+        className={classNames("__wab_instance", sty.mainPageCenter, {
+          [sty.mainPageCenterpage_center]: hasVariant($state, "page", "center"),
+          [sty.mainPageCenterpage_centers]: hasVariant(
             $state,
             "page",
-            "centerList"
+            "centers"
           ),
-          [sty.mainPagepage_center]: hasVariant($state, "page", "center")
+          [sty.mainPageCenterpage_users]: hasVariant($state, "page", "users")
         })}
-        list={generateStateValueProp($state, ["mainPage", "list"])}
+        list={generateStateValueProp($state, ["mainPageCenter", "list"])}
         onCategptyChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["mainPage", "categpty"]).apply(
-            null,
-            eventArgs
-          );
+          generateStateOnChangeProp($state, [
+            "mainPageCenter",
+            "categpty"
+          ]).apply(null, eventArgs);
 
           if (
             eventArgs.length > 1 &&
@@ -571,7 +699,7 @@ function PlasmicMain__RenderFunc(props: {
           }
         }}
         onListChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["mainPage", "list"]).apply(
+          generateStateOnChangeProp($state, ["mainPageCenter", "list"]).apply(
             null,
             eventArgs
           );
@@ -585,10 +713,10 @@ function PlasmicMain__RenderFunc(props: {
           }
         }}
         onRestartChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["mainPage", "restart"]).apply(
-            null,
-            eventArgs
-          );
+          generateStateOnChangeProp($state, [
+            "mainPageCenter",
+            "restart"
+          ]).apply(null, eventArgs);
 
           if (
             eventArgs.length > 1 &&
@@ -606,7 +734,7 @@ function PlasmicMain__RenderFunc(props: {
                 const actionArgs = {
                   destination: `/panel/${(() => {
                     try {
-                      return "center-" + $state.mainPage.selectedRow.id;
+                      return "center-" + $state.mainPageCenter.selectedRow.id;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -641,10 +769,10 @@ function PlasmicMain__RenderFunc(props: {
           }
         }}
         onSelectedRowChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["mainPage", "selectedRow"]).apply(
-            null,
-            eventArgs
-          );
+          generateStateOnChangeProp($state, [
+            "mainPageCenter",
+            "selectedRow"
+          ]).apply(null, eventArgs);
 
           if (
             eventArgs.length > 1 &&
@@ -687,9 +815,93 @@ function PlasmicMain__RenderFunc(props: {
               await $steps["updateAddCenterIsOpen"];
           }
         }}
-        restart={generateStateValueProp($state, ["mainPage", "restart"])}
+        restart={generateStateValueProp($state, ["mainPageCenter", "restart"])}
         selectedRow={generateStateValueProp($state, [
-          "mainPage",
+          "mainPageCenter",
+          "selectedRow"
+        ])}
+        state={(() => {
+          try {
+            return $props.state;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+      />
+
+      <MainPageUser
+        data-plasmic-name={"mainPageUser"}
+        data-plasmic-override={overrides.mainPageUser}
+        categpty={generateStateValueProp($state, ["mainPageUser", "categpty"])}
+        className={classNames("__wab_instance", sty.mainPageUser, {
+          [sty.mainPageUserpage_users]: hasVariant($state, "page", "users")
+        })}
+        list={generateStateValueProp($state, ["mainPageUser", "list"])}
+        onCategptyChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainPageUser", "categpty"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onListChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainPageUser", "list"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onRestartChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainPageUser", "restart"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onSelectedRowChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageUser",
+            "selectedRow"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        restart={generateStateValueProp($state, ["mainPageUser", "restart"])}
+        selectedRow={generateStateValueProp($state, [
+          "mainPageUser",
           "selectedRow"
         ])}
       />
@@ -716,12 +928,8 @@ function PlasmicMain__RenderFunc(props: {
         })()}
         categpty={generateStateValueProp($state, ["centerPage", "categpty"])}
         className={classNames("__wab_instance", sty.centerPage, {
-          [sty.centerPagepage_centerList]: hasVariant(
-            $state,
-            "page",
-            "centerList"
-          ),
-          [sty.centerPagepage_center]: hasVariant($state, "page", "center")
+          [sty.centerPagepage_center]: hasVariant($state, "page", "center"),
+          [sty.centerPagepage_centers]: hasVariant($state, "page", "centers")
         })}
         data={generateStateValueProp($state, ["centerPage", "data"])}
         deleteCenter={async () => {
@@ -832,18 +1040,27 @@ function PlasmicMain__RenderFunc(props: {
             throw e;
           }
         })()}
+        token={(() => {
+          try {
+            return $props.token;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
       />
 
       <Modal
         data-plasmic-name={"addCenter"}
         data-plasmic-override={overrides.addCenter}
         className={classNames("__wab_instance", sty.addCenter, {
-          [sty.addCenterpage_centerList]: hasVariant(
-            $state,
-            "page",
-            "centerList"
-          ),
-          [sty.addCenterpage_center]: hasVariant($state, "page", "center")
+          [sty.addCenterpage_center]: hasVariant($state, "page", "center"),
+          [sty.addCenterpage_centers]: hasVariant($state, "page", "centers")
         })}
         closeOnBackdropClick={false}
         content={
@@ -864,8 +1081,8 @@ function PlasmicMain__RenderFunc(props: {
                   label={
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__vuwH
                       )}
                     >
@@ -991,8 +1208,8 @@ function PlasmicMain__RenderFunc(props: {
                   label={
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__q0V5E
                       )}
                     >
@@ -1030,8 +1247,8 @@ function PlasmicMain__RenderFunc(props: {
                   label={
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__xW6M
                       )}
                     >
@@ -1153,8 +1370,8 @@ function PlasmicMain__RenderFunc(props: {
                   label={
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__xwmKh
                       )}
                     >
@@ -1192,8 +1409,8 @@ function PlasmicMain__RenderFunc(props: {
                   label={
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__ge21W
                       )}
                     >
@@ -1243,7 +1460,7 @@ function PlasmicMain__RenderFunc(props: {
           />
         }
         footer={
-          <div className={classNames(projectcss.all, sty.freeBox__cGp8Z)}>
+          <div className={classNames("all", sty.freeBox__cGp8Z)}>
             {(() => {
               try {
                 return $state.tabs.activeKey != "5";
@@ -1261,20 +1478,16 @@ function PlasmicMain__RenderFunc(props: {
                 data-plasmic-name={"button2"}
                 data-plasmic-override={overrides.button2}
                 className={classNames("__wab_instance", sty.button2, {
-                  [sty.button2page_centerList]: hasVariant(
+                  [sty.button2page_centers]: hasVariant(
                     $state,
                     "page",
-                    "centerList"
+                    "centers"
                   )
                 })}
                 color={"success"}
                 label={
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__hr43P
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__hr43P)}
                   >
                     {"\u0628\u0639\u062f\u06cc"}
                   </div>
@@ -1341,11 +1554,7 @@ function PlasmicMain__RenderFunc(props: {
                 color={"success"}
                 label={
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__bSwNw
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__bSwNw)}
                   >
                     {"\u0630\u062e\u06cc\u0631\u0647"}
                   </div>
@@ -1499,11 +1708,7 @@ function PlasmicMain__RenderFunc(props: {
               color={"neutral"}
               label={
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__a4BhN
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__a4BhN)}
                 >
                   {"\u0644\u063a\u0648"}
                 </div>
@@ -1585,6 +1790,150 @@ function PlasmicMain__RenderFunc(props: {
         showHeader={false}
       />
 
+      <MainPageCategories
+        data-plasmic-name={"mainPageCategories"}
+        data-plasmic-override={overrides.mainPageCategories}
+        categpty={generateStateValueProp($state, [
+          "mainPageCategories",
+          "categpty"
+        ])}
+        className={classNames("__wab_instance", sty.mainPageCategories, {
+          [sty.mainPageCategoriespage_categories]: hasVariant(
+            $state,
+            "page",
+            "categories"
+          )
+        })}
+        list={generateStateValueProp($state, ["mainPageCategories", "list"])}
+        onCategptyChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageCategories",
+            "categpty"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onListChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageCategories",
+            "list"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onRestartChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageCategories",
+            "restart"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        restart={generateStateValueProp($state, [
+          "mainPageCategories",
+          "restart"
+        ])}
+      />
+
+      <MainPageReservations
+        data-plasmic-name={"mainPageReservations"}
+        data-plasmic-override={overrides.mainPageReservations}
+        categpty={generateStateValueProp($state, [
+          "mainPageReservations",
+          "categpty"
+        ])}
+        className={classNames("__wab_instance", sty.mainPageReservations, {
+          [sty.mainPageReservationspage_reservations]: hasVariant(
+            $state,
+            "page",
+            "reservations"
+          )
+        })}
+        list={generateStateValueProp($state, ["mainPageReservations", "list"])}
+        onCategptyChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageReservations",
+            "categpty"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onListChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageReservations",
+            "list"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onRestartChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageReservations",
+            "restart"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onSelectedRowChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageReservations",
+            "selectedRow"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        restart={generateStateValueProp($state, [
+          "mainPageReservations",
+          "restart"
+        ])}
+        selectedRow={generateStateValueProp($state, [
+          "mainPageReservations",
+          "selectedRow"
+        ])}
+      />
+
       <ApiRequest
         data-plasmic-name={"categories"}
         data-plasmic-override={overrides.categories}
@@ -1592,6 +1941,11 @@ function PlasmicMain__RenderFunc(props: {
         className={classNames("__wab_instance", sty.categories, {
           [sty.categoriespage_center]: hasVariant($state, "page", "center")
         })}
+        config={{
+          headers: {
+            Authorization: `Bearer ${$props.token}`
+          }
+        }}
         errorDisplay={null}
         loadingDisplay={null}
         method={"GET"}
@@ -1614,7 +1968,7 @@ function PlasmicMain__RenderFunc(props: {
           );
         }}
         shouldFetch={true}
-        url={"https://sayban.darkube.app/webhook/panel/categories/full"}
+        url={"https://sayban.darkube.ir/webhook-test/panel/centers"}
       />
 
       <Embed
@@ -1679,13 +2033,7 @@ function PlasmicMain__RenderFunc(props: {
           "opendialog"
         ])}
         slot={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__r7Fcm
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__r7Fcm)}>
             <React.Fragment>
               {(() => {
                 try {
@@ -1708,20 +2056,14 @@ function PlasmicMain__RenderFunc(props: {
         }
         type={"error"}
       >
-        <div className={classNames(projectcss.all, sty.freeBox__rkTkx)}>
+        <div className={classNames("all", sty.freeBox__rkTkx)}>
           <Button
             data-plasmic-name={"buttonDelete"}
             data-plasmic-override={overrides.buttonDelete}
             className={classNames("__wab_instance", sty.buttonDelete)}
             color={"errorDestructive"}
             label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__hFcLz
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__hFcLz)}>
                 {"\u062d\u0630\u0641"}
               </div>
             }
@@ -1816,7 +2158,7 @@ function PlasmicMain__RenderFunc(props: {
                       customFunction: async () => {
                         return (() => {
                           $state.deleteSnakbar.opendialog = false;
-                          return ($state.mainPage.restart += "1");
+                          return ($state.mainPageCenter.restart += "1");
                         })();
                       }
                     };
@@ -1885,13 +2227,7 @@ function PlasmicMain__RenderFunc(props: {
             className={classNames("__wab_instance", sty.buttonClose)}
             color={"clear"}
             label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__vbTlK
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__vbTlK)}>
                 {"\u0644\u063a\u0648"}
               </div>
             }
@@ -1954,7 +2290,8 @@ const PlasmicDescendants = {
   root: [
     "root",
     "topPage",
-    "mainPage",
+    "mainPageCenter",
+    "mainPageUser",
     "centerPage",
     "addCenter",
     "tabs",
@@ -1966,6 +2303,8 @@ const PlasmicDescendants = {
     "button2",
     "submit",
     "button3",
+    "mainPageCategories",
+    "mainPageReservations",
     "categories",
     "embedHtml",
     "deleteSnakbar",
@@ -1973,7 +2312,8 @@ const PlasmicDescendants = {
     "buttonClose"
   ],
   topPage: ["topPage"],
-  mainPage: ["mainPage"],
+  mainPageCenter: ["mainPageCenter"],
+  mainPageUser: ["mainPageUser"],
   centerPage: ["centerPage"],
   addCenter: [
     "addCenter",
@@ -1996,6 +2336,8 @@ const PlasmicDescendants = {
   button2: ["button2"],
   submit: ["submit"],
   button3: ["button3"],
+  mainPageCategories: ["mainPageCategories"],
+  mainPageReservations: ["mainPageReservations"],
   categories: ["categories"],
   embedHtml: ["embedHtml"],
   deleteSnakbar: ["deleteSnakbar", "buttonDelete", "buttonClose"],
@@ -2008,7 +2350,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   topPage: typeof TopPage;
-  mainPage: typeof MainPage;
+  mainPageCenter: typeof MainPageCenter;
+  mainPageUser: typeof MainPageUser;
   centerPage: typeof CenterPage;
   addCenter: typeof Modal;
   tabs: typeof AntdTabs;
@@ -2020,6 +2363,8 @@ type NodeDefaultElementType = {
   button2: typeof Button;
   submit: typeof Button;
   button3: typeof Button;
+  mainPageCategories: typeof MainPageCategories;
+  mainPageReservations: typeof MainPageReservations;
   categories: typeof ApiRequest;
   embedHtml: typeof Embed;
   deleteSnakbar: typeof Snackbar;
@@ -2090,7 +2435,8 @@ export const PlasmicMain = Object.assign(
   {
     // Helper components rendering sub-elements
     topPage: makeNodeComponent("topPage"),
-    mainPage: makeNodeComponent("mainPage"),
+    mainPageCenter: makeNodeComponent("mainPageCenter"),
+    mainPageUser: makeNodeComponent("mainPageUser"),
     centerPage: makeNodeComponent("centerPage"),
     addCenter: makeNodeComponent("addCenter"),
     tabs: makeNodeComponent("tabs"),
@@ -2102,6 +2448,8 @@ export const PlasmicMain = Object.assign(
     button2: makeNodeComponent("button2"),
     submit: makeNodeComponent("submit"),
     button3: makeNodeComponent("button3"),
+    mainPageCategories: makeNodeComponent("mainPageCategories"),
+    mainPageReservations: makeNodeComponent("mainPageReservations"),
     categories: makeNodeComponent("categories"),
     embedHtml: makeNodeComponent("embedHtml"),
     deleteSnakbar: makeNodeComponent("deleteSnakbar"),

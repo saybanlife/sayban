@@ -70,7 +70,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicReviews.module.css"; // plasmic-import: 4JcB7p9dG66n/css
 
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
@@ -260,6 +259,7 @@ function PlasmicReviews__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -277,10 +277,10 @@ function PlasmicReviews__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -298,8 +298,8 @@ function PlasmicReviews__RenderFunc(props: {
         }
       })()}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__zcQjF)}>
-        <div className={classNames(projectcss.all, sty.freeBox__k8Qcy)}>
+      <div className={classNames("all", sty.freeBox__zcQjF)}>
+        <div className={classNames("all", sty.freeBox__k8Qcy)}>
           <Select
             data-plasmic-name={"select2"}
             data-plasmic-override={overrides.select2}
@@ -479,7 +479,7 @@ function PlasmicReviews__RenderFunc(props: {
             value={generateStateValueProp($state, ["select2", "value"])}
           />
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__kmlqL)}>
+        <div className={classNames("all", sty.freeBox__kmlqL)}>
           <Button
             data-plasmic-name={"button"}
             data-plasmic-override={overrides.button}
@@ -487,19 +487,13 @@ function PlasmicReviews__RenderFunc(props: {
             color={"success"}
             end={
               <Icon56Icon
-                className={classNames(projectcss.all, sty.svg___2KyCf)}
+                className={classNames("all", sty.svg___2KyCf)}
                 role={"img"}
               />
             }
             iconEnd={true}
             label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__czTfz
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__czTfz)}>
                 {"\u0645\u0631\u06a9\u0632 \u062c\u062f\u06cc\u062f"}
               </div>
             }
@@ -521,7 +515,7 @@ function PlasmicReviews__RenderFunc(props: {
             }}
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox___13Q1U)}>
+          <div className={classNames("all", sty.freeBox___13Q1U)}>
             <Select
               data-plasmic-name={"select"}
               data-plasmic-override={overrides.select}
@@ -562,8 +556,8 @@ function PlasmicReviews__RenderFunc(props: {
           </div>
         </div>
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__qT9Sf)}>
-        <div className={classNames(projectcss.all, sty.freeBox__aIv58)}>
+      <div className={classNames("all", sty.freeBox__qT9Sf)}>
+        <div className={classNames("all", sty.freeBox__aIv58)}>
           <ApiRequest
             data-plasmic-name={"reviews"}
             data-plasmic-override={overrides.reviews}
@@ -683,21 +677,17 @@ function PlasmicReviews__RenderFunc(props: {
               throw e;
             }
           })() ? (
-            <div className={classNames(projectcss.all, sty.freeBox__ltojb)}>
+            <div className={classNames("all", sty.freeBox__ltojb)}>
               <Icon115Icon
-                className={classNames(projectcss.all, sty.svg__u6FC)}
+                className={classNames("all", sty.svg__u6FC)}
                 role={"img"}
               />
             </div>
           ) : null}
-          <div className={classNames(projectcss.all, sty.freeBox__nUHbo)}>
-            <div className={classNames(projectcss.all, sty.freeBox__xHwYq)}>
+          <div className={classNames("all", sty.freeBox__nUHbo)}>
+            <div className={classNames("all", sty.freeBox__xHwYq)}>
               <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text___9UbIv
-                )}
+                className={classNames("all", "__wab_text", sty.text___9UbIv)}
               >
                 {
                   "\u0646\u0638\u0631\u0627\u062a \u0645\u0631\u0627\u06a9\u0632"
@@ -722,7 +712,7 @@ function PlasmicReviews__RenderFunc(props: {
                 const currentIndex = __plasmic_idx_0;
                 return (
                   <div
-                    className={classNames(projectcss.all, sty.freeBox___0BOqc)}
+                    className={classNames("all", sty.freeBox___0BOqc)}
                     key={currentIndex}
                   >
                     <PlasmicImg__
@@ -775,8 +765,8 @@ function PlasmicReviews__RenderFunc(props: {
 
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__xrmFd
                       )}
                     >
@@ -800,7 +790,7 @@ function PlasmicReviews__RenderFunc(props: {
                 );
               })}
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox__oQxdu)} />
+            <div className={classNames("all", sty.freeBox__oQxdu)} />
           </div>
         </div>
       </div>

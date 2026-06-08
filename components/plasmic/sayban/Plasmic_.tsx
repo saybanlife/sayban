@@ -65,7 +65,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./Plasmic_.module.css"; // plasmic-import: Zvnt2o0Nw1re/css
 
 const emptyProxy: any = new Proxy(() => "", {
@@ -83,11 +82,18 @@ function wrapQueriesWithLoadingProxy($q: any): any {
   });
 }
 
-export function generateDynamicMetadata($q: any, $ctx: any) {
+export type PageCtx = {
+  pageRoute: string;
+  pagePath: string;
+  params: Record<string, string | string[] | undefined>;
+  query: Record<string, string | string[] | undefined>;
+};
+
+export function generateDynamicMetadata($q: any, $ctx: PageCtx) {
   return {
     openGraph: {},
     twitter: {
-      card: "summary"
+      card: "summary" as const
     }
   };
 }
@@ -151,7 +157,7 @@ function Plasmic___RenderFunc(props: {
 
   const pageMetadata = generateDynamicMetadata(
     wrapQueriesWithLoadingProxy({}),
-    $ctx
+    $ctx as PageCtx
   );
 
   const styleTokensClassNames = _useStyleTokens();
@@ -166,17 +172,17 @@ function Plasmic___RenderFunc(props: {
         }
       `}</style>
 
-      <div className={projectcss.plasmic_page_wrapper}>
+      <div className={"plasmic_page_wrapper"}>
         <div
           data-plasmic-name={"root"}
           data-plasmic-override={overrides.root}
           data-plasmic-root={true}
           data-plasmic-for-node={forNode}
           className={classNames(
-            projectcss.all,
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
+            "all",
+            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+            "plasmic_default_styles",
+            "plasmic_mixins",
             styleTokensClassNames,
             sty.root
           )}
@@ -301,9 +307,10 @@ export const Plasmic_ = Object.assign(
     internalArgProps: Plasmic___ArgProps,
 
     pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pageRoute: "/",
       pagePath: "/",
-      searchParams: {},
-      params: {}
+      params: {},
+      query: {}
     })
   }
 );

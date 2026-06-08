@@ -68,7 +68,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicLogin2.module.css"; // plasmic-import: e-nYBMaX6lLd/css
 
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
@@ -147,8 +146,6 @@ function PlasmicLogin2__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const $globalActions = useGlobalActions?.();
-
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -206,10 +203,19 @@ function PlasmicLogin2__RenderFunc(props: {
 
         valueProp: "userinfo",
         onChangeProp: "onUserinfoChange"
+      },
+      {
+        path: "age",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 0
       }
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -227,34 +233,22 @@ function PlasmicLogin2__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         "dark"
       )}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__qOMkk)}>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__nuC5
-          )}
-        >
+      <div className={classNames("all", sty.freeBox__qOMkk)}>
+        <div className={classNames("all", "__wab_text", sty.text__nuC5)}>
           {
             "\u0648\u0631\u0648\u062f \u0628\u0647 \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc"
           }
         </div>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__mNIlu
-          )}
-        >
+        <div className={classNames("all", "__wab_text", sty.text__mNIlu)}>
           {
             "\u0628\u0647 \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc \u062e\u0648\u062f \u0648\u0627\u0631\u062f \u0634\u0648\u06cc\u062f."
           }
@@ -284,7 +278,7 @@ function PlasmicLogin2__RenderFunc(props: {
         value={generateStateValueProp($state, ["userName", "value"])}
       />
 
-      <div className={classNames(projectcss.all, sty.freeBox__cHvNr)}>
+      <div className={classNames("all", sty.freeBox__cHvNr)}>
         <TextInput
           data-plasmic-name={"password"}
           data-plasmic-override={overrides.password}
@@ -423,20 +417,14 @@ function PlasmicLogin2__RenderFunc(props: {
           type={generateStateValueProp($state, ["hide", "type"])}
         />
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox___14Wwx)}>
+      <div className={classNames("all", sty.freeBox___14Wwx)}>
         <Check
           data-plasmic-name={"check"}
           data-plasmic-override={overrides.check}
           className={classNames("__wab_instance", sty.check)}
           isSelected={generateStateValueProp($state, ["check", "isSelected"])}
           label={
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text___7Abu7
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text___7Abu7)}>
               {
                 "\u0645\u0631\u0627 \u0628\u0647 \u062e\u0627\u0637\u0631 \u0628\u0633\u067e\u0627\u0631"
               }
@@ -455,6 +443,32 @@ function PlasmicLogin2__RenderFunc(props: {
             ) {
               return;
             }
+
+            (async val => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.age = $state.check.isSelected
+                          ? 1000
+                          : null);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }).apply(null, eventArgs);
           }}
         />
 
@@ -464,13 +478,7 @@ function PlasmicLogin2__RenderFunc(props: {
           className={classNames("__wab_instance", sty.button2)}
           color={"clear"}
           label={
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__gaG1O
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__gaG1O)}>
               {
                 "\u0631\u0645\u0632 \u0631\u0627 \u0641\u0631\u0627\u0645\u0648\u0634 \u06a9\u0631\u062f\u0647\u200c\u0627\u06cc\u062f\u061f"
               }
@@ -498,13 +506,7 @@ function PlasmicLogin2__RenderFunc(props: {
         data-plasmic-override={overrides.loginBtn}
         className={classNames("__wab_instance", sty.loginBtn)}
         label={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__jziW8
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__jziW8)}>
             {"\u0648\u0631\u0648\u062f"}
           </div>
         }
@@ -546,7 +548,7 @@ function PlasmicLogin2__RenderFunc(props: {
                 const actionArgs = {
                   args: [
                     "POST",
-                    "https://sayban.darkube.app/webhook/panel/user/login",
+                    "https://sayban.darkube.ir/webhook/panel/user/login",
                     undefined,
                     {
                       userName: $state.userName.value,
@@ -578,7 +580,7 @@ function PlasmicLogin2__RenderFunc(props: {
                           $steps.loginApi?.data?.result?.center_id;
                         let result;
                         if (role === "super_admin") {
-                          result = "center-list";
+                          result = "centers";
                         } else if (role === "center_admin") {
                           result = `center-${centerId}`;
                         }
@@ -674,6 +676,52 @@ function PlasmicLogin2__RenderFunc(props: {
           ) {
             $steps["loading2"] = await $steps["loading2"];
           }
+
+          $steps["invokeGlobalAction"] = $steps.loginApi?.data?.success
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    "panelToken",
+                    (() => {
+                      try {
+                        return $steps.loginApi?.data?.result?.token;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })(),
+                    (() => {
+                      try {
+                        return $state.age;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return 100;
+                        }
+                        throw e;
+                      }
+                    })()
+                  ]
+                };
+                return $globalActions["Fragment.setCookie"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["invokeGlobalAction"] != null &&
+            typeof $steps["invokeGlobalAction"] === "object" &&
+            typeof $steps["invokeGlobalAction"].then === "function"
+          ) {
+            $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
+          }
         }}
         onLoadingChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["loginBtn", "loading"]).apply(
@@ -698,13 +746,7 @@ function PlasmicLogin2__RenderFunc(props: {
         className={classNames("__wab_instance", sty.button3)}
         color={"clear"}
         label={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__enY77
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__enY77)}>
             <React.Fragment>
               <React.Fragment>
                 {
@@ -712,7 +754,9 @@ function PlasmicLogin2__RenderFunc(props: {
                 }
               </React.Fragment>
               <span
-                className={"plasmic_default__all plasmic_default__span"}
+                className={
+                  "plasmic_default__all plasmic_default__span plasmic_default__span__qARqp"
+                }
                 style={{ color: "var(--token-ee2TuxDknsJj)", fontWeight: 700 }}
               >
                 {
@@ -728,7 +772,7 @@ function PlasmicLogin2__RenderFunc(props: {
 
           $steps["goToPanel"] = true
             ? (() => {
-                const actionArgs = { destination: `/panel/${"login/create"}` };
+                const actionArgs = { destination: `/panel/${"create"}` };
                 return (({ destination }) => {
                   if (
                     typeof destination === "string" &&

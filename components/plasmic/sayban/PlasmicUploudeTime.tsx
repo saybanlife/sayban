@@ -64,7 +64,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicUploudeTime.module.css"; // plasmic-import: IxvwO5AMD5ex/css
 
 import Icon91Icon from "./icons/PlasmicIcon__Icon91"; // plasmic-import: lnClONjnY1AS/icon
@@ -153,6 +152,7 @@ function PlasmicUploudeTime__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -170,27 +170,21 @@ function PlasmicUploudeTime__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__ts1E)}>
+      <div className={classNames("all", sty.freeBox__ts1E)}>
         <Icon91Icon
-          className={classNames(projectcss.all, sty.svg__zaRex)}
+          className={classNames("all", sty.svg__zaRex)}
           role={"img"}
         />
 
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__fxGzQ
-          )}
-        >
+        <div className={classNames("all", "__wab_text", sty.text__fxGzQ)}>
           <React.Fragment>
             {(() => {
               try {
@@ -221,19 +215,13 @@ function PlasmicUploudeTime__RenderFunc(props: {
           </React.Fragment>
         </div>
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__z37VN)}>
+      <div className={classNames("all", sty.freeBox__z37VN)}>
         <Icon21Icon
-          className={classNames(projectcss.all, sty.svg___8A7Gj)}
+          className={classNames("all", sty.svg___8A7Gj)}
           role={"img"}
         />
 
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__zajVb
-          )}
-        >
+        <div className={classNames("all", "__wab_text", sty.text__zajVb)}>
           <React.Fragment>
             {(() => {
               try {

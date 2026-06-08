@@ -71,7 +71,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicSort.module.css"; // plasmic-import: V2In34aoYVht/css
 
 import ChevronRightIcon from "./icons/PlasmicIcon__ChevronRight"; // plasmic-import: asThzEchEMNJ/icon
@@ -174,8 +173,6 @@ function PlasmicSort__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const globalVariants = _useGlobalVariants();
-
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -254,6 +251,9 @@ function PlasmicSort__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const globalVariants = _useGlobalVariants();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -272,9 +272,9 @@ function PlasmicSort__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.dialog3,
         {
@@ -345,9 +345,9 @@ function PlasmicSort__RenderFunc(props: {
         [sty["pcls_wczJMcyYFPkm"]]: hasVariant($state, "fullpage", "fullpage")
       })}
       themeResetClass={classNames(
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames
       )}
       triggerSlot={
@@ -358,7 +358,7 @@ function PlasmicSort__RenderFunc(props: {
           color={generateStateValueProp($state, ["button3", "color"])}
           endIcon={
             <ChevronLeftIcon
-              className={classNames(projectcss.all, sty.svg__dex5B)}
+              className={classNames("all", sty.svg__dex5B)}
               role={"img"}
             />
           }
@@ -411,7 +411,7 @@ function PlasmicSort__RenderFunc(props: {
           }}
           startIcon={
             <ChevronRightIcon
-              className={classNames(projectcss.all, sty.svg__rM39U)}
+              className={classNames("all", sty.svg__rM39U)}
               role={"img"}
             />
           }
@@ -447,9 +447,9 @@ function PlasmicSort__RenderFunc(props: {
         }
         exitDuration={0.5}
         themeResetClass={classNames(
-          projectcss.root_reset,
-          projectcss.plasmic_default_styles,
-          projectcss.plasmic_mixins,
+          "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+          "plasmic_default_styles",
+          "plasmic_mixins",
           styleTokensClassNames
         )}
       >
@@ -458,13 +458,7 @@ function PlasmicSort__RenderFunc(props: {
           data-plasmic-override={overrides.dialogTitle}
           className={classNames("__wab_instance", sty.dialogTitle)}
         >
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__aqXkM
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__aqXkM)}>
             {"Sheet title"}
           </div>
         </DialogTitle>
@@ -473,13 +467,7 @@ function PlasmicSort__RenderFunc(props: {
           data-plasmic-override={overrides.radioGroup}
           className={classNames("__wab_instance", sty.radioGroup)}
           label={
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text___8Oytd
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text___8Oytd)}>
               {
                 "\u0645\u0631\u062a\u0628 \u0633\u0627\u0632\u06cc \u0628\u0631 \u0627\u0633\u0627\u0633:"
               }
@@ -503,7 +491,7 @@ function PlasmicSort__RenderFunc(props: {
             <div
               data-plasmic-name={"freeBox"}
               data-plasmic-override={overrides.freeBox}
-              className={classNames(projectcss.all, sty.freeBox)}
+              className={classNames("all", sty.freeBox)}
             >
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {
@@ -548,8 +536,8 @@ function PlasmicSort__RenderFunc(props: {
                     label={
                       <div
                         className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
+                          "all",
+                          "__wab_text",
                           sty.text___54INl
                         )}
                       >
@@ -596,10 +584,7 @@ function PlasmicSort__RenderFunc(props: {
           data-plasmic-override={overrides.dialogClose}
           className={classNames("__wab_instance", sty.dialogClose)}
         >
-          <XIcon
-            className={classNames(projectcss.all, sty.svg__cGmDm)}
-            role={"img"}
-          />
+          <XIcon className={classNames("all", sty.svg__cGmDm)} role={"img"} />
         </DialogClose>
       </DialogContent>
     </Dialog>

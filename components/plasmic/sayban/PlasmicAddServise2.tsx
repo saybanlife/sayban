@@ -71,7 +71,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicAddServise2.module.css"; // plasmic-import: ldHafC0LATYt/css
 
 import ChevronLeftIcon from "./icons/PlasmicIcon__ChevronLeft"; // plasmic-import: vQC4_6sr1Yuo/icon
@@ -164,8 +163,6 @@ function PlasmicAddServise2__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
-
-  const $globalActions = useGlobalActions?.();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
@@ -271,6 +268,9 @@ function PlasmicAddServise2__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -288,10 +288,10 @@ function PlasmicAddServise2__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -320,7 +320,7 @@ function PlasmicAddServise2__RenderFunc(props: {
             defaultOpen: false,
             expandIcon: (
               <ChevronLeftIcon
-                className={classNames(projectcss.all, sty.svg__nOSac)}
+                className={classNames("all", sty.svg__nOSac)}
                 role={"img"}
               />
             ),
@@ -328,7 +328,7 @@ function PlasmicAddServise2__RenderFunc(props: {
             expandIconPosition: "end",
             extra: (
               <Icon58Icon
-                className={classNames(projectcss.all, sty.svg__an7Lw)}
+                className={classNames("all", sty.svg__an7Lw)}
                 onClick={async event => {
                   const $steps = {};
 
@@ -361,13 +361,7 @@ function PlasmicAddServise2__RenderFunc(props: {
 
             key: currentIndex,
             label2: (
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__yGv7B
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__yGv7B)}>
                 <React.Fragment>
                   {(() => {
                     try {
@@ -458,16 +452,10 @@ function PlasmicAddServise2__RenderFunc(props: {
               data-plasmic-override={overrides.collapse}
               {...child$Props}
             >
-              <div className={classNames(projectcss.all, sty.freeBox__tHlCa)}>
-                <div
-                  className={classNames(projectcss.all, sty.freeBox___2J1Jy)}
-                >
+              <div className={classNames("all", sty.freeBox__tHlCa)}>
+                <div className={classNames("all", sty.freeBox___2J1Jy)}>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__tiCJu
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__tiCJu)}
                   >
                     {"\u0646\u0627\u0645 \u0633\u0631\u0648\u06cc\u0633"}
                   </div>
@@ -555,13 +543,9 @@ function PlasmicAddServise2__RenderFunc(props: {
                     );
                   })()}
                 </div>
-                <div className={classNames(projectcss.all, sty.freeBox__aNqz)}>
+                <div className={classNames("all", sty.freeBox__aNqz)}>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__cF2P5
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__cF2P5)}
                   >
                     {"\u062a\u0648\u0636\u06cc\u062d\u0627\u062a"}
                   </div>
@@ -651,14 +635,12 @@ function PlasmicAddServise2__RenderFunc(props: {
                     );
                   })()}
                 </div>
-                <div className={classNames(projectcss.all, sty.freeBox__ndynd)}>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__xghX)}
-                  >
+                <div className={classNames("all", sty.freeBox__ndynd)}>
+                  <div className={classNames("all", sty.freeBox__xghX)}>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text___1SgUu
                       )}
                     >
@@ -752,13 +734,11 @@ function PlasmicAddServise2__RenderFunc(props: {
                       );
                     })()}
                   </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__hQrvb)}
-                  >
+                  <div className={classNames("all", sty.freeBox__hQrvb)}>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__tFJv
                       )}
                     >
@@ -856,14 +836,12 @@ function PlasmicAddServise2__RenderFunc(props: {
                     })()}
                   </div>
                 </div>
-                <div className={classNames(projectcss.all, sty.freeBox__wQ68)}>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__czfXl)}
-                  >
+                <div className={classNames("all", sty.freeBox__wQ68)}>
+                  <div className={classNames("all", sty.freeBox__czfXl)}>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__rkLr9
                       )}
                     >
@@ -957,13 +935,11 @@ function PlasmicAddServise2__RenderFunc(props: {
                       );
                     })()}
                   </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox___5Uol)}
-                  >
+                  <div className={classNames("all", sty.freeBox___5Uol)}>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__xRvDc
                       )}
                     >
@@ -1071,11 +1047,11 @@ function PlasmicAddServise2__RenderFunc(props: {
                     })()}
                   </div>
                 </div>
-                <div className={classNames(projectcss.all, sty.freeBox__tSG)}>
+                <div className={classNames("all", sty.freeBox__tSG)}>
                   <div
                     className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
+                      "all",
+                      "__wab_text",
                       sty.text___9C3Ov
                     )}
                   >
@@ -1269,19 +1245,13 @@ function PlasmicAddServise2__RenderFunc(props: {
         color={"second"}
         end={
           <Icon56Icon
-            className={classNames(projectcss.all, sty.svg__pzR7E)}
+            className={classNames("all", sty.svg__pzR7E)}
             role={"img"}
           />
         }
         iconEnd={true}
         label={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__hdBlc
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__hdBlc)}>
             {
               "\u0627\u0641\u0632\u0648\u062f\u0646 \u0633\u0631\u0648\u06cc\u0633"
             }
@@ -1404,24 +1374,12 @@ function PlasmicAddServise2__RenderFunc(props: {
         }}
         opendialog={generateStateValueProp($state, ["snackbar", "opendialog"])}
         slot={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__yrHXu
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__yrHXu)}>
             {"\u062d\u0630\u0641 \u0633\u0631\u0648\u06cc\u0633"}
           </div>
         }
         slot2={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__fQfHc
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__fQfHc)}>
             {
               "\u0622\u06cc\u0627 \u0627\u0632 \u062d\u0630\u0641 \u0627\u06cc\u0646 \u0633\u0631\u0648\u06cc\u0633 \u0645\u0637\u0645\u0626\u0646 \u0647\u0633\u062a\u06cc\u062f\u061f"
             }
@@ -1429,20 +1387,14 @@ function PlasmicAddServise2__RenderFunc(props: {
         }
         type={"error"}
       >
-        <div className={classNames(projectcss.all, sty.freeBox__lsFfn)}>
+        <div className={classNames("all", sty.freeBox__lsFfn)}>
           <Button
             data-plasmic-name={"_delete"}
             data-plasmic-override={overrides._delete}
             className={classNames("__wab_instance", sty._delete)}
             color={"errorDestructive"}
             label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__bKqMq
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__bKqMq)}>
                 {"\u062d\u0630\u0641"}
               </div>
             }
@@ -1580,13 +1532,7 @@ function PlasmicAddServise2__RenderFunc(props: {
             className={classNames("__wab_instance", sty.cansel)}
             color={"neutral"}
             label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__opG8K
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__opG8K)}>
                 {"\u0644\u063a\u0648"}
               </div>
             }

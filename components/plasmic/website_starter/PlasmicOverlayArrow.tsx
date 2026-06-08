@@ -65,7 +65,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicOverlayArrow.module.css"; // plasmic-import: Qb276Cell-HS/css
 
 import TriangleFilledIcon from "./icons/PlasmicIcon__TriangleFilled"; // plasmic-import: ec9ETjImV7BP/icon
@@ -147,6 +146,7 @@ function PlasmicOverlayArrow__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -184,9 +184,9 @@ function PlasmicOverlayArrow__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.rootdark]: hasVariant($state, "dark", "dark") }
@@ -196,7 +196,7 @@ function PlasmicOverlayArrow__RenderFunc(props: {
       <TriangleFilledIcon
         data-plasmic-name={"svg"}
         data-plasmic-override={overrides.svg}
-        className={classNames(projectcss.all, sty.svg, {
+        className={classNames("all", sty.svg, {
           [sty.svgdark]: hasVariant($state, "dark", "dark")
         })}
         role={"img"}

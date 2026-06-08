@@ -64,7 +64,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicService.module.css"; // plasmic-import: 0JNfyGRvC0FA/css
 
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: L5-0jFcT5N2O/icon
@@ -154,6 +153,7 @@ function PlasmicService__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -171,10 +171,10 @@ function PlasmicService__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.rootselect]: hasVariant($state, "select", "select") }
@@ -182,65 +182,36 @@ function PlasmicService__RenderFunc(props: {
       onClick={args.onClick}
     >
       <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__lb1NO,
-          {
-            [sty.textselect__lb1NOBdwMm]: hasVariant($state, "select", "select")
-          }
-        )}
+        className={classNames("all", "__wab_text", sty.text__lb1NO, {
+          [sty.textselect__lb1NOBdwMm]: hasVariant($state, "select", "select")
+        })}
       >
         <React.Fragment>{$props.currentItem.name}</React.Fragment>
       </div>
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text___0HVdD
-        )}
-      >
+      <div className={classNames("all", "__wab_text", sty.text___0HVdD)}>
         <React.Fragment>{$props.currentItem.description}</React.Fragment>
       </div>
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__mXtnd
-        )}
-      >
+      <div className={classNames("all", "__wab_text", sty.text__mXtnd)}>
         {""}
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__lqglh)}>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text___1Jg8Y
-          )}
-        >
+      <div className={classNames("all", sty.freeBox__lqglh)}>
+        <div className={classNames("all", "__wab_text", sty.text___1Jg8Y)}>
           <div
-            className={projectcss.__wab_expr_html_text}
+            className={"__wab_expr_html_text"}
             dangerouslySetInnerHTML={{
               __html: `${$props.currentItem.final_price.toLocaleString()} تومان 
  <span style="font-size: 12px; opacity: 0.8;">— ${$props.currentItem.duration_minutes} دقیقه</span>`
             }}
           />
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__jBZol)}>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__mDkHr
-            )}
-          >
+        <div className={classNames("all", sty.freeBox__jBZol)}>
+          <div className={classNames("all", "__wab_text", sty.text__mDkHr)}>
             {"\u0631\u0632\u0648 \u0646\u0648\u0628\u062a"}
           </div>
           <Icon34Icon
             data-plasmic-name={"svg"}
             data-plasmic-override={overrides.svg}
-            className={classNames(projectcss.all, sty.svg)}
+            className={classNames("all", sty.svg)}
             role={"img"}
           />
         </div>

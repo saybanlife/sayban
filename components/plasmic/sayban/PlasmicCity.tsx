@@ -67,7 +67,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicCity.module.css"; // plasmic-import: dRrvldGFbNOC/css
 
 import Icon33Icon from "./icons/PlasmicIcon__Icon33"; // plasmic-import: MJBmXdq7GQ5D/icon
@@ -195,6 +194,7 @@ function PlasmicCity__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -212,10 +212,10 @@ function PlasmicCity__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         "page "
@@ -230,19 +230,19 @@ function PlasmicCity__RenderFunc(props: {
       <div
         data-plasmic-name={"homePage"}
         data-plasmic-override={overrides.homePage}
-        className={classNames(projectcss.all, sty.homePage)}
+        className={classNames("all", sty.homePage)}
       >
         <section
           data-plasmic-name={"section"}
           data-plasmic-override={overrides.section}
-          className={classNames(projectcss.all, sty.section, "page ")}
+          className={classNames("all", sty.section, "page ")}
         >
           <div
-            className={classNames(projectcss.all, sty.freeBox__gfn1Y)}
+            className={classNames("all", sty.freeBox__gfn1Y)}
             id={"headerMain"}
           >
             <Icon33Icon
-              className={classNames(projectcss.all, sty.svg__uj7Fb)}
+              className={classNames("all", sty.svg__uj7Fb)}
               onClick={async event => {
                 const $steps = {};
 
@@ -265,7 +265,7 @@ function PlasmicCity__RenderFunc(props: {
               role={"img"}
             />
 
-            <div className={classNames(projectcss.all, sty.freeBox___0ZvW)}>
+            <div className={classNames("all", sty.freeBox___0ZvW)}>
               <TextInput
                 data-plasmic-name={"textInput"}
                 data-plasmic-override={overrides.textInput}
@@ -370,7 +370,7 @@ function PlasmicCity__RenderFunc(props: {
                 }
               })() ? (
                 <Icon10Icon
-                  className={classNames(projectcss.all, sty.svg__to88F)}
+                  className={classNames("all", sty.svg__to88F)}
                   onClick={async event => {
                     const $steps = {};
 
@@ -449,7 +449,7 @@ function PlasmicCity__RenderFunc(props: {
                 />
               ) : null}
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox___1UTm1)} />
+            <div className={classNames("all", sty.freeBox___1UTm1)} />
           </div>
         </section>
       </div>
@@ -532,7 +532,7 @@ function PlasmicCity__RenderFunc(props: {
         url={"https://sayban.darkube.app/webhook/city"}
       />
 
-      <div className={classNames(projectcss.all, sty.freeBox__aqvRm)}>
+      <div className={classNames("all", sty.freeBox__aqvRm)}>
         {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
           (() => {
             try {
@@ -552,7 +552,7 @@ function PlasmicCity__RenderFunc(props: {
           const provinceIndex = __plasmic_idx_0;
           return (
             <div
-              className={classNames(projectcss.all, sty.freeBox__lNxQy)}
+              className={classNames("all", sty.freeBox__lNxQy)}
               key={provinceIndex}
             >
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -574,7 +574,7 @@ function PlasmicCity__RenderFunc(props: {
                 const currentIndex = __plasmic_idx_1;
                 return (
                   <div
-                    className={classNames(projectcss.all, sty.freeBox__td9Tp)}
+                    className={classNames("all", sty.freeBox__td9Tp)}
                     key={currentIndex}
                     onClick={async event => {
                       const $steps = {};
@@ -631,18 +631,14 @@ function PlasmicCity__RenderFunc(props: {
                     }}
                   >
                     <Icon32Icon
-                      className={classNames(projectcss.all, sty.svg__l3R4N)}
+                      className={classNames("all", sty.svg__l3R4N)}
                       role={"img"}
                     />
 
                     <div
                       data-plasmic-name={"text"}
                       data-plasmic-override={overrides.text}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text
-                      )}
+                      className={classNames("all", "__wab_text", sty.text)}
                     >
                       <React.Fragment>{`${province.name}   |   ${currentItem}`}</React.Fragment>
                     </div>

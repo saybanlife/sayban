@@ -73,7 +73,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicFilter.module.css"; // plasmic-import: TmisqS8piGSB/css
 
 import ChevronRightIcon from "./icons/PlasmicIcon__ChevronRight"; // plasmic-import: asThzEchEMNJ/icon
@@ -173,8 +172,6 @@ function PlasmicFilter__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
-
-  const globalVariants = _useGlobalVariants();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
@@ -276,6 +273,9 @@ function PlasmicFilter__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const globalVariants = _useGlobalVariants();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -294,9 +294,9 @@ function PlasmicFilter__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.dialog3,
         {
@@ -367,9 +367,9 @@ function PlasmicFilter__RenderFunc(props: {
         )
       })}
       themeResetClass={classNames(
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames
       )}
       triggerSlot={
@@ -380,7 +380,7 @@ function PlasmicFilter__RenderFunc(props: {
           color={generateStateValueProp($state, ["button3", "color"])}
           endIcon={
             <ChevronLeftIcon
-              className={classNames(projectcss.all, sty.svg__cTran)}
+              className={classNames("all", sty.svg__cTran)}
               role={"img"}
             />
           }
@@ -433,7 +433,7 @@ function PlasmicFilter__RenderFunc(props: {
           }}
           startIcon={
             <ChevronRightIcon
-              className={classNames(projectcss.all, sty.svg__wCYsg)}
+              className={classNames("all", sty.svg__wCYsg)}
               role={"img"}
             />
           }
@@ -469,9 +469,9 @@ function PlasmicFilter__RenderFunc(props: {
         }
         exitDuration={0.5}
         themeResetClass={classNames(
-          projectcss.root_reset,
-          projectcss.plasmic_default_styles,
-          projectcss.plasmic_mixins,
+          "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+          "plasmic_default_styles",
+          "plasmic_mixins",
           styleTokensClassNames
         )}
       >
@@ -480,25 +480,13 @@ function PlasmicFilter__RenderFunc(props: {
           data-plasmic-override={overrides.dialogTitle}
           className={classNames("__wab_instance", sty.dialogTitle)}
         >
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__dcV2C
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__dcV2C)}>
             {"Sheet title"}
           </div>
         </DialogTitle>
-        <div className={classNames(projectcss.all, sty.freeBox__b5NVb)}>
-          <div className={classNames(projectcss.all, sty.freeBox___1Sg16)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__qAwR
-              )}
-            >
+        <div className={classNames("all", sty.freeBox__b5NVb)}>
+          <div className={classNames("all", sty.freeBox___1Sg16)}>
+            <div className={classNames("all", "__wab_text", sty.text__qAwR)}>
               {"\u0645\u0631\u062a\u0628 \u0633\u0627\u0632\u06cc "}
             </div>
             <SelectedComponnent
@@ -561,14 +549,8 @@ function PlasmicFilter__RenderFunc(props: {
             size={"small"}
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox__vjJa)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__sGaDj
-              )}
-            >
+          <div className={classNames("all", sty.freeBox__vjJa)}>
+            <div className={classNames("all", "__wab_text", sty.text__sGaDj)}>
               {"\u0627\u0645\u062a\u06cc\u0627\u0632"}
             </div>
             <SelectStars
@@ -598,14 +580,8 @@ function PlasmicFilter__RenderFunc(props: {
             size={"small"}
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox__sEfnc)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text___7XKjn
-              )}
-            >
+          <div className={classNames("all", sty.freeBox__sEfnc)}>
+            <div className={classNames("all", "__wab_text", sty.text___7XKjn)}>
               {
                 "\u0648\u0636\u0639\u06cc\u062a \u062f\u0633\u062a\u0631\u0633\u06cc "
               }
@@ -666,18 +642,14 @@ function PlasmicFilter__RenderFunc(props: {
             size={"small"}
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox__rkLC)}>
+          <div className={classNames("all", sty.freeBox__rkLC)}>
             <Button
               data-plasmic-name={"button4"}
               data-plasmic-override={overrides.button4}
               className={classNames("__wab_instance", sty.button4)}
               label={
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__u3JLd
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__u3JLd)}
                 >
                   {
                     "\u0627\u0639\u0645\u0627\u0644 \u0641\u06cc\u0644\u062a\u0631"
@@ -783,11 +755,7 @@ function PlasmicFilter__RenderFunc(props: {
               color={"neutral"}
               label={
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__r4TUn
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__r4TUn)}
                 >
                   {"\u062d\u0630\u0641 \u0647\u0645\u0647"}
                 </div>
@@ -842,10 +810,7 @@ function PlasmicFilter__RenderFunc(props: {
           data-plasmic-override={overrides.dialogClose}
           className={classNames("__wab_instance", sty.dialogClose)}
         >
-          <XIcon
-            className={classNames(projectcss.all, sty.svg__tbLvC)}
-            role={"img"}
-          />
+          <XIcon className={classNames("all", sty.svg__tbLvC)} role={"img"} />
         </DialogClose>
       </DialogContent>
     </Dialog>

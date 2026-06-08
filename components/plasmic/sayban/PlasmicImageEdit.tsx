@@ -67,7 +67,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicImageEdit.module.css"; // plasmic-import: PU02M3FSmgy6/css
 
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
@@ -149,8 +148,6 @@ function PlasmicImageEdit__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const $globalActions = useGlobalActions?.();
-
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -194,6 +191,9 @@ function PlasmicImageEdit__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -211,10 +211,10 @@ function PlasmicImageEdit__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -232,7 +232,7 @@ function PlasmicImageEdit__RenderFunc(props: {
           throw e;
         }
       })() ? (
-        <div className={classNames(projectcss.all, sty.freeBox__y8E1I)}>
+        <div className={classNames("all", sty.freeBox__y8E1I)}>
           <Embed
             data-plasmic-name={"embedHtml"}
             data-plasmic-override={overrides.embedHtml}
@@ -242,32 +242,14 @@ function PlasmicImageEdit__RenderFunc(props: {
             }
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox__j2M9)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text___9Qrdc
-              )}
-            >
+          <div className={classNames("all", sty.freeBox__j2M9)}>
+            <div className={classNames("all", "__wab_text", sty.text___9Qrdc)}>
               {"\u062a\u0635\u0627\u0648\u06cc\u0631"}
             </div>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__zpwwM
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__zpwwM)}>
               {"\u062a\u0631\u062a\u06cc\u0628 \u0646\u0645\u0627\u06cc\u0634"}
             </div>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text___1Fn92
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text___1Fn92)}>
               {""}
             </div>
           </div>
@@ -323,24 +305,12 @@ function PlasmicImageEdit__RenderFunc(props: {
         }}
         opendialog={generateStateValueProp($state, ["snackbar", "opendialog"])}
         slot={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__gXx2J
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__gXx2J)}>
             {"\u062d\u0630\u0641 \u062a\u0635\u0648\u06cc\u0631"}
           </div>
         }
         slot2={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__wEzHj
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__wEzHj)}>
             {
               "\u0622\u06cc\u0627 \u0627\u0632 \u062d\u0630\u0641 \u0627\u06cc\u0646 \u062a\u0635\u0648\u06cc\u0631 \u0645\u0637\u0645\u0626\u0646 \u0647\u0633\u062a\u06cc\u062f\u061f"
             }
@@ -348,20 +318,14 @@ function PlasmicImageEdit__RenderFunc(props: {
         }
         type={"error"}
       >
-        <div className={classNames(projectcss.all, sty.freeBox__x7OY)}>
+        <div className={classNames("all", sty.freeBox__x7OY)}>
           <Button
             data-plasmic-name={"_delete"}
             data-plasmic-override={overrides._delete}
             className={classNames("__wab_instance", sty._delete)}
             color={"errorDestructive"}
             label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__gTsM
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__gTsM)}>
                 {"\u062d\u0630\u0641"}
               </div>
             }
@@ -499,13 +463,7 @@ function PlasmicImageEdit__RenderFunc(props: {
             className={classNames("__wab_instance", sty.cansel)}
             color={"neutral"}
             label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__f7Mpt
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__f7Mpt)}>
                 {"\u0644\u063a\u0648"}
               </div>
             }
@@ -560,10 +518,7 @@ function PlasmicImageEdit__RenderFunc(props: {
           />
         </div>
       </Snackbar>
-      <div
-        className={classNames(projectcss.all, sty.freeBox__oBByy)}
-        id={"list"}
-      >
+      <div className={classNames("all", sty.freeBox__oBByy)} id={"list"}>
         {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
           (() => {
             try {
@@ -583,7 +538,7 @@ function PlasmicImageEdit__RenderFunc(props: {
           const currentIndex = __plasmic_idx_0;
           return (
             <div
-              className={classNames(projectcss.all, sty.freeBox__ljbb1)}
+              className={classNames("all", sty.freeBox__ljbb1)}
               data-id={(() => {
                 try {
                   return currentItem.id;
@@ -666,18 +621,12 @@ function PlasmicImageEdit__RenderFunc(props: {
                 })()}
               />
 
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__ltfuv
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__ltfuv)}>
                 <React.Fragment>{currentItem.order}</React.Fragment>
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox__tKbJc)}>
+              <div className={classNames("all", sty.freeBox__tKbJc)}>
                 <Icon58Icon
-                  className={classNames(projectcss.all, sty.svg__wv0Ic)}
+                  className={classNames("all", sty.svg__wv0Ic)}
                   onClick={async event => {
                     const $steps = {};
 
@@ -730,11 +679,7 @@ function PlasmicImageEdit__RenderFunc(props: {
                 />
 
                 <Icon60Icon
-                  className={classNames(
-                    projectcss.all,
-                    sty.svg__sSRm,
-                    "handle"
-                  )}
+                  className={classNames("all", sty.svg__sSRm, "handle")}
                   role={"img"}
                 />
               </div>

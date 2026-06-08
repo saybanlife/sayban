@@ -66,7 +66,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicCheckbox.module.css"; // plasmic-import: 7eMtZduHzknK/css
 
 import CheckIcon from "./icons/PlasmicIcon__Check"; // plasmic-import: fM5bltoga8N0/icon
@@ -177,8 +176,6 @@ function PlasmicCheckbox__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const globalVariants = _useGlobalVariants();
-
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -210,6 +207,9 @@ function PlasmicCheckbox__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const globalVariants = _useGlobalVariants();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -254,9 +254,9 @@ function PlasmicCheckbox__RenderFunc(props: {
       autoFocus={args.autoFocus}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaCheckbox,
         {
@@ -282,7 +282,7 @@ function PlasmicCheckbox__RenderFunc(props: {
       value={args.value}
     >
       <div
-        className={classNames(projectcss.all, sty.freeBox__hwK1P, {
+        className={classNames("all", sty.freeBox__hwK1P, {
           [sty.freeBoxtims__hwK1Pyo6L6]: hasVariant($state, "tims", "tims")
         })}
       >
@@ -310,7 +310,7 @@ function PlasmicCheckbox__RenderFunc(props: {
         />
 
         <div
-          className={classNames(projectcss.all, sty.freeBox__u9IWo, {
+          className={classNames("all", sty.freeBox__u9IWo, {
             [sty.freeBoxdir_ltr__u9IWo7VpN]: hasVariant($state, "dir", "ltr"),
             [sty.freeBoxtims__u9IWOyo6L6]: hasVariant($state, "tims", "tims")
           })}
@@ -321,7 +321,7 @@ function PlasmicCheckbox__RenderFunc(props: {
             className: classNames(sty.slotTargetLabel)
           })}
           <div
-            className={classNames(projectcss.all, sty.freeBox__b9WAl, {
+            className={classNames("all", sty.freeBox__b9WAl, {
               [sty.freeBoxdir_ltr__b9WAl7VpN]: hasVariant($state, "dir", "ltr"),
               [sty.freeBoxtims__b9WAlyo6L6]: hasVariant($state, "tims", "tims")
             })}
@@ -342,7 +342,7 @@ function PlasmicCheckbox__RenderFunc(props: {
         </div>
       </div>
       <div
-        className={classNames(projectcss.all, sty.freeBox__iZwZo, {
+        className={classNames("all", sty.freeBox__iZwZo, {
           [sty.freeBoxdir_ltr__iZwZo7VpN]: hasVariant($state, "dir", "ltr"),
           [sty.freeBoxshape_circle__iZwZo7C5HX]: hasVariant(
             $state,
@@ -360,7 +360,7 @@ function PlasmicCheckbox__RenderFunc(props: {
               : true
         ) ? (
           <CheckIcon
-            className={classNames(projectcss.all, sty.svg__ait2B, {
+            className={classNames("all", sty.svg__ait2B, {
               [sty.svgshape_circle__ait2B7C5HX]: hasVariant(
                 $state,
                 "shape",
@@ -372,7 +372,7 @@ function PlasmicCheckbox__RenderFunc(props: {
         ) : null}
         {($ccVariants["indeterminate"] ? true : false) ? (
           <MinusIcon
-            className={classNames(projectcss.all, sty.svg___6XEb)}
+            className={classNames("all", sty.svg___6XEb)}
             role={"img"}
           />
         ) : null}

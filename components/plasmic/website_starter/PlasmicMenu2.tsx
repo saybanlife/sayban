@@ -65,7 +65,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicMenu2.module.css"; // plasmic-import: z9yXgH-e4ant/css
 
 createPlasmicElementProxy;
@@ -184,6 +183,7 @@ function PlasmicMenu2__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -201,16 +201,16 @@ function PlasmicMenu2__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         "fixed-box"
       )}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__eql45)}>
+      <div className={classNames("all", sty.freeBox__eql45)}>
         {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
           (() => {
             try {
@@ -230,7 +230,7 @@ function PlasmicMenu2__RenderFunc(props: {
           const currentIndex = __plasmic_idx_0;
           return (
             <div
-              className={classNames(projectcss.all, sty.freeBox__b4Hp)}
+              className={classNames("all", sty.freeBox__b4Hp)}
               key={currentIndex}
               onClick={async event => {
                 const $steps = {};

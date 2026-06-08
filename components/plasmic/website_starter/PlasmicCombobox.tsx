@@ -73,7 +73,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicCombobox.module.css"; // plasmic-import: WsiDIGYKCrx_/css
 
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
@@ -234,6 +233,7 @@ function PlasmicCombobox__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -270,9 +270,9 @@ function PlasmicCombobox__RenderFunc(props: {
       aria-label={args.ariaLabel}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaComboBox,
         {
@@ -315,7 +315,7 @@ function PlasmicCombobox__RenderFunc(props: {
       <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
+        className={classNames("all", sty.freeBox)}
       >
         {(() => {
           const child$Props = {
@@ -360,7 +360,7 @@ function PlasmicCombobox__RenderFunc(props: {
           <ChevronDownIcon
             data-plasmic-name={"svg"}
             data-plasmic-override={overrides.svg}
-            className={classNames(projectcss.all, sty.svg)}
+            className={classNames("all", sty.svg)}
             role={"img"}
           />
         </BaseButton>
@@ -392,11 +392,7 @@ function PlasmicCombobox__RenderFunc(props: {
               <MenuSection
                 header={
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__yNyD5
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__yNyD5)}
                   >
                     {"Section"}
                   </div>

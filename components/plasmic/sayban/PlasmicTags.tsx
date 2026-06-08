@@ -65,7 +65,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicTags.module.css"; // plasmic-import: Lr-0_vYS3Xmt/css
 
 createPlasmicElementProxy;
@@ -163,6 +162,7 @@ function PlasmicTags__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -180,10 +180,10 @@ function PlasmicTags__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.rootlable]: hasVariant($state, "lable", "lable") }
@@ -192,7 +192,7 @@ function PlasmicTags__RenderFunc(props: {
       <div
         data-plasmic-name={"text"}
         data-plasmic-override={overrides.text}
-        className={classNames(projectcss.all, projectcss.__wab_text, sty.text, {
+        className={classNames("all", "__wab_text", sty.text, {
           [sty.textlable]: hasVariant($state, "lable", "lable")
         })}
       >
@@ -203,9 +203,9 @@ function PlasmicTags__RenderFunc(props: {
         data-plasmic-override={overrides.tags}
         className={classNames("__wab_instance", sty.tags)}
         defaultStylesClassName={classNames(
-          projectcss.root_reset,
-          projectcss.plasmic_default_styles,
-          projectcss.plasmic_mixins,
+          "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+          "plasmic_default_styles",
+          "plasmic_mixins",
           styleTokensClassNames
         )}
         mode={"tags"}

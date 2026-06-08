@@ -82,7 +82,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicCenter.module.css"; // plasmic-import: Lh-Py4-EsRhC/css
 
 import Icon21Icon from "./icons/PlasmicIcon__Icon21"; // plasmic-import: sT28siWhYupd/icon
@@ -210,10 +209,6 @@ function PlasmicCenter__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
-
-  const globalVariants = _useGlobalVariants();
-
-  const $globalActions = useGlobalActions?.();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
@@ -681,6 +676,11 @@ function PlasmicCenter__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const globalVariants = _useGlobalVariants();
+
+  const $globalActions = useGlobalActions?.();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -698,10 +698,10 @@ function PlasmicCenter__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.roottop]: hasVariant($state, "top", "top") }
@@ -758,12 +758,9 @@ function PlasmicCenter__RenderFunc(props: {
         })}
         slot={
           <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__jcwIw,
-              { [sty.texttop__jcwIwY7HPh]: hasVariant($state, "top", "top") }
-            )}
+            className={classNames("all", "__wab_text", sty.text__jcwIw, {
+              [sty.texttop__jcwIwY7HPh]: hasVariant($state, "top", "top")
+            })}
           >
             <React.Fragment>
               {(() => {
@@ -808,104 +805,52 @@ function PlasmicCenter__RenderFunc(props: {
         })()}
         errorDisplay={null}
         loadingDisplay={
-          <div className={classNames(projectcss.all, sty.freeBox__ba1Jk)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                sty.freeBox__e3SRl,
-                "shimmer"
-              )}
-            />
+          <div className={classNames("all", sty.freeBox__ba1Jk)}>
+            <div className={classNames("all", sty.freeBox__e3SRl, "shimmer")} />
 
             {(
               hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
             ) ? (
-              <div
-                className={classNames(projectcss.all, sty.freeBox___6EpC1, ``)}
-              />
+              <div className={classNames("all", sty.freeBox___6EpC1, ``)} />
             ) : null}
-            <div
-              className={classNames(
-                projectcss.all,
-                sty.freeBox__gfB,
-                "shimmer"
-              )}
-            />
+            <div className={classNames("all", sty.freeBox__gfB, "shimmer")} />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                sty.freeBox__rOG5,
-                "shimmer"
-              )}
-            />
+            <div className={classNames("all", sty.freeBox__rOG5, "shimmer")} />
 
-            <div className={classNames(projectcss.all, sty.freeBox__jeIFm)}>
-              <div className={classNames(projectcss.all, sty.freeBox___18C93)}>
+            <div className={classNames("all", sty.freeBox__jeIFm)}>
+              <div className={classNames("all", sty.freeBox___18C93)}>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    sty.freeBox__zAzI5,
-                    "shimmer"
-                  )}
+                  className={classNames("all", sty.freeBox__zAzI5, "shimmer")}
                 />
 
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    sty.freeBox__mdZl7,
-                    "shimmer"
-                  )}
+                  className={classNames("all", sty.freeBox__mdZl7, "shimmer")}
                 />
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox___4Ehs3)}>
+              <div className={classNames("all", sty.freeBox___4Ehs3)}>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    sty.freeBox__upDi,
-                    "shimmer"
-                  )}
+                  className={classNames("all", sty.freeBox__upDi, "shimmer")}
                 />
 
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    sty.freeBox___7PMq,
-                    "shimmer"
-                  )}
+                  className={classNames("all", sty.freeBox___7PMq, "shimmer")}
                 />
 
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    sty.freeBox__iY0TX,
-                    "shimmer"
-                  )}
+                  className={classNames("all", sty.freeBox__iY0TX, "shimmer")}
                 />
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox__eE1OF)}>
+              <div className={classNames("all", sty.freeBox__eE1OF)}>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    sty.freeBox__pMwb,
-                    "shimmer"
-                  )}
+                  className={classNames("all", sty.freeBox__pMwb, "shimmer")}
                 />
 
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    sty.freeBox__snlvX,
-                    "shimmer"
-                  )}
+                  className={classNames("all", sty.freeBox__snlvX, "shimmer")}
                 />
 
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    sty.freeBox__sj7IZ,
-                    "shimmer"
-                  )}
+                  className={classNames("all", sty.freeBox__sj7IZ, "shimmer")}
                 />
               </div>
               {(
@@ -913,29 +858,17 @@ function PlasmicCenter__RenderFunc(props: {
                   ? true
                   : false
               ) ? (
-                <div className={classNames(projectcss.all, sty.freeBox__viGzh)}>
+                <div className={classNames("all", sty.freeBox__viGzh)}>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      sty.freeBox__bX4Ya,
-                      "shimmer"
-                    )}
+                    className={classNames("all", sty.freeBox__bX4Ya, "shimmer")}
                   />
 
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      sty.freeBox__vGexe,
-                      "shimmer"
-                    )}
+                    className={classNames("all", sty.freeBox__vGexe, "shimmer")}
                   />
 
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      sty.freeBox__a1HbY,
-                      "shimmer"
-                    )}
+                    className={classNames("all", sty.freeBox__a1HbY, "shimmer")}
                   />
                 </div>
               ) : null}
@@ -989,14 +922,14 @@ function PlasmicCenter__RenderFunc(props: {
             throw e;
           }
         })()}
-        url={"https://sayban.darkube.app/webhook/center/"}
+        url={"/center/"}
       >
         <div
-          className={classNames(projectcss.all, sty.freeBox__dmiWu, {
+          className={classNames("all", sty.freeBox__dmiWu, {
             [sty.freeBoxtop__dmiWuY7HPh]: hasVariant($state, "top", "top")
           })}
         >
-          <div className={classNames(projectcss.all, sty.freeBox__gmZ0T)}>
+          <div className={classNames("all", sty.freeBox__gmZ0T)}>
             <SwiperSlider
               data-plasmic-name={"swiperSlider"}
               data-plasmic-override={overrides.swiperSlider}
@@ -1093,7 +1026,7 @@ function PlasmicCenter__RenderFunc(props: {
               })}
             </SwiperSlider>
             <div
-              className={classNames(projectcss.all, sty.freeBox__vhvE, {
+              className={classNames("all", sty.freeBox__vhvE, {
                 [sty.freeBoxtop__vhvEY7HPh]: hasVariant($state, "top", "top")
               })}
             >
@@ -1130,39 +1063,29 @@ function PlasmicCenter__RenderFunc(props: {
               />
 
               <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__nheGt,
-                  {
-                    [sty.texttop__nheGtY7HPh]: hasVariant($state, "top", "top")
-                  }
-                )}
+                className={classNames("all", "__wab_text", sty.text__nheGt, {
+                  [sty.texttop__nheGtY7HPh]: hasVariant($state, "top", "top")
+                })}
               >
                 <React.Fragment>
                   {$state.full?.data?.result?.name}
                 </React.Fragment>
               </div>
               <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__z4OCm,
-                  {
-                    [sty.texttop__z4OCmy7HPh]: hasVariant($state, "top", "top")
-                  }
-                )}
+                className={classNames("all", "__wab_text", sty.text__z4OCm, {
+                  [sty.texttop__z4OCmy7HPh]: hasVariant($state, "top", "top")
+                })}
               >
                 <React.Fragment>{$props.subcatgori?.name}</React.Fragment>
               </div>
               <section
-                className={classNames(projectcss.all, sty.section__owkIu, {
+                className={classNames("all", sty.section__owkIu, {
                   [sty.sectiontop__owkIuy7HPh]: hasVariant($state, "top", "top")
                 })}
               >
                 <div
                   className={classNames(
-                    projectcss.all,
+                    "all",
                     sty.freeBox__tCriU,
                     "fixed-box",
                     {
@@ -1229,14 +1152,12 @@ function PlasmicCenter__RenderFunc(props: {
                   throw e;
                 }
               })() ? (
-                <div className={classNames(projectcss.all, sty.freeBox__oy6N)}>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__vvhoi)}
-                  >
+                <div className={classNames("all", sty.freeBox__oy6N)}>
+                  <div className={classNames("all", sty.freeBox__vvhoi)}>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text___5Ois5,
                         {
                           [sty.texttop___5Ois5Y7HPh]: hasVariant(
@@ -1272,24 +1193,17 @@ function PlasmicCenter__RenderFunc(props: {
                     })}
                   />
 
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__jiz5)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___2Gdl9
-                      )}
-                    >
+                  <div className={classNames("all", sty.freeBox__jiz5)}>
+                    <div className={classNames("all", sty.freeBox___2Gdl9)}>
                       <Icon21Icon
-                        className={classNames(projectcss.all, sty.svg___0EBpn)}
+                        className={classNames("all", sty.svg___0EBpn)}
                         role={"img"}
                       />
 
                       <div
                         className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
+                          "all",
+                          "__wab_text",
                           sty.text__ybfEv
                         )}
                       >
@@ -1300,8 +1214,8 @@ function PlasmicCenter__RenderFunc(props: {
                     </div>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__d4Bt4
                       )}
                     >
@@ -1323,29 +1237,21 @@ function PlasmicCenter__RenderFunc(props: {
                     </div>
                   </div>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__vim8U
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__vim8U)}
                   >
                     {""}
                   </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox___9Cthd)}
-                  >
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__zIrIo)}
-                    >
+                  <div className={classNames("all", sty.freeBox___9Cthd)}>
+                    <div className={classNames("all", sty.freeBox__zIrIo)}>
                       <Icon35Icon
-                        className={classNames(projectcss.all, sty.svg__hn1Se)}
+                        className={classNames("all", sty.svg__hn1Se)}
                         role={"img"}
                       />
 
                       <div
                         className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
+                          "all",
+                          "__wab_text",
                           sty.text__crmsw
                         )}
                       >
@@ -1354,9 +1260,7 @@ function PlasmicCenter__RenderFunc(props: {
                         }
                       </div>
                     </div>
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__n9VMv)}
-                    >
+                    <div className={classNames("all", sty.freeBox__n9VMv)}>
                       {(_par =>
                         !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                         (() => {
@@ -1444,29 +1348,21 @@ function PlasmicCenter__RenderFunc(props: {
                     </div>
                   </div>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__xpDwp
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__xpDwp)}
                   >
                     {""}
                   </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox___2Sep5)}
-                  >
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__ubpas)}
-                    >
+                  <div className={classNames("all", sty.freeBox___2Sep5)}>
+                    <div className={classNames("all", sty.freeBox__ubpas)}>
                       <Icon22Icon
-                        className={classNames(projectcss.all, sty.svg__jzgOs)}
+                        className={classNames("all", sty.svg__jzgOs)}
                         role={"img"}
                       />
 
                       <div
                         className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
+                          "all",
+                          "__wab_text",
                           sty.text__bvWyt
                         )}
                       >
@@ -1477,8 +1373,8 @@ function PlasmicCenter__RenderFunc(props: {
                     </div>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__qPbCk
                       )}
                     >
@@ -1498,9 +1394,7 @@ function PlasmicCenter__RenderFunc(props: {
                         })()}
                       </React.Fragment>
                     </div>
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__e7D8L)}
-                    >
+                    <div className={classNames("all", sty.freeBox__e7D8L)}>
                       {(_par =>
                         !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                         (() => {
@@ -1521,10 +1415,7 @@ function PlasmicCenter__RenderFunc(props: {
                         const currentIndex = __plasmic_idx_0;
                         return (
                           <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__j6Xyh
-                            )}
+                            className={classNames("all", sty.freeBox__j6Xyh)}
                             key={currentIndex}
                           >
                             <MenuIcon
@@ -1557,29 +1448,21 @@ function PlasmicCenter__RenderFunc(props: {
                     </div>
                   </div>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__kTnk4
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__kTnk4)}
                   >
                     {""}
                   </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__bI7QF)}
-                  >
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__nUjoc)}
-                    >
+                  <div className={classNames("all", sty.freeBox__bI7QF)}>
+                    <div className={classNames("all", sty.freeBox__nUjoc)}>
                       <Icon12Icon
-                        className={classNames(projectcss.all, sty.svg__zUz9B)}
+                        className={classNames("all", sty.svg__zUz9B)}
                         role={"img"}
                       />
 
                       <div
                         className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
+                          "all",
+                          "__wab_text",
                           sty.text__sncLn
                         )}
                       >
@@ -1588,8 +1471,8 @@ function PlasmicCenter__RenderFunc(props: {
                     </div>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__u3XPc
                       )}
                     >
@@ -1609,9 +1492,7 @@ function PlasmicCenter__RenderFunc(props: {
                         })()}
                       </React.Fragment>
                     </div>
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__uic01)}
-                    >
+                    <div className={classNames("all", sty.freeBox__uic01)}>
                       <Iframe
                         data-plasmic-name={"iframe"}
                         data-plasmic-override={overrides.iframe}
@@ -1647,8 +1528,9 @@ function PlasmicCenter__RenderFunc(props: {
                         data-plasmic-name={"link"}
                         data-plasmic-override={overrides.link}
                         className={classNames(
-                          projectcss.all,
-                          projectcss.a,
+                          "all",
+                          "a",
+                          "a__qARqp",
                           sty.link,
                           { [sty.linktop]: hasVariant($state, "top", "top") }
                         )}
@@ -1703,12 +1585,8 @@ function PlasmicCenter__RenderFunc(props: {
                   throw e;
                 }
               })() ? (
-                <div
-                  className={classNames(projectcss.all, sty.freeBox___85U3R)}
-                >
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__nh8Dx)}
-                  >
+                <div className={classNames("all", sty.freeBox___85U3R)}>
+                  <div className={classNames("all", sty.freeBox__nh8Dx)}>
                     {(() => {
                       try {
                         return !$state.full.data.reviews[0].total_reviews;
@@ -1722,17 +1600,9 @@ function PlasmicCenter__RenderFunc(props: {
                         throw e;
                       }
                     })() ? (
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox___0J9Fb
-                        )}
-                      >
+                      <div className={classNames("all", sty.freeBox___0J9Fb)}>
                         <Icon43Icon
-                          className={classNames(
-                            projectcss.all,
-                            sty.svg___0CFdW
-                          )}
+                          className={classNames("all", sty.svg___0CFdW)}
                           role={"img"}
                         />
 
@@ -1751,8 +1621,8 @@ function PlasmicCenter__RenderFunc(props: {
                         })() ? (
                           <div
                             className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
+                              "all",
+                              "__wab_text",
                               sty.text__wtJr
                             )}
                           >
@@ -1776,28 +1646,15 @@ function PlasmicCenter__RenderFunc(props: {
                         throw e;
                       }
                     })() ? (
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__a2H6Z
-                        )}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__pEmsc
-                          )}
-                        >
+                      <div className={classNames("all", sty.freeBox__a2H6Z)}>
+                        <div className={classNames("all", sty.freeBox__pEmsc)}>
                           <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__l8FIv
-                            )}
+                            className={classNames("all", sty.freeBox__l8FIv)}
                           >
                             <div
                               className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
+                                "all",
+                                "__wab_text",
                                 sty.text___8Bj8J
                               )}
                             >
@@ -1820,8 +1677,8 @@ function PlasmicCenter__RenderFunc(props: {
                             </div>
                             <div
                               className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
+                                "all",
+                                "__wab_text",
                                 sty.text__mIgGg
                               )}
                               data-i18n={"score.numberOf"}
@@ -1918,8 +1775,8 @@ drawRating(${$state.rate});
 
                           <div
                             className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
+                              "all",
+                              "__wab_text",
                               sty.text__dc3Us
                             )}
                           >
@@ -1941,12 +1798,7 @@ drawRating(${$state.rate});
                             </React.Fragment>
                           </div>
                         </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox___18HMk
-                          )}
-                        >
+                        <div className={classNames("all", sty.freeBox___18HMk)}>
                           {(_par =>
                             !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                             (() => {
@@ -1979,21 +1831,21 @@ drawRating(${$state.rate});
                             return (
                               <div
                                 className={classNames(
-                                  projectcss.all,
+                                  "all",
                                   sty.freeBox__fpFjl
                                 )}
                                 key={currentIndex}
                               >
                                 <div
                                   className={classNames(
-                                    projectcss.all,
+                                    "all",
                                     sty.freeBox__k8Xxd
                                   )}
                                 >
                                   <div
                                     className={classNames(
-                                      projectcss.all,
-                                      projectcss.__wab_text,
+                                      "all",
+                                      "__wab_text",
                                       sty.text__mXnGq
                                     )}
                                   >
@@ -2046,14 +1898,11 @@ drawRating(${$state.rate});
                           })}
                         </div>
                         <section
-                          className={classNames(
-                            projectcss.all,
-                            sty.section__n1J5
-                          )}
+                          className={classNames("all", sty.section__n1J5)}
                         >
                           <div
                             className={classNames(
-                              projectcss.all,
+                              "all",
                               sty.freeBox__yks7U,
                               "fixed-box"
                             )}
@@ -2068,10 +1917,7 @@ drawRating(${$state.rate});
                               color={"second"}
                               end={
                                 <Icon63Icon
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.svg___8KXjF
-                                  )}
+                                  className={classNames("all", sty.svg___8KXjF)}
                                   role={"img"}
                                 />
                               }
@@ -2079,8 +1925,8 @@ drawRating(${$state.rate});
                               label={
                                 <div
                                   className={classNames(
-                                    projectcss.all,
-                                    projectcss.__wab_text,
+                                    "all",
+                                    "__wab_text",
                                     sty.text__zo2Mt
                                   )}
                                 >
@@ -2215,20 +2061,12 @@ drawRating(${$state.rate});
           throw e;
         }
       })() ? (
-        <section
-          className={classNames(projectcss.all, sty.section__novko, "page")}
-        >
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__cZmru
-            )}
-          >
+        <section className={classNames("all", sty.section__novko, "page")}>
+          <div className={classNames("all", "__wab_text", sty.text__cZmru)}>
             {""}
           </div>
-          <div className={classNames(projectcss.all, sty.freeBox__vEytZ)}>
-            <div className={classNames(projectcss.all, sty.freeBox__qyVud)}>
+          <div className={classNames("all", sty.freeBox__vEytZ)}>
+            <div className={classNames("all", sty.freeBox__qyVud)}>
               {(() => {
                 try {
                   return (
@@ -2245,13 +2083,11 @@ drawRating(${$state.rate});
                   throw e;
                 }
               })() ? (
-                <div
-                  className={classNames(projectcss.all, sty.freeBox___9YXKs)}
-                >
+                <div className={classNames("all", sty.freeBox___9YXKs)}>
                   <div
                     className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
+                      "all",
+                      "__wab_text",
                       sty.text___49QVu
                     )}
                   >
@@ -2259,13 +2095,11 @@ drawRating(${$state.rate});
                       {$state.service?.price?.toLocaleString() + " تومان"}
                     </React.Fragment>
                   </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__gEpo7)}
-                  >
+                  <div className={classNames("all", sty.freeBox__gEpo7)}>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__qJkM
                       )}
                     >
@@ -2288,22 +2122,10 @@ drawRating(${$state.rate});
                   </div>
                 </div>
               ) : null}
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__fyof
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__fyof)}>
                 <React.Fragment>{$state.service.name}</React.Fragment>
               </div>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__kC5Qq
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__kC5Qq)}>
                 <React.Fragment>
                   {$state.service?.final_price?.toLocaleString() + " تومان"}
                 </React.Fragment>
@@ -2315,11 +2137,7 @@ drawRating(${$state.rate});
               className={classNames("__wab_instance", sty.button)}
               label={
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__zl99I
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__zl99I)}
                 >
                   {"\u0631\u0632\u0631\u0648 \u0632\u0645\u0627\u0646"}
                 </div>
@@ -2413,15 +2231,11 @@ drawRating(${$state.rate});
           }}
           errorDisplay={null}
           loadingDisplay={
-            <div className={classNames(projectcss.all, sty.freeBox__k6H4)}>
-              <div className={classNames(projectcss.all, sty.freeBox__sU6Yr)}>
-                <div className={classNames(projectcss.all, sty.freeBox__rh5BE)}>
+            <div className={classNames("all", sty.freeBox__k6H4)}>
+              <div className={classNames("all", sty.freeBox__sU6Yr)}>
+                <div className={classNames("all", sty.freeBox__rh5BE)}>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__hRrf3
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__hRrf3)}
                   >
                     {
                       "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u0645\u0627\u0646 "
@@ -2429,8 +2243,8 @@ drawRating(${$state.rate});
                   </div>
                   <div
                     className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
+                      "all",
+                      "__wab_text",
                       sty.text___73AMx
                     )}
                   >
@@ -2451,9 +2265,7 @@ drawRating(${$state.rate});
                     </React.Fragment>
                   </div>
                 </div>
-                <div
-                  className={classNames(projectcss.all, sty.freeBox___7JoCu)}
-                >
+                <div className={classNames("all", sty.freeBox___7JoCu)}>
                   <Next
                     active={(() => {
                       try {
@@ -2512,11 +2324,7 @@ drawRating(${$state.rate});
                     {"\u0645\u0627\u0647 \u0642\u0628\u0644"}
                   </Next>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__u9Bmb
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__u9Bmb)}
                   >
                     <React.Fragment>
                       {(() => {
@@ -2609,11 +2417,7 @@ drawRating(${$state.rate});
                   />
                 </div>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    sty.freeBox__bO5PZ,
-                    "shimmer"
-                  )}
+                  className={classNames("all", sty.freeBox__bO5PZ, "shimmer")}
                 />
               </div>
               <Topics
@@ -2656,7 +2460,7 @@ drawRating(${$state.rate});
                 size={"small"}
               />
 
-              <div className={classNames(projectcss.all, sty.freeBox__nUoQh)} />
+              <div className={classNames("all", sty.freeBox__nUoQh)} />
             </div>
           }
           method={"GET"}
@@ -2698,26 +2502,18 @@ drawRating(${$state.rate});
           shouldFetch={true}
           url={"https://sayban.darkube.app/webhook/service/holiday"}
         >
-          <div className={classNames(projectcss.all, sty.freeBox__eh9J7)}>
-            <div className={classNames(projectcss.all, sty.freeBox__n49Dk)}>
-              <div className={classNames(projectcss.all, sty.freeBox__ywuoD)}>
+          <div className={classNames("all", sty.freeBox__eh9J7)}>
+            <div className={classNames("all", sty.freeBox__n49Dk)}>
+              <div className={classNames("all", sty.freeBox__ywuoD)}>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__uifQf
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__uifQf)}
                 >
                   {
                     "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u0645\u0627\u0646 "
                   }
                 </div>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___1PIid
-                  )}
+                  className={classNames("all", "__wab_text", sty.text___1PIid)}
                 >
                   <React.Fragment>
                     {(() => {
@@ -2736,7 +2532,7 @@ drawRating(${$state.rate});
                   </React.Fragment>
                 </div>
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox__pEwRp)}>
+              <div className={classNames("all", sty.freeBox__pEwRp)}>
                 <Next
                   active={(() => {
                     try {
@@ -2815,11 +2611,7 @@ drawRating(${$state.rate});
                   {"\u0645\u0627\u0647 \u0642\u0628\u0644"}
                 </Next>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__wjmMc
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__wjmMc)}
                 >
                   <React.Fragment>
                     {(() => {
@@ -3180,7 +2972,7 @@ drawRating(${$state.rate});
               size={"small"}
             />
 
-            <div className={classNames(projectcss.all, sty.freeBox__sDCwv)}>
+            <div className={classNames("all", sty.freeBox__sDCwv)}>
               <ApiRequest
                 data-plasmic-name={"date"}
                 data-plasmic-override={overrides.date}
@@ -3204,9 +2996,7 @@ drawRating(${$state.rate});
                 })()}
                 errorDisplay={null}
                 loadingDisplay={
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__arkkl)}
-                  >
+                  <div className={classNames("all", sty.freeBox__arkkl)}>
                     {(_par =>
                       !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                       (() => {
@@ -3228,7 +3018,7 @@ drawRating(${$state.rate});
                       return (
                         <div
                           className={classNames(
-                            projectcss.all,
+                            "all",
                             sty.freeBox__i8Bhq,
                             "shimmer"
                           )}
@@ -3332,18 +3122,16 @@ drawRating(${$state.rate});
                     throw e;
                   }
                 })() ? (
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__g1OB3)}
-                  >
+                  <div className={classNames("all", sty.freeBox__g1OB3)}>
                     <Icon42Icon
-                      className={classNames(projectcss.all, sty.svg__svfFn)}
+                      className={classNames("all", sty.svg__svfFn)}
                       role={"img"}
                     />
 
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__d7Ov8
                       )}
                     >
@@ -3355,17 +3143,11 @@ drawRating(${$state.rate});
                 ) : null}
               </ApiRequest>
             </div>
-            <section className={classNames(projectcss.all, sty.section__lYw80)}>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__o8Sh
-                )}
-              >
+            <section className={classNames("all", sty.section__lYw80)}>
+              <div className={classNames("all", "__wab_text", sty.text__o8Sh)}>
                 {""}
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox___2LWei)}>
+              <div className={classNames("all", sty.freeBox___2LWei)}>
                 {(() => {
                   try {
                     return $state.selectTime.selected;
@@ -3379,19 +3161,12 @@ drawRating(${$state.rate});
                     throw e;
                   }
                 })() ? (
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__xdYqj)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___0MTld
-                      )}
-                    >
+                  <div className={classNames("all", sty.freeBox__xdYqj)}>
+                    <div className={classNames("all", sty.freeBox___0MTld)}>
                       <div
                         className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
+                          "all",
+                          "__wab_text",
                           sty.text__r1R6K
                         )}
                       >
@@ -3400,8 +3175,8 @@ drawRating(${$state.rate});
                     </div>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__ahK9G
                       )}
                     >
@@ -3425,13 +3200,11 @@ drawRating(${$state.rate});
                     throw e;
                   }
                 })() ? (
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__ghGw)}
-                  >
+                  <div className={classNames("all", sty.freeBox__ghGw)}>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__v33LD
                       )}
                     >
@@ -3461,8 +3234,8 @@ drawRating(${$state.rate});
                   label={
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__iBm3F
                       )}
                     >
@@ -3713,14 +3486,8 @@ drawRating(${$state.rate});
         }}
         opendialog={generateStateValueProp($state, ["comment", "opendialog"])}
       >
-        <div className={classNames(projectcss.all, sty.freeBox__anS6)}>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__onguD
-            )}
-          >
+        <div className={classNames("all", sty.freeBox__anS6)}>
+          <div className={classNames("all", "__wab_text", sty.text__onguD)}>
             {
               "\u062b\u0628\u062a \u0627\u0645\u062a\u06cc\u0627\u0632 \u0648 \u0646\u0638\u0631"
             }
@@ -3746,9 +3513,7 @@ drawRating(${$state.rate});
             rate={generateStateValueProp($state, ["selectStars", "rate"])}
           />
 
-          <div
-            className={classNames(projectcss.all, sty.freeBox__kscoM, "dark")}
-          >
+          <div className={classNames("all", sty.freeBox__kscoM, "dark")}>
             <TextAreaInput
               data-plasmic-name={"commentArea"}
               data-plasmic-override={overrides.commentArea}
@@ -3792,13 +3557,7 @@ drawRating(${$state.rate});
               }
             })()}
             label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__dx49K
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__dx49K)}>
                 {"\u062b\u0628\u062a \u0646\u0638\u0631"}
               </div>
             }

@@ -71,7 +71,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicEditUser.module.css"; // plasmic-import: gFlyeK2pwR_U/css
 
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
@@ -171,8 +170,6 @@ function PlasmicEditUser__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const $globalActions = useGlobalActions?.();
-
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -266,6 +263,9 @@ function PlasmicEditUser__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -283,22 +283,16 @@ function PlasmicEditUser__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__t1VCt, "dark")}>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__ixgdM
-          )}
-        >
+      <div className={classNames("all", sty.freeBox__t1VCt, "dark")}>
+        <div className={classNames("all", "__wab_text", sty.text__ixgdM)}>
           {
             "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0645\u0648\u0631\u062f \u0646\u0638\u0631 \u0631\u0627 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0646\u06cc\u062f "
           }
@@ -403,7 +397,7 @@ function PlasmicEditUser__RenderFunc(props: {
           value={generateStateValueProp($state, ["code", "value"])}
         />
 
-        <div className={classNames(projectcss.all, sty.freeBox__gw1Vi)}>
+        <div className={classNames("all", sty.freeBox__gw1Vi)}>
           <Select
             data-plasmic-name={"selectGender"}
             data-plasmic-override={overrides.selectGender}
@@ -596,7 +590,7 @@ function PlasmicEditUser__RenderFunc(props: {
             value={generateStateValueProp($state, ["selectMarital", "value"])}
           />
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__l2Ksp)}>
+        <div className={classNames("all", sty.freeBox__l2Ksp)}>
           <TextInput
             data-plasmic-name={"cityInput"}
             data-plasmic-override={overrides.cityInput}
@@ -629,7 +623,7 @@ function PlasmicEditUser__RenderFunc(props: {
           />
 
           <div
-            className={classNames(projectcss.all, sty.freeBox___9Gcq5)}
+            className={classNames("all", sty.freeBox___9Gcq5)}
             onClick={args.opencity}
           />
         </div>
@@ -642,14 +636,14 @@ function PlasmicEditUser__RenderFunc(props: {
           <svg
             data-plasmic-name={"svg"}
             data-plasmic-override={overrides.svg}
-            className={classNames(projectcss.all, sty.svg)}
+            className={classNames("all", sty.svg)}
             role={"img"}
           />
         }
         defaultStylesClassName={classNames(
-          projectcss.root_reset,
-          projectcss.plasmic_default_styles,
-          projectcss.plasmic_mixins,
+          "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+          "plasmic_default_styles",
+          "plasmic_mixins",
           styleTokensClassNames
         )}
         hideFooter={true}
@@ -703,24 +697,16 @@ function PlasmicEditUser__RenderFunc(props: {
       <section
         data-plasmic-name={"section"}
         data-plasmic-override={overrides.section}
-        className={classNames(projectcss.all, sty.section)}
+        className={classNames("all", sty.section)}
       >
-        <div
-          className={classNames(projectcss.all, sty.freeBox__oqYcQ, "page ")}
-        >
+        <div className={classNames("all", sty.freeBox__oqYcQ, "page ")}>
           <Button
             data-plasmic-name={"codeSubmit2"}
             data-plasmic-override={overrides.codeSubmit2}
             className={classNames("__wab_instance", sty.codeSubmit2)}
             color={"success"}
             label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__esbWm
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__esbWm)}>
                 {
                   "\u0630\u062e\u06cc\u0631\u0647 \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
                 }

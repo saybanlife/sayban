@@ -68,7 +68,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicLoaction.module.css"; // plasmic-import: sTw08-1jIWRS/css
 
 createPlasmicElementProxy;
@@ -238,6 +237,7 @@ function PlasmicLoaction__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -255,10 +255,10 @@ function PlasmicLoaction__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -272,15 +272,9 @@ function PlasmicLoaction__RenderFunc(props: {
         }
       />
 
-      <div className={classNames(projectcss.all, sty.freeBox___0ZFmw)}>
-        <div className={classNames(projectcss.all, sty.freeBox__v4L4)}>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__bfIS
-            )}
-          >
+      <div className={classNames("all", sty.freeBox___0ZFmw)}>
+        <div className={classNames("all", sty.freeBox__v4L4)}>
+          <div className={classNames("all", "__wab_text", sty.text__bfIS)}>
             {"\u0627\u0633\u062a\u0627\u0646"}
           </div>
           <TextInput
@@ -306,14 +300,8 @@ function PlasmicLoaction__RenderFunc(props: {
             value={generateStateValueProp($state, ["state", "value"])}
           />
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__xAH)}>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__vlAl2
-            )}
-          >
+        <div className={classNames("all", sty.freeBox__xAH)}>
+          <div className={classNames("all", "__wab_text", sty.text__vlAl2)}>
             {"\u0634\u0647\u0631"}
           </div>
           <TextInput
@@ -340,14 +328,8 @@ function PlasmicLoaction__RenderFunc(props: {
           />
         </div>
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__j2Wrx)}>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__b93Hn
-          )}
-        >
+      <div className={classNames("all", sty.freeBox__j2Wrx)}>
+        <div className={classNames("all", "__wab_text", sty.text__b93Hn)}>
           {"\u0646\u0634\u0627\u0646\u06cc"}
         </div>
         <TextAreaInput
@@ -375,11 +357,7 @@ function PlasmicLoaction__RenderFunc(props: {
         />
 
         <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__dvaN
-          )}
+          className={classNames("all", "__wab_text", sty.text__dvaN)}
           id={"click_location"}
           onClick={async event => {
             const $steps = {};
@@ -411,14 +389,8 @@ function PlasmicLoaction__RenderFunc(props: {
           {"Enter some text"}
         </div>
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__b7CN)}>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__bTbii
-          )}
-        >
+      <div className={classNames("all", sty.freeBox__b7CN)}>
+        <div className={classNames("all", "__wab_text", sty.text__bTbii)}>
           {"\u0634\u0645\u0627\u0631\u0647 \u062a\u0645\u0627\u0633"}
         </div>
         <TextInput
@@ -449,24 +421,12 @@ function PlasmicLoaction__RenderFunc(props: {
         data-plasmic-override={overrides.apiRequest}
         className={classNames("__wab_instance", sty.apiRequest)}
         errorDisplay={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__vRatB
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__vRatB)}>
             {"Error fetching data"}
           </div>
         }
         loadingDisplay={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__nSvbn
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__nSvbn)}>
             {"Loading..."}
           </div>
         }

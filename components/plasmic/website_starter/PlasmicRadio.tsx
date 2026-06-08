@@ -65,7 +65,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicRadio.module.css"; // plasmic-import: 4jWqJWAaH2_L/css
 
 createPlasmicElementProxy;
@@ -178,9 +177,9 @@ function PlasmicRadio__RenderFunc(props: {
       autoFocus={args.autoFocus}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaRadio
       )}
@@ -188,8 +187,8 @@ function PlasmicRadio__RenderFunc(props: {
       plasmicUpdateVariant={updateVariant}
       value={args.value}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__mhm1M)}>
-        <div className={classNames(projectcss.all, sty.freeBox___1P7Rh)} />
+      <div className={classNames("all", sty.freeBox__mhm1M)}>
+        <div className={classNames("all", sty.freeBox___1P7Rh)} />
       </div>
       {renderPlasmicSlot({
         defaultContents: "Option",

@@ -72,7 +72,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicSelect.module.css"; // plasmic-import: IQ4yTzxYcpjO/css
 
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
@@ -217,6 +216,7 @@ function PlasmicSelect__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -255,9 +255,9 @@ function PlasmicSelect__RenderFunc(props: {
       aria-label={args.ariaLabel}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaSelect,
         {
@@ -317,11 +317,7 @@ function PlasmicSelect__RenderFunc(props: {
           <div
             data-plasmic-name={"text"}
             data-plasmic-override={overrides.text}
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text
-            )}
+            className={classNames("all", "__wab_text", sty.text)}
           >
             <React.Fragment>
               {(() => {
@@ -343,12 +339,12 @@ function PlasmicSelect__RenderFunc(props: {
         <div
           data-plasmic-name={"freeBox"}
           data-plasmic-override={overrides.freeBox}
-          className={classNames(projectcss.all, sty.freeBox)}
+          className={classNames("all", sty.freeBox)}
         >
           <ChevronDownIcon
             data-plasmic-name={"svg"}
             data-plasmic-override={overrides.svg}
-            className={classNames(projectcss.all, sty.svg)}
+            className={classNames("all", sty.svg)}
             role={"img"}
           />
         </div>
@@ -403,11 +399,7 @@ function PlasmicSelect__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.menuSection__xUih2)}
                 header={
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__c5Lq8
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__c5Lq8)}
                   >
                     {"Section"}
                   </div>

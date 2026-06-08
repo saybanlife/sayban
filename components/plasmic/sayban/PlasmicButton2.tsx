@@ -66,7 +66,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicButton2.module.css"; // plasmic-import: SlKtguGGSfon/css
 
 import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: PVJtizwBa8r5/icon
@@ -281,8 +280,6 @@ function PlasmicButton2__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const globalVariants = _useGlobalVariants();
-
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -381,6 +378,9 @@ function PlasmicButton2__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const globalVariants = _useGlobalVariants();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -406,11 +406,12 @@ function PlasmicButton2__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.button,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "button",
+        "button__qARqp",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         {
@@ -524,7 +525,7 @@ function PlasmicButton2__RenderFunc(props: {
         <div
           data-plasmic-name={"startIconContainer"}
           data-plasmic-override={overrides.startIconContainer}
-          className={classNames(projectcss.all, sty.startIconContainer, {
+          className={classNames("all", sty.startIconContainer, {
             [sty.startIconContainercolor_blue]: hasVariant(
               $state,
               "color",
@@ -543,7 +544,7 @@ function PlasmicButton2__RenderFunc(props: {
           {renderPlasmicSlot({
             defaultContents: (
               <CheckSvgIcon
-                className={classNames(projectcss.all, sty.svg__yJfHt)}
+                className={classNames("all", sty.svg__yJfHt)}
                 role={"img"}
               />
             ),
@@ -612,7 +613,7 @@ function PlasmicButton2__RenderFunc(props: {
       <div
         data-plasmic-name={"contentContainer"}
         data-plasmic-override={overrides.contentContainer}
-        className={classNames(projectcss.all, sty.contentContainer, {
+        className={classNames("all", sty.contentContainer, {
           [sty.contentContainer___focusVisibleWithin]:
             triggers.focusVisibleWithin_root,
           [sty.contentContainerbox]: hasVariant($state, "box", "box"),
@@ -642,7 +643,7 @@ function PlasmicButton2__RenderFunc(props: {
           <Icon115Icon
             data-plasmic-name={"svg"}
             data-plasmic-override={overrides.svg}
-            className={classNames(projectcss.all, sty.svg, {
+            className={classNames("all", sty.svg, {
               [sty.svgbox]: hasVariant($state, "box", "box"),
               [sty.svgcolor_clear_loading]:
                 hasVariant($state, "loading", "loading") &&
@@ -827,7 +828,7 @@ function PlasmicButton2__RenderFunc(props: {
         <div
           data-plasmic-name={"endIconContainer"}
           data-plasmic-override={overrides.endIconContainer}
-          className={classNames(projectcss.all, sty.endIconContainer, {
+          className={classNames("all", sty.endIconContainer, {
             [sty.endIconContainercolor_white]: hasVariant(
               $state,
               "color",
@@ -859,7 +860,7 @@ function PlasmicButton2__RenderFunc(props: {
             ? renderPlasmicSlot({
                 defaultContents: (
                   <Icon115Icon
-                    className={classNames(projectcss.all, sty.svg__rwDgX)}
+                    className={classNames("all", sty.svg__rwDgX)}
                     role={"img"}
                   />
                 ),

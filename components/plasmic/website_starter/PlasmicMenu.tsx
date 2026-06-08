@@ -65,7 +65,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicMenu.module.css"; // plasmic-import: bshUwgfzJczF/css
 
 createPlasmicElementProxy;
@@ -188,6 +187,7 @@ function PlasmicMenu__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -205,22 +205,16 @@ function PlasmicMenu__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         "phone"
       )}
     >
-      <div
-        className={classNames(
-          projectcss.all,
-          sty.freeBox___91Ogw,
-          "phone_buttons"
-        )}
-      >
+      <div className={classNames("all", sty.freeBox___91Ogw, "phone_buttons")}>
         {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
           (() => {
             try {
@@ -241,7 +235,7 @@ function PlasmicMenu__RenderFunc(props: {
           return (
             <div
               className={classNames(
-                projectcss.all,
+                "all",
                 sty.freeBox__ek3Z,
                 `buttons    ${$state.select == currentItem.key ? "active" : ""}`
               )}
@@ -363,30 +357,17 @@ function PlasmicMenu__RenderFunc(props: {
           );
         })}
       </div>
-      <div
-        className={classNames(projectcss.all, sty.freeBox__jaK2C, "circle")}
-      />
+      <div className={classNames("all", sty.freeBox__jaK2C, "circle")} />
 
-      <div
-        className={classNames(
-          projectcss.all,
-          sty.freeBox__oMuff,
-          "phone_content"
-        )}
-      >
-        <div
-          className={classNames(
-            projectcss.all,
-            sty.freeBox__gzI8O,
-            "phone_bottom"
-          )}
-        >
+      <div className={classNames("all", sty.freeBox__oMuff, "phone_content")}>
+        <div className={classNames("all", sty.freeBox__gzI8O, "phone_bottom")}>
           <span
             data-plasmic-name={"span"}
             data-plasmic-override={overrides.span}
             className={classNames(
-              projectcss.all,
-              projectcss.span,
+              "all",
+              "span",
+              "span__qARqp",
               sty.span,
               "indicator"
             )}
@@ -394,7 +375,7 @@ function PlasmicMenu__RenderFunc(props: {
             <section
               data-plasmic-name={"section"}
               data-plasmic-override={overrides.section}
-              className={classNames(projectcss.all, sty.section)}
+              className={classNames("all", sty.section)}
             />
           </span>
         </div>

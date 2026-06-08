@@ -64,7 +64,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicService2.module.css"; // plasmic-import: -12Fp4g9XO2-/css
 
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: L5-0jFcT5N2O/icon
@@ -156,6 +155,7 @@ function PlasmicService2__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -173,10 +173,10 @@ function PlasmicService2__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.rootselect]: hasVariant($state, "select", "select") }
@@ -188,55 +188,29 @@ function PlasmicService2__RenderFunc(props: {
       {renderPlasmicSlot({
         defaultContents: (
           <React.Fragment>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__yvMsu
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__yvMsu)}>
               {""}
             </div>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__rUqt
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__rUqt)}>
               {""}
             </div>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__avSc
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__avSc)}>
               {""}
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox__vb2H8)}>
+            <div className={classNames("all", sty.freeBox__vb2H8)}>
               <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text___0YeyR
-                )}
+                className={classNames("all", "__wab_text", sty.text___0YeyR)}
               >
                 {""}
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox__smBed)}>
+              <div className={classNames("all", sty.freeBox__smBed)}>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__aZ5P
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__aZ5P)}
                 >
                   {"\u0631\u0632\u0648 \u0646\u0648\u0628\u062a"}
                 </div>
                 <Icon34Icon
-                  className={classNames(projectcss.all, sty.svg__wjfw2)}
+                  className={classNames("all", sty.svg__wjfw2)}
                   role={"img"}
                 />
               </div>

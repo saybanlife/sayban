@@ -67,7 +67,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicLoginPanel.module.css"; // plasmic-import: hZEy0JIfmlF9/css
 
 createPlasmicElementProxy;
@@ -148,8 +147,6 @@ function PlasmicLoginPanel__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const globalVariants = _useGlobalVariants();
-
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -169,6 +166,9 @@ function PlasmicLoginPanel__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const globalVariants = _useGlobalVariants();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -186,17 +186,17 @@ function PlasmicLoginPanel__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__rltR7)}>
-        <div className={classNames(projectcss.all, sty.freeBox___1MiY2)}>
-          <div className={classNames(projectcss.all, sty.freeBox___2Zcwc)}>
+      <div className={classNames("all", sty.freeBox__rltR7)}>
+        <div className={classNames("all", sty.freeBox___1MiY2)}>
+          <div className={classNames("all", sty.freeBox___2Zcwc)}>
             <PlasmicImg__
               alt={""}
               className={classNames(sty.img__yhWlm)}
@@ -218,11 +218,7 @@ function PlasmicLoginPanel__RenderFunc(props: {
             <div
               data-plasmic-name={"text"}
               data-plasmic-override={overrides.text}
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text
-              )}
+              className={classNames("all", "__wab_text", sty.text)}
             >
               {"\u0633\u0627\u06cc\u0628\u0627\u0646"}
             </div>
@@ -230,7 +226,7 @@ function PlasmicLoginPanel__RenderFunc(props: {
           <section
             data-plasmic-name={"section"}
             data-plasmic-override={overrides.section}
-            className={classNames(projectcss.all, sty.section)}
+            className={classNames("all", sty.section)}
           >
             <Reveal
               data-plasmic-name={"reveal"}

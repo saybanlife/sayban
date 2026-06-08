@@ -67,7 +67,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicCategories.module.css"; // plasmic-import: R95SHqmqnvX5/css
 
 createPlasmicElementProxy;
@@ -170,6 +169,7 @@ function PlasmicCategories__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -187,10 +187,10 @@ function PlasmicCategories__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -218,8 +218,8 @@ function PlasmicCategories__RenderFunc(props: {
         }
       />
 
-      <div className={classNames(projectcss.all, sty.freeBox__bfnIl)}>
-        <div className={classNames(projectcss.all, sty.freeBox__xhLuY)}>
+      <div className={classNames("all", sty.freeBox__bfnIl)}>
+        <div className={classNames("all", sty.freeBox__xhLuY)}>
           <TextCollapse
             data-plasmic-name={"textCollapse"}
             data-plasmic-override={overrides.textCollapse}
@@ -294,11 +294,11 @@ function PlasmicCategories__RenderFunc(props: {
               const currentIndex = __plasmic_idx_0;
               return (
                 <div
-                  className={classNames(projectcss.all, sty.freeBox__ptkrJ)}
+                  className={classNames("all", sty.freeBox__ptkrJ)}
                   key={currentIndex}
                 >
                   <div
-                    className={classNames(projectcss.all, sty.freeBox__jxhyW)}
+                    className={classNames("all", sty.freeBox__jxhyW)}
                     onClick={async event => {
                       const $steps = {};
 
@@ -375,16 +375,11 @@ function PlasmicCategories__RenderFunc(props: {
                       }}
                     />
 
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___5NiWc
-                      )}
-                    >
+                    <div className={classNames("all", sty.freeBox___5NiWc)}>
                       <div
                         className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
+                          "all",
+                          "__wab_text",
                           sty.text__lxFx
                         )}
                       >
@@ -406,8 +401,8 @@ function PlasmicCategories__RenderFunc(props: {
                       </div>
                       <div
                         className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
+                          "all",
+                          "__wab_text",
                           sty.text___0Jyrm
                         )}
                       >
@@ -434,7 +429,7 @@ function PlasmicCategories__RenderFunc(props: {
             })}
           </SwiperSlider>
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__xcchq)}>
+        <div className={classNames("all", sty.freeBox__xcchq)}>
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {
               try {
@@ -454,7 +449,7 @@ function PlasmicCategories__RenderFunc(props: {
             const currentIndex = __plasmic_idx_0;
             return (
               <div
-                className={classNames(projectcss.all, sty.freeBox___4F4Ap)}
+                className={classNames("all", sty.freeBox___4F4Ap)}
                 key={currentIndex}
                 onClick={async event => {
                   const $steps = {};
@@ -533,11 +528,7 @@ function PlasmicCategories__RenderFunc(props: {
                 />
 
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__n4XQt
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__n4XQt)}
                 >
                   <React.Fragment>
                     {(() => {

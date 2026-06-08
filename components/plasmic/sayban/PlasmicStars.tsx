@@ -64,7 +64,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicStars.module.css"; // plasmic-import: egij6yhU3x2N/css
 
 import Icon77Icon from "./icons/PlasmicIcon__Icon77"; // plasmic-import: hgw2XQplK13k/icon
@@ -153,6 +152,7 @@ function PlasmicStars__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -170,10 +170,10 @@ function PlasmicStars__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.rootactiv]: hasVariant($state, "activ", "activ") }
@@ -182,7 +182,7 @@ function PlasmicStars__RenderFunc(props: {
       <Icon77Icon
         data-plasmic-name={"svg"}
         data-plasmic-override={overrides.svg}
-        className={classNames(projectcss.all, sty.svg, {
+        className={classNames("all", sty.svg, {
           [sty.svgactiv]: hasVariant($state, "activ", "activ")
         })}
         onClick={args.onClick}
@@ -192,7 +192,7 @@ function PlasmicStars__RenderFunc(props: {
       <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
+        className={classNames("all", sty.freeBox)}
       >
         {renderPlasmicSlot({
           defaultContents: "Enter some text",

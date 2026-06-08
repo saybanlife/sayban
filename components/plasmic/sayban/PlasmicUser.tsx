@@ -66,7 +66,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicUser.module.css"; // plasmic-import: PVZXFz1DIsfR/css
 
 import Icon88Icon from "./icons/PlasmicIcon__Icon88"; // plasmic-import: aFZZTVjUhsRZ/icon
@@ -170,6 +169,7 @@ function PlasmicUser__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -187,10 +187,10 @@ function PlasmicUser__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -198,9 +198,9 @@ function PlasmicUser__RenderFunc(props: {
       <section
         data-plasmic-name={"section"}
         data-plasmic-override={overrides.section}
-        className={classNames(projectcss.all, sty.section)}
+        className={classNames("all", sty.section)}
       >
-        <div className={classNames(projectcss.all, sty.freeBox__wxYE, "page ")}>
+        <div className={classNames("all", sty.freeBox__wxYE, "page ")}>
           <PlasmicImg__
             data-plasmic-name={"img"}
             data-plasmic-override={overrides.img}
@@ -222,7 +222,7 @@ function PlasmicUser__RenderFunc(props: {
           />
 
           <div
-            className={classNames(projectcss.all, sty.freeBox__apRfu)}
+            className={classNames("all", sty.freeBox__apRfu)}
             onClick={async event => {
               const $steps = {};
 
@@ -244,27 +244,21 @@ function PlasmicUser__RenderFunc(props: {
             }}
           >
             <Icon88Icon
-              className={classNames(projectcss.all, sty.svg__aXau)}
+              className={classNames("all", sty.svg__aXau)}
               onClick={async event => {
                 const $steps = {};
               }}
               role={"img"}
             />
 
-            <div className={classNames(projectcss.all, sty.freeBox__cY1Mv)}>
+            <div className={classNames("all", sty.freeBox__cY1Mv)}>
               <Icon70Icon
-                className={classNames(projectcss.all, sty.svg__ji63W)}
+                className={classNames("all", sty.svg__ji63W)}
                 role={"img"}
               />
             </div>
           </div>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__bMlg7
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__bMlg7)}>
             <React.Fragment>
               {(() => {
                 try {
@@ -281,36 +275,24 @@ function PlasmicUser__RenderFunc(props: {
               })()}
             </React.Fragment>
           </div>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__hfSiX
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__hfSiX)}>
             <React.Fragment>{$props.userinfo?.mobile}</React.Fragment>
           </div>
         </div>
       </section>
-      <div className={classNames(projectcss.all, sty.freeBox___9IFyv)}>
-        <div className={classNames(projectcss.all, sty.freeBox___9JjmT)}>
-          <div className={classNames(projectcss.all, sty.freeBox___5C91)}>
+      <div className={classNames("all", sty.freeBox___9IFyv)}>
+        <div className={classNames("all", sty.freeBox___9JjmT)}>
+          <div className={classNames("all", sty.freeBox___5C91)}>
             <MessageIcon
-              className={classNames(projectcss.all, sty.svg__ybHfZ)}
+              className={classNames("all", sty.svg__ybHfZ)}
               role={"img"}
             />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__sU1Id
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__sU1Id)}>
               {"\u067e\u06cc\u0627\u0645"}
             </div>
             <Icon76Icon
-              className={classNames(projectcss.all, sty.svg__gMpm)}
+              className={classNames("all", sty.svg__gMpm)}
               role={"img"}
             />
           </div>
@@ -319,47 +301,35 @@ function PlasmicUser__RenderFunc(props: {
             size={"small"}
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox__eLfl3)}>
+          <div className={classNames("all", sty.freeBox__eLfl3)}>
             <TagIcon
-              className={classNames(projectcss.all, sty.svg__zMxX)}
+              className={classNames("all", sty.svg__zMxX)}
               role={"img"}
             />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text___6NLcd
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text___6NLcd)}>
               {"\u062a\u062e\u0641\u06cc\u0641 \u0647\u0627"}
             </div>
             <Icon76Icon
-              className={classNames(projectcss.all, sty.svg__ptkOr)}
+              className={classNames("all", sty.svg__ptkOr)}
               role={"img"}
             />
           </div>
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__dUvuz)}>
-          <div className={classNames(projectcss.all, sty.freeBox__bvw0)}>
+        <div className={classNames("all", sty.freeBox__dUvuz)}>
+          <div className={classNames("all", sty.freeBox__bvw0)}>
             <Icon78Icon
-              className={classNames(projectcss.all, sty.svg__uqKim)}
+              className={classNames("all", sty.svg__uqKim)}
               role={"img"}
             />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__a2MQ
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__a2MQ)}>
               {
                 "\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u062a\u0644\u0641\u0646\u06cc"
               }
             </div>
             <Icon76Icon
-              className={classNames(projectcss.all, sty.svg___0HQm1)}
+              className={classNames("all", sty.svg___0HQm1)}
               role={"img"}
             />
           </div>
@@ -368,43 +338,31 @@ function PlasmicUser__RenderFunc(props: {
             size={"small"}
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox__vnrYw)}>
+          <div className={classNames("all", sty.freeBox__vnrYw)}>
             <BrandTelegramIcon
-              className={classNames(projectcss.all, sty.svg__h4Emz)}
+              className={classNames("all", sty.svg__h4Emz)}
               role={"img"}
             />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__nLr14
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__nLr14)}>
               {
                 "\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u062a\u0644\u06af\u0631\u0627\u0645\u06cc"
               }
             </div>
             <Icon76Icon
-              className={classNames(projectcss.all, sty.svg__wcYd6)}
+              className={classNames("all", sty.svg__wcYd6)}
               role={"img"}
             />
           </div>
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox___4PsTr)}>
-          <div className={classNames(projectcss.all, sty.freeBox__er2Gs)}>
+        <div className={classNames("all", sty.freeBox___4PsTr)}>
+          <div className={classNames("all", sty.freeBox__er2Gs)}>
             <Icon85Icon
-              className={classNames(projectcss.all, sty.svg__aL28T)}
+              className={classNames("all", sty.svg__aL28T)}
               role={"img"}
             />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__vxn0I
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__vxn0I)}>
               {
                 "\u0648\u0636\u0639\u06cc\u062a \u0627\u0637\u0644\u0627\u0639\u200c\u0631\u0633\u0627\u0646\u06cc"
               }
@@ -439,19 +397,13 @@ function PlasmicUser__RenderFunc(props: {
             size={"small"}
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox__lXidC)}>
+          <div className={classNames("all", sty.freeBox__lXidC)}>
             <Icon80Icon
-              className={classNames(projectcss.all, sty.svg__m2ZPs)}
+              className={classNames("all", sty.svg__m2ZPs)}
               role={"img"}
             />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__lubJ9
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__lubJ9)}>
               {"\u062d\u0627\u0644\u062a \u0634\u0628"}
             </div>
             <Switch
@@ -480,24 +432,18 @@ function PlasmicUser__RenderFunc(props: {
             />
           </div>
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__wCec3)}>
-          <div className={classNames(projectcss.all, sty.freeBox__npzrb)}>
+        <div className={classNames("all", sty.freeBox__wCec3)}>
+          <div className={classNames("all", sty.freeBox__npzrb)}>
             <Icon81Icon
-              className={classNames(projectcss.all, sty.svg__oFjmx)}
+              className={classNames("all", sty.svg__oFjmx)}
               role={"img"}
             />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__gyKf2
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__gyKf2)}>
               {"\u062f\u0631\u0628\u0627\u0631\u0647 \u0645\u0627"}
             </div>
             <Icon76Icon
-              className={classNames(projectcss.all, sty.svg__wXr5C)}
+              className={classNames("all", sty.svg__wXr5C)}
               role={"img"}
             />
           </div>
@@ -506,25 +452,19 @@ function PlasmicUser__RenderFunc(props: {
             size={"small"}
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox__aPmkP)}>
+          <div className={classNames("all", sty.freeBox__aPmkP)}>
             <Icon83Icon
-              className={classNames(projectcss.all, sty.svg__xF93B)}
+              className={classNames("all", sty.svg__xF93B)}
               role={"img"}
             />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__qicPw
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__qicPw)}>
               {
                 "\u0633\u0648\u0627\u0644\u0627\u062a \u0645\u062a\u062f\u0627\u0648\u0644"
               }
             </div>
             <Icon76Icon
-              className={classNames(projectcss.all, sty.svg__ytb59)}
+              className={classNames("all", sty.svg__ytb59)}
               role={"img"}
             />
           </div>
@@ -533,49 +473,37 @@ function PlasmicUser__RenderFunc(props: {
             size={"small"}
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox__chlYp)}>
+          <div className={classNames("all", sty.freeBox__chlYp)}>
             <Icon84Icon
-              className={classNames(projectcss.all, sty.svg__xY61)}
+              className={classNames("all", sty.svg__xY61)}
               role={"img"}
             />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__vbzEj
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__vbzEj)}>
               {
                 "\u0642\u0648\u0627\u0646\u06cc\u0646 \u0648 \u0645\u0642\u0631\u0631\u0627\u062a"
               }
             </div>
             <Icon76Icon
-              className={classNames(projectcss.all, sty.svg__f4JMl)}
+              className={classNames("all", sty.svg__f4JMl)}
               role={"img"}
             />
           </div>
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__sqyt4)}>
-          <div className={classNames(projectcss.all, sty.freeBox__lTj)}>
+        <div className={classNames("all", sty.freeBox__sqyt4)}>
+          <div className={classNames("all", sty.freeBox__lTj)}>
             <Icon87Icon
-              className={classNames(projectcss.all, sty.svg__bmKiq)}
+              className={classNames("all", sty.svg__bmKiq)}
               role={"img"}
             />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__v37Am
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__v37Am)}>
               {
                 "\u062e\u0631\u0648\u062c \u0627\u0632 \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc"
               }
             </div>
             <Icon76Icon
-              className={classNames(projectcss.all, sty.svg__dbYGm)}
+              className={classNames("all", sty.svg__dbYGm)}
               role={"img"}
             />
           </div>

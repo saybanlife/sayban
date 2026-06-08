@@ -9,7 +9,7 @@ import { createUseStyleTokens } from "@plasmicapp/react-web";
 
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectModule
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
+import projectcss from "./plasmic.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 
 const data = {
   base: `${projectcss.plasmic_tokens}`,

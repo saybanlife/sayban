@@ -72,13 +72,11 @@ import Categories from "../../Categories"; // plasmic-import: R95SHqmqnvX5/compo
 import Subcategories from "../../Subcategories"; // plasmic-import: JM9_woEGqy8m/component
 import Center from "../../Center"; // plasmic-import: Lh-Py4-EsRhC/component
 import Payment from "../../Payment"; // plasmic-import: BVIyToFh1miy/component
-import EditUser from "../../EditUser"; // plasmic-import: gFlyeK2pwR_U/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: qQJONu9yTCat/css
 
 import Icon49Icon from "../sayban/icons/PlasmicIcon__Icon49"; // plasmic-import: GiSR5zfG8C_s/icon
@@ -101,11 +99,18 @@ function wrapQueriesWithLoadingProxy($q: any): any {
   });
 }
 
-export function generateDynamicMetadata($q: any, $ctx: any) {
+export type PageCtx = {
+  pageRoute: string;
+  pagePath: string;
+  params: Record<string, string | string[] | undefined>;
+  query: Record<string, string | string[] | undefined>;
+};
+
+export function generateDynamicMetadata($q: any, $ctx: PageCtx) {
   return {
     openGraph: {},
     twitter: {
-      card: "summary"
+      card: "summary" as const
     }
   };
 }
@@ -153,7 +158,6 @@ export type PlasmicHomepage__OverridesType = {
   center?: Flex__<typeof Center>;
   payment?: Flex__<typeof Payment>;
   search?: Flex__<typeof ApiRequest>;
-  editUser?: Flex__<typeof EditUser>;
 };
 
 export interface DefaultHomepageProps {}
@@ -196,8 +200,6 @@ function PlasmicHomepage__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
-
-  const $globalActions = useGlobalActions?.();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
@@ -415,6 +417,9 @@ function PlasmicHomepage__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -425,7 +430,7 @@ function PlasmicHomepage__RenderFunc(props: {
 
   const pageMetadata = generateDynamicMetadata(
     wrapQueriesWithLoadingProxy({}),
-    $ctx
+    $ctx as PageCtx
   );
 
   const styleTokensClassNames = _useStyleTokens();
@@ -440,17 +445,17 @@ function PlasmicHomepage__RenderFunc(props: {
         }
       `}</style>
 
-      <div className={projectcss.plasmic_page_wrapper}>
+      <div className={"plasmic_page_wrapper"}>
         <div
           data-plasmic-name={"root"}
           data-plasmic-override={overrides.root}
           data-plasmic-root={true}
           data-plasmic-for-node={forNode}
           className={classNames(
-            projectcss.all,
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
+            "all",
+            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+            "plasmic_default_styles",
+            "plasmic_mixins",
             styleTokensClassNames,
             sty.root,
             "page ",
@@ -471,6 +476,9 @@ function PlasmicHomepage__RenderFunc(props: {
                 "page",
                 "categories"
               ),
+              [sty.rootpage_categories_search2]:
+                hasVariant($state, "search2", "search2") &&
+                hasVariant($state, "page", "categories"),
               [sty.rootpage_center]: hasVariant($state, "page", "center"),
               [sty.rootpage_payment]: hasVariant($state, "page", "payment"),
               [sty.rootpage_subcategories]: hasVariant(
@@ -485,7 +493,13 @@ function PlasmicHomepage__RenderFunc(props: {
           <SideEffect
             data-plasmic-name={"sideEffect"}
             data-plasmic-override={overrides.sideEffect}
-            className={classNames("__wab_instance", sty.sideEffect)}
+            className={classNames("__wab_instance", sty.sideEffect, {
+              [sty.sideEffectpage_editUser]: hasVariant(
+                $state,
+                "page",
+                "editUser"
+              )
+            })}
             onMount={async () => {
               const $steps = {};
 
@@ -564,7 +578,7 @@ function PlasmicHomepage__RenderFunc(props: {
           <div
             data-plasmic-name={"homePage"}
             data-plasmic-override={overrides.homePage}
-            className={classNames(projectcss.all, sty.homePage, {
+            className={classNames("all", sty.homePage, {
               [sty.homePagehomePage2_reminder]: hasVariant(
                 $state,
                 "homePage2",
@@ -589,13 +603,9 @@ function PlasmicHomepage__RenderFunc(props: {
               )
             })}
           >
-            <section className={classNames(projectcss.all, sty.section__iGcIn)}>
+            <section className={classNames("all", sty.section__iGcIn)}>
               <div
-                className={classNames(
-                  projectcss.all,
-                  sty.freeBox__rU92E,
-                  "fixed-box"
-                )}
+                className={classNames("all", sty.freeBox__rU92E, "fixed-box")}
               >
                 {(() => {
                   const child$Props = {
@@ -662,7 +672,7 @@ function PlasmicHomepage__RenderFunc(props: {
               </div>
             </section>
             <section
-              className={classNames(projectcss.all, sty.section__pJCrL, {
+              className={classNames("all", sty.section__pJCrL, {
                 [sty.sectionhomePage2_booking__pJCrLzQze8]: hasVariant(
                   $state,
                   "homePage2",
@@ -676,38 +686,31 @@ function PlasmicHomepage__RenderFunc(props: {
               })}
             >
               <div
-                className={classNames(
-                  projectcss.all,
-                  sty.freeBox__ibbNl,
-                  "fixed-box",
-                  {
-                    [sty.freeBoxhomePage2_home__ibbNlRvb1B]: hasVariant(
-                      $state,
-                      "homePage2",
-                      "home"
-                    ),
-                    [sty.freeBoxhomePage2_reminder__ibbNlWvbFy]: hasVariant(
-                      $state,
-                      "homePage2",
-                      "reminder"
-                    ),
-                    [sty.freeBoxhomePage2_user__ibbNl33Nz]: hasVariant(
-                      $state,
-                      "homePage2",
-                      "user"
-                    ),
-                    [sty.freeBoxsearch2__ibbNlUfPhZ]: hasVariant(
-                      $state,
-                      "search2",
-                      "search2"
-                    )
-                  }
-                )}
+                className={classNames("all", sty.freeBox__ibbNl, "fixed-box", {
+                  [sty.freeBoxhomePage2_home__ibbNlRvb1B]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "home"
+                  ),
+                  [sty.freeBoxhomePage2_reminder__ibbNlWvbFy]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "reminder"
+                  ),
+                  [sty.freeBoxhomePage2_user__ibbNl33Nz]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "user"
+                  ),
+                  [sty.freeBoxsearch2__ibbNlUfPhZ]: hasVariant(
+                    $state,
+                    "search2",
+                    "search2"
+                  )
+                })}
                 id={"headerMain"}
               >
-                <div
-                  className={classNames(projectcss.all, sty.freeBox___9C3Gw)}
-                >
+                <div className={classNames("all", sty.freeBox___9C3Gw)}>
                   <TextInput
                     data-plasmic-name={"textInput"}
                     data-plasmic-override={overrides.textInput}
@@ -811,7 +814,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   />
 
                   <Icon49Icon
-                    className={classNames(projectcss.all, sty.svg___0GKYj)}
+                    className={classNames("all", sty.svg___0GKYj)}
                     role={"img"}
                   />
 
@@ -829,7 +832,7 @@ function PlasmicHomepage__RenderFunc(props: {
                     }
                   })() ? (
                     <Icon10Icon
-                      className={classNames(projectcss.all, sty.svg__gSs9U)}
+                      className={classNames("all", sty.svg__gSs9U)}
                       onClick={async event => {
                         const $steps = {};
 
@@ -899,7 +902,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 </div>
                 <div
                   className={classNames(
-                    projectcss.all,
+                    "all",
                     sty.freeBox___4JaU4,
                     (() => {
                       try {
@@ -918,13 +921,11 @@ function PlasmicHomepage__RenderFunc(props: {
                     })()
                   )}
                 >
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__k4OH1)}
-                  >
+                  <div className={classNames("all", sty.freeBox__k4OH1)}>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__fmPbl
                       )}
                     >
@@ -934,8 +935,8 @@ function PlasmicHomepage__RenderFunc(props: {
                     </div>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__qxfk
                       )}
                     >
@@ -951,8 +952,8 @@ function PlasmicHomepage__RenderFunc(props: {
                       label={
                         <div
                           className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
+                            "all",
+                            "__wab_text",
                             sty.text__ekymK
                           )}
                         >
@@ -1015,9 +1016,7 @@ function PlasmicHomepage__RenderFunc(props: {
                     throw e;
                   }
                 })() ? (
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__t0TZ)}
-                  />
+                  <div className={classNames("all", sty.freeBox__t0TZ)} />
                 ) : null}
               </div>
             </section>
@@ -1263,7 +1262,8 @@ function PlasmicHomepage__RenderFunc(props: {
                 $state,
                 "page",
                 "subcategories"
-              )
+              ),
+              [sty.categories2search2]: hasVariant($state, "search2", "search2")
             })}
             config={(() => {
               try {
@@ -1284,10 +1284,8 @@ function PlasmicHomepage__RenderFunc(props: {
             })()}
             errorDisplay={null}
             loadingDisplay={
-              <div className={classNames(projectcss.all, sty.freeBox__sCmYa)}>
-                <div
-                  className={classNames(projectcss.all, sty.freeBox___19TiU)}
-                >
+              <div className={classNames("all", sty.freeBox__sCmYa)}>
+                <div className={classNames("all", sty.freeBox___19TiU)}>
                   {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                     (() => {
                       try {
@@ -1307,16 +1305,12 @@ function PlasmicHomepage__RenderFunc(props: {
                     const currentIndex = __plasmic_idx_0;
                     return (
                       <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__y0Iqc,
-                          ``
-                        )}
+                        className={classNames("all", sty.freeBox__y0Iqc, ``)}
                         key={currentIndex}
                       >
                         <div
                           className={classNames(
-                            projectcss.all,
+                            "all",
                             sty.freeBox___1SPfr,
                             "shimmer"
                           )}
@@ -1359,7 +1353,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 throw e;
               }
             })()}
-            url={"https://sayban.darkube.app/webhook/categories/full"}
+            url={"/categories/full"}
           >
             <Home
               data-plasmic-name={"home"}
@@ -1652,7 +1646,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 throw e;
               }
             })()}
-            url={"https://sayban.darkube.app/webhook/getProfile"}
+            url={"/getProfile"}
           />
 
           <Categories
@@ -2239,92 +2233,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 throw e;
               }
             })()}
-            url={"https://sayban.darkube.app/webhook/search"}
-          />
-
-          <EditUser
-            data-plasmic-name={"editUser"}
-            data-plasmic-override={overrides.editUser}
-            className={classNames("__wab_instance", sty.editUser, {
-              [sty.editUserhomePage2_user]: hasVariant(
-                $state,
-                "homePage2",
-                "user"
-              ),
-              [sty.editUserpage_editUser]: hasVariant(
-                $state,
-                "page",
-                "editUser"
-              )
-            })}
-            data={$state?.profile?.data?.result}
-            opencity={async event => {
-              const $steps = {};
-
-              $steps["goToHomepage"] = true
-                ? (() => {
-                    const actionArgs = {
-                      destination: `/${(() => {
-                        try {
-                          return $ctx.params.page;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}/${(() => {
-                        try {
-                          return $ctx.params.slug.join("/");
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}?city=${"true"}`
-                    };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["goToHomepage"] != null &&
-                typeof $steps["goToHomepage"] === "object" &&
-                typeof $steps["goToHomepage"].then === "function"
-              ) {
-                $steps["goToHomepage"] = await $steps["goToHomepage"];
-              }
-            }}
-            opencity2={(() => {
-              try {
-                return false;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return false;
-                }
-                throw e;
-              }
-            })()}
+            url={"/search"}
           />
         </div>
       </div>
@@ -2350,8 +2259,7 @@ const PlasmicDescendants = {
     "subcategories",
     "center",
     "payment",
-    "search",
-    "editUser"
+    "search"
   ],
   sideEffect: ["sideEffect"],
   homePage: [
@@ -2376,8 +2284,7 @@ const PlasmicDescendants = {
   subcategories: ["subcategories"],
   center: ["center"],
   payment: ["payment"],
-  search: ["search"],
-  editUser: ["editUser"]
+  search: ["search"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -2400,7 +2307,6 @@ type NodeDefaultElementType = {
   center: typeof Center;
   payment: typeof Payment;
   search: typeof ApiRequest;
-  editUser: typeof EditUser;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -2481,16 +2387,16 @@ export const PlasmicHomepage = Object.assign(
     center: makeNodeComponent("center"),
     payment: makeNodeComponent("payment"),
     search: makeNodeComponent("search"),
-    editUser: makeNodeComponent("editUser"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,
     internalArgProps: PlasmicHomepage__ArgProps,
 
     pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pageRoute: "/[page]/[[...slug]]",
       pagePath: "/[page]/[[...slug]]",
-      searchParams: {},
-      params: {}
+      params: {},
+      query: {}
     })
   }
 );

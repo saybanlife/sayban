@@ -69,7 +69,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicCenterInfo.module.css"; // plasmic-import: 5fhUfrSk0s6y/css
 
 createPlasmicElementProxy;
@@ -241,6 +240,7 @@ function PlasmicCenterInfo__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -258,23 +258,17 @@ function PlasmicCenterInfo__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
     >
-      <div className={classNames(projectcss.all, sty.freeBox___2Znrw)}>
-        <div className={classNames(projectcss.all, sty.freeBox__qbIrE)}>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__arxrP
-            )}
-          >
+      <div className={classNames("all", sty.freeBox___2Znrw)}>
+        <div className={classNames("all", sty.freeBox__qbIrE)}>
+          <div className={classNames("all", "__wab_text", sty.text__arxrP)}>
             {"\u0646\u0627\u0645 \u0645\u0631\u06a9\u0632"}
           </div>
           <TextInput
@@ -300,14 +294,8 @@ function PlasmicCenterInfo__RenderFunc(props: {
             value={generateStateValueProp($state, ["titleInput", "value"])}
           />
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__pXwue)}>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__xX7D
-            )}
-          >
+        <div className={classNames("all", sty.freeBox__pXwue)}>
+          <div className={classNames("all", "__wab_text", sty.text__xX7D)}>
             {"\u062a\u0648\u0636\u06cc\u062d\u0627\u062a"}
           </div>
           <TextAreaInput
@@ -332,14 +320,8 @@ function PlasmicCenterInfo__RenderFunc(props: {
             value={generateStateValueProp($state, ["textAreaInput", "value"])}
           />
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__g3Myx)}>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text___7T0Su
-            )}
-          >
+        <div className={classNames("all", sty.freeBox__g3Myx)}>
+          <div className={classNames("all", "__wab_text", sty.text___7T0Su)}>
             {
               "\u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc \u0627\u0635\u0644\u06cc"
             }
@@ -432,14 +414,8 @@ function PlasmicCenterInfo__RenderFunc(props: {
             value={generateStateValueProp($state, ["category", "value"])}
           />
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__q6JLg)}>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__jq9Pr
-            )}
-          >
+        <div className={classNames("all", sty.freeBox__q6JLg)}>
+          <div className={classNames("all", "__wab_text", sty.text__jq9Pr)}>
             {
               "\u0632\u06cc\u0631\u200c\u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc"
             }
@@ -536,7 +512,7 @@ function PlasmicCenterInfo__RenderFunc(props: {
             value={generateStateValueProp($state, ["subcategory", "value"])}
           />
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__ig0Dw)}>
+        <div className={classNames("all", sty.freeBox__ig0Dw)}>
           <Tags
             data-plasmic-name={"tags"}
             data-plasmic-override={overrides.tags}

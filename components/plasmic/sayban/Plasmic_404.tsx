@@ -64,7 +64,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./Plasmic_404.module.css"; // plasmic-import: EPyL9Q3Zmjgo/css
 
 import Icon71Icon from "./icons/PlasmicIcon__Icon71"; // plasmic-import: Rka8OCCW_ISn/icon
@@ -84,11 +83,18 @@ function wrapQueriesWithLoadingProxy($q: any): any {
   });
 }
 
-export function generateDynamicMetadata($q: any, $ctx: any) {
+export type PageCtx = {
+  pageRoute: string;
+  pagePath: string;
+  params: Record<string, string | string[] | undefined>;
+  query: Record<string, string | string[] | undefined>;
+};
+
+export function generateDynamicMetadata($q: any, $ctx: PageCtx) {
   return {
     openGraph: {},
     twitter: {
-      card: "summary"
+      card: "summary" as const
     }
   };
 }
@@ -154,7 +160,7 @@ function Plasmic_404__RenderFunc(props: {
 
   const pageMetadata = generateDynamicMetadata(
     wrapQueriesWithLoadingProxy({}),
-    $ctx
+    $ctx as PageCtx
   );
 
   const styleTokensClassNames = _useStyleTokens();
@@ -169,17 +175,17 @@ function Plasmic_404__RenderFunc(props: {
         }
       `}</style>
 
-      <div className={projectcss.plasmic_page_wrapper}>
+      <div className={"plasmic_page_wrapper"}>
         <div
           data-plasmic-name={"root"}
           data-plasmic-override={overrides.root}
           data-plasmic-root={true}
           data-plasmic-for-node={forNode}
           className={classNames(
-            projectcss.all,
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
+            "all",
+            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+            "plasmic_default_styles",
+            "plasmic_mixins",
             styleTokensClassNames,
             sty.root
           )}
@@ -187,23 +193,19 @@ function Plasmic_404__RenderFunc(props: {
           <div
             data-plasmic-name={"freeBox"}
             data-plasmic-override={overrides.freeBox}
-            className={classNames(projectcss.all, sty.freeBox)}
+            className={classNames("all", sty.freeBox)}
           >
             <Icon71Icon
               data-plasmic-name={"svg"}
               data-plasmic-override={overrides.svg}
-              className={classNames(projectcss.all, sty.svg)}
+              className={classNames("all", sty.svg)}
               role={"img"}
             />
 
             <div
               data-plasmic-name={"text"}
               data-plasmic-override={overrides.text}
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text
-              )}
+              className={classNames("all", "__wab_text", sty.text)}
             >
               {
                 "\u0635\u0641\u062d\u0647 \u06cc\u0627\u0641\u062a \u0646\u0634\u062f"
@@ -303,9 +305,10 @@ export const Plasmic_404 = Object.assign(
     internalArgProps: Plasmic_404__ArgProps,
 
     pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pageRoute: "/404",
       pagePath: "/404",
-      searchParams: {},
-      params: {}
+      params: {},
+      query: {}
     })
   }
 );

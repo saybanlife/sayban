@@ -68,7 +68,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicModal.module.css"; // plasmic-import: Oo9r7A7X8FP7/css
 
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
@@ -205,6 +204,7 @@ function PlasmicModal__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -223,9 +223,9 @@ function PlasmicModal__RenderFunc(props: {
       data-plasmic-for-node={forNode}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaDialogTrigger,
         {
@@ -263,9 +263,9 @@ function PlasmicModal__RenderFunc(props: {
             $refs["ariaModal"] = ref;
           }}
           resetClassName={classNames(
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
+            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+            "plasmic_default_styles",
+            "plasmic_mixins",
             styleTokensClassNames
           )}
         >
@@ -284,9 +284,10 @@ function PlasmicModal__RenderFunc(props: {
               defaultContents: (
                 <h3
                   className={classNames(
-                    projectcss.all,
-                    projectcss.h3,
-                    projectcss.__wab_text,
+                    "all",
+                    "h3",
+                    "h3__qARqp",
+                    "__wab_text",
                     sty.h3__gGbK
                   )}
                 >
@@ -298,17 +299,15 @@ function PlasmicModal__RenderFunc(props: {
             <div
               data-plasmic-name={"scrollableContent"}
               data-plasmic-override={overrides.scrollableContent}
-              className={classNames(projectcss.all, sty.scrollableContent)}
+              className={classNames("all", sty.scrollableContent)}
             >
               {renderPlasmicSlot({
                 defaultContents: (
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__iiEnS)}
-                  >
+                  <div className={classNames("all", sty.freeBox__iiEnS)}>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__jrh6K
                       )}
                     >
@@ -316,8 +315,8 @@ function PlasmicModal__RenderFunc(props: {
                     </div>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__sI3Tv
                       )}
                     >
@@ -332,16 +331,14 @@ function PlasmicModal__RenderFunc(props: {
             </div>
             {renderPlasmicSlot({
               defaultContents: (
-                <div
-                  className={classNames(projectcss.all, sty.freeBox___7AYkt)}
-                >
+                <div className={classNames("all", sty.freeBox___7AYkt)}>
                   <Button
                     color={"muted"}
                     label={
                       <div
                         className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
+                          "all",
+                          "__wab_text",
                           sty.text__b0CFb
                         )}
                       >

@@ -68,7 +68,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicTimeWeek.module.css"; // plasmic-import: cN1_ZVwWpEB8/css
 
 createPlasmicElementProxy;
@@ -187,6 +186,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -204,53 +204,29 @@ function PlasmicTimeWeek__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
     >
-      <div className={classNames(projectcss.all, sty.freeBox___5TBp9)}>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__eKrIb
-          )}
-        >
+      <div className={classNames("all", sty.freeBox___5TBp9)}>
+        <div className={classNames("all", "__wab_text", sty.text__eKrIb)}>
           {"\u0631\u0648\u0632 \u0647\u0641\u062a\u0647"}
         </div>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__iEYlq
-          )}
-        >
+        <div className={classNames("all", "__wab_text", sty.text__iEYlq)}>
           {"\u0634\u0631\u0648\u0639"}
         </div>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__hVeV
-          )}
-        >
+        <div className={classNames("all", "__wab_text", sty.text__hVeV)}>
           {"\u067e\u0627\u06cc\u0627\u0646"}
         </div>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__cS6Iv
-          )}
-        >
+        <div className={classNames("all", "__wab_text", sty.text__cS6Iv)}>
           {"\u062a\u0639\u0637\u06cc\u0644"}
         </div>
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__hLgqC)}>
+      <div className={classNames("all", sty.freeBox__hLgqC)}>
         <CheckboxGroup
           data-plasmic-name={"checkboxGroup"}
           data-plasmic-override={overrides.checkboxGroup}
@@ -270,7 +246,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
             }
           }}
           options={
-            <div className={classNames(projectcss.all, sty.freeBox__vcghb)}>
+            <div className={classNames("all", sty.freeBox__vcghb)}>
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {
                   try {
@@ -290,24 +266,19 @@ function PlasmicTimeWeek__RenderFunc(props: {
                 const currentIndex = __plasmic_idx_0;
                 return (
                   <div
-                    className={classNames(projectcss.all, sty.freeBox__jgKsn)}
+                    className={classNames("all", sty.freeBox__jgKsn)}
                     key={currentIndex}
                   >
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__tzo1X
                       )}
                     >
                       <React.Fragment>{currentItem.label}</React.Fragment>
                     </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___6EcYm
-                      )}
-                    >
+                    <div className={classNames("all", sty.freeBox___6EcYm)}>
                       {(() => {
                         const child$Props = {
                           arrow: true,
@@ -447,9 +418,9 @@ function PlasmicTimeWeek__RenderFunc(props: {
                           contentText: "Popover contents",
                           defaultOpen: false,
                           defaultStylesClassName: classNames(
-                            projectcss.root_reset,
-                            projectcss.plasmic_default_styles,
-                            projectcss.plasmic_mixins,
+                            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+                            "plasmic_default_styles",
+                            "plasmic_mixins",
                             styleTokensClassNames
                           ),
                           mouseEnterDelay: 0,
@@ -500,15 +471,12 @@ function PlasmicTimeWeek__RenderFunc(props: {
                             {...child$Props}
                           >
                             <div
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__cblaD
-                              )}
+                              className={classNames("all", sty.freeBox__cblaD)}
                             >
                               <div
                                 className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
+                                  "all",
+                                  "__wab_text",
                                   sty.text__jgBk8
                                 )}
                               >
@@ -673,9 +641,9 @@ function PlasmicTimeWeek__RenderFunc(props: {
                           contentText: "Popover contents",
                           defaultOpen: false,
                           defaultStylesClassName: classNames(
-                            projectcss.root_reset,
-                            projectcss.plasmic_default_styles,
-                            projectcss.plasmic_mixins,
+                            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+                            "plasmic_default_styles",
+                            "plasmic_mixins",
                             styleTokensClassNames
                           ),
                           mouseEnterDelay: 0,
@@ -726,15 +694,12 @@ function PlasmicTimeWeek__RenderFunc(props: {
                             {...child$Props}
                           >
                             <div
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__vrY6
-                              )}
+                              className={classNames("all", sty.freeBox__vrY6)}
                             >
                               <div
                                 className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
+                                  "all",
+                                  "__wab_text",
                                   sty.text__hTdt9
                                 )}
                               >
@@ -776,13 +741,13 @@ function PlasmicTimeWeek__RenderFunc(props: {
                         label: (
                           <div
                             className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
+                              "all",
+                              "__wab_text",
                               sty.text__iGha3
                             )}
                           >
                             <div
-                              className={projectcss.__wab_expr_html_text}
+                              className={"__wab_expr_html_text"}
                               dangerouslySetInnerHTML={{
                                 __html: (() => {
                                   try {

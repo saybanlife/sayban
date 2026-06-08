@@ -67,7 +67,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicBooking.module.css"; // plasmic-import: f1blqtlMCCYK/css
 
 createPlasmicElementProxy;
@@ -195,6 +194,7 @@ function PlasmicBooking__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -212,10 +212,10 @@ function PlasmicBooking__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -231,30 +231,12 @@ function PlasmicBooking__RenderFunc(props: {
         }}
         errorDisplay={null}
         loadingDisplay={
-          <div className={classNames(projectcss.all, sty.freeBox__qIduB)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                sty.freeBox__egf40,
-                "shimmer"
-              )}
-            />
+          <div className={classNames("all", sty.freeBox__qIduB)}>
+            <div className={classNames("all", sty.freeBox__egf40, "shimmer")} />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                sty.freeBox__mhFwg,
-                "shimmer"
-              )}
-            />
+            <div className={classNames("all", sty.freeBox__mhFwg, "shimmer")} />
 
-            <div
-              className={classNames(
-                projectcss.all,
-                sty.freeBox__viKyl,
-                "shimmer"
-              )}
-            />
+            <div className={classNames("all", sty.freeBox__viKyl, "shimmer")} />
           </div>
         }
         method={"GET"}
@@ -279,7 +261,7 @@ function PlasmicBooking__RenderFunc(props: {
         shouldFetch={true}
         url={"https://sayban.darkube.app/webhook/Reservation"}
       >
-        <div className={classNames(projectcss.all, sty.freeBox__t5Rev)}>
+        <div className={classNames("all", sty.freeBox__t5Rev)}>
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {
               try {
@@ -359,7 +341,7 @@ function PlasmicBooking__RenderFunc(props: {
       <section
         data-plasmic-name={"section"}
         data-plasmic-override={overrides.section}
-        className={classNames(projectcss.all, sty.section)}
+        className={classNames("all", sty.section)}
       >
         <BookingHeader
           data-plasmic-name={"bookingHeader"}

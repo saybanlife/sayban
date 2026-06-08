@@ -65,7 +65,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicToolsItem.module.css"; // plasmic-import: M_mJLv9BDPmq/css
 
 createPlasmicElementProxy;
@@ -164,6 +163,7 @@ function PlasmicToolsItem__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -181,10 +181,10 @@ function PlasmicToolsItem__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.rootback]: hasVariant($state, "back", "back") }
@@ -194,7 +194,7 @@ function PlasmicToolsItem__RenderFunc(props: {
       <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox, {
+        className={classNames("all", sty.freeBox, {
           [sty.freeBoxback]: hasVariant($state, "back", "back"),
           [sty.freeBoxtop]: hasVariant($state, "top", "top")
         })}
@@ -223,18 +223,13 @@ function PlasmicToolsItem__RenderFunc(props: {
         />
 
         <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__rTf3,
-            {
-              [sty.textback__rTf3Uwnsz]: hasVariant($state, "back", "back"),
-              [sty.textback_top__rTf3UwnszP8Vh4]:
-                hasVariant($state, "top", "top") &&
-                hasVariant($state, "back", "back"),
-              [sty.texttop__rTf3P8Vh4]: hasVariant($state, "top", "top")
-            }
-          )}
+          className={classNames("all", "__wab_text", sty.text__rTf3, {
+            [sty.textback__rTf3Uwnsz]: hasVariant($state, "back", "back"),
+            [sty.textback_top__rTf3UwnszP8Vh4]:
+              hasVariant($state, "top", "top") &&
+              hasVariant($state, "back", "back"),
+            [sty.texttop__rTf3P8Vh4]: hasVariant($state, "top", "top")
+          })}
         >
           <React.Fragment>
             {(() => {
@@ -254,15 +249,10 @@ function PlasmicToolsItem__RenderFunc(props: {
         </div>
       </div>
       <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__dXFsZ,
-          {
-            [sty.textback__dXFsZuwnsz]: hasVariant($state, "back", "back"),
-            [sty.texttop__dXFsZp8Vh4]: hasVariant($state, "top", "top")
-          }
-        )}
+        className={classNames("all", "__wab_text", sty.text__dXFsZ, {
+          [sty.textback__dXFsZuwnsz]: hasVariant($state, "back", "back"),
+          [sty.texttop__dXFsZp8Vh4]: hasVariant($state, "top", "top")
+        })}
       >
         <React.Fragment>
           {(() => {

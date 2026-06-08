@@ -64,7 +64,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicIconMenu.module.css"; // plasmic-import: UH_ArPB1XbBj/css
 
 import Icon4Icon from "../website_starter/icons/PlasmicIcon__Icon4"; // plasmic-import: XYEdqsKT1Z5t/icon
@@ -162,6 +161,7 @@ function PlasmicIconMenu__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -179,10 +179,10 @@ function PlasmicIconMenu__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         {
@@ -206,7 +206,7 @@ function PlasmicIconMenu__RenderFunc(props: {
                   ? Icon354Icon
                   : Icon4Icon
         }
-        className={classNames(projectcss.all, sty.svg, {
+        className={classNames("all", sty.svg, {
           [sty.svgicons_booking]: hasVariant($state, "icons", "booking"),
           [sty.svgicons_home]: hasVariant($state, "icons", "home"),
           [sty.svgicons_reminder]: hasVariant($state, "icons", "reminder"),
@@ -219,7 +219,7 @@ function PlasmicIconMenu__RenderFunc(props: {
       <div
         data-plasmic-name={"text"}
         data-plasmic-override={overrides.text}
-        className={classNames(projectcss.all, projectcss.__wab_text, sty.text, {
+        className={classNames("all", "__wab_text", sty.text, {
           [sty.textselect]: hasVariant($state, "select", "select")
         })}
       >

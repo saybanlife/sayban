@@ -65,7 +65,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicCodeTimer.module.css"; // plasmic-import: S3l1vuCFuyGc/css
 
 createPlasmicElementProxy;
@@ -164,6 +163,7 @@ function PlasmicCodeTimer__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -181,10 +181,10 @@ function PlasmicCodeTimer__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.rootpage_code]: hasVariant($state, "page", "code") }
@@ -203,15 +203,9 @@ function PlasmicCodeTimer__RenderFunc(props: {
           throw e;
         }
       })() ? (
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__cPh7C
-          )}
-        >
+        <div className={classNames("all", "__wab_text", sty.text__cPh7C)}>
           <div
-            className={projectcss.__wab_expr_html_text}
+            className={"__wab_expr_html_text"}
             dangerouslySetInnerHTML={{
               __html: (() => {
                 try {
@@ -244,11 +238,7 @@ function PlasmicCodeTimer__RenderFunc(props: {
         }
       })() ? (
         <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__cn72U
-          )}
+          className={classNames("all", "__wab_text", sty.text__cn72U)}
           onClick={async event => {
             const $steps = {};
 

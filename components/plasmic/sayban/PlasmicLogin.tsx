@@ -73,7 +73,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicLogin.module.css"; // plasmic-import: 9IHhNJeWZ_i2/css
 
 import Icon39Icon from "./icons/PlasmicIcon__Icon39"; // plasmic-import: mY1x2mJnCMIY/icon
@@ -96,11 +95,18 @@ function wrapQueriesWithLoadingProxy($q: any): any {
   });
 }
 
-export function generateDynamicMetadata($q: any, $ctx: any) {
+export type PageCtx = {
+  pageRoute: string;
+  pagePath: string;
+  params: Record<string, string | string[] | undefined>;
+  query: Record<string, string | string[] | undefined>;
+};
+
+export function generateDynamicMetadata($q: any, $ctx: PageCtx) {
   return {
     openGraph: {},
     twitter: {
-      card: "summary"
+      card: "summary" as const
     }
   };
 }
@@ -180,10 +186,6 @@ function PlasmicLogin__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
-
-  const globalVariants = _useGlobalVariants();
-
-  const $globalActions = useGlobalActions?.();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
@@ -352,6 +354,11 @@ function PlasmicLogin__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const globalVariants = _useGlobalVariants();
+
+  const $globalActions = useGlobalActions?.();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -362,7 +369,7 @@ function PlasmicLogin__RenderFunc(props: {
 
   const pageMetadata = generateDynamicMetadata(
     wrapQueriesWithLoadingProxy({}),
-    $ctx
+    $ctx as PageCtx
   );
 
   const styleTokensClassNames = _useStyleTokens();
@@ -377,17 +384,17 @@ function PlasmicLogin__RenderFunc(props: {
         }
       `}</style>
 
-      <div className={projectcss.plasmic_page_wrapper}>
+      <div className={"plasmic_page_wrapper"}>
         <div
           data-plasmic-name={"root"}
           data-plasmic-override={overrides.root}
           data-plasmic-root={true}
           data-plasmic-for-node={forNode}
           className={classNames(
-            projectcss.all,
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
+            "all",
+            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+            "plasmic_default_styles",
+            "plasmic_mixins",
             styleTokensClassNames,
             sty.root,
             {
@@ -402,7 +409,7 @@ function PlasmicLogin__RenderFunc(props: {
             data-plasmic-name={"loading"}
             data-plasmic-override={overrides.loading}
             className={classNames(
-              projectcss.all,
+              "all",
               sty.loading,
               hasVariant($state, "page", "name")
                 ? "headerBox"
@@ -424,7 +431,7 @@ function PlasmicLogin__RenderFunc(props: {
             )}
           >
             <div
-              className={classNames(projectcss.all, sty.freeBox__pRd, {
+              className={classNames("all", sty.freeBox__pRd, {
                 [sty.freeBoxpage_code__pRdohvpc]: hasVariant(
                   $state,
                   "page",
@@ -476,7 +483,7 @@ function PlasmicLogin__RenderFunc(props: {
               />
 
               <div
-                className={classNames(projectcss.all, sty.freeBox__yXneK, {
+                className={classNames("all", sty.freeBox__yXneK, {
                   [sty.freeBoxpage_code__yXneKohvpc]: hasVariant(
                     $state,
                     "page",
@@ -495,66 +502,56 @@ function PlasmicLogin__RenderFunc(props: {
                 })}
               >
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__co9R6,
-                    {
-                      [sty.textpage_code__co9R6Ohvpc]: hasVariant(
-                        $state,
-                        "page",
-                        "code"
-                      ),
-                      [sty.textpage_loading__co9R6Eyvhu]: hasVariant(
-                        $state,
-                        "page",
-                        "loading"
-                      ),
-                      [sty.textpage_mobile__co9R6MKfXs]: hasVariant(
-                        $state,
-                        "page",
-                        "mobile"
-                      ),
-                      [sty.textpage_name__co9R6Aq9MH]: hasVariant(
-                        $state,
-                        "page",
-                        "name"
-                      )
-                    }
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__co9R6, {
+                    [sty.textpage_code__co9R6Ohvpc]: hasVariant(
+                      $state,
+                      "page",
+                      "code"
+                    ),
+                    [sty.textpage_loading__co9R6Eyvhu]: hasVariant(
+                      $state,
+                      "page",
+                      "loading"
+                    ),
+                    [sty.textpage_mobile__co9R6MKfXs]: hasVariant(
+                      $state,
+                      "page",
+                      "mobile"
+                    ),
+                    [sty.textpage_name__co9R6Aq9MH]: hasVariant(
+                      $state,
+                      "page",
+                      "name"
+                    )
+                  })}
                 >
                   {
                     "\u0633\u0627\u06cc\u0647 \u0628\u0627\u0646 \u0634\u0639\u0627\u0631 \u0633\u0627\u06cc\u0647 \u0628\u0627\u0646 "
                   }
                 </div>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__lpPu2,
-                    {
-                      [sty.textpage_code__lpPu2Ohvpc]: hasVariant(
-                        $state,
-                        "page",
-                        "code"
-                      ),
-                      [sty.textpage_loading__lpPu2Eyvhu]: hasVariant(
-                        $state,
-                        "page",
-                        "loading"
-                      ),
-                      [sty.textpage_mobile__lpPu2MKfXs]: hasVariant(
-                        $state,
-                        "page",
-                        "mobile"
-                      ),
-                      [sty.textpage_name__lpPu2Aq9MH]: hasVariant(
-                        $state,
-                        "page",
-                        "name"
-                      )
-                    }
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__lpPu2, {
+                    [sty.textpage_code__lpPu2Ohvpc]: hasVariant(
+                      $state,
+                      "page",
+                      "code"
+                    ),
+                    [sty.textpage_loading__lpPu2Eyvhu]: hasVariant(
+                      $state,
+                      "page",
+                      "loading"
+                    ),
+                    [sty.textpage_mobile__lpPu2MKfXs]: hasVariant(
+                      $state,
+                      "page",
+                      "mobile"
+                    ),
+                    [sty.textpage_name__lpPu2Aq9MH]: hasVariant(
+                      $state,
+                      "page",
+                      "name"
+                    )
+                  })}
                 >
                   {
                     "\u06a9\u0627\u0631 \u0633\u0627\u06cc\u0647 \u0628\u0627\u0646"
@@ -563,7 +560,7 @@ function PlasmicLogin__RenderFunc(props: {
               </div>
             </div>
             <Icon39Icon
-              className={classNames(projectcss.all, sty.svg__nfxVa, {
+              className={classNames("all", sty.svg__nfxVa, {
                 [sty.svgpage_code__nfxVaohvpc]: hasVariant(
                   $state,
                   "page",
@@ -589,7 +586,7 @@ function PlasmicLogin__RenderFunc(props: {
             />
 
             <div
-              className={classNames(projectcss.all, sty.freeBox__iDwk, {
+              className={classNames("all", sty.freeBox__iDwk, {
                 [sty.freeBoxpage_code__iDwkOhvpc]: hasVariant(
                   $state,
                   "page",
@@ -614,7 +611,7 @@ function PlasmicLogin__RenderFunc(props: {
             />
 
             <div
-              className={classNames(projectcss.all, sty.freeBox__zBIaQ, {
+              className={classNames("all", sty.freeBox__zBIaQ, {
                 [sty.freeBoxpage_code__zBIaQohvpc]: hasVariant(
                   $state,
                   "page",
@@ -634,7 +631,7 @@ function PlasmicLogin__RenderFunc(props: {
             />
           </div>
           <div
-            className={classNames(projectcss.all, sty.freeBox___9GXgZ, {
+            className={classNames("all", sty.freeBox___9GXgZ, {
               [sty.freeBoxpage_code___9GXgZohvpc]: hasVariant(
                 $state,
                 "page",
@@ -658,33 +655,28 @@ function PlasmicLogin__RenderFunc(props: {
             })}
           >
             <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text___8IauO,
-                {
-                  [sty.textpage_code___8IauOohvpc]: hasVariant(
-                    $state,
-                    "page",
-                    "code"
-                  ),
-                  [sty.textpage_loading___8IauOEyvhu]: hasVariant(
-                    $state,
-                    "page",
-                    "loading"
-                  ),
-                  [sty.textpage_mobile___8IauOmKfXs]: hasVariant(
-                    $state,
-                    "page",
-                    "mobile"
-                  ),
-                  [sty.textpage_name___8IauOaq9MH]: hasVariant(
-                    $state,
-                    "page",
-                    "name"
-                  )
-                }
-              )}
+              className={classNames("all", "__wab_text", sty.text___8IauO, {
+                [sty.textpage_code___8IauOohvpc]: hasVariant(
+                  $state,
+                  "page",
+                  "code"
+                ),
+                [sty.textpage_loading___8IauOEyvhu]: hasVariant(
+                  $state,
+                  "page",
+                  "loading"
+                ),
+                [sty.textpage_mobile___8IauOmKfXs]: hasVariant(
+                  $state,
+                  "page",
+                  "mobile"
+                ),
+                [sty.textpage_name___8IauOaq9MH]: hasVariant(
+                  $state,
+                  "page",
+                  "name"
+                )
+              })}
             >
               {hasVariant($state, "page", "name")
                 ? "\u06a9\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
@@ -792,11 +784,7 @@ function PlasmicLogin__RenderFunc(props: {
               })}
               label={
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__leZpu
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__leZpu)}
                 >
                   {"\u062a\u0627\u06cc\u06cc\u062f"}
                 </div>
@@ -939,7 +927,7 @@ function PlasmicLogin__RenderFunc(props: {
                   : false
           ) ? (
             <div
-              className={classNames(projectcss.all, sty.freeBox__kj9E5, {
+              className={classNames("all", sty.freeBox__kj9E5, {
                 [sty.freeBoxpage_code__kj9E5Ohvpc]: hasVariant(
                   $state,
                   "page",
@@ -963,7 +951,7 @@ function PlasmicLogin__RenderFunc(props: {
               })}
             >
               <div
-                className={classNames(projectcss.all, sty.freeBox__lbtw4, {
+                className={classNames("all", sty.freeBox__lbtw4, {
                   [sty.freeBoxpage_code__lbtw4Ohvpc]: hasVariant(
                     $state,
                     "page",
@@ -977,7 +965,7 @@ function PlasmicLogin__RenderFunc(props: {
                 })}
               >
                 <div
-                  className={classNames(projectcss.all, sty.freeBox__ksP4Z, {
+                  className={classNames("all", sty.freeBox__ksP4Z, {
                     [sty.freeBoxpage_code__ksP4Zohvpc]: hasVariant(
                       $state,
                       "page",
@@ -992,8 +980,8 @@ function PlasmicLogin__RenderFunc(props: {
                 >
                   <div
                     className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
+                      "all",
+                      "__wab_text",
                       sty.text__g7LNn,
                       {
                         [sty.textpage_code__g7LNnohvpc]: hasVariant(
@@ -1022,8 +1010,8 @@ function PlasmicLogin__RenderFunc(props: {
                   </div>
                   <div
                     className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
+                      "all",
+                      "__wab_text",
                       sty.text__s61KU,
                       {
                         [sty.textpage_code__s61KUohvpc]: hasVariant(
@@ -1052,18 +1040,13 @@ function PlasmicLogin__RenderFunc(props: {
                   </div>
                 </div>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__knhTs,
-                    {
-                      [sty.textpage_mobile__knhTSmKfXs]: hasVariant(
-                        $state,
-                        "page",
-                        "mobile"
-                      )
-                    }
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__knhTs, {
+                    [sty.textpage_mobile__knhTSmKfXs]: hasVariant(
+                      $state,
+                      "page",
+                      "mobile"
+                    )
+                  })}
                   onClick={async event => {
                     const $steps = {};
 
@@ -1091,7 +1074,7 @@ function PlasmicLogin__RenderFunc(props: {
                   }}
                 >
                   <div
-                    className={projectcss.__wab_expr_html_text}
+                    className={"__wab_expr_html_text"}
                     dangerouslySetInnerHTML={{
                       __html: (() => {
                         try {
@@ -1217,7 +1200,7 @@ function PlasmicLogin__RenderFunc(props: {
               />
 
               <div
-                className={classNames(projectcss.all, sty.freeBox__dTs1F, {
+                className={classNames("all", sty.freeBox__dTs1F, {
                   [sty.freeBoxpage_code__dTs1FOhvpc]: hasVariant(
                     $state,
                     "page",
@@ -1265,8 +1248,8 @@ function PlasmicLogin__RenderFunc(props: {
                   label={
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__kPol0
                       )}
                     >
@@ -1589,7 +1572,7 @@ function PlasmicLogin__RenderFunc(props: {
                   : false
           ) ? (
             <div
-              className={classNames(projectcss.all, sty.freeBox__b36SB, {
+              className={classNames("all", sty.freeBox__b36SB, {
                 [sty.freeBoxpage_code__b36SBohvpc]: hasVariant(
                   $state,
                   "page",
@@ -1613,7 +1596,7 @@ function PlasmicLogin__RenderFunc(props: {
               })}
             >
               <div
-                className={classNames(projectcss.all, sty.freeBox__kgHwG, {
+                className={classNames("all", sty.freeBox__kgHwG, {
                   [sty.freeBoxpage_code__kgHwGohvpc]: hasVariant(
                     $state,
                     "page",
@@ -1633,28 +1616,23 @@ function PlasmicLogin__RenderFunc(props: {
               />
 
               <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__fOTo,
-                  {
-                    [sty.textpage_code__fOToOhvpc]: hasVariant(
-                      $state,
-                      "page",
-                      "code"
-                    ),
-                    [sty.textpage_mobile__fOTomKfXs]: hasVariant(
-                      $state,
-                      "page",
-                      "mobile"
-                    ),
-                    [sty.textpage_name__fOToaq9MH]: hasVariant(
-                      $state,
-                      "page",
-                      "name"
-                    )
-                  }
-                )}
+                className={classNames("all", "__wab_text", sty.text__fOTo, {
+                  [sty.textpage_code__fOToOhvpc]: hasVariant(
+                    $state,
+                    "page",
+                    "code"
+                  ),
+                  [sty.textpage_mobile__fOTomKfXs]: hasVariant(
+                    $state,
+                    "page",
+                    "mobile"
+                  ),
+                  [sty.textpage_name__fOToaq9MH]: hasVariant(
+                    $state,
+                    "page",
+                    "name"
+                  )
+                })}
               >
                 {hasVariant($state, "page", "name")
                   ? "\u0628\u0631\u0627\u06cc \u0627\u062f\u0627\u0645\u0647\u060c \u0644\u0637\u0641\u0627\u064b \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0645\u0648\u0631\u062f \u0646\u06cc\u0627\u0632 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"
@@ -1780,7 +1758,7 @@ function PlasmicLogin__RenderFunc(props: {
               />
 
               <div
-                className={classNames(projectcss.all, sty.freeBox__fkMz1, {
+                className={classNames("all", sty.freeBox__fkMz1, {
                   [sty.freeBoxpage_name__fkMz1Aq9MH]: hasVariant(
                     $state,
                     "page",
@@ -2007,7 +1985,7 @@ function PlasmicLogin__RenderFunc(props: {
                 />
               </div>
               <div
-                className={classNames(projectcss.all, sty.freeBox__iHjyx, {
+                className={classNames("all", sty.freeBox__iHjyx, {
                   [sty.freeBoxpage_name__iHjyxaq9MH]: hasVariant(
                     $state,
                     "page",
@@ -2067,7 +2045,7 @@ function PlasmicLogin__RenderFunc(props: {
                 />
 
                 <div
-                  className={classNames(projectcss.all, sty.freeBox__kdwa6, {
+                  className={classNames("all", sty.freeBox__kdwa6, {
                     [sty.freeBoxpage_name__kdwa6Aq9MH]: hasVariant(
                       $state,
                       "page",
@@ -2119,7 +2097,7 @@ function PlasmicLogin__RenderFunc(props: {
                 />
               </div>
               <div
-                className={classNames(projectcss.all, sty.freeBox__rDqi, {
+                className={classNames("all", sty.freeBox__rDqi, {
                   [sty.freeBoxpage_code__rDqiOhvpc]: hasVariant(
                     $state,
                     "page",
@@ -2167,8 +2145,8 @@ function PlasmicLogin__RenderFunc(props: {
                   label={
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__dda2W
                       )}
                     >
@@ -2551,15 +2529,15 @@ function PlasmicLogin__RenderFunc(props: {
               }),
               closeIcon: (
                 <svg
-                  className={classNames(projectcss.all, sty.svg___4TQ44)}
+                  className={classNames("all", sty.svg___4TQ44)}
                   role={"img"}
                 />
               ),
 
               defaultStylesClassName: classNames(
-                projectcss.root_reset,
-                projectcss.plasmic_default_styles,
-                projectcss.plasmic_mixins,
+                "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+                "plasmic_default_styles",
+                "plasmic_mixins",
                 styleTokensClassNames
               ),
               hideFooter: true,
@@ -2703,7 +2681,7 @@ function PlasmicLogin__RenderFunc(props: {
             );
           })()}
           <div
-            className={classNames(projectcss.all, sty.freeBox__fItOa, {
+            className={classNames("all", sty.freeBox__fItOa, {
               [sty.freeBoxpage_code__fItOaOhvpc]: hasVariant(
                 $state,
                 "page",
@@ -2752,7 +2730,7 @@ function PlasmicLogin__RenderFunc(props: {
             }}
           >
             <Icon34Icon
-              className={classNames(projectcss.all, sty.svg__eAdSp, {
+              className={classNames("all", sty.svg__eAdSp, {
                 [sty.svgpage_code__eAdSpohvpc]: hasVariant(
                   $state,
                   "page",
@@ -2922,9 +2900,10 @@ export const PlasmicLogin = Object.assign(
     internalArgProps: PlasmicLogin__ArgProps,
 
     pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pageRoute: "/login/[[...step]]",
       pagePath: "/login/[[...step]]",
-      searchParams: {},
-      params: {}
+      params: {},
+      query: {}
     })
   }
 );

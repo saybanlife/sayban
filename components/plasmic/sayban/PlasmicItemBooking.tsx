@@ -69,7 +69,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicItemBooking.module.css"; // plasmic-import: NnzIun3_VRrR/css
 
 import Icon20Icon from "../website_starter/icons/PlasmicIcon__Icon20"; // plasmic-import: Sy9FntGzJUck/icon
@@ -185,6 +184,7 @@ function PlasmicItemBooking__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -202,10 +202,10 @@ function PlasmicItemBooking__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.rootbooking]: hasVariant($state, "booking", "booking") }
@@ -213,7 +213,7 @@ function PlasmicItemBooking__RenderFunc(props: {
       onClick={args.onClick}
     >
       <div
-        className={classNames(projectcss.all, sty.freeBox__mviwM)}
+        className={classNames("all", sty.freeBox__mviwM)}
         onClick={async event => {
           const $steps = {};
 
@@ -268,16 +268,10 @@ function PlasmicItemBooking__RenderFunc(props: {
           width={"100%"}
         />
 
-        <div className={classNames(projectcss.all, sty.freeBox__ixgvG)}>
-          <div className={classNames(projectcss.all, sty.freeBox___9OgB)}>
-            <div className={classNames(projectcss.all, sty.freeBox__uEKkU)}>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__aypW6
-                )}
-              >
+        <div className={classNames("all", sty.freeBox__ixgvG)}>
+          <div className={classNames("all", sty.freeBox___9OgB)}>
+            <div className={classNames("all", sty.freeBox__uEKkU)}>
+              <div className={classNames("all", "__wab_text", sty.text__aypW6)}>
                 <React.Fragment>
                   {(() => {
                     try {
@@ -295,7 +289,7 @@ function PlasmicItemBooking__RenderFunc(props: {
                 </React.Fragment>
               </div>
               <div
-                className={classNames(projectcss.all, sty.freeBox__vzfyx, {
+                className={classNames("all", sty.freeBox__vzfyx, {
                   [sty.freeBoxbooking__vzfyxfsXGl]: hasVariant(
                     $state,
                     "booking",
@@ -304,16 +298,12 @@ function PlasmicItemBooking__RenderFunc(props: {
                 })}
               >
                 <Icon20Icon
-                  className={classNames(projectcss.all, sty.svg__vkSkl)}
+                  className={classNames("all", sty.svg__vkSkl)}
                   role={"img"}
                 />
 
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__pNnew
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__pNnew)}
                 >
                   <React.Fragment>
                     {(() => {
@@ -334,7 +324,7 @@ function PlasmicItemBooking__RenderFunc(props: {
               </div>
             </div>
           </div>
-          <div className={classNames(projectcss.all, sty.freeBox__navQt)}>
+          <div className={classNames("all", sty.freeBox__navQt)}>
             <TextCollapse
               data-plasmic-name={"textCollapse"}
               data-plasmic-override={overrides.textCollapse}
@@ -405,7 +395,7 @@ function PlasmicItemBooking__RenderFunc(props: {
           />
         </div>
         <div
-          className={classNames(projectcss.all, sty.freeBox__tNKl, {
+          className={classNames("all", sty.freeBox__tNKl, {
             [sty.freeBoxbooking__tNKlfsXGl]: hasVariant(
               $state,
               "booking",
@@ -414,7 +404,7 @@ function PlasmicItemBooking__RenderFunc(props: {
           })}
         >
           <Icon19Icon
-            className={classNames(projectcss.all, sty.svg__zrHy, {
+            className={classNames("all", sty.svg__zrHy, {
               [sty.svgbooking__zrHyfsXGl]: hasVariant(
                 $state,
                 "booking",
@@ -425,23 +415,11 @@ function PlasmicItemBooking__RenderFunc(props: {
           />
         </div>
       </div>
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__w9M6D
-        )}
-      >
+      <div className={classNames("all", "__wab_text", sty.text__w9M6D)}>
         {""}
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox___3EfNf)}>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text___2HTck
-          )}
-        >
+      <div className={classNames("all", sty.freeBox___3EfNf)}>
+        <div className={classNames("all", "__wab_text", sty.text___2HTck)}>
           {"\u0648\u0636\u0639\u06cc\u062a"}
         </div>
         <Status
@@ -465,20 +443,14 @@ function PlasmicItemBooking__RenderFunc(props: {
           })()}
         />
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__dSfz)}>
+      <div className={classNames("all", sty.freeBox__dSfz)}>
         <Button
           data-plasmic-name={"button"}
           data-plasmic-override={overrides.button}
           className={classNames("__wab_instance", sty.button)}
           color={"line"}
           label={
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__aZkE
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__aZkE)}>
               {"\u062c\u0632\u0626\u06cc\u0627\u062a"}
             </div>
           }
@@ -506,13 +478,7 @@ function PlasmicItemBooking__RenderFunc(props: {
           className={classNames("__wab_instance", sty.button2)}
           color={"line"}
           label={
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__niVag
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__niVag)}>
               {"\u0631\u0632\u0631\u0648 \u0645\u062c\u062f\u062f"}
             </div>
           }

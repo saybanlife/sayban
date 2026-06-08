@@ -64,7 +64,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicHide.module.css"; // plasmic-import: 6tyxrSjs9tps/css
 
 import Icon68Icon from "./icons/PlasmicIcon__Icon68"; // plasmic-import: IHddLEn2GN7C/icon
@@ -168,6 +167,7 @@ function PlasmicHide__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -188,10 +188,10 @@ function PlasmicHide__RenderFunc(props: {
         hasVariant($state, "show", "show") ? Icon69Icon : Icon68Icon
       }
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.rootshow]: hasVariant($state, "show", "show") }

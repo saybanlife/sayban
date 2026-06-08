@@ -70,7 +70,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicSlider.module.css"; // plasmic-import: OxULT4m4X2MG/css
 
 createPlasmicElementProxy;
@@ -199,6 +198,7 @@ function PlasmicSlider__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -235,9 +235,9 @@ function PlasmicSlider__RenderFunc(props: {
       aria-label={args.ariaLabel}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaSlider
       )}
@@ -257,7 +257,7 @@ function PlasmicSlider__RenderFunc(props: {
       value={generateStateValueProp($state, ["ariaSlider", "value"])}
     >
       {$props.showLabel || $props.showOutputText ? (
-        <div className={classNames(projectcss.all, sty.freeBox__nf5Zq)}>
+        <div className={classNames("all", sty.freeBox__nf5Zq)}>
           {$props.showLabel ? (
             <Label
               data-plasmic-name={"label"}
@@ -267,11 +267,7 @@ function PlasmicSlider__RenderFunc(props: {
               {renderPlasmicSlot({
                 defaultContents: (
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__jl1R
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__jl1R)}
                   >
                     {"Label"}
                   </div>
@@ -305,11 +301,11 @@ function PlasmicSlider__RenderFunc(props: {
           ) : null}
         </div>
       ) : null}
-      <div className={classNames(projectcss.all, sty.freeBox__pcnSl)}>
+      <div className={classNames("all", sty.freeBox__pcnSl)}>
         <div
           data-plasmic-name={"background"}
           data-plasmic-override={overrides.background}
-          className={classNames(projectcss.all, sty.background)}
+          className={classNames("all", sty.background)}
         >
           <BaseSliderTrack
             data-plasmic-name={"ariaSliderTrack"}
@@ -320,7 +316,7 @@ function PlasmicSlider__RenderFunc(props: {
                 <div
                   data-plasmic-name={"foreground"}
                   data-plasmic-override={overrides.foreground}
-                  className={classNames(projectcss.all, sty.foreground)}
+                  className={classNames("all", sty.foreground)}
                 />
               ) : null
             }

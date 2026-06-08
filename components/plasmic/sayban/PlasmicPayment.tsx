@@ -72,7 +72,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicPayment.module.css"; // plasmic-import: BVIyToFh1miy/css
 
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
@@ -168,10 +167,6 @@ function PlasmicPayment__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
-
-  const globalVariants = _useGlobalVariants();
-
-  const $globalActions = useGlobalActions?.();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
@@ -366,6 +361,11 @@ function PlasmicPayment__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const globalVariants = _useGlobalVariants();
+
+  const $globalActions = useGlobalActions?.();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -383,10 +383,10 @@ function PlasmicPayment__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -405,13 +405,7 @@ function PlasmicPayment__RenderFunc(props: {
         data-plasmic-override={overrides.header}
         className={classNames("__wab_instance", sty.header)}
         slot={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__oJqd
-            )}
-          >
+          <div className={classNames("all", "__wab_text", sty.text__oJqd)}>
             {
               "\u062a\u0627\u06cc\u06cc\u062f \u0648 \u067e\u0631\u062f\u0627\u062e\u062a"
             }
@@ -419,7 +413,7 @@ function PlasmicPayment__RenderFunc(props: {
         }
       />
 
-      <div className={classNames(projectcss.all, sty.freeBox__vxiP)}>
+      <div className={classNames("all", sty.freeBox__vxiP)}>
         <ApiRequest
           data-plasmic-name={"basic"}
           data-plasmic-override={overrides.basic}
@@ -490,20 +484,18 @@ function PlasmicPayment__RenderFunc(props: {
               throw e;
             }
           })()}
-          url={"https://sayban.darkube.app/webhook/reservations/payment"}
+          url={"/reservations/payment"}
         >
-          <div className={classNames(projectcss.all, sty.freeBox__sPnkG)}>
-            <div className={classNames(projectcss.all, sty.freeBox__r7Ep)}>
-              <div className={classNames(projectcss.all, sty.freeBox__tkgDg)}>
-                <div className={classNames(projectcss.all, sty.freeBox__yyc5C)}>
+          <div className={classNames("all", sty.freeBox__sPnkG)}>
+            <div className={classNames("all", sty.freeBox__r7Ep)}>
+              <div className={classNames("all", sty.freeBox__tkgDg)}>
+                <div className={classNames("all", sty.freeBox__yyc5C)}>
                   <Service2
                     data-plasmic-name={"service2"}
                     data-plasmic-override={overrides.service2}
                     className={classNames("__wab_instance", sty.service2)}
                   >
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__pwWnA)}
-                    >
+                    <div className={classNames("all", sty.freeBox__pwWnA)}>
                       <PlasmicImg__
                         data-plasmic-name={"img"}
                         data-plasmic-override={overrides.img}
@@ -536,16 +528,11 @@ function PlasmicPayment__RenderFunc(props: {
                         })()}
                       />
 
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__rl6On
-                        )}
-                      >
+                      <div className={classNames("all", sty.freeBox__rl6On)}>
                         <div
                           className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
+                            "all",
+                            "__wab_text",
                             sty.text__gw2Ub
                           )}
                         >
@@ -582,25 +569,23 @@ function PlasmicPayment__RenderFunc(props: {
                     </div>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__xjO3C
                       )}
                     >
                       {""}
                     </div>
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__isyyg)}
-                    >
+                    <div className={classNames("all", sty.freeBox__isyyg)}>
                       <div
                         className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
+                          "all",
+                          "__wab_text",
                           sty.text__wmvnl
                         )}
                       >
                         <div
-                          className={projectcss.__wab_expr_html_text}
+                          className={"__wab_expr_html_text"}
                           dangerouslySetInnerHTML={{
                             __html: (() => {
                               const startRaw =
@@ -652,25 +637,17 @@ function PlasmicPayment__RenderFunc(props: {
                   </Service2>
                 </div>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__y1PF
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__y1PF)}
                 >
                   {""}
                 </div>
-                <div className={classNames(projectcss.all, sty.freeBox__pnxjD)}>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__bC6ZC)}
-                  >
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__kt5M7)}
-                    >
+                <div className={classNames("all", sty.freeBox__pnxjD)}>
+                  <div className={classNames("all", sty.freeBox__bC6ZC)}>
+                    <div className={classNames("all", sty.freeBox__kt5M7)}>
                       <div
                         className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
+                          "all",
+                          "__wab_text",
                           sty.text__kOkUb
                         )}
                       >
@@ -785,10 +762,7 @@ function PlasmicPayment__RenderFunc(props: {
                         const currentIndex = __plasmic_idx_0;
                         return (
                           <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__lQ8Ia
-                            )}
+                            className={classNames("all", sty.freeBox__lQ8Ia)}
                             key={currentIndex}
                           >
                             {(() => {
@@ -819,8 +793,8 @@ function PlasmicPayment__RenderFunc(props: {
                                 label: (
                                   <div
                                     className={classNames(
-                                      projectcss.all,
-                                      projectcss.__wab_text,
+                                      "all",
+                                      "__wab_text",
                                       sty.text__xa1Le
                                     )}
                                   >
@@ -935,8 +909,8 @@ function PlasmicPayment__RenderFunc(props: {
                             })() ? (
                               <div
                                 className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
+                                  "all",
+                                  "__wab_text",
                                   sty.text__rItN4
                                 )}
                               >
@@ -954,11 +928,7 @@ function PlasmicPayment__RenderFunc(props: {
                     />
                   </div>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__lDrs
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__lDrs)}
                   >
                     {""}
                   </div>
@@ -975,44 +945,24 @@ function PlasmicPayment__RenderFunc(props: {
                       throw e;
                     }
                   })() ? (
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___7Gvtq
-                      )}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__iosbS
-                        )}
-                      >
+                    <div className={classNames("all", sty.freeBox___7Gvtq)}>
+                      <div className={classNames("all", sty.freeBox__iosbS)}>
                         <div
                           className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
+                            "all",
+                            "__wab_text",
                             sty.text__iSeVj
                           )}
                         >
                           {"\u0635\u0648\u0631\u062a \u062d\u0633\u0627\u0628"}
                         </div>
                       </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox___20XYm
-                        )}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__hkMkW
-                          )}
-                        >
+                      <div className={classNames("all", sty.freeBox___20XYm)}>
+                        <div className={classNames("all", sty.freeBox__hkMkW)}>
                           <div
                             className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
+                              "all",
+                              "__wab_text",
                               sty.text__k5I6Q
                             )}
                           >
@@ -1022,8 +972,8 @@ function PlasmicPayment__RenderFunc(props: {
                           </div>
                           <div
                             className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
+                              "all",
+                              "__wab_text",
                               sty.text__rFkVw
                             )}
                           >
@@ -1035,23 +985,18 @@ function PlasmicPayment__RenderFunc(props: {
                         </div>
                         <div
                           className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
+                            "all",
+                            "__wab_text",
                             sty.text___7IhOz
                           )}
                         >
                           {""}
                         </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox___83XI4
-                          )}
-                        >
+                        <div className={classNames("all", sty.freeBox___83XI4)}>
                           <div
                             className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
+                              "all",
+                              "__wab_text",
                               sty.text__iGbfx
                             )}
                           >
@@ -1061,8 +1006,8 @@ function PlasmicPayment__RenderFunc(props: {
                           </div>
                           <div
                             className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
+                              "all",
+                              "__wab_text",
                               sty.text__lpbty
                             )}
                           >
@@ -1076,11 +1021,7 @@ function PlasmicPayment__RenderFunc(props: {
                     </div>
                   ) : null}
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__aygH9
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__aygH9)}
                   >
                     {""}
                   </div>
@@ -1091,15 +1032,9 @@ function PlasmicPayment__RenderFunc(props: {
           <section
             data-plasmic-name={"section"}
             data-plasmic-override={overrides.section}
-            className={classNames(projectcss.all, sty.section, "page")}
+            className={classNames("all", sty.section, "page")}
           >
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__aGBz1
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__aGBz1)}>
               {""}
             </div>
             {(() => {
@@ -1118,9 +1053,9 @@ function PlasmicPayment__RenderFunc(props: {
               <div
                 data-plasmic-name={"online"}
                 data-plasmic-override={overrides.online}
-                className={classNames(projectcss.all, sty.online)}
+                className={classNames("all", sty.online)}
               >
-                <div className={classNames(projectcss.all, sty.freeBox__hilZ)}>
+                <div className={classNames("all", sty.freeBox__hilZ)}>
                   {(() => {
                     try {
                       return (
@@ -1139,13 +1074,11 @@ function PlasmicPayment__RenderFunc(props: {
                       throw e;
                     }
                   })() ? (
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__kxWEm)}
-                    >
+                    <div className={classNames("all", sty.freeBox__kxWEm)}>
                       <div
                         className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
+                          "all",
+                          "__wab_text",
                           sty.text__l1Hht
                         )}
                       >
@@ -1154,16 +1087,11 @@ function PlasmicPayment__RenderFunc(props: {
                             " تومان"}
                         </React.Fragment>
                       </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox___6ZQ8K
-                        )}
-                      >
+                      <div className={classNames("all", sty.freeBox___6ZQ8K)}>
                         <div
                           className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
+                            "all",
+                            "__wab_text",
                             sty.text__u00Cj
                           )}
                         >
@@ -1190,11 +1118,7 @@ function PlasmicPayment__RenderFunc(props: {
                     </div>
                   ) : null}
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__e1XGo
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__e1XGo)}
                   >
                     <React.Fragment>
                       {$state.basic?.data?.result?.service?.final_price?.toLocaleString() +
@@ -1209,8 +1133,8 @@ function PlasmicPayment__RenderFunc(props: {
                   label={
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__s4RNp
                       )}
                     >
@@ -1358,15 +1282,11 @@ function PlasmicPayment__RenderFunc(props: {
               <div
                 data-plasmic-name={"inPerson"}
                 data-plasmic-override={overrides.inPerson}
-                className={classNames(projectcss.all, sty.inPerson)}
+                className={classNames("all", sty.inPerson)}
               >
-                <div className={classNames(projectcss.all, sty.freeBox__vWvh7)}>
+                <div className={classNames("all", sty.freeBox__vWvh7)}>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__jYNaO
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__jYNaO)}
                   >
                     <React.Fragment>
                       {"هزینه به‌صورت حضوری دریافت می‌شود."}
@@ -1380,8 +1300,8 @@ function PlasmicPayment__RenderFunc(props: {
                   label={
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__jHJv
                       )}
                     >

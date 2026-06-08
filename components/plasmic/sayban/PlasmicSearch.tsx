@@ -65,7 +65,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicSearch.module.css"; // plasmic-import: kFfVHLyoRXeP/css
 
 import Icon49Icon from "./icons/PlasmicIcon__Icon49"; // plasmic-import: GiSR5zfG8C_s/icon
@@ -162,6 +161,7 @@ function PlasmicSearch__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -179,10 +179,10 @@ function PlasmicSearch__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -247,10 +247,7 @@ function PlasmicSearch__RenderFunc(props: {
         value={generateStateValueProp($state, ["textInput", "value"])}
       />
 
-      <Icon49Icon
-        className={classNames(projectcss.all, sty.svg__jLckx)}
-        role={"img"}
-      />
+      <Icon49Icon className={classNames("all", sty.svg__jLckx)} role={"img"} />
 
       {(() => {
         try {
@@ -268,7 +265,7 @@ function PlasmicSearch__RenderFunc(props: {
         }
       })() ? (
         <Icon10Icon
-          className={classNames(projectcss.all, sty.svg__kp0Z0)}
+          className={classNames("all", sty.svg__kp0Z0)}
           onClick={async event => {
             const $steps = {};
 

@@ -64,7 +64,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicHeader.module.css"; // plasmic-import: Ot6T4AzLOJkl/css
 
 import Icon33Icon from "../sayban/icons/PlasmicIcon__Icon33"; // plasmic-import: MJBmXdq7GQ5D/icon
@@ -168,6 +167,7 @@ function PlasmicHeader__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -185,10 +185,10 @@ function PlasmicHeader__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         {
@@ -198,7 +198,7 @@ function PlasmicHeader__RenderFunc(props: {
       )}
     >
       <div
-        className={classNames(projectcss.all, sty.freeBox__lHkfy, "fixed-box", {
+        className={classNames("all", sty.freeBox__lHkfy, "fixed-box", {
           [sty.freeBoxsearch__lHkfyBrJu]: hasVariant(
             $state,
             "search",
@@ -208,12 +208,12 @@ function PlasmicHeader__RenderFunc(props: {
         })}
       >
         <div
-          className={classNames(projectcss.all, sty.freeBox___3BRFj, {
+          className={classNames("all", sty.freeBox___3BRFj, {
             [sty.freeBoxsoft___3BRFjFgJuq]: hasVariant($state, "soft", "soft")
           })}
         >
           <div
-            className={classNames(projectcss.all, sty.freeBox__ameEp, {
+            className={classNames("all", sty.freeBox__ameEp, {
               [sty.freeBoxsoft__ameEpFgJuq]: hasVariant($state, "soft", "soft")
             })}
             onClick={async event => {
@@ -243,7 +243,7 @@ function PlasmicHeader__RenderFunc(props: {
             }}
           >
             <div
-              className={classNames(projectcss.all, sty.freeBox__yjSXj, {
+              className={classNames("all", sty.freeBox__yjSXj, {
                 [sty.freeBoxsoft__yjSXjFgJuq]: hasVariant(
                   $state,
                   "soft",
@@ -255,14 +255,14 @@ function PlasmicHeader__RenderFunc(props: {
             <Icon33Icon
               data-plasmic-name={"svg"}
               data-plasmic-override={overrides.svg}
-              className={classNames(projectcss.all, sty.svg, {
+              className={classNames("all", sty.svg, {
                 [sty.svgsoft]: hasVariant($state, "soft", "soft")
               })}
               role={"img"}
             />
           </div>
           <div
-            className={classNames(projectcss.all, sty.freeBox___07Lui, {
+            className={classNames("all", sty.freeBox___07Lui, {
               [sty.freeBoxsoft___07LuiFgJuq]: hasVariant($state, "soft", "soft")
             })}
           >
@@ -274,7 +274,7 @@ function PlasmicHeader__RenderFunc(props: {
               })
             })}
           </div>
-          <div className={classNames(projectcss.all, sty.freeBox__o586O)}>
+          <div className={classNames("all", sty.freeBox__o586O)}>
             {renderPlasmicSlot({
               defaultContents: null,
               value: args.children
@@ -282,7 +282,7 @@ function PlasmicHeader__RenderFunc(props: {
           </div>
         </div>
         <div
-          className={classNames(projectcss.all, sty.freeBox__zzjpZ, {
+          className={classNames("all", sty.freeBox__zzjpZ, {
             [sty.freeBoxsearch__zzjpZBrJu]: hasVariant(
               $state,
               "search",
@@ -296,7 +296,7 @@ function PlasmicHeader__RenderFunc(props: {
           })}
         </div>
         <div
-          className={classNames(projectcss.all, sty.freeBox__m7Yl, {
+          className={classNames("all", sty.freeBox__m7Yl, {
             [sty.freeBoxsoft__m7YlFgJuq]: hasVariant($state, "soft", "soft")
           })}
         />
@@ -304,7 +304,7 @@ function PlasmicHeader__RenderFunc(props: {
       <div
         data-plasmic-name={"text"}
         data-plasmic-override={overrides.text}
-        className={classNames(projectcss.all, projectcss.__wab_text, sty.text, {
+        className={classNames("all", "__wab_text", sty.text, {
           [sty.textsoft]: hasVariant($state, "soft", "soft")
         })}
       >

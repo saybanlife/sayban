@@ -23,7 +23,7 @@
 .root > * {
   grid-column: 4;
 }
-.freeBox__xVUwR {
+.freeBox {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -43,18 +43,6 @@
 }
 .main:global(.__wab_instance) {
   position: relative;
-}
-.freeBox__yDzBd {
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  justify-content: flex-start;
-  align-items: center;
-  min-width: 0;
-  display: none;
-  padding: var(--token-73iLa06AE6f4) 0px;
 }
 .loginPanel:global(.__wab_instance) {
   position: fixed;

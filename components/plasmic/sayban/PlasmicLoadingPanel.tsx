@@ -64,7 +64,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicLoadingPanel.module.css"; // plasmic-import: K12Va91eFAEa/css
 
 import Icon30Icon from "./icons/PlasmicIcon__Icon30"; // plasmic-import: 0iSVhpgUti5-/icon
@@ -137,8 +136,6 @@ function PlasmicLoadingPanel__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const globalVariants = _useGlobalVariants();
-
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -150,6 +147,9 @@ function PlasmicLoadingPanel__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const globalVariants = _useGlobalVariants();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -167,17 +167,17 @@ function PlasmicLoadingPanel__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__vpRPw)}>
-        <div className={classNames(projectcss.all, sty.freeBox__rov8)}>
-          <div className={classNames(projectcss.all, sty.freeBox__vsJid)}>
+      <div className={classNames("all", sty.freeBox__vpRPw)}>
+        <div className={classNames("all", sty.freeBox__rov8)}>
+          <div className={classNames("all", sty.freeBox__vsJid)}>
             <PlasmicImg__
               alt={""}
               className={classNames(sty.img__zi8UF)}
@@ -199,11 +199,7 @@ function PlasmicLoadingPanel__RenderFunc(props: {
             <div
               data-plasmic-name={"text"}
               data-plasmic-override={overrides.text}
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text
-              )}
+              className={classNames("all", "__wab_text", sty.text)}
             >
               {"\u0633\u0627\u06cc\u0628\u0627\u0646"}
             </div>
@@ -211,12 +207,12 @@ function PlasmicLoadingPanel__RenderFunc(props: {
           <section
             data-plasmic-name={"section"}
             data-plasmic-override={overrides.section}
-            className={classNames(projectcss.all, sty.section)}
+            className={classNames("all", sty.section)}
           >
             <Icon30Icon
               data-plasmic-name={"svg"}
               data-plasmic-override={overrides.svg}
-              className={classNames(projectcss.all, sty.svg)}
+              className={classNames("all", sty.svg)}
               role={"img"}
             />
           </section>

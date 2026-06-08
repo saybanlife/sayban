@@ -66,7 +66,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicTextInput.module.css"; // plasmic-import: lMgENIWzjnK0/css
 
 createPlasmicElementProxy;
@@ -77,6 +76,7 @@ export type PlasmicTextInput__VariantMembers = {
   padded: "left" | "right";
   size: "langh";
   style2: "rounded";
+  error: "error";
 };
 export type PlasmicTextInput__VariantsArgs = {
   type?: SingleChoiceArg<"soft" | "plain" | "line" | "lineBox">;
@@ -84,6 +84,7 @@ export type PlasmicTextInput__VariantsArgs = {
   padded?: MultiChoiceArg<"left" | "right">;
   size?: SingleChoiceArg<"langh">;
   style2?: SingleChoiceArg<"rounded">;
+  error?: SingleBooleanChoiceArg<"error">;
 };
 type VariantPropType = keyof PlasmicTextInput__VariantsArgs;
 export const PlasmicTextInput__VariantProps = new Array<VariantPropType>(
@@ -91,7 +92,8 @@ export const PlasmicTextInput__VariantProps = new Array<VariantPropType>(
   "flat",
   "padded",
   "size",
-  "style2"
+  "style2",
+  "error"
 );
 
 export type PlasmicTextInput__ArgsType = {
@@ -286,6 +288,7 @@ export interface DefaultTextInputProps {
   padded?: MultiChoiceArg<"left" | "right">;
   size?: SingleChoiceArg<"langh">;
   style2?: SingleChoiceArg<"rounded">;
+  error?: SingleBooleanChoiceArg<"error">;
   className?: string;
 }
 
@@ -369,10 +372,17 @@ function PlasmicTextInput__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.style2
+      },
+      {
+        path: "error",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.error
       }
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -410,12 +420,13 @@ function PlasmicTextInput__RenderFunc(props: {
       autoFocus: args.autoFocus,
       className: classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaInput,
         {
+          [sty.ariaInputerror]: hasVariant($state, "error", "error"),
           [sty.ariaInputflat_bottom]: hasVariant($state, "flat", "bottom"),
           [sty.ariaInputflat_left]: hasVariant($state, "flat", "left"),
           [sty.ariaInputflat_right]: hasVariant($state, "flat", "right"),

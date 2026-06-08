@@ -68,7 +68,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicReservations.module.css"; // plasmic-import: DQm1DzjYnL_F/css
 
 createPlasmicElementProxy;
@@ -187,6 +186,7 @@ function PlasmicReservations__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -204,10 +204,10 @@ function PlasmicReservations__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -219,7 +219,7 @@ function PlasmicReservations__RenderFunc(props: {
         slot={"\u06a9\u0644\u06cc\u0646\u06cc\u06a9 \u0647\u0627"}
       />
 
-      <div className={classNames(projectcss.all, sty.freeBox__rFTp2)}>
+      <div className={classNames("all", sty.freeBox__rFTp2)}>
         <ApiRequest
           data-plasmic-name={"centers"}
           data-plasmic-override={overrides.centers}
@@ -249,11 +249,7 @@ function PlasmicReservations__RenderFunc(props: {
               const currentIndex = __plasmic_idx_0;
               return (
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    sty.freeBox__zlCah,
-                    "shimmer"
-                  )}
+                  className={classNames("all", sty.freeBox__zlCah, "shimmer")}
                   key={currentIndex}
                 />
               );

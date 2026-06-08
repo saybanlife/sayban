@@ -79,7 +79,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicCenterPage.module.css"; // plasmic-import: fRNzpZPnnILn/css
 
 import ArrowNarrowRightIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__ArrowNarrowRight"; // plasmic-import: deFMwOdoPOwL/icon
@@ -227,8 +226,6 @@ function PlasmicCenterPage__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
-
-  const $globalActions = useGlobalActions?.();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
@@ -656,6 +653,9 @@ function PlasmicCenterPage__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -673,10 +673,10 @@ function PlasmicCenterPage__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.rootrole_superAdmin]: hasVariant($state, "role", "superAdmin") }
@@ -696,7 +696,7 @@ function PlasmicCenterPage__RenderFunc(props: {
       })()}
     >
       <div
-        className={classNames(projectcss.all, sty.freeBox__yQc6U, {
+        className={classNames("all", sty.freeBox__yQc6U, {
           [sty.freeBoxrole_centerAdmin__yQc6U2AC0]: hasVariant(
             $state,
             "role",
@@ -710,7 +710,7 @@ function PlasmicCenterPage__RenderFunc(props: {
         })}
       >
         <div
-          className={classNames(projectcss.all, sty.freeBox___9VrRj, {
+          className={classNames("all", sty.freeBox___9VrRj, {
             [sty.freeBoxrole_centerAdmin___9VrRj2AC0]: hasVariant(
               $state,
               "role",
@@ -731,13 +731,7 @@ function PlasmicCenterPage__RenderFunc(props: {
             color={"neutral"}
             iconStart={true}
             label={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__hNk07
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__hNk07)}>
                 {"\u0644\u06cc\u0633\u062a \u0645\u0631\u0627\u06a9\u0632"}
               </div>
             }
@@ -781,14 +775,14 @@ function PlasmicCenterPage__RenderFunc(props: {
             }}
             start={
               <ArrowNarrowRightIcon
-                className={classNames(projectcss.all, sty.svg__dpeVn)}
+                className={classNames("all", sty.svg__dpeVn)}
                 role={"img"}
               />
             }
           />
         </div>
         <div
-          className={classNames(projectcss.all, sty.freeBox__yx618, {
+          className={classNames("all", sty.freeBox__yx618, {
             [sty.freeBoxrole_centerAdmin__yx6182AC0]: hasVariant(
               $state,
               "role",
@@ -809,7 +803,7 @@ function PlasmicCenterPage__RenderFunc(props: {
             color={"errorDestructive"}
             end={
               <Icon56Icon
-                className={classNames(projectcss.all, sty.svg__oqSyu, {
+                className={classNames("all", sty.svg__oqSyu, {
                   [sty.svgrole_superAdmin__oqSyUjtYNs]: hasVariant(
                     $state,
                     "role",
@@ -824,18 +818,13 @@ function PlasmicCenterPage__RenderFunc(props: {
             }
             label={
               <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__auq3U,
-                  {
-                    [sty.textrole_superAdmin__auq3UjtYNs]: hasVariant(
-                      $state,
-                      "role",
-                      "superAdmin"
-                    )
-                  }
-                )}
+                className={classNames("all", "__wab_text", sty.text__auq3U, {
+                  [sty.textrole_superAdmin__auq3UjtYNs]: hasVariant(
+                    $state,
+                    "role",
+                    "superAdmin"
+                  )
+                })}
               >
                 {hasVariant($state, "role", "superAdmin")
                   ? "\u0630\u062e\u06cc\u0631\u0647"
@@ -891,7 +880,7 @@ function PlasmicCenterPage__RenderFunc(props: {
             color={"success"}
             end={
               <Icon56Icon
-                className={classNames(projectcss.all, sty.svg__sAow2, {
+                className={classNames("all", sty.svg__sAow2, {
                   [sty.svgrole_superAdmin__sAow2JtYNs]: hasVariant(
                     $state,
                     "role",
@@ -906,18 +895,13 @@ function PlasmicCenterPage__RenderFunc(props: {
             }
             label={
               <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__mp2Oa,
-                  {
-                    [sty.textrole_superAdmin__mp2OAjtYNs]: hasVariant(
-                      $state,
-                      "role",
-                      "superAdmin"
-                    )
-                  }
-                )}
+                className={classNames("all", "__wab_text", sty.text__mp2Oa, {
+                  [sty.textrole_superAdmin__mp2OAjtYNs]: hasVariant(
+                    $state,
+                    "role",
+                    "superAdmin"
+                  )
+                })}
               >
                 {hasVariant($state, "role", "superAdmin")
                   ? "\u0630\u062e\u06cc\u0631\u0647"
@@ -1031,7 +1015,7 @@ function PlasmicCenterPage__RenderFunc(props: {
           />
 
           <div
-            className={classNames(projectcss.all, sty.freeBox__seame, {
+            className={classNames("all", sty.freeBox__seame, {
               [sty.freeBoxrole_superAdmin__seamejtYNs]: hasVariant(
                 $state,
                 "role",
@@ -1096,7 +1080,7 @@ function PlasmicCenterPage__RenderFunc(props: {
               throw e;
             }
           })() ? (
-            <div className={classNames(projectcss.all, sty.freeBox__vYq1P)}>
+            <div className={classNames("all", sty.freeBox__vYq1P)}>
               <Select
                 data-plasmic-name={"active"}
                 data-plasmic-override={overrides.active}
@@ -1201,11 +1185,11 @@ function PlasmicCenterPage__RenderFunc(props: {
           throw e;
         }
       })() ? (
-        <div className={classNames(projectcss.all, sty.freeBox___4GkoJ)}>
-          <div className={classNames(projectcss.all, sty.freeBox___8TiSu)}>
+        <div className={classNames("all", sty.freeBox___4GkoJ)}>
+          <div className={classNames("all", sty.freeBox___8TiSu)}>
             <div
               className={classNames(
-                projectcss.all,
+                "all",
                 sty.freeBox__zx7Mo,
                 "container-scroll",
                 {
@@ -1217,10 +1201,10 @@ function PlasmicCenterPage__RenderFunc(props: {
                 }
               )}
             >
-              <div className={classNames(projectcss.all, sty.freeBox__p34Fn)}>
-                <div className={classNames(projectcss.all, sty.freeBox__ijfen)}>
+              <div className={classNames("all", sty.freeBox__p34Fn)}>
+                <div className={classNames("all", sty.freeBox__ijfen)}>
                   <div
-                    className={classNames(projectcss.all, sty.freeBox__hRmEh)}
+                    className={classNames("all", sty.freeBox__hRmEh)}
                     onClick={async event => {
                       const $steps = {};
 
@@ -1289,25 +1273,18 @@ function PlasmicCenterPage__RenderFunc(props: {
                       })()}
                     />
 
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___8X2Kn
-                      )}
-                    >
+                    <div className={classNames("all", sty.freeBox___8X2Kn)}>
                       <Icon70Icon
-                        className={classNames(projectcss.all, sty.svg___4S0Jc)}
+                        className={classNames("all", sty.svg___4S0Jc)}
                         role={"img"}
                       />
                     </div>
                   </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox___8Izlb)}
-                  >
+                  <div className={classNames("all", sty.freeBox___8Izlb)}>
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__cHkYk
                       )}
                     >
@@ -1316,11 +1293,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                   </div>
                 </div>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__kXdWh
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__kXdWh)}
                 >
                   <React.Fragment>
                     {$state.centerData?.description}
@@ -1332,14 +1305,10 @@ function PlasmicCenterPage__RenderFunc(props: {
                 size={"small"}
               />
 
-              <div className={classNames(projectcss.all, sty.freeBox__rmfT)}>
-                <div className={classNames(projectcss.all, sty.freeBox__bqhAy)}>
+              <div className={classNames("all", sty.freeBox__rmfT)}>
+                <div className={classNames("all", sty.freeBox__bqhAy)}>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__qen2F
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__qen2F)}
                   >
                     {"\u0622\u062f\u0631\u0633 \u0648 \u062a\u0645\u0627\u0633"}
                   </div>
@@ -1351,8 +1320,8 @@ function PlasmicCenterPage__RenderFunc(props: {
                     label={
                       <div
                         className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
+                          "all",
+                          "__wab_text",
                           sty.text___14QDg
                         )}
                       >
@@ -1513,20 +1482,12 @@ function PlasmicCenterPage__RenderFunc(props: {
                   />
                 </div>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__btHu
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__btHu)}
                 >
                   <React.Fragment>{$state.centerData?.address}</React.Fragment>
                 </div>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___0UJtH
-                  )}
+                  className={classNames("all", "__wab_text", sty.text___0UJtH)}
                 >
                   <React.Fragment>{$state.centerData?.phone}</React.Fragment>
                 </div>
@@ -1536,14 +1497,10 @@ function PlasmicCenterPage__RenderFunc(props: {
                 size={"small"}
               />
 
-              <div className={classNames(projectcss.all, sty.freeBox___428B3)}>
-                <div className={classNames(projectcss.all, sty.freeBox__bO0MQ)}>
+              <div className={classNames("all", sty.freeBox___428B3)}>
+                <div className={classNames("all", sty.freeBox__bO0MQ)}>
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__n1Cn6
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__n1Cn6)}
                   >
                     {"\u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc"}
                   </div>
@@ -1555,8 +1512,8 @@ function PlasmicCenterPage__RenderFunc(props: {
                     label={
                       <div
                         className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
+                          "all",
+                          "__wab_text",
                           sty.text__a1U2G
                         )}
                       >
@@ -1649,7 +1606,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                   />
                 </div>
                 <div
-                  className={classNames(projectcss.all, sty.freeBox__bXyVs, {
+                  className={classNames("all", sty.freeBox__bXyVs, {
                     [sty.freeBoxrole_centerAdmin__bXyVs2AC0]: hasVariant(
                       $state,
                       "role",
@@ -1659,8 +1616,8 @@ function PlasmicCenterPage__RenderFunc(props: {
                 >
                   <div
                     className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
+                      "all",
+                      "__wab_text",
                       sty.text__v0ArU,
                       {
                         [sty.textrole_centerAdmin__v0ArU2AC0]: hasVariant(
@@ -1675,8 +1632,8 @@ function PlasmicCenterPage__RenderFunc(props: {
                   </div>
                   <div
                     className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
+                      "all",
+                      "__wab_text",
                       sty.text___9M0Do,
                       {
                         [sty.textrole_centerAdmin___9M0Do2AC0]: hasVariant(
@@ -1693,7 +1650,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                   </div>
                 </div>
                 <div
-                  className={classNames(projectcss.all, sty.freeBox__mDgHr, {
+                  className={classNames("all", sty.freeBox__mDgHr, {
                     [sty.freeBoxrole_centerAdmin__mDgHr2AC0]: hasVariant(
                       $state,
                       "role",
@@ -1703,8 +1660,8 @@ function PlasmicCenterPage__RenderFunc(props: {
                 >
                   <div
                     className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
+                      "all",
+                      "__wab_text",
                       sty.text__h9VvD,
                       {
                         [sty.textrole_centerAdmin__h9VvD2AC0]: hasVariant(
@@ -1719,8 +1676,8 @@ function PlasmicCenterPage__RenderFunc(props: {
                   </div>
                   <div
                     className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
+                      "all",
+                      "__wab_text",
                       sty.text__iG7VU,
                       {
                         [sty.textrole_centerAdmin__iG7VU2AC0]: hasVariant(
@@ -1748,13 +1705,9 @@ function PlasmicCenterPage__RenderFunc(props: {
                 size={"small"}
               />
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox___24Voz)}>
+            <div className={classNames("all", sty.freeBox___24Voz)}>
               <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text___4Cini
-                )}
+                className={classNames("all", "__wab_text", sty.text___4Cini)}
               >
                 {"\u062a\u06af \u0647\u0627"}
               </div>
@@ -1791,20 +1744,16 @@ function PlasmicCenterPage__RenderFunc(props: {
               />
             </div>
           </div>
-          <div className={classNames(projectcss.all, sty.freeBox___58887)}>
-            <div className={classNames(projectcss.all, sty.freeBox__vRowu)}>
-              <div className={classNames(projectcss.all, sty.freeBox__vofcQ)}>
+          <div className={classNames("all", sty.freeBox___58887)}>
+            <div className={classNames("all", sty.freeBox__vRowu)}>
+              <div className={classNames("all", sty.freeBox__vofcQ)}>
                 <Icon67Icon
-                  className={classNames(projectcss.all, sty.svg__qlCms)}
+                  className={classNames("all", sty.svg__qlCms)}
                   role={"img"}
                 />
 
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__plc6J
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__plc6J)}
                 >
                   {"\u062a\u0635\u0627\u0648\u06cc\u0631"}
                 </div>
@@ -1816,8 +1765,8 @@ function PlasmicCenterPage__RenderFunc(props: {
                   label={
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__evnOr
                       )}
                     >
@@ -1935,19 +1884,15 @@ function PlasmicCenterPage__RenderFunc(props: {
                 ])}
               />
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox__eog3I)}>
-              <div className={classNames(projectcss.all, sty.freeBox__ebxKq)}>
+            <div className={classNames("all", sty.freeBox__eog3I)}>
+              <div className={classNames("all", sty.freeBox__ebxKq)}>
                 <Icon67Icon
-                  className={classNames(projectcss.all, sty.svg__maIez)}
+                  className={classNames("all", sty.svg__maIez)}
                   role={"img"}
                 />
 
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__o85Jn
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__o85Jn)}
                 >
                   {"\u062e\u062f\u0645\u0627\u062a"}
                 </div>
@@ -2019,19 +1964,15 @@ function PlasmicCenterPage__RenderFunc(props: {
                 ])}
               />
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox__oArX)}>
-              <div className={classNames(projectcss.all, sty.freeBox__qKaeg)}>
+            <div className={classNames("all", sty.freeBox__oArX)}>
+              <div className={classNames("all", sty.freeBox__qKaeg)}>
                 <Icon67Icon
-                  className={classNames(projectcss.all, sty.svg___5QmeG)}
+                  className={classNames("all", sty.svg___5QmeG)}
                   role={"img"}
                 />
 
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__fmP7H
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__fmP7H)}
                 >
                   {"\u0633\u0627\u0639\u062a \u06a9\u0627\u0631"}
                 </div>
@@ -2073,9 +2014,9 @@ function PlasmicCenterPage__RenderFunc(props: {
           throw e;
         }
       })() ? (
-        <div className={classNames(projectcss.all, sty.freeBox___4Dx8)}>
+        <div className={classNames("all", sty.freeBox___4Dx8)}>
           <Icon115Icon
-            className={classNames(projectcss.all, sty.svg__ku2CT)}
+            className={classNames("all", sty.svg__ku2CT)}
             role={"img"}
           />
         </div>
@@ -2207,7 +2148,7 @@ function PlasmicCenterPage__RenderFunc(props: {
             throw e;
           }
         })()}
-        url={"https://sayban.darkube.app/webhook/panel/center"}
+        url={"https://sayban.darkube.ir/webhook/panel/center"}
       />
 
       <Modal
@@ -2217,7 +2158,7 @@ function PlasmicCenterPage__RenderFunc(props: {
         closeOnBackdropClick={false}
         content={
           <React.Fragment>
-            <div className={classNames(projectcss.all, sty.freeBox__uBam)}>
+            <div className={classNames("all", sty.freeBox__uBam)}>
               <CenterInfo
                 data-plasmic-name={"centerInfo"}
                 data-plasmic-override={overrides.centerInfo}
@@ -2327,7 +2268,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                 title={generateStateValueProp($state, ["centerInfo", "title"])}
               />
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox__rG4Ay)}>
+            <div className={classNames("all", sty.freeBox__rG4Ay)}>
               <Button
                 data-plasmic-name={"saveInfo"}
                 data-plasmic-override={overrides.saveInfo}
@@ -2336,8 +2277,8 @@ function PlasmicCenterPage__RenderFunc(props: {
                 label={
                   <div
                     className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
+                      "all",
+                      "__wab_text",
                       sty.text___2Xuka
                     )}
                   >
@@ -2559,11 +2500,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                 color={"neutral"}
                 label={
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__twHqy
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__twHqy)}
                   >
                     {"\u0644\u063a\u0648"}
                   </div>
@@ -2655,7 +2592,7 @@ function PlasmicCenterPage__RenderFunc(props: {
         closeOnBackdropClick={false}
         content={
           <React.Fragment>
-            <div className={classNames(projectcss.all, sty.freeBox__qpFsK)}>
+            <div className={classNames("all", sty.freeBox__qpFsK)}>
               <Imag
                 data-plasmic-name={"imag"}
                 data-plasmic-override={overrides.imag}
@@ -2680,7 +2617,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                 ])}
               />
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox__wRei)}>
+            <div className={classNames("all", sty.freeBox__wRei)}>
               <Button
                 data-plasmic-name={"saveUpload"}
                 data-plasmic-override={overrides.saveUpload}
@@ -2688,11 +2625,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                 color={"success"}
                 label={
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__r01PT
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__r01PT)}
                   >
                     {"\u0630\u062e\u06cc\u0631\u0647"}
                   </div>
@@ -2848,11 +2781,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                 color={"neutral"}
                 label={
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__vRhVw
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__vRhVw)}
                   >
                     {"\u0644\u063a\u0648"}
                   </div>
@@ -2944,7 +2873,7 @@ function PlasmicCenterPage__RenderFunc(props: {
         closeOnBackdropClick={false}
         content={
           <React.Fragment>
-            <div className={classNames(projectcss.all, sty.freeBox__bwrz)}>
+            <div className={classNames("all", sty.freeBox__bwrz)}>
               <ImageProfile
                 data-plasmic-name={"imageProfile2"}
                 data-plasmic-override={overrides.imageProfile2}
@@ -2969,7 +2898,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                 ])}
               />
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox__dvgwv)}>
+            <div className={classNames("all", sty.freeBox__dvgwv)}>
               <Button
                 data-plasmic-name={"saveUpload2"}
                 data-plasmic-override={overrides.saveUpload2}
@@ -2977,11 +2906,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                 color={"success"}
                 label={
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__ybQ8U
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__ybQ8U)}
                   >
                     {"\u0630\u062e\u06cc\u0631\u0647"}
                   </div>
@@ -3150,11 +3075,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                 color={"neutral"}
                 label={
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__iRdI1
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__iRdI1)}
                   >
                     {"\u0644\u063a\u0648"}
                   </div>
@@ -3246,7 +3167,7 @@ function PlasmicCenterPage__RenderFunc(props: {
         closeOnBackdropClick={false}
         content={
           <React.Fragment>
-            <div className={classNames(projectcss.all, sty.freeBox__dx3R4)}>
+            <div className={classNames("all", sty.freeBox__dx3R4)}>
               <Loaction
                 data-plasmic-name={"loaction"}
                 data-plasmic-override={overrides.loaction}
@@ -3344,7 +3265,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                 state2={generateStateValueProp($state, ["loaction", "state2"])}
               />
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox__fLkSw)}>
+            <div className={classNames("all", sty.freeBox__fLkSw)}>
               <Button
                 data-plasmic-name={"saveInfo2"}
                 data-plasmic-override={overrides.saveInfo2}
@@ -3352,11 +3273,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                 color={"success"}
                 label={
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__pb20F
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__pb20F)}
                   >
                     {"\u0630\u062e\u06cc\u0631\u0647"}
                   </div>
@@ -3577,11 +3494,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                 color={"neutral"}
                 label={
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__yHAgV
-                    )}
+                    className={classNames("all", "__wab_text", sty.text__yHAgV)}
                   >
                     {"\u0644\u063a\u0648"}
                   </div>

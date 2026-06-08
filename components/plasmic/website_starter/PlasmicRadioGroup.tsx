@@ -68,7 +68,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicRadioGroup.module.css"; // plasmic-import: HKDTSu47OrEH/css
 
 createPlasmicElementProxy;
@@ -176,6 +175,7 @@ function PlasmicRadioGroup__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -213,9 +213,9 @@ function PlasmicRadioGroup__RenderFunc(props: {
       aria-label={args.ariaLabel}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaRadioGroup
       )}
@@ -244,7 +244,7 @@ function PlasmicRadioGroup__RenderFunc(props: {
       ) : null}
       {renderPlasmicSlot({
         defaultContents: (
-          <div className={classNames(projectcss.all, sty.freeBox__l28FD)}>
+          <div className={classNames("all", sty.freeBox__l28FD)}>
             <Radio
               className={classNames("__wab_instance", sty.radio___1Hmk)}
               label={"Option 1"}

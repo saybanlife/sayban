@@ -71,7 +71,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicSubcategories.module.css"; // plasmic-import: JM9_woEGqy8m/css
 
 import Icon54Icon from "./icons/PlasmicIcon__Icon54"; // plasmic-import: 4na0R6L_flPD/icon
@@ -253,6 +252,7 @@ function PlasmicSubcategories__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -270,10 +270,10 @@ function PlasmicSubcategories__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -322,8 +322,8 @@ function PlasmicSubcategories__RenderFunc(props: {
               text={generateStateValueProp($state, ["search", "text"])}
             />
 
-            <div className={classNames(projectcss.all, sty.freeBox__w1FkG)}>
-              <div className={classNames(projectcss.all, sty.freeBox__bq5Fi)}>
+            <div className={classNames("all", sty.freeBox__w1FkG)}>
+              <div className={classNames("all", sty.freeBox__bq5Fi)}>
                 <ItemShow
                   className={classNames("__wab_instance", sty.itemShow__iFbc5)}
                   currentItem={(() => {
@@ -383,7 +383,7 @@ function PlasmicSubcategories__RenderFunc(props: {
                   }}
                 >
                   <Icon54Icon
-                    className={classNames(projectcss.all, sty.svg__jUbny)}
+                    className={classNames("all", sty.svg__jUbny)}
                     role={"img"}
                   />
                 </ItemShow>
@@ -432,7 +432,7 @@ function PlasmicSubcategories__RenderFunc(props: {
                   slot={null}
                 >
                   <Icon62Icon
-                    className={classNames(projectcss.all, sty.svg__dNr1K)}
+                    className={classNames("all", sty.svg__dNr1K)}
                     role={"img"}
                   />
                 </ItemShow>
@@ -452,7 +452,7 @@ function PlasmicSubcategories__RenderFunc(props: {
               })() ? (
                 <div
                   className={classNames(
-                    projectcss.all,
+                    "all",
                     sty.freeBox__atFlk,
                     "container-scroll"
                   )}
@@ -523,10 +523,7 @@ function PlasmicSubcategories__RenderFunc(props: {
                         select={true}
                         slot={
                           <Icon11Icon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__sykTg
-                            )}
+                            className={classNames("all", sty.svg__sykTg)}
                             role={"img"}
                           />
                         }
@@ -540,7 +537,7 @@ function PlasmicSubcategories__RenderFunc(props: {
         }
       />
 
-      <div className={classNames(projectcss.all, sty.freeBox__zwWvt)}>
+      <div className={classNames("all", sty.freeBox__zwWvt)}>
         <ApiRequest
           data-plasmic-name={"centers"}
           data-plasmic-override={overrides.centers}
@@ -570,11 +567,7 @@ function PlasmicSubcategories__RenderFunc(props: {
               const currentIndex = __plasmic_idx_0;
               return (
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    sty.freeBox___1Bts8,
-                    "shimmer"
-                  )}
+                  className={classNames("all", sty.freeBox___1Bts8, "shimmer")}
                   key={currentIndex}
                 />
               );

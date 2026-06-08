@@ -64,7 +64,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicItemShow.module.css"; // plasmic-import: hegjECXSYJcF/css
 
 import Icon10Icon from "../website_starter/icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
@@ -160,6 +159,7 @@ function PlasmicItemShow__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -177,10 +177,10 @@ function PlasmicItemShow__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         { [sty.rootselect]: hasVariant($state, "select", "select") }
@@ -189,10 +189,7 @@ function PlasmicItemShow__RenderFunc(props: {
     >
       {renderPlasmicSlot({
         defaultContents: (
-          <svg
-            className={classNames(projectcss.all, sty.svg__i8N6S)}
-            role={"img"}
-          />
+          <svg className={classNames("all", sty.svg__i8N6S)} role={"img"} />
         ),
 
         value: args.children
@@ -200,7 +197,7 @@ function PlasmicItemShow__RenderFunc(props: {
       <div
         data-plasmic-name={"text"}
         data-plasmic-override={overrides.text}
-        className={classNames(projectcss.all, projectcss.__wab_text, sty.text, {
+        className={classNames("all", "__wab_text", sty.text, {
           [sty.textselect]: hasVariant($state, "select", "select")
         })}
       >
@@ -224,7 +221,7 @@ function PlasmicItemShow__RenderFunc(props: {
         ? renderPlasmicSlot({
             defaultContents: (
               <Icon10Icon
-                className={classNames(projectcss.all, sty.svg__uCmud)}
+                className={classNames("all", sty.svg__uCmud)}
                 role={"img"}
               />
             ),

@@ -64,7 +64,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicMenueIcon.module.css"; // plasmic-import: 8E0dazXQIYne/css
 
 import Icon354Icon from "../sayban/icons/PlasmicIcon__Icon354"; // plasmic-import: R6pCnTgSz3fi/icon
@@ -217,6 +216,7 @@ function PlasmicMenueIcon__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -234,10 +234,10 @@ function PlasmicMenueIcon__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         "img",
@@ -311,7 +311,7 @@ function PlasmicMenueIcon__RenderFunc(props: {
                                     ? Icon354Icon
                                     : Icon354Icon
         }
-        className={classNames(projectcss.all, sty.svg, {
+        className={classNames("all", sty.svg, {
           [sty.svgcolor_dark]: hasVariant($state, "color", "dark"),
           [sty.svgicons_home]: hasVariant($state, "icons", "home"),
           [sty.svgicons_home_select]:

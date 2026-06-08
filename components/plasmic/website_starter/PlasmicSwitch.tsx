@@ -66,7 +66,6 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "./plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicSwitch.module.css"; // plasmic-import: gmLkAM4DXGYW/css
 
 createPlasmicElementProxy;
@@ -178,6 +177,7 @@ function PlasmicSwitch__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -221,9 +221,9 @@ function PlasmicSwitch__RenderFunc(props: {
       autoFocus={args.autoFocus}
       className={classNames(
         "__wab_instance",
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaSwitch
       )}
@@ -241,17 +241,17 @@ function PlasmicSwitch__RenderFunc(props: {
       <div
         data-plasmic-name={"freeBox"}
         data-plasmic-override={overrides.freeBox}
-        className={classNames(projectcss.all, sty.freeBox)}
+        className={classNames("all", sty.freeBox)}
       >
         <div
           data-plasmic-name={"switchIndicator"}
           data-plasmic-override={overrides.switchIndicator}
-          className={classNames(projectcss.all, sty.switchIndicator)}
+          className={classNames("all", sty.switchIndicator)}
         >
           <div
             data-plasmic-name={"thumb"}
             data-plasmic-override={overrides.thumb}
-            className={classNames(projectcss.all, sty.thumb)}
+            className={classNames("all", sty.thumb)}
           />
         </div>
         {$props.showLabel

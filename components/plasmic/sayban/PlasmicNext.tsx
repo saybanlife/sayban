@@ -64,7 +64,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicNext.module.css"; // plasmic-import: gLmxuN6lLlgW/css
 
 import ChevronRightIcon from "./icons/PlasmicIcon__ChevronRight"; // plasmic-import: asThzEchEMNJ/icon
@@ -167,6 +166,7 @@ function PlasmicNext__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -184,10 +184,10 @@ function PlasmicNext__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
         {
@@ -199,7 +199,7 @@ function PlasmicNext__RenderFunc(props: {
       )}
     >
       <div
-        className={classNames(projectcss.all, sty.freeBox___5WJuH, {
+        className={classNames("all", sty.freeBox___5WJuH, {
           [sty.freeBoxactive___5WJuHxP55R]: hasVariant(
             $state,
             "active",
@@ -208,7 +208,7 @@ function PlasmicNext__RenderFunc(props: {
         })}
       >
         <ChevronRightIcon
-          className={classNames(projectcss.all, sty.svg__nY58K, {
+          className={classNames("all", sty.svg__nY58K, {
             [sty.svgactive__nY58KxP55R]: hasVariant($state, "active", "active"),
             [sty.svgdir_left__nY58Ki0Smc]: hasVariant($state, "dir", "left"),
             [sty.svgdir_righte__nY58KbxmJx]: hasVariant($state, "dir", "righte")
@@ -217,7 +217,7 @@ function PlasmicNext__RenderFunc(props: {
         />
 
         <div
-          className={classNames(projectcss.all, sty.freeBox__pPwDs, {
+          className={classNames("all", sty.freeBox__pPwDs, {
             [sty.freeBoxactive__pPwDSxP55R]: hasVariant(
               $state,
               "active",
@@ -238,7 +238,7 @@ function PlasmicNext__RenderFunc(props: {
           })}
         </div>
         <ChevronLeftIcon
-          className={classNames(projectcss.all, sty.svg___3C20A, {
+          className={classNames("all", sty.svg___3C20A, {
             [sty.svgactive___3C20AxP55R]: hasVariant(
               $state,
               "active",
@@ -255,13 +255,13 @@ function PlasmicNext__RenderFunc(props: {
         />
       </div>
       <div
-        className={classNames(projectcss.all, sty.freeBox__juzh, {
+        className={classNames("all", sty.freeBox__juzh, {
           [sty.freeBoxactive__juzhXP55R]: hasVariant($state, "active", "active")
         })}
         onClick={args.onClick}
       >
         <ChevronRightIcon
-          className={classNames(projectcss.all, sty.svg__ynIr, {
+          className={classNames("all", sty.svg__ynIr, {
             [sty.svgactive__ynIrxP55R]: hasVariant($state, "active", "active"),
             [sty.svgdir_left__ynIri0Smc]: hasVariant($state, "dir", "left"),
             [sty.svgdir_righte__ynIrbxmJx]: hasVariant($state, "dir", "righte")
@@ -270,7 +270,7 @@ function PlasmicNext__RenderFunc(props: {
         />
 
         <div
-          className={classNames(projectcss.all, sty.freeBox__b1RfY, {
+          className={classNames("all", sty.freeBox__b1RfY, {
             [sty.freeBoxactive__b1RfYxP55R]: hasVariant(
               $state,
               "active",
@@ -294,7 +294,7 @@ function PlasmicNext__RenderFunc(props: {
           })}
         </div>
         <ChevronLeftIcon
-          className={classNames(projectcss.all, sty.svg__mqDbA, {
+          className={classNames("all", sty.svg__mqDbA, {
             [sty.svgactive__mqDbAxP55R]: hasVariant($state, "active", "active"),
             [sty.svgdir_left__mqDbAi0Smc]: hasVariant($state, "dir", "left"),
             [sty.svgdir_righte__mqDbAbxmJx]: hasVariant($state, "dir", "righte")

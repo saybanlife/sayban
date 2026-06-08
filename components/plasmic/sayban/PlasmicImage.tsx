@@ -67,7 +67,6 @@ import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import projectcss from "../website_starter/plasmic.module.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
 import sty from "./PlasmicImage.module.css"; // plasmic-import: NaIiCw46_M0t/css
 
 import Icon58Icon from "./icons/PlasmicIcon__Icon58"; // plasmic-import: ZZecBkDFVPaA/icon
@@ -163,6 +162,7 @@ function PlasmicImage__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -180,10 +180,10 @@ function PlasmicImage__RenderFunc(props: {
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
+        "all",
+        "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+        "plasmic_default_styles",
+        "plasmic_mixins",
         styleTokensClassNames,
         sty.root
       )}
@@ -201,7 +201,7 @@ function PlasmicImage__RenderFunc(props: {
           throw e;
         }
       })() ? (
-        <div className={classNames(projectcss.all, sty.freeBox___0Sb7)}>
+        <div className={classNames("all", sty.freeBox___0Sb7)}>
           <Embed
             data-plasmic-name={"embedHtml"}
             data-plasmic-override={overrides.embedHtml}
@@ -211,41 +211,17 @@ function PlasmicImage__RenderFunc(props: {
             }
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox__oz14)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text___0YIhU
-              )}
-            >
+          <div className={classNames("all", sty.freeBox__oz14)}>
+            <div className={classNames("all", "__wab_text", sty.text___0YIhU)}>
               {"\u0631\u0648\u0632 \u0647\u0641\u062a\u0647"}
             </div>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__iQu6T
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__iQu6T)}>
               {"\u0645\u06a9\u0627\u0646"}
             </div>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__v7HP0
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__v7HP0)}>
               {"\u0627\u0635\u0644\u06cc"}
             </div>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__y36S
-              )}
-            >
+            <div className={classNames("all", "__wab_text", sty.text__y36S)}>
               {"\u062a\u0639\u0637\u06cc\u0644"}
             </div>
           </div>
@@ -256,11 +232,7 @@ function PlasmicImage__RenderFunc(props: {
             label={
               <React.Fragment>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__sExcu
-                  )}
+                  className={classNames("all", "__wab_text", sty.text__sExcu)}
                 >
                   {"Label"}
                 </div>
@@ -272,8 +244,8 @@ function PlasmicImage__RenderFunc(props: {
                   label={
                     <div
                       className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
+                        "all",
+                        "__wab_text",
                         sty.text__h56Kf
                       )}
                     >
@@ -349,10 +321,7 @@ function PlasmicImage__RenderFunc(props: {
           />
         </div>
       ) : null}
-      <div
-        className={classNames(projectcss.all, sty.freeBox__sCqQz)}
-        id={"list"}
-      >
+      <div className={classNames("all", sty.freeBox__sCqQz)} id={"list"}>
         {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
           (() => {
             try {
@@ -372,7 +341,7 @@ function PlasmicImage__RenderFunc(props: {
           const currentIndex = __plasmic_idx_0;
           return (
             <div
-              className={classNames(projectcss.all, sty.freeBox__fy4J3)}
+              className={classNames("all", sty.freeBox__fy4J3)}
               data-id={(() => {
                 try {
                   return currentItem.id;
@@ -455,18 +424,12 @@ function PlasmicImage__RenderFunc(props: {
                 })()}
               />
 
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__lI0Ry
-                )}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__lI0Ry)}>
                 <React.Fragment>{currentItem.order}</React.Fragment>
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox__tiFp1)}>
+              <div className={classNames("all", sty.freeBox__tiFp1)}>
                 <Icon58Icon
-                  className={classNames(projectcss.all, sty.svg__tcXr)}
+                  className={classNames("all", sty.svg__tcXr)}
                   onClick={async event => {
                     const $steps = {};
 
@@ -496,11 +459,7 @@ function PlasmicImage__RenderFunc(props: {
                 />
 
                 <Icon60Icon
-                  className={classNames(
-                    projectcss.all,
-                    sty.svg___4OZtr,
-                    "handle"
-                  )}
+                  className={classNames("all", sty.svg___4OZtr, "handle")}
                   role={"img"}
                 />
               </div>
