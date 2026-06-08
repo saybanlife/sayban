@@ -44,7 +44,6 @@ export const textareaMeta: CodeComponentMeta<InputType> = {
   displayName: "Fragment/Textarea",
   importPath: "@/fragment/components/textarea",
   figmaMappings: [{ figmaComponentName: "Textarea" }],
-  section: "Fragment",
   props: {
     placeholder: "string",
     value: {
