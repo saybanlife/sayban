@@ -1,0 +1,22 @@
+.root {
+  display: inline-flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  padding: 0px;
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  width: var(--token-xsiin-peP6fP);
+  height: var(--token-xsiin-peP6fP);
+  color: var(--token-1aP3XjRZIKFV);
+  flex-shrink: 0;
+}
+.svgfiltered {
+  color: var(--token-ccqYe7dhXoNZ);
+}
