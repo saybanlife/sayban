@@ -60,7 +60,6 @@ export const popoverMeta: CodeComponentMeta<PopoverType> = {
   displayName: "Fragment/Popover",
   importPath: "@/fragment/components/popover",
   figmaMappings: [{ figmaComponentName: "Popover" }],
-  section: "Fragment",
   props: {
     trigger: "slot",
     content: "slot",

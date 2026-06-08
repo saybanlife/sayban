@@ -37,7 +37,6 @@ export const timePickerMeta: CodeComponentMeta<any> = {
   name: "TimePicker",
   displayName: "Fragment/TimePicker",
   importPath: "@/fragment/components/time-picker",
-  section: "Fragment",
   props: {
     value: { type: "string", defaultValue: "00:00" },
     hourExclude: {

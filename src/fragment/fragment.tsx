@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import toast, { ToastPosition, Toaster } from "react-hot-toast";
 
 import {
@@ -7,6 +7,8 @@ import {
   GlobalContextMeta,
 } from "@plasmicapp/host";
 import axios from "axios";
+
+const BASE_URL = "https://sayban.darkube.ir/webhook/";
 
 type FragmentProps = React.PropsWithChildren<{
   previewApiConfig: Record<string, any>;
@@ -39,10 +41,11 @@ export const Fragment = ({
         duration?: number
       ) => {
         toast[type ?? "success"](message, {
-          duration: duration,
-          position: placement as ToastPosition,
+          duration,
+          position: placement,
         });
       },
+
       apiRequest: async (
         method: "GET" | "POST" | "DELETE" | "PUT" | "PATCH" = "GET",
         url: string,
@@ -51,19 +54,22 @@ export const Fragment = ({
         config?: Record<string, any>
       ) => {
         try {
+          const finalUrl = 
+            url.startsWith("http://") || url.startsWith("https://")
+              ? url
+              : `${BASE_URL}${url}`;
           let result;
           if (method === "GET") {
-            result = await axios.get(url, {
+            result = await axios.get(finalUrl, {
               params,
               ...apiConfig,
               ...previewApiConfig,
               ...config,
             });
-          }
-          if (method !== "GET") {
+          } else {
             result = await axios[
               method.toLowerCase() as "post" | "delete" | "put" | "patch"
-            ](url, body, {
+            ](finalUrl, body, {
               params,
               ...apiConfig,
               ...previewApiConfig,
@@ -77,8 +83,28 @@ export const Fragment = ({
           }
         }
       },
+
       wait: (duration: number = 1000) => {
         return new Promise((resolve) => setTimeout(resolve, duration));
+      },
+
+      // -----------------------------
+      //       COOKIE: SET & GET
+      // -----------------------------
+      setCookie: (name: string, value: string, days: number = 7) => {
+        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+        document.cookie = `${name}=${encodeURIComponent(
+          value
+        )}; expires=${expires}; path=/; domain=.darkube.ir; secure; SameSite=Lax`;
+      },
+
+      getCookie: (name: string) => {
+        return (
+          document.cookie
+            .split("; ")
+            .find((row) => row.startsWith(name + "="))
+            ?.split("=")[1] || null
+        );
       },
     }),
     []
@@ -111,22 +137,17 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
     apiConfig: {
       displayName: "API Config",
       type: "object",
-      description: `e.g. { withCredentials: true }`,
-      helpText:
-        "Read about request configuration options at https://axios-http.com/docs/req_config",
+      description: `{ withCredentials: true }`,
     },
     previewApiConfig: {
       displayName: "Preview API Config",
       type: "object",
-      description: `e.g. { headers: { 'Authorization': 'XXX' } }`,
       editOnly: true,
-      helpText:
-        "Read about request configuration options at https://axios-http.com/docs/req_config",
+      description: `{ headers: { 'Authorization': 'XXX' } }`,
     },
     rtl: {
       displayName: "RTL",
       type: "boolean",
-      description: `Direction`,
     },
     primaryColor: {
       displayName: "Primary Color",
@@ -136,6 +157,7 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
     },
   },
   providesData: true,
+
   globalActions: {
     showToast: {
       displayName: "Show Toast",
@@ -145,14 +167,12 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
           type: {
             type: "choice",
             options: ["success", "error"],
-            defaultValueHint: "success",
           },
         },
         {
           name: "message",
           type: {
             type: "string",
-            defaultValueHint: "A message for you!",
             required: true,
           },
         },
@@ -168,18 +188,17 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
               "bottom-center",
               "bottom-right",
             ],
-            defaultValueHint: "top-right",
           },
         },
         {
           name: "duration",
           type: {
             type: "number",
-            defaultValueHint: 3000,
           },
         },
       ],
     },
+
     wait: {
       displayName: "Wait",
       parameters: [
@@ -187,13 +206,12 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
           name: "duration",
           type: {
             type: "number",
-            defaultValueHint: 1000,
             defaultValue: 1000,
-            helpText: "executes after a specified delay (in milliseconds).",
           },
         },
       ],
     },
+
     apiRequest: {
       displayName: "API Request",
       parameters: [
@@ -202,8 +220,6 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
           type: {
             type: "choice",
             options: ["GET", "POST", "DELETE", "PUT", "PATCH"],
-            defaultValueHint: "GET",
-            defaultValue: "GET",
           },
         },
         {
@@ -211,27 +227,21 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
           displayName: "URL",
           type: {
             type: "string",
-            defaultValueHint: "/api/v1/users",
             required: true,
           },
         },
         {
-          displayName: "Query Params",
           name: "params",
+          displayName: "Query Params",
           type: {
             type: "object",
-            description: `e.g. { id: 20 }`,
-            helpText:
-              "It will append this to the end of the URL as ?key=value.",
           },
         },
         {
-          displayName: "Body",
           name: "body",
+          displayName: "Body",
           type: {
             type: "object",
-            helpText: "It is not applicable for the GET method.",
-            description: `e.g. { id: 20 }`,
           },
         },
         {
@@ -239,9 +249,52 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
           displayName: "Request Config",
           type: {
             type: "object",
-            description: `e.g. { headers: { 'Authorization': 'XXX' } }`,
-            helpText:
-              "Read about request configuration options at https://axios-http.com/docs/req_config",
+          },
+        },
+      ],
+    },
+
+    // -----------------------------
+    //        COOKIE ACTIONS
+    // -----------------------------
+    setCookie: {
+      displayName: "Set Cookie",
+      parameters: [
+        {
+          name: "name",
+          type: {
+            type: "string",
+            required: true,
+            defaultValueHint: "token",
+          },
+        },
+        {
+          name: "value",
+          type: {
+            type: "string",
+            required: true,
+            defaultValueHint: "12345",
+          },
+        },
+        {
+          name: "days",
+          type: {
+            type: "number",
+            defaultValueHint: 7,
+          },
+        },
+      ],
+    },
+
+    getCookie: {
+      displayName: "Get Cookie",
+      parameters: [
+        {
+          name: "name",
+          type: {
+            type: "string",
+            required: true,
+            defaultValueHint: "token",
           },
         },
       ],

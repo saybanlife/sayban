@@ -1,0 +1,19 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: var(--token-cfon0PHiXQoL);
+  position: relative;
+  min-width: 0;
+  padding: 0px;
+}
+.stars:global(.__wab_instance) {
+  max-width: 100%;
+}
+.textlable {
+  display: none;
+}
