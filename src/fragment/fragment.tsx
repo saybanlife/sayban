@@ -8,6 +8,8 @@ import {
 } from "@plasmicapp/host";
 import axios from "axios";
 
+const BASE_URL = "https://sayban.darkube.ir/webhook/";
+
 type FragmentProps = React.PropsWithChildren<{
   previewApiConfig: Record<string, any>;
   apiConfig: Record<string, any>;
@@ -52,9 +54,13 @@ export const Fragment = ({
         config?: Record<string, any>
       ) => {
         try {
+          const finalUrl = 
+            url.startsWith("http://") || url.startsWith("https://")
+              ? url
+              : `${BASE_URL}${url}`;
           let result;
           if (method === "GET") {
-            result = await axios.get(url, {
+            result = await axios.get(finalUrl, {
               params,
               ...apiConfig,
               ...previewApiConfig,
@@ -63,7 +69,7 @@ export const Fragment = ({
           } else {
             result = await axios[
               method.toLowerCase() as "post" | "delete" | "put" | "patch"
-            ](url, body, {
+            ](finalUrl, body, {
               params,
               ...apiConfig,
               ...previewApiConfig,
@@ -89,7 +95,7 @@ export const Fragment = ({
         const expires = new Date(Date.now() + days * 864e5).toUTCString();
         document.cookie = `${name}=${encodeURIComponent(
           value
-        )}; expires=${expires}; path=/; domain=.sayban.app; secure; SameSite=Lax`;
+        )}; expires=${expires}; path=/; domain=.darkube.ir; secure; SameSite=Lax`;
       },
 
       getCookie: (name: string) => {

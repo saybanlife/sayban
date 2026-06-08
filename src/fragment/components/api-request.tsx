@@ -4,6 +4,7 @@ import { CodeComponentMeta, useSelector } from "@plasmicapp/host";
 import { ReactNode, useEffect, useState } from "react";
 import axios from "axios";
 import useSWR from "swr";
+const BASE_URL = "https://sayban.darkube.ir/webhook/";
 
 type ApiRequestType = {
   method: "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
@@ -41,9 +42,13 @@ export const ApiRequest = (props: ApiRequestType) => {
   } = props;
   const fragmentConfig = useSelector("Fragment");
   const [isLoading, setIsLoading] = useState(false);
+  const finalUrl = 
+            url.startsWith("http://") || url.startsWith("https://")
+              ? url
+              : `${BASE_URL}${url}`;
   const fetchProps = {
     method,
-    url,
+    url : finalUrl,
     params,
     body,
     config: {
