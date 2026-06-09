@@ -1,0 +1,8 @@
+.root {
+  object-fit: cover;
+  max-width: 100%;
+  width: 25px;
+  height: 25px;
+  color: var(--token-C6B6ZAuqICKE);
+  position: relative;
+}
