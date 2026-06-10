@@ -9,7 +9,7 @@
   row-gap: var(--token-73iLa06AE6f4);
   position: relative;
   min-width: 0;
-  padding: 14rem 0px 0px;
+  padding: 16rem 0px 0px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .root {
@@ -121,7 +121,7 @@
   max-width: 100%;
   row-gap: 0px;
   min-width: 0;
-  padding: 0px;
+  padding: 0px var(--token-TONjX_YbO9_T) 0px 0px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__muDck {
@@ -155,9 +155,10 @@
   max-width: 100%;
   justify-content: flex-start;
   align-items: flex-start;
-  overflow: auto;
+  overflow: visible;
   column-gap: var(--token-rfsFxiclAtek);
   z-index: 2;
+  transform: none;
   min-width: 0;
   padding: 0px;
 }
@@ -188,7 +189,7 @@
   grid-row-gap: var(--token-0tl2H1TRPHhV);
   grid-column-gap: var(--token-LBC0X5IbL9bo);
   min-width: 0;
-  padding: 0px;
+  padding: 0px 0px 0px var(--token-TONjX_YbO9_T);
 }
 .toolsItem__eZt82:global(.__wab_instance) {
   width: 100%;

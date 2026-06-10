@@ -1,0 +1,45 @@
+/* eslint-disable */
+/* tslint:disable */
+// @ts-nocheck
+/* prettier-ignore-start */
+import React from "react";
+import { classNames } from "@plasmicapp/react-web";
+
+export type Icon97IconProps = React.ComponentProps<"svg"> & {
+  title?: string;
+};
+
+export function Icon97Icon(props: Icon97IconProps) {
+  const { className, style, title, ...restProps } = props;
+  return (
+    <svg
+      xmlns={"http://www.w3.org/2000/svg"}
+      fill={"none"}
+      viewBox={"0 0 24 24"}
+      height={"1em"}
+      className={classNames("plasmic-default__svg", className)}
+      style={style}
+      {...restProps}
+    >
+      {title && <title>{title}</title>}
+
+      <path
+        fill={"currentColor"}
+        d={
+          "M12 22.01c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10"
+        }
+        opacity={".4"}
+      ></path>
+
+      <path
+        fill={"currentColor"}
+        d={
+          "M12 6.94c-2.07 0-3.75 1.68-3.75 3.75 0 2.03 1.59 3.68 3.7 3.74h.18a3.743 3.743 0 0 0 3.62-3.74c0-2.07-1.68-3.75-3.75-3.75m6.78 12.42A9.98 9.98 0 0 1 12 22.01c-2.62 0-5-1.01-6.78-2.65.24-.91.89-1.74 1.84-2.38 2.73-1.82 7.17-1.82 9.88 0 .96.64 1.6 1.47 1.84 2.38"
+        }
+      ></path>
+    </svg>
+  );
+}
+
+export default Icon97Icon;
+/* prettier-ignore-end */

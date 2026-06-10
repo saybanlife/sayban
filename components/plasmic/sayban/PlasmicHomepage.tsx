@@ -79,6 +79,8 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: qQJONu9yTCat/css
 
+import Icon96Icon from "./icons/PlasmicIcon__Icon96"; // plasmic-import: FVWbxRCL1aWE/icon
+import Icon97Icon from "./icons/PlasmicIcon__Icon97"; // plasmic-import: 0rPzPcmcbEIS/icon
 import Icon49Icon from "./icons/PlasmicIcon__Icon49"; // plasmic-import: GiSR5zfG8C_s/icon
 import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
@@ -465,6 +467,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 "homePage2",
                 "booking"
               ),
+              [sty.roothomePage2_home]: hasVariant($state, "homePage2", "home"),
               [sty.roothomePage2_reminder]: hasVariant(
                 $state,
                 "homePage2",
@@ -678,6 +681,11 @@ function PlasmicHomepage__RenderFunc(props: {
                   "homePage2",
                   "booking"
                 ),
+                [sty.sectionhomePage2_home__pJCrLRvb1B]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "home"
+                ),
                 [sty.sectionpage_categories__pJCrLnaUaI]: hasVariant(
                   $state,
                   "page",
@@ -710,7 +718,102 @@ function PlasmicHomepage__RenderFunc(props: {
                 })}
                 id={"headerMain"}
               >
-                <div className={classNames("all", sty.freeBox___9C3Gw)}>
+                <div
+                  className={classNames("all", sty.freeBox___73Ayi, {
+                    [sty.freeBoxhomePage2_home___73AyiRvb1B]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "home"
+                    )
+                  })}
+                >
+                  <div
+                    className={classNames("all", sty.freeBox__uEZdE, {
+                      [sty.freeBoxhomePage2_home__uEZdERvb1B]: hasVariant(
+                        $state,
+                        "homePage2",
+                        "home"
+                      )
+                    })}
+                  >
+                    <Icon96Icon
+                      className={classNames("all", sty.svg__vv3O, {
+                        [sty.svghomePage2_home__vv3ORvb1B]: hasVariant(
+                          $state,
+                          "homePage2",
+                          "home"
+                        )
+                      })}
+                      role={"img"}
+                    />
+
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text___7H0Pn,
+                        {
+                          [sty.texthomePage2_home___7H0PnRvb1B]: hasVariant(
+                            $state,
+                            "homePage2",
+                            "home"
+                          )
+                        }
+                      )}
+                    >
+                      {"\u0645\u0634\u0647\u062f"}
+                    </div>
+                  </div>
+                  <Icon97Icon
+                    className={classNames("all", sty.svg__o7U7D, {
+                      [sty.svghomePage2_home__o7U7DRvb1B]: hasVariant(
+                        $state,
+                        "homePage2",
+                        "home"
+                      )
+                    })}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["goToHomepage"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              destination: `/${"user"}/${""}`
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["goToHomepage"] != null &&
+                        typeof $steps["goToHomepage"] === "object" &&
+                        typeof $steps["goToHomepage"].then === "function"
+                      ) {
+                        $steps["goToHomepage"] = await $steps["goToHomepage"];
+                      }
+                    }}
+                    role={"img"}
+                  />
+                </div>
+                <div
+                  className={classNames("all", sty.freeBox___9C3Gw, {
+                    [sty.freeBoxhomePage2_home___9C3GwRvb1B]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "home"
+                    )
+                  })}
+                >
                   <TextInput
                     data-plasmic-name={"textInput"}
                     data-plasmic-override={overrides.textInput}
@@ -987,7 +1090,13 @@ function PlasmicHomepage__RenderFunc(props: {
                     data-plasmic-name={"img"}
                     data-plasmic-override={overrides.img}
                     alt={""}
-                    className={classNames(sty.img)}
+                    className={classNames(sty.img, {
+                      [sty.imghomePage2_home]: hasVariant(
+                        $state,
+                        "homePage2",
+                        "home"
+                      )
+                    })}
                     displayHeight={"150px"}
                     displayMaxHeight={"none"}
                     displayMaxWidth={"100%"}
@@ -1243,328 +1352,57 @@ function PlasmicHomepage__RenderFunc(props: {
               />
             </Reveal>
           </div>
-          <ApiRequest
-            data-plasmic-name={"categories2"}
-            data-plasmic-override={overrides.categories2}
-            className={classNames("__wab_instance", sty.categories2, {
-              [sty.categories2homePage2_reminder]: hasVariant(
+          <div
+            className={classNames("all", sty.freeBox__yWuCa, {
+              [sty.freeBoxhomePage2_home__yWuCaRvb1B]: hasVariant(
                 $state,
                 "homePage2",
-                "reminder"
-              ),
-              [sty.categories2page_categories]: hasVariant(
-                $state,
-                "page",
-                "categories"
-              ),
-              [sty.categories2page_center]: hasVariant(
-                $state,
-                "page",
-                "center"
-              ),
-              [sty.categories2page_payment]: hasVariant(
-                $state,
-                "page",
-                "payment"
-              ),
-              [sty.categories2page_subcategories]: hasVariant(
-                $state,
-                "page",
-                "subcategories"
-              ),
-              [sty.categories2search2]: hasVariant($state, "search2", "search2")
+                "home"
+              )
             })}
-            config={(() => {
-              try {
-                return {
-                  headers: {
-                    Authorization: `Bearer ${$state.token}`
-                  }
-                };
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })()}
-            errorDisplay={null}
-            loadingDisplay={
-              <div className={classNames("all", sty.freeBox__sCmYa)}>
-                <div className={classNames("all", sty.freeBox___19TiU)}>
-                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                    (() => {
-                      try {
-                        return [2, 3, 4, 5];
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
-                        }
-                        throw e;
-                      }
-                    })()
-                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                    const currentItem = __plasmic_item_0;
-                    const currentIndex = __plasmic_idx_0;
-                    return (
-                      <div
-                        className={classNames("all", sty.freeBox__y0Iqc, ``)}
-                        key={currentIndex}
-                      >
-                        <div
-                          className={classNames(
-                            "all",
-                            sty.freeBox___1SPfr,
-                            "shimmer"
-                          )}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            }
-            method={"GET"}
-            onError={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["categories2", "error"]).apply(
-                null,
-                eventArgs
-              );
-            }}
-            onLoading={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "categories2",
-                "loading"
-              ]).apply(null, eventArgs);
-            }}
-            onSuccess={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["categories2", "data"]).apply(
-                null,
-                eventArgs
-              );
-            }}
-            shouldFetch={(() => {
-              try {
-                return $state.token != null && $state.token != "";
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
-                }
-                throw e;
-              }
-            })()}
-            url={"/categories/full"}
           >
-            <Home
-              data-plasmic-name={"home"}
-              data-plasmic-override={overrides.home}
-              categori={generateStateValueProp($state, ["home", "categori"])}
-              categories={(() => {
-                try {
-                  return $state.categories2.data.result;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-              className={classNames("__wab_instance", sty.home, {
-                [sty.homehomePage2_booking]: hasVariant(
-                  $state,
-                  "homePage2",
-                  "booking"
-                ),
-                [sty.homehomePage2_home]: hasVariant(
-                  $state,
-                  "homePage2",
-                  "home"
-                ),
-                [sty.homehomePage2_reminder]: hasVariant(
+            <ApiRequest
+              data-plasmic-name={"categories2"}
+              data-plasmic-override={overrides.categories2}
+              className={classNames("__wab_instance", sty.categories2, {
+                [sty.categories2homePage2_reminder]: hasVariant(
                   $state,
                   "homePage2",
                   "reminder"
                 ),
-                [sty.homehomePage2_user]: hasVariant(
-                  $state,
-                  "homePage2",
-                  "user"
-                ),
-                [sty.homepage_categories]: hasVariant(
+                [sty.categories2page_categories]: hasVariant(
                   $state,
                   "page",
                   "categories"
                 ),
-                [sty.homepage_center]: hasVariant($state, "page", "center"),
-                [sty.homepage_editUser]: hasVariant($state, "page", "editUser"),
-                [sty.homepage_payment]: hasVariant($state, "page", "payment"),
-                [sty.homepage_subcategories]: hasVariant(
+                [sty.categories2page_center]: hasVariant(
+                  $state,
+                  "page",
+                  "center"
+                ),
+                [sty.categories2page_payment]: hasVariant(
+                  $state,
+                  "page",
+                  "payment"
+                ),
+                [sty.categories2page_subcategories]: hasVariant(
                   $state,
                   "page",
                   "subcategories"
                 ),
-                [sty.homesearch2]: hasVariant($state, "search2", "search2")
+                [sty.categories2search2]: hasVariant(
+                  $state,
+                  "search2",
+                  "search2"
+                )
               })}
-              onCategori={async () => {
-                const $steps = {};
-
-                $steps["goToHomepage"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        destination: `/${"home"}/${(() => {
-                          try {
-                            return $state.home.categori.slug;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}`
-                      };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToHomepage"] != null &&
-                  typeof $steps["goToHomepage"] === "object" &&
-                  typeof $steps["goToHomepage"].then === "function"
-                ) {
-                  $steps["goToHomepage"] = await $steps["goToHomepage"];
-                }
-              }}
-              onCategoriChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["home", "categori"]).apply(
-                  null,
-                  eventArgs
-                );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              onSearchChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["home", "search"]).apply(
-                  null,
-                  eventArgs
-                );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              onSelectedCenderidChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "home",
-                  "selectedCenderid"
-                ]).apply(null, eventArgs);
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              openCenter={async () => {
-                const $steps = {};
-
-                $steps["goToHomepage"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        destination: `/${(() => {
-                          try {
-                            return $ctx.params.page;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}/${(() => {
-                          try {
-                            return (() => {
-                              if ($state.home.selectedCenderid) {
-                                $state.slug.push("center");
-                                $state.slug.push($state.home.selectedCenderid);
-                              }
-                              return $state.slug.join("/");
-                            })();
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}`
-                      };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToHomepage"] != null &&
-                  typeof $steps["goToHomepage"] === "object" &&
-                  typeof $steps["goToHomepage"].then === "function"
-                ) {
-                  $steps["goToHomepage"] = await $steps["goToHomepage"];
-                }
-              }}
-              search={generateStateValueProp($state, ["home", "search"])}
-              searchItems={(() => {
+              config={(() => {
                 try {
-                  return $state.search.data.result;
+                  return {
+                    headers: {
+                      Authorization: `Bearer ${$state.token}`
+                    }
+                  };
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -1575,12 +1413,307 @@ function PlasmicHomepage__RenderFunc(props: {
                   throw e;
                 }
               })()}
-              selectedCenderid={generateStateValueProp($state, [
-                "home",
-                "selectedCenderid"
-              ])}
-            />
-          </ApiRequest>
+              errorDisplay={null}
+              loadingDisplay={
+                <div className={classNames("all", sty.freeBox__sCmYa)}>
+                  <div className={classNames("all", sty.freeBox___19TiU)}>
+                    {(_par =>
+                      !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                      (() => {
+                        try {
+                          return [2, 3, 4, 5];
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()
+                    ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                      const currentItem = __plasmic_item_0;
+                      const currentIndex = __plasmic_idx_0;
+                      return (
+                        <div
+                          className={classNames("all", sty.freeBox__y0Iqc, ``)}
+                          key={currentIndex}
+                        >
+                          <div
+                            className={classNames(
+                              "all",
+                              sty.freeBox___1SPfr,
+                              "shimmer"
+                            )}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              }
+              method={"GET"}
+              onError={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "categories2",
+                  "error"
+                ]).apply(null, eventArgs);
+              }}
+              onLoading={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "categories2",
+                  "loading"
+                ]).apply(null, eventArgs);
+              }}
+              onSuccess={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "categories2",
+                  "data"
+                ]).apply(null, eventArgs);
+              }}
+              shouldFetch={(() => {
+                try {
+                  return $state.token != null && $state.token != "";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })()}
+              url={"/categories/full"}
+            >
+              <Home
+                data-plasmic-name={"home"}
+                data-plasmic-override={overrides.home}
+                categori={generateStateValueProp($state, ["home", "categori"])}
+                categories={(() => {
+                  try {
+                    return $state.categories2.data.result;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                className={classNames("__wab_instance", sty.home, {
+                  [sty.homehomePage2_booking]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "booking"
+                  ),
+                  [sty.homehomePage2_home]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "home"
+                  ),
+                  [sty.homehomePage2_reminder]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "reminder"
+                  ),
+                  [sty.homehomePage2_user]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "user"
+                  ),
+                  [sty.homepage_categories]: hasVariant(
+                    $state,
+                    "page",
+                    "categories"
+                  ),
+                  [sty.homepage_categories_homePage2_home]:
+                    hasVariant($state, "homePage2", "home") &&
+                    hasVariant($state, "page", "categories"),
+                  [sty.homepage_center]: hasVariant($state, "page", "center"),
+                  [sty.homepage_editUser]: hasVariant(
+                    $state,
+                    "page",
+                    "editUser"
+                  ),
+                  [sty.homepage_payment]: hasVariant($state, "page", "payment"),
+                  [sty.homepage_subcategories]: hasVariant(
+                    $state,
+                    "page",
+                    "subcategories"
+                  ),
+                  [sty.homesearch2]: hasVariant($state, "search2", "search2")
+                })}
+                onCategori={async () => {
+                  const $steps = {};
+
+                  $steps["goToHomepage"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          destination: `/${"home"}/${(() => {
+                            try {
+                              return $state.home.categori.slug;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToHomepage"] != null &&
+                    typeof $steps["goToHomepage"] === "object" &&
+                    typeof $steps["goToHomepage"].then === "function"
+                  ) {
+                    $steps["goToHomepage"] = await $steps["goToHomepage"];
+                  }
+                }}
+                onCategoriChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["home", "categori"]).apply(
+                    null,
+                    eventArgs
+                  );
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                onSearchChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["home", "search"]).apply(
+                    null,
+                    eventArgs
+                  );
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                onSelectedCenderidChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "home",
+                    "selectedCenderid"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                openCenter={async () => {
+                  const $steps = {};
+
+                  $steps["goToHomepage"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          destination: `/${(() => {
+                            try {
+                              return $ctx.params.page;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}/${(() => {
+                            try {
+                              return (() => {
+                                if ($state.home.selectedCenderid) {
+                                  $state.slug.push("center");
+                                  $state.slug.push(
+                                    $state.home.selectedCenderid
+                                  );
+                                }
+                                return $state.slug.join("/");
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToHomepage"] != null &&
+                    typeof $steps["goToHomepage"] === "object" &&
+                    typeof $steps["goToHomepage"].then === "function"
+                  ) {
+                    $steps["goToHomepage"] = await $steps["goToHomepage"];
+                  }
+                }}
+                search={generateStateValueProp($state, ["home", "search"])}
+                searchItems={(() => {
+                  try {
+                    return $state.search.data.result;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                selectedCenderid={generateStateValueProp($state, [
+                  "home",
+                  "selectedCenderid"
+                ])}
+              />
+            </ApiRequest>
+          </div>
           <ApiRequest
             data-plasmic-name={"profile"}
             data-plasmic-override={overrides.profile}

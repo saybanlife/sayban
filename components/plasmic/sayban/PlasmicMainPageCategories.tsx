@@ -95,12 +95,14 @@ export type PlasmicMainPageCategories__ArgsType = {
   categpty?: any;
   onCategptyChange?: (val: string) => void;
   onRowClicked?: (rowKey: string, row: any, event: any) => void;
-  centerDelete?: () => void;
+  categoryDelete?: () => void;
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
-  onListChange?: (val: string) => void;
+  onListChange2?: (val: string) => void;
   state?: string;
+  slected?: any;
+  onSlectedChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicMainPageCategories__ArgsType;
 export const PlasmicMainPageCategories__ArgProps = new Array<ArgPropType>(
@@ -108,12 +110,14 @@ export const PlasmicMainPageCategories__ArgProps = new Array<ArgPropType>(
   "categpty",
   "onCategptyChange",
   "onRowClicked",
-  "centerDelete",
+  "categoryDelete",
   "restart",
   "onRestartChange",
   "list",
-  "onListChange",
-  "state"
+  "onListChange2",
+  "state",
+  "slected",
+  "onSlectedChange"
 );
 
 export type PlasmicMainPageCategories__OverridesType = {
@@ -134,12 +138,14 @@ export interface DefaultMainPageCategoriesProps {
   categpty?: any;
   onCategptyChange?: (val: string) => void;
   onRowClicked?: (rowKey: string, row: any, event: any) => void;
-  centerDelete?: () => void;
+  categoryDelete?: () => void;
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
-  onListChange?: (val: string) => void;
+  onListChange2?: (val: string) => void;
   state?: string;
+  slected?: any;
+  onSlectedChange?: (val: string) => void;
   className?: string;
 }
 
@@ -266,12 +272,20 @@ function PlasmicMainPageCategories__RenderFunc(props: {
         variableType: "boolean",
 
         valueProp: "list",
-        onChangeProp: "onListChange"
+        onChangeProp: "onListChange2"
       },
       {
         path: "popover[].open",
         type: "private",
         variableType: "boolean"
+      },
+      {
+        path: "slected",
+        type: "writable",
+        variableType: "object",
+
+        valueProp: "slected",
+        onChangeProp: "onSlectedChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -575,11 +589,6 @@ function PlasmicMainPageCategories__RenderFunc(props: {
       </div>
       <div className={classNames("all", sty.freeBox__lvBGi)}>
         <div className={classNames("all", sty.freeBox__ldRFy)}>
-          <div className={classNames("all", "__wab_text", sty.text__o0Xa)}>
-            {
-              "\u062f\u0633\u062a\u06cc \u0647\u0627\u06cc \u0627\u0635\u0644\u06cc"
-            }
-          </div>
           <ApiRequest
             data-plasmic-name={"categories"}
             data-plasmic-override={overrides.categories}
@@ -691,6 +700,11 @@ function PlasmicMainPageCategories__RenderFunc(props: {
             })()}
             url={"/panel/categories"}
           >
+            <div className={classNames("all", "__wab_text", sty.text__o0Xa)}>
+              {
+                "\u062f\u0633\u062a\u06cc \u0647\u0627\u06cc \u0627\u0635\u0644\u06cc"
+              }
+            </div>
             {(() => {
               try {
                 return (
@@ -803,6 +817,72 @@ function PlasmicMainPageCategories__RenderFunc(props: {
                                   "all",
                                   sty.freeBox__clI3A
                                 )}
+                                onClick={async event => {
+                                  const $steps = {};
+
+                                  $steps["updateSlected"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          variable: {
+                                            objRoot: $state,
+                                            variablePath: ["slected"]
+                                          },
+                                          operation: 0,
+                                          value: currentItem
+                                        };
+                                        return (({
+                                          variable,
+                                          value,
+                                          startIndex,
+                                          deleteCount
+                                        }) => {
+                                          if (!variable) {
+                                            return;
+                                          }
+                                          const { objRoot, variablePath } =
+                                            variable;
+
+                                          $stateSet(
+                                            objRoot,
+                                            variablePath,
+                                            value
+                                          );
+                                          return value;
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["updateSlected"] != null &&
+                                    typeof $steps["updateSlected"] ===
+                                      "object" &&
+                                    typeof $steps["updateSlected"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["updateSlected"] =
+                                      await $steps["updateSlected"];
+                                  }
+
+                                  $steps["runCenterDelete"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          eventRef: $props["categoryDelete"]
+                                        };
+                                        return (({ eventRef, args }) => {
+                                          return eventRef?.(...(args ?? []));
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["runCenterDelete"] != null &&
+                                    typeof $steps["runCenterDelete"] ===
+                                      "object" &&
+                                    typeof $steps["runCenterDelete"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["runCenterDelete"] =
+                                      await $steps["runCenterDelete"];
+                                  }
+                                }}
                               >
                                 <Icon58Icon
                                   className={classNames("all", sty.svg__tp2Nq)}
@@ -822,7 +902,7 @@ function PlasmicMainPageCategories__RenderFunc(props: {
                             </div>
                           ),
                           contentText: "Popover contents",
-                          defaultOpen: true,
+                          defaultOpen: false,
                           defaultStylesClassName: classNames(
                             "root_reset_qARqpE4p5tZmJuNxFbTaPz",
                             "plasmic_default_styles",
@@ -866,7 +946,7 @@ function PlasmicMainPageCategories__RenderFunc(props: {
                             {
                               name: "popover[].open",
                               initFunc: ({ $props, $state, $queries, $q }) =>
-                                true
+                                false
                             }
                           ],
                           [__plasmic_idx_0]

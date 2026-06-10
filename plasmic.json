@@ -29374,6 +29374,21 @@
           "id": "cEQZhPJdr_D3",
           "name": "Icon94Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon94.tsx"
+        },
+        {
+          "id": "OtdIA3q7call",
+          "name": "Icon95Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon95.tsx"
+        },
+        {
+          "id": "FVWbxRCL1aWE",
+          "name": "Icon96Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon96.tsx"
+        },
+        {
+          "id": "0rPzPcmcbEIS",
+          "name": "Icon97Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon97.tsx"
         }
       ],
       "images": [
