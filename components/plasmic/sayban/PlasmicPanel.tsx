@@ -908,7 +908,7 @@ function PlasmicPanel__RenderFunc(props: {
           onMount={async () => {
             const $steps = {};
 
-            $steps["getCookie"] = true
+            $steps["getCookie"] = false
               ? (() => {
                   const actionArgs = { args: ["panelToken"] };
                   return $globalActions["Fragment.getCookie"]?.apply(null, [
@@ -924,7 +924,7 @@ function PlasmicPanel__RenderFunc(props: {
               $steps["getCookie"] = await $steps["getCookie"];
             }
 
-            $steps["updateToken"] = true
+            $steps["updateToken"] = false
               ? (() => {
                   const actionArgs = {
                     variable: {
@@ -953,24 +953,23 @@ function PlasmicPanel__RenderFunc(props: {
               $steps["updateToken"] = await $steps["updateToken"];
             }
 
-            $steps["goToPanel"] =
-              $state.token == null && $ctx.params.page[0] != "login"
-                ? (() => {
-                    const actionArgs = { destination: `/panel/${"login"}` };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
+            $steps["goToPanel"] = false
+              ? (() => {
+                  const actionArgs = { destination: `/panel/${"login"}` };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
             if (
               $steps["goToPanel"] != null &&
               typeof $steps["goToPanel"] === "object" &&

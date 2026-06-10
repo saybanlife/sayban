@@ -65,6 +65,8 @@ import MenuSection from "../../MenuSection"; // plasmic-import: PvgERH0q4dKA/com
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Errorpage from "../../Errorpage"; // plasmic-import: HTnfDJNIbaau/component
+import MenueIcon from "../../MenueIcon"; // plasmic-import: 8E0dazXQIYne/component
+import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
 import EmptyPage from "../../EmptyPage"; // plasmic-import: q5YsvjSR6-JD/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -76,6 +78,9 @@ import sty from "./PlasmicMainPageCategories.module.css"; // plasmic-import: fn1
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 import Icon115Icon from "./icons/PlasmicIcon__Icon115"; // plasmic-import: K82EqXtBnJoL/icon
+import Icon92Icon from "./icons/PlasmicIcon__Icon92"; // plasmic-import: 5xE4Rx5gdqwV/icon
+import Icon94Icon from "./icons/PlasmicIcon__Icon94"; // plasmic-import: cEQZhPJdr_D3/icon
+import Icon58Icon from "./icons/PlasmicIcon__Icon58"; // plasmic-import: ZZecBkDFVPaA/icon
 
 createPlasmicElementProxy;
 
@@ -116,10 +121,11 @@ export type PlasmicMainPageCategories__OverridesType = {
   select2?: Flex__<typeof Select>;
   menuSection?: Flex__<typeof MenuSection>;
   button?: Flex__<typeof Button>;
-  text?: Flex__<"div">;
   select?: Flex__<typeof Select>;
   categories?: Flex__<typeof ApiRequest>;
   errorpage?: Flex__<typeof Errorpage>;
+  menueIcon?: Flex__<typeof MenueIcon>;
+  popover?: Flex__<typeof AntdPopover>;
   emptyPage?: Flex__<typeof EmptyPage>;
 };
 
@@ -261,6 +267,11 @@ function PlasmicMainPageCategories__RenderFunc(props: {
 
         valueProp: "list",
         onChangeProp: "onListChange"
+      },
+      {
+        path: "popover[].open",
+        type: "private",
+        variableType: "boolean"
       }
     ],
     [$props, $ctx, $refs]
@@ -499,11 +510,7 @@ function PlasmicMainPageCategories__RenderFunc(props: {
             }
             iconEnd={true}
             label={
-              <div
-                data-plasmic-name={"text"}
-                data-plasmic-override={overrides.text}
-                className={classNames("all", "__wab_text", sty.text)}
-              >
+              <div className={classNames("all", "__wab_text", sty.text__xU0Mc)}>
                 {"\u0645\u0631\u06a9\u0632 \u062c\u062f\u06cc\u062f"}
               </div>
             }
@@ -568,6 +575,11 @@ function PlasmicMainPageCategories__RenderFunc(props: {
       </div>
       <div className={classNames("all", sty.freeBox__lvBGi)}>
         <div className={classNames("all", sty.freeBox__ldRFy)}>
+          <div className={classNames("all", "__wab_text", sty.text__o0Xa)}>
+            {
+              "\u062f\u0633\u062a\u06cc \u0647\u0627\u06cc \u0627\u0635\u0644\u06cc"
+            }
+          </div>
           <ApiRequest
             data-plasmic-name={"categories"}
             data-plasmic-override={overrides.categories}
@@ -693,9 +705,189 @@ function PlasmicMainPageCategories__RenderFunc(props: {
                 }
                 throw e;
               }
-            })() ? (
-              <div className={classNames("all", sty.freeBox___7DbZr)} />
-            ) : null}
+            })()
+              ? (_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                  (() => {
+                    try {
+                      return $state.user;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()
+                ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                  const currentItem = __plasmic_item_0;
+                  const currentIndex = __plasmic_idx_0;
+                  return (
+                    <div
+                      className={classNames("all", sty.freeBox___7DbZr)}
+                      key={currentIndex}
+                    >
+                      <div className={classNames("all", sty.freeBox__pkgMk)}>
+                        <MenueIcon
+                          data-plasmic-name={"menueIcon"}
+                          data-plasmic-override={overrides.menueIcon}
+                          color={"dark"}
+                          icons={(() => {
+                            try {
+                              return currentItem.icon;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return [];
+                              }
+                              throw e;
+                            }
+                          })()}
+                          size={"min"}
+                        />
+                      </div>
+                      <div className={classNames("all", sty.freeBox__o4V3Y)}>
+                        <div
+                          className={classNames(
+                            "all",
+                            "__wab_text",
+                            sty.text__u2EmS
+                          )}
+                        >
+                          <React.Fragment>{currentItem.name}</React.Fragment>
+                        </div>
+                        <div
+                          className={classNames(
+                            "all",
+                            "__wab_text",
+                            sty.text__k6Npj
+                          )}
+                        >
+                          <React.Fragment>{`${currentItem.centers_count} مرکز در این دسته بندی وجود دارد `}</React.Fragment>
+                        </div>
+                      </div>
+                      {(() => {
+                        const child$Props = {
+                          arrow: true,
+                          className: classNames("__wab_instance", sty.popover),
+                          content: (
+                            <div
+                              className={classNames("all", sty.freeBox__aLt1K)}
+                            >
+                              <div
+                                className={classNames(
+                                  "all",
+                                  sty.freeBox__wJbvf
+                                )}
+                              >
+                                <Icon94Icon
+                                  className={classNames("all", sty.svg__p5Ugz)}
+                                  role={"img"}
+                                />
+
+                                <div
+                                  className={classNames(
+                                    "all",
+                                    "__wab_text",
+                                    sty.text__efz1
+                                  )}
+                                >
+                                  {"\u0648\u06cc\u0631\u0627\u06cc\u0634"}
+                                </div>
+                              </div>
+                              <div
+                                className={classNames(
+                                  "all",
+                                  sty.freeBox__clI3A
+                                )}
+                              >
+                                <Icon58Icon
+                                  className={classNames("all", sty.svg__tp2Nq)}
+                                  role={"img"}
+                                />
+
+                                <div
+                                  className={classNames(
+                                    "all",
+                                    "__wab_text",
+                                    sty.text__zjTnp
+                                  )}
+                                >
+                                  {"\u062d\u0630\u0641"}
+                                </div>
+                              </div>
+                            </div>
+                          ),
+                          contentText: "Popover contents",
+                          defaultOpen: true,
+                          defaultStylesClassName: classNames(
+                            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+                            "plasmic_default_styles",
+                            "plasmic_mixins",
+                            styleTokensClassNames
+                          ),
+                          mouseEnterDelay: 0,
+                          mouseLeaveDelay: 0,
+                          onOpenChange: async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "popover",
+                              __plasmic_idx_0,
+                              "open"
+                            ]).apply(null, eventArgs);
+                          },
+                          open: generateStateValueProp($state, [
+                            "popover",
+                            __plasmic_idx_0,
+                            "open"
+                          ]),
+                          placement: "bottomLeft",
+                          popoverScopeClassName: sty["popover__popover"],
+                          title: null,
+                          trigger: "click"
+                        };
+                        initializeCodeComponentStates(
+                          $state,
+                          [
+                            {
+                              name: "open",
+                              plasmicStateName: "popover[].open"
+                            }
+                          ],
+                          [__plasmic_idx_0],
+                          undefined ?? {},
+                          child$Props
+                        );
+                        initializePlasmicStates(
+                          $state,
+                          [
+                            {
+                              name: "popover[].open",
+                              initFunc: ({ $props, $state, $queries, $q }) =>
+                                true
+                            }
+                          ],
+                          [__plasmic_idx_0]
+                        );
+                        return (
+                          <AntdPopover
+                            data-plasmic-name={"popover"}
+                            data-plasmic-override={overrides.popover}
+                            {...child$Props}
+                          >
+                            <Icon92Icon
+                              className={classNames("all", sty.svg___1UTik)}
+                              role={"img"}
+                            />
+                          </AntdPopover>
+                        );
+                      })()}
+                    </div>
+                  );
+                })
+              : null}
             {(() => {
               try {
                 return (
@@ -730,19 +922,21 @@ const PlasmicDescendants = {
     "select2",
     "menuSection",
     "button",
-    "text",
     "select",
     "categories",
     "errorpage",
+    "menueIcon",
+    "popover",
     "emptyPage"
   ],
   select2: ["select2", "menuSection"],
   menuSection: ["menuSection"],
-  button: ["button", "text"],
-  text: ["text"],
+  button: ["button"],
   select: ["select"],
-  categories: ["categories", "errorpage", "emptyPage"],
+  categories: ["categories", "errorpage", "menueIcon", "popover", "emptyPage"],
   errorpage: ["errorpage"],
+  menueIcon: ["menueIcon"],
+  popover: ["popover"],
   emptyPage: ["emptyPage"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -753,10 +947,11 @@ type NodeDefaultElementType = {
   select2: typeof Select;
   menuSection: typeof MenuSection;
   button: typeof Button;
-  text: "div";
   select: typeof Select;
   categories: typeof ApiRequest;
   errorpage: typeof Errorpage;
+  menueIcon: typeof MenueIcon;
+  popover: typeof AntdPopover;
   emptyPage: typeof EmptyPage;
 };
 
@@ -825,10 +1020,11 @@ export const PlasmicMainPageCategories = Object.assign(
     select2: makeNodeComponent("select2"),
     menuSection: makeNodeComponent("menuSection"),
     button: makeNodeComponent("button"),
-    text: makeNodeComponent("text"),
     select: makeNodeComponent("select"),
     categories: makeNodeComponent("categories"),
     errorpage: makeNodeComponent("errorpage"),
+    menueIcon: makeNodeComponent("menueIcon"),
+    popover: makeNodeComponent("popover"),
     emptyPage: makeNodeComponent("emptyPage"),
 
     // Metadata about props expected for PlasmicMainPageCategories

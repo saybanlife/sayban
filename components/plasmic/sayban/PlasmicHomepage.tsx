@@ -1148,7 +1148,16 @@ function PlasmicHomepage__RenderFunc(props: {
                     "homePage2",
                     "booking"
                   ),
-                  [sty.bookingpage_center]: hasVariant($state, "page", "center")
+                  [sty.bookingpage_center]: hasVariant(
+                    $state,
+                    "page",
+                    "center"
+                  ),
+                  [sty.bookingpage_subcategories]: hasVariant(
+                    $state,
+                    "page",
+                    "subcategories"
+                  )
                 })}
                 goToCenter={async id => {
                   const $steps = {};
@@ -1784,6 +1793,11 @@ function PlasmicHomepage__RenderFunc(props: {
                 $state,
                 "page",
                 "subcategories"
+              ),
+              [sty.subcategoriessearch2]: hasVariant(
+                $state,
+                "search2",
+                "search2"
               )
             })}
             onCenter={async () => {
@@ -1806,7 +1820,15 @@ function PlasmicHomepage__RenderFunc(props: {
                         }
                       })()}/${(() => {
                         try {
-                          return $state.slug.join("/");
+                          return (() => {
+                            if (window.sessionStorage.getItem("id")) {
+                              $state.slug.push("center");
+                              $state.slug.push(
+                                window.sessionStorage.getItem("id")
+                              );
+                            }
+                            return $state.slug.join("/");
+                          })();
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -1816,7 +1838,7 @@ function PlasmicHomepage__RenderFunc(props: {
                           }
                           throw e;
                         }
-                      })()}?city=${"true"}`
+                      })()}`
                     };
                     return (({ destination }) => {
                       if (
@@ -2180,7 +2202,8 @@ function PlasmicHomepage__RenderFunc(props: {
                 $state,
                 "page",
                 "subcategories"
-              )
+              ),
+              [sty.searchsearch2]: hasVariant($state, "search2", "search2")
             })}
             config={(() => {
               try {

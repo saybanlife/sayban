@@ -2500,7 +2500,7 @@ drawRating(${$state.rate});
             }
           })()}
           shouldFetch={true}
-          url={"https://sayban.darkube.app/webhook/service/holiday"}
+          url={"service/holiday"}
         >
           <div className={classNames("all", sty.freeBox__eh9J7)}>
             <div className={classNames("all", sty.freeBox__n49Dk)}>
@@ -3064,7 +3064,7 @@ drawRating(${$state.rate});
                   }
                 })()}
                 shouldFetch={true}
-                url={"https://sayban.darkube.app/webhook/service/working/"}
+                url={"/service/working/"}
               >
                 <SelectTime
                   data-plasmic-name={"selectTime"}
@@ -3276,7 +3276,7 @@ drawRating(${$state.rate});
                           const actionArgs = {
                             args: [
                               "POST",
-                              "https://sayban.darkube.app/webhook/reservations",
+                              "/reservations",
                               undefined,
                               (() => {
                                 try {

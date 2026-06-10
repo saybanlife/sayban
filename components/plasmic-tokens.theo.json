@@ -3441,6 +3441,16 @@
       }
     },
     {
+      "name": "Unnamed Style Token 5",
+      "type": "fontsize",
+      "value": "16px",
+      "category": "fontsize",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "Cx6nTvLnGbb8"
+      }
+    },
+    {
       "name": "Warning/Warning",
       "type": "color",
       "value": "#FACC15",

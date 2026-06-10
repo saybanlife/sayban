@@ -639,7 +639,7 @@ function PlasmicSubcategories__RenderFunc(props: {
               throw e;
             }
           })()}
-          url={"https://sayban.darkube.app/webhook/centers"}
+          url={"/centers"}
         >
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {
@@ -679,6 +679,29 @@ function PlasmicSubcategories__RenderFunc(props: {
                 key={currentIndex}
                 onClick={async event => {
                   const $steps = {};
+
+                  $steps["updateCenter3"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return window.sessionStorage.setItem(
+                              "id",
+                              currentItem.id
+                            );
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateCenter3"] != null &&
+                    typeof $steps["updateCenter3"] === "object" &&
+                    typeof $steps["updateCenter3"].then === "function"
+                  ) {
+                    $steps["updateCenter3"] = await $steps["updateCenter3"];
+                  }
 
                   $steps["updateCenter"] = true
                     ? (() => {
