@@ -74,16 +74,26 @@ import CenterInfo from "../../CenterInfo"; // plasmic-import: 5fhUfrSk0s6y/compo
 import Imag from "../../Imag"; // plasmic-import: ScLhJpeVxPbk/component
 import ImageProfile from "../../ImageProfile"; // plasmic-import: NCgtBMbIwpli/component
 import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicCenterPage.module.css"; // plasmic-import: fRNzpZPnnILn/css
 
 import ArrowNarrowRightIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__ArrowNarrowRight"; // plasmic-import: deFMwOdoPOwL/icon
+<<<<<<< HEAD
 import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+=======
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 import Icon70Icon from "./icons/PlasmicIcon__Icon70"; // plasmic-import: PWsALiD1VW02/icon
 import Icon67Icon from "./icons/PlasmicIcon__Icon67"; // plasmic-import: 6d1G1xHnP3D8/icon
@@ -947,7 +957,11 @@ function PlasmicCenterPage__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "POST",
+<<<<<<< HEAD
                         "https://sayban.darkube.ir/webhook-test/panel/update/service",
+=======
+                        "https://sayban.darkube.app/webhook-test/panel/update/service",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                         undefined,
                         {
                           info: $state.addServise2.servises,
@@ -1123,7 +1137,11 @@ function PlasmicCenterPage__RenderFunc(props: {
                           const actionArgs = {
                             args: [
                               "POST",
+<<<<<<< HEAD
                               "https://sayban.darkube.ir/webhook/panel/update/info",
+=======
+                              "https://sayban.darkube.app/webhook/panel/update/info",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                               undefined,
                               {
                                 info: {
@@ -2332,7 +2350,11 @@ function PlasmicCenterPage__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
+<<<<<<< HEAD
                             "https://sayban.darkube.ir/webhook/panel/update/info",
+=======
+                            "https://sayban.darkube.app/webhook/panel/update/info",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                             undefined,
                             (() => {
                               const data = {
@@ -2677,7 +2699,11 @@ function PlasmicCenterPage__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
+<<<<<<< HEAD
                             "https://sayban.darkube.ir/webhook/panel/update/image",
+=======
+                            "https://sayban.darkube.app/webhook/panel/update/image",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                             undefined,
                             {
                               image: $state.imag.uploadFiles,
@@ -2958,7 +2984,11 @@ function PlasmicCenterPage__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
+<<<<<<< HEAD
                             "https://sayban.darkube.ir/webhook-test/panel/update/profile",
+=======
+                            "https://sayban.darkube.app/webhook-test/panel/update/profile",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                             undefined,
                             {
                               image: $state.imageProfile2.uploadFiles,
@@ -3325,7 +3355,11 @@ function PlasmicCenterPage__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
+<<<<<<< HEAD
                             "https://sayban.darkube.ir/webhook/panel/update/info",
+=======
+                            "https://sayban.darkube.app/webhook/panel/update/info",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                             undefined,
                             (() => {
                               const data = {

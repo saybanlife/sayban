@@ -77,8 +77,13 @@ import Calendar from "../../Calendar"; // plasmic-import: Ne_OAR5Gww2F/component
 import SelectTime from "../../SelectTime"; // plasmic-import: gjWWc9BL-2Ke/component
 import SelectStars from "../../SelectStars"; // plasmic-import: rIv-AfQad6sO/component
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -87,11 +92,19 @@ import sty from "./PlasmicCenter.module.css"; // plasmic-import: Lh-Py4-EsRhC/cs
 import Icon21Icon from "./icons/PlasmicIcon__Icon21"; // plasmic-import: sT28siWhYupd/icon
 import Icon35Icon from "./icons/PlasmicIcon__Icon35"; // plasmic-import: gD26CTYCiCfq/icon
 import Icon22Icon from "./icons/PlasmicIcon__Icon22"; // plasmic-import: 5JSOkqxEUr2H/icon
+<<<<<<< HEAD
 import Icon12Icon from "../website_starter/icons/PlasmicIcon__Icon12"; // plasmic-import: BFmheOgAQHY6/icon
 import Icon43Icon from "./icons/PlasmicIcon__Icon43"; // plasmic-import: Sb1rSupvjrST/icon
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import Icon63Icon from "./icons/PlasmicIcon__Icon63"; // plasmic-import: I3nE9VH2SfXs/icon
 import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+=======
+import Icon12Icon from "./icons/PlasmicIcon__Icon12"; // plasmic-import: BFmheOgAQHY6/icon
+import Icon43Icon from "./icons/PlasmicIcon__Icon43"; // plasmic-import: Sb1rSupvjrST/icon
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import Icon63Icon from "./icons/PlasmicIcon__Icon63"; // plasmic-import: I3nE9VH2SfXs/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 import Icon42Icon from "./icons/PlasmicIcon__Icon42"; // plasmic-import: jkq895Pwga0g/icon
 
 createPlasmicElementProxy;
@@ -1012,7 +1025,11 @@ function PlasmicCenter__RenderFunc(props: {
                           e?.plasmicType === "PlasmicUndefinedDataError"
                         ) {
                           return {
+<<<<<<< HEAD
                             src: "/plasmic/website_starter/images/image7.png",
+=======
+                            src: "/plasmic/sayban/images/image7.png",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                             fullWidth: 800,
                             fullHeight: 297,
                             aspectRatio: undefined
@@ -1051,7 +1068,11 @@ function PlasmicCenter__RenderFunc(props: {
                       e?.plasmicType === "PlasmicUndefinedDataError"
                     ) {
                       return {
+<<<<<<< HEAD
                         src: "/plasmic/website_starter/images/image6.png",
+=======
+                        src: "/plasmic/sayban/images/image6.png",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                         fullWidth: 224,
                         fullHeight: 224,
                         aspectRatio: undefined
@@ -2500,7 +2521,11 @@ drawRating(${$state.rate});
             }
           })()}
           shouldFetch={true}
+<<<<<<< HEAD
           url={"https://sayban.darkube.ir/webhook/service/holiday"}
+=======
+          url={"service/holiday"}
+>>>>>>> plasmicops/rQ6tUgoS/newMain
         >
           <div className={classNames("all", sty.freeBox__eh9J7)}>
             <div className={classNames("all", sty.freeBox__n49Dk)}>
@@ -3064,7 +3089,11 @@ drawRating(${$state.rate});
                   }
                 })()}
                 shouldFetch={true}
+<<<<<<< HEAD
                 url={"https://sayban.darkube.ir/webhook/service/working/"}
+=======
+                url={"/service/working/"}
+>>>>>>> plasmicops/rQ6tUgoS/newMain
               >
                 <SelectTime
                   data-plasmic-name={"selectTime"}
@@ -3276,7 +3305,11 @@ drawRating(${$state.rate});
                           const actionArgs = {
                             args: [
                               "POST",
+<<<<<<< HEAD
                               "https://sayban.darkube.ir/webhook/reservations",
+=======
+                              "/reservations",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                               undefined,
                               (() => {
                                 try {
@@ -3603,7 +3636,11 @@ drawRating(${$state.rate});
                     const actionArgs = {
                       args: [
                         "POST",
+<<<<<<< HEAD
                         "https://sayban.darkube.ir/webhook/set/comment/",
+=======
+                        "https://sayban.darkube.app/webhook/set/comment/",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                         undefined,
                         (() => {
                           try {

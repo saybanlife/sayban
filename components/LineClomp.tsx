@@ -4,7 +4,11 @@ import * as React from "react";
 import {
   PlasmicLineClomp,
   DefaultLineClompProps
+<<<<<<< HEAD
 } from "./plasmic/website_starter/PlasmicLineClomp";
+=======
+} from "./plasmic/sayban/PlasmicLineClomp";
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 
 // Your component props start with props for variants and slots you defined

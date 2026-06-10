@@ -365,6 +365,10 @@
 .__wab_expr_html_text {
   white-space: normal;
 }
+<<<<<<< HEAD
 :where(.root_reset) {
+=======
+:where(.root_reset_58GpZjZCWTaJ8AUhpCwt2K) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   white-space: var(--mixin-pvZsL8utzp_white-space);
 }

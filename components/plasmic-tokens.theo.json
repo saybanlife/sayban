@@ -283,6 +283,7 @@
     {
       "name": "1",
       "type": "spacing",
+<<<<<<< HEAD
       "value": "0.75rem",
       "category": "spacing",
       "meta": {
@@ -293,6 +294,8 @@
     {
       "name": "1",
       "type": "spacing",
+=======
+>>>>>>> plasmicops/rQ6tUgoS/newMain
       "value": "0.25rem",
       "category": "spacing",
       "meta": {
@@ -301,6 +304,19 @@
       }
     },
     {
+<<<<<<< HEAD
+=======
+      "name": "1",
+      "type": "spacing",
+      "value": "0.75rem",
+      "category": "spacing",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "rfsFxiclAtek"
+      }
+    },
+    {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
       "name": "1.5",
       "type": "spacing",
       "value": "0.375rem",
@@ -363,6 +379,7 @@
     {
       "name": "2",
       "type": "spacing",
+<<<<<<< HEAD
       "value": "1.5rem",
       "category": "spacing",
       "meta": {
@@ -373,6 +390,8 @@
     {
       "name": "2",
       "type": "spacing",
+=======
+>>>>>>> plasmicops/rQ6tUgoS/newMain
       "value": "0.5rem",
       "category": "spacing",
       "meta": {
@@ -381,6 +400,19 @@
       }
     },
     {
+<<<<<<< HEAD
+=======
+      "name": "2",
+      "type": "spacing",
+      "value": "1.5rem",
+      "category": "spacing",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "73iLa06AE6f4"
+      }
+    },
+    {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
       "name": "2.5",
       "type": "spacing",
       "value": "0.625rem",
@@ -426,8 +458,13 @@
       "value": "0.75rem",
       "category": "spacing",
       "meta": {
+<<<<<<< HEAD
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
         "id": "xf2ijuTrDk1U"
+=======
+        "projectId": "4vjRXvnb4XuY6J15w9oRcQ",
+        "id": "PKf5XaFatup3"
+>>>>>>> plasmicops/rQ6tUgoS/newMain
       }
     },
     {
@@ -436,8 +473,13 @@
       "value": "0.75rem",
       "category": "spacing",
       "meta": {
+<<<<<<< HEAD
         "projectId": "4vjRXvnb4XuY6J15w9oRcQ",
         "id": "PKf5XaFatup3"
+=======
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "xf2ijuTrDk1U"
+>>>>>>> plasmicops/rQ6tUgoS/newMain
       }
     },
     {
@@ -476,8 +518,13 @@
       "value": "1rem",
       "category": "spacing",
       "meta": {
+<<<<<<< HEAD
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
         "id": "LBC0X5IbL9bo"
+=======
+        "projectId": "4vjRXvnb4XuY6J15w9oRcQ",
+        "id": "0tl2H1TRPHhV"
+>>>>>>> plasmicops/rQ6tUgoS/newMain
       }
     },
     {
@@ -486,8 +533,13 @@
       "value": "1rem",
       "category": "spacing",
       "meta": {
+<<<<<<< HEAD
         "projectId": "4vjRXvnb4XuY6J15w9oRcQ",
         "id": "0tl2H1TRPHhV"
+=======
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "LBC0X5IbL9bo"
+>>>>>>> plasmicops/rQ6tUgoS/newMain
       }
     },
     {
@@ -616,8 +668,13 @@
       "value": "2rem",
       "category": "spacing",
       "meta": {
+<<<<<<< HEAD
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
         "id": "P3I_D0uxQRnt"
+=======
+        "projectId": "4vjRXvnb4XuY6J15w9oRcQ",
+        "id": "OJSN3W0Myvht"
+>>>>>>> plasmicops/rQ6tUgoS/newMain
       }
     },
     {
@@ -626,8 +683,13 @@
       "value": "2rem",
       "category": "spacing",
       "meta": {
+<<<<<<< HEAD
         "projectId": "4vjRXvnb4XuY6J15w9oRcQ",
         "id": "OJSN3W0Myvht"
+=======
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "P3I_D0uxQRnt"
+>>>>>>> plasmicops/rQ6tUgoS/newMain
       }
     },
     {
@@ -3441,6 +3503,19 @@
       }
     },
     {
+<<<<<<< HEAD
+=======
+      "name": "Unnamed Style Token 5",
+      "type": "fontsize",
+      "value": "16px",
+      "category": "fontsize",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "Cx6nTvLnGbb8"
+      }
+    },
+    {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
       "name": "Warning/Warning",
       "type": "color",
       "value": "#FACC15",

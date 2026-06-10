@@ -62,15 +62,24 @@ import {
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicCity.module.css"; // plasmic-import: dRrvldGFbNOC/css
 
 import Icon33Icon from "./icons/PlasmicIcon__Icon33"; // plasmic-import: MJBmXdq7GQ5D/icon
+<<<<<<< HEAD
 import Icon10Icon from "../website_starter/icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
+=======
+import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 import Icon32Icon from "./icons/PlasmicIcon__Icon32"; // plasmic-import: hVogcrNM7Ss9/icon
 
 createPlasmicElementProxy;
@@ -529,7 +538,11 @@ function PlasmicCity__RenderFunc(props: {
           }).apply(null, eventArgs);
         }}
         shouldFetch={true}
+<<<<<<< HEAD
         url={"https://sayban.darkube.ir/webhook/city"}
+=======
+        url={"https://sayban.darkube.app/webhook/city"}
+>>>>>>> plasmicops/rQ6tUgoS/newMain
       />
 
       <div className={classNames("all", sty.freeBox__aqvRm)}>

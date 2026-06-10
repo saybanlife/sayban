@@ -4,7 +4,11 @@ import * as React from "react";
 import {
   PlasmicRangeSlider,
   DefaultRangeSliderProps
+<<<<<<< HEAD
 } from "./plasmic/website_starter/PlasmicRangeSlider";
+=======
+} from "./plasmic/sayban/PlasmicRangeSlider";
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can

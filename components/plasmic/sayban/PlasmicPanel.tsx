@@ -63,8 +63,13 @@ import PanelMenu from "../../PanelMenu"; // plasmic-import: H67gJZiYVEqw/compone
 import Main from "../../Main"; // plasmic-import: FYuKeNpu5zZ7/component
 import LoginPanel from "../../LoginPanel"; // plasmic-import: hZEy0JIfmlF9/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -908,7 +913,11 @@ function PlasmicPanel__RenderFunc(props: {
           onMount={async () => {
             const $steps = {};
 
+<<<<<<< HEAD
             $steps["getCookie"] = true
+=======
+            $steps["getCookie"] = false
+>>>>>>> plasmicops/rQ6tUgoS/newMain
               ? (() => {
                   const actionArgs = { args: ["panelToken"] };
                   return $globalActions["Fragment.getCookie"]?.apply(null, [
@@ -924,7 +933,11 @@ function PlasmicPanel__RenderFunc(props: {
               $steps["getCookie"] = await $steps["getCookie"];
             }
 
+<<<<<<< HEAD
             $steps["updateToken"] = true
+=======
+            $steps["updateToken"] = false
+>>>>>>> plasmicops/rQ6tUgoS/newMain
               ? (() => {
                   const actionArgs = {
                     variable: {
@@ -953,6 +966,7 @@ function PlasmicPanel__RenderFunc(props: {
               $steps["updateToken"] = await $steps["updateToken"];
             }
 
+<<<<<<< HEAD
             $steps["goToPanel"] =
               $state.token == null && $ctx.params.page[0] != "login"
                 ? (() => {
@@ -971,6 +985,25 @@ function PlasmicPanel__RenderFunc(props: {
                     })?.apply(null, [actionArgs]);
                   })()
                 : undefined;
+=======
+            $steps["goToPanel"] = false
+              ? (() => {
+                  const actionArgs = { destination: `/panel/${"login"}` };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+>>>>>>> plasmicops/rQ6tUgoS/newMain
             if (
               $steps["goToPanel"] != null &&
               typeof $steps["goToPanel"] === "object" &&

@@ -66,17 +66,28 @@ import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-impor
 import Item from "../../Item"; // plasmic-import: lqR7VxT6h9YH/component
 import Filter from "../../Filter"; // plasmic-import: TmisqS8piGSB/component
 import Sort from "../../Sort"; // plasmic-import: V2In34aoYVht/component
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicSubcategories.module.css"; // plasmic-import: JM9_woEGqy8m/css
 
 import Icon54Icon from "./icons/PlasmicIcon__Icon54"; // plasmic-import: 4na0R6L_flPD/icon
+<<<<<<< HEAD
 import Icon10Icon from "../website_starter/icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
 import Icon62Icon from "./icons/PlasmicIcon__Icon62"; // plasmic-import: DmL_SuYFROX3/icon
 import Icon11Icon from "../website_starter/icons/PlasmicIcon__Icon11"; // plasmic-import: TLjQehPXSyaR/icon
+=======
+import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
+import Icon62Icon from "./icons/PlasmicIcon__Icon62"; // plasmic-import: DmL_SuYFROX3/icon
+import Icon11Icon from "./icons/PlasmicIcon__Icon11"; // plasmic-import: TLjQehPXSyaR/icon
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 createPlasmicElementProxy;
 
@@ -639,7 +650,11 @@ function PlasmicSubcategories__RenderFunc(props: {
               throw e;
             }
           })()}
+<<<<<<< HEAD
           url={"https://sayban.darkube.ir/webhook/centers"}
+=======
+          url={"/centers"}
+>>>>>>> plasmicops/rQ6tUgoS/newMain
         >
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {
@@ -680,6 +695,32 @@ function PlasmicSubcategories__RenderFunc(props: {
                 onClick={async event => {
                   const $steps = {};
 
+<<<<<<< HEAD
+=======
+                  $steps["updateCenter3"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return window.sessionStorage.setItem(
+                              "id",
+                              currentItem.id
+                            );
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateCenter3"] != null &&
+                    typeof $steps["updateCenter3"] === "object" &&
+                    typeof $steps["updateCenter3"].then === "function"
+                  ) {
+                    $steps["updateCenter3"] = await $steps["updateCenter3"];
+                  }
+
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                   $steps["updateCenter"] = true
                     ? (() => {
                         const actionArgs = {

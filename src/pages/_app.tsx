@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import "../../components/plasmic/website_starter/plasmic.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
+=======
+import "../../components/plasmic/sayban/plasmic.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 import "@/styles/globals.css";
 import "@/styles/date-picker.css";
 import { PlasmicRootProvider } from "@plasmicapp/react-web";

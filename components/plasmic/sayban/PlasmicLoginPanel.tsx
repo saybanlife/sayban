@@ -62,8 +62,13 @@ import {
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import Login2 from "../../Login2"; // plasmic-import: e-nYBMaX6lLd/component
 import CreateAccont from "../../CreateAccont"; // plasmic-import: nYNI2TNqh_0W/component
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -208,7 +213,11 @@ function PlasmicLoginPanel__RenderFunc(props: {
               displayWidth={"auto"}
               loading={"lazy"}
               src={{
+<<<<<<< HEAD
                 src: "/plasmic/website_starter/images/untitledPicturePng.png",
+=======
+                src: "/plasmic/sayban/images/untitledPicturePng.png",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                 fullWidth: 3629,
                 fullHeight: 2887,
                 aspectRatio: undefined

@@ -69,14 +69,23 @@ import Errorpage from "../../Errorpage"; // plasmic-import: HTnfDJNIbaau/compone
 import { RichTable } from "@plasmicpkgs/plasmic-rich-components/skinny/rich-table";
 import { tableHelpers as RichTable_Helpers } from "@plasmicpkgs/plasmic-rich-components/skinny/rich-table";
 import EmptyPage from "../../EmptyPage"; // plasmic-import: q5YsvjSR6-JD/component
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicMainPageCenter.module.css"; // plasmic-import: xrEadpE-s6jI/css
 
+<<<<<<< HEAD
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+=======
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 import Icon115Icon from "./icons/PlasmicIcon__Icon115"; // plasmic-import: K82EqXtBnJoL/icon
 

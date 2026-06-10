@@ -65,15 +65,24 @@ import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/compone
 import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicAddServise.module.css"; // plasmic-import: GoiLccUqO4vp/css
 
 import ChevronLeftIcon from "./icons/PlasmicIcon__ChevronLeft"; // plasmic-import: vQC4_6sr1Yuo/icon
+<<<<<<< HEAD
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+=======
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 
 createPlasmicElementProxy;

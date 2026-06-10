@@ -63,8 +63,13 @@ import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo
 import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
 import { TimePicker } from "@/fragment/components/time-picker"; // plasmic-import: fpe_CT2-ocZX/codeComponent
 import Checkbox from "../../Checkbox"; // plasmic-import: 7eMtZduHzknK/component
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 

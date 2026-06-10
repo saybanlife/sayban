@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter%3Aital%2Cwght%400%2C400%3B0%2C600%3B0%2C700&family=Inconsolata%3Aital%2Cwght%400%2C400%3B0%2C600%3B0%2C700&display=swap");
 
+<<<<<<< HEAD
 .plasmic_tokens {
+=======
+.plasmic_tokens_5ZtnypMovRHeeP3YTdPCYL {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   --token-OP4RqOVaeAzf: #f8fafc;
   --plasmic-token-slate-50: var(--token-OP4RqOVaeAzf);
   --token-vNzKZAU3OD_s: #f1f5f9;
@@ -487,7 +491,11 @@
   --plasmic-token-rose-950: var(--token-IqkIQtEIIIBj);
 }
 
+<<<<<<< HEAD
 .plasmic_tokens {
+=======
+.plasmic_tokens_5ZtnypMovRHeeP3YTdPCYL {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   --plsmc-standard-width: 800px;
   --plsmc-wide-width: 1280px;
   --plsmc-viewport-gap: 16px;
@@ -984,7 +992,11 @@
 .__wab_expr_html_text {
   white-space: normal;
 }
+<<<<<<< HEAD
 :where(.root_reset) {
+=======
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   font-family: var(--mixin-5x3zesROYmsa_font-family);
   font-size: var(--mixin-5x3zesROYmsa_font-size);
   font-weight: var(--mixin-5x3zesROYmsa_font-weight);
@@ -997,11 +1009,19 @@
   white-space: var(--mixin-5x3zesROYmsa_white-space);
 }
 
+<<<<<<< HEAD
 :where(.root_reset) h1:where(.h1),
 h1:where(.root_reset.h1),
 :where(.root_reset .__wab_expr_html_text) h1,
 :where(.root_reset_tags) h1,
 h1:where(.root_reset_tags) {
+=======
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) h1:where(.h1__5Ztny),
+h1:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL.h1__5Ztny),
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL .__wab_expr_html_text) h1,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) h1,
+h1:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   color: var(--mixin-UHZU5rwSdKLp_color);
   font-weight: var(--mixin-UHZU5rwSdKLp_font-weight);
   font-size: var(--mixin-UHZU5rwSdKLp_font-size);
@@ -1009,11 +1029,19 @@ h1:where(.root_reset_tags) {
   letter-spacing: var(--mixin-UHZU5rwSdKLp_letter-spacing);
 }
 
+<<<<<<< HEAD
 :where(.root_reset) h2:where(.h2),
 h2:where(.root_reset.h2),
 :where(.root_reset .__wab_expr_html_text) h2,
 :where(.root_reset_tags) h2,
 h2:where(.root_reset_tags) {
+=======
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) h2:where(.h2__5Ztny),
+h2:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL.h2__5Ztny),
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL .__wab_expr_html_text) h2,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) h2,
+h2:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   color: var(--mixin-Nvh6kqQwB7W4_color);
   font-size: var(--mixin-Nvh6kqQwB7W4_font-size);
   font-weight: var(--mixin-Nvh6kqQwB7W4_font-weight);
@@ -1021,6 +1049,7 @@ h2:where(.root_reset_tags) {
   line-height: var(--mixin-Nvh6kqQwB7W4_line-height);
 }
 
+<<<<<<< HEAD
 :where(.root_reset) a:where(.a),
 a:where(.root_reset.a),
 :where(.root_reset .__wab_expr_html_text) a,
@@ -1034,28 +1063,59 @@ h3:where(.root_reset.h3),
 :where(.root_reset .__wab_expr_html_text) h3,
 :where(.root_reset_tags) h3,
 h3:where(.root_reset_tags) {
+=======
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) a:where(.a__5Ztny),
+a:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL.a__5Ztny),
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL .__wab_expr_html_text) a,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) a,
+a:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) {
+  color: var(--mixin-EwdrYTkwASgg_color);
+}
+
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) h3:where(.h3__5Ztny),
+h3:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL.h3__5Ztny),
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL .__wab_expr_html_text) h3,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) h3,
+h3:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   color: var(--mixin-wDbSgVJP2TZ3_color);
   font-size: var(--mixin-wDbSgVJP2TZ3_font-size);
   font-weight: var(--mixin-wDbSgVJP2TZ3_font-weight);
   line-height: var(--mixin-wDbSgVJP2TZ3_line-height);
 }
 
+<<<<<<< HEAD
 :where(.root_reset) h4:where(.h4),
 h4:where(.root_reset.h4),
 :where(.root_reset .__wab_expr_html_text) h4,
 :where(.root_reset_tags) h4,
 h4:where(.root_reset_tags) {
+=======
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) h4:where(.h4__5Ztny),
+h4:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL.h4__5Ztny),
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL .__wab_expr_html_text) h4,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) h4,
+h4:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   color: var(--mixin-DBGYJFfex5ul_color);
   font-size: var(--mixin-DBGYJFfex5ul_font-size);
   font-weight: var(--mixin-DBGYJFfex5ul_font-weight);
   line-height: var(--mixin-DBGYJFfex5ul_line-height);
 }
 
+<<<<<<< HEAD
 :where(.root_reset) code:where(.code),
 code:where(.root_reset.code),
 :where(.root_reset .__wab_expr_html_text) code,
 :where(.root_reset_tags) code,
 code:where(.root_reset_tags) {
+=======
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) code:where(.code__5Ztny),
+code:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL.code__5Ztny),
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL .__wab_expr_html_text) code,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) code,
+code:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   background: #f8f8f8;
   font-family: var(--mixin-l0oOWAbAMo6w_font-family);
   border-radius: var(--mixin-l0oOWAbAMo6w_border-top-left-radius)
@@ -1080,11 +1140,19 @@ code:where(.root_reset_tags) {
     var(--mixin-l0oOWAbAMo6w_border-left-color);
 }
 
+<<<<<<< HEAD
 :where(.root_reset) blockquote:where(.blockquote),
 blockquote:where(.root_reset.blockquote),
 :where(.root_reset .__wab_expr_html_text) blockquote,
 :where(.root_reset_tags) blockquote,
 blockquote:where(.root_reset_tags) {
+=======
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) blockquote:where(.blockquote__5Ztny),
+blockquote:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL.blockquote__5Ztny),
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL .__wab_expr_html_text) blockquote,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) blockquote,
+blockquote:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   color: var(--mixin-767vZdy7CKt9_color);
   padding-left: var(--mixin-767vZdy7CKt9_padding-left);
   border-left: var(--mixin-767vZdy7CKt9_border-left-width)
@@ -1092,11 +1160,19 @@ blockquote:where(.root_reset_tags) {
     var(--mixin-767vZdy7CKt9_border-left-color);
 }
 
+<<<<<<< HEAD
 :where(.root_reset) pre:where(.pre),
 pre:where(.root_reset.pre),
 :where(.root_reset .__wab_expr_html_text) pre,
 :where(.root_reset_tags) pre,
 pre:where(.root_reset_tags) {
+=======
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) pre:where(.pre__5Ztny),
+pre:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL.pre__5Ztny),
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL .__wab_expr_html_text) pre,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) pre,
+pre:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   background: #f8f8f8;
   font-family: var(--mixin-mSqDOCLLlfZ7_font-family);
   border-radius: var(--mixin-mSqDOCLLlfZ7_border-top-left-radius)
@@ -1121,11 +1197,19 @@ pre:where(.root_reset_tags) {
     var(--mixin-mSqDOCLLlfZ7_border-left-color);
 }
 
+<<<<<<< HEAD
 :where(.root_reset) ul:where(.ul),
 ul:where(.root_reset.ul),
 :where(.root_reset .__wab_expr_html_text) ul,
 :where(.root_reset_tags) ul,
 ul:where(.root_reset_tags) {
+=======
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) ul:where(.ul__5Ztny),
+ul:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL.ul__5Ztny),
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL .__wab_expr_html_text) ul,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) ul,
+ul:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   display: var(--mixin-ELdnD2FdNvvd_display);
   flex-direction: var(--mixin-ELdnD2FdNvvd_flex-direction);
   align-items: var(--mixin-ELdnD2FdNvvd_align-items);
@@ -1137,11 +1221,19 @@ ul:where(.root_reset_tags) {
   column-gap: var(--mixin-ELdnD2FdNvvd_column-gap);
 }
 
+<<<<<<< HEAD
 :where(.root_reset) ol:where(.ol),
 ol:where(.root_reset.ol),
 :where(.root_reset .__wab_expr_html_text) ol,
 :where(.root_reset_tags) ol,
 ol:where(.root_reset_tags) {
+=======
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) ol:where(.ol__5Ztny),
+ol:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL.ol__5Ztny),
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL .__wab_expr_html_text) ol,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) ol,
+ol:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   display: var(--mixin-c5Pvulxe0K8M_display);
   flex-direction: var(--mixin-c5Pvulxe0K8M_flex-direction);
   align-items: var(--mixin-c5Pvulxe0K8M_align-items);
@@ -1153,28 +1245,45 @@ ol:where(.root_reset_tags) {
   column-gap: var(--mixin-c5Pvulxe0K8M_column-gap);
 }
 
+<<<<<<< HEAD
 :where(.root_reset) h5:where(.h5),
 h5:where(.root_reset.h5),
 :where(.root_reset .__wab_expr_html_text) h5,
 :where(.root_reset_tags) h5,
 h5:where(.root_reset_tags) {
+=======
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) h5:where(.h5__5Ztny),
+h5:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL.h5__5Ztny),
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL .__wab_expr_html_text) h5,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) h5,
+h5:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   color: var(--mixin-l7yJgOegfyAo_color);
   font-size: var(--mixin-l7yJgOegfyAo_font-size);
   font-weight: var(--mixin-l7yJgOegfyAo_font-weight);
   line-height: var(--mixin-l7yJgOegfyAo_line-height);
 }
 
+<<<<<<< HEAD
 :where(.root_reset) h6:where(.h6),
 h6:where(.root_reset.h6),
 :where(.root_reset .__wab_expr_html_text) h6,
 :where(.root_reset_tags) h6,
 h6:where(.root_reset_tags) {
+=======
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) h6:where(.h6__5Ztny),
+h6:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL.h6__5Ztny),
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL .__wab_expr_html_text) h6,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) h6,
+h6:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   color: var(--mixin-3uK2Nl1QeqDe_color);
   font-size: var(--mixin-3uK2Nl1QeqDe_font-size);
   font-weight: var(--mixin-3uK2Nl1QeqDe_font-weight);
   line-height: var(--mixin-3uK2Nl1QeqDe_line-height);
 }
 
+<<<<<<< HEAD
 :where(.root_reset) a:where(.a):hover,
 a:where(.root_reset.a):hover,
 :where(.root_reset .__wab_expr_html_text) a:hover,
@@ -1195,4 +1304,26 @@ p:where(.root_reset.p),
 :where(.root_reset .__wab_expr_html_text) p,
 :where(.root_reset_tags) p,
 p:where(.root_reset_tags) {
+=======
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) a:where(.a__5Ztny):hover,
+a:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL.a__5Ztny):hover,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL .__wab_expr_html_text) a:hover,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) a:hover,
+a:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags):hover {
+  color: var(--mixin-Sw1GwS5sl3v__color);
+}
+
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) li:where(.li__5Ztny),
+li:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL.li__5Ztny),
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL .__wab_expr_html_text) li,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) li,
+li:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) {
+}
+
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL) p:where(.p__5Ztny),
+p:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL.p__5Ztny),
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL .__wab_expr_html_text) p,
+:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) p,
+p:where(.root_reset_5ZtnypMovRHeeP3YTdPCYL_tags) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 }

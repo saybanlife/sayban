@@ -66,8 +66,13 @@ import { DialogTitle } from "@plasmicpkgs/radix-ui";
 import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
 import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
 import { DialogClose } from "@plasmicpkgs/radix-ui";
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 

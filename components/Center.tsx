@@ -42,4 +42,8 @@ function Center_(props: CenterProps, ref: HTMLElementRefOf<"div">) {
 }
 
 const Center = React.forwardRef(Center_);
+<<<<<<< HEAD
 export default Center;   
+=======
+export default Center;
+>>>>>>> plasmicops/rQ6tUgoS/newMain

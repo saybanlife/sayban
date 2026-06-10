@@ -67,15 +67,25 @@ import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4si
 import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo/component
 import Checkbox from "../../Checkbox"; // plasmic-import: 7eMtZduHzknK/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicPayment.module.css"; // plasmic-import: BVIyToFh1miy/css
 
+<<<<<<< HEAD
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+=======
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 createPlasmicElementProxy;
 
@@ -517,7 +527,11 @@ function PlasmicPayment__RenderFunc(props: {
                               e?.plasmicType === "PlasmicUndefinedDataError"
                             ) {
                               return {
+<<<<<<< HEAD
                                 src: "/plasmic/website_starter/images/image6.png",
+=======
+                                src: "/plasmic/sayban/images/image6.png",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                                 fullWidth: 224,
                                 fullHeight: 224,
                                 aspectRatio: undefined
@@ -1173,7 +1187,11 @@ function PlasmicPayment__RenderFunc(props: {
                           const actionArgs = {
                             args: [
                               "POST",
+<<<<<<< HEAD
                               "https://sayban.darkube.ir/webhook/reservations/update",
+=======
+                              "https://sayban.darkube.app/webhook/reservations/update",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                               undefined,
                               (() => {
                                 try {

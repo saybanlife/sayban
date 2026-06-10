@@ -2,10 +2,19 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
+<<<<<<< HEAD
 import GlobalContextsProvider from "../../../components/plasmic/website_starter/PlasmicGlobalContextsProvider";
 
 import { PlasmicLogin } from "../../../components/plasmic/sayban/PlasmicLogin";
 import { useRouter } from "next/router";
+=======
+import GlobalContextsProvider from "../../../components/plasmic/sayban/PlasmicGlobalContextsProvider";
+import { StyleTokensProvider } from "../../../components/plasmic/sayban/PlasmicStyleTokensProvider";
+
+import { PlasmicLogin } from "../../../components/plasmic/sayban/PlasmicLogin";
+import { useRouter } from "next/router";
+import { PlasmicQueryDataProvider } from "@plasmicapp/react-web/lib/query";
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 function Login() {
   // Use PlasmicLogin to render this component as it was
@@ -27,6 +36,7 @@ function Login() {
 
   return (
     <GlobalContextsProvider>
+<<<<<<< HEAD
       <PageParamsProvider__
         route={useRouter()?.pathname}
         params={useRouter()?.query}
@@ -34,6 +44,19 @@ function Login() {
       >
         <PlasmicLogin />
       </PageParamsProvider__>
+=======
+      <PlasmicQueryDataProvider>
+        <PageParamsProvider__
+          route={useRouter()?.pathname}
+          params={useRouter()?.query}
+          query={useRouter()?.query}
+        >
+          <StyleTokensProvider>
+            <PlasmicLogin />
+          </StyleTokensProvider>
+        </PageParamsProvider__>
+      </PlasmicQueryDataProvider>
+>>>>>>> plasmicops/rQ6tUgoS/newMain
     </GlobalContextsProvider>
   );
 }

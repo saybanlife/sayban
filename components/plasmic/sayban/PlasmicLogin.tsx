@@ -68,16 +68,26 @@ import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
 import City from "../../City"; // plasmic-import: dRrvldGFbNOC/component
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicLogin.module.css"; // plasmic-import: 9IHhNJeWZ_i2/css
 
 import Icon39Icon from "./icons/PlasmicIcon__Icon39"; // plasmic-import: mY1x2mJnCMIY/icon
+<<<<<<< HEAD
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+=======
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: L5-0jFcT5N2O/icon
 
 const emptyProxy: any = new Proxy(() => "", {
@@ -475,7 +485,11 @@ function PlasmicLogin__RenderFunc(props: {
                 }
                 loading={"lazy"}
                 src={{
+<<<<<<< HEAD
                   src: "/plasmic/website_starter/images/untitledPicturePng2.png",
+=======
+                  src: "/plasmic/sayban/images/untitledPicturePng2.png",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                   fullWidth: 3629,
                   fullHeight: 2887,
                   aspectRatio: undefined
@@ -821,7 +835,11 @@ function PlasmicLogin__RenderFunc(props: {
                       const actionArgs = {
                         args: [
                           "POST",
+<<<<<<< HEAD
                           "https://sayban.darkube.ir/webhook/users/auth",
+=======
+                          "https://sayban.darkube.app/webhook/users/auth",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                           undefined,
                           (() => {
                             try {
@@ -1162,7 +1180,11 @@ function PlasmicLogin__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
+<<<<<<< HEAD
                             "https://sayban.darkube.ir/webhook/users/auth",
+=======
+                            "https://sayban.darkube.app/webhook/users/auth",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                             undefined,
                             (() => {
                               try {
@@ -1288,7 +1310,11 @@ function PlasmicLogin__RenderFunc(props: {
                           const actionArgs = {
                             args: [
                               "POST",
+<<<<<<< HEAD
                               "https://sayban.darkube.ir/webhook/users/validate",
+=======
+                              "https://sayban.darkube.app/webhook/users/validate",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                               undefined,
                               (() => {
                                 try {
@@ -2214,7 +2240,11 @@ function PlasmicLogin__RenderFunc(props: {
                           const actionArgs = {
                             args: [
                               "POST",
+<<<<<<< HEAD
                               "https://sayban.darkube.ir/webhook/setProfile",
+=======
+                              "https://sayban.darkube.app/webhook/setProfile",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                               undefined,
                               (() => {
                                 try {

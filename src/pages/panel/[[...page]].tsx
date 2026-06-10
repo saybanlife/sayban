@@ -2,11 +2,20 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
+<<<<<<< HEAD
 import GlobalContextsProvider from "../../../components/plasmic/website_starter/PlasmicGlobalContextsProvider";
 import { StyleTokensProvider } from "../../../components/plasmic/website_starter/PlasmicStyleTokensProvider";
 
 import { PlasmicPanel } from "../../../components/plasmic/sayban/PlasmicPanel";
 import { useRouter } from "next/router";
+=======
+import GlobalContextsProvider from "../../../components/plasmic/sayban/PlasmicGlobalContextsProvider";
+import { StyleTokensProvider } from "../../../components/plasmic/sayban/PlasmicStyleTokensProvider";
+
+import { PlasmicPanel } from "../../../components/plasmic/sayban/PlasmicPanel";
+import { useRouter } from "next/router";
+import { PlasmicQueryDataProvider } from "@plasmicapp/react-web/lib/query";
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 function Panel() {
   // Use PlasmicPanel to render this component as it was
@@ -28,6 +37,7 @@ function Panel() {
 
   return (
     <GlobalContextsProvider>
+<<<<<<< HEAD
       <PageParamsProvider__
         route={useRouter()?.pathname}
         params={useRouter()?.query}
@@ -37,6 +47,19 @@ function Panel() {
           <PlasmicPanel />
         </StyleTokensProvider>
       </PageParamsProvider__>
+=======
+      <PlasmicQueryDataProvider>
+        <PageParamsProvider__
+          route={useRouter()?.pathname}
+          params={useRouter()?.query}
+          query={useRouter()?.query}
+        >
+          <StyleTokensProvider>
+            <PlasmicPanel />
+          </StyleTokensProvider>
+        </PageParamsProvider__>
+      </PlasmicQueryDataProvider>
+>>>>>>> plasmicops/rQ6tUgoS/newMain
     </GlobalContextsProvider>
   );
 }

@@ -46,9 +46,12 @@ registerComponent(Textarea, textareaMeta);
 registerComponent(SwiperSlider,SwiperSliderMeta);
 registerComponent(TextCollapse,TextCollapseMeta);
 registerComponent(JalaliMoment ,JalaliMomentMeta);
+<<<<<<< HEAD
 
 
 
 
 
 
+=======
+>>>>>>> plasmicops/rQ6tUgoS/newMain

@@ -60,15 +60,24 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicSearch.module.css"; // plasmic-import: kFfVHLyoRXeP/css
 
 import Icon49Icon from "./icons/PlasmicIcon__Icon49"; // plasmic-import: GiSR5zfG8C_s/icon
+<<<<<<< HEAD
 import Icon10Icon from "../website_starter/icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
+=======
+import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 createPlasmicElementProxy;
 

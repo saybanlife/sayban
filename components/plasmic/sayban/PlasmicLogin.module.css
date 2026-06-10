@@ -216,7 +216,11 @@
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
+<<<<<<< HEAD
   background: url("/plasmic/website_starter/images/image2.svg") 0% 0% / contain repeat;
+=======
+  background: url("/plasmic/sayban/images/image2.svg") 0% 0% / contain repeat;
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   opacity: 0.05;
   left: 0;
   top: 0;

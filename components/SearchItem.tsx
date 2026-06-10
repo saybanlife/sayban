@@ -4,7 +4,11 @@ import * as React from "react";
 import {
   PlasmicSearchItem,
   DefaultSearchItemProps
+<<<<<<< HEAD
 } from "./plasmic/website_starter/PlasmicSearchItem";
+=======
+} from "./plasmic/sayban/PlasmicSearchItem";
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 
 // Your component props start with props for variants and slots you defined

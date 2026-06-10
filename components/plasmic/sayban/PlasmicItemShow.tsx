@@ -59,14 +59,23 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicItemShow.module.css"; // plasmic-import: hegjECXSYJcF/css
 
+<<<<<<< HEAD
 import Icon10Icon from "../website_starter/icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
+=======
+import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 createPlasmicElementProxy;
 

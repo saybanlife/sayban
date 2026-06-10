@@ -20,8 +20,12 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 //
 // You can also stop extending from DefaultSelectedComponnentProps altogether and have
 // total control over the props for your component.
+<<<<<<< HEAD
 export interface SelectedComponnentProps
   extends DefaultSelectedComponnentProps {}
+=======
+export interface SelectedComponnentProps extends DefaultSelectedComponnentProps {}
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 function SelectedComponnent_(
   props: SelectedComponnentProps,

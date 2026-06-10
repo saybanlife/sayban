@@ -62,8 +62,13 @@ import {
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import ItemBooking from "../../ItemBooking"; // plasmic-import: NnzIun3_VRrR/component
 import BookingHeader from "../../BookingHeader"; // plasmic-import: K9ETXxPuQRCy/component
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -259,7 +264,11 @@ function PlasmicBooking__RenderFunc(props: {
           );
         }}
         shouldFetch={true}
+<<<<<<< HEAD
         url={"https://sayban.darkube.ir/webhook/Reservation"}
+=======
+        url={"https://sayban.darkube.app/webhook/Reservation"}
+>>>>>>> plasmicops/rQ6tUgoS/newMain
       >
         <div className={classNames("all", sty.freeBox__t5Rev)}>
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(

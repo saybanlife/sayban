@@ -59,14 +59,23 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicIconMenu.module.css"; // plasmic-import: UH_ArPB1XbBj/css
 
+<<<<<<< HEAD
 import Icon4Icon from "../website_starter/icons/PlasmicIcon__Icon4"; // plasmic-import: XYEdqsKT1Z5t/icon
+=======
+import Icon4Icon from "./icons/PlasmicIcon__Icon4"; // plasmic-import: XYEdqsKT1Z5t/icon
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 import Icon354Icon from "./icons/PlasmicIcon__Icon354"; // plasmic-import: R6pCnTgSz3fi/icon
 import Icon72Icon from "./icons/PlasmicIcon__Icon72"; // plasmic-import: EUwxrMkUGe-J/icon
 import Icon73Icon from "./icons/PlasmicIcon__Icon73"; // plasmic-import: pBMO6x-EN_PM/icon

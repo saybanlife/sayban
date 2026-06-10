@@ -19,7 +19,11 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 // total control over the props for your component.
 export interface UserProps extends DefaultUserProps {}
 
+<<<<<<< HEAD
 function User_(props: UserProps, ref: HTMLElementRefOf<"div">) {
+=======
+function User_(props: UserProps, ref: HTMLElementRefOf<"section">) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   // Use PlasmicUser to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You

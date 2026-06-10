@@ -60,15 +60,25 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { BaseCheckbox } from "@plasmicpkgs/react-aria/skinny/registerCheckbox";
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicCheck.module.css"; // plasmic-import: jHhGioxaI9lI/css
 
+<<<<<<< HEAD
 import CheckIcon from "../website_starter/icons/PlasmicIcon__Check"; // plasmic-import: fM5bltoga8N0/icon
 import MinusIcon from "../website_starter/icons/PlasmicIcon__Minus"; // plasmic-import: taAusar-8P7Y/icon
+=======
+import CheckIcon from "./icons/PlasmicIcon__Check"; // plasmic-import: fM5bltoga8N0/icon
+import MinusIcon from "./icons/PlasmicIcon__Minus"; // plasmic-import: taAusar-8P7Y/icon
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 createPlasmicElementProxy;
 

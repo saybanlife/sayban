@@ -61,15 +61,25 @@ import {
 
 import Status from "../../Status"; // plasmic-import: UhSHXabmHrQP/component
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicItem.module.css"; // plasmic-import: lqR7VxT6h9YH/css
 
+<<<<<<< HEAD
 import Icon20Icon from "../website_starter/icons/PlasmicIcon__Icon20"; // plasmic-import: Sy9FntGzJUck/icon
 import Icon19Icon from "../website_starter/icons/PlasmicIcon__Icon19"; // plasmic-import: gxz20slK6TmF/icon
+=======
+import Icon20Icon from "./icons/PlasmicIcon__Icon20"; // plasmic-import: Sy9FntGzJUck/icon
+import Icon19Icon from "./icons/PlasmicIcon__Icon19"; // plasmic-import: gxz20slK6TmF/icon
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 createPlasmicElementProxy;
 
@@ -204,7 +214,11 @@ function PlasmicItem__RenderFunc(props: {
                 e?.plasmicType === "PlasmicUndefinedDataError"
               ) {
                 return {
+<<<<<<< HEAD
                   src: "/plasmic/website_starter/images/image6.png",
+=======
+                  src: "/plasmic/sayban/images/image6.png",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                   fullWidth: 224,
                   fullHeight: 224,
                   aspectRatio: undefined

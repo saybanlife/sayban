@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 .plasmic_tokens {
+=======
+.plasmic_tokens_ohDidvG9XsCeFumugENU3J {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
   --token-pRs3-4jrQ4XQ: var(--antd-colorPrimary);
   --plasmic-token-system-primary: var(--token-pRs3-4jrQ4XQ);
   --token-sn6Zb6km7CqW: var(--antd-colorSuccess);
@@ -568,5 +572,9 @@
 .__wab_expr_html_text {
   white-space: normal;
 }
+<<<<<<< HEAD
 :where(.root_reset) {
+=======
+:where(.root_reset_ohDidvG9XsCeFumugENU3J) {
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 }

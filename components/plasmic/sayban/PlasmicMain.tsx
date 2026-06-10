@@ -77,15 +77,25 @@ import MainPageReservations from "../../MainPageReservations"; // plasmic-import
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import Snackbar from "../../Snackbar"; // plasmic-import: CaodI8ra68z4/component
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicMain.module.css"; // plasmic-import: FYuKeNpu5zZ7/css
 
+<<<<<<< HEAD
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+=======
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 createPlasmicElementProxy;
 
@@ -1603,7 +1613,11 @@ function PlasmicMain__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
+<<<<<<< HEAD
                             "https://sayban.darkube.ir/webhook/panel/center/add",
+=======
+                            "https://sayban.darkube.app/webhook/panel/center/add",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                             undefined,
                             (() => {
                               try {
@@ -2109,7 +2123,11 @@ function PlasmicMain__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "POST",
+<<<<<<< HEAD
                         "https://sayban.darkube.ir/webhook/delete/center",
+=======
+                        "https://sayban.darkube.app/webhook/delete/center",
+>>>>>>> plasmicops/rQ6tUgoS/newMain
                         undefined,
                         {
                           id: $state.deleteSnakbar.data.id

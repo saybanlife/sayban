@@ -4,7 +4,11 @@ import * as React from "react";
 import {
   PlasmicToolsItem,
   DefaultToolsItemProps
+<<<<<<< HEAD
 } from "./plasmic/website_starter/PlasmicToolsItem";
+=======
+} from "./plasmic/sayban/PlasmicToolsItem";
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 
 // Your component props start with props for variants and slots you defined

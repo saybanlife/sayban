@@ -65,14 +65,23 @@ import MenuSection from "../../MenuSection"; // plasmic-import: PvgERH0q4dKA/com
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
+<<<<<<< HEAD
 import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+=======
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicReviews.module.css"; // plasmic-import: 4JcB7p9dG66n/css
 
+<<<<<<< HEAD
 import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+=======
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 import Icon115Icon from "./icons/PlasmicIcon__Icon115"; // plasmic-import: K82EqXtBnJoL/icon
 
@@ -661,7 +670,11 @@ function PlasmicReviews__RenderFunc(props: {
               }
             })()}
             shouldFetch={true}
+<<<<<<< HEAD
             url={"https://sayban.darkube.ir/webhook/get/reviews/"}
+=======
+            url={"https://sayban.darkube.app/webhook/get/reviews/"}
+>>>>>>> plasmicops/rQ6tUgoS/newMain
           />
 
           {(() => {

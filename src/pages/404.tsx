@@ -2,8 +2,13 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
+<<<<<<< HEAD
 import GlobalContextsProvider from "../../components/plasmic/website_starter/PlasmicGlobalContextsProvider";
 import { StyleTokensProvider } from "../../components/plasmic/website_starter/PlasmicStyleTokensProvider";
+=======
+import GlobalContextsProvider from "../../components/plasmic/sayban/PlasmicGlobalContextsProvider";
+import { StyleTokensProvider } from "../../components/plasmic/sayban/PlasmicStyleTokensProvider";
+>>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import { Plasmic_404 } from "../../components/plasmic/sayban/Plasmic_404";
 import { useRouter } from "next/router";
