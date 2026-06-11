@@ -73,6 +73,9 @@
     grid-column: 4;
   }
 }
+.rootpage_booking > * {
+  grid-column: 4;
+}
 .rootsearch2 > * {
   grid-column: 4;
 }
@@ -102,6 +105,32 @@
   grid-column: 4;
 }
 .rootpage_categories_search2 > * {
+  grid-column: 4;
+}
+.rootpage_categories_homePage2_home {
+  padding-right: var(--token-cfon0PHiXQoL);
+  padding-left: var(--token-cfon0PHiXQoL);
+}
+.rootpage_categories_homePage2_home > * {
+  grid-column: 4;
+}
+.roothomePage2_home_page_subcategories {
+  padding-right: var(--token-rfsFxiclAtek);
+  padding-left: var(--token-rfsFxiclAtek);
+}
+.roothomePage2_home_page_subcategories > * {
+  grid-column: 4;
+}
+.roothomePage2_home_page_center > * {
+  grid-column: 4;
+}
+.rootpage_payment_homePage2_home > * {
+  grid-column: 4;
+}
+.roothomePage2_home_page_editUser > * {
+  grid-column: 4;
+}
+.rootpage_booking_homePage2_home > * {
   grid-column: 4;
 }
 .sideEffect:global(.__wab_instance) {
@@ -149,6 +178,9 @@
 .homePagepage_editUser {
   display: none;
 }
+.homePagepage_booking {
+  display: none;
+}
 .section__iGcIn {
   display: grid;
   align-content: flex-start;
@@ -182,6 +214,12 @@
   .section__iGcIn > * {
     grid-column: 4;
   }
+}
+.sectionpage_booking__iGcInjjDoQ {
+  display: none;
+}
+.sectionpage_booking__iGcInjjDoQ > * {
+  grid-column: 4;
 }
 .freeBox__rU92E {
   display: flex;
@@ -252,6 +290,12 @@
   }
 }
 .sectionpage_categories__pJCrLnaUaI > * {
+  grid-column: 4;
+}
+.sectionpage_booking__pJCrLjjDoQ {
+  display: none;
+}
+.sectionpage_booking__pJCrLjjDoQ > * {
   grid-column: 4;
 }
 .sectionhomePage2_home__pJCrLRvb1B > * {
@@ -499,11 +543,11 @@
   flex-shrink: 0;
   padding: 8px;
 }
-.reveal__qDdch:global(.__wab_instance) {
+.reveal:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
 }
-.revealhomePage2_reminder__qDdchWvbFy:global(.__wab_instance) {
+.revealhomePage2_reminder:global(.__wab_instance) {
   display: none;
 }
 .user:global(.__wab_instance) {
@@ -528,20 +572,6 @@
   min-height: 0;
   display: grid;
 }
-.reveal__c55C0:global(.__wab_instance) {
-  max-width: 100%;
-  object-fit: cover;
-  display: none;
-}
-.revealhomePage2_reminder__c55C0WvbFy:global(.__wab_instance) {
-  display: none;
-}
-.revealhomePage2_booking__c55C0ZQze8:global(.__wab_instance) {
-  display: flex;
-}
-.booking:global(.__wab_instance) {
-  max-width: 100%;
-}
 .freeBox__yWuCa {
   display: flex;
   flex-direction: row;
@@ -554,6 +584,9 @@
   grid-column-start: 1 !important;
   grid-column-end: -1 !important;
   padding: 0px;
+}
+.freeBoxpage_booking__yWuCajjDoQ {
+  display: none;
 }
 .categories2:global(.__wab_instance) {
   max-width: 100%;
@@ -659,6 +692,9 @@
 .profilepage_payment:global(.__wab_instance) {
   display: none;
 }
+.profilepage_booking:global(.__wab_instance) {
+  display: flex;
+}
 .categories:global(.__wab_instance) {
   max-width: 100%;
   width: 100%;
@@ -689,6 +725,13 @@
   width: 100%;
   grid-column-start: 1 !important;
   grid-column-end: -1 !important;
+  display: grid;
+}
+.booking:global(.__wab_instance) {
+  max-width: 100%;
+  display: none;
+}
+.bookingpage_booking:global(.__wab_instance) {
   display: grid;
 }
 .payment:global(.__wab_instance) {

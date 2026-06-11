@@ -284,7 +284,23 @@ function PlasmicSubcategories__RenderFunc(props: {
         children={null}
         className={classNames("__wab_instance", sty.header)}
         search={true}
-        slot={"\u06a9\u0644\u06cc\u0646\u06cc\u06a9 \u0647\u0627"}
+        slot={
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.subcategori.name || "کلینیک ها";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "\u06a9\u0644\u06cc\u0646\u06cc\u06a9 \u0647\u0627";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        }
         slot2={
           <React.Fragment>
             <Search

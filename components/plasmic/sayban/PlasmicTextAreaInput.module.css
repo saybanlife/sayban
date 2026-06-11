@@ -45,6 +45,18 @@
   outline-style: none;
   border-bottom-color: var(--token-Yo4gdKCgyuAu);
 }
+.ariaTextAreatype_outline:global(.__wab_instance) {
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-top-width: 1px;
+  border-top-style: solid;
+  background: var(--token-KPGXdu9o7llP);
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: var(--token-rfsFxiclAtek);
+  border-color: var(--token-pyhDq7s0RTkz);
+}
 .ariaTextAreaflat_top:global(.__wab_instance) {
   border-top-left-radius: 0rem;
   border-top-right-radius: 0rem;

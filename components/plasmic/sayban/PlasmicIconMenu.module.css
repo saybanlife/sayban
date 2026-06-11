@@ -16,13 +16,13 @@
   -webkit-transition-timing-function: ease-in-out;
   -webkit-transition-duration: 0.3s;
   border-radius: 50px;
-  padding: var(--token-RuQNZpYm0Yds) var(--token-rfsFxiclAtek)
-    var(--token-RuQNZpYm0Yds) var(--token-LBC0X5IbL9bo);
+  padding: var(--token-RuQNZpYm0Yds) var(--token-TONjX_YbO9_T)
+    var(--token-RuQNZpYm0Yds) var(--token-73iLa06AE6f4);
 }
 .rootselect {
   background: #e1d5ab;
-  padding: var(--token-RuQNZpYm0Yds) var(--token-rfsFxiclAtek)
-    var(--token-RuQNZpYm0Yds) var(--token-LBC0X5IbL9bo);
+  padding: var(--token-RuQNZpYm0Yds) var(--token-TONjX_YbO9_T)
+    var(--token-RuQNZpYm0Yds) var(--token-ekJK2BNXfyOR);
 }
 .svg {
   object-fit: cover;
@@ -42,7 +42,7 @@
   max-width: 100%;
   text-align: center;
   color: var(--token-1aP3XjRZIKFV);
-  font-size: var(--token-N8Pb0ZuDQAeF);
+  font-size: var(--token-Tca_MqWoqq_b);
   transition-property: all;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;

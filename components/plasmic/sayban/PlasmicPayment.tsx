@@ -64,6 +64,7 @@ import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Service2 from "../../Service2"; // plasmic-import: -12Fp4g9XO2-/component
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
+import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
 import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo/component
 import Checkbox from "../../Checkbox"; // plasmic-import: 7eMtZduHzknK/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
@@ -108,6 +109,7 @@ export type PlasmicPayment__OverridesType = {
   service2?: Flex__<typeof Service2>;
   img?: Flex__<typeof PlasmicImg__>;
   textCollapse?: Flex__<typeof TextCollapse>;
+  textAreaInput?: Flex__<typeof TextAreaInput>;
   checkboxGroup?: Flex__<typeof CheckboxGroup>;
   option1?: Flex__<typeof Checkbox>;
   section?: Flex__<"section">;
@@ -357,6 +359,12 @@ function PlasmicPayment__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "textAreaInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -501,12 +509,12 @@ function PlasmicPayment__RenderFunc(props: {
                         data-plasmic-override={overrides.img}
                         alt={""}
                         className={classNames(sty.img)}
-                        displayHeight={"3rem"}
+                        displayHeight={"4rem"}
                         displayMaxHeight={"none"}
                         displayMaxWidth={"100%"}
                         displayMinHeight={"0"}
                         displayMinWidth={"0"}
-                        displayWidth={"3rem"}
+                        displayWidth={"4rem"}
                         loading={"lazy"}
                         src={(() => {
                           try {
@@ -642,6 +650,62 @@ function PlasmicPayment__RenderFunc(props: {
                   {""}
                 </div>
                 <div className={classNames("all", sty.freeBox__pnxjD)}>
+                  <div
+                    className={classNames("all", sty.freeBox__aSrxN, "dark")}
+                  >
+                    <div className={classNames("all", sty.freeBox__lwEdD)}>
+                      <div
+                        className={classNames(
+                          "all",
+                          "__wab_text",
+                          sty.text__gDuzf
+                        )}
+                      >
+                        {
+                          "\u0639\u0644\u062a \u0645\u0631\u0627\u062c\u0639\u0647"
+                        }
+                      </div>
+                    </div>
+                    <TextAreaInput
+                      data-plasmic-name={"textAreaInput"}
+                      data-plasmic-override={overrides.textAreaInput}
+                      autoFocus={false}
+                      className={classNames(
+                        "__wab_instance",
+                        sty.textAreaInput
+                      )}
+                      disabled={false}
+                      onChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "textAreaInput",
+                          "value"
+                        ]).apply(null, eventArgs);
+
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
+                          return;
+                        }
+                      }}
+                      padded={[]}
+                      placeholder={
+                        "\u0644\u0637\u0641\u0627 \u0634\u0631\u062d \u062d\u0627\u0644 \u0648 \u0639\u0644\u0627\u0626\u0645 \u062e\u0648\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f..."
+                      }
+                      readOnly={false}
+                      type={"outline"}
+                      value={generateStateValueProp($state, [
+                        "textAreaInput",
+                        "value"
+                      ])}
+                    />
+                  </div>
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__lDrs)}
+                  >
+                    {""}
+                  </div>
                   <div className={classNames("all", sty.freeBox__bC6ZC)}>
                     <div className={classNames("all", sty.freeBox__kt5M7)}>
                       <div
@@ -928,7 +992,7 @@ function PlasmicPayment__RenderFunc(props: {
                     />
                   </div>
                   <div
-                    className={classNames("all", "__wab_text", sty.text__lDrs)}
+                    className={classNames("all", "__wab_text", sty.text__mPoub)}
                   >
                     {""}
                   </div>
@@ -1345,6 +1409,7 @@ const PlasmicDescendants = {
     "service2",
     "img",
     "textCollapse",
+    "textAreaInput",
     "checkboxGroup",
     "option1",
     "section",
@@ -1360,6 +1425,7 @@ const PlasmicDescendants = {
     "service2",
     "img",
     "textCollapse",
+    "textAreaInput",
     "checkboxGroup",
     "option1",
     "section",
@@ -1371,6 +1437,7 @@ const PlasmicDescendants = {
   service2: ["service2", "img", "textCollapse"],
   img: ["img"],
   textCollapse: ["textCollapse"],
+  textAreaInput: ["textAreaInput"],
   checkboxGroup: ["checkboxGroup", "option1"],
   option1: ["option1"],
   section: ["section", "online", "button", "inPerson", "button2"],
@@ -1390,6 +1457,7 @@ type NodeDefaultElementType = {
   service2: typeof Service2;
   img: typeof PlasmicImg__;
   textCollapse: typeof TextCollapse;
+  textAreaInput: typeof TextAreaInput;
   checkboxGroup: typeof CheckboxGroup;
   option1: typeof Checkbox;
   section: "section";
@@ -1467,6 +1535,7 @@ export const PlasmicPayment = Object.assign(
     service2: makeNodeComponent("service2"),
     img: makeNodeComponent("img"),
     textCollapse: makeNodeComponent("textCollapse"),
+    textAreaInput: makeNodeComponent("textAreaInput"),
     checkboxGroup: makeNodeComponent("checkboxGroup"),
     option1: makeNodeComponent("option1"),
     section: makeNodeComponent("section"),

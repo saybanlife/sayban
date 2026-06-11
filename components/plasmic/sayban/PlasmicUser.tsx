@@ -70,8 +70,9 @@ import sty from "./PlasmicUser.module.css"; // plasmic-import: PVZXFz1DIsfR/css
 
 import Icon88Icon from "./icons/PlasmicIcon__Icon88"; // plasmic-import: aFZZTVjUhsRZ/icon
 import Icon70Icon from "./icons/PlasmicIcon__Icon70"; // plasmic-import: PWsALiD1VW02/icon
-import MessageIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Message"; // plasmic-import: r2jZeTOT_KvL/icon
+import Icon264Icon from "./icons/PlasmicIcon__Icon264"; // plasmic-import: 7YjsND1KK6EP/icon
 import Icon76Icon from "./icons/PlasmicIcon__Icon76"; // plasmic-import: PNmvwHPTSPVF/icon
+import MessageIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Message"; // plasmic-import: r2jZeTOT_KvL/icon
 import TagIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Tag"; // plasmic-import: 719VbVnZMlwm/icon
 import Icon78Icon from "./icons/PlasmicIcon__Icon78"; // plasmic-import: rn5Sm-68bTpC/icon
 import BrandTelegramIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__BrandTelegram"; // plasmic-import: 4E611EcCApzn/icon
@@ -92,11 +93,13 @@ export const PlasmicUser__VariantProps = new Array<VariantPropType>();
 export type PlasmicUser__ArgsType = {
   userinfo?: any;
   goToEdit?: (event: any) => void;
+  goToBooking?: (event: any) => void;
 };
 type ArgPropType = keyof PlasmicUser__ArgsType;
 export const PlasmicUser__ArgProps = new Array<ArgPropType>(
   "userinfo",
-  "goToEdit"
+  "goToEdit",
+  "goToBooking"
 );
 
 export type PlasmicUser__OverridesType = {
@@ -110,6 +113,7 @@ export type PlasmicUser__OverridesType = {
 export interface DefaultUserProps {
   userinfo?: any;
   goToEdit?: (event: any) => void;
+  goToBooking?: (event: any) => void;
   className?: string;
 }
 
@@ -282,6 +286,28 @@ function PlasmicUser__RenderFunc(props: {
       </section>
       <div className={classNames("all", sty.freeBox___9IFyv)}>
         <div className={classNames("all", sty.freeBox___9JjmT)}>
+          <div
+            className={classNames("all", sty.freeBox__en7Fw)}
+            onClick={args.goToBooking}
+          >
+            <Icon264Icon
+              className={classNames("all", sty.svg__vtuG1)}
+              role={"img"}
+            />
+
+            <div className={classNames("all", "__wab_text", sty.text__znMkH)}>
+              {"\u0631\u0632\u0631\u0648 \u0647\u0627\u06cc \u0634\u0645\u0627"}
+            </div>
+            <Icon76Icon
+              className={classNames("all", sty.svg__yb2Pb)}
+              role={"img"}
+            />
+          </div>
+          <Line
+            className={classNames("__wab_instance", sty.line__ixqxs)}
+            size={"small"}
+          />
+
           <div className={classNames("all", sty.freeBox___5C91)}>
             <MessageIcon
               className={classNames("all", sty.svg__ybHfZ)}

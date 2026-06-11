@@ -22,6 +22,7 @@
 }
 .root[data-disabled][data-disabled]:global(.__wab_instance) {
   cursor: not-allowed;
+  opacity: 0.4;
 }
 .rootcolor_neutral:global(.__wab_instance) {
   background: var(--token-h2xt7bB598yU);

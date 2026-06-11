@@ -69,6 +69,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicBookingHeader.module.css"; // plasmic-import: K9ETXxPuQRCy/css
 
+import Icon33Icon from "./icons/PlasmicIcon__Icon33"; // plasmic-import: MJBmXdq7GQ5D/icon
 import Icon90Icon from "./icons/PlasmicIcon__Icon90"; // plasmic-import: fhMmwnceyLh4/icon
 import SquareXIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__SquareX"; // plasmic-import: vlg82PNC_PuM/icon
 import Icon91Icon from "./icons/PlasmicIcon__Icon91"; // plasmic-import: lnClONjnY1AS/icon
@@ -257,95 +258,133 @@ function PlasmicBookingHeader__RenderFunc(props: {
         }}
       />
 
-      <div className={classNames("all", sty.freeBox__ftmfq)}>
-        <div className={classNames("all", "__wab_text", sty.text__ibP8V)}>
-          {
-            "\u0633\u0648\u0627\u0628\u0642 \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a\u200c\u0647\u0627"
-          }
+      <div className={classNames("all", sty.freeBox__ld68V)}>
+        <Icon33Icon
+          className={classNames("all", sty.svg__vmNc)}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["runCode"] = true
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return window.history.back();
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runCode"] != null &&
+              typeof $steps["runCode"] === "object" &&
+              typeof $steps["runCode"].then === "function"
+            ) {
+              $steps["runCode"] = await $steps["runCode"];
+            }
+          }}
+          role={"img"}
+        />
+
+        <div className={classNames("all", sty.freeBox__ftmfq)}>
+          <div className={classNames("all", "__wab_text", sty.text__ibP8V)}>
+            {
+              "\u0633\u0648\u0627\u0628\u0642 \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a\u200c\u0647\u0627"
+            }
+          </div>
+          <PlasmicIcon__
+            PlasmicIconType={
+              hasVariant($state, "filter", "filter") ? Icon90Icon : Icon90Icon
+            }
+            className={classNames("all", sty.svg__nOvDd, {
+              [sty.svgfilter__nOvDdLrf0Y]: hasVariant(
+                $state,
+                "filter",
+                "filter"
+              )
+            })}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateFilter"] = true
+                ? (() => {
+                    const actionArgs = {
+                      vgroup: "filter",
+                      operation: 2,
+                      value: "filter"
+                    };
+                    return (({ vgroup, value }) => {
+                      if (typeof value === "string") {
+                        value = [value];
+                      }
+
+                      const oldValue = $stateGet($state, vgroup);
+                      $stateSet($state, vgroup, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateFilter"] != null &&
+                typeof $steps["updateFilter"] === "object" &&
+                typeof $steps["updateFilter"].then === "function"
+              ) {
+                $steps["updateFilter"] = await $steps["updateFilter"];
+              }
+            }}
+            role={"img"}
+          />
+
+          <SquareXIcon
+            className={classNames("all", sty.svg__iiQq6, {
+              [sty.svgfilter__iiQq6Lrf0Y]: hasVariant(
+                $state,
+                "filter",
+                "filter"
+              )
+            })}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateFilter"] = true
+                ? (() => {
+                    const actionArgs = {
+                      vgroup: "filter",
+                      operation: 2,
+                      value: "filter"
+                    };
+                    return (({ vgroup, value }) => {
+                      if (typeof value === "string") {
+                        value = [value];
+                      }
+
+                      const oldValue = $stateGet($state, vgroup);
+                      $stateSet($state, vgroup, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateFilter"] != null &&
+                typeof $steps["updateFilter"] === "object" &&
+                typeof $steps["updateFilter"].then === "function"
+              ) {
+                $steps["updateFilter"] = await $steps["updateFilter"];
+              }
+            }}
+            role={"img"}
+          />
+
+          <Embed
+            data-plasmic-name={"embedHtml"}
+            data-plasmic-override={overrides.embedHtml}
+            className={classNames("__wab_instance", sty.embedHtml)}
+            code={
+              '<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>\r\n'
+            }
+          />
         </div>
-        <PlasmicIcon__
-          PlasmicIconType={
-            hasVariant($state, "filter", "filter") ? Icon90Icon : Icon90Icon
-          }
-          className={classNames("all", sty.svg__nOvDd, {
-            [sty.svgfilter__nOvDdLrf0Y]: hasVariant($state, "filter", "filter")
-          })}
-          onClick={async event => {
-            const $steps = {};
-
-            $steps["updateFilter"] = true
-              ? (() => {
-                  const actionArgs = {
-                    vgroup: "filter",
-                    operation: 2,
-                    value: "filter"
-                  };
-                  return (({ vgroup, value }) => {
-                    if (typeof value === "string") {
-                      value = [value];
-                    }
-
-                    const oldValue = $stateGet($state, vgroup);
-                    $stateSet($state, vgroup, !oldValue);
-                    return !oldValue;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["updateFilter"] != null &&
-              typeof $steps["updateFilter"] === "object" &&
-              typeof $steps["updateFilter"].then === "function"
-            ) {
-              $steps["updateFilter"] = await $steps["updateFilter"];
-            }
-          }}
-          role={"img"}
-        />
-
-        <SquareXIcon
-          className={classNames("all", sty.svg__iiQq6, {
-            [sty.svgfilter__iiQq6Lrf0Y]: hasVariant($state, "filter", "filter")
-          })}
-          onClick={async event => {
-            const $steps = {};
-
-            $steps["updateFilter"] = true
-              ? (() => {
-                  const actionArgs = {
-                    vgroup: "filter",
-                    operation: 2,
-                    value: "filter"
-                  };
-                  return (({ vgroup, value }) => {
-                    if (typeof value === "string") {
-                      value = [value];
-                    }
-
-                    const oldValue = $stateGet($state, vgroup);
-                    $stateSet($state, vgroup, !oldValue);
-                    return !oldValue;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["updateFilter"] != null &&
-              typeof $steps["updateFilter"] === "object" &&
-              typeof $steps["updateFilter"].then === "function"
-            ) {
-              $steps["updateFilter"] = await $steps["updateFilter"];
-            }
-          }}
-          role={"img"}
-        />
-
-        <Embed
-          data-plasmic-name={"embedHtml"}
-          data-plasmic-override={overrides.embedHtml}
-          className={classNames("__wab_instance", sty.embedHtml)}
-          code={
-            '<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>\r\n'
-          }
-        />
       </div>
       <div
         className={classNames("all", sty.freeBox__jwSv, {
