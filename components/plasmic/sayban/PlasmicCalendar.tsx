@@ -162,6 +162,8 @@ function PlasmicCalendar__RenderFunc(props: {
     [$props, $ctx, $refs]
   );
 
+  const $globalActions = useGlobalActions?.();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -273,6 +275,28 @@ function PlasmicCalendar__RenderFunc(props: {
                 typeof $steps["updateSelected2"].then === "function"
               ) {
                 $steps["updateSelected2"] = await $steps["updateSelected2"];
+              }
+
+              $steps["updateSelected3"] = $state.dayItem[currentIndex].disable
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "error",
+                        "\u062e\u062f\u0645\u0627\u062a \u062f\u0631 \u0631\u0648\u0632\u0647\u0627\u06cc \u062a\u0639\u0637\u06cc\u0644 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644 \u0627\u0633\u062a",
+                        "bottom-center"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSelected3"] != null &&
+                typeof $steps["updateSelected3"] === "object" &&
+                typeof $steps["updateSelected3"].then === "function"
+              ) {
+                $steps["updateSelected3"] = await $steps["updateSelected3"];
               }
             },
             onDisableChange: async (...eventArgs: any) => {
