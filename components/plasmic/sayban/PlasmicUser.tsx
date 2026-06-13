@@ -60,6 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
+import Item2 from "../../Item2"; // plasmic-import: I4tZXoBGdFDz/component
 import Switch from "../../Switch"; // plasmic-import: gmLkAM4DXGYW/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -106,6 +107,7 @@ export type PlasmicUser__OverridesType = {
   root?: Flex__<"section">;
   section?: Flex__<"section">;
   img?: Flex__<typeof PlasmicImg__>;
+  item2?: Flex__<typeof Item2>;
   _switch?: Flex__<typeof Switch>;
   switch2?: Flex__<typeof Switch>;
 };
@@ -315,7 +317,7 @@ function PlasmicUser__RenderFunc(props: {
             />
 
             <div className={classNames("all", "__wab_text", sty.text__sU1Id)}>
-              {"\u067e\u06cc\u0627\u0645"}
+              {"\u0627\u0637\u0644\u0627\u0639\u06cc\u0647 \u0647\u0627"}
             </div>
             <Icon76Icon
               className={classNames("all", sty.svg__gMpm)}
@@ -364,22 +366,11 @@ function PlasmicUser__RenderFunc(props: {
             size={"small"}
           />
 
-          <div className={classNames("all", sty.freeBox__vnrYw)}>
-            <BrandTelegramIcon
-              className={classNames("all", sty.svg__h4Emz)}
-              role={"img"}
-            />
-
-            <div className={classNames("all", "__wab_text", sty.text__nLr14)}>
-              {
-                "\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u062a\u0644\u06af\u0631\u0627\u0645\u06cc"
-              }
-            </div>
-            <Icon76Icon
-              className={classNames("all", sty.svg__wcYd6)}
-              role={"img"}
-            />
-          </div>
+          <Item2
+            data-plasmic-name={"item2"}
+            data-plasmic-override={overrides.item2}
+            className={classNames("__wab_instance", sty.item2)}
+          />
         </div>
         <div className={classNames("all", sty.freeBox___4PsTr)}>
           <div className={classNames("all", sty.freeBox__er2Gs)}>
@@ -459,7 +450,37 @@ function PlasmicUser__RenderFunc(props: {
           </div>
         </div>
         <div className={classNames("all", sty.freeBox__wCec3)}>
-          <div className={classNames("all", sty.freeBox__npzrb)}>
+          <div
+            className={classNames("all", sty.freeBox__npzrb)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = { destination: `/${"user"}/${"about"}` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+          >
             <Icon81Icon
               className={classNames("all", sty.svg__oFjmx)}
               role={"img"}
@@ -478,7 +499,51 @@ function PlasmicUser__RenderFunc(props: {
             size={"small"}
           />
 
-          <div className={classNames("all", sty.freeBox__aPmkP)}>
+          <div
+            className={classNames("all", sty.freeBox__aPmkP)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${"user"}/${(() => {
+                        try {
+                          return "FAQ";
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+          >
             <Icon83Icon
               className={classNames("all", sty.svg__xF93B)}
               role={"img"}
@@ -499,7 +564,39 @@ function PlasmicUser__RenderFunc(props: {
             size={"small"}
           />
 
-          <div className={classNames("all", sty.freeBox__chlYp)}>
+          <div
+            className={classNames("all", sty.freeBox__chlYp)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${"user"}/${"rules "}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+          >
             <Icon84Icon
               className={classNames("all", sty.svg__xY61)}
               role={"img"}
@@ -540,9 +637,10 @@ function PlasmicUser__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "section", "img", "_switch", "switch2"],
+  root: ["root", "section", "img", "item2", "_switch", "switch2"],
   section: ["section", "img"],
   img: ["img"],
+  item2: ["item2"],
   _switch: ["_switch"],
   switch2: ["switch2"]
 } as const;
@@ -553,6 +651,7 @@ type NodeDefaultElementType = {
   root: "section";
   section: "section";
   img: typeof PlasmicImg__;
+  item2: typeof Item2;
   _switch: typeof Switch;
   switch2: typeof Switch;
 };
@@ -621,6 +720,7 @@ export const PlasmicUser = Object.assign(
     // Helper components rendering sub-elements
     section: makeNodeComponent("section"),
     img: makeNodeComponent("img"),
+    item2: makeNodeComponent("item2"),
     _switch: makeNodeComponent("_switch"),
     switch2: makeNodeComponent("switch2"),
 

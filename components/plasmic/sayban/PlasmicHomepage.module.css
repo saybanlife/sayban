@@ -181,6 +181,15 @@
 .homePagepage_booking {
   display: none;
 }
+.homePagepage_about {
+  display: none;
+}
+.homePagepage_faq {
+  display: none;
+}
+.homePagepage_rules {
+  display: none;
+}
 .section__iGcIn {
   display: grid;
   align-content: flex-start;
@@ -588,6 +597,15 @@
 .freeBoxpage_booking__yWuCajjDoQ {
   display: none;
 }
+.freeBoxpage_about__yWuCaObsAs {
+  display: none;
+}
+.freeBoxpage_faq__yWuCaWotZ1 {
+  display: none;
+}
+.freeBoxpage_rules__yWuCau6Lbx {
+  display: none;
+}
 .categories2:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
@@ -747,6 +765,34 @@
     grid-column-start: 1 !important;
     grid-column-end: -1 !important;
   }
+}
+.about:global(.__wab_instance) {
+  max-width: 100%;
+  display: none;
+}
+.aboutpage_about:global(.__wab_instance) {
+  display: grid;
+}
+.faQs:global(.__wab_instance) {
+  max-width: 100%;
+  display: none;
+}
+.faQspage_faq:global(.__wab_instance) {
+  display: grid;
+}
+.rules:global(.__wab_instance) {
+  max-width: 100%;
+  display: none;
+}
+.rulespage_rules:global(.__wab_instance) {
+  display: grid;
+}
+.editUser:global(.__wab_instance) {
+  max-width: 100%;
+  display: none;
+}
+.editUserpage_editUser:global(.__wab_instance) {
+  display: grid;
 }
 .search:global(.__wab_instance) {
   max-width: 100%;

@@ -28622,6 +28622,84 @@
           "cssFilePath": "plasmic/sayban/PlasmicMainPageCategories.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "8rDS_Sjrq9jD",
+          "name": "AddressModal",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicAddressModal.tsx",
+          "importSpec": {
+            "modulePath": "AddressModal.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicAddressModal.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "HCruh85VppFE",
+          "name": "About",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicAbout.tsx",
+          "importSpec": {
+            "modulePath": "About.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicAbout.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "yPuIj8DNJTuo",
+          "name": "FaQs",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicFaQs.tsx",
+          "importSpec": {
+            "modulePath": "FaQs.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicFaQs.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "I4tZXoBGdFDz",
+          "name": "Item2",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicItem2.tsx",
+          "importSpec": {
+            "modulePath": "Item2.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicItem2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "QNZBG-ZiRePi",
+          "name": "Rules",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicRules.tsx",
+          "importSpec": {
+            "modulePath": "Rules.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicRules.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "EmnESI2odNrR",
+          "name": "About2",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicAbout2.tsx",
+          "importSpec": {
+            "modulePath": "About2.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicAbout2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -29551,6 +29629,16 @@
           "id": "u8RxBtxSGOa5",
           "name": "image 26",
           "filePath": "../public/plasmic/sayban/images/image26.png"
+        },
+        {
+          "id": "wY3XWqZOlshG",
+          "name": "af3dd6b9-4ebe-41e5-a9d1-bd2d1b8e72b4.png",
+          "filePath": "../public/plasmic/sayban/images/af3Dd6B94Ebe41E5A9D1Bd2D1B8E72B4Png.png"
+        },
+        {
+          "id": "9SEIIaPE8bmz",
+          "name": "image 27",
+          "filePath": "../public/plasmic/sayban/images/image27.png"
         }
       ],
       "indirect": false,

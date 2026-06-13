@@ -72,6 +72,10 @@ import Subcategories from "../../Subcategories"; // plasmic-import: JM9_woEGqy8m
 import Center from "../../Center"; // plasmic-import: Lh-Py4-EsRhC/component
 import Booking from "../../Booking"; // plasmic-import: f1blqtlMCCYK/component
 import Payment from "../../Payment"; // plasmic-import: BVIyToFh1miy/component
+import About from "../../About"; // plasmic-import: HCruh85VppFE/component
+import FaQs from "../../FaQs"; // plasmic-import: yPuIj8DNJTuo/component
+import Rules from "../../Rules"; // plasmic-import: QNZBG-ZiRePi/component
+import EditUser from "../../EditUser"; // plasmic-import: gFlyeK2pwR_U/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -126,7 +130,10 @@ export type PlasmicHomepage__VariantMembers = {
     | "center"
     | "payment"
     | "editUser"
-    | "booking";
+    | "booking"
+    | "about"
+    | "faq"
+    | "rules";
   search2: "search2";
   homePage2: "home" | "reminder" | "user" | "booking";
 };
@@ -138,6 +145,9 @@ export type PlasmicHomepage__VariantsArgs = {
     | "payment"
     | "editUser"
     | "booking"
+    | "about"
+    | "faq"
+    | "rules"
   >;
   search2?: SingleBooleanChoiceArg<"search2">;
   homePage2?: SingleChoiceArg<"home" | "reminder" | "user" | "booking">;
@@ -171,6 +181,10 @@ export type PlasmicHomepage__OverridesType = {
   center?: Flex__<typeof Center>;
   booking?: Flex__<typeof Booking>;
   payment?: Flex__<typeof Payment>;
+  about?: Flex__<typeof About>;
+  faQs?: Flex__<typeof FaQs>;
+  rules?: Flex__<typeof Rules>;
+  editUser?: Flex__<typeof EditUser>;
   search?: Flex__<typeof ApiRequest>;
 };
 
@@ -260,6 +274,10 @@ function PlasmicHomepage__RenderFunc(props: {
                 if ($ctx.params?.slug?.includes("center")) return "center";
                 if ($ctx.params?.slug?.includes("editProfile"))
                   return "editUser";
+                if ($ctx.params?.slug?.includes("booking")) return "booking";
+                if ($ctx.params?.slug?.includes("FAQ")) return "faq";
+                if ($ctx.params?.slug?.includes("about")) return "about";
+                if ($ctx.params?.slug?.includes("rules")) return "rules";
                 if ($ctx.params?.slug?.[1] != undefined) return "subcategories";
                 if ($ctx.params?.slug?.[0] != undefined) return "categories";
               })();
@@ -427,6 +445,37 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "about.subcategories",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "rules.subcategories",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "editUser.openCity",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $ctx.query?.city == "true";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -611,6 +660,26 @@ function PlasmicHomepage__RenderFunc(props: {
               ) {
                 $steps["updateToken"] = await $steps["updateToken"];
               }
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return $ctx.query.city == "true";
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
             }}
           />
 
@@ -623,6 +692,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 "homePage2",
                 "reminder"
               ),
+              [sty.homePagepage_about]: hasVariant($state, "page", "about"),
               [sty.homePagepage_booking]: hasVariant($state, "page", "booking"),
               [sty.homePagepage_categories]: hasVariant(
                 $state,
@@ -635,7 +705,9 @@ function PlasmicHomepage__RenderFunc(props: {
                 "page",
                 "editUser"
               ),
+              [sty.homePagepage_faq]: hasVariant($state, "page", "faq"),
               [sty.homePagepage_payment]: hasVariant($state, "page", "payment"),
+              [sty.homePagepage_rules]: hasVariant($state, "page", "rules"),
               [sty.homePagepage_subcategories]: hasVariant(
                 $state,
                 "page",
@@ -1341,6 +1413,11 @@ function PlasmicHomepage__RenderFunc(props: {
                 "homePage2",
                 "home"
               ),
+              [sty.freeBoxpage_about__yWuCaObsAs]: hasVariant(
+                $state,
+                "page",
+                "about"
+              ),
               [sty.freeBoxpage_booking__yWuCajjDoQ]: hasVariant(
                 $state,
                 "page",
@@ -1350,6 +1427,16 @@ function PlasmicHomepage__RenderFunc(props: {
                 $state,
                 "page",
                 "categories"
+              ),
+              [sty.freeBoxpage_faq__yWuCaWotZ1]: hasVariant(
+                $state,
+                "page",
+                "faq"
+              ),
+              [sty.freeBoxpage_rules__yWuCau6Lbx]: hasVariant(
+                $state,
+                "page",
+                "rules"
               )
             })}
           >
@@ -1716,6 +1803,9 @@ function PlasmicHomepage__RenderFunc(props: {
                 "homePage2",
                 "reminder"
               ),
+              [sty.profilehomePage2_user_page_booking]:
+                hasVariant($state, "page", "booking") &&
+                hasVariant($state, "homePage2", "user"),
               [sty.profilepage_booking]: hasVariant($state, "page", "booking"),
               [sty.profilepage_categories]: hasVariant(
                 $state,
@@ -2282,6 +2372,9 @@ function PlasmicHomepage__RenderFunc(props: {
                 "homePage2",
                 "booking"
               ),
+              [sty.bookinghomePage2_user_page_booking]:
+                hasVariant($state, "page", "booking") &&
+                hasVariant($state, "homePage2", "user"),
               [sty.bookingpage_booking]: hasVariant($state, "page", "booking"),
               [sty.bookingpage_center]: hasVariant($state, "page", "center"),
               [sty.bookingpage_editUser]: hasVariant(
@@ -2424,6 +2517,223 @@ function PlasmicHomepage__RenderFunc(props: {
             }
           />
 
+          <About
+            data-plasmic-name={"about"}
+            data-plasmic-override={overrides.about}
+            className={classNames("__wab_instance", sty.about, {
+              [sty.aboutpage_about]: hasVariant($state, "page", "about"),
+              [sty.aboutpage_faq]: hasVariant($state, "page", "faq"),
+              [sty.aboutpage_rules]: hasVariant($state, "page", "rules")
+            })}
+            onSubcategoriesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "about",
+                "subcategories"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            subcategories={generateStateValueProp($state, [
+              "about",
+              "subcategories"
+            ])}
+          />
+
+          <FaQs
+            data-plasmic-name={"faQs"}
+            data-plasmic-override={overrides.faQs}
+            className={classNames("__wab_instance", sty.faQs, {
+              [sty.faQshomePage2_user_page_faq]:
+                hasVariant($state, "page", "faq") &&
+                hasVariant($state, "homePage2", "user"),
+              [sty.faQspage_about]: hasVariant($state, "page", "about"),
+              [sty.faQspage_faq]: hasVariant($state, "page", "faq")
+            })}
+          />
+
+          <Rules
+            data-plasmic-name={"rules"}
+            data-plasmic-override={overrides.rules}
+            className={classNames("__wab_instance", sty.rules, {
+              [sty.rulespage_rules]: hasVariant($state, "page", "rules")
+            })}
+            onSubcategoriesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "rules",
+                "subcategories"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            subcategories={generateStateValueProp($state, [
+              "rules",
+              "subcategories"
+            ])}
+          />
+
+          {(() => {
+            const child$Props = {
+              cityBack: async () => {
+                const $steps = {};
+
+                $steps["goToHomepage"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        destination: `/${(() => {
+                          try {
+                            return $ctx.params.page;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}/${"editProfile"}`
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToHomepage"] != null &&
+                  typeof $steps["goToHomepage"] === "object" &&
+                  typeof $steps["goToHomepage"].then === "function"
+                ) {
+                  $steps["goToHomepage"] = await $steps["goToHomepage"];
+                }
+              },
+              className: classNames("__wab_instance", sty.editUser, {
+                [sty.editUserhomePage2_user]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "user"
+                ),
+                [sty.editUserpage_editUser]: hasVariant(
+                  $state,
+                  "page",
+                  "editUser"
+                )
+              }),
+              data: $state.profile?.data?.result || {},
+
+              onOpenCityChange2: async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "editUser",
+                  "openCity"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              },
+              openCity: generateStateValueProp($state, [
+                "editUser",
+                "openCity"
+              ]),
+              opencity: async event => {
+                const $steps = {};
+
+                $steps["goToHomepage"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        destination: `/${(() => {
+                          try {
+                            return $ctx.params.page;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}/${"editProfile"}?city=${"true"}`
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToHomepage"] != null &&
+                  typeof $steps["goToHomepage"] === "object" &&
+                  typeof $steps["goToHomepage"].then === "function"
+                ) {
+                  $steps["goToHomepage"] = await $steps["goToHomepage"];
+                }
+              }
+            };
+
+            initializePlasmicStates(
+              $state,
+              [
+                {
+                  name: "editUser.openCity",
+                  initFunc: ({ $props, $state, $queries, $q }) =>
+                    (() => {
+                      try {
+                        return $ctx.query?.city == "true";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return false;
+                        }
+                        throw e;
+                      }
+                    })()
+                }
+              ],
+              []
+            );
+            return (
+              <EditUser
+                data-plasmic-name={"editUser"}
+                data-plasmic-override={overrides.editUser}
+                {...child$Props}
+              />
+            );
+          })()}
           <ApiRequest
             data-plasmic-name={"search"}
             data-plasmic-override={overrides.search}
@@ -2540,6 +2850,10 @@ const PlasmicDescendants = {
     "center",
     "booking",
     "payment",
+    "about",
+    "faQs",
+    "rules",
+    "editUser",
     "search"
   ],
   sideEffect: ["sideEffect"],
@@ -2566,6 +2880,10 @@ const PlasmicDescendants = {
   center: ["center"],
   booking: ["booking"],
   payment: ["payment"],
+  about: ["about"],
+  faQs: ["faQs"],
+  rules: ["rules"],
+  editUser: ["editUser"],
   search: ["search"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -2589,6 +2907,10 @@ type NodeDefaultElementType = {
   center: typeof Center;
   booking: typeof Booking;
   payment: typeof Payment;
+  about: typeof About;
+  faQs: typeof FaQs;
+  rules: typeof Rules;
+  editUser: typeof EditUser;
   search: typeof ApiRequest;
 };
 
@@ -2670,6 +2992,10 @@ export const PlasmicHomepage = Object.assign(
     center: makeNodeComponent("center"),
     booking: makeNodeComponent("booking"),
     payment: makeNodeComponent("payment"),
+    about: makeNodeComponent("about"),
+    faQs: makeNodeComponent("faQs"),
+    rules: makeNodeComponent("rules"),
+    editUser: makeNodeComponent("editUser"),
     search: makeNodeComponent("search"),
 
     // Metadata about props expected for PlasmicHomepage

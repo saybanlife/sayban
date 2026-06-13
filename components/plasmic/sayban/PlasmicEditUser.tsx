@@ -86,13 +86,17 @@ export const PlasmicEditUser__VariantProps = new Array<VariantPropType>();
 export type PlasmicEditUser__ArgsType = {
   data?: any;
   opencity?: (event: any) => void;
-  opencity2?: boolean;
+  openCity?: boolean;
+  onOpenCityChange2?: (val: string) => void;
+  cityBack?: () => void;
 };
 type ArgPropType = keyof PlasmicEditUser__ArgsType;
 export const PlasmicEditUser__ArgProps = new Array<ArgPropType>(
   "data",
   "opencity",
-  "opencity2"
+  "openCity",
+  "onOpenCityChange2",
+  "cityBack"
 );
 
 export type PlasmicEditUser__OverridesType = {
@@ -113,7 +117,9 @@ export type PlasmicEditUser__OverridesType = {
 export interface DefaultEditUserProps {
   data?: any;
   opencity?: (event: any) => void;
-  opencity2?: boolean;
+  openCity?: boolean;
+  onOpenCityChange2?: (val: string) => void;
+  cityBack?: () => void;
   className?: string;
 }
 
@@ -137,21 +143,7 @@ function PlasmicEditUser__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {
-          opencity2: (() => {
-            try {
-              return $ctx.query.city == "true";
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return false;
-              }
-              throw e;
-            }
-          })()
-        },
+        {},
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -240,13 +232,26 @@ function PlasmicEditUser__RenderFunc(props: {
         path: "modal.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $state.openCity
       },
       {
         path: "city.city",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $props.data.city;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "token",
@@ -259,6 +264,14 @@ function PlasmicEditUser__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "openCity",
+        type: "writable",
+        variableType: "boolean",
+
+        valueProp: "openCity",
+        onChangeProp: "onOpenCityChange2"
       }
     ],
     [$props, $ctx, $refs]
@@ -664,9 +677,7 @@ function PlasmicEditUser__RenderFunc(props: {
         <City
           data-plasmic-name={"city"}
           data-plasmic-override={overrides.city}
-          back={async () => {
-            const $steps = {};
-          }}
+          back={args.cityBack}
           city={generateStateValueProp($state, ["city", "city"])}
           className={classNames("__wab_instance", sty.city)}
           onCityChange={async (...eventArgs: any) => {

@@ -349,7 +349,6 @@ function PlasmicCity__RenderFunc(props: {
                   "\u062c\u0633\u062a\u062c\u0648 \u0634\u0647\u0631 \u0645\u0648\u0631\u062f \u0646\u0638\u0631"
                 }
                 size={"langh"}
-                style2={"rounded"}
                 value={generateStateValueProp($state, ["textInput", "value"])}
               />
 

@@ -1237,7 +1237,7 @@ function PlasmicPayment__RenderFunc(props: {
                           const actionArgs = {
                             args: [
                               "POST",
-                              "https://sayban.darkube.app/webhook/reservations/update",
+                              "/reservations/update",
                               undefined,
                               (() => {
                                 try {
