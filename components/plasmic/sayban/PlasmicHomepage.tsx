@@ -580,6 +580,11 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-name={"sideEffect"}
             data-plasmic-override={overrides.sideEffect}
             className={classNames("__wab_instance", sty.sideEffect, {
+              [sty.sideEffecthomePage2_user]: hasVariant(
+                $state,
+                "homePage2",
+                "user"
+              ),
               [sty.sideEffectpage_booking]: hasVariant(
                 $state,
                 "page",
@@ -610,7 +615,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["getCookie"] = await $steps["getCookie"];
               }
 
-              $steps["goToLogin"] = false
+              $steps["goToLogin"] = true
                 ? (() => {
                     const actionArgs = { destination: `/login/[[...step]]` };
                     return (({ destination }) => {
@@ -635,7 +640,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["goToLogin"] = await $steps["goToLogin"];
               }
 
-              $steps["updateToken"] = false
+              $steps["updateToken"] = true
                 ? (() => {
                     const actionArgs = {
                       variable: {

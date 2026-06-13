@@ -644,7 +644,59 @@ function PlasmicUser__RenderFunc(props: {
           </div>
         </div>
         <div className={classNames("all", sty.freeBox__sqyt4)}>
-          <div className={classNames("all", sty.freeBox__lTj)}>
+          <div
+            className={classNames("all", sty.freeBox__lTj)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (window.document.cookie =
+                          token +
+                          "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;");
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["goToLogin"] = true
+                ? (() => {
+                    const actionArgs = { destination: `/login/${"login"}` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToLogin"] != null &&
+                typeof $steps["goToLogin"] === "object" &&
+                typeof $steps["goToLogin"].then === "function"
+              ) {
+                $steps["goToLogin"] = await $steps["goToLogin"];
+              }
+            }}
+          >
             <Icon87Icon
               className={classNames("all", sty.svg__bmKiq)}
               role={"img"}
