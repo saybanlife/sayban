@@ -310,7 +310,37 @@ function PlasmicUser__RenderFunc(props: {
             size={"small"}
           />
 
-          <div className={classNames("all", sty.freeBox___5C91)}>
+          <div
+            className={classNames("all", sty.freeBox___5C91)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = { destination: `/${"user"}/${"notif"}` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+          >
             <MessageIcon
               className={classNames("all", sty.svg__ybHfZ)}
               role={"img"}

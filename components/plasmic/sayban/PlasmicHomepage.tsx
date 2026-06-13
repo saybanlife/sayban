@@ -84,6 +84,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: qQJONu9yTCat/css
 
 import Icon96Icon from "./icons/PlasmicIcon__Icon96"; // plasmic-import: FVWbxRCL1aWE/icon
+import Icon98Icon from "./icons/PlasmicIcon__Icon98"; // plasmic-import: cj8dkcU7fHZX/icon
 import Icon97Icon from "./icons/PlasmicIcon__Icon97"; // plasmic-import: 0rPzPcmcbEIS/icon
 import Icon49Icon from "./icons/PlasmicIcon__Icon49"; // plasmic-import: GiSR5zfG8C_s/icon
 import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
@@ -133,7 +134,8 @@ export type PlasmicHomepage__VariantMembers = {
     | "booking"
     | "about"
     | "faq"
-    | "rules";
+    | "rules"
+    | "notif";
   search2: "search2";
   homePage2: "home" | "reminder" | "user" | "booking";
 };
@@ -148,6 +150,7 @@ export type PlasmicHomepage__VariantsArgs = {
     | "about"
     | "faq"
     | "rules"
+    | "notif"
   >;
   search2?: SingleBooleanChoiceArg<"search2">;
   homePage2?: SingleChoiceArg<"home" | "reminder" | "user" | "booking">;
@@ -891,46 +894,117 @@ function PlasmicHomepage__RenderFunc(props: {
                       {"\u0645\u0634\u0647\u062f"}
                     </div>
                   </div>
-                  <Icon97Icon
-                    className={classNames("all", sty.svg__o7U7D, {
-                      [sty.svghomePage2_home__o7U7DRvb1B]: hasVariant(
-                        $state,
-                        "homePage2",
-                        "home"
-                      )
-                    })}
-                    onClick={async event => {
-                      const $steps = {};
+                  <div className={classNames("all", sty.freeBox__t2LSn)}>
+                    <Icon98Icon
+                      className={classNames("all", sty.svg__o7U7D, {
+                        [sty.svghomePage2_home__o7U7DRvb1B]: hasVariant(
+                          $state,
+                          "homePage2",
+                          "home"
+                        ),
+                        [sty.svghomePage2_user__o7U7D33Nz]: hasVariant(
+                          $state,
+                          "homePage2",
+                          "user"
+                        ),
+                        [sty.svgpage_notif__o7U7DlNcwE]: hasVariant(
+                          $state,
+                          "page",
+                          "notif"
+                        )
+                      })}
+                      onClick={async event => {
+                        const $steps = {};
 
-                      $steps["goToHomepage"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              destination: `/${"user"}/${""}`
-                            };
-                            return (({ destination }) => {
-                              if (
-                                typeof destination === "string" &&
-                                destination.startsWith("#")
-                              ) {
-                                document
-                                  .getElementById(destination.substr(1))
-                                  .scrollIntoView({ behavior: "smooth" });
-                              } else {
-                                __nextRouter?.push(destination);
-                              }
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["goToHomepage"] != null &&
-                        typeof $steps["goToHomepage"] === "object" &&
-                        typeof $steps["goToHomepage"].then === "function"
-                      ) {
-                        $steps["goToHomepage"] = await $steps["goToHomepage"];
-                      }
-                    }}
-                    role={"img"}
-                  />
+                        $steps["goToHomepage"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                destination: `/${(() => {
+                                  try {
+                                    return $ctx.params.page;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()}/${"notif"}`
+                              };
+                              return (({ destination }) => {
+                                if (
+                                  typeof destination === "string" &&
+                                  destination.startsWith("#")
+                                ) {
+                                  document
+                                    .getElementById(destination.substr(1))
+                                    .scrollIntoView({ behavior: "smooth" });
+                                } else {
+                                  __nextRouter?.push(destination);
+                                }
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["goToHomepage"] != null &&
+                          typeof $steps["goToHomepage"] === "object" &&
+                          typeof $steps["goToHomepage"].then === "function"
+                        ) {
+                          $steps["goToHomepage"] = await $steps["goToHomepage"];
+                        }
+                      }}
+                      role={"img"}
+                    />
+
+                    <Icon97Icon
+                      className={classNames("all", sty.svg__nuBs, {
+                        [sty.svghomePage2_home__nuBsRvb1B]: hasVariant(
+                          $state,
+                          "homePage2",
+                          "home"
+                        ),
+                        [sty.svgpage_notif__nuBslNcwE]: hasVariant(
+                          $state,
+                          "page",
+                          "notif"
+                        )
+                      })}
+                      onClick={async event => {
+                        const $steps = {};
+
+                        $steps["goToHomepage"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                destination: `/${"user"}/${""}`
+                              };
+                              return (({ destination }) => {
+                                if (
+                                  typeof destination === "string" &&
+                                  destination.startsWith("#")
+                                ) {
+                                  document
+                                    .getElementById(destination.substr(1))
+                                    .scrollIntoView({ behavior: "smooth" });
+                                } else {
+                                  __nextRouter?.push(destination);
+                                }
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["goToHomepage"] != null &&
+                          typeof $steps["goToHomepage"] === "object" &&
+                          typeof $steps["goToHomepage"].then === "function"
+                        ) {
+                          $steps["goToHomepage"] = await $steps["goToHomepage"];
+                        }
+                      }}
+                      role={"img"}
+                    />
+                  </div>
                 </div>
                 <div
                   className={classNames("all", sty.freeBox___9C3Gw, {
@@ -1618,6 +1692,7 @@ function PlasmicHomepage__RenderFunc(props: {
                     "page",
                     "editUser"
                   ),
+                  [sty.homepage_notif]: hasVariant($state, "page", "notif"),
                   [sty.homepage_payment]: hasVariant($state, "page", "payment"),
                   [sty.homepage_subcategories]: hasVariant(
                     $state,

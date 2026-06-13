@@ -28690,14 +28690,14 @@
         },
         {
           "id": "EmnESI2odNrR",
-          "name": "About2",
+          "name": "Notif",
           "type": "managed",
           "projectId": "qARqpE4p5tZmJuNxFbTaPz",
-          "renderModuleFilePath": "plasmic/sayban/PlasmicAbout2.tsx",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicNotif.tsx",
           "importSpec": {
-            "modulePath": "About2.tsx"
+            "modulePath": "Notif.tsx"
           },
-          "cssFilePath": "plasmic/sayban/PlasmicAbout2.module.css",
+          "cssFilePath": "plasmic/sayban/PlasmicNotif.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
@@ -29467,6 +29467,11 @@
           "id": "0rPzPcmcbEIS",
           "name": "Icon97Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon97.tsx"
+        },
+        {
+          "id": "cj8dkcU7fHZX",
+          "name": "Icon98Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon98.tsx"
         }
       ],
       "images": [

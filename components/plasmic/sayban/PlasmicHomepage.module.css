@@ -396,7 +396,27 @@
   color: var(--token-k-47TemksE2v);
   min-width: 0;
 }
+.freeBox__t2LSn {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-cfon0PHiXQoL);
+  padding: 0px;
+}
 .svg__o7U7D {
+  object-fit: cover;
+  max-width: 100%;
+  width: var(--token-P3I_D0uxQRnt);
+  height: var(--token-OJSN3W0Myvht);
+  color: var(--token-k-47TemksE2v);
+  flex-shrink: 0;
+}
+.svg__nuBs {
   object-fit: cover;
   max-width: 100%;
   width: var(--token-P3I_D0uxQRnt);
