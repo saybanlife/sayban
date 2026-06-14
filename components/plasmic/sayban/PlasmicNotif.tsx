@@ -174,10 +174,22 @@ function PlasmicNotif__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "notifBox[].type",
+        type: "private",
+        variableType: "text"
+      },
+      {
+        path: "notifBox[].seen",
+        type: "private",
+        variableType: "boolean"
       }
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
 
   const $state = useDollarState(stateSpecs, {
     $props,
@@ -336,13 +348,125 @@ function PlasmicNotif__RenderFunc(props: {
             ).map((__plasmic_item_0, __plasmic_idx_0) => {
               const currentItem = __plasmic_item_0;
               const currentIndex = __plasmic_idx_0;
-              return (
-                <NotifBox
-                  data-plasmic-name={"notifBox"}
-                  data-plasmic-override={overrides.notifBox}
-                  className={classNames("__wab_instance", sty.notifBox)}
-                  key={currentIndex}
-                  q={(() => {
+              return (() => {
+                const child$Props = {
+                  action: (() => {
+                    try {
+                      return currentItem.action;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })(),
+                  className: classNames("__wab_instance", sty.notifBox),
+                  key: currentIndex,
+                  onClick: async event => {
+                    const $steps = {};
+
+                    $steps["invokeGlobalAction"] = !$state.notifBox[
+                      currentIndex
+                    ].seen
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "POST",
+                              "/notification/seen",
+                              undefined,
+                              {
+                                id: currentIndex
+                              },
+
+                              {
+                                headers: {
+                                  Authorization: `Bearer ${$props.token}`
+                                }
+                              }
+                            ]
+                          };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["invokeGlobalAction"] != null &&
+                      typeof $steps["invokeGlobalAction"] === "object" &&
+                      typeof $steps["invokeGlobalAction"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction"] =
+                        await $steps["invokeGlobalAction"];
+                    }
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return (() => {
+                                $state.notifBox[currentIndex].seen = true;
+                                let seenArrey =
+                                  JSON.parse(
+                                    localStorage.getItem("seenArrey")
+                                  ) || [];
+                                if (!seenArrey.includes(currentItem.id)) {
+                                  seenArrey.push(currentItem.id);
+                                  return localStorage.setItem(
+                                    "seenArrey",
+                                    JSON.stringify(seenArrey)
+                                  );
+                                }
+                              })();
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+                  },
+                  onSeenChange: async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "notifBox",
+                      __plasmic_idx_0,
+                      "seen"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  },
+                  onTypeChange: async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "notifBox",
+                      __plasmic_idx_0,
+                      "type"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  },
+                  q: (() => {
                     try {
                       return currentItem.text;
                     } catch (e) {
@@ -354,21 +478,13 @@ function PlasmicNotif__RenderFunc(props: {
                       }
                       throw e;
                     }
-                  })()}
-                  seen={(() => {
-                    try {
-                      return currentItem.is_seen;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return [];
-                      }
-                      throw e;
-                    }
-                  })()}
-                  slot={
+                  })(),
+                  seen: generateStateValueProp($state, [
+                    "notifBox",
+                    __plasmic_idx_0,
+                    "seen"
+                  ]),
+                  slot: (
                     <PlasmicImg__
                       alt={""}
                       className={classNames(sty.img__h7CBk)}
@@ -386,8 +502,34 @@ function PlasmicNotif__RenderFunc(props: {
                         aspectRatio: undefined
                       }}
                     />
-                  }
-                  time={(() => {
+                  ),
+
+                  slot2: (
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text__uLfy7
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return currentItem.text_action || "مشاهده بیشتر";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "Text";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                  ),
+                  time: (() => {
                     try {
                       return (() => {
                         function addTime(original, addHours, addMinutes) {
@@ -431,33 +573,98 @@ function PlasmicNotif__RenderFunc(props: {
                       }
                       throw e;
                     }
-                  })()}
-                >
-                  <div
-                    className={classNames(
-                      "all",
-                      "__wab_text",
-                      sty.text___3Uwls
-                    )}
-                  >
-                    <React.Fragment>
-                      {(() => {
-                        try {
-                          return currentItem.title;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u062a\u0644\u06af\u0631\u0627\u0645\u06cc";
+                  })(),
+                  type: generateStateValueProp($state, [
+                    "notifBox",
+                    __plasmic_idx_0,
+                    "type"
+                  ])
+                };
+
+                initializePlasmicStates(
+                  $state,
+                  [
+                    {
+                      name: "notifBox[].type",
+                      initFunc: ({ $props, $state, $queries, $q }) =>
+                        (() => {
+                          try {
+                            return (() => {
+                              const formattedType =
+                                currentItem.notification_type.replace(
+                                  /_([a-z])/g,
+                                  (match, letter) => letter.toUpperCase()
+                                );
+                              return formattedType;
+                            })();
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
                           }
-                          throw e;
-                        }
-                      })()}
-                    </React.Fragment>
-                  </div>
-                </NotifBox>
-              );
+                        })()
+                    },
+                    {
+                      name: "notifBox[].seen",
+                      initFunc: ({ $props, $state, $queries, $q }) =>
+                        (() => {
+                          try {
+                            return (() => {
+                              let seenArrey =
+                                JSON.parse(localStorage.getItem("seenArrey")) ||
+                                [];
+                              return currentItem.seen == 1;
+                            })();
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()
+                    }
+                  ],
+                  [__plasmic_idx_0]
+                );
+                return (
+                  <NotifBox
+                    data-plasmic-name={"notifBox"}
+                    data-plasmic-override={overrides.notifBox}
+                    {...child$Props}
+                  >
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text___3Uwls
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return currentItem.title;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u062a\u0644\u06af\u0631\u0627\u0645\u06cc";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                  </NotifBox>
+                );
+              })();
             })}
           </div>
         </ApiRequest>

@@ -28713,6 +28713,32 @@
           "cssFilePath": "plasmic/sayban/PlasmicNotifBox.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "Cu_HVmxmGUNj",
+          "name": "AddPatient",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicAddPatient.tsx",
+          "importSpec": {
+            "modulePath": "AddPatient.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicAddPatient.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "MK3ubKSYpzpl",
+          "name": "Patient",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicPatient.tsx",
+          "importSpec": {
+            "modulePath": "Patient.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicPatient.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -29485,6 +29511,11 @@
           "id": "cj8dkcU7fHZX",
           "name": "Icon98Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon98.tsx"
+        },
+        {
+          "id": "ugUHUxsGJbm7",
+          "name": "Icon99Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon99.tsx"
         }
       ],
       "images": [
@@ -29667,6 +29698,11 @@
           "id": "aWn0NjDt6wA_",
           "name": "image 29",
           "filePath": "../public/plasmic/sayban/images/image29.svg"
+        },
+        {
+          "id": "rkjtihXk2XZH",
+          "name": "image 30",
+          "filePath": "../public/plasmic/sayban/images/image30.svg"
         }
       ],
       "indirect": false,

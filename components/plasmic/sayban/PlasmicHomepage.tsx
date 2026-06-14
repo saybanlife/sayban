@@ -77,6 +77,8 @@ import FaQs from "../../FaQs"; // plasmic-import: yPuIj8DNJTuo/component
 import Rules from "../../Rules"; // plasmic-import: QNZBG-ZiRePi/component
 import EditUser from "../../EditUser"; // plasmic-import: gFlyeK2pwR_U/component
 import Notif from "../../Notif"; // plasmic-import: EmnESI2odNrR/component
+import AddPatient from "../../AddPatient"; // plasmic-import: Cu_HVmxmGUNj/component
+import Patient from "../../Patient"; // plasmic-import: MK3ubKSYpzpl/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -136,7 +138,9 @@ export type PlasmicHomepage__VariantMembers = {
     | "about"
     | "faq"
     | "rules"
-    | "notif";
+    | "notif"
+    | "addPatient"
+    | "patient";
   search2: "search2";
   homePage2: "home" | "reminder" | "user" | "booking";
 };
@@ -152,6 +156,8 @@ export type PlasmicHomepage__VariantsArgs = {
     | "faq"
     | "rules"
     | "notif"
+    | "addPatient"
+    | "patient"
   >;
   search2?: SingleBooleanChoiceArg<"search2">;
   homePage2?: SingleChoiceArg<"home" | "reminder" | "user" | "booking">;
@@ -190,7 +196,9 @@ export type PlasmicHomepage__OverridesType = {
   rules?: Flex__<typeof Rules>;
   editUser?: Flex__<typeof EditUser>;
   notif?: Flex__<typeof Notif>;
+  addPatient?: Flex__<typeof AddPatient>;
   search?: Flex__<typeof ApiRequest>;
+  patient?: Flex__<typeof Patient>;
 };
 
 export interface DefaultHomepageProps {}
@@ -274,6 +282,8 @@ function PlasmicHomepage__RenderFunc(props: {
           (() => {
             try {
               return (() => {
+                if ($ctx.params?.slug?.includes("addPatient"))
+                  return "addPatient";
                 if ($ctx.params?.slug?.find(i => i.includes("pay_")))
                   return "payment";
                 if ($ctx.params?.slug?.includes("center")) return "center";
@@ -284,6 +294,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 if ($ctx.params?.slug?.includes("about")) return "about";
                 if ($ctx.params?.slug?.includes("rules")) return "rules";
                 if ($ctx.params?.slug?.includes("notif")) return "notif";
+                if ($ctx.params?.slug?.includes("patient")) return "patient";
                 if ($ctx.params?.slug?.[1] != undefined) return "subcategories";
                 if ($ctx.params?.slug?.[0] != undefined) return "categories";
               })();
@@ -488,6 +499,94 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "addPatient.openCity",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "addPatient.token",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.token;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "addPatient.id",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.profile.data.result.id;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "editUser.token",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.token;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "editUser.id",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.profile.data.result.id;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "patient.subcategories",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -556,6 +655,12 @@ function PlasmicHomepage__RenderFunc(props: {
                 "reminder"
               ),
               [sty.roothomePage2_user]: hasVariant($state, "homePage2", "user"),
+              [sty.roothomePage2_user_page_notif]:
+                hasVariant($state, "homePage2", "user") &&
+                hasVariant($state, "page", "notif"),
+              [sty.roothomePage2_user_page_patient]:
+                hasVariant($state, "homePage2", "user") &&
+                hasVariant($state, "page", "patient"),
               [sty.rootpage_booking]: hasVariant($state, "page", "booking"),
               [sty.rootpage_booking_homePage2_home]:
                 hasVariant($state, "homePage2", "home") &&
@@ -572,6 +677,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 hasVariant($state, "search2", "search2") &&
                 hasVariant($state, "page", "categories"),
               [sty.rootpage_center]: hasVariant($state, "page", "center"),
+              [sty.rootpage_notif]: hasVariant($state, "page", "notif"),
               [sty.rootpage_payment]: hasVariant($state, "page", "payment"),
               [sty.rootpage_payment_homePage2_home]:
                 hasVariant($state, "homePage2", "home") &&
@@ -603,6 +709,11 @@ function PlasmicHomepage__RenderFunc(props: {
                 $state,
                 "page",
                 "editUser"
+              ),
+              [sty.sideEffectpage_patient]: hasVariant(
+                $state,
+                "page",
+                "patient"
               )
             })}
             onMount={async () => {
@@ -710,6 +821,11 @@ function PlasmicHomepage__RenderFunc(props: {
                 "reminder"
               ),
               [sty.homePagepage_about]: hasVariant($state, "page", "about"),
+              [sty.homePagepage_addPatient]: hasVariant(
+                $state,
+                "page",
+                "addPatient"
+              ),
               [sty.homePagepage_booking]: hasVariant($state, "page", "booking"),
               [sty.homePagepage_categories]: hasVariant(
                 $state,
@@ -724,6 +840,7 @@ function PlasmicHomepage__RenderFunc(props: {
               ),
               [sty.homePagepage_faq]: hasVariant($state, "page", "faq"),
               [sty.homePagepage_notif]: hasVariant($state, "page", "notif"),
+              [sty.homePagepage_patient]: hasVariant($state, "page", "patient"),
               [sty.homePagepage_payment]: hasVariant($state, "page", "payment"),
               [sty.homePagepage_rules]: hasVariant($state, "page", "rules"),
               [sty.homePagepage_subcategories]: hasVariant(
@@ -1393,6 +1510,9 @@ function PlasmicHomepage__RenderFunc(props: {
                     "homePage2",
                     "user"
                   ),
+                  [sty.userhomePage2_user_page_patient]:
+                    hasVariant($state, "homePage2", "user") &&
+                    hasVariant($state, "page", "patient"),
                   [sty.userpage_booking]: hasVariant($state, "page", "booking")
                 })}
                 goToBooking={async event => {
@@ -1491,6 +1611,36 @@ function PlasmicHomepage__RenderFunc(props: {
                     $steps["goToHomepage"] = await $steps["goToHomepage"];
                   }
                 }}
+                goToPatient={async () => {
+                  const $steps = {};
+
+                  $steps["goToHomepage"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          destination: `/${"user"}/${"patient"}`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToHomepage"] != null &&
+                    typeof $steps["goToHomepage"] === "object" &&
+                    typeof $steps["goToHomepage"].then === "function"
+                  ) {
+                    $steps["goToHomepage"] = await $steps["goToHomepage"];
+                  }
+                }}
                 userinfo={$state.profile?.data?.result}
               />
             </Reveal>
@@ -1506,6 +1656,11 @@ function PlasmicHomepage__RenderFunc(props: {
                 $state,
                 "page",
                 "about"
+              ),
+              [sty.freeBoxpage_addPatient__yWuCa0Pk0]: hasVariant(
+                $state,
+                "page",
+                "addPatient"
               ),
               [sty.freeBoxpage_booking__yWuCajjDoQ]: hasVariant(
                 $state,
@@ -1526,6 +1681,11 @@ function PlasmicHomepage__RenderFunc(props: {
                 $state,
                 "page",
                 "notif"
+              ),
+              [sty.freeBoxpage_patient__yWuCanr7Eq]: hasVariant(
+                $state,
+                "page",
+                "patient"
               ),
               [sty.freeBoxpage_rules__yWuCau6Lbx]: hasVariant(
                 $state,
@@ -2456,6 +2616,63 @@ function PlasmicHomepage__RenderFunc(props: {
                     }
                   })()
             }
+            userNew={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            $state.slug.push("addPatient");
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
           />
 
           <Booking
@@ -2736,11 +2953,40 @@ function PlasmicHomepage__RenderFunc(props: {
               }),
               data: $state.profile?.data?.result || {},
 
+              id: generateStateValueProp($state, ["editUser", "id"]),
+              onIdChange: async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["editUser", "id"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              },
               onOpenCityChange2: async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "editUser",
                   "openCity"
                 ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              },
+              onTokenChange: async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["editUser", "token"]).apply(
+                  null,
+                  eventArgs
+                );
 
                 if (
                   eventArgs.length > 1 &&
@@ -2795,7 +3041,8 @@ function PlasmicHomepage__RenderFunc(props: {
                 ) {
                   $steps["goToHomepage"] = await $steps["goToHomepage"];
                 }
-              }
+              },
+              token: generateStateValueProp($state, ["editUser", "token"])
             };
 
             initializePlasmicStates(
@@ -2833,6 +3080,11 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-name={"notif"}
             data-plasmic-override={overrides.notif}
             className={classNames("__wab_instance", sty.notif, {
+              [sty.notifpage_addPatient]: hasVariant(
+                $state,
+                "page",
+                "addPatient"
+              ),
               [sty.notifpage_notif]: hasVariant($state, "page", "notif")
             })}
             onSubcategoriesChange={async (...eventArgs: any) => {
@@ -2866,6 +3118,66 @@ function PlasmicHomepage__RenderFunc(props: {
                 throw e;
               }
             })()}
+          />
+
+          <AddPatient
+            data-plasmic-name={"addPatient"}
+            data-plasmic-override={overrides.addPatient}
+            className={classNames("__wab_instance", sty.addPatient, {
+              [sty.addPatientpage_addPatient]: hasVariant(
+                $state,
+                "page",
+                "addPatient"
+              )
+            })}
+            id={generateStateValueProp($state, ["addPatient", "id"])}
+            onIdChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["addPatient", "id"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onOpenCityChange2={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "addPatient",
+                "openCity"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onTokenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["addPatient", "token"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            openCity={generateStateValueProp($state, [
+              "addPatient",
+              "openCity"
+            ])}
+            token={generateStateValueProp($state, ["addPatient", "token"])}
           />
 
           <ApiRequest
@@ -2959,6 +3271,55 @@ function PlasmicHomepage__RenderFunc(props: {
             })()}
             url={"/search"}
           />
+
+          <div className={classNames("all", sty.freeBox__tTYjs)} />
+
+          <Patient
+            data-plasmic-name={"patient"}
+            data-plasmic-override={overrides.patient}
+            className={classNames("__wab_instance", sty.patient, {
+              [sty.patienthomePage2_user]: hasVariant(
+                $state,
+                "homePage2",
+                "user"
+              ),
+              [sty.patienthomePage2_user_page_notif]:
+                hasVariant($state, "homePage2", "user") &&
+                hasVariant($state, "page", "notif"),
+              [sty.patientpage_patient]: hasVariant($state, "page", "patient")
+            })}
+            onSubcategoriesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "patient",
+                "subcategories"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            subcategories={generateStateValueProp($state, [
+              "patient",
+              "subcategories"
+            ])}
+            token={(() => {
+              try {
+                return $state.token;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -2989,7 +3350,9 @@ const PlasmicDescendants = {
     "rules",
     "editUser",
     "notif",
-    "search"
+    "addPatient",
+    "search",
+    "patient"
   ],
   sideEffect: ["sideEffect"],
   homePage: [
@@ -3020,7 +3383,9 @@ const PlasmicDescendants = {
   rules: ["rules"],
   editUser: ["editUser"],
   notif: ["notif"],
-  search: ["search"]
+  addPatient: ["addPatient"],
+  search: ["search"],
+  patient: ["patient"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -3048,7 +3413,9 @@ type NodeDefaultElementType = {
   rules: typeof Rules;
   editUser: typeof EditUser;
   notif: typeof Notif;
+  addPatient: typeof AddPatient;
   search: typeof ApiRequest;
+  patient: typeof Patient;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -3134,7 +3501,9 @@ export const PlasmicHomepage = Object.assign(
     rules: makeNodeComponent("rules"),
     editUser: makeNodeComponent("editUser"),
     notif: makeNodeComponent("notif"),
+    addPatient: makeNodeComponent("addPatient"),
     search: makeNodeComponent("search"),
+    patient: makeNodeComponent("patient"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

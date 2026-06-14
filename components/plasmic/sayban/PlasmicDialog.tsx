@@ -332,7 +332,9 @@ function PlasmicDialog__RenderFunc(props: {
         <Button2
           data-plasmic-name={"button3"}
           data-plasmic-override={overrides.button3}
-          className={classNames("__wab_instance", sty.button3)}
+          className={classNames("__wab_instance", sty.button3, {
+            [sty.button3nopadding]: hasVariant($state, "nopadding", "nopadding")
+          })}
           color={generateStateValueProp($state, ["button3", "color"])}
           endIcon={
             <ChevronLeftIcon
@@ -689,7 +691,13 @@ function PlasmicDialog__RenderFunc(props: {
         <DialogClose
           data-plasmic-name={"dialogClose"}
           data-plasmic-override={overrides.dialogClose}
-          className={classNames("__wab_instance", sty.dialogClose)}
+          className={classNames("__wab_instance", sty.dialogClose, {
+            [sty.dialogClosenopadding]: hasVariant(
+              $state,
+              "nopadding",
+              "nopadding"
+            )
+          })}
         >
           <XIcon className={classNames("all", sty.svg__nuLi2)} role={"img"} />
         </DialogClose>

@@ -74,6 +74,7 @@ import Icon70Icon from "./icons/PlasmicIcon__Icon70"; // plasmic-import: PWsALiD
 import Icon264Icon from "./icons/PlasmicIcon__Icon264"; // plasmic-import: 7YjsND1KK6EP/icon
 import Icon76Icon from "./icons/PlasmicIcon__Icon76"; // plasmic-import: PNmvwHPTSPVF/icon
 import MessageIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Message"; // plasmic-import: r2jZeTOT_KvL/icon
+import Icon268Icon from "./icons/PlasmicIcon__Icon268"; // plasmic-import: 1XnMx9ZcPwLh/icon
 import TagIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Tag"; // plasmic-import: 719VbVnZMlwm/icon
 import Icon78Icon from "./icons/PlasmicIcon__Icon78"; // plasmic-import: rn5Sm-68bTpC/icon
 import BrandTelegramIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__BrandTelegram"; // plasmic-import: 4E611EcCApzn/icon
@@ -95,12 +96,14 @@ export type PlasmicUser__ArgsType = {
   userinfo?: any;
   goToEdit?: (event: any) => void;
   goToBooking?: (event: any) => void;
+  goToPatient?: () => void;
 };
 type ArgPropType = keyof PlasmicUser__ArgsType;
 export const PlasmicUser__ArgProps = new Array<ArgPropType>(
   "userinfo",
   "goToEdit",
-  "goToBooking"
+  "goToBooking",
+  "goToPatient"
 );
 
 export type PlasmicUser__OverridesType = {
@@ -116,6 +119,7 @@ export interface DefaultUserProps {
   userinfo?: any;
   goToEdit?: (event: any) => void;
   goToBooking?: (event: any) => void;
+  goToPatient?: () => void;
   className?: string;
 }
 
@@ -359,6 +363,43 @@ function PlasmicUser__RenderFunc(props: {
             size={"small"}
           />
 
+          <div
+            className={classNames("all", sty.freeBox___9Vhxr)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runGoToPatient"] = true
+                ? (() => {
+                    const actionArgs = { eventRef: $props["goToPatient"] };
+                    return (({ eventRef, args }) => {
+                      return eventRef?.(...(args ?? []));
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runGoToPatient"] != null &&
+                typeof $steps["runGoToPatient"] === "object" &&
+                typeof $steps["runGoToPatient"].then === "function"
+              ) {
+                $steps["runGoToPatient"] = await $steps["runGoToPatient"];
+              }
+            }}
+          >
+            <Icon268Icon
+              className={classNames("all", sty.svg__mV15M)}
+              role={"img"}
+            />
+
+            <div className={classNames("all", "__wab_text", sty.text__e9Vtm)}>
+              {
+                "\u0644\u06cc\u0633\u062a \u0647\u0645\u0631\u0627\u0647\u0627\u0646"
+              }
+            </div>
+            <Icon76Icon
+              className={classNames("all", sty.svg__g63Z2)}
+              role={"img"}
+            />
+          </div>
           <div className={classNames("all", sty.freeBox__eLfl3)}>
             <TagIcon
               className={classNames("all", sty.svg__zMxX)}

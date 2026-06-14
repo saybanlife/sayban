@@ -76,6 +76,9 @@
 .rootpage_booking > * {
   grid-column: 4;
 }
+.rootpage_notif > * {
+  grid-column: 4;
+}
 .rootsearch2 > * {
   grid-column: 4;
 }
@@ -131,6 +134,18 @@
   grid-column: 4;
 }
 .rootpage_booking_homePage2_home > * {
+  grid-column: 4;
+}
+.roothomePage2_user_page_notif {
+  padding-top: var(--token-P3I_D0uxQRnt);
+}
+.roothomePage2_user_page_notif > * {
+  grid-column: 4;
+}
+.roothomePage2_user_page_patient {
+  padding-top: var(--token-P3I_D0uxQRnt);
+}
+.roothomePage2_user_page_patient > * {
   grid-column: 4;
 }
 .sideEffect:global(.__wab_instance) {
@@ -191,6 +206,12 @@
   display: none;
 }
 .homePagepage_notif {
+  display: none;
+}
+.homePagepage_addPatient {
+  display: none;
+}
+.homePagepage_patient {
   display: none;
 }
 .section__iGcIn {
@@ -632,6 +653,12 @@
 .freeBoxpage_notif__yWuCAlNcwE {
   display: none;
 }
+.freeBoxpage_addPatient__yWuCa0Pk0 {
+  display: none;
+}
+.freeBoxpage_patient__yWuCanr7Eq {
+  display: none;
+}
 .categories2:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
@@ -827,7 +854,33 @@
 .notifpage_notif:global(.__wab_instance) {
   display: grid;
 }
+.addPatient:global(.__wab_instance) {
+  max-width: 100%;
+  display: none;
+}
+.addPatientpage_addPatient:global(.__wab_instance) {
+  display: grid;
+}
 .search:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
+}
+.freeBox__tTYjs {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.patient:global(.__wab_instance) {
+  max-width: 100%;
+  display: none;
+}
+.patientpage_patient:global(.__wab_instance) {
+  display: grid;
 }

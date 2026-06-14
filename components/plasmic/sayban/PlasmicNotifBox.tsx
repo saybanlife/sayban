@@ -61,6 +61,7 @@ import {
 
 import UploudeTime from "../../UploudeTime"; // plasmic-import: IxvwO5AMD5ex/component
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -71,39 +72,57 @@ import sty from "./PlasmicNotifBox.module.css"; // plasmic-import: D1_7W8_3U14A/
 import BrandTelegramIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__BrandTelegram"; // plasmic-import: 4E611EcCApzn/icon
 import Icon76Icon from "./icons/PlasmicIcon__Icon76"; // plasmic-import: PNmvwHPTSPVF/icon
 import Icon32Icon from "./icons/PlasmicIcon__Icon32"; // plasmic-import: hVogcrNM7Ss9/icon
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 
 createPlasmicElementProxy;
 
 export type PlasmicNotifBox__VariantMembers = {
   open: "open";
   seen: "seen";
+  type:
+    | "system"
+    | "orderApproved"
+    | "orderRejected"
+    | "reminder"
+    | "unnamedVariant";
 };
 export type PlasmicNotifBox__VariantsArgs = {
   open?: SingleBooleanChoiceArg<"open">;
   seen?: SingleBooleanChoiceArg<"seen">;
+  type?: SingleChoiceArg<
+    "system" | "orderApproved" | "orderRejected" | "reminder" | "unnamedVariant"
+  >;
 };
 type VariantPropType = keyof PlasmicNotifBox__VariantsArgs;
 export const PlasmicNotifBox__VariantProps = new Array<VariantPropType>(
   "open",
-  "seen"
+  "seen",
+  "type"
 );
 
 export type PlasmicNotifBox__ArgsType = {
   onClick?: (event: any) => void;
   q?: string;
+  onSeenChange?: (val: any) => void;
   time?: string;
   action?: string;
+  onTypeChange?: (val: any) => void;
   slot?: React.ReactNode;
   children?: React.ReactNode;
+  slot2?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicNotifBox__ArgsType;
 export const PlasmicNotifBox__ArgProps = new Array<ArgPropType>(
   "onClick",
   "q",
+  "onSeenChange",
   "time",
   "action",
+  "onTypeChange",
   "slot",
-  "children"
+  "children",
+  "slot2"
 );
 
 export type PlasmicNotifBox__OverridesType = {
@@ -111,17 +130,24 @@ export type PlasmicNotifBox__OverridesType = {
   uploudeTime?: Flex__<typeof UploudeTime>;
   textCollapse?: Flex__<typeof TextCollapse>;
   text?: Flex__<"div">;
+  button?: Flex__<typeof Button>;
 };
 
 export interface DefaultNotifBoxProps {
   onClick?: (event: any) => void;
   q?: string;
+  onSeenChange?: (val: any) => void;
   time?: string;
   action?: string;
+  onTypeChange?: (val: any) => void;
   slot?: React.ReactNode;
   children?: React.ReactNode;
+  slot2?: React.ReactNode;
   open?: SingleBooleanChoiceArg<"open">;
   seen?: SingleBooleanChoiceArg<"seen">;
+  type?: SingleChoiceArg<
+    "system" | "orderApproved" | "orderRejected" | "reminder" | "unnamedVariant"
+  >;
   className?: string;
 }
 
@@ -174,9 +200,25 @@ function PlasmicNotifBox__RenderFunc(props: {
       },
       {
         path: "seen",
-        type: "private",
+        type: "writable",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.seen
+
+        valueProp: "seen",
+        onChangeProp: "onSeenChange"
+      },
+      {
+        path: "button.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "type",
+        type: "writable",
+        variableType: "variant",
+
+        valueProp: "type",
+        onChangeProp: "onTypeChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -207,7 +249,39 @@ function PlasmicNotifBox__RenderFunc(props: {
         sty.root,
         {
           [sty.rootopen]: hasVariant($state, "open", "open"),
-          [sty.rootseen]: hasVariant($state, "seen", "seen")
+          [sty.rootseen]: hasVariant($state, "seen", "seen"),
+          [sty.rootseen_type_orderApproved]:
+            hasVariant($state, "seen", "seen") &&
+            hasVariant($state, "type", "orderApproved"),
+          [sty.rootseen_type_system]:
+            hasVariant($state, "seen", "seen") &&
+            hasVariant($state, "type", "system"),
+          [sty.rootseen_type_unnamedVariant]:
+            hasVariant($state, "seen", "seen") &&
+            hasVariant($state, "type", "unnamedVariant"),
+          [sty.roottype_orderApproved]: hasVariant(
+            $state,
+            "type",
+            "orderApproved"
+          ),
+          [sty.roottype_orderRejected]: hasVariant(
+            $state,
+            "type",
+            "orderRejected"
+          ),
+          [sty.roottype_orderRejected_seen]:
+            hasVariant($state, "seen", "seen") &&
+            hasVariant($state, "type", "orderRejected"),
+          [sty.roottype_reminder]: hasVariant($state, "type", "reminder"),
+          [sty.roottype_reminder_seen]:
+            hasVariant($state, "seen", "seen") &&
+            hasVariant($state, "type", "reminder"),
+          [sty.roottype_system]: hasVariant($state, "type", "system"),
+          [sty.roottype_unnamedVariant]: hasVariant(
+            $state,
+            "type",
+            "unnamedVariant"
+          )
         }
       )}
     >
@@ -243,6 +317,22 @@ function PlasmicNotifBox__RenderFunc(props: {
           ) {
             $steps["updateOpen"] = await $steps["updateOpen"];
           }
+
+          $steps["runOnClick"] = true
+            ? (() => {
+                const actionArgs = { eventRef: $props["onClick"] };
+                return (({ eventRef, args }) => {
+                  return eventRef?.(...(args ?? []));
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["runOnClick"] != null &&
+            typeof $steps["runOnClick"] === "object" &&
+            typeof $steps["runOnClick"].then === "function"
+          ) {
+            $steps["runOnClick"] = await $steps["runOnClick"];
+          }
         }}
       >
         {renderPlasmicSlot({
@@ -260,7 +350,15 @@ function PlasmicNotifBox__RenderFunc(props: {
             [sty.freeBoxopen__wAjHi6KqS6]: hasVariant($state, "open", "open")
           })}
         >
-          <div className={classNames("all", sty.freeBox__vqK68)}>
+          <div
+            className={classNames("all", sty.freeBox__vqK68, {
+              [sty.freeBoxtype_reminder__vqK68Qdosz]: hasVariant(
+                $state,
+                "type",
+                "reminder"
+              )
+            })}
+          >
             {renderPlasmicSlot({
               defaultContents:
                 "\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u062a\u0644\u06af\u0631\u0627\u0645\u06cc",
@@ -315,19 +413,120 @@ function PlasmicNotifBox__RenderFunc(props: {
       </div>
       <Icon32Icon
         className={classNames("all", sty.svg__b7XlJ, {
-          [sty.svgseen__b7XlJjmYVk]: hasVariant($state, "seen", "seen")
+          [sty.svgseen__b7XlJjmYVk]: hasVariant($state, "seen", "seen"),
+          [sty.svgtype_orderApproved__b7XlJw59Jv]: hasVariant(
+            $state,
+            "type",
+            "orderApproved"
+          ),
+          [sty.svgtype_orderRejected__b7XlJHfKmt]: hasVariant(
+            $state,
+            "type",
+            "orderRejected"
+          ),
+          [sty.svgtype_reminder__b7XlJQdosz]: hasVariant(
+            $state,
+            "type",
+            "reminder"
+          ),
+          [sty.svgtype_system__b7XlJkJ3Eq]: hasVariant($state, "type", "system")
         })}
         role={"img"}
       />
+
+      {(
+        hasVariant($state, "open", "open")
+          ? (() => {
+              try {
+                return $props.action != null;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()
+          : true
+      ) ? (
+        <div
+          className={classNames("all", sty.freeBox__dK2V7, {
+            [sty.freeBoxopen__dK2V76KqS6]: hasVariant($state, "open", "open")
+          })}
+        >
+          <Button
+            data-plasmic-name={"button"}
+            data-plasmic-override={overrides.button}
+            className={classNames("__wab_instance", sty.button)}
+            color={"success"}
+            label={renderPlasmicSlot({
+              defaultContents: (
+                <div
+                  className={classNames("all", "__wab_text", sty.text__lg7M9)}
+                >
+                  {"Text"}
+                </div>
+              ),
+              value: args.slot2
+            })}
+            loading={generateStateValueProp($state, ["button", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["goToPage"] = true
+                ? (() => {
+                    const actionArgs = { destination: $props.action };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToPage"] != null &&
+                typeof $steps["goToPage"] === "object" &&
+                typeof $steps["goToPage"].then === "function"
+              ) {
+                $steps["goToPage"] = await $steps["goToPage"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      ) : null}
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "uploudeTime", "textCollapse", "text"],
+  root: ["root", "uploudeTime", "textCollapse", "text", "button"],
   uploudeTime: ["uploudeTime"],
   textCollapse: ["textCollapse"],
-  text: ["text"]
+  text: ["text"],
+  button: ["button"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -337,6 +536,7 @@ type NodeDefaultElementType = {
   uploudeTime: typeof UploudeTime;
   textCollapse: typeof TextCollapse;
   text: "div";
+  button: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -404,6 +604,7 @@ export const PlasmicNotifBox = Object.assign(
     uploudeTime: makeNodeComponent("uploudeTime"),
     textCollapse: makeNodeComponent("textCollapse"),
     text: makeNodeComponent("text"),
+    button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicNotifBox
     internalVariantProps: PlasmicNotifBox__VariantProps,
