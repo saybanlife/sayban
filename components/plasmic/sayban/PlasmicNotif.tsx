@@ -60,6 +60,8 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+import NotifBox from "../../NotifBox"; // plasmic-import: D1_7W8_3U14A/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -79,19 +81,22 @@ export type PlasmicNotif__ArgsType = {
   subcategories?: any;
   onSubcategoriesChange?: (val: string) => void;
   onSubcategories?: () => void;
+  token?: string;
 };
 type ArgPropType = keyof PlasmicNotif__ArgsType;
 export const PlasmicNotif__ArgProps = new Array<ArgPropType>(
   "categories",
   "subcategories",
   "onSubcategoriesChange",
-  "onSubcategories"
+  "onSubcategories",
+  "token"
 );
 
 export type PlasmicNotif__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<typeof Header>;
-  freeBox?: Flex__<"div">;
+  apiRequest?: Flex__<typeof ApiRequest>;
+  notifBox?: Flex__<typeof NotifBox>;
 };
 
 export interface DefaultNotifProps {
@@ -99,6 +104,7 @@ export interface DefaultNotifProps {
   subcategories?: any;
   onSubcategoriesChange?: (val: string) => void;
   onSubcategories?: () => void;
+  token?: string;
   className?: string;
 }
 
@@ -150,6 +156,24 @@ function PlasmicNotif__RenderFunc(props: {
 
         valueProp: "subcategories",
         onChangeProp: "onSubcategoriesChange"
+      },
+      {
+        path: "apiRequest.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "apiRequest.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "apiRequest.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -187,19 +211,266 @@ function PlasmicNotif__RenderFunc(props: {
         slot={"\u0627\u0637\u0644\u0627\u0639\u06cc\u0647 \u0647\u0627"}
       />
 
-      <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames("all", sty.freeBox)}
-      />
+      <div className={classNames("all", sty.freeBox__hPO)}>
+        <ApiRequest
+          data-plasmic-name={"apiRequest"}
+          data-plasmic-override={overrides.apiRequest}
+          className={classNames("__wab_instance", sty.apiRequest)}
+          config={{
+            headers: {
+              Authorization: `Bearer ${$props.token}`
+            }
+          }}
+          errorDisplay={null}
+          loadingDisplay={
+            <div className={classNames("all", sty.freeBox___7VqVn)}>
+              {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                (() => {
+                  try {
+                    return [2, 3, 4, 5];
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()
+              ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                const currentItem = __plasmic_item_0;
+                const currentIndex = __plasmic_idx_0;
+                return (
+                  <div
+                    className={classNames("all", sty.freeBox__mBdeu, "shimmer")}
+                    key={currentIndex}
+                  />
+                );
+              })}
+            </div>
+          }
+          method={"GET"}
+          onError={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onLoading={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onSuccess={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          shouldFetch={true}
+          url={"/getNotif"}
+        >
+          {(() => {
+            try {
+              return (
+                $state.apiRequest.data.length == 0 || !$state.apiRequest.data
+              );
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })() ? (
+            <div className={classNames("all", sty.freeBox__tBEC)}>
+              <PlasmicImg__
+                alt={""}
+                className={classNames(sty.img__gf907)}
+                displayHeight={"auto"}
+                displayMaxHeight={"none"}
+                displayMaxWidth={"100%"}
+                displayMinHeight={"0"}
+                displayMinWidth={"0"}
+                displayWidth={"30%"}
+                loading={"lazy"}
+                src={{
+                  src: "/plasmic/sayban/images/image29.svg",
+                  fullWidth: 280,
+                  fullHeight: 280,
+                  aspectRatio: undefined
+                }}
+              />
+
+              <div className={classNames("all", "__wab_text", sty.text__xuAR)}>
+                {
+                  "\u0641\u0639\u0644\u0627\u064b \u0627\u0637\u0644\u0627\u0639\u06cc\u0647\u200c\u0627\u06cc \u0646\u062f\u0627\u0631\u06cc"
+                }
+              </div>
+              <div className={classNames("all", "__wab_text", sty.text__gqaLy)}>
+                {
+                  "\u0627\u06af\u0647 \u0627\u0637\u0644\u0627\u0639\u06cc\u0647 \u062c\u062f\u06cc\u062f\u06cc \u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u06cc\u060c \u0647\u0645\u06cc\u0646\u200c\u062c\u0627 \u0628\u0647\u062a \u0646\u0634\u0648\u0646 \u0645\u06cc\u200c\u062f\u06cc\u0645."
+                }
+              </div>
+            </div>
+          ) : null}
+          <div className={classNames("all", sty.freeBox__m6QsE)}>
+            {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+              (() => {
+                try {
+                  return $state.apiRequest.data;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()
+            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+              const currentItem = __plasmic_item_0;
+              const currentIndex = __plasmic_idx_0;
+              return (
+                <NotifBox
+                  data-plasmic-name={"notifBox"}
+                  data-plasmic-override={overrides.notifBox}
+                  className={classNames("__wab_instance", sty.notifBox)}
+                  key={currentIndex}
+                  q={(() => {
+                    try {
+                      return currentItem.text;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                  seen={(() => {
+                    try {
+                      return currentItem.is_seen;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()}
+                  slot={
+                    <PlasmicImg__
+                      alt={""}
+                      className={classNames(sty.img__h7CBk)}
+                      displayHeight={"50px"}
+                      displayMaxHeight={"none"}
+                      displayMaxWidth={"100%"}
+                      displayMinHeight={"0"}
+                      displayMinWidth={"0"}
+                      displayWidth={"50px"}
+                      loading={"lazy"}
+                      src={{
+                        src: "/plasmic/sayban/images/image8.png",
+                        fullWidth: 409,
+                        fullHeight: 123,
+                        aspectRatio: undefined
+                      }}
+                    />
+                  }
+                  time={(() => {
+                    try {
+                      return (() => {
+                        function addTime(original, addHours, addMinutes) {
+                          let date;
+                          if (typeof original === "string") {
+                            date = new Date(original.replace(" ", "T"));
+                          } else {
+                            date = new Date(
+                              original.year,
+                              original.month - 1,
+                              original.day,
+                              original.hour,
+                              original.minute,
+                              original.second
+                            );
+                          }
+                          date.setHours(date.getHours() + addHours);
+                          date.setMinutes(date.getMinutes() + addMinutes);
+                          return {
+                            year: date.getFullYear(),
+                            month: date.getMonth() + 1,
+                            day: date.getDate(),
+                            hour: date.getHours(),
+                            minute: date.getMinutes(),
+                            second: date.getSeconds(),
+                            formatted: date
+                              .toISOString()
+                              .replace("T", " ")
+                              .split(".")[0]
+                          };
+                        }
+                        const result = addTime(currentItem.created_at, 3, 30);
+                        return result;
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                >
+                  <div
+                    className={classNames(
+                      "all",
+                      "__wab_text",
+                      sty.text___3Uwls
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return currentItem.title;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u062a\u0644\u06af\u0631\u0627\u0645\u06cc";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
+                </NotifBox>
+              );
+            })}
+          </div>
+        </ApiRequest>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "freeBox"],
+  root: ["root", "header", "apiRequest", "notifBox"],
   header: ["header"],
-  freeBox: ["freeBox"]
+  apiRequest: ["apiRequest", "notifBox"],
+  notifBox: ["notifBox"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -207,7 +478,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   header: typeof Header;
-  freeBox: "div";
+  apiRequest: typeof ApiRequest;
+  notifBox: typeof NotifBox;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -273,7 +545,8 @@ export const PlasmicNotif = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
-    freeBox: makeNodeComponent("freeBox"),
+    apiRequest: makeNodeComponent("apiRequest"),
+    notifBox: makeNodeComponent("notifBox"),
 
     // Metadata about props expected for PlasmicNotif
     internalVariantProps: PlasmicNotif__VariantProps,

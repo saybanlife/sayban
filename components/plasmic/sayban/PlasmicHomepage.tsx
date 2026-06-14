@@ -76,6 +76,7 @@ import About from "../../About"; // plasmic-import: HCruh85VppFE/component
 import FaQs from "../../FaQs"; // plasmic-import: yPuIj8DNJTuo/component
 import Rules from "../../Rules"; // plasmic-import: QNZBG-ZiRePi/component
 import EditUser from "../../EditUser"; // plasmic-import: gFlyeK2pwR_U/component
+import Notif from "../../Notif"; // plasmic-import: EmnESI2odNrR/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -188,6 +189,7 @@ export type PlasmicHomepage__OverridesType = {
   faQs?: Flex__<typeof FaQs>;
   rules?: Flex__<typeof Rules>;
   editUser?: Flex__<typeof EditUser>;
+  notif?: Flex__<typeof Notif>;
   search?: Flex__<typeof ApiRequest>;
 };
 
@@ -281,6 +283,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 if ($ctx.params?.slug?.includes("FAQ")) return "faq";
                 if ($ctx.params?.slug?.includes("about")) return "about";
                 if ($ctx.params?.slug?.includes("rules")) return "rules";
+                if ($ctx.params?.slug?.includes("notif")) return "notif";
                 if ($ctx.params?.slug?.[1] != undefined) return "subcategories";
                 if ($ctx.params?.slug?.[0] != undefined) return "categories";
               })();
@@ -479,6 +482,12 @@ function PlasmicHomepage__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "notif.subcategories",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -615,7 +624,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["getCookie"] = await $steps["getCookie"];
               }
 
-              $steps["goToLogin"] = true
+              $steps["goToLogin"] = false
                 ? (() => {
                     const actionArgs = { destination: `/login/[[...step]]` };
                     return (({ destination }) => {
@@ -640,7 +649,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["goToLogin"] = await $steps["goToLogin"];
               }
 
-              $steps["updateToken"] = true
+              $steps["updateToken"] = false
                 ? (() => {
                     const actionArgs = {
                       variable: {
@@ -714,6 +723,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 "editUser"
               ),
               [sty.homePagepage_faq]: hasVariant($state, "page", "faq"),
+              [sty.homePagepage_notif]: hasVariant($state, "page", "notif"),
               [sty.homePagepage_payment]: hasVariant($state, "page", "payment"),
               [sty.homePagepage_rules]: hasVariant($state, "page", "rules"),
               [sty.homePagepage_subcategories]: hasVariant(
@@ -1511,6 +1521,11 @@ function PlasmicHomepage__RenderFunc(props: {
                 $state,
                 "page",
                 "faq"
+              ),
+              [sty.freeBoxpage_notif__yWuCAlNcwE]: hasVariant(
+                $state,
+                "page",
+                "notif"
               ),
               [sty.freeBoxpage_rules__yWuCau6Lbx]: hasVariant(
                 $state,
@@ -2814,6 +2829,45 @@ function PlasmicHomepage__RenderFunc(props: {
               />
             );
           })()}
+          <Notif
+            data-plasmic-name={"notif"}
+            data-plasmic-override={overrides.notif}
+            className={classNames("__wab_instance", sty.notif, {
+              [sty.notifpage_notif]: hasVariant($state, "page", "notif")
+            })}
+            onSubcategoriesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "notif",
+                "subcategories"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            subcategories={generateStateValueProp($state, [
+              "notif",
+              "subcategories"
+            ])}
+            token={(() => {
+              try {
+                return $state.token;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          />
+
           <ApiRequest
             data-plasmic-name={"search"}
             data-plasmic-override={overrides.search}
@@ -2934,6 +2988,7 @@ const PlasmicDescendants = {
     "faQs",
     "rules",
     "editUser",
+    "notif",
     "search"
   ],
   sideEffect: ["sideEffect"],
@@ -2964,6 +3019,7 @@ const PlasmicDescendants = {
   faQs: ["faQs"],
   rules: ["rules"],
   editUser: ["editUser"],
+  notif: ["notif"],
   search: ["search"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -2991,6 +3047,7 @@ type NodeDefaultElementType = {
   faQs: typeof FaQs;
   rules: typeof Rules;
   editUser: typeof EditUser;
+  notif: typeof Notif;
   search: typeof ApiRequest;
 };
 
@@ -3076,6 +3133,7 @@ export const PlasmicHomepage = Object.assign(
     faQs: makeNodeComponent("faQs"),
     rules: makeNodeComponent("rules"),
     editUser: makeNodeComponent("editUser"),
+    notif: makeNodeComponent("notif"),
     search: makeNodeComponent("search"),
 
     // Metadata about props expected for PlasmicHomepage

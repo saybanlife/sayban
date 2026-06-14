@@ -28700,6 +28700,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicNotif.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "D1_7W8_3U14A",
+          "name": "NotifBox",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicNotifBox.tsx",
+          "importSpec": {
+            "modulePath": "NotifBox.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicNotifBox.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -29644,6 +29657,16 @@
           "id": "9SEIIaPE8bmz",
           "name": "image 27",
           "filePath": "../public/plasmic/sayban/images/image27.png"
+        },
+        {
+          "id": "Y7oy8tNrpVbn",
+          "name": "image 28",
+          "filePath": "../public/plasmic/sayban/images/image28.svg"
+        },
+        {
+          "id": "aWn0NjDt6wA_",
+          "name": "image 29",
+          "filePath": "../public/plasmic/sayban/images/image29.svg"
         }
       ],
       "indirect": false,
