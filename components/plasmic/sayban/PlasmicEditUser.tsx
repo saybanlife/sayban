@@ -93,6 +93,8 @@ export type PlasmicEditUser__ArgsType = {
   openCity?: boolean;
   onOpenCityChange2?: (val: string) => void;
   cityBack?: () => void;
+  refresh?: string;
+  onRefreshChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicEditUser__ArgsType;
 export const PlasmicEditUser__ArgProps = new Array<ArgPropType>(
@@ -104,7 +106,9 @@ export const PlasmicEditUser__ArgProps = new Array<ArgPropType>(
   "opencity",
   "openCity",
   "onOpenCityChange2",
-  "cityBack"
+  "cityBack",
+  "refresh",
+  "onRefreshChange"
 );
 
 export type PlasmicEditUser__OverridesType = {
@@ -132,6 +136,8 @@ export interface DefaultEditUserProps {
   openCity?: boolean;
   onOpenCityChange2?: (val: string) => void;
   cityBack?: () => void;
+  refresh?: string;
+  onRefreshChange?: (val: string) => void;
   className?: string;
 }
 
@@ -288,6 +294,14 @@ function PlasmicEditUser__RenderFunc(props: {
 
         valueProp: "openCity",
         onChangeProp: "onOpenCityChange2"
+      },
+      {
+        path: "refresh",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "refresh",
+        onChangeProp: "onRefreshChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -974,7 +988,10 @@ function PlasmicEditUser__RenderFunc(props: {
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
-                        return ($state.codeSubmit2.loading = false);
+                        return (() => {
+                          $state.codeSubmit2.loading = false;
+                          return ($state.refresh = Date.now().toString());
+                        })();
                       }
                     };
                     return (({ customFunction }) => {

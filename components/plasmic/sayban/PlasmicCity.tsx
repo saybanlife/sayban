@@ -456,23 +456,6 @@ function PlasmicCity__RenderFunc(props: {
         data-plasmic-name={"apiRequest"}
         data-plasmic-override={overrides.apiRequest}
         className={classNames("__wab_instance", sty.apiRequest)}
-        config={(() => {
-          try {
-            return {
-              headers: {
-                Authorization: `Bearer ${$props.token}`
-              }
-            };
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
         errorDisplay={null}
         loadingDisplay={null}
         method={"GET"}
@@ -528,7 +511,7 @@ function PlasmicCity__RenderFunc(props: {
           }).apply(null, eventArgs);
         }}
         shouldFetch={true}
-        url={"https://sayban.darkube.app/webhook/city"}
+        url={"city"}
       >
         <div className={classNames("all", sty.freeBox__aqvRm)}>
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(

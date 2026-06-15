@@ -587,6 +587,18 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "rP",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "editUser.refresh",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -2115,7 +2127,11 @@ function PlasmicHomepage__RenderFunc(props: {
             }}
             shouldFetch={(() => {
               try {
-                return $state.token != null && $state.token != "";
+                return (
+                  $state.editUser.refresh &&
+                  $state.token != null &&
+                  $state.token != ""
+                );
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -2963,6 +2979,20 @@ function PlasmicHomepage__RenderFunc(props: {
                   return;
                 }
               },
+              onRefreshChange: async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "editUser",
+                  "refresh"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              },
               onTokenChange: async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, ["editUser", "token"]).apply(
                   null,
@@ -3023,6 +3053,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   $steps["goToHomepage"] = await $steps["goToHomepage"];
                 }
               },
+              refresh: generateStateValueProp($state, ["editUser", "refresh"]),
               token: generateStateValueProp($state, ["editUser", "token"])
             };
 

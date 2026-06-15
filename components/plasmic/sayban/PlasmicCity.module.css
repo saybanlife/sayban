@@ -15,7 +15,7 @@
       calc(100% - var(--plsmc-viewport-gap) - var(--plsmc-viewport-gap))
     )
     minmax(0, var(--plsmc-wide-chunk)) 1fr var(--plsmc-viewport-gap);
-  padding: 6rem var(--token-kD77h-2NGSqI) var(--token-73iLa06AE6f4);
+  padding: 7rem var(--token-kD77h-2NGSqI) var(--token-73iLa06AE6f4);
 }
 .root > * {
   grid-column: 4;
@@ -209,7 +209,7 @@
   align-items: center;
   row-gap: var(--token-73iLa06AE6f4);
   min-width: 0;
-  padding: var(--token-rfsFxiclAtek);
+  padding: 0px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__lNxQy {
@@ -244,7 +244,7 @@
   height: auto;
   max-width: 100%;
   text-align: right;
-  color: var(--token-9M5jRUPt8Msb);
+  color: var(--token-KjATzAYJ5IB7);
   font-size: var(--token-ehIkf6s-dMLU);
   font-weight: 400;
   min-width: 0;
