@@ -90,6 +90,7 @@ export type PlasmicAddPatient__ArgsType = {
   openCity?: boolean;
   onOpenCityChange2?: (val: string) => void;
   cityBack?: () => void;
+  addNew?: () => void;
 };
 type ArgPropType = keyof PlasmicAddPatient__ArgsType;
 export const PlasmicAddPatient__ArgProps = new Array<ArgPropType>(
@@ -100,7 +101,8 @@ export const PlasmicAddPatient__ArgProps = new Array<ArgPropType>(
   "opencity",
   "openCity",
   "onOpenCityChange2",
-  "cityBack"
+  "cityBack",
+  "addNew"
 );
 
 export type PlasmicAddPatient__OverridesType = {
@@ -125,6 +127,7 @@ export interface DefaultAddPatientProps {
   openCity?: boolean;
   onOpenCityChange2?: (val: string) => void;
   cityBack?: () => void;
+  addNew?: () => void;
   className?: string;
 }
 
@@ -1051,6 +1054,23 @@ function PlasmicAddPatient__RenderFunc(props: {
               ) {
                 $steps["invokeGlobalAction3"] =
                   await $steps["invokeGlobalAction3"];
+              }
+
+              $steps["runAddNew"] =
+                $steps.setProfile?.data?.success == true
+                  ? (() => {
+                      const actionArgs = { eventRef: $props["addNew"] };
+                      return (({ eventRef, args }) => {
+                        return eventRef?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+              if (
+                $steps["runAddNew"] != null &&
+                typeof $steps["runAddNew"] === "object" &&
+                typeof $steps["runAddNew"].then === "function"
+              ) {
+                $steps["runAddNew"] = await $steps["runAddNew"];
               }
             }}
             onLoadingChange={async (...eventArgs: any) => {

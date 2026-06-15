@@ -821,7 +821,7 @@ function PlasmicLogin__RenderFunc(props: {
                       const actionArgs = {
                         args: [
                           "POST",
-                          "https://sayban.darkube.app/webhook/users/auth",
+                          "users/auth",
                           undefined,
                           (() => {
                             try {
@@ -1288,7 +1288,7 @@ function PlasmicLogin__RenderFunc(props: {
                           const actionArgs = {
                             args: [
                               "POST",
-                              "https://sayban.darkube.app/webhook/users/validate",
+                              "/users/validate",
                               undefined,
                               (() => {
                                 try {
@@ -2214,7 +2214,7 @@ function PlasmicLogin__RenderFunc(props: {
                           const actionArgs = {
                             args: [
                               "POST",
-                              "https://sayban.darkube.app/webhook/setProfile",
+                              "/setProfile",
                               undefined,
                               (() => {
                                 try {
@@ -2524,6 +2524,7 @@ function PlasmicLogin__RenderFunc(props: {
             const child$Props = {
               className: classNames("__wab_instance", sty.modal, {
                 [sty.modalpage_code]: hasVariant($state, "page", "code"),
+                [sty.modalpage_loading]: hasVariant($state, "page", "loading"),
                 [sty.modalpage_mobile]: hasVariant($state, "page", "mobile"),
                 [sty.modalpage_name]: hasVariant($state, "page", "name")
               }),
