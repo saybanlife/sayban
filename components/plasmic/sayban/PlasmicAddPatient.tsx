@@ -110,6 +110,7 @@ export type PlasmicAddPatient__OverridesType = {
   mobile?: Flex__<typeof TextInput>;
   selectGender?: Flex__<typeof Select>;
   selectMarital?: Flex__<typeof Select>;
+  relation?: Flex__<typeof Select>;
   header?: Flex__<typeof Header>;
   section?: Flex__<"section">;
   codeSubmit2?: Flex__<typeof Button>;
@@ -236,6 +237,18 @@ function PlasmicAddPatient__RenderFunc(props: {
       },
       {
         path: "mobile.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "relation.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "relation.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
@@ -633,6 +646,134 @@ function PlasmicAddPatient__RenderFunc(props: {
             value={generateStateValueProp($state, ["selectMarital", "value"])}
           />
         </div>
+        <Select
+          data-plasmic-name={"relation"}
+          data-plasmic-override={overrides.relation}
+          className={classNames("__wab_instance", sty.relation)}
+          description={null}
+          isOpen={generateStateValueProp($state, ["relation", "isOpen"])}
+          items={(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+            (() => {
+              try {
+                return [
+                  {
+                    label: "پدر",
+                    value: "father"
+                  },
+                  {
+                    label: "مادر",
+                    value: "mother"
+                  },
+                  {
+                    label: "همسر",
+                    value: "spouse"
+                  },
+                  {
+                    label: "فرزند",
+                    value: "child"
+                  },
+                  {
+                    label: "برادر",
+                    value: "brother"
+                  },
+                  {
+                    label: "خواهر",
+                    value: "sister"
+                  },
+                  {
+                    label: "پدربزرگ / مادربزرگ",
+                    value: "grandparent"
+                  },
+                  {
+                    label: "سایر فامیل درج شده",
+                    value: "relative"
+                  },
+                  {
+                    label: "سایر موارد (غیر فامیل)",
+                    value: "other"
+                  }
+                ];
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
+              }
+            })()
+          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+            const currentItem = __plasmic_item_0;
+            const currentIndex = __plasmic_idx_0;
+            return (
+              <MenuItem
+                key={currentIndex}
+                label={(() => {
+                  try {
+                    return currentItem.label;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                value={(() => {
+                  try {
+                    return currentItem.value;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+              />
+            );
+          })}
+          label={null}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["relation", "value"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onOpenChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["relation", "isOpen"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          placeholder={
+            "\u0646\u0633\u0628\u062a \u0628\u0627 \u0634\u0645\u0627"
+          }
+          showLabel={false}
+          type={"lineBox"}
+          value={generateStateValueProp($state, ["relation", "value"])}
+        />
       </div>
       <Header
         data-plasmic-name={"header"}
@@ -691,13 +832,15 @@ function PlasmicAddPatient__RenderFunc(props: {
                       customFunction: async () => {
                         return (() => {
                           if (!$state.name.value)
-                            return "لطفا نام را وارد کنید";
+                            return "لطفا نام و نام خانوادگی را وارد کنید";
                           if (!$state.code.value)
                             return "لطفا کد ملی را وارد کنید";
                           if (!$state.selectGender.value)
                             return "لطفا جنسیت را انتخاب کنید";
                           if (!$state.selectMarital.value)
                             return "لطفا وضعیت تاهل را انتخاب کنید";
+                          if (!$state.relation.value)
+                            return "لطفا نسبت خود با فرد را انتخاب کنید";
                         })();
                       }
                     };
@@ -729,7 +872,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                               national_code: $state.code.value,
                               mobile: $state.mobile.value,
                               gender: $state.selectGender.value,
-                              marital_status: $state.selectMarital.value
+                              marital_status: $state.selectMarital.value,
+                              relation: $state.relation.value
                             };
                           } catch (e) {
                             if (
@@ -808,30 +952,25 @@ function PlasmicAddPatient__RenderFunc(props: {
                   await $steps["invokeGlobalAction2"];
               }
 
-              $steps["goToHomepage"] =
+              $steps["runCode4"] =
                 $steps.setProfile?.data?.success == true
                   ? (() => {
-                      const actionArgs = { destination: `/${"home"}/${""}` };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return window.history.back();
                         }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
                       })?.apply(null, [actionArgs]);
                     })()
                   : undefined;
               if (
-                $steps["goToHomepage"] != null &&
-                typeof $steps["goToHomepage"] === "object" &&
-                typeof $steps["goToHomepage"].then === "function"
+                $steps["runCode4"] != null &&
+                typeof $steps["runCode4"] === "object" &&
+                typeof $steps["runCode4"].then === "function"
               ) {
-                $steps["goToHomepage"] = await $steps["goToHomepage"];
+                $steps["runCode4"] = await $steps["runCode4"];
               }
 
               $steps["invokeGlobalAction"] =
@@ -919,6 +1058,7 @@ const PlasmicDescendants = {
     "mobile",
     "selectGender",
     "selectMarital",
+    "relation",
     "header",
     "section",
     "codeSubmit2"
@@ -928,6 +1068,7 @@ const PlasmicDescendants = {
   mobile: ["mobile"],
   selectGender: ["selectGender"],
   selectMarital: ["selectMarital"],
+  relation: ["relation"],
   header: ["header"],
   section: ["section", "codeSubmit2"],
   codeSubmit2: ["codeSubmit2"]
@@ -942,6 +1083,7 @@ type NodeDefaultElementType = {
   mobile: typeof TextInput;
   selectGender: typeof Select;
   selectMarital: typeof Select;
+  relation: typeof Select;
   header: typeof Header;
   section: "section";
   codeSubmit2: typeof Button;
@@ -1014,6 +1156,7 @@ export const PlasmicAddPatient = Object.assign(
     mobile: makeNodeComponent("mobile"),
     selectGender: makeNodeComponent("selectGender"),
     selectMarital: makeNodeComponent("selectMarital"),
+    relation: makeNodeComponent("relation"),
     header: makeNodeComponent("header"),
     section: makeNodeComponent("section"),
     codeSubmit2: makeNodeComponent("codeSubmit2"),

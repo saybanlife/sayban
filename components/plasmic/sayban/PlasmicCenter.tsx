@@ -95,8 +95,8 @@ import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZW
 import Icon63Icon from "./icons/PlasmicIcon__Icon63"; // plasmic-import: I3nE9VH2SfXs/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import Icon99Icon from "./icons/PlasmicIcon__Icon99"; // plasmic-import: ugUHUxsGJbm7/icon
-import Icon42Icon from "./icons/PlasmicIcon__Icon42"; // plasmic-import: jkq895Pwga0g/icon
 import CalendarTimeIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CalendarTime"; // plasmic-import: 6AQWb52cQDRN/icon
+import Icon42Icon from "./icons/PlasmicIcon__Icon42"; // plasmic-import: jkq895Pwga0g/icon
 import PlusIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Plus"; // plasmic-import: _pdhShvRj8aO/icon
 
 createPlasmicElementProxy;
@@ -349,7 +349,7 @@ function PlasmicCenter__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? false : false
+          hasVariant(globalVariants, "screen", "mobileOnly") ? false : true
       },
       {
         path: "topics2.data",
@@ -2841,6 +2841,63 @@ drawRating(${$state.rate});
                 />
               </div>
               {(() => {
+                try {
+                  return !$state.selectTime.selected;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div className={classNames("all", sty.freeBox__o41A2)}>
+                  <CalendarTimeIcon
+                    className={classNames("all", sty.svg__hcdPj)}
+                    role={"img"}
+                  />
+
+                  <div className={classNames("all", sty.freeBox__obQeL)}>
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text___864Fg
+                      )}
+                    >
+                      {
+                        "\u0644\u0637\u0641\u0627 \u0632\u0645\u0627\u0646 \u0645\u0648\u0631\u062f \u0646\u0638\u0631 \u062e\u0648\u062f \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
+                      }
+                    </div>
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text___1PIid
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return ` مدت زمان هر جلسه ${$state.service.duration_minutes} دقیقه می باشد.`;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u0645\u0627\u0646 ";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
+              {(() => {
                 const child$Props = {
                   className: classNames("__wab_instance", sty.calendar),
                   clearTime: async () => {
@@ -3261,63 +3318,6 @@ drawRating(${$state.rate});
               </ApiRequest>
             </div>
             <section className={classNames("all", sty.section__lYw80)}>
-              {(() => {
-                try {
-                  return !$state.selectTime.selected;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div className={classNames("all", sty.freeBox__o41A2)}>
-                  <CalendarTimeIcon
-                    className={classNames("all", sty.svg__hcdPj)}
-                    role={"img"}
-                  />
-
-                  <div className={classNames("all", sty.freeBox__obQeL)}>
-                    <div
-                      className={classNames(
-                        "all",
-                        "__wab_text",
-                        sty.text___864Fg
-                      )}
-                    >
-                      {
-                        "\u0644\u0637\u0641\u0627 \u0632\u0645\u0627\u0646 \u0645\u0648\u0631\u062f \u0646\u0638\u0631 \u062e\u0648\u062f \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
-                      }
-                    </div>
-                    <div
-                      className={classNames(
-                        "all",
-                        "__wab_text",
-                        sty.text___1PIid
-                      )}
-                    >
-                      <React.Fragment>
-                        {(() => {
-                          try {
-                            return ` مدت زمان هر جلسه ${$state.service.duration_minutes} دقیقه می باشد.`;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u0645\u0627\u0646 ";
-                            }
-                            throw e;
-                          }
-                        })()}
-                      </React.Fragment>
-                    </div>
-                  </div>
-                </div>
-              ) : null}
               <div className={classNames("all", sty.freeBox___2LWei)}>
                 <Button
                   data-plasmic-name={"button2"}
@@ -3664,6 +3664,29 @@ drawRating(${$state.rate});
                       typeof $steps["runUserNew"].then === "function"
                     ) {
                       $steps["runUserNew"] = await $steps["runUserNew"];
+                    }
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return (() => {
+                                $state.entry.opendialog = false;
+                                return ($state.selectuser.opendialog = false);
+                              })();
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
                     }
                   }}
                 >

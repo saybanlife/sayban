@@ -100,6 +100,9 @@
 .selectMarital:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
+.relation:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
 .header:global(.__wab_instance) {
   max-width: 100%;
   left: 0;

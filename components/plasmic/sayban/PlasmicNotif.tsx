@@ -617,7 +617,7 @@ function PlasmicNotif__RenderFunc(props: {
                               let seenArrey =
                                 JSON.parse(localStorage.getItem("seenArrey")) ||
                                 [];
-                              return currentItem.seen == 1;
+                              return currentItem.is_seen == 1;
                             })();
                           } catch (e) {
                             if (

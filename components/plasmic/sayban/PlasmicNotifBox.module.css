@@ -165,7 +165,8 @@
   position: absolute;
   left: var(--token-cfon0PHiXQoL);
   top: var(--token-cfon0PHiXQoL);
-  height: 1em;
+  width: var(--token-rfsFxiclAtek);
+  height: var(--token-rfsFxiclAtek);
   flex-shrink: 0;
 }
 .svgseen__b7XlJjmYVk {
