@@ -51,7 +51,14 @@
 .ariaInputtype_lineBox:global(.__wab_instance) {
   background: none;
   color: var(--token-9M5jRUPt8Msb);
+  border-radius: var(--token-cfon0PHiXQoL);
   border: 1px solid var(--token-Pxe4wDL2kJpb);
+}
+.ariaInputtype_lineBoxDark:global(.__wab_instance) {
+  background: none;
+  color: var(--token-9M5jRUPt8Msb);
+  border-radius: var(--token-cfon0PHiXQoL);
+  border: 1px solid var(--token-KjATzAYJ5IB7);
 }
 .ariaInputflat_top:global(.__wab_instance) {
   border-top-left-radius: 0rem;

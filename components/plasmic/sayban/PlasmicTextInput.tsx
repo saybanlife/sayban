@@ -71,7 +71,7 @@ import sty from "./PlasmicTextInput.module.css"; // plasmic-import: lMgENIWzjnK0
 createPlasmicElementProxy;
 
 export type PlasmicTextInput__VariantMembers = {
-  type: "soft" | "plain" | "line" | "lineBox";
+  type: "soft" | "plain" | "line" | "lineBox" | "lineBoxDark";
   flat: "top" | "right" | "bottom" | "left";
   padded: "left" | "right";
   size: "langh";
@@ -79,7 +79,7 @@ export type PlasmicTextInput__VariantMembers = {
   error: "error";
 };
 export type PlasmicTextInput__VariantsArgs = {
-  type?: SingleChoiceArg<"soft" | "plain" | "line" | "lineBox">;
+  type?: SingleChoiceArg<"soft" | "plain" | "line" | "lineBox" | "lineBoxDark">;
   flat?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   padded?: MultiChoiceArg<"left" | "right">;
   size?: SingleChoiceArg<"langh">;
@@ -283,7 +283,7 @@ export interface DefaultTextInputProps {
   maxLength?: number;
   minLength?: number;
   pattern?: string;
-  type?: SingleChoiceArg<"soft" | "plain" | "line" | "lineBox">;
+  type?: SingleChoiceArg<"soft" | "plain" | "line" | "lineBox" | "lineBoxDark">;
   flat?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   padded?: MultiChoiceArg<"left" | "right">;
   size?: SingleChoiceArg<"langh">;
@@ -441,6 +441,11 @@ function PlasmicTextInput__RenderFunc(props: {
             $state,
             "style2",
             "rounded"
+          ),
+          [sty.ariaInputtype_lineBoxDark]: hasVariant(
+            $state,
+            "type",
+            "lineBoxDark"
           ),
           [sty.ariaInputtype_lineBox]: hasVariant($state, "type", "lineBox"),
           [sty.ariaInputtype_line]: hasVariant($state, "type", "line"),

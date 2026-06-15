@@ -76,6 +76,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import sty from "./PlasmicLogin.module.css"; // plasmic-import: 9IHhNJeWZ_i2/css
 
 import Icon39Icon from "./icons/PlasmicIcon__Icon39"; // plasmic-import: mY1x2mJnCMIY/icon
+import DeviceMobileIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__DeviceMobile"; // plasmic-import: qk8I-7Tf3cET/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: L5-0jFcT5N2O/icon
@@ -460,26 +461,62 @@ function PlasmicLogin__RenderFunc(props: {
                 alt={""}
                 className={classNames(sty.img, {
                   [sty.imgpage_code]: hasVariant($state, "page", "code"),
+                  [sty.imgpage_loading]: hasVariant($state, "page", "loading"),
                   [sty.imgpage_mobile]: hasVariant($state, "page", "mobile"),
                   [sty.imgpage_name]: hasVariant($state, "page", "name")
                 })}
-                displayHeight={"auto"}
+                displayHeight={
+                  hasVariant(globalVariants, "screen", "mobileOnly")
+                    ? "7rem"
+                    : "8rem"
+                }
                 displayMaxHeight={"none"}
                 displayMaxWidth={"100%"}
                 displayMinHeight={"0"}
                 displayMinWidth={"0"}
                 displayWidth={
                   hasVariant(globalVariants, "screen", "mobileOnly")
-                    ? "150px"
-                    : "150px"
+                    ? "auto"
+                    : "auto"
                 }
                 loading={"lazy"}
-                src={{
-                  src: "/plasmic/sayban/images/untitledPicturePng2.png",
-                  fullWidth: 3629,
-                  fullHeight: 2887,
-                  aspectRatio: undefined
-                }}
+                src={
+                  hasVariant($state, "page", "name")
+                    ? {
+                        src: "/plasmic/sayban/images/image31.svg",
+                        fullWidth: 456.27,
+                        fullHeight: 434.2,
+                        aspectRatio: undefined
+                      }
+                    : hasVariant($state, "page", "code") &&
+                        hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? {
+                          src: "/plasmic/sayban/images/image31.svg",
+                          fullWidth: 456.27,
+                          fullHeight: 434.2,
+                          aspectRatio: undefined
+                        }
+                      : hasVariant($state, "page", "code")
+                        ? {
+                            src: "/plasmic/sayban/images/image31.svg",
+                            fullWidth: 456.27,
+                            fullHeight: 434.2,
+                            aspectRatio: undefined
+                          }
+                        : hasVariant($state, "page", "mobile")
+                          ? {
+                              src: "/plasmic/sayban/images/image31.svg",
+                              fullWidth: 456.27,
+                              fullHeight: 434.2,
+                              aspectRatio: undefined
+                            }
+                          : {
+                              src: "/plasmic/sayban/images/untitledPicturePng2.png",
+                              fullWidth: 3629,
+                              fullHeight: 2887,
+                              aspectRatio: undefined
+                            }
+                }
               />
 
               <div
@@ -586,36 +623,16 @@ function PlasmicLogin__RenderFunc(props: {
             />
 
             <div
-              className={classNames("all", sty.freeBox__iDwk, {
-                [sty.freeBoxpage_code__iDwkOhvpc]: hasVariant(
-                  $state,
-                  "page",
-                  "code"
-                ),
-                [sty.freeBoxpage_loading__iDwkEyvhu]: hasVariant(
-                  $state,
-                  "page",
-                  "loading"
-                ),
-                [sty.freeBoxpage_mobile__iDwkMKfXs]: hasVariant(
-                  $state,
-                  "page",
-                  "mobile"
-                ),
-                [sty.freeBoxpage_name__iDwkAq9MH]: hasVariant(
-                  $state,
-                  "page",
-                  "name"
-                )
-              })}
-            />
-
-            <div
               className={classNames("all", sty.freeBox__zBIaQ, {
                 [sty.freeBoxpage_code__zBIaQohvpc]: hasVariant(
                   $state,
                   "page",
                   "code"
+                ),
+                [sty.freeBoxpage_loading__zBIaQEyvhu]: hasVariant(
+                  $state,
+                  "page",
+                  "loading"
                 ),
                 [sty.freeBoxpage_mobile__zBIaQmKfXs]: hasVariant(
                   $state,
@@ -631,47 +648,125 @@ function PlasmicLogin__RenderFunc(props: {
             />
           </div>
           <div
-            className={classNames("all", sty.freeBox___9GXgZ, {
-              [sty.freeBoxpage_code___9GXgZohvpc]: hasVariant(
-                $state,
-                "page",
-                "code"
-              ),
-              [sty.freeBoxpage_loading___9GXgZEyvhu]: hasVariant(
-                $state,
-                "page",
-                "loading"
-              ),
-              [sty.freeBoxpage_mobile___9GXgZmKfXs]: hasVariant(
-                $state,
-                "page",
-                "mobile"
-              ),
-              [sty.freeBoxpage_name___9GXgZaq9MH]: hasVariant(
-                $state,
-                "page",
-                "name"
-              )
-            })}
-          >
-            <div
-              className={classNames("all", "__wab_text", sty.text___8IauO, {
-                [sty.textpage_code___8IauOohvpc]: hasVariant(
+            className={classNames(
+              "all",
+              sty.freeBox___9GXgZ,
+              hasVariant($state, "page", "mobile") &&
+                hasVariant(globalVariants, "screen", "mobileOnly")
+                ? "dark"
+                : undefined,
+              {
+                [sty.freeBoxpage_code___9GXgZohvpc]: hasVariant(
                   $state,
                   "page",
                   "code"
                 ),
-                [sty.textpage_loading___8IauOEyvhu]: hasVariant(
+                [sty.freeBoxpage_loading___9GXgZEyvhu]: hasVariant(
                   $state,
                   "page",
                   "loading"
                 ),
-                [sty.textpage_mobile___8IauOmKfXs]: hasVariant(
+                [sty.freeBoxpage_mobile___9GXgZmKfXs]: hasVariant(
                   $state,
                   "page",
                   "mobile"
                 ),
-                [sty.textpage_name___8IauOaq9MH]: hasVariant(
+                [sty.freeBoxpage_name___9GXgZaq9MH]: hasVariant(
+                  $state,
+                  "page",
+                  "name"
+                )
+              }
+            )}
+          >
+            <div
+              className={classNames("all", sty.freeBox__heiIi, {
+                [sty.freeBoxpage_mobile__heiIimKfXs]: hasVariant(
+                  $state,
+                  "page",
+                  "mobile"
+                )
+              })}
+            >
+              <div
+                className={classNames("all", "__wab_text", sty.text___8IauO, {
+                  [sty.textpage_code___8IauOohvpc]: hasVariant(
+                    $state,
+                    "page",
+                    "code"
+                  ),
+                  [sty.textpage_loading___8IauOEyvhu]: hasVariant(
+                    $state,
+                    "page",
+                    "loading"
+                  ),
+                  [sty.textpage_mobile___8IauOmKfXs]: hasVariant(
+                    $state,
+                    "page",
+                    "mobile"
+                  ),
+                  [sty.textpage_name___8IauOaq9MH]: hasVariant(
+                    $state,
+                    "page",
+                    "name"
+                  )
+                })}
+              >
+                {hasVariant($state, "page", "name")
+                  ? "\u06a9\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+                  : hasVariant($state, "page", "code")
+                    ? "\u06a9\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+                    : "\u0628\u0647 \u0633\u0627\u06cc\u0628\u0627\u0646 \u062e\u0648\u0634 \u0622\u0645\u062f\u06cc\u062f\r"}
+              </div>
+              <div
+                className={classNames("all", "__wab_text", sty.text__nayMm, {
+                  [sty.textpage_code__nayMmohvpc]: hasVariant(
+                    $state,
+                    "page",
+                    "code"
+                  ),
+                  [sty.textpage_loading__nayMmEyvhu]: hasVariant(
+                    $state,
+                    "page",
+                    "loading"
+                  ),
+                  [sty.textpage_mobile__nayMMmKfXs]: hasVariant(
+                    $state,
+                    "page",
+                    "mobile"
+                  ),
+                  [sty.textpage_name__nayMMaq9MH]: hasVariant(
+                    $state,
+                    "page",
+                    "name"
+                  )
+                })}
+              >
+                {hasVariant($state, "page", "name")
+                  ? "\u06a9\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+                  : hasVariant($state, "page", "code")
+                    ? "\u06a9\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+                    : "\u0628\u0631\u0627\u06cc \u0648\u0631\u0648\u062f \u06cc\u0627 \u062b\u0628\u062a \u0646\u0627\u0645 \u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u062e\u0648\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"}
+              </div>
+            </div>
+            <div
+              className={classNames("all", "__wab_text", sty.text__kYbW, {
+                [sty.textpage_code__kYbWOhvpc]: hasVariant(
+                  $state,
+                  "page",
+                  "code"
+                ),
+                [sty.textpage_loading__kYbWEyvhu]: hasVariant(
+                  $state,
+                  "page",
+                  "loading"
+                ),
+                [sty.textpage_mobile__kYbWmKfXs]: hasVariant(
+                  $state,
+                  "page",
+                  "mobile"
+                ),
+                [sty.textpage_name__kYbWaq9MH]: hasVariant(
                   $state,
                   "page",
                   "name"
@@ -684,92 +779,134 @@ function PlasmicLogin__RenderFunc(props: {
                   ? "\u06a9\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
                   : "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u062e\u0648\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."}
             </div>
-            <TextInput
-              data-plasmic-name={"mobile"}
-              data-plasmic-override={overrides.mobile}
-              ariaLabel={
-                hasVariant($state, "page", "mobile") ? "cscscs" : "cscscs"
-              }
-              autoComplete={[]}
-              autoFocus={false}
-              className={classNames("__wab_instance", sty.mobile, {
-                [sty.mobilepage_code]: hasVariant($state, "page", "code"),
-                [sty.mobilepage_loading]: hasVariant($state, "page", "loading"),
-                [sty.mobilepage_mobile]: hasVariant($state, "page", "mobile"),
-                [sty.mobilepage_name]: hasVariant($state, "page", "name")
-              })}
-              disabled={false}
-              inputMode={
-                hasVariant($state, "page", "mobile") ? "tel" : undefined
-              }
-              inputType={
-                hasVariant($state, "page", "mobile") ? "tel" : undefined
-              }
-              maxLength={(() => {
-                try {
-                  return $state.mobile.value.startsWith("0") ? 11 : 10;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
+            <div
+              className={classNames(
+                "all",
+                sty.freeBox__dKFgO,
+                hasVariant($state, "page", "mobile") ? "dark" : "dark",
+                {
+                  [sty.freeBoxpage_code__dKFgOohvpc]: hasVariant(
+                    $state,
+                    "page",
+                    "code"
+                  ),
+                  [sty.freeBoxpage_mobile__dKFgOmKfXs]: hasVariant(
+                    $state,
+                    "page",
+                    "mobile"
+                  )
                 }
-              })()}
-              onChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["mobile", "value"]).apply(
-                  null,
-                  eventArgs
-                );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
+              )}
+            >
+              <TextInput
+                data-plasmic-name={"mobile"}
+                data-plasmic-override={overrides.mobile}
+                ariaLabel={
+                  hasVariant($state, "page", "mobile") ? "cscscs" : "cscscs"
                 }
-
-                (async val => {
-                  const $steps = {};
-
-                  $steps["runCode"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          customFunction: async () => {
-                            return (() => {
-                              const regex = /^0?$|^0?9\d{0,9}$/;
-                              if (!regex.test($state.mobile.value)) {
-                                return ($state.mobile.value =
-                                  $state.mobile.value.slice(0, -1));
-                              }
-                            })();
-                          }
-                        };
-                        return (({ customFunction }) => {
-                          return customFunction();
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runCode"] != null &&
-                    typeof $steps["runCode"] === "object" &&
-                    typeof $steps["runCode"].then === "function"
-                  ) {
-                    $steps["runCode"] = await $steps["runCode"];
+                autoComplete={[]}
+                autoFocus={false}
+                className={classNames("__wab_instance", sty.mobile, {
+                  [sty.mobilepage_code]: hasVariant($state, "page", "code"),
+                  [sty.mobilepage_loading]: hasVariant(
+                    $state,
+                    "page",
+                    "loading"
+                  ),
+                  [sty.mobilepage_mobile]: hasVariant($state, "page", "mobile"),
+                  [sty.mobilepage_name]: hasVariant($state, "page", "name")
+                })}
+                disabled={false}
+                flat={hasVariant($state, "page", "mobile") ? [] : undefined}
+                inputMode={
+                  hasVariant($state, "page", "mobile") ? "tel" : undefined
+                }
+                inputType={
+                  hasVariant($state, "page", "mobile") ? "tel" : undefined
+                }
+                maxLength={(() => {
+                  try {
+                    return $state.mobile.value.startsWith("0") ? 11 : 10;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
                   }
-                }).apply(null, eventArgs);
-              }}
-              placeholder={
-                "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644"
-              }
-              readOnly={false}
-              size={"langh"}
-              value={generateStateValueProp($state, ["mobile", "value"])}
-            />
+                })()}
+                onChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["mobile", "value"]).apply(
+                    null,
+                    eventArgs
+                  );
 
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+
+                  (async val => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return (() => {
+                                const regex = /^0?$|^0?9\d{0,9}$/;
+                                if (!regex.test($state.mobile.value)) {
+                                  return ($state.mobile.value =
+                                    $state.mobile.value.slice(0, -1));
+                                }
+                              })();
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+                  }).apply(null, eventArgs);
+                }}
+                padded={["right"]}
+                placeholder={
+                  "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644"
+                }
+                readOnly={false}
+                size={"langh"}
+                type={
+                  hasVariant($state, "page", "mobile") &&
+                  hasVariant(globalVariants, "screen", "mobileOnly")
+                    ? "lineBox"
+                    : "lineBoxDark"
+                }
+                value={generateStateValueProp($state, ["mobile", "value"])}
+              />
+
+              <DeviceMobileIcon
+                className={classNames("all", sty.svg__x7Iqj, {
+                  [sty.svgpage_code__x7IqjOhvpc]: hasVariant(
+                    $state,
+                    "page",
+                    "code"
+                  )
+                })}
+                role={"img"}
+              />
+            </div>
             <Button
               data-plasmic-name={"mobileSubmit"}
               data-plasmic-override={overrides.mobileSubmit}
@@ -1041,6 +1178,16 @@ function PlasmicLogin__RenderFunc(props: {
                 </div>
                 <div
                   className={classNames("all", "__wab_text", sty.text__knhTs, {
+                    [sty.textpage_code__knhTsohvpc]: hasVariant(
+                      $state,
+                      "page",
+                      "code"
+                    ),
+                    [sty.textpage_loading__knhTsEyvhu]: hasVariant(
+                      $state,
+                      "page",
+                      "loading"
+                    ),
                     [sty.textpage_mobile__knhTSmKfXs]: hasVariant(
                       $state,
                       "page",
@@ -1162,7 +1309,7 @@ function PlasmicLogin__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://sayban.darkube.app/webhook/users/auth",
+                            "/users/auth",
                             undefined,
                             (() => {
                               try {
@@ -1572,7 +1719,7 @@ function PlasmicLogin__RenderFunc(props: {
                   : false
           ) ? (
             <div
-              className={classNames("all", sty.freeBox__b36SB, {
+              className={classNames("all", sty.freeBox__b36SB, "dark", {
                 [sty.freeBoxpage_code__b36SBohvpc]: hasVariant(
                   $state,
                   "page",
@@ -1682,6 +1829,7 @@ function PlasmicLogin__RenderFunc(props: {
                 }
                 readOnly={false}
                 size={"langh"}
+                type={"lineBoxDark"}
                 value={generateStateValueProp($state, ["name", "value"])}
               />
 
@@ -1753,7 +1901,7 @@ function PlasmicLogin__RenderFunc(props: {
                 }
                 readOnly={false}
                 size={"langh"}
-                type={"plain"}
+                type={"lineBoxDark"}
                 value={generateStateValueProp($state, ["code", "value"])}
               />
 
@@ -1865,7 +2013,7 @@ function PlasmicLogin__RenderFunc(props: {
                   }}
                   placeholder={"\u062c\u0646\u0633\u06cc\u062a"}
                   showLabel={false}
-                  type={"plain"}
+                  type={"lineBoxDark"}
                   value={generateStateValueProp($state, [
                     "selectGender",
                     "value"
@@ -1977,7 +2125,7 @@ function PlasmicLogin__RenderFunc(props: {
                   }}
                   placeholder={"\u062a\u0627\u0647\u0644"}
                   showLabel={false}
-                  type={"plain"}
+                  type={"lineBoxDark"}
                   value={generateStateValueProp($state, [
                     "selectMarital",
                     "value"
@@ -2041,6 +2189,7 @@ function PlasmicLogin__RenderFunc(props: {
                   }
                   readOnly={false}
                   size={"langh"}
+                  type={"lineBoxDark"}
                   value={generateStateValueProp($state, ["cityInput", "value"])}
                 />
 
