@@ -88,6 +88,8 @@ export type PlasmicPatient__ArgsType = {
   onSubcategories?: () => void;
   token?: string;
   addUser?: () => void;
+  refresh?: string;
+  onRefreshChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicPatient__ArgsType;
 export const PlasmicPatient__ArgProps = new Array<ArgPropType>(
@@ -96,7 +98,9 @@ export const PlasmicPatient__ArgProps = new Array<ArgPropType>(
   "onSubcategoriesChange",
   "onSubcategories",
   "token",
-  "addUser"
+  "addUser",
+  "refresh",
+  "onRefreshChange"
 );
 
 export type PlasmicPatient__OverridesType = {
@@ -114,6 +118,8 @@ export interface DefaultPatientProps {
   onSubcategories?: () => void;
   token?: string;
   addUser?: () => void;
+  refresh?: string;
+  onRefreshChange?: (val: string) => void;
   className?: string;
 }
 
@@ -189,6 +195,14 @@ function PlasmicPatient__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "refresh",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "refresh",
+        onChangeProp: "onRefreshChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -312,10 +326,7 @@ function PlasmicPatient__RenderFunc(props: {
         >
           {(() => {
             try {
-              return (
-                $state.apiRequest.data?.data?.filter(i => !i.is_main_user)
-                  .length == 0
-              );
+              return !$state.apiRequest.data?.data[0].id;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -415,61 +426,75 @@ function PlasmicPatient__RenderFunc(props: {
               />
             </div>
           ) : null}
-          <div className={classNames("all", sty.freeBox__avdmG)}>
-            {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-              (() => {
-                try {
-                  return $state.apiRequest.data?.data?.filter(
-                    i => !i.is_main_user
-                  );
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return [];
+          {(() => {
+            try {
+              return $state.apiRequest.data?.data[0].id;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })() ? (
+            <div className={classNames("all", sty.freeBox__avdmG)}>
+              {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                (() => {
+                  try {
+                    return $state.apiRequest.data?.data?.filter(
+                      i => !i.is_main_user
+                    );
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
                   }
-                  throw e;
-                }
-              })()
-            ).map((__plasmic_item_0, __plasmic_idx_0) => {
-              const currentItem = __plasmic_item_0;
-              const currentIndex = __plasmic_idx_0;
-              return (
-                <div
-                  className={classNames("all", sty.freeBox__lzE8T)}
-                  key={currentIndex}
-                >
-                  <div className={classNames("all", sty.freeBox__tfEqu)}>
-                    <Icon5Icon
-                      className={classNames("all", sty.svg___7Gpa1)}
-                      role={"img"}
-                    />
-                  </div>
-                  <div className={classNames("all", sty.freeBox__zyfai)}>
-                    <div
-                      className={classNames(
-                        "all",
-                        "__wab_text",
-                        sty.text__e3Lx
-                      )}
-                    >
-                      <React.Fragment>{currentItem.name}</React.Fragment>
+                })()
+              ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                const currentItem = __plasmic_item_0;
+                const currentIndex = __plasmic_idx_0;
+                return (
+                  <div
+                    className={classNames("all", sty.freeBox__lzE8T)}
+                    key={currentIndex}
+                  >
+                    <div className={classNames("all", sty.freeBox__tfEqu)}>
+                      <Icon5Icon
+                        className={classNames("all", sty.svg___7Gpa1)}
+                        role={"img"}
+                      />
                     </div>
-                    <div
-                      className={classNames(
-                        "all",
-                        "__wab_text",
-                        sty.text__akjm
-                      )}
-                    >
-                      <React.Fragment>{`کد ملی: ${currentItem.national_code}`}</React.Fragment>
+                    <div className={classNames("all", sty.freeBox__zyfai)}>
+                      <div
+                        className={classNames(
+                          "all",
+                          "__wab_text",
+                          sty.text__e3Lx
+                        )}
+                      >
+                        <React.Fragment>{currentItem.name}</React.Fragment>
+                      </div>
+                      <div
+                        className={classNames(
+                          "all",
+                          "__wab_text",
+                          sty.text__akjm
+                        )}
+                      >
+                        <React.Fragment>{`کد ملی: ${currentItem.national_code}`}</React.Fragment>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          ) : null}
         </ApiRequest>
       </div>
     </div>

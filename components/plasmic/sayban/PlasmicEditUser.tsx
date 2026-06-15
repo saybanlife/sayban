@@ -700,31 +700,38 @@ function PlasmicEditUser__RenderFunc(props: {
           );
         }}
         open={generateStateValueProp($state, ["modal", "open"])}
-        title={null}
+        title={
+          <div className={classNames("all", "__wab_text", sty.text__bjP5)}>
+            {"\n"}
+          </div>
+        }
         trigger={null}
         width={"100vw"}
+        wrapClassName={classNames({ [sty["pcls_vPEf0dmEXVrI"]]: true })}
       >
-        <City
-          data-plasmic-name={"city"}
-          data-plasmic-override={overrides.city}
-          back={args.cityBack}
-          city={generateStateValueProp($state, ["city", "city"])}
-          className={classNames("__wab_instance", sty.city)}
-          onCityChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["city", "city"]).apply(
-              null,
-              eventArgs
-            );
+        <div className={classNames("all", sty.freeBox___1Ko0V, "page")}>
+          <City
+            data-plasmic-name={"city"}
+            data-plasmic-override={overrides.city}
+            back={args.cityBack}
+            city={generateStateValueProp($state, ["city", "city"])}
+            className={classNames("__wab_instance", sty.city)}
+            onCityChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["city", "city"]).apply(
+                null,
+                eventArgs
+              );
 
-            if (
-              eventArgs.length > 1 &&
-              eventArgs[1] &&
-              eventArgs[1]._plasmic_state_init_
-            ) {
-              return;
-            }
-          }}
-        />
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
       </AntdModal>
       <Header
         data-plasmic-name={"header"}
@@ -883,7 +890,7 @@ function PlasmicEditUser__RenderFunc(props: {
                             throw e;
                           }
                         })(),
-                        "top-right"
+                        "bottom-center"
                       ]
                     };
                     return $globalActions["Fragment.showToast"]?.apply(null, [
@@ -932,7 +939,8 @@ function PlasmicEditUser__RenderFunc(props: {
                       const actionArgs = {
                         args: [
                           "success",
-                          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f"
+                          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f",
+                          "bottom-center"
                         ]
                       };
                       return $globalActions["Fragment.showToast"]?.apply(null, [
@@ -967,7 +975,8 @@ function PlasmicEditUser__RenderFunc(props: {
                               }
                               throw e;
                             }
-                          })()
+                          })(),
+                          "bottom-center"
                         ]
                       };
                       return $globalActions["Fragment.showToast"]?.apply(null, [

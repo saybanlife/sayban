@@ -935,7 +935,7 @@ function PlasmicAddPatient__RenderFunc(props: {
                             throw e;
                           }
                         })(),
-                        "top-right"
+                        "bottom-center"
                       ]
                     };
                     return $globalActions["Fragment.showToast"]?.apply(null, [
@@ -991,7 +991,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                               }
                               throw e;
                             }
-                          })()
+                          })(),
+                          "bottom-center"
                         ]
                       };
                       return $globalActions["Fragment.showToast"]?.apply(null, [
@@ -1026,6 +1027,30 @@ function PlasmicAddPatient__RenderFunc(props: {
                 typeof $steps["runCode2"].then === "function"
               ) {
                 $steps["runCode2"] = await $steps["runCode2"];
+              }
+
+              $steps["invokeGlobalAction3"] =
+                $steps.setProfile?.data?.success == true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "success",
+                          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f",
+                          "bottom-center"
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+              if (
+                $steps["invokeGlobalAction3"] != null &&
+                typeof $steps["invokeGlobalAction3"] === "object" &&
+                typeof $steps["invokeGlobalAction3"].then === "function"
+              ) {
+                $steps["invokeGlobalAction3"] =
+                  await $steps["invokeGlobalAction3"];
               }
             }}
             onLoadingChange={async (...eventArgs: any) => {

@@ -258,85 +258,109 @@ function PlasmicBooking__RenderFunc(props: {
             eventArgs
           );
         }}
+        params={{
+          start: $state.bookingHeader.datePickerStart
+            ? new Date(
+                $state.bookingHeader.datePickerStart * 1000
+              ).toISOString()
+            : "",
+          end: $state.bookingHeader.datePickerEnd
+            ? new Date($state.bookingHeader.datePickerEnd * 1000).toISOString()
+            : ""
+        }}
         shouldFetch={true}
-        url={"https://sayban.darkube.app/webhook/Reservation"}
+        url={"Reservation"}
       >
-        <div className={classNames("all", sty.freeBox__t5Rev)}>
-          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-            (() => {
-              try {
-                return $state.reservation.data.result;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return [];
+        {(() => {
+          try {
+            return $state.reservation?.data?.result[0].user_id;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })() ? (
+          <div className={classNames("all", sty.freeBox__t5Rev)}>
+            {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+              (() => {
+                try {
+                  return $state.reservation.data.result;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
                 }
-                throw e;
-              }
-            })()
-          ).map((__plasmic_item_0, __plasmic_idx_0) => {
-            const currentItem = __plasmic_item_0;
-            const currentIndex = __plasmic_idx_0;
-            return (
-              <ItemBooking
-                data-plasmic-name={"itemBooking"}
-                data-plasmic-override={overrides.itemBooking}
-                booking={true}
-                className={classNames("__wab_instance", sty.itemBooking)}
-                goToCenter={async event => {
-                  const $steps = {};
+              })()
+            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+              const currentItem = __plasmic_item_0;
+              const currentIndex = __plasmic_idx_0;
+              return (
+                <ItemBooking
+                  data-plasmic-name={"itemBooking"}
+                  data-plasmic-override={overrides.itemBooking}
+                  booking={true}
+                  className={classNames("__wab_instance", sty.itemBooking)}
+                  goToCenter={async event => {
+                    const $steps = {};
 
-                  $steps["runCode"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          customFunction: async () => {
-                            return window.sessionStorage.setItem(
-                              "id",
-                              currentItem.center_id
-                            );
-                          }
-                        };
-                        return (({ customFunction }) => {
-                          return customFunction();
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runCode"] != null &&
-                    typeof $steps["runCode"] === "object" &&
-                    typeof $steps["runCode"].then === "function"
-                  ) {
-                    $steps["runCode"] = await $steps["runCode"];
-                  }
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return window.sessionStorage.setItem(
+                                "id",
+                                currentItem.center_id
+                              );
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
 
-                  $steps["runGoToCenter"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          eventRef: $props["goToCenter"],
-                          args: [currentItem.center_id]
-                        };
-                        return (({ eventRef, args }) => {
-                          return eventRef?.(...(args ?? []));
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runGoToCenter"] != null &&
-                    typeof $steps["runGoToCenter"] === "object" &&
-                    typeof $steps["runGoToCenter"].then === "function"
-                  ) {
-                    $steps["runGoToCenter"] = await $steps["runGoToCenter"];
-                  }
-                }}
-                goToDetails={args.goToDetails}
-                item={currentItem}
-                key={currentIndex}
-              />
-            );
-          })}
-        </div>
+                    $steps["runGoToCenter"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            eventRef: $props["goToCenter"],
+                            args: [currentItem.center_id]
+                          };
+                          return (({ eventRef, args }) => {
+                            return eventRef?.(...(args ?? []));
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runGoToCenter"] != null &&
+                      typeof $steps["runGoToCenter"] === "object" &&
+                      typeof $steps["runGoToCenter"].then === "function"
+                    ) {
+                      $steps["runGoToCenter"] = await $steps["runGoToCenter"];
+                    }
+                  }}
+                  goToDetails={args.goToDetails}
+                  item={currentItem}
+                  key={currentIndex}
+                />
+              );
+            })}
+          </div>
+        ) : null}
       </ApiRequest>
       <section
         data-plasmic-name={"section"}
@@ -346,6 +370,11 @@ function PlasmicBooking__RenderFunc(props: {
         <BookingHeader
           data-plasmic-name={"bookingHeader"}
           data-plasmic-override={overrides.bookingHeader}
+          active={
+            $state.reservation.data?.result.filter(i => i.status != "canceled")
+              .length
+          }
+          all={$state.reservation.data?.result?.length}
           className={classNames("__wab_instance", sty.bookingHeader)}
           datePickerEnd={generateStateValueProp($state, [
             "bookingHeader",

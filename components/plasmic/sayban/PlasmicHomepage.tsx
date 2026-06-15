@@ -599,6 +599,12 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "patient.refresh",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -747,23 +753,24 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["getCookie"] = await $steps["getCookie"];
               }
 
-              $steps["goToLogin"] = false
-                ? (() => {
-                    const actionArgs = { destination: `/login/[[...step]]` };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
+              $steps["goToLogin"] =
+                $steps.getCookie == null || $steps.getCookie == ""
+                  ? (() => {
+                      const actionArgs = { destination: `/login/[[...step]]` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
               if (
                 $steps["goToLogin"] != null &&
                 typeof $steps["goToLogin"] === "object" &&
@@ -772,7 +779,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["goToLogin"] = await $steps["goToLogin"];
               }
 
-              $steps["updateToken"] = false
+              $steps["updateToken"] = true
                 ? (() => {
                     const actionArgs = {
                       variable: {
@@ -801,7 +808,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["updateToken"] = await $steps["updateToken"];
               }
 
-              $steps["runCode"] = true
+              $steps["runCode"] = false
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
@@ -3357,6 +3364,20 @@ function PlasmicHomepage__RenderFunc(props: {
                 hasVariant($state, "page", "notif"),
               [sty.patientpage_patient]: hasVariant($state, "page", "patient")
             })}
+            onRefreshChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["patient", "refresh"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
             onSubcategoriesChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "patient",
@@ -3371,6 +3392,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 return;
               }
             }}
+            refresh={generateStateValueProp($state, ["patient", "refresh"])}
             subcategories={generateStateValueProp($state, [
               "patient",
               "subcategories"

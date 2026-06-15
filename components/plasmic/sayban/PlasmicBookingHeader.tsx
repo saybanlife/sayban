@@ -92,13 +92,17 @@ export type PlasmicBookingHeader__ArgsType = {
   onDatePickerStartChange?: (val: number) => void;
   datePickerEnd?: number;
   onDatePickerEndChange?: (val: number) => void;
+  all?: number;
+  active?: number;
 };
 type ArgPropType = keyof PlasmicBookingHeader__ArgsType;
 export const PlasmicBookingHeader__ArgProps = new Array<ArgPropType>(
   "datePickerStart",
   "onDatePickerStartChange",
   "datePickerEnd",
-  "onDatePickerEndChange"
+  "onDatePickerEndChange",
+  "all",
+  "active"
 );
 
 export type PlasmicBookingHeader__OverridesType = {
@@ -116,6 +120,8 @@ export interface DefaultBookingHeaderProps {
   onDatePickerStartChange?: (val: number) => void;
   datePickerEnd?: number;
   onDatePickerEndChange?: (val: number) => void;
+  all?: number;
+  active?: number;
   filter?: SingleBooleanChoiceArg<"filter">;
   className?: string;
 }
@@ -386,42 +392,92 @@ function PlasmicBookingHeader__RenderFunc(props: {
           />
         </div>
       </div>
-      <div
-        className={classNames("all", sty.freeBox__jwSv, {
-          [sty.freeBoxfilter__jwSvLrf0Y]: hasVariant($state, "filter", "filter")
-        })}
-      >
-        <div className={classNames("all", sty.freeBox__axbDb)}>
-          <div className={classNames("all", "__wab_text", sty.text__hRihg)}>
-            {"0"}
-          </div>
-          <div className={classNames("all", "__wab_text", sty.text__c3FG)}>
-            {
-              "\u0631\u0632\u0631\u0648\u200c\u0647\u0627\u06cc \u0641\u0639\u0627\u0644"
-            }
-          </div>
-        </div>
+      {(
+        hasVariant($state, "filter", "filter")
+          ? true
+          : (() => {
+              try {
+                return $props.all > 0;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()
+      ) ? (
         <div
-          className={classNames("all", sty.freeBox__xdDPl, {
-            [sty.freeBoxfilter__xdDPlLrf0Y]: hasVariant(
+          className={classNames("all", sty.freeBox__jwSv, {
+            [sty.freeBoxfilter__jwSvLrf0Y]: hasVariant(
               $state,
               "filter",
               "filter"
             )
           })}
-        />
-
-        <div className={classNames("all", sty.freeBox__v4Y5I)}>
-          <div className={classNames("all", "__wab_text", sty.text__nRcKx)}>
-            {"0"}
+        >
+          <div className={classNames("all", sty.freeBox__axbDb)}>
+            <div className={classNames("all", "__wab_text", sty.text__hRihg)}>
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return $props.active;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "0";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+            <div className={classNames("all", "__wab_text", sty.text__c3FG)}>
+              {
+                "\u0631\u0632\u0631\u0648\u200c\u0647\u0627\u06cc \u0641\u0639\u0627\u0644"
+              }
+            </div>
           </div>
-          <div className={classNames("all", "__wab_text", sty.text__ubblM)}>
-            {
-              "\u062a\u0639\u062f\u0627\u062f \u06a9\u0644 \u0631\u0632\u0631\u0648\u200c\u0647\u0627"
-            }
+          <div
+            className={classNames("all", sty.freeBox__xdDPl, {
+              [sty.freeBoxfilter__xdDPlLrf0Y]: hasVariant(
+                $state,
+                "filter",
+                "filter"
+              )
+            })}
+          />
+
+          <div className={classNames("all", sty.freeBox__v4Y5I)}>
+            <div className={classNames("all", "__wab_text", sty.text__nRcKx)}>
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return $props.all;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+            <div className={classNames("all", "__wab_text", sty.text__ubblM)}>
+              {
+                "\u062a\u0639\u062f\u0627\u062f \u06a9\u0644 \u0631\u0632\u0631\u0648\u200c\u0647\u0627"
+              }
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
       <div
         className={classNames("all", sty.freeBox__ybn5G, {
           [sty.freeBoxfilter__ybn5GLrf0Y]: hasVariant(

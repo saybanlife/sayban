@@ -70,10 +70,14 @@ import sty from "./PlasmicSwitch.module.css"; // plasmic-import: gmLkAM4DXGYW/cs
 
 createPlasmicElementProxy;
 
-export type PlasmicSwitch__VariantMembers = {};
-export type PlasmicSwitch__VariantsArgs = {};
+export type PlasmicSwitch__VariantMembers = {
+  color: "green";
+};
+export type PlasmicSwitch__VariantsArgs = {
+  color?: SingleChoiceArg<"green">;
+};
 type VariantPropType = keyof PlasmicSwitch__VariantsArgs;
-export const PlasmicSwitch__VariantProps = new Array<VariantPropType>();
+export const PlasmicSwitch__VariantProps = new Array<VariantPropType>("color");
 
 export type PlasmicSwitch__ArgsType = {
   showLabel?: boolean;
@@ -117,6 +121,7 @@ export interface DefaultSwitchProps {
   ariaLabel?: string;
   onChange?: (val: boolean) => void;
   label?: React.ReactNode;
+  color?: SingleChoiceArg<"green">;
   className?: string;
 }
 
@@ -173,6 +178,12 @@ function PlasmicSwitch__RenderFunc(props: {
 
         valueProp: "isSelected",
         onChangeProp: "onChange"
+      },
+      {
+        path: "color",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.color
       }
     ],
     [$props, $ctx, $refs]
@@ -225,7 +236,8 @@ function PlasmicSwitch__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.ariaSwitch
+        sty.ariaSwitch,
+        { [sty.ariaSwitchcolor_green]: hasVariant($state, "color", "green") }
       )}
       isDisabled={args.disabled}
       isReadOnly={args.readOnly}
@@ -246,12 +258,20 @@ function PlasmicSwitch__RenderFunc(props: {
         <div
           data-plasmic-name={"switchIndicator"}
           data-plasmic-override={overrides.switchIndicator}
-          className={classNames("all", sty.switchIndicator)}
+          className={classNames("all", sty.switchIndicator, {
+            [sty.switchIndicatorcolor_green]: hasVariant(
+              $state,
+              "color",
+              "green"
+            )
+          })}
         >
           <div
             data-plasmic-name={"thumb"}
             data-plasmic-override={overrides.thumb}
-            className={classNames("all", sty.thumb)}
+            className={classNames("all", sty.thumb, {
+              [sty.thumbcolor_green]: hasVariant($state, "color", "green")
+            })}
           />
         </div>
         {$props.showLabel
