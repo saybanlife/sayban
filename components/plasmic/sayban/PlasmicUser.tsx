@@ -60,7 +60,6 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
-import Item2 from "../../Item2"; // plasmic-import: I4tZXoBGdFDz/component
 import Switch from "../../Switch"; // plasmic-import: gmLkAM4DXGYW/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -76,8 +75,7 @@ import Icon76Icon from "./icons/PlasmicIcon__Icon76"; // plasmic-import: PNmvwHP
 import MessageIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Message"; // plasmic-import: r2jZeTOT_KvL/icon
 import Icon268Icon from "./icons/PlasmicIcon__Icon268"; // plasmic-import: 1XnMx9ZcPwLh/icon
 import TagIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Tag"; // plasmic-import: 719VbVnZMlwm/icon
-import Icon78Icon from "./icons/PlasmicIcon__Icon78"; // plasmic-import: rn5Sm-68bTpC/icon
-import BrandTelegramIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__BrandTelegram"; // plasmic-import: 4E611EcCApzn/icon
+import HeadphonesIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Headphones"; // plasmic-import: p_Pvf8ez_yuB/icon
 import Icon85Icon from "./icons/PlasmicIcon__Icon85"; // plasmic-import: ZwDSzgb1OoZy/icon
 import Icon80Icon from "./icons/PlasmicIcon__Icon80"; // plasmic-import: 085F3u06dwLP/icon
 import Icon81Icon from "./icons/PlasmicIcon__Icon81"; // plasmic-import: JFikrSBW0K-n/icon
@@ -110,7 +108,6 @@ export type PlasmicUser__OverridesType = {
   root?: Flex__<"section">;
   section?: Flex__<"section">;
   img?: Flex__<typeof PlasmicImg__>;
-  item2?: Flex__<typeof Item2>;
   _switch?: Flex__<typeof Switch>;
   switch2?: Flex__<typeof Switch>;
 };
@@ -391,9 +388,7 @@ function PlasmicUser__RenderFunc(props: {
             />
 
             <div className={classNames("all", "__wab_text", sty.text__e9Vtm)}>
-              {
-                "\u0644\u06cc\u0633\u062a \u0647\u0645\u0631\u0627\u0647\u0627\u0646"
-              }
+              {"\u0647\u0645\u0631\u0627\u0647\u0627\u0646"}
             </div>
             <Icon76Icon
               className={classNames("all", sty.svg__g63Z2)}
@@ -416,32 +411,20 @@ function PlasmicUser__RenderFunc(props: {
           </div>
         </div>
         <div className={classNames("all", sty.freeBox__dUvuz)}>
-          <div className={classNames("all", sty.freeBox__bvw0)}>
-            <Icon78Icon
-              className={classNames("all", sty.svg__uqKim)}
+          <div className={classNames("all", sty.freeBox__ux03)}>
+            <HeadphonesIcon
+              className={classNames("all", sty.svg___7Ka3R)}
               role={"img"}
             />
 
-            <div className={classNames("all", "__wab_text", sty.text__a2MQ)}>
-              {
-                "\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u062a\u0644\u0641\u0646\u06cc"
-              }
+            <div className={classNames("all", "__wab_text", sty.text__s5GpZ)}>
+              {"\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc "}
             </div>
             <Icon76Icon
-              className={classNames("all", sty.svg___0HQm1)}
+              className={classNames("all", sty.svg__ji7TF)}
               role={"img"}
             />
           </div>
-          <Line
-            className={classNames("__wab_instance", sty.line__dfpV5)}
-            size={"small"}
-          />
-
-          <Item2
-            data-plasmic-name={"item2"}
-            data-plasmic-override={overrides.item2}
-            className={classNames("__wab_instance", sty.item2)}
-          />
         </div>
         <div className={classNames("all", sty.freeBox___4PsTr)}>
           <div className={classNames("all", sty.freeBox__er2Gs)}>
@@ -760,10 +743,9 @@ function PlasmicUser__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "section", "img", "item2", "_switch", "switch2"],
+  root: ["root", "section", "img", "_switch", "switch2"],
   section: ["section", "img"],
   img: ["img"],
-  item2: ["item2"],
   _switch: ["_switch"],
   switch2: ["switch2"]
 } as const;
@@ -774,7 +756,6 @@ type NodeDefaultElementType = {
   root: "section";
   section: "section";
   img: typeof PlasmicImg__;
-  item2: typeof Item2;
   _switch: typeof Switch;
   switch2: typeof Switch;
 };
@@ -843,7 +824,6 @@ export const PlasmicUser = Object.assign(
     // Helper components rendering sub-elements
     section: makeNodeComponent("section"),
     img: makeNodeComponent("img"),
-    item2: makeNodeComponent("item2"),
     _switch: makeNodeComponent("_switch"),
     switch2: makeNodeComponent("switch2"),
 

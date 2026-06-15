@@ -349,7 +349,7 @@ function PlasmicCenter__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? false : true
+          hasVariant(globalVariants, "screen", "mobileOnly") ? false : false
       },
       {
         path: "topics2.data",
@@ -2649,6 +2649,63 @@ drawRating(${$state.rate});
                   />
                 </div>
               </div>
+              {(() => {
+                try {
+                  return !$state.selectTime.selected;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div className={classNames("all", sty.freeBox__o41A2)}>
+                  <CalendarTimeIcon
+                    className={classNames("all", sty.svg__hcdPj)}
+                    role={"img"}
+                  />
+
+                  <div className={classNames("all", sty.freeBox__obQeL)}>
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text___864Fg
+                      )}
+                    >
+                      {
+                        "\u0644\u0637\u0641\u0627 \u0632\u0645\u0627\u0646 \u0645\u0648\u0631\u062f \u0646\u0638\u0631 \u062e\u0648\u062f \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
+                      }
+                    </div>
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text___1PIid
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return ` مدت زمان هر جلسه ${$state.service.duration_minutes} دقیقه می باشد.`;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u0645\u0627\u0646 ";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
               <div className={classNames("all", sty.freeBox__pEwRp)}>
                 <Next
                   active={(() => {
@@ -2840,63 +2897,6 @@ drawRating(${$state.rate});
                   }}
                 />
               </div>
-              {(() => {
-                try {
-                  return !$state.selectTime.selected;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div className={classNames("all", sty.freeBox__o41A2)}>
-                  <CalendarTimeIcon
-                    className={classNames("all", sty.svg__hcdPj)}
-                    role={"img"}
-                  />
-
-                  <div className={classNames("all", sty.freeBox__obQeL)}>
-                    <div
-                      className={classNames(
-                        "all",
-                        "__wab_text",
-                        sty.text___864Fg
-                      )}
-                    >
-                      {
-                        "\u0644\u0637\u0641\u0627 \u0632\u0645\u0627\u0646 \u0645\u0648\u0631\u062f \u0646\u0638\u0631 \u062e\u0648\u062f \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
-                      }
-                    </div>
-                    <div
-                      className={classNames(
-                        "all",
-                        "__wab_text",
-                        sty.text___1PIid
-                      )}
-                    >
-                      <React.Fragment>
-                        {(() => {
-                          try {
-                            return ` مدت زمان هر جلسه ${$state.service.duration_minutes} دقیقه می باشد.`;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u0645\u0627\u0646 ";
-                            }
-                            throw e;
-                          }
-                        })()}
-                      </React.Fragment>
-                    </div>
-                  </div>
-                </div>
-              ) : null}
               {(() => {
                 const child$Props = {
                   className: classNames("__wab_instance", sty.calendar),

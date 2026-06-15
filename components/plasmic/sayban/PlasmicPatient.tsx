@@ -61,6 +61,7 @@ import {
 
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -68,6 +69,9 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicPatient.module.css"; // plasmic-import: MK3ubKSYpzpl/css
 
+import Icon101Icon from "./icons/PlasmicIcon__Icon101"; // plasmic-import: BtiiFK9xtpak/icon
+import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import Icon5Icon from "./icons/PlasmicIcon__Icon5"; // plasmic-import: 8vOA1S70pHdl/icon
 
 createPlasmicElementProxy;
@@ -83,6 +87,7 @@ export type PlasmicPatient__ArgsType = {
   onSubcategoriesChange?: (val: string) => void;
   onSubcategories?: () => void;
   token?: string;
+  addUser?: () => void;
 };
 type ArgPropType = keyof PlasmicPatient__ArgsType;
 export const PlasmicPatient__ArgProps = new Array<ArgPropType>(
@@ -90,7 +95,8 @@ export const PlasmicPatient__ArgProps = new Array<ArgPropType>(
   "subcategories",
   "onSubcategoriesChange",
   "onSubcategories",
-  "token"
+  "token",
+  "addUser"
 );
 
 export type PlasmicPatient__OverridesType = {
@@ -98,7 +104,7 @@ export type PlasmicPatient__OverridesType = {
   header?: Flex__<typeof Header>;
   apiRequest?: Flex__<typeof ApiRequest>;
   img?: Flex__<typeof PlasmicImg__>;
-  svg?: Flex__<"svg">;
+  button?: Flex__<typeof Button>;
 };
 
 export interface DefaultPatientProps {
@@ -107,6 +113,7 @@ export interface DefaultPatientProps {
   onSubcategoriesChange?: (val: string) => void;
   onSubcategories?: () => void;
   token?: string;
+  addUser?: () => void;
   className?: string;
 }
 
@@ -176,6 +183,12 @@ function PlasmicPatient__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -210,11 +223,32 @@ function PlasmicPatient__RenderFunc(props: {
         data-plasmic-name={"header"}
         data-plasmic-override={overrides.header}
         className={classNames("__wab_instance", sty.header)}
-        slot={
-          "\u0644\u06cc\u0633\u062a \u0647\u0645\u0631\u0627\u0647\u0627\u0646"
-        }
-      />
+        slot={"\u0647\u0645\u0631\u0627\u0647\u0627\u0646"}
+      >
+        <Icon101Icon
+          className={classNames("all", sty.svg__kq4FO)}
+          onClick={async event => {
+            const $steps = {};
 
+            $steps["runAddUser"] = true
+              ? (() => {
+                  const actionArgs = { eventRef: $props["addUser"] };
+                  return (({ eventRef, args }) => {
+                    return eventRef?.(...(args ?? []));
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runAddUser"] != null &&
+              typeof $steps["runAddUser"] === "object" &&
+              typeof $steps["runAddUser"].then === "function"
+            ) {
+              $steps["runAddUser"] = await $steps["runAddUser"];
+            }
+          }}
+          role={"img"}
+        />
+      </Header>
       <div className={classNames("all", sty.freeBox__e7Mu1)}>
         <ApiRequest
           data-plasmic-name={"apiRequest"}
@@ -315,7 +349,7 @@ function PlasmicPatient__RenderFunc(props: {
 
               <div className={classNames("all", "__wab_text", sty.text__x6TnN)}>
                 {
-                  "\u0644\u06cc\u0633\u062a \u0647\u0645\u0631\u0627\u0647\u0627\u0646 \u0634\u0645\u0627 \u062e\u0627\u0644\u06cc \u0627\u0633\u062a"
+                  "\u0647\u0646\u0648\u0632 \u0647\u0645\u0631\u0627\u0647\u06cc \u0627\u0636\u0627\u0641\u0647 \u0646\u06a9\u0631\u062f\u0647\u200c\u0627\u06cc\u062f"
                 }
               </div>
               <div className={classNames("all", "__wab_text", sty.text__nwqss)}>
@@ -323,6 +357,62 @@ function PlasmicPatient__RenderFunc(props: {
                   "\u0628\u0627 \u0627\u0641\u0632\u0648\u062f\u0646 \u0647\u0645\u0631\u0627\u0647\u0627\u0646\u060c \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u0633\u0631\u06cc\u0639\u200c\u062a\u0631 \u0628\u0631\u0627\u06cc \u0622\u0646\u200c\u0647\u0627 \u0646\u0648\u0628\u062a \u0631\u0632\u0631\u0648 \u06a9\u0646\u06cc\u062f."
                 }
               </div>
+              <Button
+                data-plasmic-name={"button"}
+                data-plasmic-override={overrides.button}
+                className={classNames("__wab_instance", sty.button)}
+                color={"success"}
+                iconStart={true}
+                label={
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__iqd0Q)}
+                  >
+                    {
+                      "\u0627\u0641\u0632\u0648\u062f\u0646 \u0641\u0631\u062f \u062c\u062f\u06cc\u062f"
+                    }
+                  </div>
+                }
+                loading={generateStateValueProp($state, ["button", "loading"])}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["runAddUser"] = true
+                    ? (() => {
+                        const actionArgs = { eventRef: $props["addUser"] };
+                        return (({ eventRef, args }) => {
+                          return eventRef?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runAddUser"] != null &&
+                    typeof $steps["runAddUser"] === "object" &&
+                    typeof $steps["runAddUser"].then === "function"
+                  ) {
+                    $steps["runAddUser"] = await $steps["runAddUser"];
+                  }
+                }}
+                onLoadingChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "button",
+                    "loading"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                start={
+                  <Icon56Icon
+                    className={classNames("all", sty.svg___76Ylg)}
+                    role={"img"}
+                  />
+                }
+              />
             </div>
           ) : null}
           <div className={classNames("all", sty.freeBox__avdmG)}>
@@ -352,9 +442,7 @@ function PlasmicPatient__RenderFunc(props: {
                 >
                   <div className={classNames("all", sty.freeBox__tfEqu)}>
                     <Icon5Icon
-                      data-plasmic-name={"svg"}
-                      data-plasmic-override={overrides.svg}
-                      className={classNames("all", sty.svg)}
+                      className={classNames("all", sty.svg___7Gpa1)}
                       role={"img"}
                     />
                   </div>
@@ -389,11 +477,11 @@ function PlasmicPatient__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "apiRequest", "img", "svg"],
+  root: ["root", "header", "apiRequest", "img", "button"],
   header: ["header"],
-  apiRequest: ["apiRequest", "img", "svg"],
+  apiRequest: ["apiRequest", "img", "button"],
   img: ["img"],
-  svg: ["svg"]
+  button: ["button"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -403,7 +491,7 @@ type NodeDefaultElementType = {
   header: typeof Header;
   apiRequest: typeof ApiRequest;
   img: typeof PlasmicImg__;
-  svg: "svg";
+  button: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -471,7 +559,7 @@ export const PlasmicPatient = Object.assign(
     header: makeNodeComponent("header"),
     apiRequest: makeNodeComponent("apiRequest"),
     img: makeNodeComponent("img"),
-    svg: makeNodeComponent("svg"),
+    button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicPatient
     internalVariantProps: PlasmicPatient__VariantProps,

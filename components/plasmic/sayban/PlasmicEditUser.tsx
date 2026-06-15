@@ -717,7 +717,7 @@ function PlasmicEditUser__RenderFunc(props: {
         data-plasmic-override={overrides.header}
         className={classNames("__wab_instance", sty.header)}
         slot={
-          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc"
+          "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u0628\u0631\u06cc"
         }
       />
 
@@ -910,6 +910,29 @@ function PlasmicEditUser__RenderFunc(props: {
                 typeof $steps["goToHomepage"].then === "function"
               ) {
                 $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+
+              $steps["invokeGlobalAction3"] =
+                $steps.setProfile?.data?.success == true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "success",
+                          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f"
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+              if (
+                $steps["invokeGlobalAction3"] != null &&
+                typeof $steps["invokeGlobalAction3"] === "object" &&
+                typeof $steps["invokeGlobalAction3"].then === "function"
+              ) {
+                $steps["invokeGlobalAction3"] =
+                  await $steps["invokeGlobalAction3"];
               }
 
               $steps["invokeGlobalAction"] =

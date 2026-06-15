@@ -29516,6 +29516,16 @@
           "id": "ugUHUxsGJbm7",
           "name": "Icon99Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon99.tsx"
+        },
+        {
+          "id": "s6NPsi9ulQAA",
+          "name": "Icon100Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon100.tsx"
+        },
+        {
+          "id": "BtiiFK9xtpak",
+          "name": "Icon101Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon101.tsx"
         }
       ],
       "images": [
