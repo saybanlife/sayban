@@ -28752,6 +28752,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicUploudeTime2.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "cXFi_uB7Pu82",
+          "name": "Liad",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicLiad.tsx",
+          "importSpec": {
+            "modulePath": "Liad.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicLiad.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -29849,19 +29862,19 @@
           "componentImportPath": "@/components/JalaliMoment"
         },
         {
-          "id": "5EsdJvartT0U",
+          "id": "Dz5TQ2vEY9XS",
           "name": "DatePickers",
           "displayName": "DatePickers",
           "componentImportPath": "@/components/DatePickers"
         },
         {
-          "id": "QMfpsi30q7it",
+          "id": "-vvUVmcfMiRl",
           "name": "Pickers",
           "displayName": "Pickers",
           "componentImportPath": "@/components/Pickers"
         },
         {
-          "id": "eYhPfy7XC_XL",
+          "id": "4tsOFSHTfvZu",
           "name": "TimePickerCustom",
           "displayName": "TimePickerCustom",
           "componentImportPath": "@/components/TimePickerCustom"

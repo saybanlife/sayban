@@ -321,19 +321,7 @@ function PlasmicPatient__RenderFunc(props: {
               eventArgs
             );
           }}
-          shouldFetch={(() => {
-            try {
-              return $state.refresh;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return true;
-              }
-              throw e;
-            }
-          })()}
+          shouldFetch={true}
           url={"/patients"}
         >
           {(() => {
