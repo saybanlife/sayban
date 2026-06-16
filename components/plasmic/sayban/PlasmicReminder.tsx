@@ -71,8 +71,8 @@ import { DatePickers } from "@/components/DatePickers"; // plasmic-import: Dz5TQ
 import HeaderLiom from "../../HeaderLiom"; // plasmic-import: b_w8hk3_vJDJ/component
 import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
 import { LottieWrapper } from "@plasmicpkgs/lottie-react";
-import ReminderSetting from "../../ReminderSetting"; // plasmic-import: PpaPS3SR8Zgr/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import ReminderSetting from "../../ReminderSetting"; // plasmic-import: PpaPS3SR8Zgr/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -89,10 +89,10 @@ import Oval3Icon from "./icons/PlasmicIcon__Oval3"; // plasmic-import: QfsnQXthN
 import Icon295Icon from "./icons/PlasmicIcon__Icon295"; // plasmic-import: GN7UNhEfifAd/icon
 import Icon322Icon from "./icons/PlasmicIcon__Icon322"; // plasmic-import: ubyZASmNcrOl/icon
 import Icon21Icon from "./icons/PlasmicIcon__Icon21"; // plasmic-import: sT28siWhYupd/icon
-import Icon102Icon from "./icons/PlasmicIcon__Icon102"; // plasmic-import: endpPjPQFLfh/icon
-import ChevronLeftIcon from "./icons/PlasmicIcon__ChevronLeft"; // plasmic-import: vQC4_6sr1Yuo/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+import Icon102Icon from "./icons/PlasmicIcon__Icon102"; // plasmic-import: endpPjPQFLfh/icon
+import ChevronLeftIcon from "./icons/PlasmicIcon__ChevronLeft"; // plasmic-import: vQC4_6sr1Yuo/icon
 import Icon94Icon from "./icons/PlasmicIcon__Icon94"; // plasmic-import: cEQZhPJdr_D3/icon
 
 createPlasmicElementProxy;
@@ -213,6 +213,7 @@ export type PlasmicReminder__OverridesType = {
   frame36?: Flex__<"div">;
   lottie?: Flex__<typeof LottieWrapper>;
   button3?: Flex__<typeof Button2>;
+  button7?: Flex__<typeof Button>;
   button?: Flex__<typeof Button2>;
   reminderSetting?: Flex__<typeof ReminderSetting>;
   button12?: Flex__<typeof Button2>;
@@ -1182,6 +1183,12 @@ function PlasmicReminder__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button7.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -1214,7 +1221,6 @@ function PlasmicReminder__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
-        "fade-in",
         {
           [sty.roothamyar]: hasVariant($state, "hamyar", "hamyar"),
           [sty.rootliad]: hasVariant($state, "liad", "liad"),
@@ -1236,149 +1242,6 @@ function PlasmicReminder__RenderFunc(props: {
           )
         }
       )}
-      onAnimationEnd={async event => {
-        const $steps = {};
-
-        $steps["invokeGlobalAction"] = !$state.smallReminder
-          ? (() => {
-              const actionArgs = {
-                args: [
-                  "POST",
-                  "https://api.liom.app/service/log",
-                  undefined,
-                  (() => {
-                    try {
-                      return {
-                        appKey:
-                          "eyiaophkahaMAQwpqwjhr218aeewfuiaey-xxluyhawd2012-qigwi-oooh",
-                        userId: $props.manId,
-                        pageName: "reminder",
-                        action:
-                          $props.data.length > 0
-                            ? "reminderload-haveReminder"
-                            : "reminderload-noRiminder",
-                        extraData: {}
-                      };
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
-                    }
-                  })(),
-                  {
-                    headers: {
-                      Authorization:
-                        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaGFteWFyIiwiaWQiOjF9.lnqUqAP4PBM0ygfBoBEcDPQz6owyyNXCreKqjjsYcAM"
-                    }
-                  }
-                ]
-              };
-              return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                ...actionArgs.args
-              ]);
-            })()
-          : undefined;
-        if (
-          $steps["invokeGlobalAction"] != null &&
-          typeof $steps["invokeGlobalAction"] === "object" &&
-          typeof $steps["invokeGlobalAction"].then === "function"
-        ) {
-          $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
-        }
-
-        $steps["invokeGlobalAction2"] = true
-          ? (() => {
-              const actionArgs = { args: [1000] };
-              return $globalActions["Fragment.wait"]?.apply(null, [
-                ...actionArgs.args
-              ]);
-            })()
-          : undefined;
-        if (
-          $steps["invokeGlobalAction2"] != null &&
-          typeof $steps["invokeGlobalAction2"] === "object" &&
-          typeof $steps["invokeGlobalAction2"].then === "function"
-        ) {
-          $steps["invokeGlobalAction2"] = await $steps["invokeGlobalAction2"];
-        }
-      }}
-      onAnimationStart={async event => {
-        const $steps = {};
-
-        $steps["runCode"] = true
-          ? (() => {
-              const actionArgs = {
-                customFunction: async () => {
-                  return (() => {
-                    if ($props.data.length === 0) {
-                      $state.slide3 = true;
-                    }
-                    if (
-                      !$state.smallReminder &&
-                      window.localStorage.getItem("reminder") === "true"
-                    ) {
-                      return ($state.slide3 = false);
-                    }
-                  })();
-                }
-              };
-              return (({ customFunction }) => {
-                return customFunction();
-              })?.apply(null, [actionArgs]);
-            })()
-          : undefined;
-        if (
-          $steps["runCode"] != null &&
-          typeof $steps["runCode"] === "object" &&
-          typeof $steps["runCode"].then === "function"
-        ) {
-          $steps["runCode"] = await $steps["runCode"];
-        }
-
-        $steps["runCode2"] = true
-          ? (() => {
-              const actionArgs = {
-                customFunction: async () => {
-                  return (() => {
-                    let hasTelegram = false,
-                      hasSms = false;
-                    $props.data.forEach(i => {
-                      let c = [];
-                      try {
-                        c = JSON.parse(i.chanels || "[]");
-                      } catch {}
-                      if (c.includes("telegram")) hasTelegram = true;
-                      if (c.includes("sms")) hasSms = true;
-                    });
-                    if (
-                      hasTelegram &&
-                      ($props.telegramId == "" || $props.telegramId == null)
-                    )
-                      $state.alertTelegram.show = true;
-                    else $state.alertTelegram.show = false;
-                    if (hasSms && ($props.phone == "" || $props.phone == null))
-                      return ($state.alertSms.show = true);
-                    else return ($state.alertSms.show = false);
-                  })();
-                }
-              };
-              return (({ customFunction }) => {
-                return customFunction();
-              })?.apply(null, [actionArgs]);
-            })()
-          : undefined;
-        if (
-          $steps["runCode2"] != null &&
-          typeof $steps["runCode2"] === "object" &&
-          typeof $steps["runCode2"].then === "function"
-        ) {
-          $steps["runCode2"] = await $steps["runCode2"];
-        }
-      }}
     >
       <div
         className={classNames("all", sty.freeBox__bnpXc, {
@@ -2599,7 +2462,7 @@ function PlasmicReminder__RenderFunc(props: {
             </div>
             {(() => {
               try {
-                return $props.data && $props.data?.length !== 0;
+                return $props.data && $props.data?.length !== 1;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -3341,39 +3204,7 @@ function PlasmicReminder__RenderFunc(props: {
                   data-plasmic-name={"menuIcon"}
                   data-plasmic-override={overrides.menuIcon}
                   className={classNames("__wab_instance", sty.menuIcon)}
-                  color={(() => {
-                    try {
-                      return (() => {
-                        let color;
-                        switch (currentday.type) {
-                          case "water_time":
-                            color = "blue";
-                            break;
-                          case "water_time":
-                            color = "blue";
-                            break;
-                          case "medicine_time":
-                            color = "warning";
-                            break;
-                          case "routine_skin":
-                            color = "warning";
-                            break;
-                          default:
-                            color = "fuchsia";
-                            break;
-                        }
-                        return color;
-                      })();
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return [];
-                      }
-                      throw e;
-                    }
-                  })()}
+                  color={"praimery"}
                   icons={(() => {
                     try {
                       return (() => {
@@ -4210,19 +4041,40 @@ function PlasmicReminder__RenderFunc(props: {
               }}
               size={"minimal"}
             >
-              <div
-                className={classNames("all", "__wab_text", sty.text__rh4Qc, {
-                  [sty.textslide3__rh4Qc9ESkH]: hasVariant(
-                    $state,
-                    "slide3",
-                    "slide3"
-                  )
-                })}
-              >
-                {
-                  "\u0641\u0639\u0627\u0644 \u0633\u0627\u0632\u06cc \u0627\u0634\u062a\u0631\u0627\u06a9"
+              <Button
+                data-plasmic-name={"button7"}
+                data-plasmic-override={overrides.button7}
+                className={classNames("__wab_instance", sty.button7)}
+                color={"success"}
+                label={
+                  <div
+                    className={classNames(
+                      "all",
+                      "__wab_text",
+                      sty.text___8DbBi
+                    )}
+                  >
+                    {
+                      "\u0641\u0639\u0627\u0644 \u0633\u0627\u0632\u06cc \u0627\u0634\u062a\u0631\u0627\u06a9"
+                    }
+                  </div>
                 }
-              </div>
+                loading={generateStateValueProp($state, ["button7", "loading"])}
+                onLoadingChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "button7",
+                    "loading"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+              />
             </Button2>
           </div>
         ) : null}
@@ -5343,30 +5195,18 @@ function PlasmicReminder__RenderFunc(props: {
           topic={generateStateValueProp($state, ["reminderSetting", "topic"])}
         />
       </div>
-      <section
-        className={classNames("all", sty.section__sfoL5, {
-          [sty.sectionhamyar__sfoL5Zsy8V]: hasVariant(
-            $state,
-            "hamyar",
-            "hamyar"
-          ),
-          [sty.sectionliad__sfoL5NMu2U]: hasVariant($state, "liad", "liad"),
-          [sty.sectionslide3__sfoL59ESkH]: hasVariant(
+      <div
+        className={classNames("all", sty.freeBox___95CEd, "page", {
+          [sty.freeBoxslide3___95CEd9ESkH]: hasVariant(
             $state,
             "slide3",
             "slide3"
           ),
-          [sty.sectionslide3_hamyar__sfoL59ESkHZsy8V]:
-            hasVariant($state, "hamyar", "hamyar") &&
-            hasVariant($state, "slide3", "slide3"),
-          [sty.sectionslide3_smallReminder__sfoL59ESkHJscOm]:
-            hasVariant($state, "smallReminder", "smallReminder") &&
-            hasVariant($state, "slide3", "slide3"),
-          [sty.sectionslide3_smallReminder_dateMode__sfoL59ESkHJscOmOQ54K]:
+          [sty.freeBoxslide3_smallReminder_dateMode___95CEd9ESkHJscOmOQ54K]:
             hasVariant($state, "dateMode", "dateMode") &&
             hasVariant($state, "smallReminder", "smallReminder") &&
             hasVariant($state, "slide3", "slide3"),
-          [sty.sectionsmallReminder__sfoL5JscOm]: hasVariant(
+          [sty.freeBoxsmallReminder___95CEdJscOm]: hasVariant(
             $state,
             "smallReminder",
             "smallReminder"
@@ -5374,17 +5214,15 @@ function PlasmicReminder__RenderFunc(props: {
         })}
       >
         <div
-          className={classNames("all", sty.freeBox___95CEd, {
-            [sty.freeBoxslide3___95CEd9ESkH]: hasVariant(
-              $state,
-              "slide3",
-              "slide3"
-            ),
-            [sty.freeBoxslide3_smallReminder_dateMode___95CEd9ESkHJscOmOQ54K]:
+          className={classNames("all", sty.freeBox__bwOfl, {
+            [sty.freeBoxslide3_smallReminder__bwOfl9ESkHJscOm]:
+              hasVariant($state, "slide3", "slide3") &&
+              hasVariant($state, "smallReminder", "smallReminder"),
+            [sty.freeBoxslide3_smallReminder_dateMode__bwOfl9ESkHJscOmOQ54K]:
               hasVariant($state, "dateMode", "dateMode") &&
               hasVariant($state, "smallReminder", "smallReminder") &&
               hasVariant($state, "slide3", "slide3"),
-            [sty.freeBoxsmallReminder___95CEdJscOm]: hasVariant(
+            [sty.freeBoxsmallReminder__bwOflJscOm]: hasVariant(
               $state,
               "smallReminder",
               "smallReminder"
@@ -5392,350 +5230,30 @@ function PlasmicReminder__RenderFunc(props: {
           })}
         >
           <div
-            className={classNames("all", sty.freeBox__bwOfl, {
-              [sty.freeBoxslide3_smallReminder__bwOfl9ESkHJscOm]:
+            className={classNames("all", sty.freeBox__qz4Ne, {
+              [sty.freeBoxslide3__qz4Ne9ESkH]: hasVariant(
+                $state,
+                "slide3",
+                "slide3"
+              ),
+              [sty.freeBoxslide3_smallReminder__qz4Ne9ESkHJscOm]:
                 hasVariant($state, "slide3", "slide3") &&
                 hasVariant($state, "smallReminder", "smallReminder"),
-              [sty.freeBoxslide3_smallReminder_dateMode__bwOfl9ESkHJscOmOQ54K]:
+              [sty.freeBoxslide3_smallReminder_dateMode__qz4Ne9ESkHJscOmOQ54K]:
                 hasVariant($state, "dateMode", "dateMode") &&
                 hasVariant($state, "smallReminder", "smallReminder") &&
                 hasVariant($state, "slide3", "slide3"),
-              [sty.freeBoxsmallReminder__bwOflJscOm]: hasVariant(
+              [sty.freeBoxsmallReminder__qz4NeJscOm]: hasVariant(
                 $state,
                 "smallReminder",
                 "smallReminder"
               )
             })}
           >
-            <div
-              className={classNames("all", sty.freeBox__qz4Ne, {
-                [sty.freeBoxslide3__qz4Ne9ESkH]: hasVariant(
-                  $state,
-                  "slide3",
-                  "slide3"
-                ),
-                [sty.freeBoxslide3_smallReminder__qz4Ne9ESkHJscOm]:
-                  hasVariant($state, "slide3", "slide3") &&
-                  hasVariant($state, "smallReminder", "smallReminder"),
-                [sty.freeBoxslide3_smallReminder_dateMode__qz4Ne9ESkHJscOmOQ54K]:
-                  hasVariant($state, "dateMode", "dateMode") &&
-                  hasVariant($state, "smallReminder", "smallReminder") &&
-                  hasVariant($state, "slide3", "slide3"),
-                [sty.freeBoxsmallReminder__qz4NeJscOm]: hasVariant(
-                  $state,
-                  "smallReminder",
-                  "smallReminder"
-                )
-              })}
-            >
-              {(
-                hasVariant($state, "slide3", "slide3") &&
-                hasVariant($state, "smallReminder", "smallReminder")
-                  ? (() => {
-                      try {
-                        return $props.data.length > 0;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
-                        }
-                        throw e;
-                      }
-                    })()
-                  : false
-              ) ? (
-                <Button2
-                  data-plasmic-name={"button12"}
-                  data-plasmic-override={overrides.button12}
-                  className={classNames("__wab_instance", sty.button12, {
-                    [sty.button12slide3]: hasVariant(
-                      $state,
-                      "slide3",
-                      "slide3"
-                    ),
-                    [sty.button12slide3_dateMode]:
-                      hasVariant($state, "slide3", "slide3") &&
-                      hasVariant($state, "dateMode", "dateMode"),
-                    [sty.button12slide3_smallReminder]:
-                      hasVariant($state, "slide3", "slide3") &&
-                      hasVariant($state, "smallReminder", "smallReminder"),
-                    [sty.button12slide3_smallReminder_dateMode]:
-                      hasVariant($state, "dateMode", "dateMode") &&
-                      hasVariant($state, "smallReminder", "smallReminder") &&
-                      hasVariant($state, "slide3", "slide3"),
-                    [sty.button12smallReminder]: hasVariant(
-                      $state,
-                      "smallReminder",
-                      "smallReminder"
-                    )
-                  })}
-                  color={generateStateValueProp($state, ["button12", "color"])}
-                  endIcon={
-                    <PlasmicIcon__
-                      PlasmicIconType={
-                        hasVariant($state, "dateMode", "dateMode") &&
-                        hasVariant($state, "smallReminder", "smallReminder") &&
-                        hasVariant($state, "slide3", "slide3")
-                          ? ChevronLeftIcon
-                          : Icon115Icon
-                      }
-                      className={classNames("all", sty.svg__uRPb, {
-                        [sty.svgslide3_smallReminder_dateMode__uRPb9ESkHJscOmOQ54K]:
-                          hasVariant($state, "dateMode", "dateMode") &&
-                          hasVariant(
-                            $state,
-                            "smallReminder",
-                            "smallReminder"
-                          ) &&
-                          hasVariant($state, "slide3", "slide3")
-                      })}
-                      role={"img"}
-                    />
-                  }
-                  load={generateStateValueProp($state, ["button12", "load"])}
-                  loading={generateStateValueProp($state, [
-                    "button12",
-                    "loading"
-                  ])}
-                  onColorChange={async (...eventArgs: any) => {
-                    ((...eventArgs) => {
-                      generateStateOnChangeProp($state, ["button12", "color"])(
-                        eventArgs[0]
-                      );
-                    }).apply(null, eventArgs);
-
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
-                    }
-                  }}
-                  onLoadChange={async (...eventArgs: any) => {
-                    ((...eventArgs) => {
-                      generateStateOnChangeProp($state, ["button12", "load"])(
-                        eventArgs[0]
-                      );
-                    }).apply(null, eventArgs);
-
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
-                    }
-                  }}
-                  onLoadingChange={async (...eventArgs: any) => {
-                    ((...eventArgs) => {
-                      generateStateOnChangeProp($state, [
-                        "button12",
-                        "loading"
-                      ])(eventArgs[0]);
-                    }).apply(null, eventArgs);
-
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
-                    }
-                  }}
-                  shape={
-                    hasVariant($state, "slide3", "slide3") &&
-                    hasVariant($state, "smallReminder", "smallReminder")
-                      ? "rounded"
-                      : hasVariant($state, "smallReminder", "smallReminder")
-                        ? undefined
-                        : "round"
-                  }
-                  showEndIcon={
-                    hasVariant($state, "dateMode", "dateMode") &&
-                    hasVariant($state, "smallReminder", "smallReminder") &&
-                    hasVariant($state, "slide3", "slide3")
-                      ? true
-                      : undefined
-                  }
-                  size={
-                    hasVariant($state, "dateMode", "dateMode") &&
-                    hasVariant($state, "smallReminder", "smallReminder") &&
-                    hasVariant($state, "slide3", "slide3")
-                      ? "compact"
-                      : undefined
-                  }
-                  startIcon={
-                    (
-                      hasVariant($state, "slide3", "slide3") &&
-                      hasVariant($state, "smallReminder", "smallReminder")
-                        ? true
-                        : hasVariant($state, "smallReminder", "smallReminder")
-                          ? true
-                          : false
-                    ) ? (
-                      <Icon102Icon
-                        className={classNames("all", sty.svg__c2Scn, {
-                          [sty.svgslide3__c2Scn9ESkH]: hasVariant(
-                            $state,
-                            "slide3",
-                            "slide3"
-                          ),
-                          [sty.svgslide3_smallReminder__c2Scn9ESkHJscOm]:
-                            hasVariant($state, "slide3", "slide3") &&
-                            hasVariant(
-                              $state,
-                              "smallReminder",
-                              "smallReminder"
-                            ),
-                          [sty.svgsmallReminder__c2ScnjscOm]: hasVariant(
-                            $state,
-                            "smallReminder",
-                            "smallReminder"
-                          )
-                        })}
-                        role={"img"}
-                      />
-                    ) : null
-                  }
-                >
-                  <Icon102Icon
-                    className={classNames("all", sty.svg__s02Yz, {
-                      [sty.svgslide3__s02Yz9ESkH]: hasVariant(
-                        $state,
-                        "slide3",
-                        "slide3"
-                      ),
-                      [sty.svgslide3_smallReminder__s02Yz9ESkHJscOm]:
-                        hasVariant($state, "slide3", "slide3") &&
-                        hasVariant($state, "smallReminder", "smallReminder"),
-                      [sty.svgsmallReminder__s02YzJscOm]: hasVariant(
-                        $state,
-                        "smallReminder",
-                        "smallReminder"
-                      )
-                    })}
-                    role={"img"}
-                  />
-
-                  <div
-                    className={classNames(
-                      "all",
-                      "__wab_text",
-                      sty.text__syx9S,
-                      {
-                        [sty.textslide3_smallReminder__syx9S9ESkHJscOm]:
-                          hasVariant($state, "slide3", "slide3") &&
-                          hasVariant($state, "smallReminder", "smallReminder"),
-                        [sty.textslide3_smallReminder_dateMode__syx9S9ESkHJscOmOQ54K]:
-                          hasVariant($state, "dateMode", "dateMode") &&
-                          hasVariant(
-                            $state,
-                            "smallReminder",
-                            "smallReminder"
-                          ) &&
-                          hasVariant($state, "slide3", "slide3"),
-                        [sty.textsmallReminder__syx9SjscOm]: hasVariant(
-                          $state,
-                          "smallReminder",
-                          "smallReminder"
-                        )
-                      }
-                    )}
-                  >
-                    {hasVariant($state, "dateMode", "dateMode") &&
-                    hasVariant($state, "smallReminder", "smallReminder") &&
-                    hasVariant($state, "slide3", "slide3")
-                      ? "\u0645\u0634\u0627\u0647\u062f\u0647 \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0647\u0627\u06cc \u0645\u0646"
-                      : hasVariant($state, "slide3", "slide3") &&
-                          hasVariant($state, "smallReminder", "smallReminder")
-                        ? "\u0645\u0634\u0627\u0647\u062f\u0647 \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0647\u0627\u06cc \u0645\u0646"
-                        : "\u0627\u0641\u0632\u0648\u062f\u0646 \u06cc\u0627\u062f \u0622\u0648\u0631\u06cc"}
-                  </div>
-                </Button2>
-              ) : null}
-              {(
-                hasVariant($state, "smallReminder", "smallReminder") &&
-                hasVariant($state, "slide3", "slide3")
-                  ? (() => {
-                      try {
-                        return $props.data.length > 0;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
-                        }
-                        throw e;
-                      }
-                    })()
-                  : true
-              ) ? (
-                <div
-                  className={classNames("all", sty.freeBox__udcFt, {
-                    [sty.freeBoxslide3__udcFt9ESkH]: hasVariant(
-                      $state,
-                      "slide3",
-                      "slide3"
-                    ),
-                    [sty.freeBoxslide3_smallReminder__udcFt9ESkHJscOm]:
-                      hasVariant($state, "smallReminder", "smallReminder") &&
-                      hasVariant($state, "slide3", "slide3")
-                  })}
-                />
-              ) : null}
-              <Button
-                data-plasmic-name={"button6"}
-                data-plasmic-override={overrides.button6}
-                className={classNames("__wab_instance", sty.button6)}
-                color={"success"}
-                label={
-                  <Icon102Icon
-                    className={classNames("all", sty.svg___52SNg, {
-                      [sty.svgslide3___52SNg9ESkH]: hasVariant(
-                        $state,
-                        "slide3",
-                        "slide3"
-                      ),
-                      [sty.svgslide3_smallReminder___52SNg9ESkHJscOm]:
-                        hasVariant($state, "slide3", "slide3") &&
-                        hasVariant($state, "smallReminder", "smallReminder"),
-                      [sty.svgsmallReminder___52SNgjscOm]: hasVariant(
-                        $state,
-                        "smallReminder",
-                        "smallReminder"
-                      )
-                    })}
-                    role={"img"}
-                  />
-                }
-                loading={generateStateValueProp($state, ["button6", "loading"])}
-                onLoadingChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "button6",
-                    "loading"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                roundedFull={true}
-              />
-            </div>
-          </div>
-          <div className={classNames("all", sty.freeBox__ug6J6)}>
             {(
-              hasVariant($state, "slide3", "slide3")
-                ? true
-                : (() => {
+              hasVariant($state, "slide3", "slide3") &&
+              hasVariant($state, "smallReminder", "smallReminder")
+                ? (() => {
                     try {
                       return $props.data.length > 0;
                     } catch (e) {
@@ -5748,154 +5266,56 @@ function PlasmicReminder__RenderFunc(props: {
                       throw e;
                     }
                   })()
+                : false
             ) ? (
               <Button2
-                data-plasmic-name={"button11"}
-                data-plasmic-override={overrides.button11}
-                className={classNames("__wab_instance", sty.button11, {
-                  [sty.button11slide3]: hasVariant($state, "slide3", "slide3"),
-                  [sty.button11slide3_smallReminder]:
+                data-plasmic-name={"button12"}
+                data-plasmic-override={overrides.button12}
+                className={classNames("__wab_instance", sty.button12, {
+                  [sty.button12slide3]: hasVariant($state, "slide3", "slide3"),
+                  [sty.button12slide3_dateMode]:
+                    hasVariant($state, "slide3", "slide3") &&
+                    hasVariant($state, "dateMode", "dateMode"),
+                  [sty.button12slide3_smallReminder]:
+                    hasVariant($state, "slide3", "slide3") &&
+                    hasVariant($state, "smallReminder", "smallReminder"),
+                  [sty.button12slide3_smallReminder_dateMode]:
+                    hasVariant($state, "dateMode", "dateMode") &&
                     hasVariant($state, "smallReminder", "smallReminder") &&
-                    hasVariant($state, "slide3", "slide3")
+                    hasVariant($state, "slide3", "slide3"),
+                  [sty.button12smallReminder]: hasVariant(
+                    $state,
+                    "smallReminder",
+                    "smallReminder"
+                  )
                 })}
-                color={generateStateValueProp($state, ["button11", "color"])}
+                color={generateStateValueProp($state, ["button12", "color"])}
                 endIcon={
-                  <Icon94Icon
-                    className={classNames("all", sty.svg__dKqEu)}
+                  <PlasmicIcon__
+                    PlasmicIconType={
+                      hasVariant($state, "dateMode", "dateMode") &&
+                      hasVariant($state, "smallReminder", "smallReminder") &&
+                      hasVariant($state, "slide3", "slide3")
+                        ? ChevronLeftIcon
+                        : Icon115Icon
+                    }
+                    className={classNames("all", sty.svg__uRPb, {
+                      [sty.svgslide3_smallReminder_dateMode__uRPb9ESkHJscOmOQ54K]:
+                        hasVariant($state, "dateMode", "dateMode") &&
+                        hasVariant($state, "smallReminder", "smallReminder") &&
+                        hasVariant($state, "slide3", "slide3")
+                    })}
                     role={"img"}
                   />
                 }
-                load={generateStateValueProp($state, ["button11", "load"])}
+                load={generateStateValueProp($state, ["button12", "load"])}
                 loading={generateStateValueProp($state, [
-                  "button11",
+                  "button12",
                   "loading"
                 ])}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["runSetting"] =
-                    $props.data.length > 0
-                      ? (() => {
-                          const actionArgs = { eventRef: $props["setting"] };
-                          return (({ eventRef, args }) => {
-                            return eventRef?.(...(args ?? []));
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                  if (
-                    $steps["runSetting"] != null &&
-                    typeof $steps["runSetting"] === "object" &&
-                    typeof $steps["runSetting"].then === "function"
-                  ) {
-                    $steps["runSetting"] = await $steps["runSetting"];
-                  }
-
-                  $steps["runCode"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          customFunction: async () => {
-                            return ($state.refresh = +"1");
-                          }
-                        };
-                        return (({ customFunction }) => {
-                          return customFunction();
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runCode"] != null &&
-                    typeof $steps["runCode"] === "object" &&
-                    typeof $steps["runCode"].then === "function"
-                  ) {
-                    $steps["runCode"] = await $steps["runCode"];
-                  }
-
-                  $steps["runCode2"] =
-                    $props.data.length == 0
-                      ? (() => {
-                          const actionArgs = {
-                            customFunction: async () => {
-                              return undefined;
-                            }
-                          };
-                          return (({ customFunction }) => {
-                            return customFunction();
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                  if (
-                    $steps["runCode2"] != null &&
-                    typeof $steps["runCode2"] === "object" &&
-                    typeof $steps["runCode2"].then === "function"
-                  ) {
-                    $steps["runCode2"] = await $steps["runCode2"];
-                  }
-
-                  $steps["invokeGlobalAction"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "POST",
-                            "https://api.liom.app/service/log",
-                            undefined,
-                            (() => {
-                              try {
-                                return {
-                                  appKey:
-                                    "eyiaophkahaMAQwpqwjhr218aeewfuiaey-xxluyhawd2012-qigwi-oooh",
-                                  userId: $props.manId,
-                                  pageName: "reminder",
-                                  action: "setting",
-                                  extraData: {}
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })(),
-                            (() => {
-                              try {
-                                return {
-                                  headers: {
-                                    Authorization:
-                                      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaGFteWFyIiwiaWQiOjF9.lnqUqAP4PBM0ygfBoBEcDPQz6owyyNXCreKqjjsYcAM"
-                                  }
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Fragment.apiRequest"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                  if (
-                    $steps["invokeGlobalAction"] != null &&
-                    typeof $steps["invokeGlobalAction"] === "object" &&
-                    typeof $steps["invokeGlobalAction"].then === "function"
-                  ) {
-                    $steps["invokeGlobalAction"] =
-                      await $steps["invokeGlobalAction"];
-                  }
-                }}
                 onColorChange={async (...eventArgs: any) => {
                   ((...eventArgs) => {
-                    generateStateOnChangeProp($state, ["button11", "color"])(
+                    generateStateOnChangeProp($state, ["button12", "color"])(
                       eventArgs[0]
                     );
                   }).apply(null, eventArgs);
@@ -5910,7 +5330,7 @@ function PlasmicReminder__RenderFunc(props: {
                 }}
                 onLoadChange={async (...eventArgs: any) => {
                   ((...eventArgs) => {
-                    generateStateOnChangeProp($state, ["button11", "load"])(
+                    generateStateOnChangeProp($state, ["button12", "load"])(
                       eventArgs[0]
                     );
                   }).apply(null, eventArgs);
@@ -5925,7 +5345,7 @@ function PlasmicReminder__RenderFunc(props: {
                 }}
                 onLoadingChange={async (...eventArgs: any) => {
                   ((...eventArgs) => {
-                    generateStateOnChangeProp($state, ["button11", "loading"])(
+                    generateStateOnChangeProp($state, ["button12", "loading"])(
                       eventArgs[0]
                     );
                   }).apply(null, eventArgs);
@@ -5938,21 +5358,395 @@ function PlasmicReminder__RenderFunc(props: {
                     return;
                   }
                 }}
-                shape={"rounded"}
-                showEndIcon={true}
+                shape={
+                  hasVariant($state, "slide3", "slide3") &&
+                  hasVariant($state, "smallReminder", "smallReminder")
+                    ? "rounded"
+                    : hasVariant($state, "smallReminder", "smallReminder")
+                      ? undefined
+                      : "round"
+                }
+                showEndIcon={
+                  hasVariant($state, "dateMode", "dateMode") &&
+                  hasVariant($state, "smallReminder", "smallReminder") &&
+                  hasVariant($state, "slide3", "slide3")
+                    ? true
+                    : undefined
+                }
+                size={
+                  hasVariant($state, "dateMode", "dateMode") &&
+                  hasVariant($state, "smallReminder", "smallReminder") &&
+                  hasVariant($state, "slide3", "slide3")
+                    ? "compact"
+                    : undefined
+                }
+                startIcon={
+                  (
+                    hasVariant($state, "slide3", "slide3") &&
+                    hasVariant($state, "smallReminder", "smallReminder")
+                      ? true
+                      : hasVariant($state, "smallReminder", "smallReminder")
+                        ? true
+                        : false
+                  ) ? (
+                    <Icon102Icon
+                      className={classNames("all", sty.svg__c2Scn, {
+                        [sty.svgslide3__c2Scn9ESkH]: hasVariant(
+                          $state,
+                          "slide3",
+                          "slide3"
+                        ),
+                        [sty.svgslide3_smallReminder__c2Scn9ESkHJscOm]:
+                          hasVariant($state, "slide3", "slide3") &&
+                          hasVariant($state, "smallReminder", "smallReminder"),
+                        [sty.svgsmallReminder__c2ScnjscOm]: hasVariant(
+                          $state,
+                          "smallReminder",
+                          "smallReminder"
+                        )
+                      })}
+                      role={"img"}
+                    />
+                  ) : null
+                }
               >
+                <Icon102Icon
+                  className={classNames("all", sty.svg__s02Yz, {
+                    [sty.svgslide3__s02Yz9ESkH]: hasVariant(
+                      $state,
+                      "slide3",
+                      "slide3"
+                    ),
+                    [sty.svgslide3_smallReminder__s02Yz9ESkHJscOm]:
+                      hasVariant($state, "slide3", "slide3") &&
+                      hasVariant($state, "smallReminder", "smallReminder"),
+                    [sty.svgsmallReminder__s02YzJscOm]: hasVariant(
+                      $state,
+                      "smallReminder",
+                      "smallReminder"
+                    )
+                  })}
+                  role={"img"}
+                />
+
                 <div
-                  className={classNames("all", "__wab_text", sty.text___4MWc)}
+                  className={classNames("all", "__wab_text", sty.text__syx9S, {
+                    [sty.textslide3_smallReminder__syx9S9ESkHJscOm]:
+                      hasVariant($state, "slide3", "slide3") &&
+                      hasVariant($state, "smallReminder", "smallReminder"),
+                    [sty.textslide3_smallReminder_dateMode__syx9S9ESkHJscOmOQ54K]:
+                      hasVariant($state, "dateMode", "dateMode") &&
+                      hasVariant($state, "smallReminder", "smallReminder") &&
+                      hasVariant($state, "slide3", "slide3"),
+                    [sty.textsmallReminder__syx9SjscOm]: hasVariant(
+                      $state,
+                      "smallReminder",
+                      "smallReminder"
+                    )
+                  })}
                 >
-                  {
-                    "\u0645\u062f\u06cc\u0631\u06cc\u062a  \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0647\u0627"
-                  }
+                  {hasVariant($state, "dateMode", "dateMode") &&
+                  hasVariant($state, "smallReminder", "smallReminder") &&
+                  hasVariant($state, "slide3", "slide3")
+                    ? "\u0645\u0634\u0627\u0647\u062f\u0647 \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0647\u0627\u06cc \u0645\u0646"
+                    : hasVariant($state, "slide3", "slide3") &&
+                        hasVariant($state, "smallReminder", "smallReminder")
+                      ? "\u0645\u0634\u0627\u0647\u062f\u0647 \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0647\u0627\u06cc \u0645\u0646"
+                      : "\u0627\u0641\u0632\u0648\u062f\u0646 \u06cc\u0627\u062f \u0622\u0648\u0631\u06cc"}
                 </div>
               </Button2>
             ) : null}
+            {(
+              hasVariant($state, "smallReminder", "smallReminder") &&
+              hasVariant($state, "slide3", "slide3")
+                ? (() => {
+                    try {
+                      return $props.data.length > 0;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })()
+                : true
+            ) ? (
+              <div
+                className={classNames("all", sty.freeBox__udcFt, {
+                  [sty.freeBoxslide3__udcFt9ESkH]: hasVariant(
+                    $state,
+                    "slide3",
+                    "slide3"
+                  ),
+                  [sty.freeBoxslide3_smallReminder__udcFt9ESkHJscOm]:
+                    hasVariant($state, "smallReminder", "smallReminder") &&
+                    hasVariant($state, "slide3", "slide3")
+                })}
+              />
+            ) : null}
+            <Button
+              data-plasmic-name={"button6"}
+              data-plasmic-override={overrides.button6}
+              className={classNames("__wab_instance", sty.button6)}
+              color={"success"}
+              label={
+                <Icon102Icon
+                  className={classNames("all", sty.svg___52SNg, {
+                    [sty.svgslide3___52SNg9ESkH]: hasVariant(
+                      $state,
+                      "slide3",
+                      "slide3"
+                    ),
+                    [sty.svgslide3_smallReminder___52SNg9ESkHJscOm]:
+                      hasVariant($state, "slide3", "slide3") &&
+                      hasVariant($state, "smallReminder", "smallReminder"),
+                    [sty.svgsmallReminder___52SNgjscOm]: hasVariant(
+                      $state,
+                      "smallReminder",
+                      "smallReminder"
+                    )
+                  })}
+                  role={"img"}
+                />
+              }
+              loading={generateStateValueProp($state, ["button6", "loading"])}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["button6", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              roundedFull={true}
+            />
           </div>
         </div>
-      </section>
+        <div className={classNames("all", sty.freeBox__ug6J6)}>
+          {(
+            hasVariant($state, "slide3", "slide3")
+              ? true
+              : (() => {
+                  try {
+                    return $props.data.length > 0;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })()
+          ) ? (
+            <Button2
+              data-plasmic-name={"button11"}
+              data-plasmic-override={overrides.button11}
+              className={classNames("__wab_instance", sty.button11, {
+                [sty.button11slide3]: hasVariant($state, "slide3", "slide3"),
+                [sty.button11slide3_smallReminder]:
+                  hasVariant($state, "smallReminder", "smallReminder") &&
+                  hasVariant($state, "slide3", "slide3")
+              })}
+              color={generateStateValueProp($state, ["button11", "color"])}
+              endIcon={
+                <Icon94Icon
+                  className={classNames("all", sty.svg__dKqEu)}
+                  role={"img"}
+                />
+              }
+              load={generateStateValueProp($state, ["button11", "load"])}
+              loading={generateStateValueProp($state, ["button11", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["runSetting"] =
+                  $props.data.length > 0
+                    ? (() => {
+                        const actionArgs = { eventRef: $props["setting"] };
+                        return (({ eventRef, args }) => {
+                          return eventRef?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                if (
+                  $steps["runSetting"] != null &&
+                  typeof $steps["runSetting"] === "object" &&
+                  typeof $steps["runSetting"].then === "function"
+                ) {
+                  $steps["runSetting"] = await $steps["runSetting"];
+                }
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return ($state.refresh = +"1");
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+
+                $steps["runCode2"] =
+                  $props.data.length == 0
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return undefined;
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                if (
+                  $steps["runCode2"] != null &&
+                  typeof $steps["runCode2"] === "object" &&
+                  typeof $steps["runCode2"].then === "function"
+                ) {
+                  $steps["runCode2"] = await $steps["runCode2"];
+                }
+
+                $steps["invokeGlobalAction"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "POST",
+                          "https://api.liom.app/service/log",
+                          undefined,
+                          (() => {
+                            try {
+                              return {
+                                appKey:
+                                  "eyiaophkahaMAQwpqwjhr218aeewfuiaey-xxluyhawd2012-qigwi-oooh",
+                                userId: $props.manId,
+                                pageName: "reminder",
+                                action: "setting",
+                                extraData: {}
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          (() => {
+                            try {
+                              return {
+                                headers: {
+                                  Authorization:
+                                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaGFteWFyIiwiaWQiOjF9.lnqUqAP4PBM0ygfBoBEcDPQz6owyyNXCreKqjjsYcAM"
+                                }
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] =
+                    await $steps["invokeGlobalAction"];
+                }
+              }}
+              onColorChange={async (...eventArgs: any) => {
+                ((...eventArgs) => {
+                  generateStateOnChangeProp($state, ["button11", "color"])(
+                    eventArgs[0]
+                  );
+                }).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              onLoadChange={async (...eventArgs: any) => {
+                ((...eventArgs) => {
+                  generateStateOnChangeProp($state, ["button11", "load"])(
+                    eventArgs[0]
+                  );
+                }).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              onLoadingChange={async (...eventArgs: any) => {
+                ((...eventArgs) => {
+                  generateStateOnChangeProp($state, ["button11", "loading"])(
+                    eventArgs[0]
+                  );
+                }).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              shape={"rounded"}
+              showEndIcon={true}
+            >
+              <div className={classNames("all", "__wab_text", sty.text___4MWc)}>
+                {
+                  "\u0645\u062f\u06cc\u0631\u06cc\u062a  \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0647\u0627"
+                }
+              </div>
+            </Button2>
+          ) : null}
+        </div>
+      </div>
       <ApiRequest
         data-plasmic-name={"apiRequest"}
         data-plasmic-override={overrides.apiRequest}
@@ -6177,6 +5971,7 @@ const PlasmicDescendants = {
     "frame36",
     "lottie",
     "button3",
+    "button7",
     "button",
     "reminderSetting",
     "button12",
@@ -6217,7 +6012,8 @@ const PlasmicDescendants = {
   frame35: ["frame35", "frame36"],
   frame36: ["frame36"],
   lottie: ["lottie"],
-  button3: ["button3"],
+  button3: ["button3", "button7"],
+  button7: ["button7"],
   button: ["button"],
   reminderSetting: ["reminderSetting"],
   button12: ["button12"],
@@ -6257,6 +6053,7 @@ type NodeDefaultElementType = {
   frame36: "div";
   lottie: typeof LottieWrapper;
   button3: typeof Button2;
+  button7: typeof Button;
   button: typeof Button2;
   reminderSetting: typeof ReminderSetting;
   button12: typeof Button2;
@@ -6354,6 +6151,7 @@ export const PlasmicReminder = Object.assign(
     frame36: makeNodeComponent("frame36"),
     lottie: makeNodeComponent("lottie"),
     button3: makeNodeComponent("button3"),
+    button7: makeNodeComponent("button7"),
     button: makeNodeComponent("button"),
     reminderSetting: makeNodeComponent("reminderSetting"),
     button12: makeNodeComponent("button12"),

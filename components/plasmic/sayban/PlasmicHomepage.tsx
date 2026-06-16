@@ -1847,6 +1847,11 @@ function PlasmicHomepage__RenderFunc(props: {
                   data-plasmic-name={"mainLiad"}
                   data-plasmic-override={overrides.mainLiad}
                   className={classNames("__wab_instance", sty.mainLiad, {
+                    [sty.mainLiadhomePage2_home]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "home"
+                    ),
                     [sty.mainLiadhomePage2_reminder]: hasVariant(
                       $state,
                       "homePage2",

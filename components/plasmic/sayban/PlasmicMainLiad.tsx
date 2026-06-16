@@ -59,7 +59,6 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import Reminder from "../../Reminder"; // plasmic-import: 3oLBMgFOIYFC/component
@@ -142,7 +141,6 @@ export const PlasmicMainLiad__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicMainLiad__OverridesType = {
   root?: Flex__<"div">;
-  sideEffect?: Flex__<typeof SideEffect>;
   profile?: Flex__<typeof ApiRequest>;
   reveal?: Flex__<typeof Reveal>;
   reminder?: Flex__<typeof Reminder>;
@@ -528,45 +526,6 @@ function PlasmicMainLiad__RenderFunc(props: {
         }
       )}
     >
-      <SideEffect
-        data-plasmic-name={"sideEffect"}
-        data-plasmic-override={overrides.sideEffect}
-        className={classNames("__wab_instance", sty.sideEffect)}
-        onMount={async () => {
-          const $steps = {};
-
-          $steps["runCode"] = true
-            ? (() => {
-                const actionArgs = {
-                  customFunction: async () => {
-                    return (() => {
-                      var getCookie = name => {
-                        const cookies = document.cookie.split("; ");
-                        for (let cookie of cookies) {
-                          const [key, value] = cookie.split("=");
-                          if (key === name) return JSON.parse(value)[0];
-                        }
-                        return "";
-                      };
-                      return ($state.token = getCookie("token"));
-                    })();
-                  }
-                };
-                return (({ customFunction }) => {
-                  return customFunction();
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
-          if (
-            $steps["runCode"] != null &&
-            typeof $steps["runCode"] === "object" &&
-            typeof $steps["runCode"].then === "function"
-          ) {
-            $steps["runCode"] = await $steps["runCode"];
-          }
-        }}
-      />
-
       <ApiRequest
         data-plasmic-name={"profile"}
         data-plasmic-override={overrides.profile}
@@ -727,7 +686,11 @@ function PlasmicMainLiad__RenderFunc(props: {
           }}
           balance={generateStateValueProp($state, ["reminder", "balance"])}
           className={classNames("__wab_instance", sty.reminder, {
-            [sty.reminderpage_reminder]: hasVariant($state, "page", "reminder")
+            [sty.reminderpage_bot]: hasVariant($state, "page", "bot"),
+            [sty.reminderpage_calendar]: hasVariant($state, "page", "calendar"),
+            [sty.reminderpage_l]: hasVariant($state, "page", "l"),
+            [sty.reminderpage_reminder]: hasVariant($state, "page", "reminder"),
+            [sty.reminderpage_self]: hasVariant($state, "page", "self")
           })}
           data={(() => {
             try {
@@ -1561,7 +1524,7 @@ function PlasmicMainLiad__RenderFunc(props: {
             throw e;
           }
         })()}
-        url={"https://n8n.staas.ir/webhook/user/task/day"}
+        url={"https://n8n.staas.ir/webhook/user/task/list?userId"}
       />
 
       <ApiRequest
@@ -3008,7 +2971,6 @@ function PlasmicMainLiad__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "sideEffect",
     "profile",
     "reveal",
     "reminder",
@@ -3025,7 +2987,6 @@ const PlasmicDescendants = {
     "svg",
     "creaditButten"
   ],
-  sideEffect: ["sideEffect"],
   profile: ["profile"],
   reveal: ["reveal", "reminder"],
   reminder: ["reminder"],
@@ -3047,7 +3008,6 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  sideEffect: typeof SideEffect;
   profile: typeof ApiRequest;
   reveal: typeof Reveal;
   reminder: typeof Reminder;
@@ -3127,7 +3087,6 @@ export const PlasmicMainLiad = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    sideEffect: makeNodeComponent("sideEffect"),
     profile: makeNodeComponent("profile"),
     reveal: makeNodeComponent("reveal"),
     reminder: makeNodeComponent("reminder"),
