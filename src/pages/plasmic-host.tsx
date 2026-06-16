@@ -21,6 +21,9 @@ import { Textarea, textareaMeta } from "@/fragment/components/textarea";
 import {SwiperSlider,SwiperSliderMeta} from "@/components/SwiperSlider";
 import {TextCollapse,TextCollapseMeta} from "@/components/TextCollapse";
 import {JalaliMoment ,JalaliMomentMeta} from "@/components/JalaliMoment";
+import {DatePickers,DatePickersMeta} from "@/components/DatePickers";
+import {Pickers,PickersMeta} from "@/components/Pickers";
+import {TimePickerCustom,TimePickerCustomMeta} from "@/components/TimePickerCustom";
 
 
 
@@ -46,6 +49,9 @@ registerComponent(Textarea, textareaMeta);
 registerComponent(SwiperSlider,SwiperSliderMeta);
 registerComponent(TextCollapse,TextCollapseMeta);
 registerComponent(JalaliMoment ,JalaliMomentMeta);
+registerComponent(DatePickers, DatePickersMeta);
+registerComponent(Pickers, PickersMeta);
+registerComponent(TimePickerCustom,TimePickerCustomMeta );
 <<<<<<< HEAD
 
 
