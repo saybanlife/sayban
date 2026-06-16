@@ -20,6 +20,15 @@
 .rootstatus_canceled {
   background: var(--token-Bo2_tT25lwh4);
 }
+.roottextcolor_status_pending {
+  background: none;
+}
+.roottextcolor_status_confirmed {
+  background: none;
+}
+.roottextcolor_status_canceled {
+  background: none;
+}
 .text {
   width: 100%;
   height: auto;
@@ -40,4 +49,19 @@
 }
 .textstatus_canceled {
   color: var(--token-NWiHR7h0ClTY);
+}
+.texttextcolor_status_pending {
+  color: var(--token-Yo4gdKCgyuAu);
+  font-size: var(--token-Tca_MqWoqq_b);
+  font-weight: 700;
+}
+.texttextcolor_status_confirmed {
+  font-size: var(--token-Tca_MqWoqq_b);
+  font-weight: 700;
+  color: var(--token-ee2TuxDknsJj);
+}
+.texttextcolor_status_canceled {
+  font-size: var(--token-Tca_MqWoqq_b);
+  font-weight: 700;
+  color: var(--token-FCYaeT_sNnHr);
 }

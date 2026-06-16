@@ -61,6 +61,8 @@ import {
 
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import Switch from "../../Switch"; // plasmic-import: gmLkAM4DXGYW/component
+import Modal from "../../Modal"; // plasmic-import: Oo9r7A7X8FP7/component
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -82,6 +84,9 @@ import Icon81Icon from "./icons/PlasmicIcon__Icon81"; // plasmic-import: JFikrSB
 import Icon83Icon from "./icons/PlasmicIcon__Icon83"; // plasmic-import: Lr0xJJRemopC/icon
 import Icon84Icon from "./icons/PlasmicIcon__Icon84"; // plasmic-import: S2KVA8WxUeNT/icon
 import Icon87Icon from "./icons/PlasmicIcon__Icon87"; // plasmic-import: DSiKrPvxYlkt/icon
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+import Icon342Icon from "./icons/PlasmicIcon__Icon342"; // plasmic-import: 3cI93FpEy9Rj/icon
 
 createPlasmicElementProxy;
 
@@ -110,6 +115,9 @@ export type PlasmicUser__OverridesType = {
   img?: Flex__<typeof PlasmicImg__>;
   _switch?: Flex__<typeof Switch>;
   switch2?: Flex__<typeof Switch>;
+  modal?: Flex__<typeof Modal>;
+  button2?: Flex__<typeof Button>;
+  button3?: Flex__<typeof Button>;
 };
 
 export interface DefaultUserProps {
@@ -169,6 +177,30 @@ function PlasmicUser__RenderFunc(props: {
       },
       {
         path: "switch2.isSelected",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "modal.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "button.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button3.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
@@ -677,8 +709,7 @@ function PlasmicUser__RenderFunc(props: {
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
-                        return (window.document.cookie =
-                          "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;");
+                        return ($state.modal.isOpen = true);
                       }
                     };
                     return (({ customFunction }) => {
@@ -692,31 +723,6 @@ function PlasmicUser__RenderFunc(props: {
                 typeof $steps["runCode"].then === "function"
               ) {
                 $steps["runCode"] = await $steps["runCode"];
-              }
-
-              $steps["goToLogin"] = true
-                ? (() => {
-                    const actionArgs = { destination: `/login/${"login"}` };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["goToLogin"] != null &&
-                typeof $steps["goToLogin"] === "object" &&
-                typeof $steps["goToLogin"].then === "function"
-              ) {
-                $steps["goToLogin"] = await $steps["goToLogin"];
               }
             }}
           >
@@ -737,16 +743,203 @@ function PlasmicUser__RenderFunc(props: {
           </div>
         </div>
       </div>
+      <Modal
+        data-plasmic-name={"modal"}
+        data-plasmic-override={overrides.modal}
+        className={classNames("__wab_instance", sty.modal)}
+        closeOnBackdropClick={false}
+        content={
+          <div className={classNames("all", sty.freeBox__axXbg)}>
+            <div className={classNames("all", sty.freeBox__dSsz4)}>
+              <Icon342Icon
+                className={classNames("all", sty.svg__yutAy)}
+                role={"img"}
+              />
+            </div>
+            <div className={classNames("all", "__wab_text", sty.text__ipE1V)}>
+              {"\u062e\u0631\u0648\u062c \u0627\u0632 \u062d\u0633\u0627\u0628"}
+            </div>
+            <div className={classNames("all", "__wab_text", sty.text__hs22H)}>
+              {
+                "\u0627\u0632 \u062e\u0627\u0631\u062c \u0634\u062f\u0646 \u0627\u0632 \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc \u062e\u0648\u062f \u0645\u0637\u0645\u0626\u0646 \u0647\u0633\u062a\u06cc\u062f\u061f"
+              }
+            </div>
+          </div>
+        }
+        footer={
+          <div className={classNames("all", sty.freeBox__zsXtV)}>
+            <Button
+              data-plasmic-name={"button2"}
+              data-plasmic-override={overrides.button2}
+              className={classNames("__wab_instance", sty.button2)}
+              color={"second"}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text__dOu08)}
+                >
+                  {"\u062e\u0631\u0648\u062c"}
+                </div>
+              }
+              loading={generateStateValueProp($state, ["button2", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (document.cookie =
+                            "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;");
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+
+                $steps["goToLogin"] = true
+                  ? (() => {
+                      const actionArgs = { destination: `/login/${"login"}` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToLogin"] != null &&
+                  typeof $steps["goToLogin"] === "object" &&
+                  typeof $steps["goToLogin"].then === "function"
+                ) {
+                  $steps["goToLogin"] = await $steps["goToLogin"];
+                }
+              }}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["button2", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+            />
+
+            <Button
+              data-plasmic-name={"button3"}
+              data-plasmic-override={overrides.button3}
+              className={classNames("__wab_instance", sty.button3)}
+              color={"clear"}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text__zw1Ui)}
+                >
+                  {"\u062e\u06cc\u0631"}
+                </div>
+              }
+              loading={generateStateValueProp($state, ["button3", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return ($state.modal.isOpen = false);
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+              }}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["button3", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+            />
+          </div>
+        }
+        heading={null}
+        isOpen={generateStateValueProp($state, ["modal", "isOpen"])}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["modal", "isOpen"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        showFooter={false}
+        showHeader={false}
+      />
     </section>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "section", "img", "_switch", "switch2"],
+  root: [
+    "root",
+    "section",
+    "img",
+    "_switch",
+    "switch2",
+    "modal",
+    "button2",
+    "button3"
+  ],
   section: ["section", "img"],
   img: ["img"],
   _switch: ["_switch"],
-  switch2: ["switch2"]
+  switch2: ["switch2"],
+  modal: ["modal", "button2", "button3"],
+  button2: ["button2"],
+  button3: ["button3"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -757,6 +950,9 @@ type NodeDefaultElementType = {
   img: typeof PlasmicImg__;
   _switch: typeof Switch;
   switch2: typeof Switch;
+  modal: typeof Modal;
+  button2: typeof Button;
+  button3: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -825,6 +1021,9 @@ export const PlasmicUser = Object.assign(
     img: makeNodeComponent("img"),
     _switch: makeNodeComponent("_switch"),
     switch2: makeNodeComponent("switch2"),
+    modal: makeNodeComponent("modal"),
+    button2: makeNodeComponent("button2"),
+    button3: makeNodeComponent("button3"),
 
     // Metadata about props expected for PlasmicUser
     internalVariantProps: PlasmicUser__VariantProps,

@@ -721,3 +721,117 @@
   align-self: center;
   flex-shrink: 0;
 }
+.modal:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.button__bj14:global(.__wab_instance):global(.__wab_instance) {
+  display: none;
+}
+.svg__wMIls {
+  position: relative;
+  height: 1em;
+}
+.svg__xVlz {
+  position: relative;
+  height: 1em;
+}
+.freeBox__axXbg {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-rfsFxiclAtek);
+  min-width: 0;
+  padding: var(--token-73iLa06AE6f4) 0px 0px;
+}
+.freeBox__dSsz4 {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  background: var(--token-Ws0-_dtROA6x);
+  border-radius: var(--token--_xqF59Qmd-S);
+  padding: var(--token-cfon0PHiXQoL);
+}
+.svg__yutAy {
+  object-fit: cover;
+  max-width: 100%;
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+}
+.text__ipE1V {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: center;
+  color: var(--token-9M5jRUPt8Msb);
+  font-weight: 700;
+  font-size: var(--token-Tca_MqWoqq_b);
+  min-width: 0;
+}
+.text__hs22H {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-weight: 400;
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  color: var(--token-KjATzAYJ5IB7);
+  min-width: 0;
+}
+.freeBox__zsXtV {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-73iLa06AE6f4);
+  min-width: 0;
+  padding: var(--token-73iLa06AE6f4);
+}
+.button2:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.svg__sw3Ac {
+  position: relative;
+  height: 1em;
+}
+.text__dOu08 {
+  white-space: pre;
+  color: var(--token-1aP3XjRZIKFV);
+}
+.svg___07Qrc {
+  position: relative;
+  height: 1em;
+}
+.button3:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.svg__cjICv {
+  position: relative;
+  height: 1em;
+}
+.text__zw1Ui {
+  white-space: pre;
+  color: var(--token-1aP3XjRZIKFV);
+}
+.svg__azLir {
+  position: relative;
+  height: 1em;
+}

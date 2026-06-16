@@ -1,0 +1,37 @@
+.checkboxGroup2:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+}
+.freeBox___3VlWq {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--token-xf2ijuTrDk1U);
+  padding: var(--token-73iLa06AE6f4);
+}
+.freeBox___73GTl {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  min-width: 0;
+  padding: 8px;
+}
+.checkbox4:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.text {
+  width: 100%;
+  text-align: right;
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  font-weight: 400;
+  min-width: 0;
+}

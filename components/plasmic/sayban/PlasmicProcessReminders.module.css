@@ -1,0 +1,11 @@
+.root {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  color: #535353;
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  font-weight: 400;
+  text-align: right;
+  position: relative;
+  display: inline-block;
+}

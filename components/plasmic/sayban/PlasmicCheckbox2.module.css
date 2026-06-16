@@ -1,0 +1,433 @@
+.root {
+  display: inline-flex;
+  flex-direction: row;
+  position: relative;
+  width: auto;
+  height: auto;
+  align-items: flex-start;
+  justify-content: flex-start;
+  column-gap: 4px;
+}
+.rootisChecked {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.rootcircle {
+  justify-content: center;
+  align-items: center;
+}
+.rootcircle_custom {
+  justify-content: flex-start;
+  align-items: center;
+}
+.root___focusVisibleWithin {
+  outline: none;
+}
+.root:focus-within:focus-within {
+  outline: none;
+}
+.rootcircle____focusVisibleWithin {
+  outline: none;
+}
+.freeBox {
+  display: flex;
+  position: relative;
+  transition-property: all;
+  transition-duration: 0.2s;
+  align-items: center;
+  justify-content: center;
+  -webkit-transition-property: all;
+  -webkit-transition-duration: 0.2s;
+  border-radius: 4px;
+}
+.freeBoxcircle {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.freeBoxcustom {
+  align-self: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: auto;
+}
+.freeBoxcircle_custom {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: auto;
+  height: auto;
+  width: auto;
+}
+.root .freeBox___focusVisibleWithin {
+  box-shadow: 0px 0px 0px 1px #7444bc33;
+  outline: none;
+}
+.root:focus-within .freeBox {
+  box-shadow: 0px 0px 0px 2px #7444bc33;
+  outline: none;
+}
+.rootcircle .freeBoxcircle____focusVisibleWithin {
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 0px 2px #7444bc33;
+  outline: none;
+  border-radius: 50%;
+}
+.rootcircle:focus-within .freeBoxcircle {
+  outline: none;
+  border-radius: 100%;
+}
+.rootcircle_isChecked .freeBoxcircle____focusVisibleWithin_isChecked {
+  height: auto;
+  width: auto;
+  box-shadow: 0px 0px 0px 2px #7444bc33;
+  outline: none;
+}
+.svg {
+  position: relative;
+  object-fit: cover;
+  color: #dbdbd7;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.svgisChecked {
+  color: var(--token-0WJGb7loGUss);
+}
+.svgisIndeterminate {
+  color: var(--token-sdHWFpeV8MAu);
+}
+.svgcircle {
+  width: 20px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.svgsize_langh {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+.svgfilter_isChecked {
+  color: var(--token-xZK-xLPCiE1W);
+}
+.root .svg___focusVisibleWithin {
+  outline: none;
+}
+.root:focus-within .svg {
+  outline: none;
+}
+.root:hover .svg {
+  color: #c8c7c1;
+}
+.rootisDisabled:hover .svgisDisabled {
+  color: #dbdbd7;
+}
+.rootisChecked:hover .svgisChecked {
+  color: var(--token-0WJGb7loGUss);
+}
+.rootisIndeterminate:hover .svgisIndeterminate {
+  color: var(--token-0WJGb7loGUss);
+}
+.rootcircle .svgcircle____focusVisibleWithin {
+  height: 20.5px;
+  outline: none;
+}
+.rootcircle:focus-within .svgcircle {
+  outline: none;
+}
+.rootcircle_isChecked .svgcircle____focusVisibleWithin_isChecked {
+  outline: none;
+}
+.rootcircle_isChecked:focus-within .svgcircle_isChecked {
+  outline: none;
+}
+.rootfilter_isChecked:hover .svgfilter_isChecked {
+  color: var(--token-xZK-xLPCiE1W);
+}
+.labelContainer {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.labelContainersize_langh {
+  align-self: center;
+}
+.root .labelContainer___focusVisibleWithin {
+  outline: none;
+}
+.root:focus-within .labelContainer {
+  outline: none;
+}
+.slotTargetChildren {
+  white-space: pre;
+}
+.slotTargetChildren > :global(.__wab_text),
+.slotTargetChildren > :global(.__wab_expr_html_text),
+.slotTargetChildren > :global(.__wab_slot-string-wrapper),
+.slotTargetChildren > :global(.__wab_slot) > :global(.__wab_text),
+.slotTargetChildren > :global(.__wab_slot) > :global(.__wab_expr_html_text),
+.slotTargetChildren
+  > :global(.__wab_slot)
+  > :global(.__wab_slot-string-wrapper),
+.slotTargetChildren
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_text),
+.slotTargetChildren
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_expr_html_text),
+.slotTargetChildren
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot-string-wrapper),
+.slotTargetChildren
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_text),
+.slotTargetChildren
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_expr_html_text),
+.slotTargetChildren
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot-string-wrapper) {
+  text-overflow: ellipsis;
+}
+.slotTargetChildren > *,
+.slotTargetChildren > :global(.__wab_slot) > *,
+.slotTargetChildren > :global(.__wab_slot) > :global(.__wab_slot) > *,
+.slotTargetChildren
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > *,
+.slotTargetChildren > picture > img,
+.slotTargetChildren > :global(.__wab_slot) > picture > img,
+.slotTargetChildren
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > picture
+  > img,
+.slotTargetChildren
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  overflow: hidden;
+}
+.slotTargetChildrenisChecked {
+  color: var(--token-y50Rafqey4Ec);
+}
+.slotTargetChildrenisChecked > :global(.__wab_text),
+.slotTargetChildrenisChecked > :global(.__wab_expr_html_text),
+.slotTargetChildrenisChecked > :global(.__wab_slot-string-wrapper),
+.slotTargetChildrenisChecked > :global(.__wab_slot) > :global(.__wab_text),
+.slotTargetChildrenisChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_expr_html_text),
+.slotTargetChildrenisChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot-string-wrapper),
+.slotTargetChildrenisChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_text),
+.slotTargetChildrenisChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_expr_html_text),
+.slotTargetChildrenisChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot-string-wrapper),
+.slotTargetChildrenisChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_text),
+.slotTargetChildrenisChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_expr_html_text),
+.slotTargetChildrenisChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot-string-wrapper) {
+  text-decoration-line: none;
+}
+.slotTargetChildrencustom {
+  color: var(--token-y50Rafqey4Ec);
+}
+.slotTargetChildrencircle_isChecked > :global(.__wab_text),
+.slotTargetChildrencircle_isChecked > :global(.__wab_expr_html_text),
+.slotTargetChildrencircle_isChecked > :global(.__wab_slot-string-wrapper),
+.slotTargetChildrencircle_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_text),
+.slotTargetChildrencircle_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_expr_html_text),
+.slotTargetChildrencircle_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot-string-wrapper),
+.slotTargetChildrencircle_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_text),
+.slotTargetChildrencircle_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_expr_html_text),
+.slotTargetChildrencircle_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot-string-wrapper),
+.slotTargetChildrencircle_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_text),
+.slotTargetChildrencircle_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_expr_html_text),
+.slotTargetChildrencircle_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot-string-wrapper) {
+  text-decoration-line: line-through;
+}
+.slotTargetChildrencustom_isChecked {
+  color: var(--token-ygRHI2d5KsR3);
+}
+.slotTargetChildrencircle_custom {
+  text-align: right;
+  color: #535353;
+  font-weight: 300;
+}
+.slotTargetChildrencircle_custom_isChecked {
+  font-weight: 700;
+  color: var(--token-7FriYu7pGwta);
+}
+.slotTargetChildrencircle_custom_isChecked > :global(.__wab_text),
+.slotTargetChildrencircle_custom_isChecked > :global(.__wab_expr_html_text),
+.slotTargetChildrencircle_custom_isChecked
+  > :global(.__wab_slot-string-wrapper),
+.slotTargetChildrencircle_custom_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_text),
+.slotTargetChildrencircle_custom_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_expr_html_text),
+.slotTargetChildrencircle_custom_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot-string-wrapper),
+.slotTargetChildrencircle_custom_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_text),
+.slotTargetChildrencircle_custom_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_expr_html_text),
+.slotTargetChildrencircle_custom_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot-string-wrapper),
+.slotTargetChildrencircle_custom_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_text),
+.slotTargetChildrencircle_custom_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_expr_html_text),
+.slotTargetChildrencircle_custom_isChecked
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot-string-wrapper) {
+  text-decoration-line: none;
+}
+.root .slotTargetChildren___focusVisibleWithin > *,
+.root .slotTargetChildren___focusVisibleWithin > :global(.__wab_slot) > *,
+.root
+  .slotTargetChildren___focusVisibleWithin
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > *,
+.root
+  .slotTargetChildren___focusVisibleWithin
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > *,
+.root .slotTargetChildren___focusVisibleWithin > picture > img,
+.root
+  .slotTargetChildren___focusVisibleWithin
+  > :global(.__wab_slot)
+  > picture
+  > img,
+.root
+  .slotTargetChildren___focusVisibleWithin
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > picture
+  > img,
+.root
+  .slotTargetChildren___focusVisibleWithin
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  outline: none;
+}
+.root:focus-within .slotTargetChildren > *,
+.root:focus-within .slotTargetChildren > :global(.__wab_slot) > *,
+.root:focus-within
+  .slotTargetChildren
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > *,
+.root:focus-within
+  .slotTargetChildren
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > *,
+.root:focus-within .slotTargetChildren > picture > img,
+.root:focus-within .slotTargetChildren > :global(.__wab_slot) > picture > img,
+.root:focus-within
+  .slotTargetChildren
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > picture
+  > img,
+.root:focus-within
+  .slotTargetChildren
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  outline: none;
+}

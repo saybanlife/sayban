@@ -70,12 +70,17 @@ createPlasmicElementProxy;
 
 export type PlasmicStatus__VariantMembers = {
   status: "pending" | "confirmed" | "canceled";
+  textcolor: "textcolor";
 };
 export type PlasmicStatus__VariantsArgs = {
   status?: SingleChoiceArg<"pending" | "confirmed" | "canceled">;
+  textcolor?: SingleBooleanChoiceArg<"textcolor">;
 };
 type VariantPropType = keyof PlasmicStatus__VariantsArgs;
-export const PlasmicStatus__VariantProps = new Array<VariantPropType>("status");
+export const PlasmicStatus__VariantProps = new Array<VariantPropType>(
+  "status",
+  "textcolor"
+);
 
 export type PlasmicStatus__ArgsType = {};
 type ArgPropType = keyof PlasmicStatus__ArgsType;
@@ -88,6 +93,7 @@ export type PlasmicStatus__OverridesType = {
 
 export interface DefaultStatusProps {
   status?: SingleChoiceArg<"pending" | "confirmed" | "canceled">;
+  textcolor?: SingleBooleanChoiceArg<"textcolor">;
   className?: string;
 }
 
@@ -137,6 +143,12 @@ function PlasmicStatus__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.status
+      },
+      {
+        path: "textcolor",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.textcolor
       }
     ],
     [$props, $ctx, $refs]
@@ -168,7 +180,16 @@ function PlasmicStatus__RenderFunc(props: {
         {
           [sty.rootstatus_canceled]: hasVariant($state, "status", "canceled"),
           [sty.rootstatus_confirmed]: hasVariant($state, "status", "confirmed"),
-          [sty.rootstatus_pending]: hasVariant($state, "status", "pending")
+          [sty.rootstatus_pending]: hasVariant($state, "status", "pending"),
+          [sty.roottextcolor_status_canceled]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "canceled"),
+          [sty.roottextcolor_status_confirmed]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "confirmed"),
+          [sty.roottextcolor_status_pending]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "pending")
         }
       )}
     >
@@ -178,7 +199,16 @@ function PlasmicStatus__RenderFunc(props: {
         className={classNames("all", "__wab_text", sty.text, {
           [sty.textstatus_canceled]: hasVariant($state, "status", "canceled"),
           [sty.textstatus_confirmed]: hasVariant($state, "status", "confirmed"),
-          [sty.textstatus_pending]: hasVariant($state, "status", "pending")
+          [sty.textstatus_pending]: hasVariant($state, "status", "pending"),
+          [sty.texttextcolor_status_canceled]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "canceled"),
+          [sty.texttextcolor_status_confirmed]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "confirmed"),
+          [sty.texttextcolor_status_pending]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "pending")
         })}
       >
         {hasVariant($state, "status", "canceled")

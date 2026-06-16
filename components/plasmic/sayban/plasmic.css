@@ -12,7 +12,9 @@
 @import "../vanilla_cookieconsent/plasmic.css"; /* plasmic-import: 6BbLKwkS96yNKy5ahQZd7s/projectcss */
 @import "../md_5/plasmic.css"; /* plasmic-import: cAAqA2dcbTMWwuLSmjs7ss/projectcss */
 @import "../lottie_react/plasmic.css"; /* plasmic-import: 5dGW8Awro3qq8Hh5MveXLP/projectcss */
-@import url("https://fonts.googleapis.com/css2?family=Inter%3Aital%2Cwght%400%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700&family=Inconsolata%3Aital%2Cwght%400%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700&family=Roboto%3Aital%2Cwght%400%2C300%3B0%2C400%3B0%2C500%3B0%2C700&display=swap");
+@import "../antd/plasmic.css"; /* plasmic-import: 28Ba3BDvRe7EiWdfFNnLB6/projectcss */
+@import "../copy_to_clipboard/plasmic.css"; /* plasmic-import: aEHVN5v6mfM4eovDsL8Z7d/projectcss */
+@import url("https://fonts.googleapis.com/css2?family=Inter%3Aital%2Cwght%400%2C100%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C900&family=Inconsolata%3Aital%2Cwght%400%2C200%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C900&family=Roboto%3Aital%2Cwght%400%2C100%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C700%3B0%2C900&display=swap");
 
 .plasmic_tokens_qARqpE4p5tZmJuNxFbTaPz {
   --token-ee2TuxDknsJj: #6f8a3a;
@@ -235,6 +237,20 @@
   --plasmic-token-unnamed-style-token-5: var(--token-Cx6nTvLnGbb8);
   --token-tEX5kjPVdKLu: 16px;
   --plasmic-token-unnamed-style-token-6: var(--token-tEX5kjPVdKLu);
+  --token-5-4vCjWq2kIu: #f8f8f8;
+  --plasmic-token-bg-liom: var(--token-5-4vCjWq2kIu);
+  --token-xJjrlqTAl6fJ: #dd911e;
+  --plasmic-token-dark-yellow: var(--token-xJjrlqTAl6fJ);
+  --token-kIiS2Y0r0-ou: #8254c6;
+  --plasmic-token-gradient-2: var(--token-kIiS2Y0r0-ou);
+  --token-0WJGb7loGUss: #8254c6;
+  --plasmic-token-purple: var(--token-0WJGb7loGUss);
+  --token-7FriYu7pGwta: #8254c6;
+  --plasmic-token-primary: var(--token-7FriYu7pGwta);
+  --token-7w1hHBafObn7: #777777;
+  --plasmic-token-task-text: var(--token-7w1hHBafObn7);
+  --token-_dzRzBMvro_R: #535353;
+  --plasmic-token-text-gray: var(--token-_dzRzBMvro_R);
 }
 
 @media (min-width: 0px) and (max-width: 768px) {

@@ -62,12 +62,26 @@ import {
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import ItemBooking from "../../ItemBooking"; // plasmic-import: NnzIun3_VRrR/component
 import BookingHeader from "../../BookingHeader"; // plasmic-import: K9ETXxPuQRCy/component
+import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
+import Status from "../../Status"; // plasmic-import: UhSHXabmHrQP/component
+import UploudeTime from "../../UploudeTime"; // plasmic-import: IxvwO5AMD5ex/component
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicBooking.module.css"; // plasmic-import: f1blqtlMCCYK/css
+
+import UserIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__User"; // plasmic-import: d1LJS78vGoJH/icon
+import CalendarStatsIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CalendarStats"; // plasmic-import: oUYWhxUGA-WS/icon
+import CurrentLocationIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CurrentLocation"; // plasmic-import: AblxVode3mz8/icon
+import CreditCardPayIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CreditCardPay"; // plasmic-import: FOiZZ8XewN_M/icon
+import CopyIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Copy"; // plasmic-import: fXp0ttS7fed_/icon
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+
+import __lib_copyToClipboard from "copy-to-clipboard";
 
 createPlasmicElementProxy;
 
@@ -100,6 +114,10 @@ export type PlasmicBooking__OverridesType = {
   itemBooking?: Flex__<typeof ItemBooking>;
   section?: Flex__<"section">;
   bookingHeader?: Flex__<typeof BookingHeader>;
+  dialog?: Flex__<typeof Dialog>;
+  status?: Flex__<typeof Status>;
+  uploudeTime?: Flex__<typeof UploudeTime>;
+  button?: Flex__<typeof Button>;
 };
 
 export interface DefaultBookingProps {
@@ -112,7 +130,9 @@ export interface DefaultBookingProps {
   className?: string;
 }
 
-const $$ = {};
+const $$ = {
+  copyToClipboard: __lib_copyToClipboard
+};
 
 function useNextRouter() {
   try {
@@ -190,6 +210,24 @@ function PlasmicBooking__RenderFunc(props: {
 
         valueProp: "selectCenter",
         onChangeProp: "onSelectCenterChange"
+      },
+      {
+        path: "dialog.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "datalist",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "button.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -353,7 +391,32 @@ function PlasmicBooking__RenderFunc(props: {
                       $steps["runGoToCenter"] = await $steps["runGoToCenter"];
                     }
                   }}
-                  goToDetails={args.goToDetails}
+                  goToDetails={async event => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return (() => {
+                                $state.dialog.opendialog = true;
+                                return ($state.datalist = currentItem);
+                              })();
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+                  }}
                   item={currentItem}
                   key={currentIndex}
                 />
@@ -414,16 +477,261 @@ function PlasmicBooking__RenderFunc(props: {
           }}
         />
       </section>
+      <Dialog
+        data-plasmic-name={"dialog"}
+        data-plasmic-override={overrides.dialog}
+        className={classNames("__wab_instance", sty.dialog)}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["dialog", "opendialog"])}
+      >
+        <div className={classNames("all", sty.freeBox__iGmqp)}>
+          <div className={classNames("all", "__wab_text", sty.text__vYVvX)}>
+            {"\u062c\u0632\u0626\u06cc\u0627\u062a \u0631\u0632\u0631\u0648"}
+          </div>
+          <div className={classNames("all", sty.freeBox__g4BWy)}>
+            <Status
+              data-plasmic-name={"status"}
+              data-plasmic-override={overrides.status}
+              className={classNames("__wab_instance", sty.status)}
+              status={(() => {
+                try {
+                  return $state.datalist.status || "pending";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()}
+            />
+          </div>
+          <div className={classNames("all", sty.freeBox__mMtpm)}>
+            <div className={classNames("all", sty.freeBox__zelEs)}>
+              <UserIcon
+                className={classNames("all", sty.svg__d4ETz)}
+                role={"img"}
+              />
+            </div>
+            <div className={classNames("all", sty.freeBox__wDFdQ)}>
+              <div className={classNames("all", "__wab_text", sty.text__q7FPj)}>
+                {"\u06a9\u0627\u0631\u0628\u0631"}
+              </div>
+              <div className={classNames("all", "__wab_text", sty.text__udEzn)}>
+                <React.Fragment>
+                  {$state.datalist.user.json.name}
+                </React.Fragment>
+              </div>
+            </div>
+          </div>
+          <div className={classNames("all", sty.freeBox__szFAr)}>
+            <div className={classNames("all", sty.freeBox__aDyCk)}>
+              <CalendarStatsIcon
+                className={classNames("all", sty.svg__tylV)}
+                role={"img"}
+              />
+            </div>
+            <div className={classNames("all", sty.freeBox__gzlzj)}>
+              <div className={classNames("all", "__wab_text", sty.text__rejb1)}>
+                {
+                  "\u062a\u0627\u0631\u06cc\u062e \u0648 \u0633\u0627\u0639\u062a"
+                }
+              </div>
+              <UploudeTime
+                data-plasmic-name={"uploudeTime"}
+                data-plasmic-override={overrides.uploudeTime}
+                className={classNames("__wab_instance", sty.uploudeTime)}
+                posttime={(() => {
+                  function addTime(dateString, addHours = 0, addMinutes = 0) {
+                    if (!dateString) return null;
+                    const date = new Date(dateString.replace(" ", "T"));
+                    if (!date) return null;
+                    date.setMinutes(
+                      date.getMinutes() + (addHours * 60 + addMinutes)
+                    );
+                    return {
+                      year: date.getFullYear(),
+                      month: date.getMonth() + 1,
+                      day: date.getDate(),
+                      hour: date.getHours(),
+                      minute: date.getMinutes(),
+                      second: date.getSeconds()
+                    };
+                  }
+                  const newCreatedAt = addTime($state.datalist.start_time);
+                  return newCreatedAt;
+                })()}
+              />
+            </div>
+          </div>
+          <div className={classNames("all", sty.freeBox__oSmTy)}>
+            <div className={classNames("all", sty.freeBox__uJiIm)}>
+              <CurrentLocationIcon
+                className={classNames("all", sty.svg__jVHhV)}
+                role={"img"}
+              />
+            </div>
+            <div className={classNames("all", sty.freeBox__n5WMi)}>
+              <div className={classNames("all", "__wab_text", sty.text__qigzY)}>
+                {"\u0645\u06a9\u0627\u0646"}
+              </div>
+              <div
+                className={classNames("all", "__wab_text", sty.text___8Df7U)}
+              >
+                <React.Fragment>{$state.datalist.name}</React.Fragment>
+              </div>
+            </div>
+          </div>
+          <div className={classNames("all", sty.freeBox__wkU6L)}>
+            <div className={classNames("all", sty.freeBox__hRnlo)}>
+              <CreditCardPayIcon
+                className={classNames("all", sty.svg__v2Qrf)}
+                role={"img"}
+              />
+            </div>
+            <div className={classNames("all", sty.freeBox__wtGyd)}>
+              <div className={classNames("all", "__wab_text", sty.text__ue6Pd)}>
+                {
+                  "\u0648\u0636\u0639\u06cc\u062a \u067e\u0631\u062f\u0627\u062e\u062a"
+                }
+              </div>
+              <div className={classNames("all", "__wab_text", sty.text__e0Ot6)}>
+                <React.Fragment>
+                  {$state.datalist.payment_status}
+                </React.Fragment>
+              </div>
+            </div>
+          </div>
+          {(() => {
+            try {
+              return $state.datalist.reservation_code;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })() ? (
+            <div
+              className={classNames("all", sty.freeBox___61D6B)}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return $$.copyToClipboard(
+                            $state.datalist.reservation_code
+                          );
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+              }}
+            >
+              <div className={classNames("all", sty.freeBox__ptrel)}>
+                <div
+                  className={classNames("all", "__wab_text", sty.text__fHWpT)}
+                >
+                  {"\u06a9\u062f \u0631\u0632\u0631\u0648"}
+                </div>
+                <div
+                  className={classNames("all", "__wab_text", sty.text__ss1Go)}
+                >
+                  <React.Fragment>
+                    {$state.datalist.reservation_code}
+                  </React.Fragment>
+                </div>
+              </div>
+              <div className={classNames("all", sty.freeBox__ejt1G)}>
+                <CopyIcon
+                  className={classNames("all", sty.svg__htPs)}
+                  role={"img"}
+                />
+              </div>
+            </div>
+          ) : null}
+          <Button
+            data-plasmic-name={"button"}
+            data-plasmic-override={overrides.button}
+            className={classNames("__wab_instance", sty.button)}
+            color={"errorDestructive"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__c0SzL)}>
+                {"\u0644\u063a\u0648 \u0631\u0632\u0631\u0648"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button", "loading"])}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </Dialog>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "reservation", "itemBooking", "section", "bookingHeader"],
+  root: [
+    "root",
+    "reservation",
+    "itemBooking",
+    "section",
+    "bookingHeader",
+    "dialog",
+    "status",
+    "uploudeTime",
+    "button"
+  ],
   reservation: ["reservation", "itemBooking"],
   itemBooking: ["itemBooking"],
   section: ["section", "bookingHeader"],
-  bookingHeader: ["bookingHeader"]
+  bookingHeader: ["bookingHeader"],
+  dialog: ["dialog", "status", "uploudeTime", "button"],
+  status: ["status"],
+  uploudeTime: ["uploudeTime"],
+  button: ["button"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -434,6 +742,10 @@ type NodeDefaultElementType = {
   itemBooking: typeof ItemBooking;
   section: "section";
   bookingHeader: typeof BookingHeader;
+  dialog: typeof Dialog;
+  status: typeof Status;
+  uploudeTime: typeof UploudeTime;
+  button: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -502,6 +814,10 @@ export const PlasmicBooking = Object.assign(
     itemBooking: makeNodeComponent("itemBooking"),
     section: makeNodeComponent("section"),
     bookingHeader: makeNodeComponent("bookingHeader"),
+    dialog: makeNodeComponent("dialog"),
+    status: makeNodeComponent("status"),
+    uploudeTime: makeNodeComponent("uploudeTime"),
+    button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicBooking
     internalVariantProps: PlasmicBooking__VariantProps,

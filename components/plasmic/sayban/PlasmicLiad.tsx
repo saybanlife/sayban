@@ -73,6 +73,7 @@ import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/compo
 import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
 import SelectStars from "../../SelectStars"; // plasmic-import: rIv-AfQad6sO/component
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
+import MainLiad from "../../MainLiad"; // plasmic-import: 9XN_qwXFJeGM/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -148,6 +149,7 @@ export type PlasmicLiad__OverridesType = {
   selectStars?: Flex__<typeof SelectStars>;
   commentArea?: Flex__<typeof TextAreaInput>;
   commentEntry?: Flex__<typeof Button>;
+  mainLiad?: Flex__<typeof MainLiad>;
 };
 
 export interface DefaultLiadProps {
@@ -660,6 +662,67 @@ function PlasmicLiad__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "mainLiad.editTime",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "mainLiad.userInfo",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "mainLiad.token",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3OWYxMTA5LTAzYzQtNGUxZS1iMDg4LWUxODU4MzI2OTZkMyIsInR5cGUiOiJ1c2VyIiwiaWF0IjoxNzY2MzE5NjQ3fQ.uZnxA89esuV6GR004WIh0sEZyaKTT04uLzKrpp3H2PY"
+      },
+      {
+        path: "mainLiad.remind",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "mainLiad.refresh",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "mainLiad.mobileDialogOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "mainLiad.reminderBalance",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "mainLiad.profile2",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "mainLiad.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "mainLiad.telegramDialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -3156,6 +3219,166 @@ function PlasmicLiad__RenderFunc(props: {
           />
         </div>
       </Dialog>
+      <MainLiad
+        data-plasmic-name={"mainLiad"}
+        data-plasmic-override={overrides.mainLiad}
+        className={classNames("__wab_instance", sty.mainLiad)}
+        editTime={generateStateValueProp($state, ["mainLiad", "editTime"])}
+        mobileDialogOpen={generateStateValueProp($state, [
+          "mainLiad",
+          "mobileDialogOpen"
+        ])}
+        onEditTimeChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainLiad", "editTime"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onLoadingChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainLiad", "loading"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onMobileDialogOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainLiad",
+            "mobileDialogOpen"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onProfileChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainLiad", "profile2"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onRefreshChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainLiad", "refresh"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onRemindChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainLiad", "remind"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onReminderBalanceChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainLiad",
+            "reminderBalance"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onTelegramDialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainLiad",
+            "telegramDialog"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onTokenChange2={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainLiad", "token"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onUserInfoChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainLiad", "userInfo"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        page={"reminder"}
+        profile2={generateStateValueProp($state, ["mainLiad", "profile2"])}
+        refresh={generateStateValueProp($state, ["mainLiad", "refresh"])}
+        remind={generateStateValueProp($state, ["mainLiad", "remind"])}
+        telegramDialog={generateStateValueProp($state, [
+          "mainLiad",
+          "telegramDialog"
+        ])}
+        token={generateStateValueProp($state, ["mainLiad", "token"])}
+        userInfo={generateStateValueProp($state, ["mainLiad", "userInfo"])}
+      />
     </div>
   ) as React.ReactElement | null;
 }
@@ -3185,7 +3408,8 @@ const PlasmicDescendants = {
     "comment",
     "selectStars",
     "commentArea",
-    "commentEntry"
+    "commentEntry",
+    "mainLiad"
   ],
   embedHtml: ["embedHtml"],
   header: ["header"],
@@ -3235,7 +3459,8 @@ const PlasmicDescendants = {
   comment: ["comment", "selectStars", "commentArea", "commentEntry"],
   selectStars: ["selectStars"],
   commentArea: ["commentArea"],
-  commentEntry: ["commentEntry"]
+  commentEntry: ["commentEntry"],
+  mainLiad: ["mainLiad"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -3265,6 +3490,7 @@ type NodeDefaultElementType = {
   selectStars: typeof SelectStars;
   commentArea: typeof TextAreaInput;
   commentEntry: typeof Button;
+  mainLiad: typeof MainLiad;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -3352,6 +3578,7 @@ export const PlasmicLiad = Object.assign(
     selectStars: makeNodeComponent("selectStars"),
     commentArea: makeNodeComponent("commentArea"),
     commentEntry: makeNodeComponent("commentEntry"),
+    mainLiad: makeNodeComponent("mainLiad"),
 
     // Metadata about props expected for PlasmicLiad
     internalVariantProps: PlasmicLiad__VariantProps,
