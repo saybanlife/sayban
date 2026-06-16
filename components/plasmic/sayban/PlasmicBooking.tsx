@@ -508,7 +508,7 @@ function PlasmicBooking__RenderFunc(props: {
               className={classNames("__wab_instance", sty.status)}
               status={(() => {
                 try {
-                  return $state.datalist.status || "pending";
+                  return $state.datalist?.status || "pending";
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -534,7 +534,7 @@ function PlasmicBooking__RenderFunc(props: {
               </div>
               <div className={classNames("all", "__wab_text", sty.text__udEzn)}>
                 <React.Fragment>
-                  {$state.datalist.user.json.name}
+                  {$state.datalist?.user?.json?.name}
                 </React.Fragment>
               </div>
             </div>
@@ -573,7 +573,9 @@ function PlasmicBooking__RenderFunc(props: {
                       second: date.getSeconds()
                     };
                   }
-                  const newCreatedAt = addTime($state.datalist.start_time);
+                  const newCreatedAt = addTime(
+                    $state.datalist?.start_time || 0
+                  );
                   return newCreatedAt;
                 })()}
               />
@@ -593,7 +595,7 @@ function PlasmicBooking__RenderFunc(props: {
               <div
                 className={classNames("all", "__wab_text", sty.text___8Df7U)}
               >
-                <React.Fragment>{$state.datalist.name}</React.Fragment>
+                <React.Fragment>{$state.datalist?.name}</React.Fragment>
               </div>
             </div>
           </div>
@@ -612,7 +614,7 @@ function PlasmicBooking__RenderFunc(props: {
               </div>
               <div className={classNames("all", "__wab_text", sty.text__e0Ot6)}>
                 <React.Fragment>
-                  {$state.datalist.payment_status}
+                  {$state.datalist?.payment_status}
                 </React.Fragment>
               </div>
             </div>

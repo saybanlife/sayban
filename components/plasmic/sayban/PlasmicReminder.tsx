@@ -73,7 +73,6 @@ import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
 import { LottieWrapper } from "@plasmicpkgs/lottie-react";
 import ReminderSetting from "../../ReminderSetting"; // plasmic-import: PpaPS3SR8Zgr/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
-import CreaditButten from "../../CreaditButten"; // plasmic-import: llzFxmPBny5m/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -219,8 +218,6 @@ export type PlasmicReminder__OverridesType = {
   button12?: Flex__<typeof Button2>;
   button6?: Flex__<typeof Button>;
   button11?: Flex__<typeof Button2>;
-  button9?: Flex__<typeof Button2>;
-  creaditButten?: Flex__<typeof CreaditButten>;
   apiRequest?: Flex__<typeof ApiRequest>;
 };
 
@@ -607,24 +604,6 @@ function PlasmicReminder__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
-        path: "button9.color",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "clear"
-      },
-      {
-        path: "button9.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "button9.load",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
-      {
         path: "reminderSetting.pageSelect",
         type: "private",
         variableType: "text",
@@ -647,12 +626,6 @@ function PlasmicReminder__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
-      {
-        path: "creaditButten.creadit",
-        type: "private",
-        variableType: "number",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "balance",
@@ -3239,7 +3212,7 @@ function PlasmicReminder__RenderFunc(props: {
               displayMaxWidth={"100%"}
               displayMinHeight={"0"}
               displayMinWidth={"0"}
-              displayWidth={"30%"}
+              displayWidth={"100%"}
               loading={"lazy"}
               src={{
                 src: "/plasmic/sayban/images/image29.svg",
@@ -5980,350 +5953,6 @@ function PlasmicReminder__RenderFunc(props: {
           </div>
         </div>
       </section>
-      <section
-        className={classNames("all", sty.section__b4Mqm, "top-header", {
-          [sty.sectionslide3__b4Mqm9ESkH]: hasVariant(
-            $state,
-            "slide3",
-            "slide3"
-          ),
-          [sty.sectionslide3_smallReminder__b4Mqm9ESkHJscOm]:
-            hasVariant($state, "smallReminder", "smallReminder") &&
-            hasVariant($state, "slide3", "slide3"),
-          [sty.sectionslide3_smallReminder_dateMode__b4Mqm9ESkHJscOmOQ54K]:
-            hasVariant($state, "smallReminder", "smallReminder") &&
-            hasVariant($state, "slide3", "slide3") &&
-            hasVariant($state, "dateMode", "dateMode"),
-          [sty.sectionsmallReminder__b4MqmJscOm]: hasVariant(
-            $state,
-            "smallReminder",
-            "smallReminder"
-          )
-        })}
-      >
-        <div
-          className={classNames("all", sty.freeBox___0SXV, {
-            [sty.freeBoxslide3___0SXV9ESkH]: hasVariant(
-              $state,
-              "slide3",
-              "slide3"
-            ),
-            [sty.freeBoxslide3_smallReminder_dateMode___0SXV9ESkHJscOmOQ54K]:
-              hasVariant($state, "smallReminder", "smallReminder") &&
-              hasVariant($state, "slide3", "slide3") &&
-              hasVariant($state, "dateMode", "dateMode"),
-            [sty.freeBoxsmallReminder___0SXVjscOm]: hasVariant(
-              $state,
-              "smallReminder",
-              "smallReminder"
-            )
-          })}
-        >
-          <Button2
-            data-plasmic-name={"button9"}
-            data-plasmic-override={overrides.button9}
-            className={classNames("__wab_instance", sty.button9, {
-              [sty.button9slide3]: hasVariant($state, "slide3", "slide3")
-            })}
-            color={generateStateValueProp($state, ["button9", "color"])}
-            endIcon={null}
-            load={generateStateValueProp($state, ["button9", "load"])}
-            loading={generateStateValueProp($state, ["button9", "loading"])}
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["runSetting"] =
-                $props.data.length > 0
-                  ? (() => {
-                      const actionArgs = { eventRef: $props["setting"] };
-                      return (({ eventRef, args }) => {
-                        return eventRef?.(...(args ?? []));
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-              if (
-                $steps["runSetting"] != null &&
-                typeof $steps["runSetting"] === "object" &&
-                typeof $steps["runSetting"].then === "function"
-              ) {
-                $steps["runSetting"] = await $steps["runSetting"];
-              }
-
-              $steps["runCode"] = true
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return ($state.refresh = +"1");
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runCode"] != null &&
-                typeof $steps["runCode"] === "object" &&
-                typeof $steps["runCode"].then === "function"
-              ) {
-                $steps["runCode"] = await $steps["runCode"];
-              }
-
-              $steps["runCode2"] =
-                $props.data.length == 0
-                  ? (() => {
-                      const actionArgs = {
-                        customFunction: async () => {
-                          return undefined;
-                        }
-                      };
-                      return (({ customFunction }) => {
-                        return customFunction();
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-              if (
-                $steps["runCode2"] != null &&
-                typeof $steps["runCode2"] === "object" &&
-                typeof $steps["runCode2"].then === "function"
-              ) {
-                $steps["runCode2"] = await $steps["runCode2"];
-              }
-
-              $steps["invokeGlobalAction"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "POST",
-                        "https://api.liom.app/service/log",
-                        undefined,
-                        (() => {
-                          try {
-                            return {
-                              appKey:
-                                "eyiaophkahaMAQwpqwjhr218aeewfuiaey-xxluyhawd2012-qigwi-oooh",
-                              userId: $props.manId,
-                              pageName: "reminder",
-                              action: "setting",
-                              extraData: {}
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })(),
-                        (() => {
-                          try {
-                            return {
-                              headers: {
-                                Authorization:
-                                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaGFteWFyIiwiaWQiOjF9.lnqUqAP4PBM0ygfBoBEcDPQz6owyyNXCreKqjjsYcAM"
-                              }
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
-              ) {
-                $steps["invokeGlobalAction"] =
-                  await $steps["invokeGlobalAction"];
-              }
-            }}
-            onColorChange={async (...eventArgs: any) => {
-              ((...eventArgs) => {
-                generateStateOnChangeProp($state, ["button9", "color"])(
-                  eventArgs[0]
-                );
-              }).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            onLoadChange={async (...eventArgs: any) => {
-              ((...eventArgs) => {
-                generateStateOnChangeProp($state, ["button9", "load"])(
-                  eventArgs[0]
-                );
-              }).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            onLoadingChange={async (...eventArgs: any) => {
-              ((...eventArgs) => {
-                generateStateOnChangeProp($state, ["button9", "loading"])(
-                  eventArgs[0]
-                );
-              }).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            shape={"round"}
-            size={"minimal"}
-          >
-            <Icon270Icon
-              className={classNames("all", sty.svg___0Eqk0)}
-              role={"img"}
-            />
-          </Button2>
-          <CreaditButten
-            data-plasmic-name={"creaditButten"}
-            data-plasmic-override={overrides.creaditButten}
-            className={classNames("__wab_instance", sty.creaditButten, {
-              [sty.creaditButtenslide3]: hasVariant($state, "slide3", "slide3")
-            })}
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["runCode"] = true
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return window.open("/mojod/home/", "_self");
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runCode"] != null &&
-                typeof $steps["runCode"] === "object" &&
-                typeof $steps["runCode"].then === "function"
-              ) {
-                $steps["runCode"] = await $steps["runCode"];
-              }
-
-              $steps["invokeGlobalAction"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "POST",
-                        "https://api.liom.app/service/log",
-                        undefined,
-                        (() => {
-                          try {
-                            return {
-                              appKey:
-                                "eyiaophkahaMAQwpqwjhr218aeewfuiaey-xxluyhawd2012-qigwi-oooh",
-                              userId: $props.manId,
-                              pageName: "reminder",
-                              action: "goToWallet",
-                              extraData: {}
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })(),
-                        (() => {
-                          try {
-                            return {
-                              headers: {
-                                Authorization:
-                                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaGFteWFyIiwiaWQiOjF9.lnqUqAP4PBM0ygfBoBEcDPQz6owyyNXCreKqjjsYcAM"
-                              }
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
-              ) {
-                $steps["invokeGlobalAction"] =
-                  await $steps["invokeGlobalAction"];
-              }
-            }}
-            onCreaditChange2={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "creaditButten",
-                "creadit"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            token={(() => {
-              try {
-                return $props.token;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })()}
-          />
-        </div>
-      </section>
       <ApiRequest
         data-plasmic-name={"apiRequest"}
         data-plasmic-override={overrides.apiRequest}
@@ -6553,8 +6182,6 @@ const PlasmicDescendants = {
     "button12",
     "button6",
     "button11",
-    "button9",
-    "creaditButten",
     "apiRequest"
   ],
   alertTelegram: ["alertTelegram"],
@@ -6596,8 +6223,6 @@ const PlasmicDescendants = {
   button12: ["button12"],
   button6: ["button6"],
   button11: ["button11"],
-  button9: ["button9"],
-  creaditButten: ["creaditButten"],
   apiRequest: ["apiRequest"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -6637,8 +6262,6 @@ type NodeDefaultElementType = {
   button12: typeof Button2;
   button6: typeof Button;
   button11: typeof Button2;
-  button9: typeof Button2;
-  creaditButten: typeof CreaditButten;
   apiRequest: typeof ApiRequest;
 };
 
@@ -6736,8 +6359,6 @@ export const PlasmicReminder = Object.assign(
     button12: makeNodeComponent("button12"),
     button6: makeNodeComponent("button6"),
     button11: makeNodeComponent("button11"),
-    button9: makeNodeComponent("button9"),
-    creaditButten: makeNodeComponent("creaditButten"),
     apiRequest: makeNodeComponent("apiRequest"),
 
     // Metadata about props expected for PlasmicReminder

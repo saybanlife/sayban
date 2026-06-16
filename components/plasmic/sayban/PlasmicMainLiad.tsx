@@ -69,6 +69,7 @@ import { LottieWrapper } from "@plasmicpkgs/lottie-react";
 import Dialog2 from "../../Dialog2"; // plasmic-import: olR2fMb0XmJG/component
 import CopyBox from "../../CopyBox"; // plasmic-import: dbGhFgxUm-xc/component
 import Button2 from "../../Button2"; // plasmic-import: SlKtguGGSfon/component
+import CreaditButten from "../../CreaditButten"; // plasmic-import: llzFxmPBny5m/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -78,6 +79,7 @@ import sty from "./PlasmicMainLiad.module.css"; // plasmic-import: 9XN_qwXFJeGM/
 
 import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: PVJtizwBa8r5/icon
 import Icon115Icon from "./icons/PlasmicIcon__Icon115"; // plasmic-import: K82EqXtBnJoL/icon
+import Icon106Icon from "./icons/PlasmicIcon__Icon106"; // plasmic-import: ZjluvBohZvYg/icon
 
 createPlasmicElementProxy;
 
@@ -154,6 +156,8 @@ export type PlasmicMainLiad__OverridesType = {
   img?: Flex__<typeof PlasmicImg__>;
   copyBox?: Flex__<typeof CopyBox>;
   button?: Flex__<typeof Button2>;
+  svg?: Flex__<"svg">;
+  creaditButten?: Flex__<typeof CreaditButten>;
 };
 
 export interface DefaultMainLiadProps {
@@ -478,10 +482,20 @@ function PlasmicMainLiad__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "creaditButten.creadit",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
   );
+
+  const globalVariants = _useGlobalVariants();
+
+  const $globalActions = useGlobalActions?.();
 
   const $state = useDollarState(stateSpecs, {
     $props,
@@ -2860,6 +2874,133 @@ function PlasmicMainLiad__RenderFunc(props: {
           </Button2>
         </div>
       </Dialog2>
+      <div className={classNames("all", sty.freeBox__nx1Oy, "page")}>
+        <div className={classNames("all", sty.freeBox__rXAr4)}>
+          <Icon106Icon
+            data-plasmic-name={"svg"}
+            data-plasmic-override={overrides.svg}
+            className={classNames("all", sty.svg)}
+            role={"img"}
+          />
+
+          <CreaditButten
+            data-plasmic-name={"creaditButten"}
+            data-plasmic-override={overrides.creaditButten}
+            className={classNames("__wab_instance", sty.creaditButten)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return window.open("/mojod/home/", "_self");
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["invokeGlobalAction"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "https://api.liom.app/service/log",
+                        undefined,
+                        (() => {
+                          try {
+                            return {
+                              appKey:
+                                "eyiaophkahaMAQwpqwjhr218aeewfuiaey-xxluyhawd2012-qigwi-oooh",
+                              userId: $props.manId,
+                              pageName: "reminder",
+                              action: "goToWallet",
+                              extraData: {}
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        (() => {
+                          try {
+                            return {
+                              headers: {
+                                Authorization:
+                                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaGFteWFyIiwiaWQiOjF9.lnqUqAP4PBM0ygfBoBEcDPQz6owyyNXCreKqjjsYcAM"
+                              }
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+            }}
+            onCreaditChange2={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "creaditButten",
+                "creadit"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            token={(() => {
+              try {
+                return $props.token;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          />
+        </div>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
@@ -2880,7 +3021,9 @@ const PlasmicDescendants = {
     "telegram",
     "img",
     "copyBox",
-    "button"
+    "button",
+    "svg",
+    "creaditButten"
   ],
   sideEffect: ["sideEffect"],
   profile: ["profile"],
@@ -2895,7 +3038,9 @@ const PlasmicDescendants = {
   telegram: ["telegram", "img", "copyBox", "button"],
   img: ["img"],
   copyBox: ["copyBox"],
-  button: ["button"]
+  button: ["button"],
+  svg: ["svg"],
+  creaditButten: ["creaditButten"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -2916,6 +3061,8 @@ type NodeDefaultElementType = {
   img: typeof PlasmicImg__;
   copyBox: typeof CopyBox;
   button: typeof Button2;
+  svg: "svg";
+  creaditButten: typeof CreaditButten;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -2994,6 +3141,8 @@ export const PlasmicMainLiad = Object.assign(
     img: makeNodeComponent("img"),
     copyBox: makeNodeComponent("copyBox"),
     button: makeNodeComponent("button"),
+    svg: makeNodeComponent("svg"),
+    creaditButten: makeNodeComponent("creaditButten"),
 
     // Metadata about props expected for PlasmicMainLiad
     internalVariantProps: PlasmicMainLiad__VariantProps,

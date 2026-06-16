@@ -60,8 +60,6 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
-import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
-import CreaditButten from "../../CreaditButten"; // plasmic-import: llzFxmPBny5m/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
@@ -82,7 +80,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicLiad.module.css"; // plasmic-import: cXFi_uB7Pu82/css
 
-import Icon106Icon from "./icons/PlasmicIcon__Icon106"; // plasmic-import: ZjluvBohZvYg/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import CalendarTimeIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CalendarTime"; // plasmic-import: 6AQWb52cQDRN/icon
@@ -129,8 +126,6 @@ export const PlasmicLiad__ArgProps = new Array<ArgPropType>(
 export type PlasmicLiad__OverridesType = {
   root?: Flex__<"div">;
   embedHtml?: Flex__<typeof Embed>;
-  header?: Flex__<typeof Header>;
-  creaditButten?: Flex__<typeof CreaditButten>;
   full?: Flex__<typeof ApiRequest>;
   button?: Flex__<typeof Button>;
   entry?: Flex__<typeof Dialog>;
@@ -726,12 +721,6 @@ function PlasmicLiad__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
-      {
-        path: "creaditButten.creadit",
-        type: "private",
-        variableType: "number",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -776,161 +765,6 @@ function PlasmicLiad__RenderFunc(props: {
         }
       />
 
-      <Header
-        data-plasmic-name={"header"}
-        data-plasmic-override={overrides.header}
-        className={classNames("__wab_instance", sty.header, {
-          [sty.headertop]: hasVariant($state, "top", "top")
-        })}
-        slot={
-          <div
-            className={classNames("all", "__wab_text", sty.text__ahUui, {
-              [sty.texttop__ahUui9Q3C]: hasVariant($state, "top", "top")
-            })}
-          >
-            <React.Fragment>
-              {(() => {
-                try {
-                  return $state.full?.data?.result?.name;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "\u0645\u0631\u0627\u06a9\u0632 \u0628\u0647\u062f\u0627\u0634\u062a\u06cc";
-                  }
-                  throw e;
-                }
-              })()}
-            </React.Fragment>
-          </div>
-        }
-        soft={hasVariant($state, "top", "top") ? undefined : undefined}
-      >
-        <div className={classNames("all", sty.freeBox__uFOar)}>
-          <Icon106Icon
-            className={classNames("all", sty.svg__dwaaB)}
-            role={"img"}
-          />
-
-          <CreaditButten
-            data-plasmic-name={"creaditButten"}
-            data-plasmic-override={overrides.creaditButten}
-            className={classNames("__wab_instance", sty.creaditButten)}
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["runCode"] = true
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return window.open("/mojod/home/", "_self");
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runCode"] != null &&
-                typeof $steps["runCode"] === "object" &&
-                typeof $steps["runCode"].then === "function"
-              ) {
-                $steps["runCode"] = await $steps["runCode"];
-              }
-
-              $steps["invokeGlobalAction"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "POST",
-                        "https://api.liom.app/service/log",
-                        undefined,
-                        (() => {
-                          try {
-                            return {
-                              appKey:
-                                "eyiaophkahaMAQwpqwjhr218aeewfuiaey-xxluyhawd2012-qigwi-oooh",
-                              userId: $props.manId,
-                              pageName: "reminder",
-                              action: "goToWallet",
-                              extraData: {}
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })(),
-                        (() => {
-                          try {
-                            return {
-                              headers: {
-                                Authorization:
-                                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaGFteWFyIiwiaWQiOjF9.lnqUqAP4PBM0ygfBoBEcDPQz6owyyNXCreKqjjsYcAM"
-                              }
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
-              ) {
-                $steps["invokeGlobalAction"] =
-                  await $steps["invokeGlobalAction"];
-              }
-            }}
-            onCreaditChange2={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "creaditButten",
-                "creadit"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            token={(() => {
-              try {
-                return $props.token;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })()}
-          />
-        </div>
-      </Header>
       <ApiRequest
         data-plasmic-name={"full"}
         data-plasmic-override={overrides.full}
@@ -3519,8 +3353,6 @@ const PlasmicDescendants = {
   root: [
     "root",
     "embedHtml",
-    "header",
-    "creaditButten",
     "full",
     "button",
     "entry",
@@ -3545,8 +3377,6 @@ const PlasmicDescendants = {
     "mainLiad"
   ],
   embedHtml: ["embedHtml"],
-  header: ["header", "creaditButten"],
-  creaditButten: ["creaditButten"],
   full: ["full"],
   button: ["button"],
   entry: [
@@ -3602,8 +3432,6 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   embedHtml: typeof Embed;
-  header: typeof Header;
-  creaditButten: typeof CreaditButten;
   full: typeof ApiRequest;
   button: typeof Button;
   entry: typeof Dialog;
@@ -3691,8 +3519,6 @@ export const PlasmicLiad = Object.assign(
   {
     // Helper components rendering sub-elements
     embedHtml: makeNodeComponent("embedHtml"),
-    header: makeNodeComponent("header"),
-    creaditButten: makeNodeComponent("creaditButten"),
     full: makeNodeComponent("full"),
     button: makeNodeComponent("button"),
     entry: makeNodeComponent("entry"),
