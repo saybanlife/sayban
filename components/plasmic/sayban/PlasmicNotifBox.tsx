@@ -59,7 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import UploudeTime from "../../UploudeTime"; // plasmic-import: IxvwO5AMD5ex/component
+import UploudeTime2 from "../../UploudeTime2"; // plasmic-import: x5TCDbKvWReV/component
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
@@ -127,7 +127,7 @@ export const PlasmicNotifBox__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicNotifBox__OverridesType = {
   root?: Flex__<"div">;
-  uploudeTime?: Flex__<typeof UploudeTime>;
+  uploudeTime2?: Flex__<typeof UploudeTime2>;
   textCollapse?: Flex__<typeof TextCollapse>;
   text?: Flex__<"div">;
   button?: Flex__<typeof Button>;
@@ -365,10 +365,10 @@ function PlasmicNotifBox__RenderFunc(props: {
               value: args.children,
               className: classNames(sty.slotTargetChildren)
             })}
-            <UploudeTime
-              data-plasmic-name={"uploudeTime"}
-              data-plasmic-override={overrides.uploudeTime}
-              className={classNames("__wab_instance", sty.uploudeTime)}
+            <UploudeTime2
+              data-plasmic-name={"uploudeTime2"}
+              data-plasmic-override={overrides.uploudeTime2}
+              className={classNames("__wab_instance", sty.uploudeTime2)}
               posttime={$props.time}
             />
           </div>
@@ -522,8 +522,8 @@ function PlasmicNotifBox__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "uploudeTime", "textCollapse", "text", "button"],
-  uploudeTime: ["uploudeTime"],
+  root: ["root", "uploudeTime2", "textCollapse", "text", "button"],
+  uploudeTime2: ["uploudeTime2"],
   textCollapse: ["textCollapse"],
   text: ["text"],
   button: ["button"]
@@ -533,7 +533,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  uploudeTime: typeof UploudeTime;
+  uploudeTime2: typeof UploudeTime2;
   textCollapse: typeof TextCollapse;
   text: "div";
   button: typeof Button;
@@ -601,7 +601,7 @@ export const PlasmicNotifBox = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    uploudeTime: makeNodeComponent("uploudeTime"),
+    uploudeTime2: makeNodeComponent("uploudeTime2"),
     textCollapse: makeNodeComponent("textCollapse"),
     text: makeNodeComponent("text"),
     button: makeNodeComponent("button"),

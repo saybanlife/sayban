@@ -28739,6 +28739,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicPatient.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "x5TCDbKvWReV",
+          "name": "UploudeTime2",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicUploudeTime2.tsx",
+          "importSpec": {
+            "modulePath": "UploudeTime2.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicUploudeTime2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
