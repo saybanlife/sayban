@@ -29847,6 +29847,24 @@
           "name": "JalaliMoment",
           "displayName": "JalaliMoment",
           "componentImportPath": "@/components/JalaliMoment"
+        },
+        {
+          "id": "5EsdJvartT0U",
+          "name": "DatePickers",
+          "displayName": "DatePickers",
+          "componentImportPath": "@/components/DatePickers"
+        },
+        {
+          "id": "QMfpsi30q7it",
+          "name": "Pickers",
+          "displayName": "Pickers",
+          "componentImportPath": "@/components/Pickers"
+        },
+        {
+          "id": "eYhPfy7XC_XL",
+          "name": "TimePickerCustom",
+          "displayName": "TimePickerCustom",
+          "componentImportPath": "@/components/TimePickerCustom"
         }
       ],
       "customFunctions": []
