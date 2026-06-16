@@ -52,12 +52,3 @@ registerComponent(JalaliMoment ,JalaliMomentMeta);
 registerComponent(DatePickers, DatePickersMeta);
 registerComponent(Pickers, PickersMeta);
 registerComponent(TimePickerCustom,TimePickerCustomMeta );
-<<<<<<< HEAD
-
-
-
-
-
-
-=======
->>>>>>> plasmicops/rQ6tUgoS/newMain
