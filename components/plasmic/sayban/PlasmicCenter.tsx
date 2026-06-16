@@ -694,42 +694,6 @@ function PlasmicCenter__RenderFunc(props: {
         sty.root,
         { [sty.roottop]: hasVariant($state, "top", "top") }
       )}
-      onScroll={async event => {
-        const $steps = {};
-
-        $steps["runCode"] = true
-          ? (() => {
-              const actionArgs = {
-                customFunction: async () => {
-                  return (() => {
-                    const section = event.currentTarget;
-                    const scrollY = section.scrollTop;
-                    const activateThreshold = 150;
-                    const deactivateThreshold = 20;
-                    if (scrollY >= activateThreshold && !$state.top) {
-                      $state.top = true;
-                      console.log("Activated:", true);
-                    }
-                    if (scrollY <= deactivateThreshold && $state.top) {
-                      $state.top = false;
-                      return console.log("Deactivated:", false);
-                    }
-                  })();
-                }
-              };
-              return (({ customFunction }) => {
-                return customFunction();
-              })?.apply(null, [actionArgs]);
-            })()
-          : undefined;
-        if (
-          $steps["runCode"] != null &&
-          typeof $steps["runCode"] === "object" &&
-          typeof $steps["runCode"].then === "function"
-        ) {
-          $steps["runCode"] = await $steps["runCode"];
-        }
-      }}
     >
       <Embed
         data-plasmic-name={"embedHtml"}

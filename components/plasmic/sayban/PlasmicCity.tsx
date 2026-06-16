@@ -457,7 +457,34 @@ function PlasmicCity__RenderFunc(props: {
         data-plasmic-override={overrides.apiRequest}
         className={classNames("__wab_instance", sty.apiRequest)}
         errorDisplay={null}
-        loadingDisplay={null}
+        loadingDisplay={
+          <div className={classNames("all", sty.freeBox___6I6Ic)}>
+            {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+              (() => {
+                try {
+                  return [2, 3, 4, 5];
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()
+            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+              const currentItem = __plasmic_item_0;
+              const currentIndex = __plasmic_idx_0;
+              return (
+                <div
+                  className={classNames("all", sty.freeBox___21CEk, "shimmer")}
+                  key={currentIndex}
+                />
+              );
+            })}
+          </div>
+        }
         method={"GET"}
         onError={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
