@@ -70,7 +70,7 @@ import sty from "./PlasmicCreaditButten.module.css"; // plasmic-import: llzFxmPB
 
 import Icon115Icon from "./icons/PlasmicIcon__Icon115"; // plasmic-import: K82EqXtBnJoL/icon
 import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: PVJtizwBa8r5/icon
-import Icon372Icon from "./icons/PlasmicIcon__Icon372"; // plasmic-import: K1CUkc3CFgqk/icon
+import Icon105Icon from "./icons/PlasmicIcon__Icon105"; // plasmic-import: gLIFH1g96jir/icon
 
 createPlasmicElementProxy;
 
@@ -164,7 +164,7 @@ function PlasmicCreaditButten__RenderFunc(props: {
         path: "buttonLiom4.color",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "softSand"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "clear"
       },
       {
         path: "buttonLiom4.loading",
@@ -509,7 +509,10 @@ function PlasmicCreaditButten__RenderFunc(props: {
         <div className={classNames("all", "__wab_text", sty.text__hRQq)}>
           {"Button"}
         </div>
-        <Icon372Icon className={classNames("all", sty.svg__p3C)} role={"img"} />
+        <Icon105Icon
+          className={classNames("all", sty.svg___4SRz)}
+          role={"img"}
+        />
       </Button2>
     </div>
   ) as React.ReactElement | null;

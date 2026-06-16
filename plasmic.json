@@ -30049,6 +30049,16 @@
           "id": "WOWh20KjLYkq",
           "name": "Icon388Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon388.tsx"
+        },
+        {
+          "id": "gLIFH1g96jir",
+          "name": "Icon105Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon105.tsx"
+        },
+        {
+          "id": "ZjluvBohZvYg",
+          "name": "Icon106Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon106.tsx"
         }
       ],
       "images": [

@@ -11,7 +11,7 @@
   position: relative;
   border-radius: 50px;
   padding: 0px;
-  border-width: 1px;
+  border: 1px solid var(--token-k-47TemksE2v);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .root {
@@ -68,6 +68,7 @@
   max-width: 100%;
   width: auto;
   height: 25px;
+  color: var(--token-Yo4gdKCgyuAu);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .svg__nwVlj {
@@ -83,7 +84,7 @@
   font-size: 14px;
   font-weight: 400;
   font-style: normal;
-  color: #535353;
+  color: var(--token-k-47TemksE2v);
   text-align: left;
   text-transform: none;
   line-height: 1.5;
@@ -129,19 +130,14 @@
   white-space: pre;
   display: none;
 }
-.svg__p3C {
+.svg___4SRz {
   animation: none;
   object-fit: cover;
   max-width: 100%;
-  width: 20px;
-  height: 20px;
-  color: var(--token-0jflij2Drauk);
-  margin: 4px;
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .svg__p3C {
-    animation: none;
-  }
+  color: var(--token-k-47TemksE2v);
+  width: 24px;
+  height: 24px;
+  margin: var(--token-RuQNZpYm0Yds);
 }
 .svg__uXhrt {
   object-fit: cover;
