@@ -385,13 +385,12 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   min-width: 0;
   padding: 0px;
 }
 .freeBox__uEZdE {
-  display: flex;
   flex-direction: row;
   position: relative;
   width: auto;
@@ -400,6 +399,7 @@
   justify-content: flex-start;
   align-items: center;
   column-gap: var(--token-cfon0PHiXQoL);
+  display: none;
   padding: 0px;
 }
 .svg__vv3O {

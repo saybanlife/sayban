@@ -907,32 +907,6 @@ function PlasmicEditUser__RenderFunc(props: {
                   await $steps["invokeGlobalAction2"];
               }
 
-              $steps["goToHomepage"] =
-                $steps.setProfile?.data?.success == true
-                  ? (() => {
-                      const actionArgs = { destination: `/${"home"}/${""}` };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-              if (
-                $steps["goToHomepage"] != null &&
-                typeof $steps["goToHomepage"] === "object" &&
-                typeof $steps["goToHomepage"].then === "function"
-              ) {
-                $steps["goToHomepage"] = await $steps["goToHomepage"];
-              }
-
               $steps["invokeGlobalAction3"] =
                 $steps.setProfile?.data?.success == true
                   ? (() => {

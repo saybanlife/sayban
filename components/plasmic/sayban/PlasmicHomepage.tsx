@@ -3142,6 +3142,29 @@ function PlasmicHomepage__RenderFunc(props: {
           <AddPatient
             data-plasmic-name={"addPatient"}
             data-plasmic-override={overrides.addPatient}
+            addNew={async () => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.patient.refresh = Date.now().toString());
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
             className={classNames("__wab_instance", sty.addPatient, {
               [sty.addPatientpage_addPatient]: hasVariant(
                 $state,
