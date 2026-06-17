@@ -1578,7 +1578,8 @@ function PlasmicLogin__RenderFunc(props: {
                     }
 
                     $steps["goToHomepage"] =
-                      $steps.validate?.data?.type != "install"
+                      $steps.validate?.data?.type != "install" &&
+                      $steps.validate.data?.success == true
                         ? (() => {
                             const actionArgs = {
                               destination: `/${"home"}/${""}`
@@ -1606,7 +1607,8 @@ function PlasmicLogin__RenderFunc(props: {
                     }
 
                     $steps["goToLogin"] =
-                      $steps.validate?.data?.type == "install"
+                      $steps.validate?.data?.type == "install" &&
+                      $steps.validate.data?.success == true
                         ? (() => {
                             const actionArgs = {
                               destination: `/login/${"name"}`

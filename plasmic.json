@@ -29132,6 +29132,45 @@
           "cssFilePath": "plasmic/sayban/PlasmicMainLiad.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "KL79QbMT1Ux3",
+          "name": "AddAddress",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicAddAddress.tsx",
+          "importSpec": {
+            "modulePath": "AddAddress.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicAddAddress.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "O3mS57D3HQdC",
+          "name": "Address",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicAddress.tsx",
+          "importSpec": {
+            "modulePath": "Address.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicAddress.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "HotW2vZJIIwq",
+          "name": "Loaction2",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicLoaction2.tsx",
+          "importSpec": {
+            "modulePath": "Loaction2.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicLoaction2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

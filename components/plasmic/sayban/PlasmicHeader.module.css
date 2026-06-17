@@ -186,8 +186,8 @@
   background: var(--token-KPGXdu9o7llP);
   border-top-right-radius: var(--token-zOTmRNiLzxBx);
   border-top-left-radius: var(--token-zOTmRNiLzxBx);
-  right: 0;
   bottom: 0;
+  right: 0;
   flex-shrink: 0;
   padding: 8px;
 }

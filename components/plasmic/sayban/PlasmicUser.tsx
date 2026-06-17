@@ -76,6 +76,7 @@ import Icon264Icon from "./icons/PlasmicIcon__Icon264"; // plasmic-import: 7YjsN
 import Icon76Icon from "./icons/PlasmicIcon__Icon76"; // plasmic-import: PNmvwHPTSPVF/icon
 import MessageIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Message"; // plasmic-import: r2jZeTOT_KvL/icon
 import Icon268Icon from "./icons/PlasmicIcon__Icon268"; // plasmic-import: 1XnMx9ZcPwLh/icon
+import CurrentLocationIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CurrentLocation"; // plasmic-import: AblxVode3mz8/icon
 import TagIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Tag"; // plasmic-import: 719VbVnZMlwm/icon
 import HeadphonesIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Headphones"; // plasmic-import: p_Pvf8ez_yuB/icon
 import Icon85Icon from "./icons/PlasmicIcon__Icon85"; // plasmic-import: ZwDSzgb1OoZy/icon
@@ -424,6 +425,46 @@ function PlasmicUser__RenderFunc(props: {
             </div>
             <Icon76Icon
               className={classNames("all", sty.svg__g63Z2)}
+              role={"img"}
+            />
+          </div>
+          <Line
+            className={classNames("__wab_instance", sty.line__qrasf)}
+            size={"small"}
+          />
+
+          <div
+            className={classNames("all", sty.freeBox___2Y08)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runGoToPatient"] = true
+                ? (() => {
+                    const actionArgs = { eventRef: $props["goToPatient"] };
+                    return (({ eventRef, args }) => {
+                      return eventRef?.(...(args ?? []));
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runGoToPatient"] != null &&
+                typeof $steps["runGoToPatient"] === "object" &&
+                typeof $steps["runGoToPatient"].then === "function"
+              ) {
+                $steps["runGoToPatient"] = await $steps["runGoToPatient"];
+              }
+            }}
+          >
+            <CurrentLocationIcon
+              className={classNames("all", sty.svg__iOav5)}
+              role={"img"}
+            />
+
+            <div className={classNames("all", "__wab_text", sty.text__iIgCq)}>
+              {"\u0622\u062f\u0631\u0633 \u0647\u0627\u06cc \u0645\u0646"}
+            </div>
+            <Icon76Icon
+              className={classNames("all", sty.svg__ikNxs)}
               role={"img"}
             />
           </div>
