@@ -2992,13 +2992,12 @@ function PlasmicHomepage__RenderFunc(props: {
                 eventArgs
               );
             }}
+            params={{
+              r: $state.editUser.refresh
+            }}
             shouldFetch={(() => {
               try {
-                return (
-                  $state.editUser.refresh &&
-                  $state.token != null &&
-                  $state.token != ""
-                );
+                return $state.token != null && $state.token != "";
               } catch (e) {
                 if (
                   e instanceof TypeError ||

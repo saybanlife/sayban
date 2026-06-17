@@ -321,6 +321,9 @@ function PlasmicPatient__RenderFunc(props: {
               eventArgs
             );
           }}
+          params={{
+            r: $state.refresh
+          }}
           shouldFetch={true}
           url={"/patients"}
         >
