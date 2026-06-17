@@ -62,7 +62,6 @@ import {
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import Reminder from "../../Reminder"; // plasmic-import: 3oLBMgFOIYFC/component
-import MobileDialog from "../../MobileDialog"; // plasmic-import: pH0PYvTBvenh/component
 import DialogTooltip from "../../DialogTooltip"; // plasmic-import: Ja5GPSQ1q6Qz/component
 import { LottieWrapper } from "@plasmicpkgs/lottie-react";
 import Dialog2 from "../../Dialog2"; // plasmic-import: olR2fMb0XmJG/component
@@ -105,8 +104,6 @@ export type PlasmicMainLiad__ArgsType = {
   refresh?: string;
   onRefreshChange?: (val: string) => void;
   reminderSetting?: () => void;
-  mobileDialogOpen?: boolean;
-  onMobileDialogOpenChange?: (val: boolean) => void;
   onReminderBalanceChange?: (val: number) => void;
   profile2?: any;
   onProfileChange?: (val: any) => void;
@@ -129,8 +126,6 @@ export const PlasmicMainLiad__ArgProps = new Array<ArgPropType>(
   "refresh",
   "onRefreshChange",
   "reminderSetting",
-  "mobileDialogOpen",
-  "onMobileDialogOpenChange",
   "onReminderBalanceChange",
   "profile2",
   "onProfileChange",
@@ -146,7 +141,6 @@ export type PlasmicMainLiad__OverridesType = {
   reminder?: Flex__<typeof Reminder>;
   reminderApi?: Flex__<typeof ApiRequest>;
   category?: Flex__<typeof ApiRequest>;
-  mobileDialog?: Flex__<typeof MobileDialog>;
   dialogTooltip?: Flex__<typeof DialogTooltip>;
   dialog?: Flex__<typeof ApiRequest>;
   lottie?: Flex__<typeof LottieWrapper>;
@@ -172,8 +166,6 @@ export interface DefaultMainLiadProps {
   refresh?: string;
   onRefreshChange?: (val: string) => void;
   reminderSetting?: () => void;
-  mobileDialogOpen?: boolean;
-  onMobileDialogOpenChange?: (val: boolean) => void;
   onReminderBalanceChange?: (val: number) => void;
   profile2?: any;
   onProfileChange?: (val: any) => void;
@@ -362,20 +354,6 @@ function PlasmicMainLiad__RenderFunc(props: {
               throw e;
             }
           })()
-      },
-      {
-        path: "mobileDialog.selectShop",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "mobileDialog.open",
-        type: "writable",
-        variableType: "boolean",
-
-        valueProp: "mobileDialogOpen",
-        onChangeProp: "onMobileDialogOpenChange"
       },
       {
         path: "dialog.data",
@@ -1294,39 +1272,6 @@ function PlasmicMainLiad__RenderFunc(props: {
             }
           })()}
           refresh={generateStateValueProp($state, ["reminder", "refresh"])}
-          setNumber={async () => {
-            const $steps = {};
-
-            $steps["updateMobileDialogOpen"] = true
-              ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["mobileDialog", "open"]
-                    },
-                    operation: 0,
-                    value: true
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
-
-                    $stateSet(objRoot, variablePath, value);
-                    return value;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["updateMobileDialogOpen"] != null &&
-              typeof $steps["updateMobileDialogOpen"] === "object" &&
-              typeof $steps["updateMobileDialogOpen"].then === "function"
-            ) {
-              $steps["updateMobileDialogOpen"] =
-                await $steps["updateMobileDialogOpen"];
-            }
-          }}
           setting={args.reminderSetting}
           slide3={generateStateValueProp($state, ["reminder", "slide3"])}
           sms={generateStateValueProp($state, ["reminder", "sms"])}
@@ -1578,56 +1523,6 @@ function PlasmicMainLiad__RenderFunc(props: {
         }}
         shouldFetch={true}
         url={"https://n8n.staas.ir/webhook/reminders/category"}
-      />
-
-      <MobileDialog
-        data-plasmic-name={"mobileDialog"}
-        data-plasmic-override={overrides.mobileDialog}
-        className={classNames("__wab_instance", sty.mobileDialog)}
-        desc={`برای دسترسی و استفاده از این ابزار، شماره خود را ثبت نمایید.
-`}
-        onOpenChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["mobileDialog", "open"]).apply(
-            null,
-            eventArgs
-          );
-
-          if (
-            eventArgs.length > 1 &&
-            eventArgs[1] &&
-            eventArgs[1]._plasmic_state_init_
-          ) {
-            return;
-          }
-        }}
-        onSelectShopChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, [
-            "mobileDialog",
-            "selectShop"
-          ]).apply(null, eventArgs);
-
-          if (
-            eventArgs.length > 1 &&
-            eventArgs[1] &&
-            eventArgs[1]._plasmic_state_init_
-          ) {
-            return;
-          }
-        }}
-        open={generateStateValueProp($state, ["mobileDialog", "open"])}
-        token={(() => {
-          try {
-            return $state.token;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
       />
 
       <DialogTooltip
@@ -2976,7 +2871,6 @@ const PlasmicDescendants = {
     "reminder",
     "reminderApi",
     "category",
-    "mobileDialog",
     "dialogTooltip",
     "dialog",
     "lottie",
@@ -2992,7 +2886,6 @@ const PlasmicDescendants = {
   reminder: ["reminder"],
   reminderApi: ["reminderApi"],
   category: ["category"],
-  mobileDialog: ["mobileDialog"],
   dialogTooltip: ["dialogTooltip"],
   dialog: ["dialog"],
   lottie: ["lottie"],
@@ -3013,7 +2906,6 @@ type NodeDefaultElementType = {
   reminder: typeof Reminder;
   reminderApi: typeof ApiRequest;
   category: typeof ApiRequest;
-  mobileDialog: typeof MobileDialog;
   dialogTooltip: typeof DialogTooltip;
   dialog: typeof ApiRequest;
   lottie: typeof LottieWrapper;
@@ -3092,7 +2984,6 @@ export const PlasmicMainLiad = Object.assign(
     reminder: makeNodeComponent("reminder"),
     reminderApi: makeNodeComponent("reminderApi"),
     category: makeNodeComponent("category"),
-    mobileDialog: makeNodeComponent("mobileDialog"),
     dialogTooltip: makeNodeComponent("dialogTooltip"),
     dialog: makeNodeComponent("dialog"),
     lottie: makeNodeComponent("lottie"),

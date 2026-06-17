@@ -693,12 +693,6 @@ function PlasmicLiad__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
-        path: "mainLiad.mobileDialogOpen",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
-      {
         path: "mainLiad.reminderBalance",
         type: "private",
         variableType: "number",
@@ -3190,10 +3184,6 @@ function PlasmicLiad__RenderFunc(props: {
         data-plasmic-override={overrides.mainLiad}
         className={classNames("__wab_instance", sty.mainLiad)}
         editTime={generateStateValueProp($state, ["mainLiad", "editTime"])}
-        mobileDialogOpen={generateStateValueProp($state, [
-          "mainLiad",
-          "mobileDialogOpen"
-        ])}
         onEditTimeChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["mainLiad", "editTime"]).apply(
             null,
@@ -3213,20 +3203,6 @@ function PlasmicLiad__RenderFunc(props: {
             null,
             eventArgs
           );
-
-          if (
-            eventArgs.length > 1 &&
-            eventArgs[1] &&
-            eventArgs[1]._plasmic_state_init_
-          ) {
-            return;
-          }
-        }}
-        onMobileDialogOpenChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, [
-            "mainLiad",
-            "mobileDialogOpen"
-          ]).apply(null, eventArgs);
 
           if (
             eventArgs.length > 1 &&

@@ -645,12 +645,6 @@ function PlasmicHomepage__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
-        path: "mainLiad.mobileDialogOpen",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
-      {
         path: "mainLiad.reminderBalance",
         type: "private",
         variableType: "number",
@@ -2323,10 +2317,6 @@ function PlasmicHomepage__RenderFunc(props: {
                     "mainLiad",
                     "editTime"
                   ])}
-                  mobileDialogOpen={generateStateValueProp($state, [
-                    "mainLiad",
-                    "mobileDialogOpen"
-                  ])}
                   onEditTimeChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "mainLiad",
@@ -2345,20 +2335,6 @@ function PlasmicHomepage__RenderFunc(props: {
                     generateStateOnChangeProp($state, [
                       "mainLiad",
                       "loading"
-                    ]).apply(null, eventArgs);
-
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
-                    }
-                  }}
-                  onMobileDialogOpenChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "mainLiad",
-                      "mobileDialogOpen"
                     ]).apply(null, eventArgs);
 
                     if (
