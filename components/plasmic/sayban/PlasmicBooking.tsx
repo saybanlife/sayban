@@ -112,6 +112,7 @@ export type PlasmicBooking__OverridesType = {
   root?: Flex__<"div">;
   reservation?: Flex__<typeof ApiRequest>;
   itemBooking?: Flex__<typeof ItemBooking>;
+  img?: Flex__<typeof PlasmicImg__>;
   section?: Flex__<"section">;
   bookingHeader?: Flex__<typeof BookingHeader>;
   dialog?: Flex__<typeof Dialog>;
@@ -311,7 +312,7 @@ function PlasmicBooking__RenderFunc(props: {
       >
         {(() => {
           try {
-            return $state.reservation?.data?.result[0].user_id;
+            return $state.reservation?.data?.result[0]?.user_id;
           } catch (e) {
             if (
               e instanceof TypeError ||
@@ -422,6 +423,52 @@ function PlasmicBooking__RenderFunc(props: {
                 />
               );
             })}
+          </div>
+        ) : null}
+        {(() => {
+          try {
+            return !$state.reservation?.data?.result[0]?.user_id;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })() ? (
+          <div className={classNames("all", sty.freeBox__ekM4)}>
+            <PlasmicImg__
+              data-plasmic-name={"img"}
+              data-plasmic-override={overrides.img}
+              alt={""}
+              className={classNames(sty.img)}
+              displayHeight={"auto"}
+              displayMaxHeight={"none"}
+              displayMaxWidth={"100%"}
+              displayMinHeight={"0"}
+              displayMinWidth={"0"}
+              displayWidth={"30%"}
+              loading={"lazy"}
+              src={{
+                src: "/plasmic/sayban/images/image34.svg",
+                fullWidth: 280,
+                fullHeight: 280,
+                aspectRatio: undefined
+              }}
+            />
+
+            <div className={classNames("all", "__wab_text", sty.text___49O1F)}>
+              {
+                "\u0631\u0632\u0631\u0648\u06cc \u0628\u0631\u0627\u06cc \u0634\u0645\u0627 \u062b\u0628\u062a \u0646\u0634\u062f\u0647 \u0627\u0633\u062a\r"
+              }
+            </div>
+            <div className={classNames("all", "__wab_text", sty.text__sh6Ik)}>
+              {
+                "\u0628\u0639\u062f \u0627\u0632 \u062b\u0628\u062a \u0631\u0632\u0631\u0648\u060c \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0622\u0646 \u062f\u0631 \u0627\u06cc\u0646 \u0628\u062e\u0634 \u0646\u0645\u0627\u06cc\u0634 \u062f\u0627\u062f\u0647 \u0645\u06cc\u200c\u0634\u0648\u062f."
+              }
+            </div>
           </div>
         ) : null}
       </ApiRequest>
@@ -719,6 +766,7 @@ const PlasmicDescendants = {
     "root",
     "reservation",
     "itemBooking",
+    "img",
     "section",
     "bookingHeader",
     "dialog",
@@ -726,8 +774,9 @@ const PlasmicDescendants = {
     "uploudeTime",
     "button"
   ],
-  reservation: ["reservation", "itemBooking"],
+  reservation: ["reservation", "itemBooking", "img"],
   itemBooking: ["itemBooking"],
+  img: ["img"],
   section: ["section", "bookingHeader"],
   bookingHeader: ["bookingHeader"],
   dialog: ["dialog", "status", "uploudeTime", "button"],
@@ -742,6 +791,7 @@ type NodeDefaultElementType = {
   root: "div";
   reservation: typeof ApiRequest;
   itemBooking: typeof ItemBooking;
+  img: typeof PlasmicImg__;
   section: "section";
   bookingHeader: typeof BookingHeader;
   dialog: typeof Dialog;
@@ -814,6 +864,7 @@ export const PlasmicBooking = Object.assign(
     // Helper components rendering sub-elements
     reservation: makeNodeComponent("reservation"),
     itemBooking: makeNodeComponent("itemBooking"),
+    img: makeNodeComponent("img"),
     section: makeNodeComponent("section"),
     bookingHeader: makeNodeComponent("bookingHeader"),
     dialog: makeNodeComponent("dialog"),

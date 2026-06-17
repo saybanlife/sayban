@@ -30306,6 +30306,16 @@
           "id": "KOaOXb6YWUMx",
           "name": "image 32",
           "filePath": "../public/plasmic/sayban/images/image32.svg"
+        },
+        {
+          "id": "H3igYemJ1HzV",
+          "name": "image 33",
+          "filePath": "../public/plasmic/sayban/images/image33.svg"
+        },
+        {
+          "id": "-03-5zNWuCPX",
+          "name": "image 34",
+          "filePath": "../public/plasmic/sayban/images/image34.svg"
         }
       ],
       "indirect": false,

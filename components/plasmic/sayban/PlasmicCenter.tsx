@@ -98,8 +98,8 @@ import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-impor
 import CalendarTimeIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CalendarTime"; // plasmic-import: 6AQWb52cQDRN/icon
 import Icon42Icon from "./icons/PlasmicIcon__Icon42"; // plasmic-import: jkq895Pwga0g/icon
 import InfoCircleIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__InfoCircle"; // plasmic-import: uQcTfBHdDn4g/icon
-import PlusIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Plus"; // plasmic-import: _pdhShvRj8aO/icon
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
+import PlusIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Plus"; // plasmic-import: _pdhShvRj8aO/icon
 
 createPlasmicElementProxy;
 
@@ -694,7 +694,7 @@ function PlasmicCenter__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? false : false
+          hasVariant(globalVariants, "screen", "mobileOnly") ? false : true
       },
       {
         path: "patient.data",
@@ -3829,62 +3829,6 @@ drawRating(${$state.rate});
                     "\u0647\u0645\u0631\u0627\u0647\u0627\u0646 \u0634\u0645\u0627"
                   }
                 </div>
-                <div
-                  className={classNames("all", sty.freeBox__tzidj)}
-                  onClick={async event => {
-                    const $steps = {};
-
-                    $steps["runUserNew"] = true
-                      ? (() => {
-                          const actionArgs = { eventRef: $props["userNew"] };
-                          return (({ eventRef, args }) => {
-                            return eventRef?.(...(args ?? []));
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["runUserNew"] != null &&
-                      typeof $steps["runUserNew"] === "object" &&
-                      typeof $steps["runUserNew"].then === "function"
-                    ) {
-                      $steps["runUserNew"] = await $steps["runUserNew"];
-                    }
-
-                    $steps["runCode"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            customFunction: async () => {
-                              return (() => {
-                                $state.entry.opendialog = false;
-                                return ($state.selectuser.opendialog = false);
-                              })();
-                            }
-                          };
-                          return (({ customFunction }) => {
-                            return customFunction();
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["runCode"] != null &&
-                      typeof $steps["runCode"] === "object" &&
-                      typeof $steps["runCode"].then === "function"
-                    ) {
-                      $steps["runCode"] = await $steps["runCode"];
-                    }
-                  }}
-                >
-                  <PlusIcon
-                    className={classNames("all", sty.svg__yh8Cl)}
-                    role={"img"}
-                  />
-
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__bOtxM)}
-                  >
-                    {"\u0641\u0631\u062f \u062c\u062f\u06cc\u062f"}
-                  </div>
-                </div>
               </div>
               {(() => {
                 try {
@@ -4211,6 +4155,60 @@ drawRating(${$state.rate});
                   />
                 </div>
               ) : null}
+            </div>
+            <div
+              className={classNames("all", sty.freeBox__tzidj)}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["runUserNew"] = true
+                  ? (() => {
+                      const actionArgs = { eventRef: $props["userNew"] };
+                      return (({ eventRef, args }) => {
+                        return eventRef?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runUserNew"] != null &&
+                  typeof $steps["runUserNew"] === "object" &&
+                  typeof $steps["runUserNew"].then === "function"
+                ) {
+                  $steps["runUserNew"] = await $steps["runUserNew"];
+                }
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            $state.entry.opendialog = false;
+                            return ($state.selectuser.opendialog = false);
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+              }}
+            >
+              <PlusIcon
+                className={classNames("all", sty.svg__yh8Cl)}
+                role={"img"}
+              />
+
+              <div className={classNames("all", "__wab_text", sty.text__bOtxM)}>
+                {"\u0641\u0631\u062f \u062c\u062f\u06cc\u062f"}
+              </div>
             </div>
           </div>
         </ApiRequest>
