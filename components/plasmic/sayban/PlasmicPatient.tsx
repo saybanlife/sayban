@@ -382,7 +382,7 @@ function PlasmicPatient__RenderFunc(props: {
                     className={classNames("all", "__wab_text", sty.text__iqd0Q)}
                   >
                     {
-                      "\u0627\u0641\u0632\u0648\u062f\u0646 \u0641\u0631\u062f \u062c\u062f\u06cc\u062f"
+                      "\u0627\u0641\u0632\u0648\u062f\u0646 \u0647\u0645\u0631\u0627\u0647"
                     }
                   </div>
                 }

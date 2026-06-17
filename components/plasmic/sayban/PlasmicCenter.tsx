@@ -694,7 +694,7 @@ function PlasmicCenter__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? false : true
+          hasVariant(globalVariants, "screen", "mobileOnly") ? false : false
       },
       {
         path: "patient.data",
@@ -4082,7 +4082,7 @@ drawRating(${$state.rate});
                         )}
                       >
                         {
-                          "\u0627\u0641\u0632\u0648\u062f\u0646 \u0641\u0631\u062f \u062c\u062f\u06cc\u062f"
+                          "\u0627\u0641\u0632\u0648\u062f\u0646 \u0647\u0645\u0631\u0627\u0647"
                         }
                       </div>
                     }
@@ -4207,7 +4207,9 @@ drawRating(${$state.rate});
               />
 
               <div className={classNames("all", "__wab_text", sty.text__bOtxM)}>
-                {"\u0641\u0631\u062f \u062c\u062f\u06cc\u062f"}
+                {
+                  "\u0627\u0641\u0632\u0648\u062f\u0646 \u0647\u0645\u0631\u0627\u0647"
+                }
               </div>
             </div>
           </div>

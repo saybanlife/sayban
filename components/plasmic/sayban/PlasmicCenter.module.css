@@ -2150,7 +2150,7 @@
   row-gap: var(--token-zOTmRNiLzxBx);
   min-width: 0;
   min-height: 0;
-  padding: 0px 0px var(--token--_xqF59Qmd-S);
+  padding: 0px 0px var(--token-MbEKSCQSHAZe);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__cQ90G {
@@ -2291,23 +2291,28 @@
 .freeBox__tzidj {
   display: flex;
   flex-direction: row;
-  position: relative;
+  position: absolute;
   width: auto;
   height: auto;
   max-width: 100%;
   justify-content: center;
   align-items: center;
   column-gap: var(--token-RuQNZpYm0Yds);
-  background: var(--token-KPGXdu9o7llP);
-  padding: 0px;
+  background: var(--token-Yo4gdKCgyuAu);
+  left: 0;
+  top: auto;
+  bottom: 0;
+  right: auto;
+  border-radius: var(--token-73iLa06AE6f4);
+  padding: var(--token-cfon0PHiXQoL) var(--token-rfsFxiclAtek);
 }
 .svg__yh8Cl {
   animation: none;
   object-fit: cover;
   max-width: 100%;
-  color: var(--token-ccqYe7dhXoNZ);
-  width: var(--token-73iLa06AE6f4);
-  height: var(--token-73iLa06AE6f4);
+  color: var(--token-9M5jRUPt8Msb);
+  width: var(--token-LBC0X5IbL9bo);
+  height: var(--token-0tl2H1TRPHhV);
   flex-shrink: 0;
 }
 .text__bOtxM {
@@ -2316,7 +2321,7 @@
   height: auto;
   max-width: 100%;
   text-align: right;
-  color: var(--token-ccqYe7dhXoNZ);
+  color: var(--token-9M5jRUPt8Msb);
 }
 .comment:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
