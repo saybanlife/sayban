@@ -72,7 +72,7 @@ import sty from "./PlasmicPatient.module.css"; // plasmic-import: MK3ubKSYpzpl/c
 import Icon101Icon from "./icons/PlasmicIcon__Icon101"; // plasmic-import: BtiiFK9xtpak/icon
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
-import Icon5Icon from "./icons/PlasmicIcon__Icon5"; // plasmic-import: 8vOA1S70pHdl/icon
+import UserIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__User"; // plasmic-import: d1LJS78vGoJH/icon
 
 createPlasmicElementProxy;
 
@@ -468,7 +468,7 @@ function PlasmicPatient__RenderFunc(props: {
                     key={currentIndex}
                   >
                     <div className={classNames("all", sty.freeBox__tfEqu)}>
-                      <Icon5Icon
+                      <UserIcon
                         className={classNames("all", sty.svg___7Gpa1)}
                         role={"img"}
                       />
