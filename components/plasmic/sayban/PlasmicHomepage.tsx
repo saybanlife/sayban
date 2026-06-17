@@ -1284,23 +1284,24 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["getCookie"] = await $steps["getCookie"];
               }
 
-              $steps["goToLogin"] = false
-                ? (() => {
-                    const actionArgs = { destination: `/login/[[...step]]` };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
+              $steps["goToLogin"] =
+                $steps.getCookie == null || $steps.getCookie == ""
+                  ? (() => {
+                      const actionArgs = { destination: `/login/[[...step]]` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
               if (
                 $steps["goToLogin"] != null &&
                 typeof $steps["goToLogin"] === "object" &&
@@ -1336,26 +1337,6 @@ function PlasmicHomepage__RenderFunc(props: {
                 typeof $steps["updateToken"].then === "function"
               ) {
                 $steps["updateToken"] = await $steps["updateToken"];
-              }
-
-              $steps["runCode"] = false
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return $ctx.query.city == "true";
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runCode"] != null &&
-                typeof $steps["runCode"] === "object" &&
-                typeof $steps["runCode"].then === "function"
-              ) {
-                $steps["runCode"] = await $steps["runCode"];
               }
             }}
           />
