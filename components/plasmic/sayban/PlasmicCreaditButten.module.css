@@ -9,6 +9,7 @@
   max-width: 100%;
   column-gap: 8px;
   position: relative;
+  background: none;
   border-radius: 50px;
   padding: 0px;
   border: 1px solid var(--token-k-47TemksE2v);
@@ -98,6 +99,20 @@
   font-size: var(--token-N8Pb0ZuDQAeF);
   font-weight: 700;
 }
+.freeBox___3RDaf {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  background: var(--token--ieHgGbFH1Fa);
+  min-width: 0;
+  border-radius: 100px;
+  padding: 0px;
+}
 .buttonLiom4:global(.__wab_instance) {
   animation: none;
   max-width: 100%;
@@ -110,7 +125,7 @@
 .buttonLiom4liad:global(.__wab_instance) {
   display: none;
 }
-.svg__grWq7 {
+.svg__z3CJz {
   position: relative;
   object-fit: cover;
   width: auto;
@@ -134,12 +149,12 @@
   animation: none;
   object-fit: cover;
   max-width: 100%;
-  color: var(--token-k-47TemksE2v);
+  color: #ffffff;
   width: 24px;
   height: 24px;
   margin: var(--token-RuQNZpYm0Yds);
 }
-.svg__uXhrt {
+.svg__sqaKq {
   object-fit: cover;
   max-width: 100%;
   width: 40px;

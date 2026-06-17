@@ -3078,7 +3078,7 @@ function PlasmicReminder__RenderFunc(props: {
               displayWidth={"100%"}
               loading={"lazy"}
               src={{
-                src: "/plasmic/sayban/images/image29.svg",
+                src: "/plasmic/sayban/images/image32.svg",
                 fullWidth: 280,
                 fullHeight: 280,
                 aspectRatio: undefined

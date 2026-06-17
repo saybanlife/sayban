@@ -118,7 +118,7 @@
   height: 19px;
   transition-property: all;
   transition-duration: 0.5s;
-  background: #b2b2b2;
+  background: var(--token-pyhDq7s0RTkz);
   transition-timing-function: ease-in-out;
   flex-shrink: 0;
   -webkit-transition-property: all;
@@ -128,7 +128,7 @@
   border: 1px solid #ffffff00;
 }
 .trackisChecked {
-  background: var(--token-kIiS2Y0r0-ou);
+  background: var(--token-ee2TuxDknsJj);
 }
 .root:hover .track {
   background: #b2b2b2;

@@ -448,72 +448,74 @@ function PlasmicCreaditButten__RenderFunc(props: {
           </ApiRequest>
         </div>
       </div>
-      <Button2
-        data-plasmic-name={"buttonLiom4"}
-        data-plasmic-override={overrides.buttonLiom4}
-        className={classNames("__wab_instance", sty.buttonLiom4, {
-          [sty.buttonLiom4action_add]: hasVariant($state, "action", "add"),
-          [sty.buttonLiom4liad]: hasVariant($state, "liad", "liad")
-        })}
-        color={generateStateValueProp($state, ["buttonLiom4", "color"])}
-        load={generateStateValueProp($state, ["buttonLiom4", "load"])}
-        loading={generateStateValueProp($state, ["buttonLiom4", "loading"])}
-        onColorChange={async (...eventArgs: any) => {
-          ((...eventArgs) => {
-            generateStateOnChangeProp($state, ["buttonLiom4", "color"])(
-              eventArgs[0]
-            );
-          }).apply(null, eventArgs);
+      <div className={classNames("all", sty.freeBox___3RDaf)}>
+        <Button2
+          data-plasmic-name={"buttonLiom4"}
+          data-plasmic-override={overrides.buttonLiom4}
+          className={classNames("__wab_instance", sty.buttonLiom4, {
+            [sty.buttonLiom4action_add]: hasVariant($state, "action", "add"),
+            [sty.buttonLiom4liad]: hasVariant($state, "liad", "liad")
+          })}
+          color={generateStateValueProp($state, ["buttonLiom4", "color"])}
+          load={generateStateValueProp($state, ["buttonLiom4", "load"])}
+          loading={generateStateValueProp($state, ["buttonLiom4", "loading"])}
+          onColorChange={async (...eventArgs: any) => {
+            ((...eventArgs) => {
+              generateStateOnChangeProp($state, ["buttonLiom4", "color"])(
+                eventArgs[0]
+              );
+            }).apply(null, eventArgs);
 
-          if (
-            eventArgs.length > 1 &&
-            eventArgs[1] &&
-            eventArgs[1]._plasmic_state_init_
-          ) {
-            return;
-          }
-        }}
-        onLoadChange={async (...eventArgs: any) => {
-          ((...eventArgs) => {
-            generateStateOnChangeProp($state, ["buttonLiom4", "load"])(
-              eventArgs[0]
-            );
-          }).apply(null, eventArgs);
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onLoadChange={async (...eventArgs: any) => {
+            ((...eventArgs) => {
+              generateStateOnChangeProp($state, ["buttonLiom4", "load"])(
+                eventArgs[0]
+              );
+            }).apply(null, eventArgs);
 
-          if (
-            eventArgs.length > 1 &&
-            eventArgs[1] &&
-            eventArgs[1]._plasmic_state_init_
-          ) {
-            return;
-          }
-        }}
-        onLoadingChange={async (...eventArgs: any) => {
-          ((...eventArgs) => {
-            generateStateOnChangeProp($state, ["buttonLiom4", "loading"])(
-              eventArgs[0]
-            );
-          }).apply(null, eventArgs);
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onLoadingChange={async (...eventArgs: any) => {
+            ((...eventArgs) => {
+              generateStateOnChangeProp($state, ["buttonLiom4", "loading"])(
+                eventArgs[0]
+              );
+            }).apply(null, eventArgs);
 
-          if (
-            eventArgs.length > 1 &&
-            eventArgs[1] &&
-            eventArgs[1]._plasmic_state_init_
-          ) {
-            return;
-          }
-        }}
-        shape={"round"}
-        size={"minimal"}
-      >
-        <div className={classNames("all", "__wab_text", sty.text__hRQq)}>
-          {"Button"}
-        </div>
-        <Icon105Icon
-          className={classNames("all", sty.svg___4SRz)}
-          role={"img"}
-        />
-      </Button2>
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          shape={"round"}
+          size={"minimal"}
+        >
+          <div className={classNames("all", "__wab_text", sty.text__hRQq)}>
+            {"Button"}
+          </div>
+          <Icon105Icon
+            className={classNames("all", sty.svg___4SRz)}
+            role={"img"}
+          />
+        </Button2>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }

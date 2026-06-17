@@ -30301,6 +30301,11 @@
           "id": "Kc1jl2yQxz2q",
           "name": "image 131",
           "filePath": "../public/plasmic/sayban/images/image131.svg"
+        },
+        {
+          "id": "KOaOXb6YWUMx",
+          "name": "image 32",
+          "filePath": "../public/plasmic/sayban/images/image32.svg"
         }
       ],
       "indirect": false,

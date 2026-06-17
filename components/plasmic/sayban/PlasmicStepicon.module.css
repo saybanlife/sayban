@@ -4,24 +4,26 @@
   width: 20px;
   height: 20px;
   max-width: 100%;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   background: none;
   position: relative;
   border-radius: 100px;
   padding: 0px;
-  border: 2px solid var(--token-clkRsHVdZgT8);
+  border: 2px solid var(--token-pyhDq7s0RTkz);
 }
 .rootcurrent {
   outline-width: 7px;
   outline-style: solid;
-  outline-color: var(--token-kI60KiRr_Lur);
+  outline-color: var(--token--ieHgGbFH1Fa);
   outline-offset: -7px;
   border-width: 0px;
+  border-color: var(--token-ee2TuxDknsJj);
 }
 .rootsubmit {
-  background: var(--token-kI60KiRr_Lur);
+  background: var(--token--ieHgGbFH1Fa);
   border-width: 0px;
+  border-color: var(--token--ieHgGbFH1Fa);
 }
 .rootsubmit_current {
   width: 45px;
@@ -47,9 +49,10 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  color: var(--token-clkRsHVdZgT8);
+  color: var(--token-pyhDq7s0RTkz);
   font-size: var(--token-R7X4jvpZsbD-);
   font-weight: 700;
+  line-height: 1;
 }
 .textcurrent {
   display: none;

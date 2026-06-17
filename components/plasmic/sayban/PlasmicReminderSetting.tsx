@@ -59,8 +59,8 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import HeaderLiom from "../../HeaderLiom"; // plasmic-import: b_w8hk3_vJDJ/component
 import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
+import HeaderLiom from "../../HeaderLiom"; // plasmic-import: b_w8hk3_vJDJ/component
 import CreaditButten from "../../CreaditButten"; // plasmic-import: llzFxmPBny5m/component
 import Checkbox2 from "../../Checkbox2"; // plasmic-import: j9vU5tCoB4-4/component
 import Steps2 from "../../Steps2"; // plasmic-import: QZYUQRBHdlCN/component
@@ -75,6 +75,7 @@ import { Pickers } from "@/components/Pickers"; // plasmic-import: -vvUVmcfMiRl/
 import { TimePickerCustom } from "@/components/TimePickerCustom"; // plasmic-import: 4tsOFSHTfvZu/codeComponent
 import CheckboxGroup2 from "../../CheckboxGroup2"; // plasmic-import: 0hmH7c7HbwPk/component
 import PreReminderSelect from "../../PreReminderSelect"; // plasmic-import: Jx7eenPQCA-m/component
+import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import LineClomp2 from "../../LineClomp2"; // plasmic-import: eRH1dQQhqm8q/component
 import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
 import Switchbest from "../../Switchbest"; // plasmic-import: ERWwOButDms-/component
@@ -86,8 +87,8 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicReminderSetting.module.css"; // plasmic-import: PpaPS3SR8Zgr/css
 
-import ChevronRightIcon from "./icons/PlasmicIcon__ChevronRight"; // plasmic-import: asThzEchEMNJ/icon
 import XIcon from "./icons/PlasmicIcon__X"; // plasmic-import: YuRnfxQGHRim/icon
+import ChevronRightIcon from "./icons/PlasmicIcon__ChevronRight"; // plasmic-import: asThzEchEMNJ/icon
 import Icon91Icon from "./icons/PlasmicIcon__Icon91"; // plasmic-import: lnClONjnY1AS/icon
 import Icon104Icon from "./icons/PlasmicIcon__Icon104"; // plasmic-import: kbvZvKr3SWoQ/icon
 import Icon306Icon from "./icons/PlasmicIcon__Icon306"; // plasmic-import: Nvfts8i0DDkL/icon
@@ -211,6 +212,7 @@ export type PlasmicReminderSetting__OverridesType = {
   root?: Flex__<"div">;
   section?: Flex__<"section">;
   dialog?: Flex__<typeof Dialog>;
+  headerLiom?: Flex__<typeof HeaderLiom>;
   creaditButten?: Flex__<typeof CreaditButten>;
   checkbox2?: Flex__<typeof Checkbox2>;
   steps2?: Flex__<typeof Steps2>;
@@ -241,6 +243,7 @@ export type PlasmicReminderSetting__OverridesType = {
   button13?: Flex__<typeof Button2>;
   button10?: Flex__<typeof Button2>;
   frame?: Flex__<"div">;
+  header?: Flex__<typeof Header>;
   frame2?: Flex__<"div">;
   button7?: Flex__<typeof Button2>;
   todayMeeting?: Flex__<"div">;
@@ -1790,63 +1793,6 @@ function PlasmicReminderSetting__RenderFunc(props: {
           [sty.sectionslide__2]: hasVariant($state, "slide", "_2")
         })}
       >
-        <HeaderLiom
-          className={classNames("__wab_instance", sty.headerLiom__vqq1E, {
-            [sty.headerLiomadd__vqq1E232G]: hasVariant($state, "add", "add"),
-            [sty.headerLiomreport__vqq1E1RAL]: hasVariant(
-              $state,
-              "report",
-              "report"
-            ),
-            [sty.headerLiomslide__1__vqq1Ei79Xf]: hasVariant(
-              $state,
-              "slide",
-              "_1"
-            ),
-            [sty.headerLiomslide__2__vqq1EZnAty]: hasVariant(
-              $state,
-              "slide",
-              "_2"
-            )
-          })}
-        >
-          <div className={classNames("all", sty.freeBox__vEvRr)}>
-            <ChevronRightIcon
-              className={classNames("all", sty.svg__gogtu)}
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["runBack"] = true
-                  ? (() => {
-                      const actionArgs = { eventRef: $props["back"] };
-                      return (({ eventRef, args }) => {
-                        return eventRef?.(...(args ?? []));
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["runBack"] != null &&
-                  typeof $steps["runBack"] === "object" &&
-                  typeof $steps["runBack"].then === "function"
-                ) {
-                  $steps["runBack"] = await $steps["runBack"];
-                }
-              }}
-              role={"img"}
-            />
-
-            <div
-              className={classNames("all", "__wab_text", sty.text__vAtBw, {
-                [sty.textadd__vAtBw232G]: hasVariant($state, "add", "add")
-              })}
-              id={"myTarget"}
-            >
-              {hasVariant($state, "add", "add")
-                ? "\u0627\u0641\u0632\u0648\u062f\u0646 \u0631\u0648\u06cc\u062f\u0627\u062f"
-                : "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc "}
-            </div>
-          </div>
-        </HeaderLiom>
         <Dialog
           data-plasmic-name={"dialog"}
           data-plasmic-override={overrides.dialog}
@@ -1905,7 +1851,9 @@ function PlasmicReminderSetting__RenderFunc(props: {
           opendialog={generateStateValueProp($state, ["dialog", "opendialog"])}
         >
           <HeaderLiom
-            className={classNames("__wab_instance", sty.headerLiom__cj0DJ)}
+            data-plasmic-name={"headerLiom"}
+            data-plasmic-override={overrides.headerLiom}
+            className={classNames("__wab_instance", sty.headerLiom)}
             slot={
               (() => {
                 try {
@@ -2145,7 +2093,9 @@ function PlasmicReminderSetting__RenderFunc(props: {
                   }
                 })() ? (
                   <div className={classNames("all", sty.freeBox__o43To)}>
-                    <div className={classNames("all", sty.freeBox__pymZ5)}>
+                    <div
+                      className={classNames("all", sty.freeBox__pymZ5, "dark")}
+                    >
                       <div
                         className={classNames(
                           "all",
@@ -7171,6 +7121,15 @@ function PlasmicReminderSetting__RenderFunc(props: {
             [sty.frameslide__2]: hasVariant($state, "slide", "_2")
           })}
         >
+          <Header
+            data-plasmic-name={"header"}
+            data-plasmic-override={overrides.header}
+            className={classNames("__wab_instance", sty.header)}
+            slot={
+              "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc "
+            }
+          />
+
           <div
             data-plasmic-name={"frame2"}
             data-plasmic-override={overrides.frame2}
@@ -14534,6 +14493,7 @@ const PlasmicDescendants = {
     "root",
     "section",
     "dialog",
+    "headerLiom",
     "creaditButten",
     "checkbox2",
     "steps2",
@@ -14564,6 +14524,7 @@ const PlasmicDescendants = {
     "button13",
     "button10",
     "frame",
+    "header",
     "frame2",
     "button7",
     "todayMeeting",
@@ -14597,6 +14558,7 @@ const PlasmicDescendants = {
   section: [
     "section",
     "dialog",
+    "headerLiom",
     "creaditButten",
     "checkbox2",
     "steps2",
@@ -14625,6 +14587,7 @@ const PlasmicDescendants = {
   ],
   dialog: [
     "dialog",
+    "headerLiom",
     "creaditButten",
     "checkbox2",
     "steps2",
@@ -14634,6 +14597,7 @@ const PlasmicDescendants = {
     "report2",
     "button5"
   ],
+  headerLiom: ["headerLiom", "creaditButten"],
   creaditButten: ["creaditButten"],
   checkbox2: ["checkbox2"],
   steps2: ["steps2", "textbox", "repead", "button14", "report2", "button5"],
@@ -14663,7 +14627,8 @@ const PlasmicDescendants = {
   button9: ["button9"],
   button13: ["button13"],
   button10: ["button10"],
-  frame: ["frame", "frame2", "button7"],
+  frame: ["frame", "header", "frame2", "button7"],
+  header: ["header"],
   frame2: ["frame2", "button7"],
   button7: ["button7"],
   todayMeeting: [
@@ -14767,6 +14732,7 @@ type NodeDefaultElementType = {
   root: "div";
   section: "section";
   dialog: typeof Dialog;
+  headerLiom: typeof HeaderLiom;
   creaditButten: typeof CreaditButten;
   checkbox2: typeof Checkbox2;
   steps2: typeof Steps2;
@@ -14797,6 +14763,7 @@ type NodeDefaultElementType = {
   button13: typeof Button2;
   button10: typeof Button2;
   frame: "div";
+  header: typeof Header;
   frame2: "div";
   button7: typeof Button2;
   todayMeeting: "div";
@@ -14892,6 +14859,7 @@ export const PlasmicReminderSetting = Object.assign(
     // Helper components rendering sub-elements
     section: makeNodeComponent("section"),
     dialog: makeNodeComponent("dialog"),
+    headerLiom: makeNodeComponent("headerLiom"),
     creaditButten: makeNodeComponent("creaditButten"),
     checkbox2: makeNodeComponent("checkbox2"),
     steps2: makeNodeComponent("steps2"),
@@ -14922,6 +14890,7 @@ export const PlasmicReminderSetting = Object.assign(
     button13: makeNodeComponent("button13"),
     button10: makeNodeComponent("button10"),
     frame: makeNodeComponent("frame"),
+    header: makeNodeComponent("header"),
     frame2: makeNodeComponent("frame2"),
     button7: makeNodeComponent("button7"),
     todayMeeting: makeNodeComponent("todayMeeting"),

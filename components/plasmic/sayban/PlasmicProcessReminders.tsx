@@ -227,7 +227,7 @@ function PlasmicProcessReminders__RenderFunc(props: {
                   const period =
                     $props?.data?.schedule_type === "everyDay" ? "ماه" : "سال";
                   return item
-                    ? `<span style="font-weight:bold; color:#8254C6;">
+                    ? `<span style="font-weight:bold; color:#6F8A3A;">
          ${item.totalNotifications}
        </span>
        <span> عدد در ${period}</span>`
@@ -240,7 +240,7 @@ function PlasmicProcessReminders__RenderFunc(props: {
                   const period =
                     $props?.data?.schedule_type === "everyDay" ? "ماه" : "سال";
                   return `
-    <span style="font-weight:bold; color:#8254C6;">
+    <span style="font-weight:bold; color:#6F8A3A;">
       ${total}
     </span>
     <span> عدد در ${period}</span>

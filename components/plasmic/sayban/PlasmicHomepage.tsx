@@ -80,6 +80,7 @@ import EditUser from "../../EditUser"; // plasmic-import: gFlyeK2pwR_U/component
 import Notif from "../../Notif"; // plasmic-import: EmnESI2odNrR/component
 import AddPatient from "../../AddPatient"; // plasmic-import: Cu_HVmxmGUNj/component
 import Patient from "../../Patient"; // plasmic-import: MK3ubKSYpzpl/component
+import ReminderSetting from "../../ReminderSetting"; // plasmic-import: PpaPS3SR8Zgr/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -141,7 +142,8 @@ export type PlasmicHomepage__VariantMembers = {
     | "rules"
     | "notif"
     | "addPatient"
-    | "patient";
+    | "patient"
+    | "reminderSetting";
   search2: "search2";
   homePage2: "home" | "reminder" | "user" | "booking";
 };
@@ -159,6 +161,7 @@ export type PlasmicHomepage__VariantsArgs = {
     | "notif"
     | "addPatient"
     | "patient"
+    | "reminderSetting"
   >;
   search2?: SingleBooleanChoiceArg<"search2">;
   homePage2?: SingleChoiceArg<"home" | "reminder" | "user" | "booking">;
@@ -200,6 +203,7 @@ export type PlasmicHomepage__OverridesType = {
   addPatient?: Flex__<typeof AddPatient>;
   search?: Flex__<typeof ApiRequest>;
   patient?: Flex__<typeof Patient>;
+  reminderSetting?: Flex__<typeof ReminderSetting>;
 };
 
 export interface DefaultHomepageProps {}
@@ -296,6 +300,8 @@ function PlasmicHomepage__RenderFunc(props: {
                 if ($ctx.params?.slug?.includes("rules")) return "rules";
                 if ($ctx.params?.slug?.includes("notif")) return "notif";
                 if ($ctx.params?.slug?.includes("patient")) return "patient";
+                if ($ctx.params?.slug?.includes("reminderSetting"))
+                  return "reminderSetting";
                 if ($ctx.params?.slug?.[1] != undefined) return "subcategories";
                 if ($ctx.params?.slug?.[0] != undefined) return "categories";
               })();
@@ -667,6 +673,469 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "reminderSetting.refresh",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "reminderSetting.tel",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "reminderSetting.sms",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "reminderSetting.refreshTime",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "reminderSetting.dialogOpendialog3",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "reminderSetting.reminderCategory2Data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({
+          category: [
+            {
+              id: 1,
+              name: "love",
+              name_fa: "\u0639\u0627\u0634\u0642\u0627\u0646\u0647",
+              description:
+                "\u0645\u0646\u0627\u0633\u0628\u062a\u200c\u0647\u0627 \u0648 \u06cc\u0627\u062f\u0622\u0648\u0631\u0647\u0627\u06cc \u0627\u062d\u0633\u0627\u0633\u06cc \u0648 \u0631\u0645\u0627\u0646\u062a\u06cc\u06a9.",
+              color: "#E91E63"
+            },
+            {
+              id: 2,
+              name: "birthday",
+              name_fa: "\u062a\u0648\u0644\u062f",
+              description:
+                "\u06cc\u0627\u062f\u0622\u0648\u0631 \u062a\u0648\u0644\u062f \u0639\u0632\u06cc\u0632\u0627\u0646 \u0648 \u062f\u0648\u0633\u062a\u0627\u0646.",
+              color: "#FFC107"
+            },
+            {
+              id: 3,
+              name: "health",
+              name_fa: "\u0633\u0644\u0627\u0645\u062a",
+              description:
+                "\u06cc\u0627\u062f\u0622\u0648\u0631\u0647\u0627\u06cc \u0645\u0631\u062a\u0628\u0637 \u0628\u0627 \u0633\u0644\u0627\u0645\u062a \u062c\u0633\u0645 \u0648 \u0631\u0648\u0627\u0646\u060c \u0645\u0627\u0646\u0646\u062f \u0686\u06a9\u0627\u067e\u060c \u062f\u0627\u0631\u0648 \u0648 \u0648\u0631\u0632\u0634.",
+              color: "#4CAF50"
+            },
+            {
+              id: 4,
+              name: "international_days",
+              name_fa:
+                "\u0631\u0648\u0632\u0647\u0627\u06cc \u062c\u0647\u0627\u0646\u06cc",
+              description:
+                "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0631\u0648\u0632\u0647\u0627\u06cc \u062c\u0647\u0627\u0646\u06cc \u0645\u0647\u0645 \u0645\u0627\u0646\u0646\u062f \u0631\u0648\u0632 \u0632\u0645\u06cc\u0646\u060c \u0631\u0648\u0632 \u0632\u0646 \u0648 ...",
+              color: "#2196F3"
+            },
+            {
+              id: 5,
+              name: "religious_days",
+              name_fa:
+                "\u0631\u0648\u0632\u0647\u0627\u06cc \u0645\u0630\u0647\u0628\u06cc",
+              description:
+                "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0645\u0646\u0627\u0633\u0628\u062a\u200c\u0647\u0627 \u0648 \u062a\u0639\u0637\u06cc\u0644\u0627\u062a \u0645\u0630\u0647\u0628\u06cc \u0645\u0627\u0646\u0646\u062f \u0639\u06cc\u062f \u0642\u0631\u0628\u0627\u0646\u060c \u0631\u0645\u0636\u0627\u0646 \u0648 ...",
+              color: "#9C27B0"
+            },
+            {
+              id: 6,
+              name: "national_days",
+              name_fa:
+                "\u0631\u0648\u0632\u0647\u0627\u06cc \u0645\u0644\u06cc",
+              description:
+                "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0645\u0646\u0627\u0633\u0628\u062a\u200c\u0647\u0627 \u0648 \u0631\u0648\u0632\u0647\u0627\u06cc \u0645\u0644\u06cc \u0645\u0627\u0646\u0646\u062f \u0631\u0648\u0632 \u0645\u0639\u0644\u0645\u060c \u067e\u062f\u0631\u060c \u067e\u0631\u0633\u062a\u0627\u0631 \u0648 \u062f\u0647\u0647 \u0641\u062c\u0631",
+              color: "#FF7043"
+            }
+          ],
+          type: [
+            {
+              category_id: 1,
+              category_name: "love",
+              category_name_fa: "\u0639\u0627\u0634\u0642\u0627\u0646\u0647",
+              items: [
+                {
+                  id: 1,
+                  category_id: 1,
+                  type: "wedding_anniversary",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0633\u0627\u0644\u06af\u0631\u062f \u0627\u0632\u062f\u0648\u0627\u062c",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0633\u0627\u0644\u06af\u0631\u062f \u0627\u0632\u062f\u0648\u0627\u062c \u0628\u0627 \u0647\u0645\u0633\u0631.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "marriage",
+                  tag: null,
+                  color: "#E91E63",
+                  icon: "wedding_anniversary"
+                },
+                {
+                  id: 2,
+                  category_id: 1,
+                  type: "relationship_anniversary",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0633\u0627\u0644\u06af\u0631\u062f \u0622\u0634\u0646\u0627\u06cc\u06cc",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0633\u0627\u0644\u06af\u0631\u062f \u0622\u0634\u0646\u0627\u06cc\u06cc \u06cc\u0627 \u0634\u0631\u0648\u0639 \u0631\u0627\u0628\u0637\u0647.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "relationship_anniversary",
+                  tag: null,
+                  color: "#EC407A",
+                  icon: "relationship_anniversary"
+                }
+              ]
+            },
+            {
+              category_id: 2,
+              category_name: "birthday",
+              category_name_fa: "\u062a\u0648\u0644\u062f",
+              items: [
+                {
+                  id: 3,
+                  category_id: 2,
+                  type: "spouse_birthday",
+                  schedule_type: "everyYear",
+                  type_fa: "\u062a\u0648\u0644\u062f \u0647\u0645\u0633\u0631",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u062a\u0648\u0644\u062f \u0647\u0645\u0633\u0631.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "birthdayWife",
+                  tag: null,
+                  color: "#FFB300",
+                  icon: "spouse_birthday"
+                },
+                {
+                  id: 4,
+                  category_id: 2,
+                  type: "mother_birthday",
+                  schedule_type: "everyYear",
+                  type_fa: "\u062a\u0648\u0644\u062f \u0645\u0627\u062f\u0631",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u062a\u0648\u0644\u062f \u0645\u0627\u062f\u0631.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "birthdayMother",
+                  tag: null,
+                  color: "#FFC107",
+                  icon: "mother_birthday"
+                },
+                {
+                  id: 5,
+                  category_id: 2,
+                  type: "father_birthday",
+                  schedule_type: "everyYear",
+                  type_fa: "\u062a\u0648\u0644\u062f \u067e\u062f\u0631",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u062a\u0648\u0644\u062f \u067e\u062f\u0631.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "birthdayFather",
+                  tag: null,
+                  color: "#FFD54F",
+                  icon: "father_birthday"
+                },
+                {
+                  id: 6,
+                  category_id: 2,
+                  type: "child_birthday",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u062a\u0648\u0644\u062f \u0641\u0631\u0632\u0646\u062f",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u062a\u0648\u0644\u062f \u0641\u0631\u0632\u0646\u062f.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "birthdayChild",
+                  tag: null,
+                  color: "#FFE082",
+                  icon: "child_birthday"
+                },
+                {
+                  id: 20,
+                  category_id: 2,
+                  type: "other_birthday",
+                  schedule_type: "everyYear",
+                  type_fa: "\u062a\u0648\u0644\u062f ...",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u062a\u0648\u0644\u062f \u0647\u0645\u0633\u0631.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "birthday",
+                  tag: null,
+                  color: "#FFB300",
+                  icon: "spouse_birthday"
+                }
+              ]
+            },
+            {
+              category_id: 3,
+              category_name: "health",
+              category_name_fa: "\u0633\u0644\u0627\u0645\u062a",
+              items: [
+                {
+                  id: 9,
+                  category_id: 3,
+                  type: "medicine_time",
+                  schedule_type: "everyDay",
+                  type_fa: "\u0645\u0635\u0631\u0641 \u062f\u0627\u0631\u0648",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0632\u0645\u0627\u0646 \u0645\u0635\u0631\u0641 \u062f\u0627\u0631\u0648.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "pill",
+                  tag: '["repead"]',
+                  color: "#66BB6A",
+                  icon: "medicine_time"
+                },
+                {
+                  id: 18,
+                  category_id: 3,
+                  type: "water_time",
+                  schedule_type: "everyDay",
+                  type_fa: "\u0646\u0648\u0634\u06cc\u062f\u0646 \u0622\u0628",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0632\u0645\u0627\u0646 \u0646\u0648\u0634\u06cc\u062f\u0646 \u0622\u0628.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "drinkWater",
+                  tag: null,
+                  color: "#66BB6A",
+                  icon: "water"
+                },
+                {
+                  id: 24,
+                  category_id: 3,
+                  type: "routine_skin",
+                  schedule_type: "everyDay",
+                  type_fa:
+                    "\u0631\u0648\u062a\u06cc\u0646 \u067e\u0648\u0633\u062a",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0632\u0645\u0627\u0646 \u0646\u0648\u0634\u06cc\u062f\u0646 \u0622\u0628.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "routineSkin",
+                  tag: null,
+                  color: "#66BB6A",
+                  icon: "routine_skin"
+                }
+              ]
+            },
+            {
+              category_id: 4,
+              category_name: "international_days",
+              category_name_fa:
+                "\u0631\u0648\u0632\u0647\u0627\u06cc \u062c\u0647\u0627\u0646\u06cc",
+              items: [
+                {
+                  id: 12,
+                  category_id: 4,
+                  type: "valentine_day",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0631\u0648\u0632 \u0648\u0644\u0646\u062a\u0627\u06cc\u0646",
+                  description:
+                    "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u0639\u0634\u0642 \u0648 \u0645\u062d\u0628\u062a.",
+                  date: "0000-02-14",
+                  pre_reminders: '["02-07", "02-11", "02-12", "02-13"]',
+                  text: "valentine",
+                  tag: null,
+                  color: "#F06292",
+                  icon: "valentine_day"
+                },
+                {
+                  id: 13,
+                  category_id: 4,
+                  type: "womens_day",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u062f\u062e\u062a\u0631",
+                  description:
+                    "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u0632\u0646 \u0648 \u062d\u0642\u0648\u0642 \u0628\u0631\u0627\u0628\u0631.",
+                  date: "0000-04-19",
+                  pre_reminders: '["04-12", "04-16", "04-17", "04-18"]',
+                  text: "girlsGlobal",
+                  tag: null,
+                  color: "#42A5F5",
+                  icon: "womens_day"
+                },
+                {
+                  id: 14,
+                  category_id: 4,
+                  type: "mothers_day",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u0632\u0646",
+                  description:
+                    "\u0631\u0648\u0632 \u0642\u062f\u0631\u062f\u0627\u0646\u06cc \u0627\u0632 \u0645\u0627\u062f\u0631\u0627\u0646 \u062f\u0631 \u0633\u0631\u0627\u0633\u0631 \u062c\u0647\u0627\u0646.",
+                  date: "0000-03-08",
+                  pre_reminders: '["03-01", "03-05", "03-06", "03-07"]',
+                  text: "mothers_day",
+                  tag: null,
+                  color: "#64B5F6",
+                  icon: "mothers_day"
+                },
+                {
+                  id: 21,
+                  category_id: 4,
+                  type: "boys_day",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u067e\u0633\u0631",
+                  description:
+                    "\u0631\u0648\u0632 \u062a\u0648\u062c\u0647 \u0628\u0647 \u067e\u0633\u0631\u0627\u0646 \u0648 \u0627\u0647\u0645\u06cc\u062a \u0631\u0634\u062f\u060c \u0622\u0645\u0648\u0632\u0634 \u0648 \u0633\u0644\u0627\u0645\u062a \u0631\u0648\u0627\u0646 \u0622\u0646\u0627\u0646.",
+                  date: "0000-05-16",
+                  pre_reminders: '["05-09", "05-13", "05-14", "05-15"]',
+                  text: "boys_day",
+                  tag: null,
+                  color: "#64B5F6",
+                  icon: "mens_day"
+                },
+                {
+                  id: 22,
+                  category_id: 4,
+                  type: "mens_day",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u0645\u0631\u062f",
+                  description:
+                    "\u0631\u0648\u0632 \u0642\u062f\u0631\u062f\u0627\u0646\u06cc \u0627\u0632 \u0645\u0631\u062f\u0627\u0646 \u0648 \u0646\u0642\u0634 \u0622\u0646\u0627\u0646 \u062f\u0631 \u062e\u0627\u0646\u0648\u0627\u062f\u0647 \u0648 \u062c\u0627\u0645\u0639\u0647.",
+                  date: "0000-11-19",
+                  pre_reminders: '["11-12", "11-16", "11-17", "11-18"]',
+                  text: "mens_day",
+                  tag: null,
+                  color: "#4FC3F7",
+                  icon: "mens_day"
+                }
+              ]
+            },
+            {
+              category_id: 5,
+              category_name: "religious_days",
+              category_name_fa:
+                "\u0631\u0648\u0632\u0647\u0627\u06cc \u0645\u0630\u0647\u0628\u06cc",
+              items: [
+                {
+                  id: 16,
+                  category_id: 5,
+                  type: "religious_womens_day",
+                  schedule_type: "everyYear",
+                  type_fa: "\u0631\u0648\u0632 \u0632\u0646 ",
+                  description:
+                    "\u0631\u0648\u0632 \u0628\u0632\u0631\u06af\u062f\u0627\u0634\u062a \u0645\u0642\u0627\u0645 \u0632\u0646 \u062f\u0631 \u0627\u0633\u0644\u0627\u0645.",
+                  date: "0000-11-30",
+                  pre_reminders: '["11-23", "11-27", "11-28", "11-29"]',
+                  text: "motherAndWifeDayIran",
+                  tag: null,
+                  color: "#CE93D8",
+                  icon: "womens_day"
+                },
+                {
+                  id: 19,
+                  category_id: 5,
+                  type: "religious_girl_day",
+                  schedule_type: "everyYear",
+                  type_fa: "\u0631\u0648\u0632 \u062f\u062e\u062a\u0631 ",
+                  description:
+                    "\u0631\u0648\u0632 \u0628\u0632\u0631\u06af\u062f\u0627\u0634\u062a \u0645\u0642\u0627\u0645 \u062f\u062e\u062a\u0631 \u062f\u0631 \u0627\u0633\u0644\u0627\u0645.",
+                  date: "0000-04-19",
+                  pre_reminders: '["04-12", "04-16", "04-17", "04-18"]',
+                  text: "religious_girl_day",
+                  tag: null,
+                  color: "#CE93D8",
+                  icon: "womens_day"
+                },
+                {
+                  id: 23,
+                  category_id: 5,
+                  type: "islamic_mens_day",
+                  schedule_type: "everyYear",
+                  type_fa: "\u0631\u0648\u0632 \u0645\u0631\u062f",
+                  description:
+                    "\u0631\u0648\u0632 \u0648\u0644\u0627\u062f\u062a \u062d\u0636\u0631\u062a \u0639\u0644\u06cc (\u0639) \u0648 \u0628\u0632\u0631\u06af\u062f\u0627\u0634\u062a \u0645\u0642\u0627\u0645 \u067e\u062f\u0631 \u0648 \u0645\u0631\u062f \u062f\u0631 \u0641\u0631\u0647\u0646\u06af \u0627\u0633\u0644\u0627\u0645\u06cc.",
+                  date: "0000-01-03",
+                  pre_reminders: '["12-27", "12-31", "01-01", "01-02"]',
+                  text: "islamic_mens_day",
+                  tag: null,
+                  color: "#81C784",
+                  icon: "mens_day"
+                }
+              ]
+            },
+            {
+              category_id: 6,
+              category_name: "national_days",
+              category_name_fa:
+                "\u0631\u0648\u0632\u0647\u0627\u06cc \u0645\u0644\u06cc",
+              items: [
+                {
+                  id: 17,
+                  category_id: 6,
+                  type: "sepandarmazgan",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0631\u0648\u0632 \u0633\u067e\u0646\u062f\u0627\u0631\u0645\u0630\u06af\u0627\u0646",
+                  description:
+                    "\u0631\u0648\u0632 \u0639\u0634\u0642 \u0627\u06cc\u0631\u0627\u0646\u06cc\u060c \u062c\u0634\u0646 \u0645\u0647\u0631 \u0648 \u0645\u062d\u0628\u062a \u062f\u0631 \u0641\u0631\u0647\u0646\u06af \u067e\u0627\u0631\u0633\u06cc.",
+                  date: "0000-02-18",
+                  pre_reminders: '["02-11", "02-15", "02-16", "02-17"]',
+                  text: "sepandarmazgan",
+                  tag: null,
+                  color: "#F48FB1",
+                  icon: "sepandarmazgan"
+                }
+              ]
+            }
+          ]
+        })
+      },
+      {
+        path: "reminderSetting.pageSelect",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "reminderSetting.creaditButtenCreadit",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return window.sessionStorage.getItem("balance");
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return 0;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "reminderSetting.topic",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "love"
       }
     ],
     [$props, $ctx, $refs]
@@ -894,44 +1363,50 @@ function PlasmicHomepage__RenderFunc(props: {
           {(
             hasVariant($state, "homePage2", "reminder")
               ? true
-              : hasVariant($state, "page", "patient")
+              : hasVariant($state, "page", "reminderSetting")
                 ? true
-                : hasVariant($state, "page", "addPatient")
+                : hasVariant($state, "page", "patient")
                   ? true
-                  : hasVariant($state, "page", "notif")
+                  : hasVariant($state, "page", "addPatient")
                     ? true
-                    : hasVariant($state, "page", "rules")
+                    : hasVariant($state, "page", "notif")
                       ? true
-                      : hasVariant($state, "page", "faq")
+                      : hasVariant($state, "page", "rules")
                         ? true
-                        : hasVariant($state, "page", "about")
+                        : hasVariant($state, "page", "faq")
                           ? true
-                          : hasVariant($state, "page", "booking")
+                          : hasVariant($state, "page", "about")
                             ? true
-                            : hasVariant($state, "page", "editUser")
+                            : hasVariant($state, "page", "booking")
                               ? true
-                              : hasVariant($state, "page", "payment")
+                              : hasVariant($state, "page", "editUser")
                                 ? true
-                                : hasVariant($state, "page", "center")
+                                : hasVariant($state, "page", "payment")
                                   ? true
-                                  : hasVariant($state, "page", "subcategories")
+                                  : hasVariant($state, "page", "center")
                                     ? true
-                                    : hasVariant($state, "page", "categories")
+                                    : hasVariant(
+                                          $state,
+                                          "page",
+                                          "subcategories"
+                                        )
                                       ? true
-                                      : (() => {
-                                          try {
-                                            return $state.token != "";
-                                          } catch (e) {
-                                            if (
-                                              e instanceof TypeError ||
-                                              e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                            ) {
-                                              return true;
+                                      : hasVariant($state, "page", "categories")
+                                        ? true
+                                        : (() => {
+                                            try {
+                                              return $state.token != "";
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return true;
+                                              }
+                                              throw e;
                                             }
-                                            throw e;
-                                          }
-                                        })()
+                                          })()
           ) ? (
             <div
               data-plasmic-name={"homePage"}
@@ -975,6 +1450,11 @@ function PlasmicHomepage__RenderFunc(props: {
                   $state,
                   "page",
                   "payment"
+                ),
+                [sty.homePagepage_reminderSetting]: hasVariant(
+                  $state,
+                  "page",
+                  "reminderSetting"
                 ),
                 [sty.homePagepage_rules]: hasVariant($state, "page", "rules"),
                 [sty.homePagepage_subcategories]: hasVariant(
@@ -2034,34 +2514,36 @@ function PlasmicHomepage__RenderFunc(props: {
           {(
             hasVariant($state, "homePage2", "reminder")
               ? true
-              : hasVariant($state, "page", "patient")
+              : hasVariant($state, "page", "reminderSetting")
                 ? true
-                : hasVariant($state, "page", "addPatient")
+                : hasVariant($state, "page", "patient")
                   ? true
-                  : hasVariant($state, "page", "notif")
+                  : hasVariant($state, "page", "addPatient")
                     ? true
-                    : hasVariant($state, "page", "rules")
+                    : hasVariant($state, "page", "notif")
                       ? true
-                      : hasVariant($state, "page", "faq")
+                      : hasVariant($state, "page", "rules")
                         ? true
-                        : hasVariant($state, "page", "about")
+                        : hasVariant($state, "page", "faq")
                           ? true
-                          : hasVariant($state, "page", "booking")
+                          : hasVariant($state, "page", "about")
                             ? true
-                            : (() => {
-                                try {
-                                  return $state.token != "";
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return true;
+                            : hasVariant($state, "page", "booking")
+                              ? true
+                              : (() => {
+                                  try {
+                                    return $state.token != "";
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return true;
+                                    }
+                                    throw e;
                                   }
-                                  throw e;
-                                }
-                              })()
+                                })()
           ) ? (
             <div
               className={classNames("all", sty.freeBox__yWuCa, {
@@ -2109,6 +2591,11 @@ function PlasmicHomepage__RenderFunc(props: {
                   $state,
                   "page",
                   "patient"
+                ),
+                [sty.freeBoxpage_reminderSetting__yWuCAyw7Ta]: hasVariant(
+                  $state,
+                  "page",
+                  "reminderSetting"
                 ),
                 [sty.freeBoxpage_rules__yWuCau6Lbx]: hasVariant(
                   $state,
@@ -3868,6 +4355,171 @@ function PlasmicHomepage__RenderFunc(props: {
               }
             })()}
           />
+
+          <ReminderSetting
+            data-plasmic-name={"reminderSetting"}
+            data-plasmic-override={overrides.reminderSetting}
+            className={classNames("__wab_instance", sty.reminderSetting, {
+              [sty.reminderSettingpage_reminderSetting]: hasVariant(
+                $state,
+                "page",
+                "reminderSetting"
+              )
+            })}
+            creaditButtenCreadit={generateStateValueProp($state, [
+              "reminderSetting",
+              "creaditButtenCreadit"
+            ])}
+            dialogOpendialog3={generateStateValueProp($state, [
+              "reminderSetting",
+              "dialogOpendialog3"
+            ])}
+            onCreaditButtenCreaditChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "creaditButtenCreadit"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onDialogOpendialog3Change={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "dialogOpendialog3"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onPageSelectChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "pageSelect"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onRefreshChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "refresh"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onRefreshTimeChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "refreshTime"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onReminderCategory2DataChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "reminderCategory2Data"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onSmsChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "sms"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onTelChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "tel"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onTopicChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "topic"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            pageSelect={generateStateValueProp($state, [
+              "reminderSetting",
+              "pageSelect"
+            ])}
+            refresh={generateStateValueProp($state, [
+              "reminderSetting",
+              "refresh"
+            ])}
+            refreshTime={generateStateValueProp($state, [
+              "reminderSetting",
+              "refreshTime"
+            ])}
+            reminderCategory2Data={generateStateValueProp($state, [
+              "reminderSetting",
+              "reminderCategory2Data"
+            ])}
+            sms={generateStateValueProp($state, ["reminderSetting", "sms"])}
+            tel={generateStateValueProp($state, ["reminderSetting", "tel"])}
+            topic={generateStateValueProp($state, ["reminderSetting", "topic"])}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -3900,7 +4552,8 @@ const PlasmicDescendants = {
     "notif",
     "addPatient",
     "search",
-    "patient"
+    "patient",
+    "reminderSetting"
   ],
   sideEffect: ["sideEffect"],
   homePage: [
@@ -3933,7 +4586,8 @@ const PlasmicDescendants = {
   notif: ["notif"],
   addPatient: ["addPatient"],
   search: ["search"],
-  patient: ["patient"]
+  patient: ["patient"],
+  reminderSetting: ["reminderSetting"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -3964,6 +4618,7 @@ type NodeDefaultElementType = {
   addPatient: typeof AddPatient;
   search: typeof ApiRequest;
   patient: typeof Patient;
+  reminderSetting: typeof ReminderSetting;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -4052,6 +4707,7 @@ export const PlasmicHomepage = Object.assign(
     addPatient: makeNodeComponent("addPatient"),
     search: makeNodeComponent("search"),
     patient: makeNodeComponent("patient"),
+    reminderSetting: makeNodeComponent("reminderSetting"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,
