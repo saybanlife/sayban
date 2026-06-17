@@ -1327,7 +1327,7 @@ function PlasmicMainLiad__RenderFunc(props: {
           try {
             return {
               r: $state.refresh,
-              liomId: $state.profile?.data?.result?.user?.id
+              userId: $state.profile?.data?.result?.user?.id
             };
           } catch (e) {
             if (
@@ -1342,7 +1342,7 @@ function PlasmicMainLiad__RenderFunc(props: {
         className={classNames("__wab_instance", sty.reminderApi)}
         errorDisplay={null}
         loadingDisplay={null}
-        method={"POST"}
+        method={"GET"}
         onError={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["reminderApi", "error"]).apply(
             null,
@@ -1397,7 +1397,7 @@ function PlasmicMainLiad__RenderFunc(props: {
           (async data => {
             const $steps = {};
 
-            $steps["updateRemind"] = ($state.reminderApi?.data ? true : false)
+            $steps["updateRemind"] = $state.reminderApi?.data?.success
               ? (() => {
                   const actionArgs = {
                     variable: {
@@ -1405,7 +1405,7 @@ function PlasmicMainLiad__RenderFunc(props: {
                       variablePath: ["remind"]
                     },
                     operation: 0,
-                    value: $state.reminderApi?.data
+                    value: $state.reminderApi?.data?.reminders
                   };
                   return (({ variable, value, startIndex, deleteCount }) => {
                     if (!variable) {
@@ -1456,6 +1456,7 @@ function PlasmicMainLiad__RenderFunc(props: {
             }
           }).apply(null, eventArgs);
         }}
+        params={{ userId: 1 }}
         shouldFetch={(() => {
           try {
             return $state.profile?.data?.result?.user?.id;
@@ -1469,7 +1470,7 @@ function PlasmicMainLiad__RenderFunc(props: {
             throw e;
           }
         })()}
-        url={"https://n8n.staas.ir/webhook/user/task/list?userId"}
+        url={"https://n8n.staas.ir/webhook/user/task/list"}
       />
 
       <ApiRequest
