@@ -1283,6 +1283,9 @@ function PlasmicHomepage__RenderFunc(props: {
                 "reminder"
               ),
               [sty.roothomePage2_user]: hasVariant($state, "homePage2", "user"),
+              [sty.roothomePage2_user_page_booking]:
+                hasVariant($state, "page", "booking") &&
+                hasVariant($state, "homePage2", "user"),
               [sty.roothomePage2_user_page_notif]:
                 hasVariant($state, "homePage2", "user") &&
                 hasVariant($state, "page", "notif"),

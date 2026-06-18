@@ -139,6 +139,9 @@
 .rootpage_booking_homePage2_home > * {
   grid-column: 4;
 }
+.roothomePage2_user_page_booking > * {
+  grid-column: 4;
+}
 .roothomePage2_user_page_notif {
   padding-top: var(--token-P3I_D0uxQRnt);
 }
