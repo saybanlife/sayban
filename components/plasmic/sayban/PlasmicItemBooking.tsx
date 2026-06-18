@@ -419,6 +419,40 @@ function PlasmicItemBooking__RenderFunc(props: {
         {""}
       </div>
       <div className={classNames("all", sty.freeBox___3EfNf)}>
+        {(() => {
+          try {
+            return $props.item.user;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })() ? (
+          <div className={classNames("all", "__wab_text", sty.text__uwZgf)}>
+            <div
+              className={"__wab_expr_html_text"}
+              dangerouslySetInnerHTML={{
+                __html: (() => {
+                  try {
+                    return `درخواست رزرو برای <strong>${$props.item.user.name}</strong>`;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "\u0648\u0636\u0639\u06cc\u062a";
+                    }
+                    throw e;
+                  }
+                })()
+              }}
+            />
+          </div>
+        ) : null}
         <div className={classNames("all", "__wab_text", sty.text___2HTck)}>
           {"\u0648\u0636\u0639\u06cc\u062a"}
         </div>

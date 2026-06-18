@@ -394,7 +394,8 @@ function PlasmicBooking__RenderFunc(props: {
             : "",
           end: $state.bookingHeader.datePickerEnd
             ? new Date($state.bookingHeader.datePickerEnd * 1000).toISOString()
-            : ""
+            : "",
+          filter: $state.selectFilter
         }}
         shouldFetch={true}
         url={"Reservation"}
@@ -836,24 +837,40 @@ function PlasmicBooking__RenderFunc(props: {
               })()}
             />
           </div>
-          <div className={classNames("all", sty.freeBox__mMtpm)}>
-            <div className={classNames("all", sty.freeBox__zelEs)}>
-              <UserIcon
-                className={classNames("all", sty.svg__d4ETz)}
-                role={"img"}
-              />
-            </div>
-            <div className={classNames("all", sty.freeBox__wDFdQ)}>
-              <div className={classNames("all", "__wab_text", sty.text__q7FPj)}>
-                {"\u06a9\u0627\u0631\u0628\u0631"}
+          {(() => {
+            try {
+              return $state.datalist.user;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })() ? (
+            <div className={classNames("all", sty.freeBox__mMtpm)}>
+              <div className={classNames("all", sty.freeBox__zelEs)}>
+                <UserIcon
+                  className={classNames("all", sty.svg__d4ETz)}
+                  role={"img"}
+                />
               </div>
-              <div className={classNames("all", "__wab_text", sty.text__udEzn)}>
-                <React.Fragment>
-                  {$state.datalist?.user?.json?.name}
-                </React.Fragment>
+              <div className={classNames("all", sty.freeBox__wDFdQ)}>
+                <div
+                  className={classNames("all", "__wab_text", sty.text__q7FPj)}
+                >
+                  {"\u06a9\u0627\u0631\u0628\u0631"}
+                </div>
+                <div
+                  className={classNames("all", "__wab_text", sty.text__udEzn)}
+                >
+                  <React.Fragment>{$state.datalist?.user.name}</React.Fragment>
+                </div>
               </div>
             </div>
-          </div>
+          ) : null}
           <div className={classNames("all", sty.freeBox__szFAr)}>
             <div className={classNames("all", sty.freeBox__aDyCk)}>
               <CalendarStatsIcon

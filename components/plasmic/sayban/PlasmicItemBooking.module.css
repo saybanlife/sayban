@@ -83,7 +83,7 @@
   max-width: 100%;
   color: var(--token-9M5jRUPt8Msb);
   font-weight: 600;
-  font-size: var(--token-R7X4jvpZsbD-);
+  font-size: var(--token-N8Pb0ZuDQAeF);
   text-align: right;
 }
 .freeBox__vzfyx {
@@ -186,6 +186,16 @@
   row-gap: var(--token-IUVIp1DHBSFd);
   min-width: 0;
   padding: 0px;
+}
+.text__uwZgf {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: right;
+  font-weight: 400;
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  color: var(--token-KjATzAYJ5IB7);
+  min-width: 0;
 }
 .text___2HTck {
   width: 100%;
