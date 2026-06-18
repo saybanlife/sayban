@@ -1355,7 +1355,7 @@ function PlasmicHomepage__RenderFunc(props: {
             onMount={async () => {
               const $steps = {};
 
-              $steps["getCookie"] = false
+              $steps["getCookie"] = true
                 ? (() => {
                     const actionArgs = { args: ["token"] };
                     return $globalActions["Fragment.getCookie"]?.apply(null, [
@@ -1371,23 +1371,24 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["getCookie"] = await $steps["getCookie"];
               }
 
-              $steps["goToLogin"] = false
-                ? (() => {
-                    const actionArgs = { destination: `/login/[[...step]]` };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
+              $steps["goToLogin"] =
+                $steps.getCookie == null || $steps.getCookie == ""
+                  ? (() => {
+                      const actionArgs = { destination: `/login/[[...step]]` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
               if (
                 $steps["goToLogin"] != null &&
                 typeof $steps["goToLogin"] === "object" &&
@@ -1396,7 +1397,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["goToLogin"] = await $steps["goToLogin"];
               }
 
-              $steps["updateToken"] = false
+              $steps["updateToken"] = true
                 ? (() => {
                     const actionArgs = {
                       variable: {
