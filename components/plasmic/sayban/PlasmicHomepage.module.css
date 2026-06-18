@@ -79,6 +79,9 @@
 .rootpage_notif > * {
   grid-column: 4;
 }
+.rootpage_addAddress > * {
+  grid-column: 4;
+}
 .rootsearch2 > * {
   grid-column: 4;
 }
@@ -215,6 +218,12 @@
   display: none;
 }
 .homePagepage_reminderSetting {
+  display: none;
+}
+.homePagepage_address {
+  display: none;
+}
+.homePagepage_addAddress {
   display: none;
 }
 .homePagehomePage2_reminder {
@@ -694,6 +703,12 @@
 .freeBoxpage_reminderSetting__yWuCAyw7Ta {
   display: none;
 }
+.freeBoxpage_address__yWuCaxcLdE {
+  display: none;
+}
+.freeBoxpage_addAddress__yWuCabBlZ {
+  display: none;
+}
 .freeBoxhomePage2_reminder__yWuCaWvbFy {
   display: none;
 }
@@ -927,5 +942,22 @@
   display: none;
 }
 .reminderSettingpage_reminderSetting:global(.__wab_instance) {
+  display: grid;
+}
+.address:global(.__wab_instance) {
+  max-width: 100%;
+  display: none;
+}
+.addresspage_address:global(.__wab_instance) {
+  display: grid;
+}
+.addresspage_addAddress:global(.__wab_instance) {
+  display: none;
+}
+.addAddress:global(.__wab_instance) {
+  max-width: 100%;
+  display: none;
+}
+.addAddresspage_addAddress:global(.__wab_instance) {
   display: grid;
 }

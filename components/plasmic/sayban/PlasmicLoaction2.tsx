@@ -88,21 +88,25 @@ export const PlasmicLoaction2__VariantProps = new Array<VariantPropType>(
 );
 
 export type PlasmicLoaction2__ArgsType = {
-  address?: string;
   onAddressChange?: (val: string) => void;
   onLatChange?: (val: string) => void;
   onLonChange?: (val: string) => void;
   city2?: string;
   onCityChange?: (val: string) => void;
+  onAddressChange2?: (val: string) => void;
+  onPostChange?: (val: string) => void;
+  onTitleChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicLoaction2__ArgsType;
 export const PlasmicLoaction2__ArgProps = new Array<ArgPropType>(
-  "address",
   "onAddressChange",
   "onLatChange",
   "onLonChange",
   "city2",
-  "onCityChange"
+  "onCityChange",
+  "onAddressChange2",
+  "onPostChange",
+  "onTitleChange"
 );
 
 export type PlasmicLoaction2__OverridesType = {
@@ -110,20 +114,22 @@ export type PlasmicLoaction2__OverridesType = {
   embedHtml?: Flex__<typeof Embed>;
   city?: Flex__<typeof TextInput>;
   loaction?: Flex__<typeof TextAreaInput>;
-  city3?: Flex__<typeof TextInput>;
-  city4?: Flex__<typeof TextInput>;
-  city5?: Flex__<typeof TextInput>;
+  addressDatalist?: Flex__<typeof TextInput>;
+  postalCode?: Flex__<typeof TextInput>;
+  title?: Flex__<typeof TextInput>;
   button?: Flex__<typeof Button>;
   apiRequest?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultLoaction2Props {
-  address?: string;
   onAddressChange?: (val: string) => void;
   onLatChange?: (val: string) => void;
   onLonChange?: (val: string) => void;
   city2?: string;
   onCityChange?: (val: string) => void;
+  onAddressChange2?: (val: string) => void;
+  onPostChange?: (val: string) => void;
+  onTitleChange?: (val: string) => void;
   loaction2?: SingleBooleanChoiceArg<"loaction2">;
   className?: string;
 }
@@ -171,10 +177,10 @@ function PlasmicLoaction2__RenderFunc(props: {
     () => [
       {
         path: "loaction.value",
-        type: "writable",
+        type: "readonly",
         variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "",
 
-        valueProp: "address",
         onChangeProp: "onAddressChange"
       },
       {
@@ -220,22 +226,28 @@ function PlasmicLoaction2__RenderFunc(props: {
         onChangeProp: "onCityChange"
       },
       {
-        path: "city3.value",
-        type: "private",
+        path: "addressDatalist.value",
+        type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
+
+        onChangeProp: "onAddressChange2"
       },
       {
-        path: "city4.value",
-        type: "private",
+        path: "postalCode.value",
+        type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
+
+        onChangeProp: "onPostChange"
       },
       {
-        path: "city5.value",
-        type: "private",
+        path: "title.value",
+        type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
+
+        onChangeProp: "onTitleChange"
       },
       {
         path: "loaction2",
@@ -414,15 +426,15 @@ function PlasmicLoaction2__RenderFunc(props: {
         })}
       >
         <TextInput
-          data-plasmic-name={"city3"}
-          data-plasmic-override={overrides.city3}
-          className={classNames("__wab_instance", sty.city3)}
+          data-plasmic-name={"addressDatalist"}
+          data-plasmic-override={overrides.addressDatalist}
+          className={classNames("__wab_instance", sty.addressDatalist)}
           inputType={"text"}
           onChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["city3", "value"]).apply(
-              null,
-              eventArgs
-            );
+            generateStateOnChangeProp($state, [
+              "addressDatalist",
+              "value"
+            ]).apply(null, eventArgs);
 
             if (
               eventArgs.length > 1 &&
@@ -437,7 +449,7 @@ function PlasmicLoaction2__RenderFunc(props: {
           }
           size={"langh"}
           type={"lineBox"}
-          value={generateStateValueProp($state, ["city3", "value"])}
+          value={generateStateValueProp($state, ["addressDatalist", "value"])}
         />
       </div>
       <div
@@ -450,12 +462,12 @@ function PlasmicLoaction2__RenderFunc(props: {
         })}
       >
         <TextInput
-          data-plasmic-name={"city4"}
-          data-plasmic-override={overrides.city4}
-          className={classNames("__wab_instance", sty.city4)}
+          data-plasmic-name={"postalCode"}
+          data-plasmic-override={overrides.postalCode}
+          className={classNames("__wab_instance", sty.postalCode)}
           inputType={"text"}
           onChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["city4", "value"]).apply(
+            generateStateOnChangeProp($state, ["postalCode", "value"]).apply(
               null,
               eventArgs
             );
@@ -471,7 +483,7 @@ function PlasmicLoaction2__RenderFunc(props: {
           placeholder={"\u06a9\u062f \u067e\u0633\u062a\u06cc"}
           size={"langh"}
           type={"lineBox"}
-          value={generateStateValueProp($state, ["city4", "value"])}
+          value={generateStateValueProp($state, ["postalCode", "value"])}
         />
       </div>
       <div
@@ -484,12 +496,12 @@ function PlasmicLoaction2__RenderFunc(props: {
         })}
       >
         <TextInput
-          data-plasmic-name={"city5"}
-          data-plasmic-override={overrides.city5}
-          className={classNames("__wab_instance", sty.city5)}
+          data-plasmic-name={"title"}
+          data-plasmic-override={overrides.title}
+          className={classNames("__wab_instance", sty.title)}
           inputType={"text"}
           onChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["city5", "value"]).apply(
+            generateStateOnChangeProp($state, ["title", "value"]).apply(
               null,
               eventArgs
             );
@@ -507,7 +519,7 @@ function PlasmicLoaction2__RenderFunc(props: {
           }
           size={"langh"}
           type={"lineBox"}
-          value={generateStateValueProp($state, ["city5", "value"])}
+          value={generateStateValueProp($state, ["title", "value"])}
         />
       </div>
       <div
@@ -683,18 +695,18 @@ const PlasmicDescendants = {
     "embedHtml",
     "city",
     "loaction",
-    "city3",
-    "city4",
-    "city5",
+    "addressDatalist",
+    "postalCode",
+    "title",
     "button",
     "apiRequest"
   ],
   embedHtml: ["embedHtml"],
   city: ["city"],
   loaction: ["loaction"],
-  city3: ["city3"],
-  city4: ["city4"],
-  city5: ["city5"],
+  addressDatalist: ["addressDatalist"],
+  postalCode: ["postalCode"],
+  title: ["title"],
   button: ["button"],
   apiRequest: ["apiRequest"]
 } as const;
@@ -706,9 +718,9 @@ type NodeDefaultElementType = {
   embedHtml: typeof Embed;
   city: typeof TextInput;
   loaction: typeof TextAreaInput;
-  city3: typeof TextInput;
-  city4: typeof TextInput;
-  city5: typeof TextInput;
+  addressDatalist: typeof TextInput;
+  postalCode: typeof TextInput;
+  title: typeof TextInput;
   button: typeof Button;
   apiRequest: typeof ApiRequest;
 };
@@ -778,9 +790,9 @@ export const PlasmicLoaction2 = Object.assign(
     embedHtml: makeNodeComponent("embedHtml"),
     city: makeNodeComponent("city"),
     loaction: makeNodeComponent("loaction"),
-    city3: makeNodeComponent("city3"),
-    city4: makeNodeComponent("city4"),
-    city5: makeNodeComponent("city5"),
+    addressDatalist: makeNodeComponent("addressDatalist"),
+    postalCode: makeNodeComponent("postalCode"),
+    title: makeNodeComponent("title"),
     button: makeNodeComponent("button"),
     apiRequest: makeNodeComponent("apiRequest"),
 

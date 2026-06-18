@@ -116,11 +116,15 @@ export type PlasmicCenter__ArgsType = {
   subcatgori?: any;
   center?: any;
   id?: string;
+  entryOpendialog?: boolean;
+  onEntryOpendialogChange?: (val: boolean) => void;
   jalali?: any;
   token?: string;
   goToPayment?: (id: string) => void;
   id2?: string;
   onId2Change?: (val: string) => void;
+  userSelectOpendialog?: boolean;
+  onUserSelectOpendialogChange?: (val: boolean) => void;
   userNew?: () => void;
 };
 type ArgPropType = keyof PlasmicCenter__ArgsType;
@@ -128,11 +132,15 @@ export const PlasmicCenter__ArgProps = new Array<ArgPropType>(
   "subcatgori",
   "center",
   "id",
+  "entryOpendialog",
+  "onEntryOpendialogChange",
   "jalali",
   "token",
   "goToPayment",
   "id2",
   "onId2Change",
+  "userSelectOpendialog",
+  "onUserSelectOpendialogChange",
   "userNew"
 );
 
@@ -174,11 +182,15 @@ export interface DefaultCenterProps {
   subcatgori?: any;
   center?: any;
   id?: string;
+  entryOpendialog?: boolean;
+  onEntryOpendialogChange?: (val: boolean) => void;
   jalali?: any;
   token?: string;
   goToPayment?: (id: string) => void;
   id2?: string;
   onId2Change?: (val: string) => void;
+  userSelectOpendialog?: boolean;
+  onUserSelectOpendialogChange?: (val: boolean) => void;
   userNew?: () => void;
   top?: SingleBooleanChoiceArg<"top">;
   className?: string;
@@ -350,10 +362,11 @@ function PlasmicCenter__RenderFunc(props: {
       },
       {
         path: "entry.opendialog",
-        type: "private",
+        type: "writable",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? false : false
+
+        valueProp: "entryOpendialog",
+        onChangeProp: "onEntryOpendialogChange"
       },
       {
         path: "topics2.data",
@@ -691,10 +704,11 @@ function PlasmicCenter__RenderFunc(props: {
       },
       {
         path: "selectuser.opendialog",
-        type: "private",
+        type: "writable",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly") ? false : false
+
+        valueProp: "userSelectOpendialog",
+        onChangeProp: "onUserSelectOpendialogChange"
       },
       {
         path: "patient.data",

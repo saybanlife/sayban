@@ -101,13 +101,15 @@ export type PlasmicUser__ArgsType = {
   goToEdit?: (event: any) => void;
   goToBooking?: (event: any) => void;
   goToPatient?: () => void;
+  goToAddress?: () => void;
 };
 type ArgPropType = keyof PlasmicUser__ArgsType;
 export const PlasmicUser__ArgProps = new Array<ArgPropType>(
   "userinfo",
   "goToEdit",
   "goToBooking",
-  "goToPatient"
+  "goToPatient",
+  "goToAddress"
 );
 
 export type PlasmicUser__OverridesType = {
@@ -126,6 +128,7 @@ export interface DefaultUserProps {
   goToEdit?: (event: any) => void;
   goToBooking?: (event: any) => void;
   goToPatient?: () => void;
+  goToAddress?: () => void;
   className?: string;
 }
 

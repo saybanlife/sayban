@@ -251,6 +251,8 @@
   --plasmic-token-task-text: var(--token-7w1hHBafObn7);
   --token-_dzRzBMvro_R: #535353;
   --plasmic-token-text-gray: var(--token-_dzRzBMvro_R);
+  --token-Sxj-mWZy0xsf: 16px;
+  --plasmic-token-unnamed-style-token-7: var(--token-Sxj-mWZy0xsf);
 }
 
 @media (min-width: 0px) and (max-width: 768px) {

@@ -324,9 +324,9 @@
   max-width: 100%;
   height: 1px;
   flex-shrink: 0;
-  display: none;
 }
 .freeBox___2Y08 {
+  display: flex;
   flex-direction: row;
   position: relative;
   align-items: stretch;
@@ -337,7 +337,6 @@
   column-gap: var(--token-rfsFxiclAtek);
   cursor: pointer;
   min-width: 0;
-  display: none;
   padding: 0px;
 }
 .svg__iOav5 {

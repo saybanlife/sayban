@@ -81,6 +81,8 @@ import Notif from "../../Notif"; // plasmic-import: EmnESI2odNrR/component
 import AddPatient from "../../AddPatient"; // plasmic-import: Cu_HVmxmGUNj/component
 import Patient from "../../Patient"; // plasmic-import: MK3ubKSYpzpl/component
 import ReminderSetting from "../../ReminderSetting"; // plasmic-import: PpaPS3SR8Zgr/component
+import Address from "../../Address"; // plasmic-import: O3mS57D3HQdC/component
+import AddAddress from "../../AddAddress"; // plasmic-import: KL79QbMT1Ux3/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -143,7 +145,9 @@ export type PlasmicHomepage__VariantMembers = {
     | "notif"
     | "addPatient"
     | "patient"
-    | "reminderSetting";
+    | "reminderSetting"
+    | "address"
+    | "addAddress";
   search2: "search2";
   homePage2: "home" | "reminder" | "user" | "booking";
 };
@@ -162,6 +166,8 @@ export type PlasmicHomepage__VariantsArgs = {
     | "addPatient"
     | "patient"
     | "reminderSetting"
+    | "address"
+    | "addAddress"
   >;
   search2?: SingleBooleanChoiceArg<"search2">;
   homePage2?: SingleChoiceArg<"home" | "reminder" | "user" | "booking">;
@@ -204,6 +210,8 @@ export type PlasmicHomepage__OverridesType = {
   search?: Flex__<typeof ApiRequest>;
   patient?: Flex__<typeof Patient>;
   reminderSetting?: Flex__<typeof ReminderSetting>;
+  address?: Flex__<typeof Address>;
+  addAddress?: Flex__<typeof AddAddress>;
 };
 
 export interface DefaultHomepageProps {}
@@ -289,6 +297,8 @@ function PlasmicHomepage__RenderFunc(props: {
               return (() => {
                 if ($ctx.params?.slug?.includes("addPatient"))
                   return "addPatient";
+                if ($ctx.params?.slug?.includes("addAddress"))
+                  return "addAddress";
                 if ($ctx.params?.slug?.find(i => i.includes("pay_")))
                   return "payment";
                 if ($ctx.params?.slug?.includes("center")) return "center";
@@ -300,6 +310,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 if ($ctx.params?.slug?.includes("rules")) return "rules";
                 if ($ctx.params?.slug?.includes("notif")) return "notif";
                 if ($ctx.params?.slug?.includes("patient")) return "patient";
+                if ($ctx.params?.slug?.includes("address")) return "address";
                 if ($ctx.params?.slug?.includes("reminderSetting"))
                   return "reminderSetting";
                 if ($ctx.params?.slug?.[1] != undefined) return "subcategories";
@@ -1130,6 +1141,54 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => "love"
+      },
+      {
+        path: "address.subcategories",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "address.refresh",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "addAddress.token",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "addAddress.id",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "addAddress.openCity",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "addAddress.refresh",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "center.userSelectOpendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "center.entryOpendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -1204,6 +1263,11 @@ function PlasmicHomepage__RenderFunc(props: {
               [sty.roothomePage2_user_page_patient]:
                 hasVariant($state, "homePage2", "user") &&
                 hasVariant($state, "page", "patient"),
+              [sty.rootpage_addAddress]: hasVariant(
+                $state,
+                "page",
+                "addAddress"
+              ),
               [sty.rootpage_booking]: hasVariant($state, "page", "booking"),
               [sty.rootpage_booking_homePage2_home]:
                 hasVariant($state, "homePage2", "home") &&
@@ -1262,7 +1326,7 @@ function PlasmicHomepage__RenderFunc(props: {
             onMount={async () => {
               const $steps = {};
 
-              $steps["getCookie"] = true
+              $steps["getCookie"] = false
                 ? (() => {
                     const actionArgs = { args: ["token"] };
                     return $globalActions["Fragment.getCookie"]?.apply(null, [
@@ -1278,24 +1342,23 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["getCookie"] = await $steps["getCookie"];
               }
 
-              $steps["goToLogin"] =
-                $steps.getCookie == null || $steps.getCookie == ""
-                  ? (() => {
-                      const actionArgs = { destination: `/login/[[...step]]` };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
+              $steps["goToLogin"] = false
+                ? (() => {
+                    const actionArgs = { destination: `/login/[[...step]]` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
               if (
                 $steps["goToLogin"] != null &&
                 typeof $steps["goToLogin"] === "object" &&
@@ -1304,7 +1367,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["goToLogin"] = await $steps["goToLogin"];
               }
 
-              $steps["updateToken"] = true
+              $steps["updateToken"] = false
                 ? (() => {
                     const actionArgs = {
                       variable: {
@@ -1338,50 +1401,58 @@ function PlasmicHomepage__RenderFunc(props: {
           {(
             hasVariant($state, "homePage2", "reminder")
               ? true
-              : hasVariant($state, "page", "reminderSetting")
+              : hasVariant($state, "page", "addAddress")
                 ? true
-                : hasVariant($state, "page", "patient")
+                : hasVariant($state, "page", "address")
                   ? true
-                  : hasVariant($state, "page", "addPatient")
+                  : hasVariant($state, "page", "reminderSetting")
                     ? true
-                    : hasVariant($state, "page", "notif")
+                    : hasVariant($state, "page", "patient")
                       ? true
-                      : hasVariant($state, "page", "rules")
+                      : hasVariant($state, "page", "addPatient")
                         ? true
-                        : hasVariant($state, "page", "faq")
+                        : hasVariant($state, "page", "notif")
                           ? true
-                          : hasVariant($state, "page", "about")
+                          : hasVariant($state, "page", "rules")
                             ? true
-                            : hasVariant($state, "page", "booking")
+                            : hasVariant($state, "page", "faq")
                               ? true
-                              : hasVariant($state, "page", "editUser")
+                              : hasVariant($state, "page", "about")
                                 ? true
-                                : hasVariant($state, "page", "payment")
+                                : hasVariant($state, "page", "booking")
                                   ? true
-                                  : hasVariant($state, "page", "center")
+                                  : hasVariant($state, "page", "editUser")
                                     ? true
-                                    : hasVariant(
-                                          $state,
-                                          "page",
-                                          "subcategories"
-                                        )
+                                    : hasVariant($state, "page", "payment")
                                       ? true
-                                      : hasVariant($state, "page", "categories")
+                                      : hasVariant($state, "page", "center")
                                         ? true
-                                        : (() => {
-                                            try {
-                                              return $state.token != "";
-                                            } catch (e) {
-                                              if (
-                                                e instanceof TypeError ||
-                                                e?.plasmicType ===
-                                                  "PlasmicUndefinedDataError"
-                                              ) {
-                                                return true;
-                                              }
-                                              throw e;
-                                            }
-                                          })()
+                                        : hasVariant(
+                                              $state,
+                                              "page",
+                                              "subcategories"
+                                            )
+                                          ? true
+                                          : hasVariant(
+                                                $state,
+                                                "page",
+                                                "categories"
+                                              )
+                                            ? true
+                                            : (() => {
+                                                try {
+                                                  return $state.token != "";
+                                                } catch (e) {
+                                                  if (
+                                                    e instanceof TypeError ||
+                                                    e?.plasmicType ===
+                                                      "PlasmicUndefinedDataError"
+                                                  ) {
+                                                    return true;
+                                                  }
+                                                  throw e;
+                                                }
+                                              })()
           ) ? (
             <div
               data-plasmic-name={"homePage"}
@@ -1393,10 +1464,20 @@ function PlasmicHomepage__RenderFunc(props: {
                   "reminder"
                 ),
                 [sty.homePagepage_about]: hasVariant($state, "page", "about"),
+                [sty.homePagepage_addAddress]: hasVariant(
+                  $state,
+                  "page",
+                  "addAddress"
+                ),
                 [sty.homePagepage_addPatient]: hasVariant(
                   $state,
                   "page",
                   "addPatient"
+                ),
+                [sty.homePagepage_address]: hasVariant(
+                  $state,
+                  "page",
+                  "address"
                 ),
                 [sty.homePagepage_booking]: hasVariant(
                   $state,
@@ -2143,6 +2224,48 @@ function PlasmicHomepage__RenderFunc(props: {
                       "booking"
                     )
                   })}
+                  goToAddress={async () => {
+                    const $steps = {};
+
+                    $steps["goToHomepage"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/${(() => {
+                              try {
+                                return $ctx.params.page;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}/${"address"}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToHomepage"] != null &&
+                      typeof $steps["goToHomepage"] === "object" &&
+                      typeof $steps["goToHomepage"].then === "function"
+                    ) {
+                      $steps["goToHomepage"] = await $steps["goToHomepage"];
+                    }
+                  }}
                   goToBooking={async event => {
                     const $steps = {};
 
@@ -2471,36 +2594,40 @@ function PlasmicHomepage__RenderFunc(props: {
           {(
             hasVariant($state, "homePage2", "reminder")
               ? true
-              : hasVariant($state, "page", "reminderSetting")
+              : hasVariant($state, "page", "addAddress")
                 ? true
-                : hasVariant($state, "page", "patient")
+                : hasVariant($state, "page", "address")
                   ? true
-                  : hasVariant($state, "page", "addPatient")
+                  : hasVariant($state, "page", "reminderSetting")
                     ? true
-                    : hasVariant($state, "page", "notif")
+                    : hasVariant($state, "page", "patient")
                       ? true
-                      : hasVariant($state, "page", "rules")
+                      : hasVariant($state, "page", "addPatient")
                         ? true
-                        : hasVariant($state, "page", "faq")
+                        : hasVariant($state, "page", "notif")
                           ? true
-                          : hasVariant($state, "page", "about")
+                          : hasVariant($state, "page", "rules")
                             ? true
-                            : hasVariant($state, "page", "booking")
+                            : hasVariant($state, "page", "faq")
                               ? true
-                              : (() => {
-                                  try {
-                                    return $state.token != "";
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return true;
-                                    }
-                                    throw e;
-                                  }
-                                })()
+                              : hasVariant($state, "page", "about")
+                                ? true
+                                : hasVariant($state, "page", "booking")
+                                  ? true
+                                  : (() => {
+                                      try {
+                                        return $state.token != "";
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return true;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
           ) ? (
             <div
               className={classNames("all", sty.freeBox__yWuCa, {
@@ -2519,10 +2646,20 @@ function PlasmicHomepage__RenderFunc(props: {
                   "page",
                   "about"
                 ),
+                [sty.freeBoxpage_addAddress__yWuCabBlZ]: hasVariant(
+                  $state,
+                  "page",
+                  "addAddress"
+                ),
                 [sty.freeBoxpage_addPatient__yWuCa0Pk0]: hasVariant(
                   $state,
                   "page",
                   "addPatient"
+                ),
+                [sty.freeBoxpage_address__yWuCaxcLdE]: hasVariant(
+                  $state,
+                  "page",
+                  "address"
                 ),
                 [sty.freeBoxpage_booking__yWuCajjDoQ]: hasVariant(
                   $state,
@@ -3353,6 +3490,10 @@ function PlasmicHomepage__RenderFunc(props: {
                 "subcategories"
               )
             })}
+            entryOpendialog={generateStateValueProp($state, [
+              "center",
+              "entryOpendialog"
+            ])}
             goToPayment={async id => {
               const $steps = {};
 
@@ -3452,11 +3593,39 @@ function PlasmicHomepage__RenderFunc(props: {
                   })()
             }
             id2={generateStateValueProp($state, ["center", "id2"])}
+            onEntryOpendialogChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "center",
+                "entryOpendialog"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
             onId2Change={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["center", "id2"]).apply(
                 null,
                 eventArgs
               );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onUserSelectOpendialogChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "center",
+                "userSelectOpendialog"
+              ]).apply(null, eventArgs);
 
               if (
                 eventArgs.length > 1 &&
@@ -3565,6 +3734,10 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["goToHomepage"] = await $steps["goToHomepage"];
               }
             }}
+            userSelectOpendialog={generateStateValueProp($state, [
+              "center",
+              "userSelectOpendialog"
+            ])}
           />
 
           <Booking
@@ -4033,6 +4206,29 @@ function PlasmicHomepage__RenderFunc(props: {
               ) {
                 $steps["runCode"] = await $steps["runCode"];
               }
+
+              $steps["runCode2"] = $ctx.pagePath.includes("center")
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.center.entryOpendialog = true;
+                          return ($state.center.userSelectOpendialog = true);
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode2"] != null &&
+                typeof $steps["runCode2"] === "object" &&
+                typeof $steps["runCode2"].then === "function"
+              ) {
+                $steps["runCode2"] = await $steps["runCode2"];
+              }
             }}
             className={classNames("__wab_instance", sty.addPatient, {
               [sty.addPatientpage_addPatient]: hasVariant(
@@ -4476,6 +4672,197 @@ function PlasmicHomepage__RenderFunc(props: {
             tel={generateStateValueProp($state, ["reminderSetting", "tel"])}
             topic={generateStateValueProp($state, ["reminderSetting", "topic"])}
           />
+
+          <Address
+            data-plasmic-name={"address"}
+            data-plasmic-override={overrides.address}
+            addUser={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            $state.slug.push("addAddress");
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+            className={classNames("__wab_instance", sty.address, {
+              [sty.addresspage_addAddress]: hasVariant(
+                $state,
+                "page",
+                "addAddress"
+              ),
+              [sty.addresspage_address]: hasVariant($state, "page", "address")
+            })}
+            onRefreshChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["address", "refresh"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onSubcategoriesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "address",
+                "subcategories"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            refresh={generateStateValueProp($state, ["address", "refresh"])}
+            subcategories={generateStateValueProp($state, [
+              "address",
+              "subcategories"
+            ])}
+            token={(() => {
+              try {
+                return $state.token;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          />
+
+          <AddAddress
+            data-plasmic-name={"addAddress"}
+            data-plasmic-override={overrides.addAddress}
+            className={classNames("__wab_instance", sty.addAddress, {
+              [sty.addAddresspage_addAddress]: hasVariant(
+                $state,
+                "page",
+                "addAddress"
+              )
+            })}
+            id={generateStateValueProp($state, ["addAddress", "id"])}
+            onIdChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["addAddress", "id"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onOpenCityChange2={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "addAddress",
+                "openCity"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onRefreshChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "addAddress",
+                "refresh"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onTokenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["addAddress", "token"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            openCity={generateStateValueProp($state, [
+              "addAddress",
+              "openCity"
+            ])}
+            refresh={generateStateValueProp($state, ["addAddress", "refresh"])}
+            token={generateStateValueProp($state, ["addAddress", "token"])}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -4509,7 +4896,9 @@ const PlasmicDescendants = {
     "addPatient",
     "search",
     "patient",
-    "reminderSetting"
+    "reminderSetting",
+    "address",
+    "addAddress"
   ],
   sideEffect: ["sideEffect"],
   homePage: [
@@ -4543,7 +4932,9 @@ const PlasmicDescendants = {
   addPatient: ["addPatient"],
   search: ["search"],
   patient: ["patient"],
-  reminderSetting: ["reminderSetting"]
+  reminderSetting: ["reminderSetting"],
+  address: ["address"],
+  addAddress: ["addAddress"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -4575,6 +4966,8 @@ type NodeDefaultElementType = {
   search: typeof ApiRequest;
   patient: typeof Patient;
   reminderSetting: typeof ReminderSetting;
+  address: typeof Address;
+  addAddress: typeof AddAddress;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -4664,6 +5057,8 @@ export const PlasmicHomepage = Object.assign(
     search: makeNodeComponent("search"),
     patient: makeNodeComponent("patient"),
     reminderSetting: makeNodeComponent("reminderSetting"),
+    address: makeNodeComponent("address"),
+    addAddress: makeNodeComponent("addAddress"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

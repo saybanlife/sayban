@@ -62,6 +62,7 @@ import {
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -69,10 +70,10 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicAddress.module.css"; // plasmic-import: O3mS57D3HQdC/css
 
-import Icon101Icon from "./icons/PlasmicIcon__Icon101"; // plasmic-import: BtiiFK9xtpak/icon
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
-import UserIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__User"; // plasmic-import: d1LJS78vGoJH/icon
+import Icon12Icon from "./icons/PlasmicIcon__Icon12"; // plasmic-import: BFmheOgAQHY6/icon
+import PlusIcon from "./icons/PlasmicIcon__Plus"; // plasmic-import: W7l2-ibgsqkr/icon
 
 createPlasmicElementProxy;
 
@@ -109,6 +110,7 @@ export type PlasmicAddress__OverridesType = {
   apiRequest?: Flex__<typeof ApiRequest>;
   img?: Flex__<typeof PlasmicImg__>;
   button?: Flex__<typeof Button>;
+  textCollapse?: Flex__<typeof TextCollapse>;
 };
 
 export interface DefaultAddressProps {
@@ -236,33 +238,11 @@ function PlasmicAddress__RenderFunc(props: {
       <Header
         data-plasmic-name={"header"}
         data-plasmic-override={overrides.header}
+        children={null}
         className={classNames("__wab_instance", sty.header)}
-        slot={"\u0647\u0645\u0631\u0627\u0647\u0627\u0646"}
-      >
-        <Icon101Icon
-          className={classNames("all", sty.svg___0MpUu)}
-          onClick={async event => {
-            const $steps = {};
+        slot={"\u0622\u062f\u0631\u0633 \u0647\u0627\u06cc \u0634\u0645\u0627"}
+      />
 
-            $steps["runAddUser"] = true
-              ? (() => {
-                  const actionArgs = { eventRef: $props["addUser"] };
-                  return (({ eventRef, args }) => {
-                    return eventRef?.(...(args ?? []));
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runAddUser"] != null &&
-              typeof $steps["runAddUser"] === "object" &&
-              typeof $steps["runAddUser"].then === "function"
-            ) {
-              $steps["runAddUser"] = await $steps["runAddUser"];
-            }
-          }}
-          role={"img"}
-        />
-      </Header>
       <div className={classNames("all", sty.freeBox__hds48)}>
         <ApiRequest
           data-plasmic-name={"apiRequest"}
@@ -325,7 +305,7 @@ function PlasmicAddress__RenderFunc(props: {
             r: $state.refresh
           }}
           shouldFetch={true}
-          url={"/patients"}
+          url={"/address"}
         >
           {(() => {
             try {
@@ -354,7 +334,7 @@ function PlasmicAddress__RenderFunc(props: {
                 displayWidth={"30%"}
                 loading={"lazy"}
                 src={{
-                  src: "/plasmic/sayban/images/image30.svg",
+                  src: "/plasmic/sayban/images/image35.svg",
                   fullWidth: 280,
                   fullHeight: 280,
                   aspectRatio: undefined
@@ -363,14 +343,14 @@ function PlasmicAddress__RenderFunc(props: {
 
               <div className={classNames("all", "__wab_text", sty.text__e9Hoj)}>
                 {
-                  "\u0647\u0646\u0648\u0632 \u0647\u0645\u0631\u0627\u0647\u06cc \u0627\u0636\u0627\u0641\u0647 \u0646\u06a9\u0631\u062f\u0647\u200c\u0627\u06cc\u062f"
+                  "\u0647\u0646\u0648\u0632 \u0622\u062f\u0631\u0633\u06cc \u0627\u0636\u0627\u0641\u0647 \u0646\u06a9\u0631\u062f\u0647\u200c\u0627\u06cc\u062f"
                 }
               </div>
               <div
                 className={classNames("all", "__wab_text", sty.text___18Pu4)}
               >
                 {
-                  "\u0628\u0627 \u0627\u0641\u0632\u0648\u062f\u0646 \u0647\u0645\u0631\u0627\u0647\u0627\u0646\u060c \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u0633\u0631\u06cc\u0639\u200c\u062a\u0631 \u0628\u0631\u0627\u06cc \u0622\u0646\u200c\u0647\u0627 \u0646\u0648\u0628\u062a \u0631\u0632\u0631\u0648 \u06a9\u0646\u06cc\u062f."
+                  "\u0628\u0627 \u0627\u0641\u0632\u0648\u062f\u0646 \u0622\u062f\u0631\u0633\u060c \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u0633\u0631\u06cc\u0639\u200c\u062a\u0631 \u0628\u0631\u0627\u06cc \u0622\u0646\u200c\u0647\u0627 \u0646\u0648\u0628\u062a \u0631\u0632\u0631\u0648 \u06a9\u0646\u06cc\u062f."
                 }
               </div>
               <Button
@@ -384,7 +364,7 @@ function PlasmicAddress__RenderFunc(props: {
                     className={classNames("all", "__wab_text", sty.text___70P9)}
                   >
                     {
-                      "\u0627\u0641\u0632\u0648\u062f\u0646 \u0647\u0645\u0631\u0627\u0647"
+                      "\u0627\u0641\u0632\u0648\u062f\u0646 \u0622\u062f\u0631\u0633"
                     }
                   </div>
                 }
@@ -470,7 +450,7 @@ function PlasmicAddress__RenderFunc(props: {
                     key={currentIndex}
                   >
                     <div className={classNames("all", sty.freeBox__eJiFn)}>
-                      <UserIcon
+                      <Icon12Icon
                         className={classNames("all", sty.svg__qjOO)}
                         role={"img"}
                       />
@@ -483,17 +463,31 @@ function PlasmicAddress__RenderFunc(props: {
                           sty.text__okrV
                         )}
                       >
-                        <React.Fragment>{currentItem.name}</React.Fragment>
+                        <React.Fragment>{currentItem.title}</React.Fragment>
                       </div>
-                      <div
+                      <TextCollapse
+                        data-plasmic-name={"textCollapse"}
+                        data-plasmic-override={overrides.textCollapse}
                         className={classNames(
-                          "all",
-                          "__wab_text",
-                          sty.text__kdSkd
+                          "__wab_instance",
+                          sty.textCollapse
                         )}
-                      >
-                        <React.Fragment>{`کد ملی: ${currentItem.national_code}`}</React.Fragment>
-                      </div>
+                        enableToggle={false}
+                        maxLines={2}
+                        text={(() => {
+                          try {
+                            return `${currentItem.address} ${currentItem.details}`;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}
+                      />
                     </div>
                   </div>
                 );
@@ -502,16 +496,24 @@ function PlasmicAddress__RenderFunc(props: {
           ) : null}
         </ApiRequest>
       </div>
+      <div className={classNames("all", sty.freeBox___74AZu)}>
+        <PlusIcon className={classNames("all", sty.svg__yGrnX)} role={"img"} />
+
+        <div className={classNames("all", "__wab_text", sty.text__lLtwt)}>
+          {"\u0627\u0641\u0632\u0648\u062f\u0646 \u0622\u062f\u0631\u0633"}
+        </div>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "apiRequest", "img", "button"],
+  root: ["root", "header", "apiRequest", "img", "button", "textCollapse"],
   header: ["header"],
-  apiRequest: ["apiRequest", "img", "button"],
+  apiRequest: ["apiRequest", "img", "button", "textCollapse"],
   img: ["img"],
-  button: ["button"]
+  button: ["button"],
+  textCollapse: ["textCollapse"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -522,6 +524,7 @@ type NodeDefaultElementType = {
   apiRequest: typeof ApiRequest;
   img: typeof PlasmicImg__;
   button: typeof Button;
+  textCollapse: typeof TextCollapse;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -590,6 +593,7 @@ export const PlasmicAddress = Object.assign(
     apiRequest: makeNodeComponent("apiRequest"),
     img: makeNodeComponent("img"),
     button: makeNodeComponent("button"),
+    textCollapse: makeNodeComponent("textCollapse"),
 
     // Metadata about props expected for PlasmicAddress
     internalVariantProps: PlasmicAddress__VariantProps,

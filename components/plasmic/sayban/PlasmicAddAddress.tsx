@@ -89,6 +89,8 @@ export type PlasmicAddAddress__ArgsType = {
   onOpenCityChange2?: (val: string) => void;
   cityBack?: () => void;
   addNew?: () => void;
+  refresh?: string;
+  onRefreshChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicAddAddress__ArgsType;
 export const PlasmicAddAddress__ArgProps = new Array<ArgPropType>(
@@ -100,7 +102,9 @@ export const PlasmicAddAddress__ArgProps = new Array<ArgPropType>(
   "openCity",
   "onOpenCityChange2",
   "cityBack",
-  "addNew"
+  "addNew",
+  "refresh",
+  "onRefreshChange"
 );
 
 export type PlasmicAddAddress__OverridesType = {
@@ -122,6 +126,8 @@ export interface DefaultAddAddressProps {
   onOpenCityChange2?: (val: string) => void;
   cityBack?: () => void;
   addNew?: () => void;
+  refresh?: string;
+  onRefreshChange?: (val: string) => void;
   className?: string;
 }
 
@@ -194,7 +200,7 @@ function PlasmicAddAddress__RenderFunc(props: {
         path: "loaction2.address",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "loaction2.lat",
@@ -219,6 +225,32 @@ function PlasmicAddAddress__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "loaction2.address2",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "loaction2.post",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "loaction2.title2",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "refresh",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "refresh",
+        onChangeProp: "onRefreshChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -256,18 +288,32 @@ function PlasmicAddAddress__RenderFunc(props: {
         data-plasmic-override={overrides.header}
         className={classNames("__wab_instance", sty.header)}
         slot={
-          "\u0627\u0641\u0632\u0648\u062f\u0646 \u0641\u0631\u062f \u062c\u062f\u06cc\u062f"
+          "\u0627\u0641\u0632\u0648\u062f\u0646 \u0622\u062f\u0631\u0633 \u062c\u062f\u06cc\u062f"
         }
       />
 
       <Loaction2
         data-plasmic-name={"loaction2"}
         data-plasmic-override={overrides.loaction2}
-        address={generateStateValueProp($state, ["loaction2", "address"])}
         city2={generateStateValueProp($state, ["loaction2", "city2"])}
         className={classNames("__wab_instance", sty.loaction2)}
+        loaction2={true}
         onAddressChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["loaction2", "address"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onAddressChange2={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["loaction2", "address2"]).apply(
             null,
             eventArgs
           );
@@ -322,6 +368,34 @@ function PlasmicAddAddress__RenderFunc(props: {
             return;
           }
         }}
+        onPostChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["loaction2", "post"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onTitleChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["loaction2", "title2"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
       />
 
       <div
@@ -347,10 +421,79 @@ function PlasmicAddAddress__RenderFunc(props: {
           onClick={async event => {
             const $steps = {};
 
-            $steps["invokeGlobalAction"] = true
+            $steps["runCode"] = true
               ? (() => {
                   const actionArgs = {
-                    args: ["POST", "add/address", undefined, undefined]
+                    customFunction: async () => {
+                      return ($state.button.loading = true);
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runCode"] != null &&
+              typeof $steps["runCode"] === "object" &&
+              typeof $steps["runCode"].then === "function"
+            ) {
+              $steps["runCode"] = await $steps["runCode"];
+            }
+
+            $steps["runCode3"] = true
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return (() => {
+                        if (!$state.loaction2.city2)
+                          return "لطفاً شهر را وارد کنید";
+                        if (!$state.loaction2.address)
+                          return "لطفاً آدرس را وارد کنید";
+                        if (!$state.loaction2.address2)
+                          return "لطفاً جزئیات آدرس را وارد کنید";
+                        if (!$state.loaction2.title2)
+                          return "لطفاً عنوان آدرس را وارد کنید";
+                      })();
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runCode3"] != null &&
+              typeof $steps["runCode3"] === "object" &&
+              typeof $steps["runCode3"].then === "function"
+            ) {
+              $steps["runCode3"] = await $steps["runCode3"];
+            }
+
+            $steps["invokeGlobalAction"] = !$steps.runCode3
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      "POST",
+                      "add/address",
+                      undefined,
+                      {
+                        title: $state.loaction2.title2,
+                        city: $state.loaction2.city2,
+                        address: $state.loaction2.address,
+                        details: $state.loaction2.address2,
+                        postal_code: $state.loaction2.post,
+                        latitude: $state.loaction2.lat,
+                        longitude: $state.loaction2.lon,
+                        user_id: $props.id
+                      },
+
+                      {
+                        headers: {
+                          Authorization: `Bearer ${$state.token}`
+                        }
+                      }
+                    ]
                   };
                   return $globalActions["Fragment.apiRequest"]?.apply(null, [
                     ...actionArgs.args
@@ -363,6 +506,125 @@ function PlasmicAddAddress__RenderFunc(props: {
               typeof $steps["invokeGlobalAction"].then === "function"
             ) {
               $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
+            }
+
+            $steps["invokeGlobalAction2"] = $steps.runCode3
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      "error",
+                      (() => {
+                        try {
+                          return $steps.runCode3;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })(),
+                      "bottom-center"
+                    ]
+                  };
+                  return $globalActions["Fragment.showToast"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["invokeGlobalAction2"] != null &&
+              typeof $steps["invokeGlobalAction2"] === "object" &&
+              typeof $steps["invokeGlobalAction2"].then === "function"
+            ) {
+              $steps["invokeGlobalAction2"] =
+                await $steps["invokeGlobalAction2"];
+            }
+
+            $steps["invokeGlobalAction3"] =
+              $steps.invokeGlobalAction?.data?.success == true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "success",
+                        "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f.",
+                        "bottom-center"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+            if (
+              $steps["invokeGlobalAction3"] != null &&
+              typeof $steps["invokeGlobalAction3"] === "object" &&
+              typeof $steps["invokeGlobalAction3"].then === "function"
+            ) {
+              $steps["invokeGlobalAction3"] =
+                await $steps["invokeGlobalAction3"];
+            }
+
+            $steps["invokeGlobalAction4"] =
+              $steps.invokeGlobalAction?.data?.success == false
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "error",
+                        (() => {
+                          try {
+                            return (
+                              $steps.invokeGlobalAction?.data?.message || ""
+                            );
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+            if (
+              $steps["invokeGlobalAction4"] != null &&
+              typeof $steps["invokeGlobalAction4"] === "object" &&
+              typeof $steps["invokeGlobalAction4"].then === "function"
+            ) {
+              $steps["invokeGlobalAction4"] =
+                await $steps["invokeGlobalAction4"];
+            }
+
+            $steps["runCode2"] = true
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return (() => {
+                        $state.button.loading = false;
+                        return ($state.refresh = Date.now().toString());
+                      })();
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runCode2"] != null &&
+              typeof $steps["runCode2"] === "object" &&
+              typeof $steps["runCode2"].then === "function"
+            ) {
+              $steps["runCode2"] = await $steps["runCode2"];
             }
           }}
           onLoadingChange={async (...eventArgs: any) => {

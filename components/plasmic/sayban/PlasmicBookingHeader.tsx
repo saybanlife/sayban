@@ -59,7 +59,6 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
 import { DatePicker } from "@/fragment/components/date-picker"; // plasmic-import: NS3tI_-DZdxC/codeComponent
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
@@ -69,9 +68,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicBookingHeader.module.css"; // plasmic-import: K9ETXxPuQRCy/css
 
-import Icon33Icon from "./icons/PlasmicIcon__Icon33"; // plasmic-import: MJBmXdq7GQ5D/icon
-import Icon90Icon from "./icons/PlasmicIcon__Icon90"; // plasmic-import: fhMmwnceyLh4/icon
-import SquareXIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__SquareX"; // plasmic-import: vlg82PNC_PuM/icon
 import Icon91Icon from "./icons/PlasmicIcon__Icon91"; // plasmic-import: lnClONjnY1AS/icon
 
 createPlasmicElementProxy;
@@ -107,12 +103,11 @@ export const PlasmicBookingHeader__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicBookingHeader__OverridesType = {
   root?: Flex__<"div">;
-  img?: Flex__<typeof PlasmicImg__>;
-  embedHtml?: Flex__<typeof Embed>;
   popover?: Flex__<typeof AntdPopover>;
   datePicker?: Flex__<typeof DatePicker>;
   popover2?: Flex__<typeof AntdPopover>;
   datePicker2?: Flex__<typeof DatePicker>;
+  svg?: Flex__<"svg">;
 };
 
 export interface DefaultBookingHeaderProps {
@@ -244,240 +239,70 @@ function PlasmicBookingHeader__RenderFunc(props: {
         { [sty.rootfilter]: hasVariant($state, "filter", "filter") }
       )}
     >
-      <PlasmicImg__
-        data-plasmic-name={"img"}
-        data-plasmic-override={overrides.img}
-        alt={""}
-        className={classNames(sty.img)}
-        displayHeight={"auto"}
-        displayMaxHeight={"none"}
-        displayMaxWidth={"100%"}
-        displayMinHeight={"0"}
-        displayMinWidth={"0"}
-        displayWidth={"auto"}
-        loading={"lazy"}
-        src={{
-          src: "/plasmic/sayban/images/image24.svg",
-          fullWidth: 200,
-          fullHeight: 200,
-          aspectRatio: undefined
-        }}
-      />
-
-      <div className={classNames("all", sty.freeBox__ld68V)}>
-        <Icon33Icon
-          className={classNames("all", sty.svg__vmNc)}
-          onClick={async event => {
-            const $steps = {};
-
-            $steps["runCode"] = true
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return window.history.back();
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode"] != null &&
-              typeof $steps["runCode"] === "object" &&
-              typeof $steps["runCode"].then === "function"
-            ) {
-              $steps["runCode"] = await $steps["runCode"];
-            }
-          }}
-          role={"img"}
-        />
-
-        <div className={classNames("all", sty.freeBox__ftmfq)}>
-          <div className={classNames("all", "__wab_text", sty.text__ibP8V)}>
+      <div
+        className={classNames("all", sty.freeBox__jwSv, {
+          [sty.freeBoxfilter__jwSvLrf0Y]: hasVariant($state, "filter", "filter")
+        })}
+      >
+        <div className={classNames("all", sty.freeBox__axbDb)}>
+          <div className={classNames("all", "__wab_text", sty.text__hRihg)}>
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.active;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "0";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+          <div className={classNames("all", "__wab_text", sty.text__c3FG)}>
             {
-              "\u0633\u0648\u0627\u0628\u0642 \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a\u200c\u0647\u0627"
+              "\u0631\u0632\u0631\u0648\u200c\u0647\u0627\u06cc \u0641\u0639\u0627\u0644"
             }
           </div>
-          <PlasmicIcon__
-            PlasmicIconType={
-              hasVariant($state, "filter", "filter") ? Icon90Icon : Icon90Icon
-            }
-            className={classNames("all", sty.svg__nOvDd, {
-              [sty.svgfilter__nOvDdLrf0Y]: hasVariant(
-                $state,
-                "filter",
-                "filter"
-              )
-            })}
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["updateFilter"] = true
-                ? (() => {
-                    const actionArgs = {
-                      vgroup: "filter",
-                      operation: 2,
-                      value: "filter"
-                    };
-                    return (({ vgroup, value }) => {
-                      if (typeof value === "string") {
-                        value = [value];
-                      }
-
-                      const oldValue = $stateGet($state, vgroup);
-                      $stateSet($state, vgroup, !oldValue);
-                      return !oldValue;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateFilter"] != null &&
-                typeof $steps["updateFilter"] === "object" &&
-                typeof $steps["updateFilter"].then === "function"
-              ) {
-                $steps["updateFilter"] = await $steps["updateFilter"];
-              }
-            }}
-            role={"img"}
-          />
-
-          <SquareXIcon
-            className={classNames("all", sty.svg__iiQq6, {
-              [sty.svgfilter__iiQq6Lrf0Y]: hasVariant(
-                $state,
-                "filter",
-                "filter"
-              )
-            })}
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["updateFilter"] = true
-                ? (() => {
-                    const actionArgs = {
-                      vgroup: "filter",
-                      operation: 2,
-                      value: "filter"
-                    };
-                    return (({ vgroup, value }) => {
-                      if (typeof value === "string") {
-                        value = [value];
-                      }
-
-                      const oldValue = $stateGet($state, vgroup);
-                      $stateSet($state, vgroup, !oldValue);
-                      return !oldValue;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateFilter"] != null &&
-                typeof $steps["updateFilter"] === "object" &&
-                typeof $steps["updateFilter"].then === "function"
-              ) {
-                $steps["updateFilter"] = await $steps["updateFilter"];
-              }
-            }}
-            role={"img"}
-          />
-
-          <Embed
-            data-plasmic-name={"embedHtml"}
-            data-plasmic-override={overrides.embedHtml}
-            className={classNames("__wab_instance", sty.embedHtml)}
-            code={
-              '<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>\r\n'
-            }
-          />
         </div>
-      </div>
-      {(
-        hasVariant($state, "filter", "filter")
-          ? true
-          : (() => {
-              try {
-                return $props.all > 0;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
-                }
-                throw e;
-              }
-            })()
-      ) ? (
         <div
-          className={classNames("all", sty.freeBox__jwSv, {
-            [sty.freeBoxfilter__jwSvLrf0Y]: hasVariant(
+          className={classNames("all", sty.freeBox__xdDPl, {
+            [sty.freeBoxfilter__xdDPlLrf0Y]: hasVariant(
               $state,
               "filter",
               "filter"
             )
           })}
-        >
-          <div className={classNames("all", sty.freeBox__axbDb)}>
-            <div className={classNames("all", "__wab_text", sty.text__hRihg)}>
-              <React.Fragment>
-                {(() => {
-                  try {
-                    return $props.active;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "0";
-                    }
-                    throw e;
-                  }
-                })()}
-              </React.Fragment>
-            </div>
-            <div className={classNames("all", "__wab_text", sty.text__c3FG)}>
-              {
-                "\u0631\u0632\u0631\u0648\u200c\u0647\u0627\u06cc \u0641\u0639\u0627\u0644"
-              }
-            </div>
-          </div>
-          <div
-            className={classNames("all", sty.freeBox__xdDPl, {
-              [sty.freeBoxfilter__xdDPlLrf0Y]: hasVariant(
-                $state,
-                "filter",
-                "filter"
-              )
-            })}
-          />
+        />
 
-          <div className={classNames("all", sty.freeBox__v4Y5I)}>
-            <div className={classNames("all", "__wab_text", sty.text__nRcKx)}>
-              <React.Fragment>
-                {(() => {
-                  try {
-                    return $props.all;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "";
-                    }
-                    throw e;
+        <div className={classNames("all", sty.freeBox__v4Y5I)}>
+          <div className={classNames("all", "__wab_text", sty.text__nRcKx)}>
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.all;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
                   }
-                })()}
-              </React.Fragment>
-            </div>
-            <div className={classNames("all", "__wab_text", sty.text__ubblM)}>
-              {
-                "\u062a\u0639\u062f\u0627\u062f \u06a9\u0644 \u0631\u0632\u0631\u0648\u200c\u0647\u0627"
-              }
-            </div>
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+          <div className={classNames("all", "__wab_text", sty.text__ubblM)}>
+            {
+              "\u062a\u0639\u062f\u0627\u062f \u06a9\u0644 \u0631\u0632\u0631\u0648\u200c\u0647\u0627"
+            }
           </div>
         </div>
-      ) : null}
+      </div>
       <div
         className={classNames("all", sty.freeBox__ybn5G, {
           [sty.freeBoxfilter__ybn5GLrf0Y]: hasVariant(
@@ -589,21 +414,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
               }
             })() ? (
               <div className={classNames("all", "__wab_text", sty.text__lZZkp)}>
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return "از تاریخ";
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "\u062a\u0627 \u062a\u0627\u0631\u06cc\u062e";
-                      }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
+                {"\u062a\u0627\u0631\u06cc\u062e \u0634\u0631\u0648\u0639"}
               </div>
             ) : null}
           </div>
@@ -709,21 +520,9 @@ function PlasmicBookingHeader__RenderFunc(props: {
               }
             })() ? (
               <div className={classNames("all", "__wab_text", sty.text__m7Qil)}>
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return "تا تاریخ";
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "\u062a\u0627 \u062a\u0627\u0631\u06cc\u062e";
-                      }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
+                {
+                  "\u062a\u0627\u0631\u06cc\u062e \u067e\u0627\u06cc\u0627\u0646"
+                }
               </div>
             ) : null}
           </div>
@@ -793,7 +592,9 @@ function PlasmicBookingHeader__RenderFunc(props: {
           }}
         >
           <Icon91Icon
-            className={classNames("all", sty.svg__zUGe2)}
+            data-plasmic-name={"svg"}
+            data-plasmic-override={overrides.svg}
+            className={classNames("all", sty.svg)}
             role={"img"}
           />
         </div>
@@ -803,33 +604,23 @@ function PlasmicBookingHeader__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: [
-    "root",
-    "img",
-    "embedHtml",
-    "popover",
-    "datePicker",
-    "popover2",
-    "datePicker2"
-  ],
-  img: ["img"],
-  embedHtml: ["embedHtml"],
+  root: ["root", "popover", "datePicker", "popover2", "datePicker2", "svg"],
   popover: ["popover", "datePicker"],
   datePicker: ["datePicker"],
   popover2: ["popover2", "datePicker2"],
-  datePicker2: ["datePicker2"]
+  datePicker2: ["datePicker2"],
+  svg: ["svg"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  img: typeof PlasmicImg__;
-  embedHtml: typeof Embed;
   popover: typeof AntdPopover;
   datePicker: typeof DatePicker;
   popover2: typeof AntdPopover;
   datePicker2: typeof DatePicker;
+  svg: "svg";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -894,12 +685,11 @@ export const PlasmicBookingHeader = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    img: makeNodeComponent("img"),
-    embedHtml: makeNodeComponent("embedHtml"),
     popover: makeNodeComponent("popover"),
     datePicker: makeNodeComponent("datePicker"),
     popover2: makeNodeComponent("popover2"),
     datePicker2: makeNodeComponent("datePicker2"),
+    svg: makeNodeComponent("svg"),
 
     // Metadata about props expected for PlasmicBookingHeader
     internalVariantProps: PlasmicBookingHeader__VariantProps,

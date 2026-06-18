@@ -29171,6 +29171,45 @@
           "cssFilePath": "plasmic/sayban/PlasmicLoaction2.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "UlHbL90VG9ra",
+          "name": "FilterIcon2",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicFilterIcon2.tsx",
+          "importSpec": {
+            "modulePath": "FilterIcon2.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicFilterIcon2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "aQ7bwo8mjCTA",
+          "name": "Filter2",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicFilter2.tsx",
+          "importSpec": {
+            "modulePath": "Filter2.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicFilter2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "jW7Kb-gwRG0G",
+          "name": "SelectedComponnent2",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicSelectedComponnent2.tsx",
+          "importSpec": {
+            "modulePath": "SelectedComponnent2.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicSelectedComponnent2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -30098,6 +30137,11 @@
           "id": "ZjluvBohZvYg",
           "name": "Icon106Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon106.tsx"
+        },
+        {
+          "id": "W7l2-ibgsqkr",
+          "name": "PlusIcon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Plus.tsx"
         }
       ],
       "images": [
@@ -30355,6 +30399,11 @@
           "id": "-03-5zNWuCPX",
           "name": "image 34",
           "filePath": "../public/plasmic/sayban/images/image34.svg"
+        },
+        {
+          "id": "fZRKkley48rV",
+          "name": "image 35",
+          "filePath": "../public/plasmic/sayban/images/image35.svg"
         }
       ],
       "indirect": false,

@@ -61,11 +61,15 @@ import {
 
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import ItemBooking from "../../ItemBooking"; // plasmic-import: NnzIun3_VRrR/component
+import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
+import ItemShow from "../../ItemShow"; // plasmic-import: hegjECXSYJcF/component
+import FilterIcon2 from "../../FilterIcon2"; // plasmic-import: UlHbL90VG9ra/component
 import BookingHeader from "../../BookingHeader"; // plasmic-import: K9ETXxPuQRCy/component
 import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
 import Status from "../../Status"; // plasmic-import: UhSHXabmHrQP/component
 import UploudeTime from "../../UploudeTime"; // plasmic-import: IxvwO5AMD5ex/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import Filter2 from "../../Filter2"; // plasmic-import: aQ7bwo8mjCTA/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -73,6 +77,8 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicBooking.module.css"; // plasmic-import: f1blqtlMCCYK/css
 
+import Icon62Icon from "./icons/PlasmicIcon__Icon62"; // plasmic-import: DmL_SuYFROX3/icon
+import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
 import UserIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__User"; // plasmic-import: d1LJS78vGoJH/icon
 import CalendarStatsIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CalendarStats"; // plasmic-import: oUYWhxUGA-WS/icon
 import CurrentLocationIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CurrentLocation"; // plasmic-import: AblxVode3mz8/icon
@@ -114,11 +120,14 @@ export type PlasmicBooking__OverridesType = {
   itemBooking?: Flex__<typeof ItemBooking>;
   img?: Flex__<typeof PlasmicImg__>;
   section?: Flex__<"section">;
+  header?: Flex__<typeof Header>;
+  filterIcon2?: Flex__<typeof FilterIcon2>;
   bookingHeader?: Flex__<typeof BookingHeader>;
   dialog?: Flex__<typeof Dialog>;
   status?: Flex__<typeof Status>;
   uploudeTime?: Flex__<typeof UploudeTime>;
   button?: Flex__<typeof Button>;
+  filter2?: Flex__<typeof Filter2>;
 };
 
 export interface DefaultBookingProps {
@@ -229,6 +238,86 @@ function PlasmicBooking__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "filters",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
+          {
+            label: "\u0633\u0648\u0627\u0628\u0642 \u062e\u0648\u062f\u0645",
+            value: "my_history",
+            icon: "history"
+          },
+          {
+            label:
+              "\u0633\u0648\u0627\u0628\u0642 \u0647\u0645\u0631\u0627\u0647\u0627\u0646",
+            value: "others_history",
+            icon: "group"
+          },
+          {
+            label:
+              "\u0633\u0641\u0627\u0631\u0634\u0627\u062a \u062c\u0627\u0631\u06cc",
+            value: "current_orders",
+            icon: "play"
+          },
+          {
+            label:
+              "\u0633\u0641\u0627\u0631\u0634\u0627\u062a \u0642\u0628\u0644\u06cc",
+            value: "previous_orders",
+            icon: "archive"
+          }
+        ]
+      },
+      {
+        path: "selectFilter",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "filter2.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "filter2.filtes",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.filters;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return {};
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "filter2.selectedComponnent2Selected",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.selectFilter;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -477,6 +566,185 @@ function PlasmicBooking__RenderFunc(props: {
         data-plasmic-override={overrides.section}
         className={classNames("all", sty.section)}
       >
+        <Header
+          data-plasmic-name={"header"}
+          data-plasmic-override={overrides.header}
+          className={classNames("__wab_instance", sty.header)}
+          search={true}
+          slot={
+            <div className={classNames("all", "__wab_text", sty.text___26COw)}>
+              {
+                "\u0633\u0648\u0627\u0628\u0642 \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a \u0647\u0627"
+              }
+            </div>
+          }
+          slot2={
+            <div className={classNames("all", sty.freeBox__dBJV)}>
+              <ItemShow
+                className={classNames("__wab_instance", sty.itemShow__nWyZg)}
+                currentItem={"\u0641\u06cc\u0644\u062a\u0631 \u0647\u0627"}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateFilter2Opendialog"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["filter2", "opendialog"]
+                          },
+                          operation: 4
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, !oldValue);
+                          return !oldValue;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateFilter2Opendialog"] != null &&
+                    typeof $steps["updateFilter2Opendialog"] === "object" &&
+                    typeof $steps["updateFilter2Opendialog"].then === "function"
+                  ) {
+                    $steps["updateFilter2Opendialog"] =
+                      await $steps["updateFilter2Opendialog"];
+                  }
+                }}
+              >
+                <Icon62Icon
+                  className={classNames("all", sty.svg__jmLuR)}
+                  role={"img"}
+                />
+              </ItemShow>
+              {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                (() => {
+                  try {
+                    return $state.filters;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()
+              ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                const currentItem = __plasmic_item_0;
+                const currentIndex = __plasmic_idx_0;
+                return (
+                  <ItemShow
+                    className={classNames(
+                      "__wab_instance",
+                      sty.itemShow___2Fi6T
+                    )}
+                    currentItem={(() => {
+                      try {
+                        return currentItem.label;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u0641\u06cc\u0644\u062a\u0631 \u0647\u0627";
+                        }
+                        throw e;
+                      }
+                    })()}
+                    key={currentIndex}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["runCode"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return (() => {
+                                  if ($state.selectFilter == currentItem.value)
+                                    return ($state.selectFilter = null);
+                                  else
+                                    return ($state.selectFilter =
+                                      currentItem.value);
+                                })();
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runCode"] != null &&
+                        typeof $steps["runCode"] === "object" &&
+                        typeof $steps["runCode"].then === "function"
+                      ) {
+                        $steps["runCode"] = await $steps["runCode"];
+                      }
+                    }}
+                    select={(() => {
+                      try {
+                        return currentItem.value == $state.selectFilter;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "select";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  >
+                    <FilterIcon2
+                      data-plasmic-name={"filterIcon2"}
+                      data-plasmic-override={overrides.filterIcon2}
+                      className={classNames("__wab_instance", sty.filterIcon2)}
+                      icon={(() => {
+                        try {
+                          return currentItem.icon;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()}
+                      select={(() => {
+                        try {
+                          return currentItem.value != $state.selectFilter;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()}
+                    />
+                  </ItemShow>
+                );
+              })}
+            </div>
+          }
+        />
+
         <BookingHeader
           data-plasmic-name={"bookingHeader"}
           data-plasmic-override={overrides.bookingHeader}
@@ -757,6 +1025,59 @@ function PlasmicBooking__RenderFunc(props: {
           />
         </div>
       </Dialog>
+      <Filter2
+        data-plasmic-name={"filter2"}
+        data-plasmic-override={overrides.filter2}
+        className={classNames("__wab_instance", sty.filter2)}
+        filtes={generateStateValueProp($state, ["filter2", "filtes"])}
+        onFiltesChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["filter2", "filtes"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["filter2", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onSelectedComponnent2SelectedChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "filter2",
+            "selectedComponnent2Selected"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["filter2", "opendialog"])}
+        selectedComponnent2Selected={generateStateValueProp($state, [
+          "filter2",
+          "selectedComponnent2Selected"
+        ])}
+      />
     </div>
   ) as React.ReactElement | null;
 }
@@ -768,21 +1089,27 @@ const PlasmicDescendants = {
     "itemBooking",
     "img",
     "section",
+    "header",
+    "filterIcon2",
     "bookingHeader",
     "dialog",
     "status",
     "uploudeTime",
-    "button"
+    "button",
+    "filter2"
   ],
   reservation: ["reservation", "itemBooking", "img"],
   itemBooking: ["itemBooking"],
   img: ["img"],
-  section: ["section", "bookingHeader"],
+  section: ["section", "header", "filterIcon2", "bookingHeader"],
+  header: ["header", "filterIcon2"],
+  filterIcon2: ["filterIcon2"],
   bookingHeader: ["bookingHeader"],
   dialog: ["dialog", "status", "uploudeTime", "button"],
   status: ["status"],
   uploudeTime: ["uploudeTime"],
-  button: ["button"]
+  button: ["button"],
+  filter2: ["filter2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -793,11 +1120,14 @@ type NodeDefaultElementType = {
   itemBooking: typeof ItemBooking;
   img: typeof PlasmicImg__;
   section: "section";
+  header: typeof Header;
+  filterIcon2: typeof FilterIcon2;
   bookingHeader: typeof BookingHeader;
   dialog: typeof Dialog;
   status: typeof Status;
   uploudeTime: typeof UploudeTime;
   button: typeof Button;
+  filter2: typeof Filter2;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -866,11 +1196,14 @@ export const PlasmicBooking = Object.assign(
     itemBooking: makeNodeComponent("itemBooking"),
     img: makeNodeComponent("img"),
     section: makeNodeComponent("section"),
+    header: makeNodeComponent("header"),
+    filterIcon2: makeNodeComponent("filterIcon2"),
     bookingHeader: makeNodeComponent("bookingHeader"),
     dialog: makeNodeComponent("dialog"),
     status: makeNodeComponent("status"),
     uploudeTime: makeNodeComponent("uploudeTime"),
     button: makeNodeComponent("button"),
+    filter2: makeNodeComponent("filter2"),
 
     // Metadata about props expected for PlasmicBooking
     internalVariantProps: PlasmicBooking__VariantProps,

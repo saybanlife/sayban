@@ -18,7 +18,7 @@
       calc(100% - var(--plsmc-viewport-gap) - var(--plsmc-viewport-gap))
     )
     minmax(0, var(--plsmc-wide-chunk)) 1fr var(--plsmc-viewport-gap);
-  padding: 3rem 0px 0px;
+  padding: 3rem 0px var(--token-MbEKSCQSHAZe);
 }
 .root > * {
   grid-column: 4;
@@ -35,13 +35,6 @@
   z-index: 1;
   position: fixed;
   right: 0;
-}
-.svg___0MpUu {
-  object-fit: cover;
-  max-width: 100%;
-  color: var(--token-k-47TemksE2v);
-  width: var(--token-P3I_D0uxQRnt);
-  height: var(--token-OJSN3W0Myvht);
 }
 .freeBox__hds48 {
   display: flex;
@@ -171,7 +164,6 @@
 }
 .freeBox__qg5N {
   background: none;
-  box-shadow: 0px 2px 5px 0px #afa49199;
   display: flex;
   flex-direction: row;
   position: relative;
@@ -182,8 +174,9 @@
   align-items: center;
   column-gap: var(--token-rfsFxiclAtek);
   min-width: 0;
-  border-radius: var(--token-rfsFxiclAtek);
+  border-radius: 0px;
   padding: var(--token-0tl2H1TRPHhV);
+  border-bottom: 1px solid var(--token-Pxe4wDL2kJpb);
 }
 .freeBox__eJiFn {
   display: flex;
@@ -201,8 +194,8 @@
 .svg__qjOO {
   object-fit: cover;
   max-width: 100%;
-  width: 30px;
-  height: 30px;
+  width: var(--token-73iLa06AE6f4);
+  height: var(--token-73iLa06AE6f4);
   color: var(--token-KjATzAYJ5IB7);
   flex-shrink: 0;
 }
@@ -228,13 +221,58 @@
   padding-bottom: 0px;
   min-width: 0;
 }
-.text__kdSkd {
-  position: relative;
+.textCollapse:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+  color: var(--token-KjATzAYJ5IB7);
+  font-size: var(--token-R7X4jvpZsbD-);
   width: 100%;
+  text-align: right;
+  min-width: 0;
+}
+.freeBox___74AZu {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  background: var(--token-Yo4gdKCgyuAu);
+  column-gap: var(--token-RuQNZpYm0Yds);
+  left: var(--token-73iLa06AE6f4);
+  top: auto;
+  z-index: 1;
+  bottom: var(--token-73iLa06AE6f4);
+  border-radius: var(--token-73iLa06AE6f4);
+  padding: var(--token-cfon0PHiXQoL) var(--token-rfsFxiclAtek);
+}
+.svg__yGrnX {
+  animation: none;
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-9M5jRUPt8Msb);
+  width: var(--token-LBC0X5IbL9bo);
+  height: var(--token-LBC0X5IbL9bo);
+  flex-shrink: 0;
+}
+.text__lLtwt {
+  animation: none;
+  width: auto;
   height: auto;
   max-width: 100%;
   text-align: right;
-  font-size: var(--token-R7X4jvpZsbD-);
-  color: var(--token-KjATzAYJ5IB7);
-  min-width: 0;
+  color: var(--token-9M5jRUPt8Msb);
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  line-height: 1.5;
+  letter-spacing: normal;
+  white-space: pre-wrap;
+  user-select: text;
+  text-decoration-line: none;
+  text-overflow: clip;
 }
