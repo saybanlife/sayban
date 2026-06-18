@@ -1232,18 +1232,23 @@ function PlasmicPayment__RenderFunc(props: {
                       $steps["runCode"] = await $steps["runCode"];
                     }
 
-                    $steps["invokeGlobalAction"] = true
+                    $steps["pay"] = true
                       ? (() => {
                           const actionArgs = {
                             args: [
                               "POST",
-                              "/reservations/update",
+                              "/reservations/pay",
                               undefined,
                               (() => {
                                 try {
                                   return {
                                     id: $props.id,
-                                    payment_status: "unpaid",
+                                    payment_status: "paid",
+                                    type: $state.basic.data.result.name,
+                                    type: $state.basic.data.result.name,
+                                    amount:
+                                      $state.basic.data.result.payment
+                                        .final_price,
                                     payment_method: $state.checkboxGroup.value,
                                     status: "pending"
                                   };
@@ -1279,6 +1284,52 @@ function PlasmicPayment__RenderFunc(props: {
                             ]
                           };
                           return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["pay"] != null &&
+                      typeof $steps["pay"] === "object" &&
+                      typeof $steps["pay"].then === "function"
+                    ) {
+                      $steps["pay"] = await $steps["pay"];
+                    }
+
+                    $steps["runCode3"] = $steps.pay?.data?.success
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return window.open(
+                                $steps.pay.data.result,
+                                "_blank"
+                              );
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode3"] != null &&
+                      typeof $steps["runCode3"] === "object" &&
+                      typeof $steps["runCode3"].then === "function"
+                    ) {
+                      $steps["runCode3"] = await $steps["runCode3"];
+                    }
+
+                    $steps["invokeGlobalAction"] = !$steps.pay?.data?.success
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "error",
+                              "\u0645\u0634\u06a9\u0644\u06cc \u0631\u062e \u062f\u0627\u062f. \u0644\u0637\u0641\u0627\u064b \u062f\u0648\u0628\u0627\u0631\u0647 \u062a\u0644\u0627\u0634 \u06a9\u0646\u06cc\u062f.",
+                              "bottom-center"
+                            ]
+                          };
+                          return $globalActions["Fragment.showToast"]?.apply(
                             null,
                             [...actionArgs.args]
                           );

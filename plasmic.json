@@ -29210,6 +29210,20 @@
           "cssFilePath": "plasmic/sayban/PlasmicSelectedComponnent2.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "6kn6b93WPhz9",
+          "name": "Pay",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicPay.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/pay.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicPay.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/pay"
         }
       ],
       "icons": [
