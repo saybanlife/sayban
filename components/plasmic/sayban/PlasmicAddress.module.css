@@ -175,7 +175,7 @@
   column-gap: var(--token-rfsFxiclAtek);
   min-width: 0;
   border-radius: 0px;
-  padding: var(--token-0tl2H1TRPHhV);
+  padding: var(--token-RuQNZpYm0Yds) 0px var(--token-cfon0PHiXQoL);
   border-bottom: 1px solid var(--token-Pxe4wDL2kJpb);
 }
 .freeBox__eJiFn {
@@ -240,11 +240,11 @@
   justify-content: flex-start;
   align-items: flex-end;
   top: auto;
-  left: var(--token-73iLa06AE6f4);
-  bottom: var(--token-73iLa06AE6f4);
+  left: 0;
+  bottom: 0;
   z-index: 1;
   right: 0;
-  padding: 0px;
+  padding: 0px 0px var(--token-0tl2H1TRPHhV) var(--token-0tl2H1TRPHhV);
 }
 .freeBox___74AZu {
   display: flex;

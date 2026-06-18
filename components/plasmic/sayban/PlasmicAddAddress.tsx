@@ -601,6 +601,53 @@ function PlasmicAddAddress__RenderFunc(props: {
                   await $steps["invokeGlobalAction3"];
               }
 
+              $steps["runCode4"] =
+                $steps.invokeGlobalAction?.data?.success == true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            $state.loaction2.city2 = "";
+                            $state.loaction2.address = "";
+                            $state.loaction2.address2 = "";
+                            $state.loaction2.title2 = "";
+                            $state.loaction2.post = "";
+                            $state.loaction2.lat = null;
+                            $state.loaction2.lon = null;
+                            return window.history.back();
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+              if (
+                $steps["runCode4"] != null &&
+                typeof $steps["runCode4"] === "object" &&
+                typeof $steps["runCode4"].then === "function"
+              ) {
+                $steps["runCode4"] = await $steps["runCode4"];
+              }
+
+              $steps["runAddNew"] =
+                $steps.invokeGlobalAction?.data?.success == true
+                  ? (() => {
+                      const actionArgs = { eventRef: $props["addNew"] };
+                      return (({ eventRef, args }) => {
+                        return eventRef?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+              if (
+                $steps["runAddNew"] != null &&
+                typeof $steps["runAddNew"] === "object" &&
+                typeof $steps["runAddNew"].then === "function"
+              ) {
+                $steps["runAddNew"] = await $steps["runAddNew"];
+              }
+
               $steps["invokeGlobalAction4"] =
                 $steps.invokeGlobalAction?.data?.success == false
                   ? (() => {
