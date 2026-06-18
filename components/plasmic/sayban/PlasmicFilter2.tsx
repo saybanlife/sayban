@@ -104,6 +104,8 @@ export type PlasmicFilter2__ArgsType = {
   onFiltesChange?: (val: string) => void;
   selectedComponnent2Selected?: string;
   onSelectedComponnent2SelectedChange?: (val: string) => void;
+  items?: any;
+  selected?: string;
 };
 type ArgPropType = keyof PlasmicFilter2__ArgsType;
 export const PlasmicFilter2__ArgProps = new Array<ArgPropType>(
@@ -112,7 +114,9 @@ export const PlasmicFilter2__ArgProps = new Array<ArgPropType>(
   "filtes",
   "onFiltesChange",
   "selectedComponnent2Selected",
-  "onSelectedComponnent2SelectedChange"
+  "onSelectedComponnent2SelectedChange",
+  "items",
+  "selected"
 );
 
 export type PlasmicFilter2__OverridesType = {
@@ -134,6 +138,8 @@ export interface DefaultFilter2Props {
   onFiltesChange?: (val: string) => void;
   selectedComponnent2Selected?: string;
   onSelectedComponnent2SelectedChange?: (val: string) => void;
+  items?: any;
+  selected?: string;
   fullpage?: SingleBooleanChoiceArg<"fullpage">;
   nopadding?: SingleBooleanChoiceArg<"nopadding">;
   className?: string;
@@ -385,6 +391,7 @@ function PlasmicFilter2__RenderFunc(props: {
           data-plasmic-override={overrides.button3}
           className={classNames("__wab_instance", sty.button3)}
           color={generateStateValueProp($state, ["button3", "color"])}
+          disabled={false}
           endIcon={
             <ChevronLeftIcon
               className={classNames("all", sty.svg__nxEm0)}
@@ -525,28 +532,7 @@ function PlasmicFilter2__RenderFunc(props: {
               "selectedComponnent2",
               "selected"
             ])}
-            times={[
-              {
-                label: "سوابق خودم",
-                value: "my_history",
-                icon: "history"
-              },
-              {
-                label: "سوابق همراهان",
-                value: "others_history",
-                icon: "group"
-              },
-              {
-                label: "سفارشات جاری",
-                value: "current_orders",
-                icon: "play"
-              },
-              {
-                label: "سفارشات قبلی",
-                value: "previous_orders",
-                icon: "archive"
-              }
-            ]}
+            times={$props.items}
           />
 
           <Line
@@ -688,6 +674,31 @@ function PlasmicFilter2__RenderFunc(props: {
               loading={generateStateValueProp($state, ["button5", "loading"])}
               onClick={async event => {
                 const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            $state.selectedComponnent2.selected = "";
+                            $state.bookingHeader.datePickerEnd = null;
+                            return ($state.bookingHeader.datePickerStart =
+                              null);
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
               }}
               onLoadingChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, ["button5", "loading"]).apply(

@@ -202,7 +202,7 @@
   height: auto;
   max-width: 100%;
   text-align: right;
-  color: var(--token-NWiHR7h0ClTY);
+  color: var(--token-9M5jRUPt8Msb);
   min-width: 0;
 }
 .text__m7Qil {
@@ -225,21 +225,20 @@
   flex-direction: row;
   position: relative;
   width: auto;
-  height: 100%;
+  height: auto;
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
   cursor: pointer;
   background: var(--token-Pxe4wDL2kJpb);
-  min-height: 0;
-  border-radius: var(--token-rfsFxiclAtek);
-  padding: var(--token-cfon0PHiXQoL);
+  border-radius: 100px;
+  padding: var(--token-RuQNZpYm0Yds);
 }
 .svg {
   object-fit: cover;
   max-width: 100%;
   width: var(--token-ekJK2BNXfyOR);
   height: var(--token-ekJK2BNXfyOR);
-  color: var(--token-9M5jRUPt8Msb);
+  color: var(--token-KjATzAYJ5IB7);
   flex-shrink: 0;
 }

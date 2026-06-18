@@ -216,6 +216,7 @@
 }
 .itemShow__nWyZg:global(.__wab_instance) {
   max-width: 100%;
+  display: none;
 }
 .svg__jmLuR {
   animation: none;

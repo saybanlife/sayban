@@ -68,7 +68,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicBookingHeader.module.css"; // plasmic-import: K9ETXxPuQRCy/css
 
-import Icon91Icon from "./icons/PlasmicIcon__Icon91"; // plasmic-import: lnClONjnY1AS/icon
+import Icon103Icon from "./icons/PlasmicIcon__Icon103"; // plasmic-import: AqLvaAKc1pFH/icon
 
 createPlasmicElementProxy;
 
@@ -461,7 +461,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
             );
           }}
           open={generateStateValueProp($state, ["popover2", "open"])}
-          placement={"bottom"}
+          placement={"top"}
           popoverScopeClassName={sty["popover2__popover"]}
           title={null}
           trigger={"click"}
@@ -527,77 +527,91 @@ function PlasmicBookingHeader__RenderFunc(props: {
             ) : null}
           </div>
         </AntdPopover>
-        <div
-          className={classNames("all", sty.freeBox__bbdgh)}
-          onClick={async event => {
-            const $steps = {};
-
-            $steps["updateDatePicker2Value"] = true
-              ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["datePicker2", "value"]
-                    },
-                    operation: 1
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
-
-                    $stateSet(objRoot, variablePath, undefined);
-                    return undefined;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
+        {(() => {
+          try {
+            return true;
+          } catch (e) {
             if (
-              $steps["updateDatePicker2Value"] != null &&
-              typeof $steps["updateDatePicker2Value"] === "object" &&
-              typeof $steps["updateDatePicker2Value"].then === "function"
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
             ) {
-              $steps["updateDatePicker2Value"] =
-                await $steps["updateDatePicker2Value"];
+              return true;
             }
+            throw e;
+          }
+        })() ? (
+          <div
+            className={classNames("all", sty.freeBox__bbdgh)}
+            onClick={async event => {
+              const $steps = {};
 
-            $steps["updateDatePickerValue"] = true
-              ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["datePicker", "value"]
-                    },
-                    operation: 1
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
+              $steps["updateDatePicker2Value"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["datePicker2", "value"]
+                      },
+                      operation: 1
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
 
-                    $stateSet(objRoot, variablePath, undefined);
-                    return undefined;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["updateDatePickerValue"] != null &&
-              typeof $steps["updateDatePickerValue"] === "object" &&
-              typeof $steps["updateDatePickerValue"].then === "function"
-            ) {
-              $steps["updateDatePickerValue"] =
-                await $steps["updateDatePickerValue"];
-            }
-          }}
-        >
-          <Icon91Icon
-            data-plasmic-name={"svg"}
-            data-plasmic-override={overrides.svg}
-            className={classNames("all", sty.svg)}
-            role={"img"}
-          />
-        </div>
+                      $stateSet(objRoot, variablePath, undefined);
+                      return undefined;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateDatePicker2Value"] != null &&
+                typeof $steps["updateDatePicker2Value"] === "object" &&
+                typeof $steps["updateDatePicker2Value"].then === "function"
+              ) {
+                $steps["updateDatePicker2Value"] =
+                  await $steps["updateDatePicker2Value"];
+              }
+
+              $steps["updateDatePickerValue"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["datePicker", "value"]
+                      },
+                      operation: 1
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, undefined);
+                      return undefined;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateDatePickerValue"] != null &&
+                typeof $steps["updateDatePickerValue"] === "object" &&
+                typeof $steps["updateDatePickerValue"].then === "function"
+              ) {
+                $steps["updateDatePickerValue"] =
+                  await $steps["updateDatePickerValue"];
+              }
+            }}
+          >
+            <Icon103Icon
+              data-plasmic-name={"svg"}
+              data-plasmic-override={overrides.svg}
+              className={classNames("all", sty.svg)}
+              role={"img"}
+            />
+          </div>
+        ) : null}
       </div>
     </div>
   ) as React.ReactElement | null;

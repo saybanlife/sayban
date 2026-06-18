@@ -124,7 +124,33 @@ function PlasmicSelectedComponnent2__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
+        {
+          times: [
+            {
+              label: "\u0633\u0648\u0627\u0628\u0642 \u062e\u0648\u062f\u0645",
+              value: "my_history",
+              icon: "history"
+            },
+            {
+              label:
+                "\u0633\u0648\u0627\u0628\u0642 \u0647\u0645\u0631\u0627\u0647\u0627\u0646",
+              value: "others_history",
+              icon: "group"
+            },
+            {
+              label:
+                "\u0633\u0641\u0627\u0631\u0634\u0627\u062a \u062c\u0627\u0631\u06cc",
+              value: "current_orders",
+              icon: "play"
+            },
+            {
+              label:
+                "\u0633\u0641\u0627\u0631\u0634\u0627\u062a \u0642\u0628\u0644\u06cc",
+              value: "previous_orders",
+              icon: "archive"
+            }
+          ]
+        },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -279,7 +305,7 @@ function PlasmicSelectedComponnent2__RenderFunc(props: {
               hasVariant($state, "select", "select")
                 ? (() => {
                     try {
-                      return currentItem.value == $state.selected.value;
+                      return currentItem.value == $state.selected;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||

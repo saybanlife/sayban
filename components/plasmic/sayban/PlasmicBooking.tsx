@@ -1047,6 +1047,7 @@ function PlasmicBooking__RenderFunc(props: {
         data-plasmic-override={overrides.filter2}
         className={classNames("__wab_instance", sty.filter2)}
         filtes={generateStateValueProp($state, ["filter2", "filtes"])}
+        items={$state.filters}
         onFiltesChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["filter2", "filtes"]).apply(
             null,
@@ -1090,6 +1091,19 @@ function PlasmicBooking__RenderFunc(props: {
           }
         }}
         opendialog={generateStateValueProp($state, ["filter2", "opendialog"])}
+        selected={(() => {
+          try {
+            return $state.selectFilter;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
         selectedComponnent2Selected={generateStateValueProp($state, [
           "filter2",
           "selectedComponnent2Selected"
