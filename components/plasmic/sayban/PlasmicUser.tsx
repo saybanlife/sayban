@@ -832,8 +832,8 @@ function PlasmicUser__RenderFunc(props: {
                   ? (() => {
                       const actionArgs = {
                         customFunction: async () => {
-                          return (document.cookie =
-                            "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;");
+                          return (window.document.cookie =
+                            "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.sayban.app; secure; SameSite=Lax");
                         }
                       };
                       return (({ customFunction }) => {
