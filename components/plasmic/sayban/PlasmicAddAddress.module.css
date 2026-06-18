@@ -42,6 +42,7 @@
 }
 .freeBox {
   animation: none;
+  display: flex;
   flex-direction: column;
   position: fixed;
   width: auto;
@@ -55,7 +56,6 @@
   z-index: 1;
   right: 0;
   bottom: 0;
-  display: none;
   padding: var(--token-73iLa06AE6f4);
 }
 .button:global(.__wab_instance):global(.__wab_instance) {

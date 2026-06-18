@@ -251,6 +251,12 @@ function PlasmicAddAddress__RenderFunc(props: {
 
         valueProp: "refresh",
         onChangeProp: "onRefreshChange"
+      },
+      {
+        path: "loaction2.loaction2",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "loaction2"
       }
     ],
     [$props, $ctx, $refs]
@@ -297,7 +303,7 @@ function PlasmicAddAddress__RenderFunc(props: {
         data-plasmic-override={overrides.loaction2}
         city2={generateStateValueProp($state, ["loaction2", "city2"])}
         className={classNames("__wab_instance", sty.loaction2)}
-        loaction2={true}
+        loaction2={generateStateValueProp($state, ["loaction2", "loaction2"])}
         onAddressChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["loaction2", "address"]).apply(
             null,
@@ -354,6 +360,20 @@ function PlasmicAddAddress__RenderFunc(props: {
             return;
           }
         }}
+        onLoaction2Change={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["loaction2", "loaction2"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
         onLonChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["loaction2", "lon"]).apply(
             null,
@@ -398,186 +418,138 @@ function PlasmicAddAddress__RenderFunc(props: {
         }}
       />
 
-      <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames("all", sty.freeBox, "page")}
-      >
-        <Button
-          data-plasmic-name={"button"}
-          data-plasmic-override={overrides.button}
-          className={classNames("__wab_instance", sty.button)}
-          color={"success"}
-          label={
-            <div
-              data-plasmic-name={"text"}
-              data-plasmic-override={overrides.text}
-              className={classNames("all", "__wab_text", sty.text)}
-            >
-              {"\u062b\u0628\u062a \u0622\u062f\u0631\u0633"}
-            </div>
+      {(() => {
+        try {
+          return $state.loaction2.loaction2 == false;
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return true;
           }
-          loading={generateStateValueProp($state, ["button", "loading"])}
-          onClick={async event => {
-            const $steps = {};
-
-            $steps["runCode"] = true
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return ($state.button.loading = true);
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode"] != null &&
-              typeof $steps["runCode"] === "object" &&
-              typeof $steps["runCode"].then === "function"
-            ) {
-              $steps["runCode"] = await $steps["runCode"];
+          throw e;
+        }
+      })() ? (
+        <div
+          data-plasmic-name={"freeBox"}
+          data-plasmic-override={overrides.freeBox}
+          className={classNames("all", sty.freeBox, "page")}
+        >
+          <Button
+            data-plasmic-name={"button"}
+            data-plasmic-override={overrides.button}
+            className={classNames("__wab_instance", sty.button)}
+            color={"success"}
+            label={
+              <div
+                data-plasmic-name={"text"}
+                data-plasmic-override={overrides.text}
+                className={classNames("all", "__wab_text", sty.text)}
+              >
+                {"\u062b\u0628\u062a \u0622\u062f\u0631\u0633"}
+              </div>
             }
+            loading={generateStateValueProp($state, ["button", "loading"])}
+            onClick={async event => {
+              const $steps = {};
 
-            $steps["runCode3"] = true
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return (() => {
-                        if (!$state.loaction2.city2)
-                          return "لطفاً شهر را وارد کنید";
-                        if (!$state.loaction2.address)
-                          return "لطفاً آدرس را وارد کنید";
-                        if (!$state.loaction2.address2)
-                          return "لطفاً جزئیات آدرس را وارد کنید";
-                        if (!$state.loaction2.title2)
-                          return "لطفاً عنوان آدرس را وارد کنید";
-                      })();
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode3"] != null &&
-              typeof $steps["runCode3"] === "object" &&
-              typeof $steps["runCode3"].then === "function"
-            ) {
-              $steps["runCode3"] = await $steps["runCode3"];
-            }
-
-            $steps["invokeGlobalAction"] = !$steps.runCode3
-              ? (() => {
-                  const actionArgs = {
-                    args: [
-                      "POST",
-                      "add/address",
-                      undefined,
-                      {
-                        title: $state.loaction2.title2,
-                        city: $state.loaction2.city2,
-                        address: $state.loaction2.address,
-                        details: $state.loaction2.address2,
-                        postal_code: $state.loaction2.post,
-                        latitude: $state.loaction2.lat,
-                        longitude: $state.loaction2.lon,
-                        user_id: $props.id
-                      },
-
-                      {
-                        headers: {
-                          Authorization: `Bearer ${$state.token}`
-                        }
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.button.loading = true);
                       }
-                    ]
-                  };
-                  return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                    ...actionArgs.args
-                  ]);
-                })()
-              : undefined;
-            if (
-              $steps["invokeGlobalAction"] != null &&
-              typeof $steps["invokeGlobalAction"] === "object" &&
-              typeof $steps["invokeGlobalAction"].then === "function"
-            ) {
-              $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
-            }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
 
-            $steps["invokeGlobalAction2"] = $steps.runCode3
-              ? (() => {
-                  const actionArgs = {
-                    args: [
-                      "error",
-                      (() => {
-                        try {
-                          return $steps.runCode3;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })(),
-                      "bottom-center"
-                    ]
-                  };
-                  return $globalActions["Fragment.showToast"]?.apply(null, [
-                    ...actionArgs.args
-                  ]);
-                })()
-              : undefined;
-            if (
-              $steps["invokeGlobalAction2"] != null &&
-              typeof $steps["invokeGlobalAction2"] === "object" &&
-              typeof $steps["invokeGlobalAction2"].then === "function"
-            ) {
-              $steps["invokeGlobalAction2"] =
-                await $steps["invokeGlobalAction2"];
-            }
+              $steps["runCode3"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          if (!$state.loaction2.city2)
+                            return "لطفاً شهر را وارد کنید";
+                          if (!$state.loaction2.address)
+                            return "لطفاً آدرس را وارد کنید";
+                          if (!$state.loaction2.address2)
+                            return "لطفاً جزئیات آدرس را وارد کنید";
+                          if (!$state.loaction2.title2)
+                            return "لطفاً عنوان آدرس را وارد کنید";
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode3"] != null &&
+                typeof $steps["runCode3"] === "object" &&
+                typeof $steps["runCode3"].then === "function"
+              ) {
+                $steps["runCode3"] = await $steps["runCode3"];
+              }
 
-            $steps["invokeGlobalAction3"] =
-              $steps.invokeGlobalAction?.data?.success == true
+              $steps["invokeGlobalAction"] = !$steps.runCode3
                 ? (() => {
                     const actionArgs = {
                       args: [
-                        "success",
-                        "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f.",
-                        "bottom-center"
+                        "POST",
+                        "add/address",
+                        undefined,
+                        {
+                          title: $state.loaction2.title2,
+                          city: $state.loaction2.city2,
+                          address: $state.loaction2.address,
+                          details: $state.loaction2.address2,
+                          postal_code: $state.loaction2.post,
+                          latitude: $state.loaction2.lat,
+                          longitude: $state.loaction2.lon,
+                          user_id: $props.id
+                        },
+
+                        {
+                          headers: {
+                            Authorization: `Bearer ${$state.token}`
+                          }
+                        }
                       ]
                     };
-                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
                       ...actionArgs.args
                     ]);
                   })()
                 : undefined;
-            if (
-              $steps["invokeGlobalAction3"] != null &&
-              typeof $steps["invokeGlobalAction3"] === "object" &&
-              typeof $steps["invokeGlobalAction3"].then === "function"
-            ) {
-              $steps["invokeGlobalAction3"] =
-                await $steps["invokeGlobalAction3"];
-            }
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
 
-            $steps["invokeGlobalAction4"] =
-              $steps.invokeGlobalAction?.data?.success == false
+              $steps["invokeGlobalAction2"] = $steps.runCode3
                 ? (() => {
                     const actionArgs = {
                       args: [
                         "error",
                         (() => {
                           try {
-                            return (
-                              $steps.invokeGlobalAction?.data?.message || ""
-                            );
+                            return $steps.runCode3;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -587,7 +559,8 @@ function PlasmicAddAddress__RenderFunc(props: {
                             }
                             throw e;
                           }
-                        })()
+                        })(),
+                        "bottom-center"
                       ]
                     };
                     return $globalActions["Fragment.showToast"]?.apply(null, [
@@ -595,54 +568,116 @@ function PlasmicAddAddress__RenderFunc(props: {
                     ]);
                   })()
                 : undefined;
-            if (
-              $steps["invokeGlobalAction4"] != null &&
-              typeof $steps["invokeGlobalAction4"] === "object" &&
-              typeof $steps["invokeGlobalAction4"].then === "function"
-            ) {
+              if (
+                $steps["invokeGlobalAction2"] != null &&
+                typeof $steps["invokeGlobalAction2"] === "object" &&
+                typeof $steps["invokeGlobalAction2"].then === "function"
+              ) {
+                $steps["invokeGlobalAction2"] =
+                  await $steps["invokeGlobalAction2"];
+              }
+
+              $steps["invokeGlobalAction3"] =
+                $steps.invokeGlobalAction?.data?.success == true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "success",
+                          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f.",
+                          "bottom-center"
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+              if (
+                $steps["invokeGlobalAction3"] != null &&
+                typeof $steps["invokeGlobalAction3"] === "object" &&
+                typeof $steps["invokeGlobalAction3"].then === "function"
+              ) {
+                $steps["invokeGlobalAction3"] =
+                  await $steps["invokeGlobalAction3"];
+              }
+
               $steps["invokeGlobalAction4"] =
-                await $steps["invokeGlobalAction4"];
-            }
+                $steps.invokeGlobalAction?.data?.success == false
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "error",
+                          (() => {
+                            try {
+                              return (
+                                $steps.invokeGlobalAction?.data?.message || ""
+                              );
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+              if (
+                $steps["invokeGlobalAction4"] != null &&
+                typeof $steps["invokeGlobalAction4"] === "object" &&
+                typeof $steps["invokeGlobalAction4"].then === "function"
+              ) {
+                $steps["invokeGlobalAction4"] =
+                  await $steps["invokeGlobalAction4"];
+              }
 
-            $steps["runCode2"] = true
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return (() => {
-                        $state.button.loading = false;
-                        return ($state.refresh = Date.now().toString());
-                      })();
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode2"] != null &&
-              typeof $steps["runCode2"] === "object" &&
-              typeof $steps["runCode2"].then === "function"
-            ) {
-              $steps["runCode2"] = await $steps["runCode2"];
-            }
-          }}
-          onLoadingChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["button", "loading"]).apply(
-              null,
-              eventArgs
-            );
+              $steps["runCode2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.button.loading = false;
+                          return ($state.refresh = Date.now().toString());
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode2"] != null &&
+                typeof $steps["runCode2"] === "object" &&
+                typeof $steps["runCode2"].then === "function"
+              ) {
+                $steps["runCode2"] = await $steps["runCode2"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button", "loading"]).apply(
+                null,
+                eventArgs
+              );
 
-            if (
-              eventArgs.length > 1 &&
-              eventArgs[1] &&
-              eventArgs[1]._plasmic_state_init_
-            ) {
-              return;
-            }
-          }}
-        />
-      </div>
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      ) : null}
     </div>
   ) as React.ReactElement | null;
 }

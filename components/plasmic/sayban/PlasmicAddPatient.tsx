@@ -959,13 +959,13 @@ function PlasmicAddPatient__RenderFunc(props: {
                       const actionArgs = {
                         customFunction: async () => {
                           return (() => {
-                            window.history.back();
-                            $state.name.value = null;
-                            $state.code.value = null;
+                            $state.name.value = "";
+                            $state.code.value = "";
                             $state.selectGender.value = null;
                             $state.selectMarital.value = null;
                             $state.relation.value = null;
-                            return ($state.mobile.value = null);
+                            $state.mobile.value = "";
+                            return window.history.back();
                           })();
                         }
                       };

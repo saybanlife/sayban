@@ -71,6 +71,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicLoaction2.module.css"; // plasmic-import: HotW2vZJIIwq/css
 
+import EditIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Edit"; // plasmic-import: Q3Mz32feM0mm/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 
@@ -96,6 +97,7 @@ export type PlasmicLoaction2__ArgsType = {
   onAddressChange2?: (val: string) => void;
   onPostChange?: (val: string) => void;
   onTitleChange?: (val: string) => void;
+  onLoaction2Change?: (val: any) => void;
 };
 type ArgPropType = keyof PlasmicLoaction2__ArgsType;
 export const PlasmicLoaction2__ArgProps = new Array<ArgPropType>(
@@ -106,11 +108,13 @@ export const PlasmicLoaction2__ArgProps = new Array<ArgPropType>(
   "onCityChange",
   "onAddressChange2",
   "onPostChange",
-  "onTitleChange"
+  "onTitleChange",
+  "onLoaction2Change"
 );
 
 export type PlasmicLoaction2__OverridesType = {
   root?: Flex__<"div">;
+  svg?: Flex__<"svg">;
   embedHtml?: Flex__<typeof Embed>;
   city?: Flex__<typeof TextInput>;
   loaction?: Flex__<typeof TextAreaInput>;
@@ -130,6 +134,7 @@ export interface DefaultLoaction2Props {
   onAddressChange2?: (val: string) => void;
   onPostChange?: (val: string) => void;
   onTitleChange?: (val: string) => void;
+  onLoaction2Change?: (val: any) => void;
   loaction2?: SingleBooleanChoiceArg<"loaction2">;
   className?: string;
 }
@@ -251,9 +256,11 @@ function PlasmicLoaction2__RenderFunc(props: {
       },
       {
         path: "loaction2",
-        type: "private",
+        type: "writable",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.loaction2
+
+        valueProp: "loaction2",
+        onChangeProp: "onLoaction2Change"
       },
       {
         path: "button.loading",
@@ -264,6 +271,8 @@ function PlasmicLoaction2__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
 
   const $state = useDollarState(stateSpecs, {
     $props,
@@ -292,6 +301,62 @@ function PlasmicLoaction2__RenderFunc(props: {
         { [sty.rootloaction2]: hasVariant($state, "loaction2", "loaction2") }
       )}
     >
+      <div
+        className={classNames("all", sty.freeBox__pegql, {
+          [sty.freeBoxloaction2__pegqLpltWd]: hasVariant(
+            $state,
+            "loaction2",
+            "loaction2"
+          )
+        })}
+        tabIndex={2}
+      >
+        <div
+          className={classNames("all", sty.freeBox__epuZf)}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["updateLoaction2"] = true
+              ? (() => {
+                  const actionArgs = {
+                    vgroup: "loaction2",
+                    operation: 2,
+                    value: "loaction2"
+                  };
+                  return (({ vgroup, value }) => {
+                    if (typeof value === "string") {
+                      value = [value];
+                    }
+
+                    const oldValue = $stateGet($state, vgroup);
+                    $stateSet($state, vgroup, !oldValue);
+                    return !oldValue;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["updateLoaction2"] != null &&
+              typeof $steps["updateLoaction2"] === "object" &&
+              typeof $steps["updateLoaction2"].then === "function"
+            ) {
+              $steps["updateLoaction2"] = await $steps["updateLoaction2"];
+            }
+          }}
+        >
+          <EditIcon
+            data-plasmic-name={"svg"}
+            data-plasmic-override={overrides.svg}
+            className={classNames("all", sty.svg)}
+            role={"img"}
+          />
+
+          <div className={classNames("all", "__wab_text", sty.text__d2FTt)}>
+            {
+              "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0645\u0648\u0642\u0639\u06cc\u062a"
+            }
+          </div>
+        </div>
+      </div>
       <Embed
         data-plasmic-name={"embedHtml"}
         data-plasmic-override={overrides.embedHtml}
@@ -561,6 +626,59 @@ function PlasmicLoaction2__RenderFunc(props: {
             </div>
           }
           loading={generateStateValueProp($state, ["button", "loading"])}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["updateLoaction2"] =
+              $state.lat != "" && $state.lat != null
+                ? (() => {
+                    const actionArgs = {
+                      vgroup: "loaction2",
+                      operation: 2,
+                      value: "loaction2"
+                    };
+                    return (({ vgroup, value }) => {
+                      if (typeof value === "string") {
+                        value = [value];
+                      }
+
+                      const oldValue = $stateGet($state, vgroup);
+                      $stateSet($state, vgroup, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+            if (
+              $steps["updateLoaction2"] != null &&
+              typeof $steps["updateLoaction2"] === "object" &&
+              typeof $steps["updateLoaction2"].then === "function"
+            ) {
+              $steps["updateLoaction2"] = await $steps["updateLoaction2"];
+            }
+
+            $steps["invokeGlobalAction"] =
+              $state.lat == "" || $state.lat == null
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "error",
+                        "\u0644\u0637\u0641\u0627 \u0645\u0648\u0641\u0639\u06cc\u062a \u062e\u0648\u062f \u0631\u0627 \u0627\u0632 \u0631\u0648\u06cc \u0646\u0642\u0634\u0647 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f",
+                        "bottom-center"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+            if (
+              $steps["invokeGlobalAction"] != null &&
+              typeof $steps["invokeGlobalAction"] === "object" &&
+              typeof $steps["invokeGlobalAction"].then === "function"
+            ) {
+              $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
+            }
+          }}
           onLoadingChange={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["button", "loading"]).apply(
               null,
@@ -692,6 +810,7 @@ function PlasmicLoaction2__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "svg",
     "embedHtml",
     "city",
     "loaction",
@@ -701,6 +820,7 @@ const PlasmicDescendants = {
     "button",
     "apiRequest"
   ],
+  svg: ["svg"],
   embedHtml: ["embedHtml"],
   city: ["city"],
   loaction: ["loaction"],
@@ -715,6 +835,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  svg: "svg";
   embedHtml: typeof Embed;
   city: typeof TextInput;
   loaction: typeof TextAreaInput;
@@ -787,6 +908,7 @@ export const PlasmicLoaction2 = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    svg: makeNodeComponent("svg"),
     embedHtml: makeNodeComponent("embedHtml"),
     city: makeNodeComponent("city"),
     loaction: makeNodeComponent("loaction"),
