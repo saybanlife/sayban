@@ -496,11 +496,37 @@ function PlasmicAddress__RenderFunc(props: {
           ) : null}
         </ApiRequest>
       </div>
-      <div className={classNames("all", sty.freeBox___74AZu)}>
-        <PlusIcon className={classNames("all", sty.svg__yGrnX)} role={"img"} />
+      <div className={classNames("all", sty.freeBox___4RYg0, "page")}>
+        <div
+          className={classNames("all", sty.freeBox___74AZu)}
+          onClick={async event => {
+            const $steps = {};
 
-        <div className={classNames("all", "__wab_text", sty.text__lLtwt)}>
-          {"\u0627\u0641\u0632\u0648\u062f\u0646 \u0622\u062f\u0631\u0633"}
+            $steps["runAddUser"] = true
+              ? (() => {
+                  const actionArgs = { eventRef: $props["addUser"] };
+                  return (({ eventRef, args }) => {
+                    return eventRef?.(...(args ?? []));
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runAddUser"] != null &&
+              typeof $steps["runAddUser"] === "object" &&
+              typeof $steps["runAddUser"].then === "function"
+            ) {
+              $steps["runAddUser"] = await $steps["runAddUser"];
+            }
+          }}
+        >
+          <PlusIcon
+            className={classNames("all", sty.svg__yGrnX)}
+            role={"img"}
+          />
+
+          <div className={classNames("all", "__wab_text", sty.text__lLtwt)}>
+            {"\u0627\u0641\u0632\u0648\u062f\u0646 \u0622\u062f\u0631\u0633"}
+          </div>
         </div>
       </div>
     </div>

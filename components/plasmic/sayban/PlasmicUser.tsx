@@ -441,20 +441,20 @@ function PlasmicUser__RenderFunc(props: {
             onClick={async event => {
               const $steps = {};
 
-              $steps["runGoToPatient"] = true
+              $steps["runGoToAddress"] = true
                 ? (() => {
-                    const actionArgs = { eventRef: $props["goToPatient"] };
+                    const actionArgs = { eventRef: $props["goToAddress"] };
                     return (({ eventRef, args }) => {
                       return eventRef?.(...(args ?? []));
                     })?.apply(null, [actionArgs]);
                   })()
                 : undefined;
               if (
-                $steps["runGoToPatient"] != null &&
-                typeof $steps["runGoToPatient"] === "object" &&
-                typeof $steps["runGoToPatient"].then === "function"
+                $steps["runGoToAddress"] != null &&
+                typeof $steps["runGoToAddress"] === "object" &&
+                typeof $steps["runGoToAddress"].then === "function"
               ) {
-                $steps["runGoToPatient"] = await $steps["runGoToPatient"];
+                $steps["runGoToAddress"] = await $steps["runGoToAddress"];
               }
             }}
           >
