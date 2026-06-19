@@ -1414,7 +1414,7 @@ function PlasmicMain__RenderFunc(props: {
                         sty.text__xwmKh
                       )}
                     >
-                      {"\u0633\u0631\u0648\u06cc\u0633\u200c\u0647\u0627"}
+                      {"\u062e\u062f\u0645\u0627\u062a"}
                     </div>
                   }
                 >
@@ -1744,7 +1744,7 @@ function PlasmicMain__RenderFunc(props: {
               data-plasmic-name={"button3"}
               data-plasmic-override={overrides.button3}
               className={classNames("__wab_instance", sty.button3)}
-              color={"neutral"}
+              color={"warning"}
               label={
                 <div
                   className={classNames("all", "__wab_text", sty.text__a4BhN)}

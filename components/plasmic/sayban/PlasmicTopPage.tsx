@@ -59,7 +59,6 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { AntdAvatar } from "@plasmicpkgs/antd5/skinny/registerAvatar";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -69,6 +68,7 @@ import sty from "./PlasmicTopPage.module.css"; // plasmic-import: g_3hTxUM0f5d/c
 
 import Icon53Icon from "./icons/PlasmicIcon__Icon53"; // plasmic-import: TLGayeiIYfbW/icon
 import Icon270Icon from "./icons/PlasmicIcon__Icon270"; // plasmic-import: xtBcS_RDta6A/icon
+import Icon5Icon from "./icons/PlasmicIcon__Icon5"; // plasmic-import: 8vOA1S70pHdl/icon
 
 createPlasmicElementProxy;
 
@@ -77,17 +77,16 @@ export type PlasmicTopPage__VariantsArgs = {};
 type VariantPropType = keyof PlasmicTopPage__VariantsArgs;
 export const PlasmicTopPage__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicTopPage__ArgsType = {};
+export type PlasmicTopPage__ArgsType = { createProfile?: (event: any) => void };
 type ArgPropType = keyof PlasmicTopPage__ArgsType;
-export const PlasmicTopPage__ArgProps = new Array<ArgPropType>();
+export const PlasmicTopPage__ArgProps = new Array<ArgPropType>("createProfile");
 
 export type PlasmicTopPage__OverridesType = {
   root?: Flex__<"div">;
-  freeBox?: Flex__<"div">;
-  avatar?: Flex__<typeof AntdAvatar>;
 };
 
 export interface DefaultTopPageProps {
+  createProfile?: (event: any) => void;
   className?: string;
 }
 
@@ -147,11 +146,7 @@ function PlasmicTopPage__RenderFunc(props: {
         sty.root
       )}
     >
-      <div
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
-        className={classNames("all", sty.freeBox)}
-      >
+      <div className={classNames("all", sty.freeBox__xzCvt)}>
         <Icon53Icon
           className={classNames("all", sty.svg__l4HHx)}
           role={"img"}
@@ -162,32 +157,26 @@ function PlasmicTopPage__RenderFunc(props: {
           role={"img"}
         />
 
-        <AntdAvatar
-          data-plasmic-name={"avatar"}
-          data-plasmic-override={overrides.avatar}
-          className={classNames("__wab_instance", sty.avatar)}
-          letters={"AB"}
-          shape={"circle"}
-          size={"large"}
-          src={"/plasmic/sayban/images/image14.svg"}
-        />
+        <div className={classNames("all", sty.freeBox__zJvMl)}>
+          <Icon5Icon
+            className={classNames("all", sty.svg__nPyev)}
+            onClick={args.createProfile}
+            role={"img"}
+          />
+        </div>
       </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox", "avatar"],
-  freeBox: ["freeBox", "avatar"],
-  avatar: ["avatar"]
+  root: ["root"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  freeBox: "div";
-  avatar: typeof AntdAvatar;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -252,8 +241,6 @@ export const PlasmicTopPage = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    freeBox: makeNodeComponent("freeBox"),
-    avatar: makeNodeComponent("avatar"),
 
     // Metadata about props expected for PlasmicTopPage
     internalVariantProps: PlasmicTopPage__VariantProps,

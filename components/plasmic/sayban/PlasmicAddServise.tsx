@@ -280,7 +280,7 @@ function PlasmicAddServise__RenderFunc(props: {
                 <React.Fragment>
                   {(() => {
                     try {
-                      return currentItem.name ?? "نام سرویس";
+                      return currentItem.name ?? "نام خدمت";
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -376,7 +376,7 @@ function PlasmicAddServise__RenderFunc(props: {
                       sty.text___3XdMk
                     )}
                   >
-                    {"\u0646\u0627\u0645 \u0633\u0631\u0648\u06cc\u0633"}
+                    {"\u0646\u0627\u0645 \u062e\u062f\u0645\u062a"}
                   </div>
                   {(() => {
                     const child$Props = {
@@ -1078,9 +1078,7 @@ function PlasmicAddServise__RenderFunc(props: {
         iconEnd={true}
         label={
           <div className={classNames("all", "__wab_text", sty.text__nbzIn)}>
-            {
-              "\u0627\u0641\u0632\u0648\u062f\u0646 \u0633\u0631\u0648\u06cc\u0633"
-            }
+            {"\u0627\u0641\u0632\u0648\u062f\u0646 \u062e\u062f\u0645\u062a"}
           </div>
         }
         loading={generateStateValueProp($state, ["button5", "loading"])}

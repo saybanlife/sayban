@@ -113,6 +113,8 @@ export const PlasmicCenterInfo__ArgProps = new Array<ArgPropType>(
 export type PlasmicCenterInfo__OverridesType = {
   root?: Flex__<"div">;
   titleInput?: Flex__<typeof TextInput>;
+  username?: Flex__<typeof TextInput>;
+  password?: Flex__<typeof TextInput>;
   textAreaInput?: Flex__<typeof TextAreaInput>;
   category?: Flex__<typeof Select>;
   subcategory?: Flex__<typeof Select>;
@@ -236,6 +238,18 @@ function PlasmicCenterInfo__RenderFunc(props: {
 
         valueProp: "categories",
         onChangeProp: "onCategoriesChange"
+      },
+      {
+        path: "username.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "password.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -292,6 +306,60 @@ function PlasmicCenterInfo__RenderFunc(props: {
             }}
             type={"line"}
             value={generateStateValueProp($state, ["titleInput", "value"])}
+          />
+        </div>
+        <div className={classNames("all", sty.freeBox___0U0Ti)}>
+          <div className={classNames("all", "__wab_text", sty.text__tDc8S)}>
+            {"\u0646\u0627\u0645 \u06a9\u0627\u0631\u0628\u0631\u06cc"}
+          </div>
+          <TextInput
+            data-plasmic-name={"username"}
+            data-plasmic-override={overrides.username}
+            className={classNames("__wab_instance", sty.username)}
+            inputType={"text"}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["username", "value"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            type={"line"}
+            value={generateStateValueProp($state, ["username", "value"])}
+          />
+        </div>
+        <div className={classNames("all", sty.freeBox___0Oxcz)}>
+          <div className={classNames("all", "__wab_text", sty.text__s9Ad6)}>
+            {"\u0631\u0645\u0632 \u0639\u0628\u0648\u0631"}
+          </div>
+          <TextInput
+            data-plasmic-name={"password"}
+            data-plasmic-override={overrides.password}
+            className={classNames("__wab_instance", sty.password)}
+            inputType={"text"}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["password", "value"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            type={"line"}
+            value={generateStateValueProp($state, ["password", "value"])}
           />
         </div>
         <div className={classNames("all", sty.freeBox__pXwue)}>
@@ -547,12 +615,16 @@ const PlasmicDescendants = {
   root: [
     "root",
     "titleInput",
+    "username",
+    "password",
     "textAreaInput",
     "category",
     "subcategory",
     "tags"
   ],
   titleInput: ["titleInput"],
+  username: ["username"],
+  password: ["password"],
   textAreaInput: ["textAreaInput"],
   category: ["category"],
   subcategory: ["subcategory"],
@@ -564,6 +636,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   titleInput: typeof TextInput;
+  username: typeof TextInput;
+  password: typeof TextInput;
   textAreaInput: typeof TextAreaInput;
   category: typeof Select;
   subcategory: typeof Select;
@@ -633,6 +707,8 @@ export const PlasmicCenterInfo = Object.assign(
   {
     // Helper components rendering sub-elements
     titleInput: makeNodeComponent("titleInput"),
+    username: makeNodeComponent("username"),
+    password: makeNodeComponent("password"),
     textAreaInput: makeNodeComponent("textAreaInput"),
     category: makeNodeComponent("category"),
     subcategory: makeNodeComponent("subcategory"),

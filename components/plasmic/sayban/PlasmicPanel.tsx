@@ -211,6 +211,19 @@ function PlasmicPanel__RenderFunc(props: {
             permissions: ["super_admin", "center_admin", "staff"]
           },
           {
+            label: "\u0645\u0631\u06a9\u0632 \u0645\u0646",
+            value: "center",
+            icon: "building",
+            permissions: ["center_admin"]
+          },
+          {
+            label:
+              "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062e\u062f\u0645\u0627\u062a",
+            value: "services_management",
+            icon: "service",
+            permissions: ["center_admin"]
+          },
+          {
             label:
               "\u0645\u062f\u06cc\u0631\u06cc\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
             value: "users",
@@ -369,6 +382,12 @@ function PlasmicPanel__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "loginPanel.createAccontUserinfo",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -733,11 +752,13 @@ function PlasmicPanel__RenderFunc(props: {
               data-plasmic-override={overrides.main}
               centerId={(() => {
                 try {
-                  return $ctx.params?.page?.[0] === "center-list"
-                    ? null
-                    : $ctx.params?.page?.[0]?.includes("-")
-                      ? $$.md5($ctx.params.page[0].split("-")[1])
-                      : null;
+                  return $ctx.params?.page?.[0] === "center"
+                    ? $state.userInfo.center_id
+                    : $ctx.params?.page?.[0] === "center-list"
+                      ? null
+                      : $ctx.params?.page?.[0]?.includes("-")
+                        ? $$.md5($ctx.params.page[0].split("-")[1])
+                        : null;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -830,6 +851,62 @@ function PlasmicPanel__RenderFunc(props: {
             data-plasmic-name={"loginPanel"}
             data-plasmic-override={overrides.loginPanel}
             className={classNames("__wab_instance", sty.loginPanel)}
+            createAccontUserinfo={generateStateValueProp($state, [
+              "loginPanel",
+              "createAccontUserinfo"
+            ])}
+            onCreateAccontUserinfoChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "loginPanel",
+                "createAccontUserinfo"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+
+              (async val => {
+                const $steps = {};
+
+                $steps["updateUserInfo"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["userInfo"]
+                        },
+                        operation: 0,
+                        value: $state.loginPanel.createAccontUserinfo
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateUserInfo"] != null &&
+                  typeof $steps["updateUserInfo"] === "object" &&
+                  typeof $steps["updateUserInfo"].then === "function"
+                ) {
+                  $steps["updateUserInfo"] = await $steps["updateUserInfo"];
+                }
+              }).apply(null, eventArgs);
+            }}
             onUserinfoChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "loginPanel",
@@ -953,23 +1030,24 @@ function PlasmicPanel__RenderFunc(props: {
               $steps["updateToken"] = await $steps["updateToken"];
             }
 
-            $steps["goToPanel"] = false
-              ? (() => {
-                  const actionArgs = { destination: `/panel/${"login"}` };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
+            $steps["goToPanel"] =
+              $state.token == null && $ctx.params.page[0] != "login"
+                ? (() => {
+                    const actionArgs = { destination: `/panel/${"login"}` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
             if (
               $steps["goToPanel"] != null &&
               typeof $steps["goToPanel"] === "object" &&

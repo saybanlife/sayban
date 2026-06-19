@@ -548,7 +548,7 @@ function PlasmicLogin2__RenderFunc(props: {
                 const actionArgs = {
                   args: [
                     "POST",
-                    "https://sayban.darkube.ir/webhook/panel/user/login",
+                    "/panel/user/login",
                     undefined,
                     {
                       userName: $state.userName.value,

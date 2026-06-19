@@ -201,6 +201,7 @@ function PlasmicTags__RenderFunc(props: {
       <AntdSelect
         data-plasmic-name={"tags"}
         data-plasmic-override={overrides.tags}
+        allowClear={false}
         className={classNames("__wab_instance", sty.tags)}
         defaultStylesClassName={classNames(
           "root_reset_qARqpE4p5tZmJuNxFbTaPz",

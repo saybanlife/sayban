@@ -81,9 +81,15 @@ export type PlasmicCreateAccont__VariantsArgs = {};
 type VariantPropType = keyof PlasmicCreateAccont__VariantsArgs;
 export const PlasmicCreateAccont__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicCreateAccont__ArgsType = {};
+export type PlasmicCreateAccont__ArgsType = {
+  userinfo?: any;
+  onUserinfoChange?: (val: string) => void;
+};
 type ArgPropType = keyof PlasmicCreateAccont__ArgsType;
-export const PlasmicCreateAccont__ArgProps = new Array<ArgPropType>();
+export const PlasmicCreateAccont__ArgProps = new Array<ArgPropType>(
+  "userinfo",
+  "onUserinfoChange"
+);
 
 export type PlasmicCreateAccont__OverridesType = {
   root?: Flex__<"div">;
@@ -101,6 +107,8 @@ export type PlasmicCreateAccont__OverridesType = {
 };
 
 export interface DefaultCreateAccontProps {
+  userinfo?: any;
+  onUserinfoChange?: (val: string) => void;
   className?: string;
 }
 
@@ -225,9 +233,11 @@ function PlasmicCreateAccont__RenderFunc(props: {
       },
       {
         path: "userinfo",
-        type: "private",
+        type: "writable",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+
+        valueProp: "userinfo",
+        onChangeProp: "onUserinfoChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -845,7 +855,7 @@ function PlasmicCreateAccont__RenderFunc(props: {
                 const actionArgs = {
                   args: [
                     "POST",
-                    "https://sayban.darkube.ir/webhook-test/panel/user/register",
+                    "/panel/user/register",
                     undefined,
                     {
                       center_name: $state.centerName.value,
@@ -999,6 +1009,40 @@ function PlasmicCreateAccont__RenderFunc(props: {
             typeof $steps["runCode2"].then === "function"
           ) {
             $steps["runCode2"] = await $steps["runCode2"];
+          }
+
+          $steps["invokeGlobalAction2"] = $steps.create?.data?.success
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    "panelToken",
+                    (() => {
+                      try {
+                        return $steps.create?.data?.result?.token;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })(),
+                    100
+                  ]
+                };
+                return $globalActions["Fragment.setCookie"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["invokeGlobalAction2"] != null &&
+            typeof $steps["invokeGlobalAction2"] === "object" &&
+            typeof $steps["invokeGlobalAction2"].then === "function"
+          ) {
+            $steps["invokeGlobalAction2"] = await $steps["invokeGlobalAction2"];
           }
         }}
         onLoadingChange={async (...eventArgs: any) => {
