@@ -87,6 +87,7 @@ export const PlasmicCreateAccont__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicCreateAccont__OverridesType = {
   root?: Flex__<"div">;
+  centerName?: Flex__<typeof TextInput>;
   userName?: Flex__<typeof TextInput>;
   password?: Flex__<typeof TextInput>;
   hide?: Flex__<typeof Hide>;
@@ -215,6 +216,18 @@ function PlasmicCreateAccont__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => "password"
+      },
+      {
+        path: "centerName.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "userinfo",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -256,10 +269,36 @@ function PlasmicCreateAccont__RenderFunc(props: {
         </div>
         <div className={classNames("all", "__wab_text", sty.text___2IjOq)}>
           {
-            "\u0628\u0647 \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc \u062e\u0648\u062f \u0648\u0627\u0631\u062f \u0634\u0648\u06cc\u062f."
+            "\u0644\u0637\u0641\u0627 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
           }
         </div>
       </div>
+      <TextInput
+        data-plasmic-name={"centerName"}
+        data-plasmic-override={overrides.centerName}
+        className={classNames("__wab_instance", sty.centerName)}
+        onChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["centerName", "value"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        placeholder={
+          "\u0646\u0627\u0645 \u0645\u0631\u06a9\u0632 \u0634\u0645\u0627 \u0686\u06cc\u0633\u062a\u061f"
+        }
+        size={"langh"}
+        type={"soft"}
+        value={generateStateValueProp($state, ["centerName", "value"])}
+      />
+
       <TextInput
         data-plasmic-name={"userName"}
         data-plasmic-override={overrides.userName}
@@ -507,6 +546,11 @@ function PlasmicCreateAccont__RenderFunc(props: {
         type={"line"}
       />
 
+      <div className={classNames("all", "__wab_text", sty.text__t1Nyb)}>
+        {
+          "\u0631\u0645\u0632 \u0639\u0628\u0648\u0631 \u0628\u0627\u06cc\u062f \u062d\u062f\u0627\u0642\u0644 \u06f8 \u06a9\u0627\u0631\u0627\u06a9\u062a\u0631 \u0648 \u062a\u0631\u06a9\u06cc\u0628\u06cc \u0627\u0632 \u062d\u0631\u0648\u0641 \u0648 \u0627\u0639\u062f\u0627\u062f \u0628\u0627\u0634\u062f."
+        }
+      </div>
       <div className={classNames("all", sty.freeBox___0NB5)}>
         <TextInput
           data-plasmic-name={"repeatPassword"}
@@ -728,16 +772,129 @@ function PlasmicCreateAccont__RenderFunc(props: {
         className={classNames("__wab_instance", sty.button)}
         label={
           <div className={classNames("all", "__wab_text", sty.text__mrUbL)}>
-            {"\u0648\u0631\u0648\u062f"}
+            {"\u062b\u0628\u062a \u0646\u0627\u0645"}
           </div>
         }
         loading={generateStateValueProp($state, ["button", "loading"])}
         onClick={async event => {
           const $steps = {};
 
-          $steps["goToPanel"] = true
+          $steps["runCode"] = true
             ? (() => {
-                const actionArgs = { destination: `/panel/${"center-list"}` };
+                const actionArgs = {
+                  customFunction: async () => {
+                    return ($state.button.loading = true);
+                  }
+                };
+                return (({ customFunction }) => {
+                  return customFunction();
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["runCode"] != null &&
+            typeof $steps["runCode"] === "object" &&
+            typeof $steps["runCode"].then === "function"
+          ) {
+            $steps["runCode"] = await $steps["runCode"];
+          }
+
+          $steps["runCode3"] = true
+            ? (() => {
+                const actionArgs = {
+                  customFunction: async () => {
+                    return (() => {
+                      if (!$state.centerName.value) {
+                        return "نام مرکز را وارد کنید";
+                      }
+                      if (!$state.userName.value) {
+                        return "نام کاربری را وارد کنید";
+                      }
+                      if (!$state.password.value) {
+                        return "رمز عبور را وارد کنید";
+                      }
+                      if (!$state.repeatPassword.value) {
+                        return "تکرار رمز عبور را وارد کنید";
+                      }
+                      if ($state.savePass < 60) {
+                        return "رمز عبور ضعیف است";
+                      }
+                      if (
+                        $state.password.value !== $state.repeatPassword.value
+                      ) {
+                        return "رمز عبور و تکرار آن یکسان نیست";
+                      }
+                    })();
+                  }
+                };
+                return (({ customFunction }) => {
+                  return customFunction();
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["runCode3"] != null &&
+            typeof $steps["runCode3"] === "object" &&
+            typeof $steps["runCode3"].then === "function"
+          ) {
+            $steps["runCode3"] = await $steps["runCode3"];
+          }
+
+          $steps["create"] = !$steps.runCode3
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    "POST",
+                    "https://sayban.darkube.ir/webhook-test/panel/user/register",
+                    undefined,
+                    {
+                      center_name: $state.centerName.value,
+                      emaile: $state.userName.value,
+                      mobile: $state.userName.value,
+                      password: $state.password.value
+                    }
+                  ]
+                };
+                return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["create"] != null &&
+            typeof $steps["create"] === "object" &&
+            typeof $steps["create"].then === "function"
+          ) {
+            $steps["create"] = await $steps["create"];
+          }
+
+          $steps["goToPanel"] = $steps.create?.data?.success
+            ? (() => {
+                const actionArgs = {
+                  destination: `/panel/${(() => {
+                    try {
+                      return (() => {
+                        const role = $steps.create?.data?.result?.role;
+                        const centerId = $steps.create?.data?.result?.center_id;
+                        let result;
+                        if (role === "super_admin") {
+                          result = "centers";
+                        } else if (role === "center_admin") {
+                          result = `center-${centerId}`;
+                        }
+                        return result;
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}`
+                };
                 return (({ destination }) => {
                   if (
                     typeof destination === "string" &&
@@ -758,6 +915,90 @@ function PlasmicCreateAccont__RenderFunc(props: {
             typeof $steps["goToPanel"].then === "function"
           ) {
             $steps["goToPanel"] = await $steps["goToPanel"];
+          }
+
+          $steps["updateUserNameValue2"] = $steps.create?.data?.success
+            ? (() => {
+                const actionArgs = {
+                  variable: {
+                    objRoot: $state,
+                    variablePath: ["userinfo"]
+                  },
+                  operation: 0,
+                  value: $steps.create?.data?.result
+                };
+                return (({ variable, value, startIndex, deleteCount }) => {
+                  if (!variable) {
+                    return;
+                  }
+                  const { objRoot, variablePath } = variable;
+
+                  $stateSet(objRoot, variablePath, value);
+                  return value;
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["updateUserNameValue2"] != null &&
+            typeof $steps["updateUserNameValue2"] === "object" &&
+            typeof $steps["updateUserNameValue2"].then === "function"
+          ) {
+            $steps["updateUserNameValue2"] =
+              await $steps["updateUserNameValue2"];
+          }
+
+          $steps["invokeGlobalAction"] = $steps.runCode3
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    "error",
+                    (() => {
+                      try {
+                        return $steps.runCode3;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })(),
+                    "top-left"
+                  ]
+                };
+                return $globalActions["Fragment.showToast"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["invokeGlobalAction"] != null &&
+            typeof $steps["invokeGlobalAction"] === "object" &&
+            typeof $steps["invokeGlobalAction"].then === "function"
+          ) {
+            $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
+          }
+
+          $steps["runCode2"] = true
+            ? (() => {
+                const actionArgs = {
+                  customFunction: async () => {
+                    return ($state.button.loading = false);
+                  }
+                };
+                return (({ customFunction }) => {
+                  return customFunction();
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["runCode2"] != null &&
+            typeof $steps["runCode2"] === "object" &&
+            typeof $steps["runCode2"].then === "function"
+          ) {
+            $steps["runCode2"] = await $steps["runCode2"];
           }
         }}
         onLoadingChange={async (...eventArgs: any) => {
@@ -852,6 +1093,7 @@ function PlasmicCreateAccont__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "centerName",
     "userName",
     "password",
     "hide",
@@ -863,6 +1105,7 @@ const PlasmicDescendants = {
     "button",
     "button3"
   ],
+  centerName: ["centerName"],
   userName: ["userName"],
   password: ["password"],
   hide: ["hide"],
@@ -879,6 +1122,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  centerName: typeof TextInput;
   userName: typeof TextInput;
   password: typeof TextInput;
   hide: typeof Hide;
@@ -953,6 +1197,7 @@ export const PlasmicCreateAccont = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    centerName: makeNodeComponent("centerName"),
     userName: makeNodeComponent("userName"),
     password: makeNodeComponent("password"),
     hide: makeNodeComponent("hide"),
