@@ -95,11 +95,13 @@ export type PlasmicMainPageCenter__ArgsType = {
   onCategptyChange?: (val: string) => void;
   onRowClicked?: (rowKey: string, row: any, event: any) => void;
   centerDelete?: () => void;
+  onCenterChange?: (val: string) => void;
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
   onListChange?: (val: string) => void;
   state?: string;
+  addService?: (event: any) => void;
 };
 type ArgPropType = keyof PlasmicMainPageCenter__ArgsType;
 export const PlasmicMainPageCenter__ArgProps = new Array<ArgPropType>(
@@ -110,11 +112,13 @@ export const PlasmicMainPageCenter__ArgProps = new Array<ArgPropType>(
   "onCategptyChange",
   "onRowClicked",
   "centerDelete",
+  "onCenterChange",
   "restart",
   "onRestartChange",
   "list",
   "onListChange",
-  "state"
+  "state",
+  "addService"
 );
 
 export type PlasmicMainPageCenter__OverridesType = {
@@ -122,6 +126,7 @@ export type PlasmicMainPageCenter__OverridesType = {
   select2?: Flex__<typeof Select>;
   menuSection?: Flex__<typeof MenuSection>;
   button?: Flex__<typeof Button>;
+  button2?: Flex__<typeof Button>;
   select?: Flex__<typeof Select>;
   textInput?: Flex__<typeof TextInput>;
   select3?: Flex__<typeof Select>;
@@ -139,11 +144,13 @@ export interface DefaultMainPageCenterProps {
   onCategptyChange?: (val: string) => void;
   onRowClicked?: (rowKey: string, row: any, event: any) => void;
   centerDelete?: () => void;
+  onCenterChange?: (val: string) => void;
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
   onListChange?: (val: string) => void;
   state?: string;
+  addService?: (event: any) => void;
   className?: string;
 }
 
@@ -298,9 +305,11 @@ function PlasmicMainPageCenter__RenderFunc(props: {
       },
       {
         path: "center",
-        type: "private",
+        type: "readonly",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({}),
+
+        onChangeProp: "onCenterChange"
       },
       {
         path: "restart",
@@ -323,6 +332,12 @@ function PlasmicMainPageCenter__RenderFunc(props: {
 
         valueProp: "list",
         onChangeProp: "onListChange"
+      },
+      {
+        path: "button2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -571,6 +586,41 @@ function PlasmicMainPageCenter__RenderFunc(props: {
             onClick={args.openEdit}
             onLoadingChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["button", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+
+          <Button
+            data-plasmic-name={"button2"}
+            data-plasmic-override={overrides.button2}
+            className={classNames("__wab_instance", sty.button2)}
+            color={"warning"}
+            end={
+              <Icon56Icon
+                className={classNames("all", sty.svg__cXmq9)}
+                role={"img"}
+              />
+            }
+            iconEnd={true}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__gDVn)}>
+                {"\u062e\u062f\u0645\u062a \u062c\u062f\u06cc\u062f"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button2", "loading"])}
+            onClick={args.addService}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button2", "loading"]).apply(
                 null,
                 eventArgs
               );
@@ -1160,6 +1210,7 @@ const PlasmicDescendants = {
     "select2",
     "menuSection",
     "button",
+    "button2",
     "select",
     "textInput",
     "select3",
@@ -1171,6 +1222,7 @@ const PlasmicDescendants = {
   select2: ["select2", "menuSection"],
   menuSection: ["menuSection"],
   button: ["button"],
+  button2: ["button2"],
   select: ["select"],
   textInput: ["textInput"],
   select3: ["select3"],
@@ -1187,6 +1239,7 @@ type NodeDefaultElementType = {
   select2: typeof Select;
   menuSection: typeof MenuSection;
   button: typeof Button;
+  button2: typeof Button;
   select: typeof Select;
   textInput: typeof TextInput;
   select3: typeof Select;
@@ -1261,6 +1314,7 @@ export const PlasmicMainPageCenter = Object.assign(
     select2: makeNodeComponent("select2"),
     menuSection: makeNodeComponent("menuSection"),
     button: makeNodeComponent("button"),
+    button2: makeNodeComponent("button2"),
     select: makeNodeComponent("select"),
     textInput: makeNodeComponent("textInput"),
     select3: makeNodeComponent("select3"),

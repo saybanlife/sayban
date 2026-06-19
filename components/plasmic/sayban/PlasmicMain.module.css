@@ -225,6 +225,98 @@
   position: relative;
   height: 1em;
 }
+.addService:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+  display: none;
+}
+.addServicepage_centers:global(.__wab_instance):global(.__wab_instance) {
+  display: none;
+}
+.addServicepage_center:global(.__wab_instance):global(.__wab_instance) {
+  display: block;
+}
+.button___51DYy:global(.__wab_instance):global(.__wab_instance) {
+  display: none;
+}
+.svg__hZHy {
+  position: relative;
+  height: 1em;
+}
+.svg__pUzL {
+  position: relative;
+  height: 1em;
+}
+.freeBox__oTin {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  row-gap: var(--token-0tl2H1TRPHhV);
+  min-width: 0;
+  padding: var(--token-73iLa06AE6f4) 0px 0px;
+}
+.select:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.addServise2:global(.__wab_instance) {
+  position: relative;
+  width: 500px;
+}
+.freeBox__dlUm {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: var(--token-73iLa06AE6f4);
+  min-width: 0;
+  padding: var(--token-73iLa06AE6f4);
+}
+.submit2:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  height: 45px;
+  min-width: 0;
+}
+.svg___55Ian {
+  position: relative;
+  height: 1em;
+}
+.text__gUaKg {
+  white-space: pre;
+  color: var(--token-7j7Cq8eU0_eD);
+}
+.svg__jnJzk {
+  position: relative;
+  height: 1em;
+}
+.button6:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  height: 45px;
+  min-width: 0;
+}
+.svg__msx6X {
+  position: relative;
+  height: 1em;
+}
+.text__yAcc {
+  white-space: pre;
+  color: var(--token-1aP3XjRZIKFV);
+}
+.svg__esbLr {
+  position: relative;
+  height: 1em;
+}
 .mainPageCategories:global(.__wab_instance) {
   max-width: 100%;
   position: absolute;

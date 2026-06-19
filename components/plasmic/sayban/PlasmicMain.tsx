@@ -72,11 +72,14 @@ import Imag from "../../Imag"; // plasmic-import: ScLhJpeVxPbk/component
 import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
 import AddServise from "../../AddServise"; // plasmic-import: GoiLccUqO4vp/component
 import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
+import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
+import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import MainPageCategories from "../../MainPageCategories"; // plasmic-import: fn1vTVaTFnJQ/component
 import MainPageReservations from "../../MainPageReservations"; // plasmic-import: TGG8jbyroWy4/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import Snackbar from "../../Snackbar"; // plasmic-import: CaodI8ra68z4/component
+import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -132,6 +135,12 @@ export type PlasmicMain__OverridesType = {
   button2?: Flex__<typeof Button>;
   submit?: Flex__<typeof Button>;
   button3?: Flex__<typeof Button>;
+  addService?: Flex__<typeof Modal>;
+  select?: Flex__<typeof Select>;
+  menuItem?: Flex__<typeof MenuItem>;
+  addServise2?: Flex__<typeof AddServise>;
+  submit2?: Flex__<typeof Button>;
+  button6?: Flex__<typeof Button>;
   mainPageCategories?: Flex__<typeof MainPageCategories>;
   mainPageReservations?: Flex__<typeof MainPageReservations>;
   categories?: Flex__<typeof ApiRequest>;
@@ -637,6 +646,55 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "addService.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          hasVariant($state, "page", "centers") ? false : false
+      },
+      {
+        path: "addServise2.servises",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "submit2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button6.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button4.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "select.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "select.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "mainPageCenter.center",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -682,6 +740,29 @@ function PlasmicMain__RenderFunc(props: {
       <MainPageCenter
         data-plasmic-name={"mainPageCenter"}
         data-plasmic-override={overrides.mainPageCenter}
+        addService={async event => {
+          const $steps = {};
+
+          $steps["runCode"] = true
+            ? (() => {
+                const actionArgs = {
+                  customFunction: async () => {
+                    return ($state.addService.isOpen = true);
+                  }
+                };
+                return (({ customFunction }) => {
+                  return customFunction();
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["runCode"] != null &&
+            typeof $steps["runCode"] === "object" &&
+            typeof $steps["runCode"].then === "function"
+          ) {
+            $steps["runCode"] = await $steps["runCode"];
+          }
+        }}
         categpty={generateStateValueProp($state, [
           "mainPageCenter",
           "categpty"
@@ -728,6 +809,20 @@ function PlasmicMain__RenderFunc(props: {
             "mainPageCenter",
             "categpty"
           ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onCenterChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainPageCenter", "center"]).apply(
+            null,
+            eventArgs
+          );
 
           if (
             eventArgs.length > 1 &&
@@ -1829,6 +1924,364 @@ function PlasmicMain__RenderFunc(props: {
         showHeader={false}
       />
 
+      <Modal
+        data-plasmic-name={"addService"}
+        data-plasmic-override={overrides.addService}
+        className={classNames("__wab_instance", sty.addService, {
+          [sty.addServicepage_center]: hasVariant($state, "page", "center"),
+          [sty.addServicepage_centers]: hasVariant($state, "page", "centers")
+        })}
+        closeOnBackdropClick={false}
+        content={
+          <div className={classNames("all", sty.freeBox__oTin)}>
+            <Select
+              data-plasmic-name={"select"}
+              data-plasmic-override={overrides.select}
+              className={classNames("__wab_instance", sty.select)}
+              isOpen={generateStateValueProp($state, ["select", "isOpen"])}
+              items={(_par =>
+                !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                (() => {
+                  try {
+                    return $state.mainPageCenter.center;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()
+              ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                const currentItem = __plasmic_item_0;
+                const currentIndex = __plasmic_idx_0;
+                return (
+                  <MenuItem
+                    data-plasmic-name={"menuItem"}
+                    data-plasmic-override={overrides.menuItem}
+                    key={currentIndex}
+                    label={(() => {
+                      try {
+                        return currentItem.نام;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    value={(() => {
+                      try {
+                        return currentItem.شناسه;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                  />
+                );
+              })}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["select", "value"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              onOpenChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["select", "isOpen"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              placeholder={
+                "\u0645\u0631\u06a9\u0632 \u0645\u0648\u0631\u062f \u0646\u0638\u0631 \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
+              }
+              showLabel={false}
+              type={"lineBox"}
+              value={generateStateValueProp($state, ["select", "value"])}
+            />
+
+            <AddServise
+              data-plasmic-name={"addServise2"}
+              data-plasmic-override={overrides.addServise2}
+              className={classNames("__wab_instance", sty.addServise2)}
+              onServisesChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "addServise2",
+                  "servises"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              servises={generateStateValueProp($state, [
+                "addServise2",
+                "servises"
+              ])}
+            />
+          </div>
+        }
+        footer={
+          <div className={classNames("all", sty.freeBox__dlUm)}>
+            <Button
+              data-plasmic-name={"submit2"}
+              data-plasmic-override={overrides.submit2}
+              className={classNames("__wab_instance", sty.submit2)}
+              color={"success"}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text__gUaKg)}
+                >
+                  {"\u0630\u062e\u06cc\u0631\u0647"}
+                </div>
+              }
+              loading={generateStateValueProp($state, ["submit2", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateSubmitLoading"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["submit2", "loading"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateSubmitLoading"] != null &&
+                  typeof $steps["updateSubmitLoading"] === "object" &&
+                  typeof $steps["updateSubmitLoading"].then === "function"
+                ) {
+                  $steps["updateSubmitLoading"] =
+                    await $steps["updateSubmitLoading"];
+                }
+
+                $steps["invokeGlobalAction"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "POST",
+                          "https://sayban.darkube.app/webhook/panel/center/add",
+                          undefined,
+                          (() => {
+                            try {
+                              return { service: $state.addServise2.servises };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] =
+                    await $steps["invokeGlobalAction"];
+                }
+
+                $steps["updateSubmitLoading2"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["submit2", "loading"]
+                        },
+                        operation: 0,
+                        value: false
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateSubmitLoading2"] != null &&
+                  typeof $steps["updateSubmitLoading2"] === "object" &&
+                  typeof $steps["updateSubmitLoading2"].then === "function"
+                ) {
+                  $steps["updateSubmitLoading2"] =
+                    await $steps["updateSubmitLoading2"];
+                }
+              }}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["submit2", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+            />
+
+            <Button
+              data-plasmic-name={"button6"}
+              data-plasmic-override={overrides.button6}
+              className={classNames("__wab_instance", sty.button6)}
+              color={"warning"}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text__yAcc)}
+                >
+                  {"\u0644\u063a\u0648"}
+                </div>
+              }
+              loading={generateStateValueProp($state, ["button6", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateAddCenterIsOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["addService", "isOpen"]
+                        },
+                        operation: 4
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateAddCenterIsOpen"] != null &&
+                  typeof $steps["updateAddCenterIsOpen"] === "object" &&
+                  typeof $steps["updateAddCenterIsOpen"].then === "function"
+                ) {
+                  $steps["updateAddCenterIsOpen"] =
+                    await $steps["updateAddCenterIsOpen"];
+                }
+              }}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["button6", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              type={"soft"}
+            />
+          </div>
+        }
+        heading={null}
+        isOpen={generateStateValueProp($state, ["addService", "isOpen"])}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["addService", "isOpen"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        showFooter={false}
+        showHeader={false}
+      />
+
       <MainPageCategories
         data-plasmic-name={"mainPageCategories"}
         data-plasmic-override={overrides.mainPageCategories}
@@ -2702,6 +3155,12 @@ const PlasmicDescendants = {
     "button2",
     "submit",
     "button3",
+    "addService",
+    "select",
+    "menuItem",
+    "addServise2",
+    "submit2",
+    "button6",
     "mainPageCategories",
     "mainPageReservations",
     "categories",
@@ -2738,6 +3197,19 @@ const PlasmicDescendants = {
   button2: ["button2"],
   submit: ["submit"],
   button3: ["button3"],
+  addService: [
+    "addService",
+    "select",
+    "menuItem",
+    "addServise2",
+    "submit2",
+    "button6"
+  ],
+  select: ["select", "menuItem"],
+  menuItem: ["menuItem"],
+  addServise2: ["addServise2"],
+  submit2: ["submit2"],
+  button6: ["button6"],
   mainPageCategories: ["mainPageCategories"],
   mainPageReservations: ["mainPageReservations"],
   categories: ["categories"],
@@ -2768,6 +3240,12 @@ type NodeDefaultElementType = {
   button2: typeof Button;
   submit: typeof Button;
   button3: typeof Button;
+  addService: typeof Modal;
+  select: typeof Select;
+  menuItem: typeof MenuItem;
+  addServise2: typeof AddServise;
+  submit2: typeof Button;
+  button6: typeof Button;
   mainPageCategories: typeof MainPageCategories;
   mainPageReservations: typeof MainPageReservations;
   categories: typeof ApiRequest;
@@ -2856,6 +3334,12 @@ export const PlasmicMain = Object.assign(
     button2: makeNodeComponent("button2"),
     submit: makeNodeComponent("submit"),
     button3: makeNodeComponent("button3"),
+    addService: makeNodeComponent("addService"),
+    select: makeNodeComponent("select"),
+    menuItem: makeNodeComponent("menuItem"),
+    addServise2: makeNodeComponent("addServise2"),
+    submit2: makeNodeComponent("submit2"),
+    button6: makeNodeComponent("button6"),
     mainPageCategories: makeNodeComponent("mainPageCategories"),
     mainPageReservations: makeNodeComponent("mainPageReservations"),
     categories: makeNodeComponent("categories"),
