@@ -92,6 +92,10 @@ export type PlasmicCenterInfo__ArgsType = {
   tagsitem?: any;
   categories?: any;
   onCategoriesChange?: (val: string) => void;
+  userName?: string;
+  onUserNameChange?: (val: string) => void;
+  password1?: string;
+  onPasswordChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicCenterInfo__ArgsType;
 export const PlasmicCenterInfo__ArgProps = new Array<ArgPropType>(
@@ -107,7 +111,11 @@ export const PlasmicCenterInfo__ArgProps = new Array<ArgPropType>(
   "onTagChange",
   "tagsitem",
   "categories",
-  "onCategoriesChange"
+  "onCategoriesChange",
+  "userName",
+  "onUserNameChange",
+  "password1",
+  "onPasswordChange"
 );
 
 export type PlasmicCenterInfo__OverridesType = {
@@ -135,6 +143,10 @@ export interface DefaultCenterInfoProps {
   tagsitem?: any;
   categories?: any;
   onCategoriesChange?: (val: string) => void;
+  userName?: string;
+  onUserNameChange?: (val: string) => void;
+  password1?: string;
+  onPasswordChange?: (val: string) => void;
   className?: string;
 }
 
@@ -241,15 +253,19 @@ function PlasmicCenterInfo__RenderFunc(props: {
       },
       {
         path: "username.value",
-        type: "private",
+        type: "writable",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+
+        valueProp: "userName",
+        onChangeProp: "onUserNameChange"
       },
       {
         path: "password.value",
-        type: "private",
+        type: "writable",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+
+        valueProp: "password1",
+        onChangeProp: "onPasswordChange"
       }
     ],
     [$props, $ctx, $refs]

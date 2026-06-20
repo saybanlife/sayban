@@ -695,6 +695,18 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "centerInfo.userName",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "centerInfo.password1",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -1282,6 +1294,20 @@ function PlasmicMain__RenderFunc(props: {
                         return;
                       }
                     }}
+                    onPasswordChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "centerInfo",
+                        "password1"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
                     onSubcategory2Change={async (...eventArgs: any) => {
                       generateStateOnChangeProp($state, [
                         "centerInfo",
@@ -1324,6 +1350,24 @@ function PlasmicMain__RenderFunc(props: {
                         return;
                       }
                     }}
+                    onUserNameChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "centerInfo",
+                        "userName"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    password1={generateStateValueProp($state, [
+                      "centerInfo",
+                      "password1"
+                    ])}
                     subcategory2={generateStateValueProp($state, [
                       "centerInfo",
                       "subcategory2"
@@ -1333,6 +1377,10 @@ function PlasmicMain__RenderFunc(props: {
                     title={generateStateValueProp($state, [
                       "centerInfo",
                       "title"
+                    ])}
+                    userName={generateStateValueProp($state, [
+                      "centerInfo",
+                      "userName"
                     ])}
                   />
                 </AntdTabItem>
@@ -1826,6 +1874,8 @@ function PlasmicMain__RenderFunc(props: {
                               try {
                                 return {
                                   name: $state.centerInfo.title,
+                                  user_name: $state.centerInfo.userName,
+                                  password: $state.centerInfo.password1,
                                   description: $state.centerInfo.description,
                                   subcategory_id:
                                     $state.centerInfo.subcategory2,
@@ -2845,7 +2895,7 @@ function PlasmicMain__RenderFunc(props: {
           );
         }}
         shouldFetch={true}
-        url={"https://sayban.darkube.ir/webhook-test/panel/centers"}
+        url={"panel/centers"}
       />
 
       <Embed

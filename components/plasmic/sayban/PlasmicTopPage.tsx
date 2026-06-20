@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -69,6 +70,8 @@ import sty from "./PlasmicTopPage.module.css"; // plasmic-import: g_3hTxUM0f5d/c
 import Icon53Icon from "./icons/PlasmicIcon__Icon53"; // plasmic-import: TLGayeiIYfbW/icon
 import Icon270Icon from "./icons/PlasmicIcon__Icon270"; // plasmic-import: xtBcS_RDta6A/icon
 import Icon5Icon from "./icons/PlasmicIcon__Icon5"; // plasmic-import: 8vOA1S70pHdl/icon
+import UserEditIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__UserEdit"; // plasmic-import: ml0No70rMVNC/icon
+import DoorExitIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__DoorExit"; // plasmic-import: BhKck9w58Ezp/icon
 
 createPlasmicElementProxy;
 
@@ -83,6 +86,7 @@ export const PlasmicTopPage__ArgProps = new Array<ArgPropType>("createProfile");
 
 export type PlasmicTopPage__OverridesType = {
   root?: Flex__<"div">;
+  popover?: Flex__<typeof AntdPopover>;
 };
 
 export interface DefaultTopPageProps {
@@ -129,6 +133,26 @@ function PlasmicTopPage__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "popover.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $q: {},
+    $refs
+  });
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
@@ -157,26 +181,86 @@ function PlasmicTopPage__RenderFunc(props: {
           role={"img"}
         />
 
-        <div className={classNames("all", sty.freeBox__zJvMl)}>
-          <Icon5Icon
-            className={classNames("all", sty.svg__nPyev)}
-            onClick={args.createProfile}
-            role={"img"}
-          />
-        </div>
+        <AntdPopover
+          data-plasmic-name={"popover"}
+          data-plasmic-override={overrides.popover}
+          arrow={true}
+          className={classNames("__wab_instance", sty.popover)}
+          content={
+            <div className={classNames("all", sty.freeBox__zGv7U)}>
+              <div className={classNames("all", sty.freeBox__wdPjl)}>
+                <UserEditIcon
+                  className={classNames("all", sty.svg__kbMHm)}
+                  role={"img"}
+                />
+
+                <div
+                  className={classNames("all", "__wab_text", sty.text__lNrBl)}
+                >
+                  {
+                    "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u06a9\u0627\u0631\u0628\u0631\u06cc"
+                  }
+                </div>
+              </div>
+              <div className={classNames("all", sty.freeBox__jFh7V)}>
+                <DoorExitIcon
+                  className={classNames("all", sty.svg__lt1F4)}
+                  role={"img"}
+                />
+
+                <div
+                  className={classNames("all", "__wab_text", sty.text__lMfuq)}
+                >
+                  {"\u062e\u0631\u0648\u062c"}
+                </div>
+              </div>
+            </div>
+          }
+          contentText={"Popover contents"}
+          defaultOpen={false}
+          defaultStylesClassName={classNames(
+            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+            "plasmic_default_styles",
+            "plasmic_mixins",
+            styleTokensClassNames
+          )}
+          mouseEnterDelay={0}
+          mouseLeaveDelay={0}
+          onOpenChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["popover", "open"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          open={generateStateValueProp($state, ["popover", "open"])}
+          placement={"bottomRight"}
+          popoverScopeClassName={sty["popover__popover"]}
+          title={null}
+          trigger={"click"}
+        >
+          <div className={classNames("all", sty.freeBox__zJvMl)}>
+            <Icon5Icon
+              className={classNames("all", sty.svg__nPyev)}
+              onClick={args.createProfile}
+              role={"img"}
+            />
+          </div>
+        </AntdPopover>
       </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root"]
+  root: ["root", "popover"],
+  popover: ["popover"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  popover: typeof AntdPopover;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -241,6 +325,7 @@ export const PlasmicTopPage = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    popover: makeNodeComponent("popover"),
 
     // Metadata about props expected for PlasmicTopPage
     internalVariantProps: PlasmicTopPage__VariantProps,
