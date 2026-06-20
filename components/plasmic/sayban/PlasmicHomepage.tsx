@@ -368,8 +368,7 @@ function PlasmicHomepage__RenderFunc(props: {
         path: "token",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwaXJlIjoxNzY0NTA2MjczfQ.A6wRqW0jMYVg_rZ4OMZ5oXrcOVwKq3BG4i_wmvKf_8A"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "search.data",
@@ -710,7 +709,7 @@ function PlasmicHomepage__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
-        path: "reminderSetting.reminderCategory2Data",
+        path: "reminderSetting.category",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({
@@ -1215,6 +1214,25 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "addAddress.loaction2City2",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.profile.data.result.city;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -4541,6 +4559,10 @@ function PlasmicHomepage__RenderFunc(props: {
           <ReminderSetting
             data-plasmic-name={"reminderSetting"}
             data-plasmic-override={overrides.reminderSetting}
+            category={generateStateValueProp($state, [
+              "reminderSetting",
+              "category"
+            ])}
             className={classNames("__wab_instance", sty.reminderSetting, {
               [sty.reminderSettingpage_reminderSetting]: hasVariant(
                 $state,
@@ -4556,6 +4578,20 @@ function PlasmicHomepage__RenderFunc(props: {
               "reminderSetting",
               "dialogOpendialog3"
             ])}
+            onCategoryChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "category"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
             onCreaditButtenCreaditChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "reminderSetting",
@@ -4626,20 +4662,6 @@ function PlasmicHomepage__RenderFunc(props: {
                 return;
               }
             }}
-            onReminderCategory2DataChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "reminderSetting",
-                "reminderCategory2Data"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
             onSmsChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "reminderSetting",
@@ -4693,10 +4715,6 @@ function PlasmicHomepage__RenderFunc(props: {
             refreshTime={generateStateValueProp($state, [
               "reminderSetting",
               "refreshTime"
-            ])}
-            reminderCategory2Data={generateStateValueProp($state, [
-              "reminderSetting",
-              "reminderCategory2Data"
             ])}
             sms={generateStateValueProp($state, ["reminderSetting", "sms"])}
             tel={generateStateValueProp($state, ["reminderSetting", "tel"])}
@@ -4853,11 +4871,29 @@ function PlasmicHomepage__RenderFunc(props: {
               )
             })}
             id={generateStateValueProp($state, ["addAddress", "id"])}
+            loaction2City2={generateStateValueProp($state, [
+              "addAddress",
+              "loaction2City2"
+            ])}
             onIdChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["addAddress", "id"]).apply(
                 null,
                 eventArgs
               );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onLoaction2City2Change={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "addAddress",
+                "loaction2City2"
+              ]).apply(null, eventArgs);
 
               if (
                 eventArgs.length > 1 &&

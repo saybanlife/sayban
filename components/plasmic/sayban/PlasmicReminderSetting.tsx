@@ -157,8 +157,8 @@ export type PlasmicReminderSetting__ArgsType = {
   man?: any;
   dialogOpendialog3?: boolean;
   onDialogOpendialog3Change?: (val: boolean) => void;
-  reminderCategory2Data?: any;
-  onReminderCategory2DataChange?: (val: any) => void;
+  category?: any;
+  onCategoryChange?: (val: any) => void;
   pageSelect?: any;
   onPageSelectChange?: (val: string) => void;
   creaditButtenCreadit?: number;
@@ -194,8 +194,8 @@ export const PlasmicReminderSetting__ArgProps = new Array<ArgPropType>(
   "man",
   "dialogOpendialog3",
   "onDialogOpendialog3Change",
-  "reminderCategory2Data",
-  "onReminderCategory2DataChange",
+  "category",
+  "onCategoryChange",
   "pageSelect",
   "onPageSelectChange",
   "creaditButtenCreadit",
@@ -298,8 +298,8 @@ export interface DefaultReminderSettingProps {
   man?: any;
   dialogOpendialog3?: boolean;
   onDialogOpendialog3Change?: (val: boolean) => void;
-  reminderCategory2Data?: any;
-  onReminderCategory2DataChange?: (val: any) => void;
+  category?: any;
+  onCategoryChange?: (val: any) => void;
   pageSelect?: any;
   onPageSelectChange?: (val: string) => void;
   creaditButtenCreadit?: number;
@@ -1189,8 +1189,8 @@ function PlasmicReminderSetting__RenderFunc(props: {
         type: "writable",
         variableType: "object",
 
-        valueProp: "reminderCategory2Data",
-        onChangeProp: "onReminderCategory2DataChange"
+        valueProp: "category",
+        onChangeProp: "onCategoryChange"
       },
       {
         path: "add",

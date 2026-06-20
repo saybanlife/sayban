@@ -253,6 +253,8 @@
   --plasmic-token-text-gray: var(--token-_dzRzBMvro_R);
   --token-Sxj-mWZy0xsf: 16px;
   --plasmic-token-unnamed-style-token-7: var(--token-Sxj-mWZy0xsf);
+  --token-TEBQONgFn2ky: rgb(245, 245, 245);
+  --plasmic-token-page-bg: var(--token-TEBQONgFn2ky);
 }
 
 @media (min-width: 0px) and (max-width: 768px) {

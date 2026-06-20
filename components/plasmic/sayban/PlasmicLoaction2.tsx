@@ -59,21 +59,16 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { Embed } from "@plasmicpkgs/plasmic-basic-components";
+import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
+import City from "../../City"; // plasmic-import: dRrvldGFbNOC/component
 import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
-import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
-import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicLoaction2.module.css"; // plasmic-import: HotW2vZJIIwq/css
-
-import EditIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Edit"; // plasmic-import: Q3Mz32feM0mm/icon
-import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
-import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 
 createPlasmicElementProxy;
 
@@ -114,15 +109,14 @@ export const PlasmicLoaction2__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicLoaction2__OverridesType = {
   root?: Flex__<"div">;
-  svg?: Flex__<"svg">;
-  embedHtml?: Flex__<typeof Embed>;
+  dialog?: Flex__<typeof Dialog>;
+  city3?: Flex__<typeof City>;
   city?: Flex__<typeof TextInput>;
   loaction?: Flex__<typeof TextAreaInput>;
+  text?: Flex__<"div">;
   addressDatalist?: Flex__<typeof TextInput>;
   postalCode?: Flex__<typeof TextInput>;
   title?: Flex__<typeof TextInput>;
-  button?: Flex__<typeof Button>;
-  apiRequest?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultLoaction2Props {
@@ -205,24 +199,6 @@ function PlasmicLoaction2__RenderFunc(props: {
         onChangeProp: "onLonChange"
       },
       {
-        path: "apiRequest.data",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "apiRequest.error",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "apiRequest.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
         path: "city.value",
         type: "writable",
         variableType: "text",
@@ -263,16 +239,33 @@ function PlasmicLoaction2__RenderFunc(props: {
         onChangeProp: "onLoaction2Change"
       },
       {
-        path: "button.loading",
+        path: "city3.city",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.city.value;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "dialog.opendialog",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
   );
-
-  const $globalActions = useGlobalActions?.();
 
   const $state = useDollarState(stateSpecs, {
     $props,
@@ -301,73 +294,75 @@ function PlasmicLoaction2__RenderFunc(props: {
         { [sty.rootloaction2]: hasVariant($state, "loaction2", "loaction2") }
       )}
     >
-      <div
-        className={classNames("all", sty.freeBox__pegql, {
-          [sty.freeBoxloaction2__pegqLpltWd]: hasVariant(
-            $state,
-            "loaction2",
-            "loaction2"
-          )
-        })}
-        tabIndex={2}
+      <Dialog
+        data-plasmic-name={"dialog"}
+        data-plasmic-override={overrides.dialog}
+        className={classNames("__wab_instance", sty.dialog)}
+        nopadding={true}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["dialog", "opendialog"])}
       >
-        <div
-          className={classNames("all", sty.freeBox__epuZf)}
-          onClick={async event => {
+        <City
+          data-plasmic-name={"city3"}
+          data-plasmic-override={overrides.city3}
+          back={async () => {
             const $steps = {};
 
-            $steps["updateLoaction2"] = true
+            $steps["runCode"] = true
               ? (() => {
                   const actionArgs = {
-                    vgroup: "loaction2",
-                    operation: 2,
-                    value: "loaction2"
-                  };
-                  return (({ vgroup, value }) => {
-                    if (typeof value === "string") {
-                      value = [value];
+                    customFunction: async () => {
+                      return (() => {
+                        $state.city.value = $state.city3.city;
+                        return ($state.dialog.opendialog = false);
+                      })();
                     }
-
-                    const oldValue = $stateGet($state, vgroup);
-                    $stateSet($state, vgroup, !oldValue);
-                    return !oldValue;
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
                   })?.apply(null, [actionArgs]);
                 })()
               : undefined;
             if (
-              $steps["updateLoaction2"] != null &&
-              typeof $steps["updateLoaction2"] === "object" &&
-              typeof $steps["updateLoaction2"].then === "function"
+              $steps["runCode"] != null &&
+              typeof $steps["runCode"] === "object" &&
+              typeof $steps["runCode"].then === "function"
             ) {
-              $steps["updateLoaction2"] = await $steps["updateLoaction2"];
+              $steps["runCode"] = await $steps["runCode"];
             }
           }}
-        >
-          <EditIcon
-            data-plasmic-name={"svg"}
-            data-plasmic-override={overrides.svg}
-            className={classNames("all", sty.svg)}
-            role={"img"}
-          />
+          city={generateStateValueProp($state, ["city3", "city"])}
+          className={classNames("__wab_instance", sty.city3)}
+          noHeader={true}
+          onCityChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["city3", "city"]).apply(
+              null,
+              eventArgs
+            );
 
-          <div className={classNames("all", "__wab_text", sty.text__d2FTt)}>
-            {
-              "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0645\u0648\u0642\u0639\u06cc\u062a"
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
             }
-          </div>
-        </div>
-      </div>
-      <Embed
-        data-plasmic-name={"embedHtml"}
-        data-plasmic-override={overrides.embedHtml}
-        className={classNames("__wab_instance", sty.embedHtml, {
-          [sty.embedHtmlloaction2]: hasVariant($state, "loaction2", "loaction2")
-        })}
-        code={
-          "\r\n<link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet/dist/leaflet.css\" />\r\n\r\n<style>\r\n  html, body {\r\n    height: 100%;\r\n    margin: 0;\r\n  }\r\n\r\n  #map {\r\n    width: 100%;\r\n    height: 100%;\r\n  }\r\n\r\n  .map-btn {\r\n    width: 30px;\r\n    height: 30px;\r\n    background: white;\r\n    border: none;\r\n    border-radius: 50%;\r\n    box-shadow: 0 2px 6px rgba(0,0,0,0.3);\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-size: 20px;\r\n  }\r\n\r\n  .map-btn:hover {\r\n    background: #f0f0f0;\r\n  }\r\n</style>\r\n\r\n</head>\r\n<body>\r\n\r\n<div id=\"map\"></div>\r\n\r\n<script src=\"https://unpkg.com/leaflet/dist/leaflet.js\"></script>\r\n\r\n<script>\r\n/* ================== SVG ICON ================== */\r\nvar locationIcon = L.divIcon({\r\n  className: '',\r\n  html: `\r\n    <svg width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"#e53935\">\r\n      <path d=\"M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z\"/>\r\n    </svg>\r\n  `,\r\n  iconSize: [32, 32],\r\n  iconAnchor: [16, 32]\r\n});\r\n\r\n/* ================== MAP ================== */\r\nvar map = L.map('map', {\r\n  zoomControl: false\r\n}).setView([35.6892, 51.389], 13);\r\n\r\nL.tileLayer(\r\n  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',\r\n  { attribution: '' }\r\n).addTo(map);\r\n\r\nvar marker = null;\r\n\r\n/* ================== MAP CLICK ================== */\r\nmap.on('click', e => {\r\n  var selLat = e.latlng.lat;\r\n  var selLng = e.latlng.lng;\r\n\r\n  window.selLat = selLat;\r\n  window.selLng = selLng;\r\n\r\n  if (!marker) {\r\n    marker = L.marker(e.latlng, { icon: locationIcon }).addTo(map);\r\n  } else {\r\n    marker.setLatLng(e.latlng);\r\n  }\r\n\r\n  document.getElementById(\"click_location\").click();\r\n});\r\n\r\n/* ================== LOCATION CONTROL ================== */\r\nvar LocationControl = L.Control.extend({\r\n  options: { position: 'bottomright' },\r\n\r\n  onAdd() {\r\n    var btn = L.DomUtil.create('button', 'map-btn');\r\n\r\n    btn.innerHTML = `\r\n      <svg viewBox=\"-7.2 -7.2 38.40 38.40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n        <path d=\"M12 8.25C9.92893 8.25 8.25 9.92893 8.25 12C8.25 14.0711 9.92893 15.75 12 15.75C14.0711 15.75 15.75 14.0711 15.75 12C15.75 9.92893 14.0711 8.25 12 8.25Z\" fill=\"#545454\"/>\r\n        <path fill-rule=\"evenodd\" clip-rule=\"evenodd\"\r\n          d=\"M12 1.25C12.4142 1.25 12.75 1.58579 12.75 2V3.28169C16.9842 3.64113 20.3589 7.01581 20.7183 11.25H22C22.4142 11.25 22.75 11.5858 22.75 12C22.75 12.4142 22.4142 12.75 22 12.75H20.7183C20.3589 16.9842 16.9842 20.3589 12.75 20.7183V22C12.75 22.4142 12.4142 22.75 12 22.75C11.5858 22.75 11.25 22.4142 11.25 22V20.7183C7.01581 20.3589 3.64113 16.9842 3.28169 12.75H2C1.58579 12.75 1.25 12.4142 1.25 12C1.25 11.5858 1.58579 11.25 2 11.25H3.28169C3.64113 7.01581 7.01581 3.64113 11.25 3.28169V2C11.25 1.58579 11.5858 1.25 12 1.25ZM4.75 12C4.75 16.0041 7.99594 19.25 12 19.25C16.0041 19.25 19.25 16.0041 19.25 12C19.25 7.99594 16.0041 4.75 12 4.75C7.99594 4.75 4.75 7.99594 4.75 12Z\"\r\n          fill=\"#545454\"/>\r\n      </svg>\r\n    `;\r\n\r\n    L.DomEvent.on(btn, 'click', e => {\r\n      L.DomEvent.stop(e);\r\n\r\n      if (!navigator.geolocation) {\r\n        alert('\u0645\u0648\u0642\u0639\u06cc\u062a\u200c\u06cc\u0627\u0628\u06cc \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u0646\u0645\u06cc\u200c\u0634\u0648\u062f');\r\n        return;\r\n      }\r\n\r\n      navigator.geolocation.getCurrentPosition(\r\n        pos => {\r\n          var lat = pos.coords.latitude;\r\n          var lng = pos.coords.longitude;\r\n          var latlng = [lat, lng];\r\n\r\n          map.setView(latlng, 15);\r\n\r\n          window.selLat = lat;\r\n          window.selLng = lng;\r\n\r\n          if (!marker) {\r\n            marker = L.marker(latlng, { icon: locationIcon }).addTo(map);\r\n          } else {\r\n            marker.setLatLng(latlng);\r\n          }\r\n\r\n          document.getElementById(\"click_location\").click();\r\n        },\r\n        err => {\r\n          if (err.code === 1) {\r\n            alert('\u062f\u0633\u062a\u0631\u0633\u06cc \u0628\u0647 \u0645\u0648\u0642\u0639\u06cc\u062a \u0645\u06a9\u0627\u0646\u06cc \u0631\u062f \u0634\u062f');\r\n          } else {\r\n            alert('\u062e\u0637\u0627 \u062f\u0631 \u0645\u0648\u0642\u0639\u06cc\u062a\u200c\u06cc\u0627\u0628\u06cc');\r\n          }\r\n        }\r\n      );\r\n    });\r\n\r\n    L.DomEvent.disableClickPropagation(btn);\r\n    return btn;\r\n  }\r\n});\r\n\r\nmap.addControl(new LocationControl());\r\n\r\n/* ================== CUSTOM ZOOM CONTROL ================== */\r\nvar ZoomControl = L.Control.extend({\r\n  options: { position: 'topleft' },\r\n\r\n  onAdd(map) {\r\n    var container = L.DomUtil.create('div');\r\n    container.style.display = 'flex';\r\n    container.style.flexDirection = 'column';\r\n    container.style.gap = '6px';\r\n\r\n    var zoomIn = this._btn('+', () => map.zoomIn());\r\n    var zoomOut = this._btn('\u2212', () => map.zoomOut());\r\n\r\n    container.appendChild(zoomIn);\r\n    container.appendChild(zoomOut);\r\n\r\n    L.DomEvent.disableClickPropagation(container);\r\n    L.DomEvent.disableScrollPropagation(container);\r\n\r\n    return container;\r\n  },\r\n\r\n  _btn(text, action) {\r\n    var btn = L.DomUtil.create('button', 'map-btn');\r\n\r\n    btn.innerHTML = text;\r\n\r\n    L.DomEvent.on(btn, 'click', e => {\r\n      L.DomEvent.stop(e);\r\n      action();\r\n    });\r\n\r\n    return btn;\r\n  }\r\n});\r\n\r\nwindow.goToLocation = function(lat, lng, zoom = 15){\r\n  const latitude = parseFloat(lat);\r\n  const longitude = parseFloat(lng);\r\n\r\n  if (isNaN(latitude) || isNaN(longitude)) return;\r\n\r\n  const latlng = [latitude, longitude];\r\n\r\n  window.map.flyTo(latlng, zoom);\r\n\r\n  window.selLat = latitude;\r\n  window.selLng = longitude;\r\n\r\n  if (!window.marker) {\r\n    window.marker = L.marker(latlng, {\r\n      icon: window.locationIcon\r\n    }).addTo(window.map);\r\n  } else {\r\n    window.marker.setLatLng(latlng);\r\n  }\r\n};\r\n\r\n\r\nmap.addControl(new ZoomControl());\r\n</script>"
-        }
-      />
-
+          }}
+        />
+      </Dialog>
       <div
         className={classNames("all", sty.freeBox__lfHg2, {
           [sty.freeBoxloaction2__lfHg2PltWd]: hasVariant(
@@ -400,6 +395,33 @@ function PlasmicLoaction2__RenderFunc(props: {
           size={"langh"}
           type={"lineBox"}
           value={generateStateValueProp($state, ["city", "value"])}
+        />
+
+        <div
+          className={classNames("all", sty.freeBox___4HwI)}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["runCode"] = true
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return ($state.dialog.opendialog = true);
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runCode"] != null &&
+              typeof $steps["runCode"] === "object" &&
+              typeof $steps["runCode"].then === "function"
+            ) {
+              $steps["runCode"] = await $steps["runCode"];
+            }
+          }}
         />
       </div>
       <div
@@ -443,12 +465,10 @@ function PlasmicLoaction2__RenderFunc(props: {
         />
 
         <div
-          className={classNames("all", "__wab_text", sty.text__hEBaB, {
-            [sty.textloaction2__hEBaBpltWd]: hasVariant(
-              $state,
-              "loaction2",
-              "loaction2"
-            )
+          data-plasmic-name={"text"}
+          data-plasmic-override={overrides.text}
+          className={classNames("all", "__wab_text", sty.text, {
+            [sty.textloaction2]: hasVariant($state, "loaction2", "loaction2")
           })}
           id={"click_location"}
           onClick={async event => {
@@ -596,213 +616,6 @@ function PlasmicLoaction2__RenderFunc(props: {
           )
         })}
       />
-
-      <div
-        className={classNames(
-          "all",
-          sty.freeBox__o766O,
-          hasVariant($state, "loaction2", "loaction2") ? "page" : undefined,
-          {
-            [sty.freeBoxloaction2__o766OpltWd]: hasVariant(
-              $state,
-              "loaction2",
-              "loaction2"
-            )
-          }
-        )}
-      >
-        <Button
-          data-plasmic-name={"button"}
-          data-plasmic-override={overrides.button}
-          className={classNames("__wab_instance", sty.button, {
-            [sty.buttonloaction2]: hasVariant($state, "loaction2", "loaction2")
-          })}
-          color={"success"}
-          label={
-            <div className={classNames("all", "__wab_text", sty.text__mmnoR)}>
-              {
-                "\u062a\u0627\u06cc\u06cc\u062f \u0645\u0648\u0642\u0639\u06cc\u062a"
-              }
-            </div>
-          }
-          loading={generateStateValueProp($state, ["button", "loading"])}
-          onClick={async event => {
-            const $steps = {};
-
-            $steps["updateLoaction2"] =
-              $state.lat != "" && $state.lat != null
-                ? (() => {
-                    const actionArgs = {
-                      vgroup: "loaction2",
-                      operation: 2,
-                      value: "loaction2"
-                    };
-                    return (({ vgroup, value }) => {
-                      if (typeof value === "string") {
-                        value = [value];
-                      }
-
-                      const oldValue = $stateGet($state, vgroup);
-                      $stateSet($state, vgroup, !oldValue);
-                      return !oldValue;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-            if (
-              $steps["updateLoaction2"] != null &&
-              typeof $steps["updateLoaction2"] === "object" &&
-              typeof $steps["updateLoaction2"].then === "function"
-            ) {
-              $steps["updateLoaction2"] = await $steps["updateLoaction2"];
-            }
-
-            $steps["invokeGlobalAction"] =
-              $state.lat == "" || $state.lat == null
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "error",
-                        "\u0644\u0637\u0641\u0627 \u0645\u0648\u0641\u0639\u06cc\u062a \u062e\u0648\u062f \u0631\u0627 \u0627\u0632 \u0631\u0648\u06cc \u0646\u0642\u0634\u0647 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f",
-                        "bottom-center"
-                      ]
-                    };
-                    return $globalActions["Fragment.showToast"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-            if (
-              $steps["invokeGlobalAction"] != null &&
-              typeof $steps["invokeGlobalAction"] === "object" &&
-              typeof $steps["invokeGlobalAction"].then === "function"
-            ) {
-              $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
-            }
-          }}
-          onLoadingChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["button", "loading"]).apply(
-              null,
-              eventArgs
-            );
-
-            if (
-              eventArgs.length > 1 &&
-              eventArgs[1] &&
-              eventArgs[1]._plasmic_state_init_
-            ) {
-              return;
-            }
-          }}
-        />
-      </div>
-      <ApiRequest
-        data-plasmic-name={"apiRequest"}
-        data-plasmic-override={overrides.apiRequest}
-        className={classNames("__wab_instance", sty.apiRequest)}
-        errorDisplay={
-          <div className={classNames("all", "__wab_text", sty.text__ngZMb)}>
-            {"Error fetching data"}
-          </div>
-        }
-        loadingDisplay={
-          <div className={classNames("all", "__wab_text", sty.text__kYi62)}>
-            {"Loading..."}
-          </div>
-        }
-        method={"GET"}
-        onError={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        onLoading={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        onSuccess={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
-            null,
-            eventArgs
-          );
-
-          (async data => {
-            const $steps = {};
-
-            $steps["runCode"] = $state.apiRequest?.data?.address
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return (() => {
-                        const city = $state.apiRequest.data.address.city;
-                        const neighbourhood =
-                          $state.apiRequest.data.address.neighbourhood;
-                        const road = $state.apiRequest.data.address.road;
-                        const amenity = $state.apiRequest.data.address.amenity;
-                        let address = city;
-                        if (neighbourhood && neighbourhood.trim() !== "") {
-                          address += ", " + neighbourhood;
-                        }
-                        address += ", " + road;
-                        if (amenity && amenity.trim() !== "") {
-                          address += ", " + amenity;
-                        }
-                        $state.loaction.value = address;
-                        return ($state.city.value = (
-                          $state.apiRequest.data.address.city || ""
-                        ).replace(/^شهر\s*/, ""));
-                      })();
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode"] != null &&
-              typeof $steps["runCode"] === "object" &&
-              typeof $steps["runCode"].then === "function"
-            ) {
-              $steps["runCode"] = await $steps["runCode"];
-            }
-          }).apply(null, eventArgs);
-        }}
-        params={(() => {
-          try {
-            return {
-              lon: $state.lon,
-              lat: $state.lat,
-              format: "json",
-              "accept-language": "fa"
-            };
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-        shouldFetch={(() => {
-          try {
-            return $state.lon != "" && $state.lat != "";
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return true;
-            }
-            throw e;
-          }
-        })()}
-        url={"https://nominatim.openstreetmap.org/reverse"}
-      />
     </div>
   ) as React.ReactElement | null;
 }
@@ -810,40 +623,37 @@ function PlasmicLoaction2__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "svg",
-    "embedHtml",
+    "dialog",
+    "city3",
     "city",
     "loaction",
+    "text",
     "addressDatalist",
     "postalCode",
-    "title",
-    "button",
-    "apiRequest"
+    "title"
   ],
-  svg: ["svg"],
-  embedHtml: ["embedHtml"],
+  dialog: ["dialog", "city3"],
+  city3: ["city3"],
   city: ["city"],
   loaction: ["loaction"],
+  text: ["text"],
   addressDatalist: ["addressDatalist"],
   postalCode: ["postalCode"],
-  title: ["title"],
-  button: ["button"],
-  apiRequest: ["apiRequest"]
+  title: ["title"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  svg: "svg";
-  embedHtml: typeof Embed;
+  dialog: typeof Dialog;
+  city3: typeof City;
   city: typeof TextInput;
   loaction: typeof TextAreaInput;
+  text: "div";
   addressDatalist: typeof TextInput;
   postalCode: typeof TextInput;
   title: typeof TextInput;
-  button: typeof Button;
-  apiRequest: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -908,15 +718,14 @@ export const PlasmicLoaction2 = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    svg: makeNodeComponent("svg"),
-    embedHtml: makeNodeComponent("embedHtml"),
+    dialog: makeNodeComponent("dialog"),
+    city3: makeNodeComponent("city3"),
     city: makeNodeComponent("city"),
     loaction: makeNodeComponent("loaction"),
+    text: makeNodeComponent("text"),
     addressDatalist: makeNodeComponent("addressDatalist"),
     postalCode: makeNodeComponent("postalCode"),
     title: makeNodeComponent("title"),
-    button: makeNodeComponent("button"),
-    apiRequest: makeNodeComponent("apiRequest"),
 
     // Metadata about props expected for PlasmicLoaction2
     internalVariantProps: PlasmicLoaction2__VariantProps,

@@ -294,9 +294,17 @@ function PlasmicRadioGroupLiom__RenderFunc(props: {
         {
           [sty.rootcolor_base2]: hasVariant($state, "color", "base2"),
           [sty.rootcolor_line]: hasVariant($state, "color", "line"),
+          [sty.rootcolor_line_size_mini]:
+            hasVariant($state, "size", "mini") &&
+            hasVariant($state, "color", "line"),
           [sty.rootdirection_v]: hasVariant($state, "direction", "v"),
           [sty.rooticon]: hasVariant($state, "icon", "icon"),
           [sty.rootmoulty]: hasVariant($state, "moulty", "moulty"),
+          [sty.rootmoulty_color_line_size_mini]:
+            hasVariant($state, "size", "mini") &&
+            hasVariant($state, "color", "line") &&
+            hasVariant($state, "moulty", "moulty"),
+          [sty.rootnoselect]: hasVariant($state, "noselect", "noselect"),
           [sty.rootsize_mini]: hasVariant($state, "size", "mini"),
           [sty.rootsize_small]: hasVariant($state, "size", "small"),
           [sty.rootsize_textSize]: hasVariant($state, "size", "textSize"),

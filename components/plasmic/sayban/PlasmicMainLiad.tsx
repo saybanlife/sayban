@@ -464,6 +464,370 @@ function PlasmicMainLiad__RenderFunc(props: {
         type: "private",
         variableType: "number",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "reminder.category",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return {
+                category: [
+                  {
+                    id: 1,
+                    name: "love",
+                    name_fa: "عاشقانه",
+                    description: "مناسبت‌ها و یادآورهای احساسی و رمانتیک.",
+                    color: "#E91E63"
+                  },
+                  {
+                    id: 2,
+                    name: "birthday",
+                    name_fa: "تولد",
+                    description: "یادآور تولد عزیزان و دوستان.",
+                    color: "#FFC107"
+                  },
+                  {
+                    id: 3,
+                    name: "health",
+                    name_fa: "سلامت",
+                    description:
+                      "یادآورهای مرتبط با سلامت جسم و روان، مانند چکاپ، دارو و ورزش.",
+                    color: "#4CAF50"
+                  },
+                  {
+                    id: 4,
+                    name: "international_days",
+                    name_fa: "روزهای جهانی",
+                    description:
+                      "یادآور روزهای جهانی مهم مانند روز زمین، روز زن و ...",
+                    color: "#2196F3"
+                  },
+                  {
+                    id: 5,
+                    name: "religious_days",
+                    name_fa: "روزهای مذهبی",
+                    description:
+                      "یادآور مناسبت‌ها و تعطیلات مذهبی مانند عید قربان، رمضان و ...",
+                    color: "#9C27B0"
+                  },
+                  {
+                    id: 6,
+                    name: "national_days",
+                    name_fa: "روزهای ملی",
+                    description:
+                      "یادآور مناسبت‌ها و روزهای ملی مانند روز معلم، پدر، پرستار و دهه فجر",
+                    color: "#FF7043"
+                  }
+                ],
+
+                type: [
+                  {
+                    category_id: 1,
+                    category_name: "love",
+                    category_name_fa: "عاشقانه",
+                    items: [
+                      {
+                        id: 1,
+                        category_id: 1,
+                        type: "wedding_anniversary",
+                        schedule_type: "everyYear",
+                        type_fa: "سالگرد ازدواج",
+                        description: "یادآور سالگرد ازدواج با همسر.",
+                        date: null,
+                        text: "marriage",
+                        tag: null,
+                        color: "#E91E63",
+                        icon: "wedding_anniversary"
+                      },
+                      {
+                        id: 2,
+                        category_id: 1,
+                        type: "relationship_anniversary",
+                        schedule_type: "everyYear",
+                        type_fa: "سالگرد آشنایی",
+                        description: "یادآور سالگرد آشنایی یا شروع رابطه.",
+                        date: null,
+                        text: "relationship_anniversary",
+                        tag: null,
+                        color: "#EC407A",
+                        icon: "relationship_anniversary"
+                      }
+                    ]
+                  },
+                  {
+                    category_id: 2,
+                    category_name: "birthday",
+                    category_name_fa: "تولد",
+                    items: [
+                      {
+                        id: 3,
+                        category_id: 2,
+                        type: "spouse_birthday",
+                        schedule_type: "everyYear",
+                        type_fa: "تولد همسر",
+                        description: "یادآور تولد همسر.",
+                        date: null,
+                        text: "birthdayWife",
+                        tag: null,
+                        color: "#FFB300",
+                        icon: "spouse_birthday"
+                      },
+                      {
+                        id: 4,
+                        category_id: 2,
+                        type: "mother_birthday",
+                        schedule_type: "everyYear",
+                        type_fa: "تولد مادر",
+                        description: "یادآور تولد مادر.",
+                        date: null,
+                        text: "birthdayMother",
+                        tag: null,
+                        color: "#FFC107",
+                        icon: "mother_birthday"
+                      },
+                      {
+                        id: 5,
+                        category_id: 2,
+                        type: "father_birthday",
+                        schedule_type: "everyYear",
+                        type_fa: "تولد پدر",
+                        description: "یادآور تولد پدر.",
+                        date: null,
+                        text: "birthdayFather",
+                        tag: null,
+                        color: "#FFD54F",
+                        icon: "father_birthday"
+                      },
+                      {
+                        id: 6,
+                        category_id: 2,
+                        type: "child_birthday",
+                        schedule_type: "everyYear",
+                        type_fa: "تولد فرزند",
+                        description: "یادآور تولد فرزند.",
+                        date: null,
+                        text: "birthdayChild",
+                        tag: null,
+                        color: "#FFE082",
+                        icon: "child_birthday"
+                      },
+                      {
+                        id: 20,
+                        category_id: 2,
+                        type: "other_birthday",
+                        schedule_type: "everyYear",
+                        type_fa: "تولد ...",
+                        description: "یادآور تولد همسر.",
+                        date: null,
+                        text: "birthday",
+                        tag: null,
+                        color: "#FFB300",
+                        icon: "spouse_birthday"
+                      }
+                    ]
+                  },
+                  {
+                    category_id: 3,
+                    category_name: "health",
+                    category_name_fa: "سلامت",
+                    items: [
+                      {
+                        id: 9,
+                        category_id: 3,
+                        type: "medicine_time",
+                        schedule_type: "everyDay",
+                        type_fa: "مصرف دارو",
+                        description: "یادآور زمان مصرف دارو.",
+                        date: null,
+                        text: "pill",
+                        tag: '["repead"]',
+                        color: "#66BB6A",
+                        icon: "medicine_time"
+                      },
+                      {
+                        id: 18,
+                        category_id: 3,
+                        type: "water_time",
+                        schedule_type: "everyDay",
+                        type_fa: "نوشیدن آب",
+                        description: "یادآور زمان نوشیدن آب.",
+                        date: null,
+                        text: "drinkWater",
+                        tag: null,
+                        color: "#66BB6A",
+                        icon: "water"
+                      },
+                      {
+                        id: 24,
+                        category_id: 3,
+                        type: "routine_skin",
+                        schedule_type: "everyDay",
+                        type_fa: "روتین پوست",
+                        description: "یادآور زمان نوشیدن آب.",
+                        date: null,
+                        text: "routineSkin",
+                        tag: null,
+                        color: "#66BB6A",
+                        icon: "routine_skin"
+                      }
+                    ]
+                  },
+                  {
+                    category_id: 4,
+                    category_name: "international_days",
+                    category_name_fa: "روزهای جهانی",
+                    items: [
+                      {
+                        id: 12,
+                        category_id: 4,
+                        type: "valentine_day",
+                        schedule_type: "everyYear",
+                        type_fa: "روز ولنتاین",
+                        description: "روز جهانی عشق و محبت.",
+                        date: "0000-02-14",
+                        text: "valentine",
+                        tag: null,
+                        color: "#F06292",
+                        icon: "valentine_day"
+                      },
+                      {
+                        id: 13,
+                        category_id: 4,
+                        type: "womens_day",
+                        schedule_type: "everyYear",
+                        type_fa: "روز جهانی دختر",
+                        description: "روز جهانی زن و حقوق برابر.",
+                        date: "0000-04-19",
+                        text: "girlsGlobal",
+                        tag: null,
+                        color: "#42A5F5",
+                        icon: "womens_day"
+                      },
+                      {
+                        id: 14,
+                        category_id: 4,
+                        type: "mothers_day",
+                        schedule_type: "everyYear",
+                        type_fa: "روز جهانی زن",
+                        description: "روز قدردانی از مادران در سراسر جهان.",
+                        date: "0000-03-08",
+                        text: "mothers_day",
+                        tag: null,
+                        color: "#64B5F6",
+                        icon: "mothers_day"
+                      },
+                      {
+                        id: 21,
+                        category_id: 4,
+                        type: "boys_day",
+                        schedule_type: "everyYear",
+                        type_fa: "روز جهانی پسر",
+                        description:
+                          "روز توجه به پسران و اهمیت رشد، آموزش و سلامت روان آنان.",
+                        date: "0000-05-16",
+                        text: "boys_day",
+                        tag: null,
+                        color: "#64B5F6",
+                        icon: "mens_day"
+                      },
+                      {
+                        id: 22,
+                        category_id: 4,
+                        type: "mens_day",
+                        schedule_type: "everyYear",
+                        type_fa: "روز جهانی مرد",
+                        description:
+                          "روز قدردانی از مردان و نقش آنان در خانواده و جامعه.",
+                        date: "0000-11-19",
+                        text: "mens_day",
+                        tag: null,
+                        color: "#4FC3F7",
+                        icon: "mens_day"
+                      }
+                    ]
+                  },
+                  {
+                    category_id: 5,
+                    category_name: "religious_days",
+                    category_name_fa: "روزهای مذهبی",
+                    items: [
+                      {
+                        id: 16,
+                        category_id: 5,
+                        type: "religious_womens_day",
+                        schedule_type: "everyYear",
+                        type_fa: "روز زن ",
+                        description: "روز بزرگداشت مقام زن در اسلام.",
+                        date: "0000-12-11",
+                        text: "motherAndWifeDayIran",
+                        tag: null,
+                        color: "#CE93D8",
+                        icon: "womens_day"
+                      },
+                      {
+                        id: 19,
+                        category_id: 5,
+                        type: "religious_girl_day",
+                        schedule_type: "everyYear",
+                        type_fa: "روز دختر ",
+                        description: "روز بزرگداشت مقام دختر در اسلام.",
+                        date: "0000-04-19",
+                        text: "religious_girl_day",
+                        tag: null,
+                        color: "#CE93D8",
+                        icon: "womens_day"
+                      },
+                      {
+                        id: 23,
+                        category_id: 5,
+                        type: "islamic_mens_day",
+                        schedule_type: "everyYear",
+                        type_fa: "روز مرد",
+                        description:
+                          "روز ولادت حضرت علی (ع) و بزرگداشت مقام پدر و مرد در فرهنگ اسلامی.",
+                        date: "0000-01-03",
+                        text: "islamic_mens_day",
+                        tag: null,
+                        color: "#81C784",
+                        icon: "mens_day"
+                      }
+                    ]
+                  },
+                  {
+                    category_id: 6,
+                    category_name: "national_days",
+                    category_name_fa: "روزهای ملی",
+                    items: [
+                      {
+                        id: 17,
+                        category_id: 6,
+                        type: "sepandarmazgan",
+                        schedule_type: "everyYear",
+                        type_fa: "روز سپندارمذگان",
+                        description:
+                          "روز عشق ایرانی، جشن مهر و محبت در فرهنگ پارسی.",
+                        date: "0000-02-18",
+                        text: "sepandarmazgan",
+                        tag: null,
+                        color: "#F48FB1",
+                        icon: "sepandarmazgan"
+                      }
+                    ]
+                  }
+                ]
+              };
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -663,6 +1027,7 @@ function PlasmicMainLiad__RenderFunc(props: {
             }
           }}
           balance={generateStateValueProp($state, ["reminder", "balance"])}
+          category={generateStateValueProp($state, ["reminder", "category"])}
           className={classNames("__wab_instance", sty.reminder, {
             [sty.reminderpage_bot]: hasVariant($state, "page", "bot"),
             [sty.reminderpage_calendar]: hasVariant($state, "page", "calendar"),
@@ -1128,6 +1493,20 @@ function PlasmicMainLiad__RenderFunc(props: {
               return;
             }
           }}
+          onCategoryChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["reminder", "category"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
           onFirstChange={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["reminder", "first"]).apply(
               null,
@@ -1340,7 +1719,11 @@ function PlasmicMainLiad__RenderFunc(props: {
           }
         })()}
         className={classNames("__wab_instance", sty.reminderApi)}
-        errorDisplay={null}
+        errorDisplay={
+          <div className={classNames("all", "__wab_text", sty.text__huXc)}>
+            {"Enter some text"}
+          </div>
+        }
         loadingDisplay={null}
         method={"GET"}
         onError={async (...eventArgs: any) => {
@@ -1471,8 +1854,11 @@ function PlasmicMainLiad__RenderFunc(props: {
           }
         })()}
         url={"https://n8n.staas.ir/webhook/user/task/list"}
-      />
-
+      >
+        <div className={classNames("all", "__wab_text", sty.text__dftTd)}>
+          {"Enter some text"}
+        </div>
+      </ApiRequest>
       <ApiRequest
         data-plasmic-name={"category"}
         data-plasmic-override={overrides.category}
@@ -1505,7 +1891,7 @@ function PlasmicMainLiad__RenderFunc(props: {
               ? (() => {
                   const actionArgs = {
                     customFunction: async () => {
-                      return undefined;
+                      return ($state.reminder.category = $state.category.data);
                     }
                   };
                   return (({ customFunction }) => {
@@ -1524,8 +1910,11 @@ function PlasmicMainLiad__RenderFunc(props: {
         }}
         shouldFetch={true}
         url={"https://n8n.staas.ir/webhook/reminders/category"}
-      />
-
+      >
+        <div className={classNames("all", "__wab_text", sty.text__qLPsI)}>
+          {"Enter some text"}
+        </div>
+      </ApiRequest>
       <DialogTooltip
         data-plasmic-name={"dialogTooltip"}
         data-plasmic-override={overrides.dialogTooltip}

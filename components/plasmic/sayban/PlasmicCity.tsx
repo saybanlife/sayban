@@ -75,10 +75,14 @@ import Icon32Icon from "./icons/PlasmicIcon__Icon32"; // plasmic-import: hVogcrN
 
 createPlasmicElementProxy;
 
-export type PlasmicCity__VariantMembers = {};
-export type PlasmicCity__VariantsArgs = {};
+export type PlasmicCity__VariantMembers = {
+  noHeader: "noHeader";
+};
+export type PlasmicCity__VariantsArgs = {
+  noHeader?: SingleBooleanChoiceArg<"noHeader">;
+};
 type VariantPropType = keyof PlasmicCity__VariantsArgs;
-export const PlasmicCity__VariantProps = new Array<VariantPropType>();
+export const PlasmicCity__VariantProps = new Array<VariantPropType>("noHeader");
 
 export type PlasmicCity__ArgsType = {
   city?: string;
@@ -109,6 +113,7 @@ export interface DefaultCityProps {
   onCityChange?: (val: string) => void;
   back?: () => void;
   token?: string;
+  noHeader?: SingleBooleanChoiceArg<"noHeader">;
   className?: string;
 }
 
@@ -190,6 +195,12 @@ function PlasmicCity__RenderFunc(props: {
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "noHeader",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.noHeader
       }
     ],
     [$props, $ctx, $refs]
@@ -218,7 +229,8 @@ function PlasmicCity__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
-        "page "
+        "page ",
+        { [sty.rootnoHeader]: hasVariant($state, "noHeader", "noHeader") }
       )}
     >
       <SideEffect
@@ -235,14 +247,33 @@ function PlasmicCity__RenderFunc(props: {
         <section
           data-plasmic-name={"section"}
           data-plasmic-override={overrides.section}
-          className={classNames("all", sty.section, "page ")}
+          className={classNames("all", sty.section, "page ", {
+            [sty.sectionnoHeader]: hasVariant($state, "noHeader", "noHeader")
+          })}
         >
           <div
-            className={classNames("all", sty.freeBox__gfn1Y)}
+            className={classNames(
+              "all",
+              sty.freeBox__gfn1Y,
+              hasVariant($state, "noHeader", "noHeader") ? "dark" : undefined,
+              {
+                [sty.freeBoxnoHeader__gfn1Ys082P]: hasVariant(
+                  $state,
+                  "noHeader",
+                  "noHeader"
+                )
+              }
+            )}
             id={"headerMain"}
           >
             <Icon33Icon
-              className={classNames("all", sty.svg__uj7Fb)}
+              className={classNames("all", sty.svg__uj7Fb, {
+                [sty.svgnoHeader__uj7FBs082P]: hasVariant(
+                  $state,
+                  "noHeader",
+                  "noHeader"
+                )
+              })}
               onClick={async event => {
                 const $steps = {};
 
@@ -265,11 +296,25 @@ function PlasmicCity__RenderFunc(props: {
               role={"img"}
             />
 
-            <div className={classNames("all", sty.freeBox___0ZvW)}>
+            <div
+              className={classNames("all", sty.freeBox___0ZvW, {
+                [sty.freeBoxnoHeader___0ZvWs082P]: hasVariant(
+                  $state,
+                  "noHeader",
+                  "noHeader"
+                )
+              })}
+            >
               <TextInput
                 data-plasmic-name={"textInput"}
                 data-plasmic-override={overrides.textInput}
-                className={classNames("__wab_instance", sty.textInput)}
+                className={classNames("__wab_instance", sty.textInput, {
+                  [sty.textInputnoHeader]: hasVariant(
+                    $state,
+                    "noHeader",
+                    "noHeader"
+                  )
+                })}
                 onChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
                     "textInput",
@@ -349,6 +394,11 @@ function PlasmicCity__RenderFunc(props: {
                   "\u062c\u0633\u062a\u062c\u0648 \u0634\u0647\u0631 \u0645\u0648\u0631\u062f \u0646\u0638\u0631"
                 }
                 size={"langh"}
+                type={
+                  hasVariant($state, "noHeader", "noHeader")
+                    ? "lineBoxDark"
+                    : undefined
+                }
                 value={generateStateValueProp($state, ["textInput", "value"])}
               />
 
@@ -369,7 +419,13 @@ function PlasmicCity__RenderFunc(props: {
                 }
               })() ? (
                 <Icon10Icon
-                  className={classNames("all", sty.svg__to88F)}
+                  className={classNames("all", sty.svg__to88F, {
+                    [sty.svgnoHeader__to88Fs082P]: hasVariant(
+                      $state,
+                      "noHeader",
+                      "noHeader"
+                    )
+                  })}
                   onClick={async event => {
                     const $steps = {};
 
@@ -448,14 +504,15 @@ function PlasmicCity__RenderFunc(props: {
                 />
               ) : null}
             </div>
-            <div className={classNames("all", sty.freeBox___1UTm1)} />
           </div>
         </section>
       </div>
       <ApiRequest
         data-plasmic-name={"apiRequest"}
         data-plasmic-override={overrides.apiRequest}
-        className={classNames("__wab_instance", sty.apiRequest)}
+        className={classNames("__wab_instance", sty.apiRequest, {
+          [sty.apiRequestnoHeader]: hasVariant($state, "noHeader", "noHeader")
+        })}
         errorDisplay={null}
         loadingDisplay={
           <div className={classNames("all", sty.freeBox__f085K)}>
@@ -540,7 +597,15 @@ function PlasmicCity__RenderFunc(props: {
         shouldFetch={true}
         url={"city"}
       >
-        <div className={classNames("all", sty.freeBox__aqvRm)}>
+        <div
+          className={classNames("all", sty.freeBox__aqvRm, {
+            [sty.freeBoxnoHeader__aqvRms082P]: hasVariant(
+              $state,
+              "noHeader",
+              "noHeader"
+            )
+          })}
+        >
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {
               try {

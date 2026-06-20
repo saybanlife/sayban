@@ -40,10 +40,28 @@
   max-width: 100%;
   object-fit: cover;
 }
+.text__huXc {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.text__dftTd {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
 .category:global(.__wab_instance) {
   animation: none;
   max-width: 100%;
   object-fit: cover;
+}
+.text__qLPsI {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
 }
 .dialogTooltip:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;

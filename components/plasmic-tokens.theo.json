@@ -4891,6 +4891,16 @@
       }
     },
     {
+      "name": "page bg",
+      "type": "color",
+      "value": "rgb(245,245,245)",
+      "category": "color",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "TEBQONgFn2ky"
+      }
+    },
+    {
       "name": "page bg dark",
       "type": "color",
       "value": "rgb(0,0,0)",
