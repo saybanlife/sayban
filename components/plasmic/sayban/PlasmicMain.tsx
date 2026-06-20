@@ -1732,12 +1732,95 @@ function PlasmicMain__RenderFunc(props: {
                       await $steps["updateSubmitLoading"];
                   }
 
-                  $steps["invokeGlobalAction"] = true
+                  $steps["runCode"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return (() => {
+                              let __plasmic_ret = undefined;
+                              const validations = [
+                                {
+                                  value: $state.centerInfo.title,
+                                  message: "نام مرکز را وارد کنید."
+                                },
+                                {
+                                  value: $state.centerInfo.description,
+                                  message: "توضیحات را وارد کنید."
+                                },
+                                {
+                                  value: $state.centerInfo.subcategory2,
+                                  message: "زیر دسته را انتخاب کنید."
+                                },
+                                {
+                                  value: $state.loaction.address,
+                                  message: "آدرس را وارد کنید."
+                                },
+                                {
+                                  value: $state.loaction.city2,
+                                  message: "شهر را انتخاب کنید."
+                                },
+                                {
+                                  value: $state.loaction.state2,
+                                  message: "استان را انتخاب کنید."
+                                },
+                                {
+                                  value: $state.loaction.lat,
+                                  message: "لوکیشن را مشخص کنید."
+                                },
+                                {
+                                  value: $state.loaction.lon,
+                                  message: "لوکیشن را مشخص کنید."
+                                },
+                                {
+                                  value: $state.loaction.call2,
+                                  message: "شماره تماس را وارد کنید."
+                                },
+                                {
+                                  value: $state.imag.uploadFiles,
+                                  message: "تصویر را آپلود کنید."
+                                },
+                                {
+                                  value: $state.timeWeek.week,
+                                  message: "ساعات کاری را مشخص کنید."
+                                },
+                                {
+                                  value: $state.centerInfo.tag,
+                                  message: "تگ را وارد کنید."
+                                },
+                                {
+                                  value: $state.addServise.servises?.length,
+                                  message: "حداقل یک سرویس اضافه کنید."
+                                }
+                              ];
+
+                              for (const v of validations) {
+                                if (!v.value) {
+                                  return v.message;
+                                }
+                              }
+                              return __plasmic_ret;
+                            })();
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode"] != null &&
+                    typeof $steps["runCode"] === "object" &&
+                    typeof $steps["runCode"].then === "function"
+                  ) {
+                    $steps["runCode"] = await $steps["runCode"];
+                  }
+
+                  $steps["invokeGlobalAction"] = !$steps.runCode
                     ? (() => {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://sayban.darkube.app/webhook/panel/center/add",
+                            "/panel/center/add",
                             undefined,
                             (() => {
                               try {
@@ -1784,6 +1867,92 @@ function PlasmicMain__RenderFunc(props: {
                       await $steps["invokeGlobalAction"];
                   }
 
+                  $steps["invokeGlobalAction2"] = $steps.runCode
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            (() => {
+                              try {
+                                return $steps.runCode;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            "top-left"
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction2"] != null &&
+                    typeof $steps["invokeGlobalAction2"] === "object" &&
+                    typeof $steps["invokeGlobalAction2"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction2"] =
+                      await $steps["invokeGlobalAction2"];
+                  }
+
+                  $steps["invokeGlobalAction3"] = $steps.invokeGlobalAction
+                    ?.data?.success
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "success",
+                            "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f.",
+                            "top-left"
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction3"] != null &&
+                    typeof $steps["invokeGlobalAction3"] === "object" &&
+                    typeof $steps["invokeGlobalAction3"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction3"] =
+                      await $steps["invokeGlobalAction3"];
+                  }
+
+                  $steps["invokeGlobalAction4"] = !$steps.invokeGlobalAction
+                    ?.data?.success
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u0645\u0634\u06a9\u0644\u06cc \u0631\u062e \u062f\u0627\u062f\u0647 \u0627\u0633\u062a \u0644\u0637\u0641\u0627 \u0646\u062c\u062f\u062f\u0627 \u062a\u0644\u0627\u0634 \u06a9\u0646\u06cc\u062f.",
+                            "top-left"
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction4"] != null &&
+                    typeof $steps["invokeGlobalAction4"] === "object" &&
+                    typeof $steps["invokeGlobalAction4"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction4"] =
+                      await $steps["invokeGlobalAction4"];
+                  }
+
                   $steps["updateSubmitLoading2"] = true
                     ? (() => {
                         const actionArgs = {
@@ -1817,6 +1986,41 @@ function PlasmicMain__RenderFunc(props: {
                   ) {
                     $steps["updateSubmitLoading2"] =
                       await $steps["updateSubmitLoading2"];
+                  }
+
+                  $steps["runCode2"] = $steps.invokeGlobalAction?.data?.success
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return (() => {
+                              $state.centerInfo.title = "";
+                              $state.centerInfo.description = "";
+                              $state.centerInfo.subcategory2 = "";
+                              $state.centerInfo.tag = "";
+                              $state.loaction.address = "";
+                              $state.loaction.city2 = "";
+                              $state.loaction.state2 = "";
+                              $state.loaction.lat = "";
+                              $state.loaction.lon = "";
+                              $state.loaction.call2 = "";
+                              $state.imag.uploadFiles = [];
+                              $state.timeWeek.week = [];
+                              $state.addServise.servises = [];
+                              return ($state.addCenter.isOpen = false);
+                            })();
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode2"] != null &&
+                    typeof $steps["runCode2"] === "object" &&
+                    typeof $steps["runCode2"].then === "function"
+                  ) {
+                    $steps["runCode2"] = await $steps["runCode2"];
                   }
                 }}
                 onLoadingChange={async (...eventArgs: any) => {
@@ -2105,16 +2309,46 @@ function PlasmicMain__RenderFunc(props: {
                     await $steps["updateSubmitLoading"];
                 }
 
-                $steps["invokeGlobalAction"] = true
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            if (!$state.select.value) {
+                              return "لطفاً مرکز را انتخاب کنید.";
+                            }
+                            if ($state.addServise2.servises.length === 0) {
+                              return "حداقل یک سرویس باید اضافه کنید.";
+                            }
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+
+                $steps["invokeGlobalAction"] = !$steps.runCode
                   ? (() => {
                       const actionArgs = {
                         args: [
                           "POST",
-                          "https://sayban.darkube.app/webhook/panel/center/add",
+                          "/add/service",
                           undefined,
                           (() => {
                             try {
-                              return { service: $state.addServise2.servises };
+                              return {
+                                center_id: $state.select.value,
+                                service: $state.addServise2.servises
+                              };
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -2140,6 +2374,88 @@ function PlasmicMain__RenderFunc(props: {
                 ) {
                   $steps["invokeGlobalAction"] =
                     await $steps["invokeGlobalAction"];
+                }
+
+                $steps["invokeGlobalAction2"] = $steps.runCode
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "error",
+                          (() => {
+                            try {
+                              return $steps.runCode;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction2"] != null &&
+                  typeof $steps["invokeGlobalAction2"] === "object" &&
+                  typeof $steps["invokeGlobalAction2"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction2"] =
+                    await $steps["invokeGlobalAction2"];
+                }
+
+                $steps["invokeGlobalAction3"] = $steps.invokeGlobalAction?.data
+                  ?.success
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "success",
+                          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f.",
+                          "top-left"
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction3"] != null &&
+                  typeof $steps["invokeGlobalAction3"] === "object" &&
+                  typeof $steps["invokeGlobalAction3"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction3"] =
+                    await $steps["invokeGlobalAction3"];
+                }
+
+                $steps["invokeGlobalAction4"] = !$steps.invokeGlobalAction?.data
+                  ?.success
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "error",
+                          "\u0645\u0634\u06a9\u0644\u06cc \u0631\u062e \u062f\u0627\u062f\u0647 \u0627\u0633\u062a \u0645\u062c\u062f\u062f\u0627 \u062a\u0644\u0627\u0634 \u06a9\u0646\u06cc\u062f.",
+                          "top-left"
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction4"] != null &&
+                  typeof $steps["invokeGlobalAction4"] === "object" &&
+                  typeof $steps["invokeGlobalAction4"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction4"] =
+                    await $steps["invokeGlobalAction4"];
                 }
 
                 $steps["updateSubmitLoading2"] = true
@@ -2175,6 +2491,30 @@ function PlasmicMain__RenderFunc(props: {
                 ) {
                   $steps["updateSubmitLoading2"] =
                     await $steps["updateSubmitLoading2"];
+                }
+
+                $steps["runCode2"] = $steps.invokeGlobalAction?.data?.success
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            $state.select.value = null;
+                            $state.addServise2.servises = [];
+                            return ($state.addService.isOpen = false);
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode2"] != null &&
+                  typeof $steps["runCode2"] === "object" &&
+                  typeof $steps["runCode2"].then === "function"
+                ) {
+                  $steps["runCode2"] = await $steps["runCode2"];
                 }
               }}
               onLoadingChange={async (...eventArgs: any) => {

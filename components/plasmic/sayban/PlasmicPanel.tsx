@@ -59,6 +59,8 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+import LoadingPanel from "../../LoadingPanel"; // plasmic-import: K12Va91eFAEa/component
 import PanelMenu from "../../PanelMenu"; // plasmic-import: H67gJZiYVEqw/component
 import Main from "../../Main"; // plasmic-import: FYuKeNpu5zZ7/component
 import LoginPanel from "../../LoginPanel"; // plasmic-import: hZEy0JIfmlF9/component
@@ -116,6 +118,9 @@ export const PlasmicPanel__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicPanel__OverridesType = {
   root?: Flex__<"div">;
+  apiRequest?: Flex__<typeof ApiRequest>;
+  loadingPanel?: Flex__<typeof LoadingPanel>;
+  text?: Flex__<"div">;
   freeBox?: Flex__<"div">;
   panelMenu?: Flex__<typeof PanelMenu>;
   main?: Flex__<typeof Main>;
@@ -388,6 +393,24 @@ function PlasmicPanel__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "apiRequest.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "apiRequest.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "apiRequest.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -447,166 +470,394 @@ function PlasmicPanel__RenderFunc(props: {
           }
         })()}
       >
-        {(() => {
-          try {
-            return $ctx.params?.page?.[0] != "login" && $state.token != null;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return true;
+        <ApiRequest
+          data-plasmic-name={"apiRequest"}
+          data-plasmic-override={overrides.apiRequest}
+          className={classNames("__wab_instance", sty.apiRequest)}
+          config={{
+            headers: {
+              Authorization: `Bearer ${$state.token}`
             }
-            throw e;
+          }}
+          errorDisplay={
+            <div
+              data-plasmic-name={"text"}
+              data-plasmic-override={overrides.text}
+              className={classNames("all", "__wab_text", sty.text)}
+            >
+              {"Error fetching data"}
+            </div>
           }
-        })() ? (
-          <div
-            data-plasmic-name={"freeBox"}
-            data-plasmic-override={overrides.freeBox}
-            className={classNames("all", sty.freeBox)}
-          >
-            {(() => {
-              const child$Props = {
-                className: classNames("__wab_instance", sty.panelMenu),
-                menu: (() => {
+          loadingDisplay={
+            <LoadingPanel
+              data-plasmic-name={"loadingPanel"}
+              data-plasmic-override={overrides.loadingPanel}
+              className={classNames("__wab_instance", sty.loadingPanel)}
+            />
+          }
+          method={"GET"}
+          onError={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onLoading={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onSuccess={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          shouldFetch={(() => {
+            try {
+              return $state.token != "" && $state.token != null;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })()}
+          url={"/panel/user/profile"}
+        >
+          {(() => {
+            try {
+              return $ctx.params?.page?.[0] != "login" && $state.token != null;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })() ? (
+            <div
+              data-plasmic-name={"freeBox"}
+              data-plasmic-override={overrides.freeBox}
+              className={classNames("all", sty.freeBox)}
+            >
+              {(() => {
+                const child$Props = {
+                  className: classNames("__wab_instance", sty.panelMenu),
+                  menu: (() => {
+                    try {
+                      return $state.menu.filter(i =>
+                        i.permissions.includes(
+                          $state.userInfo.role ?? "super_admin"
+                        )
+                      );
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [
+                          {
+                            label: "\u062f\u0627\u0634\u0628\u0648\u0631\u062f",
+                            value: "dashboard",
+                            icon: "dashboard"
+                          },
+                          {
+                            label:
+                              "\u0645\u062f\u06cc\u0631\u06cc\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
+                            value: "users",
+                            icon: "users",
+                            children: [
+                              {
+                                label:
+                                  "\u0644\u06cc\u0633\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
+                                value: "users_list",
+                                icon: "list"
+                              },
+                              {
+                                label:
+                                  "\u06a9\u0627\u0631\u0628\u0631\u0627\u0646 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644",
+                                value: "users_inactive",
+                                icon: "user-x"
+                              }
+                            ]
+                          },
+                          {
+                            label:
+                              "\u0645\u062f\u06cc\u0631\u06cc\u062a \u0645\u0631\u0627\u06a9\u0632",
+                            value: "center-list",
+                            icon: "building-2",
+                            children: [
+                              {
+                                label:
+                                  "\u0644\u06cc\u0633\u062a \u0645\u0631\u0627\u06a9\u0632",
+                                value: "center-list",
+                                icon: "list"
+                              },
+                              {
+                                label:
+                                  "\u0645\u0631\u0627\u06a9\u0632 \u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0627\u06cc\u06cc\u062f",
+                                value: "centers_pending",
+                                icon: "clock"
+                              },
+                              {
+                                label:
+                                  "\u0645\u0631\u0627\u06a9\u0632 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644",
+                                value: "centers_inactive",
+                                icon: "ban"
+                              }
+                            ]
+                          },
+                          {
+                            label:
+                              "\u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc\u200c\u0647\u0627",
+                            value: "categories",
+                            icon: "layers",
+                            children: [
+                              {
+                                label:
+                                  "\u062f\u0633\u062a\u0647\u200c\u0647\u0627\u06cc \u0627\u0635\u0644\u06cc",
+                                value: "main_categories",
+                                icon: "folder"
+                              },
+                              {
+                                label:
+                                  "\u0632\u06cc\u0631\u200c\u062f\u0633\u062a\u0647\u200c\u0647\u0627",
+                                value: "sub_categories",
+                                icon: "folder-tree"
+                              }
+                            ]
+                          },
+                          {
+                            label: "\u0631\u0632\u0631\u0648\u0647\u0627",
+                            value: "reservations",
+                            icon: "calendar-check",
+                            children: [
+                              {
+                                label:
+                                  "\u0647\u0645\u0647 \u0631\u0632\u0631\u0648\u0647\u0627",
+                                value: "reservations_all",
+                                icon: "list"
+                              },
+                              {
+                                label:
+                                  "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632",
+                                value: "reservations_today",
+                                icon: "calendar"
+                              },
+                              {
+                                label:
+                                  "\u0644\u063a\u0648 \u0634\u062f\u0647\u200c\u0647\u0627",
+                                value: "reservations_canceled",
+                                icon: "calendar-x"
+                              }
+                            ]
+                          },
+                          {
+                            label:
+                              "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627",
+                            value: "payments",
+                            icon: "credit-card",
+                            children: [
+                              {
+                                label:
+                                  "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0645\u0648\u0641\u0642",
+                                value: "payments_success",
+                                icon: "check-circle"
+                              },
+                              {
+                                label:
+                                  "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0646\u0627\u0645\u0648\u0641\u0642",
+                                value: "payments_failed",
+                                icon: "x-circle"
+                              }
+                            ]
+                          }
+                        ];
+                      }
+                      throw e;
+                    }
+                  })(),
+                  onSelecteItemChange: async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "panelMenu",
+                      "selecteItem"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+
+                    (async val => {
+                      const $steps = {};
+
+                      $steps["goToPanel"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              destination: `/panel/${(() => {
+                                try {
+                                  return $state.panelMenu.selecteItem;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()}`
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["goToPanel"] != null &&
+                        typeof $steps["goToPanel"] === "object" &&
+                        typeof $steps["goToPanel"].then === "function"
+                      ) {
+                        $steps["goToPanel"] = await $steps["goToPanel"];
+                      }
+                    }).apply(null, eventArgs);
+                  },
+                  onSubItemSelectChange: async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "panelMenu",
+                      "subItemSelect"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  },
+                  onsub: async () => {
+                    const $steps = {};
+
+                    $steps["updateState"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["state"]
+                            },
+                            operation: 0,
+                            value: $state.panelMenu.subItemSelect
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateState"] != null &&
+                      typeof $steps["updateState"] === "object" &&
+                      typeof $steps["updateState"].then === "function"
+                    ) {
+                      $steps["updateState"] = await $steps["updateState"];
+                    }
+                  },
+                  selecteItem: generateStateValueProp($state, [
+                    "panelMenu",
+                    "selecteItem"
+                  ])
+                };
+
+                initializePlasmicStates(
+                  $state,
+                  [
+                    {
+                      name: "panelMenu.selecteItem",
+                      initFunc: ({ $props, $state, $queries, $q }) =>
+                        (() => {
+                          try {
+                            return $ctx.params.page[0] || "dashboard";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                    }
+                  ],
+                  []
+                );
+                return (
+                  <PanelMenu
+                    data-plasmic-name={"panelMenu"}
+                    data-plasmic-override={overrides.panelMenu}
+                    {...child$Props}
+                  />
+                );
+              })()}
+              <Main
+                data-plasmic-name={"main"}
+                data-plasmic-override={overrides.main}
+                centerId={(() => {
                   try {
-                    return $state.menu.filter(i =>
-                      i.permissions.includes(
-                        $state.userInfo.role ?? "super_admin"
-                      )
-                    );
+                    return $ctx.params?.page?.[0] === "center"
+                      ? $state.userInfo.center_id
+                      : $ctx.params?.page?.[0] === "center-list"
+                        ? null
+                        : $ctx.params?.page?.[0]?.includes("-")
+                          ? $$.md5($ctx.params.page[0].split("-")[1])
+                          : null;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
                       e?.plasmicType === "PlasmicUndefinedDataError"
                     ) {
-                      return [
-                        {
-                          label: "\u062f\u0627\u0634\u0628\u0648\u0631\u062f",
-                          value: "dashboard",
-                          icon: "dashboard"
-                        },
-                        {
-                          label:
-                            "\u0645\u062f\u06cc\u0631\u06cc\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
-                          value: "users",
-                          icon: "users",
-                          children: [
-                            {
-                              label:
-                                "\u0644\u06cc\u0633\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
-                              value: "users_list",
-                              icon: "list"
-                            },
-                            {
-                              label:
-                                "\u06a9\u0627\u0631\u0628\u0631\u0627\u0646 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644",
-                              value: "users_inactive",
-                              icon: "user-x"
-                            }
-                          ]
-                        },
-                        {
-                          label:
-                            "\u0645\u062f\u06cc\u0631\u06cc\u062a \u0645\u0631\u0627\u06a9\u0632",
-                          value: "center-list",
-                          icon: "building-2",
-                          children: [
-                            {
-                              label:
-                                "\u0644\u06cc\u0633\u062a \u0645\u0631\u0627\u06a9\u0632",
-                              value: "center-list",
-                              icon: "list"
-                            },
-                            {
-                              label:
-                                "\u0645\u0631\u0627\u06a9\u0632 \u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0627\u06cc\u06cc\u062f",
-                              value: "centers_pending",
-                              icon: "clock"
-                            },
-                            {
-                              label:
-                                "\u0645\u0631\u0627\u06a9\u0632 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644",
-                              value: "centers_inactive",
-                              icon: "ban"
-                            }
-                          ]
-                        },
-                        {
-                          label:
-                            "\u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc\u200c\u0647\u0627",
-                          value: "categories",
-                          icon: "layers",
-                          children: [
-                            {
-                              label:
-                                "\u062f\u0633\u062a\u0647\u200c\u0647\u0627\u06cc \u0627\u0635\u0644\u06cc",
-                              value: "main_categories",
-                              icon: "folder"
-                            },
-                            {
-                              label:
-                                "\u0632\u06cc\u0631\u200c\u062f\u0633\u062a\u0647\u200c\u0647\u0627",
-                              value: "sub_categories",
-                              icon: "folder-tree"
-                            }
-                          ]
-                        },
-                        {
-                          label: "\u0631\u0632\u0631\u0648\u0647\u0627",
-                          value: "reservations",
-                          icon: "calendar-check",
-                          children: [
-                            {
-                              label:
-                                "\u0647\u0645\u0647 \u0631\u0632\u0631\u0648\u0647\u0627",
-                              value: "reservations_all",
-                              icon: "list"
-                            },
-                            {
-                              label:
-                                "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632",
-                              value: "reservations_today",
-                              icon: "calendar"
-                            },
-                            {
-                              label:
-                                "\u0644\u063a\u0648 \u0634\u062f\u0647\u200c\u0647\u0627",
-                              value: "reservations_canceled",
-                              icon: "calendar-x"
-                            }
-                          ]
-                        },
-                        {
-                          label:
-                            "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627",
-                          value: "payments",
-                          icon: "credit-card",
-                          children: [
-                            {
-                              label:
-                                "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0645\u0648\u0641\u0642",
-                              value: "payments_success",
-                              icon: "check-circle"
-                            },
-                            {
-                              label:
-                                "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0646\u0627\u0645\u0648\u0641\u0642",
-                              value: "payments_failed",
-                              icon: "x-circle"
-                            }
-                          ]
-                        }
-                      ];
+                      return undefined;
                     }
                     throw e;
                   }
-                })(),
-                onSelecteItemChange: async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "panelMenu",
-                    "selecteItem"
-                  ]).apply(null, eventArgs);
+                })()}
+                className={classNames("__wab_instance", sty.main)}
+                onRoleChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["main", "role"]).apply(
+                    null,
+                    eventArgs
+                  );
 
                   if (
                     eventArgs.length > 1 &&
@@ -615,222 +866,55 @@ function PlasmicPanel__RenderFunc(props: {
                   ) {
                     return;
                   }
-
-                  (async val => {
-                    const $steps = {};
-
-                    $steps["goToPanel"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            destination: `/panel/${(() => {
-                              try {
-                                return $state.panelMenu.selecteItem;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()}`
-                          };
-                          return (({ destination }) => {
-                            if (
-                              typeof destination === "string" &&
-                              destination.startsWith("#")
-                            ) {
-                              document
-                                .getElementById(destination.substr(1))
-                                .scrollIntoView({ behavior: "smooth" });
-                            } else {
-                              __nextRouter?.push(destination);
-                            }
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
+                }}
+                page={(() => {
+                  try {
+                    return (() => {
+                      const page = $ctx.params.page?.[0] ?? "";
+                      if (page.startsWith("center-")) return "center";
+                      return $ctx.params.page?.[0];
+                    })();
+                  } catch (e) {
                     if (
-                      $steps["goToPanel"] != null &&
-                      typeof $steps["goToPanel"] === "object" &&
-                      typeof $steps["goToPanel"].then === "function"
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
                     ) {
-                      $steps["goToPanel"] = await $steps["goToPanel"];
+                      return "centers";
                     }
-                  }).apply(null, eventArgs);
-                },
-                onSubItemSelectChange: async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "panelMenu",
-                    "subItemSelect"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
+                    throw e;
                   }
-                },
-                onsub: async () => {
-                  const $steps = {};
-
-                  $steps["updateState"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["state"]
-                          },
-                          operation: 0,
-                          value: $state.panelMenu.subItemSelect
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateState"] != null &&
-                    typeof $steps["updateState"] === "object" &&
-                    typeof $steps["updateState"].then === "function"
-                  ) {
-                    $steps["updateState"] = await $steps["updateState"];
+                })()}
+                role={generateStateValueProp($state, ["main", "role"])}
+                state={(() => {
+                  try {
+                    return $state.state;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
                   }
-                },
-                selecteItem: generateStateValueProp($state, [
-                  "panelMenu",
-                  "selecteItem"
-                ])
-              };
-
-              initializePlasmicStates(
-                $state,
-                [
-                  {
-                    name: "panelMenu.selecteItem",
-                    initFunc: ({ $props, $state, $queries, $q }) =>
-                      (() => {
-                        try {
-                          return $ctx.params.page[0] || "dashboard";
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()
+                })()}
+                token={(() => {
+                  try {
+                    return $state.token;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
                   }
-                ],
-                []
-              );
-              return (
-                <PanelMenu
-                  data-plasmic-name={"panelMenu"}
-                  data-plasmic-override={overrides.panelMenu}
-                  {...child$Props}
-                />
-              );
-            })()}
-            <Main
-              data-plasmic-name={"main"}
-              data-plasmic-override={overrides.main}
-              centerId={(() => {
-                try {
-                  return $ctx.params?.page?.[0] === "center"
-                    ? $state.userInfo.center_id
-                    : $ctx.params?.page?.[0] === "center-list"
-                      ? null
-                      : $ctx.params?.page?.[0]?.includes("-")
-                        ? $$.md5($ctx.params.page[0].split("-")[1])
-                        : null;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-              className={classNames("__wab_instance", sty.main)}
-              onRoleChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["main", "role"]).apply(
-                  null,
-                  eventArgs
-                );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              page={(() => {
-                try {
-                  return (() => {
-                    const page = $ctx.params.page?.[0] ?? "";
-                    if (page.startsWith("center-")) return "center";
-                    return $ctx.params.page?.[0];
-                  })();
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "centers";
-                  }
-                  throw e;
-                }
-              })()}
-              role={generateStateValueProp($state, ["main", "role"])}
-              state={(() => {
-                try {
-                  return $state.state;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-              token={(() => {
-                try {
-                  return $state.token;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-            />
-          </div>
-        ) : null}
+                })()}
+              />
+            </div>
+          ) : null}
+        </ApiRequest>
         {(() => {
           try {
             return (
@@ -1063,7 +1147,27 @@ function PlasmicPanel__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox", "panelMenu", "main", "loginPanel", "sideEffect"],
+  root: [
+    "root",
+    "apiRequest",
+    "loadingPanel",
+    "text",
+    "freeBox",
+    "panelMenu",
+    "main",
+    "loginPanel",
+    "sideEffect"
+  ],
+  apiRequest: [
+    "apiRequest",
+    "loadingPanel",
+    "text",
+    "freeBox",
+    "panelMenu",
+    "main"
+  ],
+  loadingPanel: ["loadingPanel"],
+  text: ["text"],
   freeBox: ["freeBox", "panelMenu", "main"],
   panelMenu: ["panelMenu"],
   main: ["main"],
@@ -1075,6 +1179,9 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  apiRequest: typeof ApiRequest;
+  loadingPanel: typeof LoadingPanel;
+  text: "div";
   freeBox: "div";
   panelMenu: typeof PanelMenu;
   main: typeof Main;
@@ -1144,6 +1251,9 @@ export const PlasmicPanel = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    apiRequest: makeNodeComponent("apiRequest"),
+    loadingPanel: makeNodeComponent("loadingPanel"),
+    text: makeNodeComponent("text"),
     freeBox: makeNodeComponent("freeBox"),
     panelMenu: makeNodeComponent("panelMenu"),
     main: makeNodeComponent("main"),
