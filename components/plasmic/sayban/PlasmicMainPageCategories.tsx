@@ -65,8 +65,7 @@ import MenuSection from "../../MenuSection"; // plasmic-import: PvgERH0q4dKA/com
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Errorpage from "../../Errorpage"; // plasmic-import: HTnfDJNIbaau/component
-import MenueIcon from "../../MenueIcon"; // plasmic-import: 8E0dazXQIYne/component
-import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
+import CategoryItem from "../../CategoryItem"; // plasmic-import: qV-4fgZ_BL9-/component
 import EmptyPage from "../../EmptyPage"; // plasmic-import: q5YsvjSR6-JD/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -78,9 +77,6 @@ import sty from "./PlasmicMainPageCategories.module.css"; // plasmic-import: fn1
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 import Icon115Icon from "./icons/PlasmicIcon__Icon115"; // plasmic-import: K82EqXtBnJoL/icon
-import Icon92Icon from "./icons/PlasmicIcon__Icon92"; // plasmic-import: 5xE4Rx5gdqwV/icon
-import Icon94Icon from "./icons/PlasmicIcon__Icon94"; // plasmic-import: cEQZhPJdr_D3/icon
-import Icon58Icon from "./icons/PlasmicIcon__Icon58"; // plasmic-import: ZZecBkDFVPaA/icon
 
 createPlasmicElementProxy;
 
@@ -128,8 +124,7 @@ export type PlasmicMainPageCategories__OverridesType = {
   select?: Flex__<typeof Select>;
   categories?: Flex__<typeof ApiRequest>;
   errorpage?: Flex__<typeof Errorpage>;
-  menueIcon?: Flex__<typeof MenueIcon>;
-  popover?: Flex__<typeof AntdPopover>;
+  categoryItem?: Flex__<typeof CategoryItem>;
   emptyPage?: Flex__<typeof EmptyPage>;
 };
 
@@ -273,11 +268,6 @@ function PlasmicMainPageCategories__RenderFunc(props: {
 
         valueProp: "list",
         onChangeProp: "onListChange2"
-      },
-      {
-        path: "popover[].open",
-        type: "private",
-        variableType: "boolean"
       },
       {
         path: "slected",
@@ -707,9 +697,7 @@ function PlasmicMainPageCategories__RenderFunc(props: {
             </div>
             {(() => {
               try {
-                return (
-                  !!$state.user?.[0] && Object.keys($state.user[0]).length > 0
-                );
+                return true;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -738,233 +726,14 @@ function PlasmicMainPageCategories__RenderFunc(props: {
                   const currentItem = __plasmic_item_0;
                   const currentIndex = __plasmic_idx_0;
                   return (
-                    <div
-                      className={classNames("all", sty.freeBox___7DbZr)}
+                    <CategoryItem
+                      data-plasmic-name={"categoryItem"}
+                      data-plasmic-override={overrides.categoryItem}
+                      className={classNames("__wab_instance", sty.categoryItem)}
+                      currentItem={currentItem}
                       key={currentIndex}
-                    >
-                      <div className={classNames("all", sty.freeBox__pkgMk)}>
-                        <MenueIcon
-                          data-plasmic-name={"menueIcon"}
-                          data-plasmic-override={overrides.menueIcon}
-                          color={"dark"}
-                          icons={(() => {
-                            try {
-                              return currentItem.icon;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return [];
-                              }
-                              throw e;
-                            }
-                          })()}
-                          size={"min"}
-                        />
-                      </div>
-                      <div className={classNames("all", sty.freeBox__o4V3Y)}>
-                        <div
-                          className={classNames(
-                            "all",
-                            "__wab_text",
-                            sty.text__u2EmS
-                          )}
-                        >
-                          <React.Fragment>{currentItem.name}</React.Fragment>
-                        </div>
-                        <div
-                          className={classNames(
-                            "all",
-                            "__wab_text",
-                            sty.text__k6Npj
-                          )}
-                        >
-                          <React.Fragment>{`${currentItem.centers_count} مرکز در این دسته بندی وجود دارد `}</React.Fragment>
-                        </div>
-                      </div>
-                      {(() => {
-                        const child$Props = {
-                          arrow: true,
-                          className: classNames("__wab_instance", sty.popover),
-                          content: (
-                            <div
-                              className={classNames("all", sty.freeBox__aLt1K)}
-                            >
-                              <div
-                                className={classNames(
-                                  "all",
-                                  sty.freeBox__wJbvf
-                                )}
-                              >
-                                <Icon94Icon
-                                  className={classNames("all", sty.svg__p5Ugz)}
-                                  role={"img"}
-                                />
-
-                                <div
-                                  className={classNames(
-                                    "all",
-                                    "__wab_text",
-                                    sty.text__efz1
-                                  )}
-                                >
-                                  {"\u0648\u06cc\u0631\u0627\u06cc\u0634"}
-                                </div>
-                              </div>
-                              <div
-                                className={classNames(
-                                  "all",
-                                  sty.freeBox__clI3A
-                                )}
-                                onClick={async event => {
-                                  const $steps = {};
-
-                                  $steps["updateSlected"] = true
-                                    ? (() => {
-                                        const actionArgs = {
-                                          variable: {
-                                            objRoot: $state,
-                                            variablePath: ["slected"]
-                                          },
-                                          operation: 0,
-                                          value: currentItem
-                                        };
-                                        return (({
-                                          variable,
-                                          value,
-                                          startIndex,
-                                          deleteCount
-                                        }) => {
-                                          if (!variable) {
-                                            return;
-                                          }
-                                          const { objRoot, variablePath } =
-                                            variable;
-
-                                          $stateSet(
-                                            objRoot,
-                                            variablePath,
-                                            value
-                                          );
-                                          return value;
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                  if (
-                                    $steps["updateSlected"] != null &&
-                                    typeof $steps["updateSlected"] ===
-                                      "object" &&
-                                    typeof $steps["updateSlected"].then ===
-                                      "function"
-                                  ) {
-                                    $steps["updateSlected"] =
-                                      await $steps["updateSlected"];
-                                  }
-
-                                  $steps["runCenterDelete"] = true
-                                    ? (() => {
-                                        const actionArgs = {
-                                          eventRef: $props["categoryDelete"]
-                                        };
-                                        return (({ eventRef, args }) => {
-                                          return eventRef?.(...(args ?? []));
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                  if (
-                                    $steps["runCenterDelete"] != null &&
-                                    typeof $steps["runCenterDelete"] ===
-                                      "object" &&
-                                    typeof $steps["runCenterDelete"].then ===
-                                      "function"
-                                  ) {
-                                    $steps["runCenterDelete"] =
-                                      await $steps["runCenterDelete"];
-                                  }
-                                }}
-                              >
-                                <Icon58Icon
-                                  className={classNames("all", sty.svg__tp2Nq)}
-                                  role={"img"}
-                                />
-
-                                <div
-                                  className={classNames(
-                                    "all",
-                                    "__wab_text",
-                                    sty.text__zjTnp
-                                  )}
-                                >
-                                  {"\u062d\u0630\u0641"}
-                                </div>
-                              </div>
-                            </div>
-                          ),
-                          contentText: "Popover contents",
-                          defaultOpen: false,
-                          defaultStylesClassName: classNames(
-                            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
-                            "plasmic_default_styles",
-                            "plasmic_mixins",
-                            styleTokensClassNames
-                          ),
-                          mouseEnterDelay: 0,
-                          mouseLeaveDelay: 0,
-                          onOpenChange: async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "popover",
-                              __plasmic_idx_0,
-                              "open"
-                            ]).apply(null, eventArgs);
-                          },
-                          open: generateStateValueProp($state, [
-                            "popover",
-                            __plasmic_idx_0,
-                            "open"
-                          ]),
-                          placement: "bottomLeft",
-                          popoverScopeClassName: sty["popover__popover"],
-                          title: null,
-                          trigger: "click"
-                        };
-                        initializeCodeComponentStates(
-                          $state,
-                          [
-                            {
-                              name: "open",
-                              plasmicStateName: "popover[].open"
-                            }
-                          ],
-                          [__plasmic_idx_0],
-                          undefined ?? {},
-                          child$Props
-                        );
-                        initializePlasmicStates(
-                          $state,
-                          [
-                            {
-                              name: "popover[].open",
-                              initFunc: ({ $props, $state, $queries, $q }) =>
-                                false
-                            }
-                          ],
-                          [__plasmic_idx_0]
-                        );
-                        return (
-                          <AntdPopover
-                            data-plasmic-name={"popover"}
-                            data-plasmic-override={overrides.popover}
-                            {...child$Props}
-                          >
-                            <Icon92Icon
-                              className={classNames("all", sty.svg___1UTik)}
-                              role={"img"}
-                            />
-                          </AntdPopover>
-                        );
-                      })()}
-                    </div>
+                      user={$state.user}
+                    />
                   );
                 })
               : null}
@@ -1005,18 +774,16 @@ const PlasmicDescendants = {
     "select",
     "categories",
     "errorpage",
-    "menueIcon",
-    "popover",
+    "categoryItem",
     "emptyPage"
   ],
   select2: ["select2", "menuSection"],
   menuSection: ["menuSection"],
   button: ["button"],
   select: ["select"],
-  categories: ["categories", "errorpage", "menueIcon", "popover", "emptyPage"],
+  categories: ["categories", "errorpage", "categoryItem", "emptyPage"],
   errorpage: ["errorpage"],
-  menueIcon: ["menueIcon"],
-  popover: ["popover"],
+  categoryItem: ["categoryItem"],
   emptyPage: ["emptyPage"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -1030,8 +797,7 @@ type NodeDefaultElementType = {
   select: typeof Select;
   categories: typeof ApiRequest;
   errorpage: typeof Errorpage;
-  menueIcon: typeof MenueIcon;
-  popover: typeof AntdPopover;
+  categoryItem: typeof CategoryItem;
   emptyPage: typeof EmptyPage;
 };
 
@@ -1103,8 +869,7 @@ export const PlasmicMainPageCategories = Object.assign(
     select: makeNodeComponent("select"),
     categories: makeNodeComponent("categories"),
     errorpage: makeNodeComponent("errorpage"),
-    menueIcon: makeNodeComponent("menueIcon"),
-    popover: makeNodeComponent("popover"),
+    categoryItem: makeNodeComponent("categoryItem"),
     emptyPage: makeNodeComponent("emptyPage"),
 
     // Metadata about props expected for PlasmicMainPageCategories

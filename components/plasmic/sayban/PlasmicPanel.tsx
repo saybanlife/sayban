@@ -202,7 +202,11 @@ function PlasmicPanel__RenderFunc(props: {
         path: "userInfo",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({
+          role: "super_admin",
+          full_name: "\u0633\u0627\u06cc\u0647 \u0628\u0627\u0646",
+          center_id: ""
+        })
       },
       {
         path: "menu",
@@ -279,23 +283,7 @@ function PlasmicPanel__RenderFunc(props: {
               "\u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc\u200c\u0647\u0627",
             value: "categories",
             icon: "layers",
-            permissions: ["super_admin"],
-            children: [
-              {
-                label:
-                  "\u062f\u0633\u062a\u0647\u200c\u0647\u0627\u06cc \u0627\u0635\u0644\u06cc",
-                value: "main_categories",
-                icon: "folder",
-                permissions: ["super_admin"]
-              },
-              {
-                label:
-                  "\u0632\u06cc\u0631\u200c\u062f\u0633\u062a\u0647\u200c\u0647\u0627",
-                value: "sub_categories",
-                icon: "folder-tree",
-                permissions: ["super_admin"]
-              }
-            ]
+            permissions: ["super_admin"]
           },
           {
             label: "\u0631\u0632\u0631\u0648\u0647\u0627",
@@ -517,7 +505,7 @@ function PlasmicPanel__RenderFunc(props: {
             (async data => {
               const $steps = {};
 
-              $steps["runCode"] = $state.apiRequest?.data?.success
+              $steps["runCode"] = false
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
@@ -538,7 +526,7 @@ function PlasmicPanel__RenderFunc(props: {
                 $steps["runCode"] = await $steps["runCode"];
               }
 
-              $steps["goToPanel"] = $state.apiRequest?.data?.success
+              $steps["goToPanel"] = false
                 ? (() => {
                     const actionArgs = {
                       destination: `/panel/${(() => {
@@ -1189,24 +1177,23 @@ function PlasmicPanel__RenderFunc(props: {
               $steps["updateToken"] = await $steps["updateToken"];
             }
 
-            $steps["goToPanel"] =
-              $state.token == null && $ctx.params.page[0] != "login"
-                ? (() => {
-                    const actionArgs = { destination: `/panel/${"login"}` };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
+            $steps["goToPanel"] = false
+              ? (() => {
+                  const actionArgs = { destination: `/panel/${"login"}` };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
             if (
               $steps["goToPanel"] != null &&
               typeof $steps["goToPanel"] === "object" &&

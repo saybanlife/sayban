@@ -29224,6 +29224,19 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/pay"
+        },
+        {
+          "id": "qV-4fgZ_BL9-",
+          "name": "CategoryItem",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicCategoryItem.tsx",
+          "importSpec": {
+            "modulePath": "CategoryItem.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicCategoryItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
