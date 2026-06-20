@@ -88,11 +88,16 @@ export const PlasmicCategoryItem__VariantProps = new Array<VariantPropType>(
   "open"
 );
 
-export type PlasmicCategoryItem__ArgsType = { user?: any; currentItem?: any };
+export type PlasmicCategoryItem__ArgsType = {
+  user?: any;
+  currentItem?: any;
+  onOpenChange?: (val: any) => void;
+};
 type ArgPropType = keyof PlasmicCategoryItem__ArgsType;
 export const PlasmicCategoryItem__ArgProps = new Array<ArgPropType>(
   "user",
-  "currentItem"
+  "currentItem",
+  "onOpenChange"
 );
 
 export type PlasmicCategoryItem__OverridesType = {
@@ -105,6 +110,7 @@ export type PlasmicCategoryItem__OverridesType = {
 export interface DefaultCategoryItemProps {
   user?: any;
   currentItem?: any;
+  onOpenChange?: (val: any) => void;
   open?: SingleBooleanChoiceArg<"open">;
   className?: string;
 }
@@ -160,9 +166,11 @@ function PlasmicCategoryItem__RenderFunc(props: {
       },
       {
         path: "open",
-        type: "private",
+        type: "writable",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.open
+
+        valueProp: "open",
+        onChangeProp: "onOpenChange"
       },
       {
         path: "add.loading",

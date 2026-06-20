@@ -98,6 +98,11 @@
 .roothomePage2_reminder > * {
   grid-column: 4;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .roothomePage2_reminder > * {
+    grid-column: 4;
+  }
+}
 .roothomePage2_user {
   padding: 0px;
 }
