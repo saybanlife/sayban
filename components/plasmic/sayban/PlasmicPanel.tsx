@@ -513,6 +513,81 @@ function PlasmicPanel__RenderFunc(props: {
               null,
               eventArgs
             );
+
+            (async data => {
+              const $steps = {};
+
+              $steps["runCode"] = $state.apiRequest?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.userInfo =
+                          $state.apiRequest?.data?.result);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["goToPanel"] = $state.apiRequest?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/panel/${(() => {
+                        try {
+                          return (() => {
+                            const role = $steps.loginApi?.data?.result?.role;
+                            const centerId =
+                              $steps.loginApi?.data?.result?.center_id;
+                            let result;
+                            if (role === "super_admin") {
+                              result = "centers";
+                            } else if (role === "center_admin") {
+                              result = `center`;
+                            }
+                            return result;
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToPanel"] != null &&
+                typeof $steps["goToPanel"] === "object" &&
+                typeof $steps["goToPanel"].then === "function"
+              ) {
+                $steps["goToPanel"] = await $steps["goToPanel"];
+              }
+            }).apply(null, eventArgs);
           }}
           shouldFetch={(() => {
             try {

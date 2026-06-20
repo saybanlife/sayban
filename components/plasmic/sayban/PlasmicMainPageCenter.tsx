@@ -343,6 +343,8 @@ function PlasmicMainPageCenter__RenderFunc(props: {
     [$props, $ctx, $refs]
   );
 
+  const $globalActions = useGlobalActions?.();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -931,6 +933,24 @@ function PlasmicMainPageCenter__RenderFunc(props: {
                     hideSelectionBar: true,
                     onRowClick: async (rowKey, row, event) => {
                       const $steps = {};
+
+                      $steps["invokeGlobalAction"] = true
+                        ? (() => {
+                            const actionArgs = { args: [200] };
+                            return $globalActions["Fragment.wait"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["invokeGlobalAction"] != null &&
+                        typeof $steps["invokeGlobalAction"] === "object" &&
+                        typeof $steps["invokeGlobalAction"].then === "function"
+                      ) {
+                        $steps["invokeGlobalAction"] =
+                          await $steps["invokeGlobalAction"];
+                      }
 
                       $steps["runOnRowClicked"] = true
                         ? (() => {
