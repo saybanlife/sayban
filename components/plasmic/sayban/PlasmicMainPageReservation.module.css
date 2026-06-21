@@ -143,7 +143,7 @@
   min-height: 0;
   padding: 0px;
 }
-.categories:global(.__wab_instance) {
+.reservation:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
 }

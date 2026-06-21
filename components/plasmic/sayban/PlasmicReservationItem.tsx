@@ -61,7 +61,6 @@ import {
 
 import StatusIcon from "../../StatusIcon"; // plasmic-import: zJ2RueI-cLbg/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
-import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -69,11 +68,8 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicReservationItem.module.css"; // plasmic-import: 4UaemkVPEyQ4/css
 
-import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
+import CheckIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Check"; // plasmic-import: DtxnCWLfceEB/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
-import Icon92Icon from "./icons/PlasmicIcon__Icon92"; // plasmic-import: 5xE4Rx5gdqwV/icon
-import Icon94Icon from "./icons/PlasmicIcon__Icon94"; // plasmic-import: cEQZhPJdr_D3/icon
-import Icon58Icon from "./icons/PlasmicIcon__Icon58"; // plasmic-import: ZZecBkDFVPaA/icon
 
 createPlasmicElementProxy;
 
@@ -104,7 +100,6 @@ export type PlasmicReservationItem__OverridesType = {
   root?: Flex__<"div">;
   statusIcon?: Flex__<typeof StatusIcon>;
   add?: Flex__<typeof Button>;
-  popover?: Flex__<typeof AntdPopover>;
 };
 
 export interface DefaultReservationItemProps {
@@ -158,12 +153,6 @@ function PlasmicReservationItem__RenderFunc(props: {
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
-      {
-        path: "popover.open",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
       {
         path: "open",
         type: "writable",
@@ -243,11 +232,24 @@ function PlasmicReservationItem__RenderFunc(props: {
           data-plasmic-name={"statusIcon"}
           data-plasmic-override={overrides.statusIcon}
           className={classNames("__wab_instance", sty.statusIcon)}
+          status={(() => {
+            try {
+              return $props.currentItem.status;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()}
         />
 
         <div className={classNames("all", sty.freeBox__vCUW)}>
           <div className={classNames("all", "__wab_text", sty.text__wnq7Y)}>
-            <React.Fragment>{$props.currentItem.name}</React.Fragment>
+            <React.Fragment>{`${$props.currentItem.name} (${$props.currentItem.service_name})`}</React.Fragment>
           </div>
           <div className={classNames("all", "__wab_text", sty.text__bFfmy)}>
             <React.Fragment>{`${$props.currentItem.centers_count} مرکز در این دسته بندی وجود دارد `}</React.Fragment>
@@ -257,13 +259,11 @@ function PlasmicReservationItem__RenderFunc(props: {
           data-plasmic-name={"add"}
           data-plasmic-override={overrides.add}
           className={classNames("__wab_instance", sty.add)}
-          color={"second"}
+          color={"success"}
           iconStart={true}
           label={
             <div className={classNames("all", "__wab_text", sty.text__pPgHu)}>
-              {
-                "\u0627\u0641\u0632\u0648\u062f\u0646 \u0632\u06cc\u0631\u062f\u0633\u062a\u0647"
-              }
+              {"\u062a\u0627\u06cc\u06cc\u062f \u0631\u0632\u0631\u0648"}
             </div>
           }
           loading={generateStateValueProp($state, ["add", "loading"])}
@@ -282,78 +282,13 @@ function PlasmicReservationItem__RenderFunc(props: {
             }
           }}
           start={
-            <Icon56Icon
+            <CheckIcon
               className={classNames("all", sty.svg__irS4T)}
               role={"img"}
             />
           }
         />
 
-        <AntdPopover
-          data-plasmic-name={"popover"}
-          data-plasmic-override={overrides.popover}
-          arrow={true}
-          className={classNames("__wab_instance", sty.popover)}
-          content={
-            <div className={classNames("all", sty.freeBox__n9KX6)}>
-              <div className={classNames("all", sty.freeBox___2YRtT)}>
-                <Icon94Icon
-                  className={classNames("all", sty.svg__vuWif)}
-                  role={"img"}
-                />
-
-                <div
-                  className={classNames("all", "__wab_text", sty.text__jOg2B)}
-                >
-                  {"\u0648\u06cc\u0631\u0627\u06cc\u0634"}
-                </div>
-              </div>
-              <div
-                className={classNames("all", sty.freeBox___0RQbb)}
-                onClick={async event => {
-                  const $steps = {};
-                }}
-              >
-                <Icon58Icon
-                  className={classNames("all", sty.svg__ag0Nt)}
-                  role={"img"}
-                />
-
-                <div
-                  className={classNames("all", "__wab_text", sty.text__kMtFe)}
-                >
-                  {"\u062d\u0630\u0641"}
-                </div>
-              </div>
-            </div>
-          }
-          contentText={"Popover contents"}
-          defaultOpen={false}
-          defaultStylesClassName={classNames(
-            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
-            "plasmic_default_styles",
-            "plasmic_mixins",
-            styleTokensClassNames
-          )}
-          mouseEnterDelay={0}
-          mouseLeaveDelay={0}
-          onOpenChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["popover", "open"]).apply(
-              null,
-              eventArgs
-            );
-          }}
-          open={generateStateValueProp($state, ["popover", "open"])}
-          placement={"bottomLeft"}
-          popoverScopeClassName={sty["popover__popover"]}
-          title={null}
-          trigger={"click"}
-        >
-          <Icon92Icon
-            className={classNames("all", sty.svg___749Tl)}
-            role={"img"}
-          />
-        </AntdPopover>
         <ChevronDownIcon
           className={classNames("all", sty.svg__dwid7, {
             [sty.svgopen__dwid7Lb9Mw]: hasVariant($state, "open", "open")
@@ -399,10 +334,9 @@ function PlasmicReservationItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "statusIcon", "add", "popover"],
+  root: ["root", "statusIcon", "add"],
   statusIcon: ["statusIcon"],
-  add: ["add"],
-  popover: ["popover"]
+  add: ["add"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -411,7 +345,6 @@ type NodeDefaultElementType = {
   root: "div";
   statusIcon: typeof StatusIcon;
   add: typeof Button;
-  popover: typeof AntdPopover;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -478,7 +411,6 @@ export const PlasmicReservationItem = Object.assign(
     // Helper components rendering sub-elements
     statusIcon: makeNodeComponent("statusIcon"),
     add: makeNodeComponent("add"),
-    popover: makeNodeComponent("popover"),
 
     // Metadata about props expected for PlasmicReservationItem
     internalVariantProps: PlasmicReservationItem__VariantProps,

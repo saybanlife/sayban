@@ -125,7 +125,7 @@ export type PlasmicMainPageReservation__OverridesType = {
   textInput?: Flex__<typeof TextInput>;
   button?: Flex__<typeof Button>;
   select?: Flex__<typeof Select>;
-  categories?: Flex__<typeof ApiRequest>;
+  reservation?: Flex__<typeof ApiRequest>;
   errorpage?: Flex__<typeof Errorpage>;
   button2?: Flex__<typeof Button>;
   reservationItem?: Flex__<typeof ReservationItem>;
@@ -208,19 +208,19 @@ function PlasmicMainPageReservation__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "categories.data",
+        path: "reservation.data",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "categories.error",
+        path: "reservation.error",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "categories.loading",
+        path: "reservation.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
@@ -450,9 +450,9 @@ function PlasmicMainPageReservation__RenderFunc(props: {
       <div className={classNames("all", sty.freeBox___0NzSa)}>
         <div className={classNames("all", sty.freeBox__xBkDy)}>
           <ApiRequest
-            data-plasmic-name={"categories"}
-            data-plasmic-override={overrides.categories}
-            className={classNames("__wab_instance", sty.categories)}
+            data-plasmic-name={"reservation"}
+            data-plasmic-override={overrides.reservation}
+            className={classNames("__wab_instance", sty.reservation)}
             errorDisplay={
               <Errorpage
                 data-plasmic-name={"errorpage"}
@@ -470,19 +470,19 @@ function PlasmicMainPageReservation__RenderFunc(props: {
             }
             method={"GET"}
             onError={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["categories", "error"]).apply(
+              generateStateOnChangeProp($state, ["reservation", "error"]).apply(
                 null,
                 eventArgs
               );
             }}
             onLoading={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
-                "categories",
+                "reservation",
                 "loading"
               ]).apply(null, eventArgs);
             }}
             onSuccess={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["categories", "data"]).apply(
+              generateStateOnChangeProp($state, ["reservation", "data"]).apply(
                 null,
                 eventArgs
               );
@@ -490,7 +490,7 @@ function PlasmicMainPageReservation__RenderFunc(props: {
               (async data => {
                 const $steps = {};
 
-                $steps["updateCenter"] = $state.categories?.data?.success
+                $steps["updateCenter"] = $state.reservation?.data?.success
                   ? (() => {
                       const actionArgs = {
                         variable: {
@@ -498,7 +498,7 @@ function PlasmicMainPageReservation__RenderFunc(props: {
                           variablePath: ["user"]
                         },
                         operation: 0,
-                        value: $state.categories?.data?.result
+                        value: $state.reservation?.data?.result
                       };
                       return (({
                         variable,
@@ -524,7 +524,7 @@ function PlasmicMainPageReservation__RenderFunc(props: {
                   $steps["updateCenter"] = await $steps["updateCenter"];
                 }
 
-                $steps["runCode"] = $state.categories?.data?.success
+                $steps["runCode"] = $state.reservation?.data?.success
                   ? (() => {
                       const actionArgs = {
                         customFunction: async () => {
@@ -558,7 +558,7 @@ function PlasmicMainPageReservation__RenderFunc(props: {
                 throw e;
               }
             })()}
-            url={"/panel/categories"}
+            url={"/panel/Reservation"}
           >
             <div className={classNames("all", sty.freeBox__jGkO)}>
               <Button
@@ -733,7 +733,7 @@ const PlasmicDescendants = {
     "textInput",
     "button",
     "select",
-    "categories",
+    "reservation",
     "errorpage",
     "button2",
     "reservationItem",
@@ -742,8 +742,8 @@ const PlasmicDescendants = {
   textInput: ["textInput"],
   button: ["button"],
   select: ["select"],
-  categories: [
-    "categories",
+  reservation: [
+    "reservation",
     "errorpage",
     "button2",
     "reservationItem",
@@ -762,7 +762,7 @@ type NodeDefaultElementType = {
   textInput: typeof TextInput;
   button: typeof Button;
   select: typeof Select;
-  categories: typeof ApiRequest;
+  reservation: typeof ApiRequest;
   errorpage: typeof Errorpage;
   button2: typeof Button;
   reservationItem: typeof ReservationItem;
@@ -834,7 +834,7 @@ export const PlasmicMainPageReservation = Object.assign(
     textInput: makeNodeComponent("textInput"),
     button: makeNodeComponent("button"),
     select: makeNodeComponent("select"),
-    categories: makeNodeComponent("categories"),
+    reservation: makeNodeComponent("reservation"),
     errorpage: makeNodeComponent("errorpage"),
     button2: makeNodeComponent("button2"),
     reservationItem: makeNodeComponent("reservationItem"),
