@@ -29,8 +29,8 @@
   border-radius: var(--token-LBC0X5IbL9bo);
   padding: 0px;
 }
-.reservationIcons:global(.__wab_instance) {
-  position: relative;
+.statusIcon:global(.__wab_instance) {
+  max-width: 100%;
 }
 .freeBox__vCUW {
   display: flex;

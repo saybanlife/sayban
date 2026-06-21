@@ -182,6 +182,12 @@ function PlasmicReservations__RenderFunc(props: {
 
         valueProp: "center",
         onChangeProp: "onCenterChange2"
+      },
+      {
+        path: "header.runCode",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -216,6 +222,21 @@ function PlasmicReservations__RenderFunc(props: {
         data-plasmic-name={"header"}
         data-plasmic-override={overrides.header}
         className={classNames("__wab_instance", sty.header)}
+        onRunCodeChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["header", "runCode"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        runCode={generateStateValueProp($state, ["header", "runCode"])}
         slot={"\u06a9\u0644\u06cc\u0646\u06cc\u06a9 \u0647\u0627"}
       />
 

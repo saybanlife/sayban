@@ -89,8 +89,11 @@ export type PlasmicLoaction2__ArgsType = {
   onLonChange?: (val: string) => void;
   city2?: string;
   onCityChange?: (val: string) => void;
+  address2?: string;
   onAddressChange2?: (val: string) => void;
+  post?: string;
   onPostChange?: (val: string) => void;
+  title2?: string;
   onTitleChange?: (val: string) => void;
   onLoaction2Change?: (val: any) => void;
 };
@@ -101,8 +104,11 @@ export const PlasmicLoaction2__ArgProps = new Array<ArgPropType>(
   "onLonChange",
   "city2",
   "onCityChange",
+  "address2",
   "onAddressChange2",
+  "post",
   "onPostChange",
+  "title2",
   "onTitleChange",
   "onLoaction2Change"
 );
@@ -125,8 +131,11 @@ export interface DefaultLoaction2Props {
   onLonChange?: (val: string) => void;
   city2?: string;
   onCityChange?: (val: string) => void;
+  address2?: string;
   onAddressChange2?: (val: string) => void;
+  post?: string;
   onPostChange?: (val: string) => void;
+  title2?: string;
   onTitleChange?: (val: string) => void;
   onLoaction2Change?: (val: any) => void;
   loaction2?: SingleBooleanChoiceArg<"loaction2">;
@@ -208,26 +217,26 @@ function PlasmicLoaction2__RenderFunc(props: {
       },
       {
         path: "addressDatalist.value",
-        type: "readonly",
+        type: "writable",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
+        valueProp: "address2",
         onChangeProp: "onAddressChange2"
       },
       {
         path: "postalCode.value",
-        type: "readonly",
+        type: "writable",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
+        valueProp: "post",
         onChangeProp: "onPostChange"
       },
       {
         path: "title.value",
-        type: "readonly",
+        type: "writable",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
+        valueProp: "title2",
         onChangeProp: "onTitleChange"
       },
       {

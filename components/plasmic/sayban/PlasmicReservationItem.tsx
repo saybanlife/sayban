@@ -59,7 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import ReservationIcons from "../../ReservationIcons"; // plasmic-import: bbXD3HDP8ith/component
+import StatusIcon from "../../StatusIcon"; // plasmic-import: zJ2RueI-cLbg/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
@@ -102,7 +102,7 @@ export const PlasmicReservationItem__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicReservationItem__OverridesType = {
   root?: Flex__<"div">;
-  reservationIcons?: Flex__<typeof ReservationIcons>;
+  statusIcon?: Flex__<typeof StatusIcon>;
   add?: Flex__<typeof Button>;
   popover?: Flex__<typeof AntdPopover>;
 };
@@ -239,11 +239,10 @@ function PlasmicReservationItem__RenderFunc(props: {
           }
         }}
       >
-        <ReservationIcons
-          data-plasmic-name={"reservationIcons"}
-          data-plasmic-override={overrides.reservationIcons}
-          className={classNames("__wab_instance", sty.reservationIcons)}
-          currentItem={args.currentItem}
+        <StatusIcon
+          data-plasmic-name={"statusIcon"}
+          data-plasmic-override={overrides.statusIcon}
+          className={classNames("__wab_instance", sty.statusIcon)}
         />
 
         <div className={classNames("all", sty.freeBox__vCUW)}>
@@ -400,8 +399,8 @@ function PlasmicReservationItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "reservationIcons", "add", "popover"],
-  reservationIcons: ["reservationIcons"],
+  root: ["root", "statusIcon", "add", "popover"],
+  statusIcon: ["statusIcon"],
   add: ["add"],
   popover: ["popover"]
 } as const;
@@ -410,7 +409,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  reservationIcons: typeof ReservationIcons;
+  statusIcon: typeof StatusIcon;
   add: typeof Button;
   popover: typeof AntdPopover;
 };
@@ -477,7 +476,7 @@ export const PlasmicReservationItem = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    reservationIcons: makeNodeComponent("reservationIcons"),
+    statusIcon: makeNodeComponent("statusIcon"),
     add: makeNodeComponent("add"),
     popover: makeNodeComponent("popover"),
 

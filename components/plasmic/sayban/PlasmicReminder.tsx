@@ -152,6 +152,7 @@ export type PlasmicReminder__ArgsType = {
   activeTelegram?: () => void;
   category?: any;
   onCategoryChange?: (val: any) => void;
+  reminderSettingAddBack?: () => void;
 };
 type ArgPropType = keyof PlasmicReminder__ArgsType;
 export const PlasmicReminder__ArgProps = new Array<ArgPropType>(
@@ -185,7 +186,8 @@ export const PlasmicReminder__ArgProps = new Array<ArgPropType>(
   "profile",
   "activeTelegram",
   "category",
-  "onCategoryChange"
+  "onCategoryChange",
+  "reminderSettingAddBack"
 );
 
 export type PlasmicReminder__OverridesType = {
@@ -257,6 +259,7 @@ export interface DefaultReminderProps {
   activeTelegram?: () => void;
   category?: any;
   onCategoryChange?: (val: any) => void;
+  reminderSettingAddBack?: () => void;
   slide3?: SingleBooleanChoiceArg<"slide3">;
   hamyar?: SingleBooleanChoiceArg<"hamyar">;
   smallReminder?: SingleBooleanChoiceArg<"smallReminder">;
@@ -3322,6 +3325,7 @@ function PlasmicReminder__RenderFunc(props: {
         <ReminderSetting
           data-plasmic-name={"reminderSetting"}
           data-plasmic-override={overrides.reminderSetting}
+          addBack={args.reminderSettingAddBack}
           category={generateStateValueProp($state, [
             "reminderSetting",
             "category"

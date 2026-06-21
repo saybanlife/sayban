@@ -108,6 +108,7 @@ export type PlasmicMainLiad__ArgsType = {
   onTelegramDialogChange?: (val: boolean) => void;
   userId?: string;
   onUserIdChange?: (val: string) => void;
+  reminderReminderSettingAddBack?: () => void;
 };
 type ArgPropType = keyof PlasmicMainLiad__ArgsType;
 export const PlasmicMainLiad__ArgProps = new Array<ArgPropType>(
@@ -129,7 +130,8 @@ export const PlasmicMainLiad__ArgProps = new Array<ArgPropType>(
   "telegramDialog",
   "onTelegramDialogChange",
   "userId",
-  "onUserIdChange"
+  "onUserIdChange",
+  "reminderReminderSettingAddBack"
 );
 
 export type PlasmicMainLiad__OverridesType = {
@@ -166,6 +168,7 @@ export interface DefaultMainLiadProps {
   onTelegramDialogChange?: (val: boolean) => void;
   userId?: string;
   onUserIdChange?: (val: string) => void;
+  reminderReminderSettingAddBack?: () => void;
   page?: SingleChoiceArg<"reminder">;
   className?: string;
 }
@@ -458,7 +461,7 @@ function PlasmicMainLiad__RenderFunc(props: {
           </div>
         }
         loadingDisplay={
-          <div className={classNames("all", sty.freeBox__cfS09)}>
+          <div className={classNames("all", sty.freeBox__cfS09, "page")}>
             <LottieWrapper
               data-plasmic-name={"lottie"}
               data-plasmic-override={overrides.lottie}
@@ -1359,7 +1362,10 @@ function PlasmicMainLiad__RenderFunc(props: {
             }
           }).apply(null, eventArgs);
         }}
-        params={{ userId: $state.userId }}
+        params={{
+          userId: $state.userId,
+          r: $state.reminder.refresh
+        }}
         shouldFetch={true}
         url={"https://n8n.staas.ir/webhook/user/task/list"}
       >
@@ -1984,6 +1990,7 @@ function PlasmicMainLiad__RenderFunc(props: {
             }
           }}
           refresh={generateStateValueProp($state, ["reminder", "refresh"])}
+          reminderSettingAddBack={args.reminderReminderSettingAddBack}
           setting={args.reminderSetting}
           slide3={generateStateValueProp($state, ["reminder", "slide3"])}
           sms={generateStateValueProp($state, ["reminder", "sms"])}

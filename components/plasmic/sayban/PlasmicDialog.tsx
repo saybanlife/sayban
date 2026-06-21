@@ -87,15 +87,18 @@ createPlasmicElementProxy;
 export type PlasmicDialog__VariantMembers = {
   fullpage: "fullpage";
   nopadding: "nopadding";
+  colorback: "w";
 };
 export type PlasmicDialog__VariantsArgs = {
   fullpage?: SingleBooleanChoiceArg<"fullpage">;
   nopadding?: SingleBooleanChoiceArg<"nopadding">;
+  colorback?: SingleChoiceArg<"w">;
 };
 type VariantPropType = keyof PlasmicDialog__VariantsArgs;
 export const PlasmicDialog__VariantProps = new Array<VariantPropType>(
   "fullpage",
-  "nopadding"
+  "nopadding",
+  "colorback"
 );
 
 export type PlasmicDialog__ArgsType = {
@@ -125,6 +128,7 @@ export interface DefaultDialogProps {
   onOpendialogChange?: (val: string) => void;
   fullpage?: SingleBooleanChoiceArg<"fullpage">;
   nopadding?: SingleBooleanChoiceArg<"nopadding">;
+  colorback?: SingleChoiceArg<"w">;
   className?: string;
 }
 
@@ -225,6 +229,12 @@ function PlasmicDialog__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.nopadding
+      },
+      {
+        path: "colorback",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.colorback
       }
     ],
     [$props, $ctx, $refs]
@@ -256,6 +266,7 @@ function PlasmicDialog__RenderFunc(props: {
         styleTokensClassNames,
         sty.dialog3,
         {
+          [sty.dialog3colorback_w]: hasVariant($state, "colorback", "w"),
           [sty.dialog3fullpage]: hasVariant($state, "fullpage", "fullpage"),
           [sty.dialog3nopadding]: hasVariant($state, "nopadding", "nopadding")
         }
@@ -403,6 +414,7 @@ function PlasmicDialog__RenderFunc(props: {
         data-plasmic-name={"dialogContent"}
         data-plasmic-override={overrides.dialogContent}
         className={classNames("__wab_instance", sty.dialogContent, {
+          [sty.dialogContentcolorback_w]: hasVariant($state, "colorback", "w"),
           [sty.dialogContentfullpage]: hasVariant(
             $state,
             "fullpage",

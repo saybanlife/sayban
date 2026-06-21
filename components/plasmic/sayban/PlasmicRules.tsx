@@ -153,6 +153,12 @@ function PlasmicRules__RenderFunc(props: {
 
         valueProp: "subcategories",
         onChangeProp: "onSubcategoriesChange"
+      },
+      {
+        path: "header.runCode",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -187,6 +193,21 @@ function PlasmicRules__RenderFunc(props: {
         data-plasmic-name={"header"}
         data-plasmic-override={overrides.header}
         className={classNames("__wab_instance", sty.header)}
+        onRunCodeChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["header", "runCode"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        runCode={generateStateValueProp($state, ["header", "runCode"])}
         slot={
           "\u0642\u0648\u0627\u0646\u06cc\u0646 \u0648 \u0645\u0642\u0631\u0631\u0627\u062a"
         }

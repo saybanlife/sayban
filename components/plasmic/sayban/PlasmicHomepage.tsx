@@ -652,7 +652,20 @@ function PlasmicHomepage__RenderFunc(props: {
         path: "mainLiad.refresh",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.reminderSetting.refresh;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "mainLiad.reminderBalance",
@@ -1216,7 +1229,7 @@ function PlasmicHomepage__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
-              return $state.profile.data.result.city;
+              return $state.profile?.data?.result?.city;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -2635,6 +2648,111 @@ function PlasmicHomepage__RenderFunc(props: {
                     "mainLiad",
                     "remind"
                   ])}
+                  reminderReminderSettingAddBack={async () => {
+                    const $steps = {};
+
+                    $steps["goToHomepage"] = !$ctx.pagePath.includes("addPage")
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/${(() => {
+                              try {
+                                return $ctx.params.page;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}/${(() => {
+                              try {
+                                return $state.slug.join("/");
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}#${"addPage"}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToHomepage"] != null &&
+                      typeof $steps["goToHomepage"] === "object" &&
+                      typeof $steps["goToHomepage"].then === "function"
+                    ) {
+                      $steps["goToHomepage"] = await $steps["goToHomepage"];
+                    }
+
+                    $steps["goToHomepage2"] = $ctx.pagePath.includes("addPage")
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/${(() => {
+                              try {
+                                return $ctx.params.page;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}/${(() => {
+                              try {
+                                return $state.slug.join("/");
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToHomepage2"] != null &&
+                      typeof $steps["goToHomepage2"] === "object" &&
+                      typeof $steps["goToHomepage2"].then === "function"
+                    ) {
+                      $steps["goToHomepage2"] = await $steps["goToHomepage2"];
+                    }
+                  }}
                   reminderSetting={async () => {
                     const $steps = {};
 
@@ -4629,6 +4747,111 @@ function PlasmicHomepage__RenderFunc(props: {
           <ReminderSetting
             data-plasmic-name={"reminderSetting"}
             data-plasmic-override={overrides.reminderSetting}
+            addBack={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = !$ctx.pagePath.includes("addPage")
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}/${(() => {
+                        try {
+                          return $state.slug.join("/");
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}#${"addPage"}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+
+              $steps["goToHomepage2"] = $ctx.pagePath.includes("addPage")
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}/${(() => {
+                        try {
+                          return $state.slug.join("/");
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage2"] != null &&
+                typeof $steps["goToHomepage2"] === "object" &&
+                typeof $steps["goToHomepage2"].then === "function"
+              ) {
+                $steps["goToHomepage2"] = await $steps["goToHomepage2"];
+              }
+            }}
             category={generateStateValueProp($state, [
               "reminderSetting",
               "category"
@@ -5231,6 +5454,19 @@ function PlasmicHomepage__RenderFunc(props: {
             ])}
             refresh={generateStateValueProp($state, ["addAddress", "refresh"])}
             token={generateStateValueProp($state, ["addAddress", "token"])}
+            userCity={(() => {
+              try {
+                return $state.profile?.data?.result?.city;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
           />
         </div>
       </div>

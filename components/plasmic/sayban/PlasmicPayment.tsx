@@ -365,6 +365,12 @@ function PlasmicPayment__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "header.runCode",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -412,6 +418,21 @@ function PlasmicPayment__RenderFunc(props: {
         data-plasmic-name={"header"}
         data-plasmic-override={overrides.header}
         className={classNames("__wab_instance", sty.header)}
+        onRunCodeChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["header", "runCode"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        runCode={generateStateValueProp($state, ["header", "runCode"])}
         slot={
           <div className={classNames("all", "__wab_text", sty.text__oJqd)}>
             {

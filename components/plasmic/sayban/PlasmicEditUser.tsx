@@ -302,6 +302,12 @@ function PlasmicEditUser__RenderFunc(props: {
 
         valueProp: "refresh",
         onChangeProp: "onRefreshChange"
+      },
+      {
+        path: "header.runCode",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -737,6 +743,21 @@ function PlasmicEditUser__RenderFunc(props: {
         data-plasmic-name={"header"}
         data-plasmic-override={overrides.header}
         className={classNames("__wab_instance", sty.header)}
+        onRunCodeChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["header", "runCode"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        runCode={generateStateValueProp($state, ["header", "runCode"])}
         slot={
           "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u0628\u0631\u06cc"
         }

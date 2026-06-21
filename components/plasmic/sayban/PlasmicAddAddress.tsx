@@ -93,6 +93,7 @@ export type PlasmicAddAddress__ArgsType = {
   onLoaction2City2Change?: (val: string) => void;
   refresh?: string;
   onRefreshChange?: (val: string) => void;
+  userCity?: string;
 };
 type ArgPropType = keyof PlasmicAddAddress__ArgsType;
 export const PlasmicAddAddress__ArgProps = new Array<ArgPropType>(
@@ -108,7 +109,8 @@ export const PlasmicAddAddress__ArgProps = new Array<ArgPropType>(
   "loaction2City2",
   "onLoaction2City2Change",
   "refresh",
-  "onRefreshChange"
+  "onRefreshChange",
+  "userCity"
 );
 
 export type PlasmicAddAddress__OverridesType = {
@@ -134,6 +136,7 @@ export interface DefaultAddAddressProps {
   onLoaction2City2Change?: (val: string) => void;
   refresh?: string;
   onRefreshChange?: (val: string) => void;
+  userCity?: string;
   className?: string;
 }
 
@@ -265,6 +268,12 @@ function PlasmicAddAddress__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "header.runCode",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -301,6 +310,21 @@ function PlasmicAddAddress__RenderFunc(props: {
         data-plasmic-name={"header"}
         data-plasmic-override={overrides.header}
         className={classNames("__wab_instance", sty.header)}
+        onRunCodeChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["header", "runCode"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        runCode={generateStateValueProp($state, ["header", "runCode"])}
         slot={
           "\u0627\u0641\u0632\u0648\u062f\u0646 \u0622\u062f\u0631\u0633 \u062c\u062f\u06cc\u062f"
         }
@@ -309,6 +333,7 @@ function PlasmicAddAddress__RenderFunc(props: {
       <Loaction2
         data-plasmic-name={"loaction2"}
         data-plasmic-override={overrides.loaction2}
+        address2={generateStateValueProp($state, ["loaction2", "address2"])}
         city2={generateStateValueProp($state, ["loaction2", "city2"])}
         className={classNames("__wab_instance", sty.loaction2)}
         loaction2={generateStateValueProp($state, ["loaction2", "loaction2"])}
@@ -424,6 +449,8 @@ function PlasmicAddAddress__RenderFunc(props: {
             return;
           }
         }}
+        post={generateStateValueProp($state, ["loaction2", "post"])}
+        title2={generateStateValueProp($state, ["loaction2", "title2"])}
       />
 
       <div
@@ -601,14 +628,15 @@ function PlasmicAddAddress__RenderFunc(props: {
                     const actionArgs = {
                       customFunction: async () => {
                         return (() => {
-                          $state.loaction2.city2 = "";
+                          $state.loaction2.city2 = $props.userCity;
                           $state.loaction2.address = "";
                           $state.loaction2.address2 = "";
                           $state.loaction2.title2 = "";
                           $state.loaction2.post = "";
-                          $state.loaction2.lat = null;
-                          $state.loaction2.lon = null;
-                          return window.history.back();
+                          $state.loaction2.lat = "";
+                          $state.loaction2.lon = "";
+                          window.history.back();
+                          return ($state.refresh = Date.now().toString());
                         })();
                       }
                     };
@@ -683,10 +711,7 @@ function PlasmicAddAddress__RenderFunc(props: {
               ? (() => {
                   const actionArgs = {
                     customFunction: async () => {
-                      return (() => {
-                        $state.button.loading = false;
-                        return ($state.refresh = Date.now().toString());
-                      })();
+                      return ($state.button.loading = false);
                     }
                   };
                   return (({ customFunction }) => {

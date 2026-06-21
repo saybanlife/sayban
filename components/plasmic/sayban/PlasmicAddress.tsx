@@ -205,6 +205,12 @@ function PlasmicAddress__RenderFunc(props: {
 
         valueProp: "refresh",
         onChangeProp: "onRefreshChange"
+      },
+      {
+        path: "header.runCode",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -240,6 +246,21 @@ function PlasmicAddress__RenderFunc(props: {
         data-plasmic-override={overrides.header}
         children={null}
         className={classNames("__wab_instance", sty.header)}
+        onRunCodeChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["header", "runCode"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        runCode={generateStateValueProp($state, ["header", "runCode"])}
         slot={"\u0622\u062f\u0631\u0633 \u0647\u0627\u06cc \u0634\u0645\u0627"}
       />
 

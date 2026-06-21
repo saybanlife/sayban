@@ -7,24 +7,21 @@
   justify-content: flex-start;
   align-items: center;
   position: relative;
-  background: var(--token-Ws0-_dtROA6x);
+  background: #f3c94c66;
   border-radius: var(--token-rfsFxiclAtek);
-  padding: var(--token-cfon0PHiXQoL) var(--token-rfsFxiclAtek);
-}
-.rootstatus_pending {
-  background: var(--token-Ws0-_dtROA6x);
+  padding: var(--token-cfon0PHiXQoL);
 }
 .rootstatus_confirmed {
-  background: var(--token--ieHgGbFH1Fa);
+  background: #8fae5566;
 }
 .rootstatus_canceled {
-  background: var(--token-Es3BYpS8XP38);
+  background: #a3b18a66;
 }
 .rootstatus_rejected {
-  background: var(--token-Bo2_tT25lwh4);
+  background: #c9383b66;
 }
 .rootstatus_completed {
-  background: var(--token-hd_-4ix45S80);
+  background: #818cf866;
 }
 .roottextcolor_status_pending {
   background: none;
@@ -41,6 +38,20 @@
 .svg {
   object-fit: cover;
   max-width: 100%;
-  height: 1em;
+  width: var(--token-OJSN3W0Myvht);
+  height: var(--token-P3I_D0uxQRnt);
+  color: var(--token-Yo4gdKCgyuAu);
   flex-shrink: 0;
+}
+.svgstatus_confirmed {
+  color: var(--token--ieHgGbFH1Fa);
+}
+.svgstatus_canceled {
+  color: var(--token-Es3BYpS8XP38);
+}
+.svgstatus_rejected {
+  color: var(--token-FCYaeT_sNnHr);
+}
+.svgstatus_completed {
+  color: var(--token-wjDz2yYxsQQ8);
 }

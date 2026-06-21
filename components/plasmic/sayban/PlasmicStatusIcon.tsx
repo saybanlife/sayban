@@ -66,6 +66,12 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicStatusIcon.module.css"; // plasmic-import: zJ2RueI-cLbg/css
 
+import ClockIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Clock"; // plasmic-import: sBP7srrq0jxO/icon
+import CircleCheckIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CircleCheck"; // plasmic-import: KkttdV01iFXR/icon
+import WashDrycleanOffIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__WashDrycleanOff"; // plasmic-import: QFNdjGQULUYm/icon
+import TimeDurationOffIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__TimeDurationOff"; // plasmic-import: SHVGkAq8tSC4/icon
+import CircleDashedCheckIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CircleDashedCheck"; // plasmic-import: Zi9Pm0Fuq1Kb/icon
+
 createPlasmicElementProxy;
 
 export type PlasmicStatusIcon__VariantMembers = {
@@ -216,10 +222,27 @@ function PlasmicStatusIcon__RenderFunc(props: {
         }
       )}
     >
-      <svg
+      <PlasmicIcon__
         data-plasmic-name={"svg"}
         data-plasmic-override={overrides.svg}
-        className={classNames("all", sty.svg)}
+        PlasmicIconType={
+          hasVariant($state, "status", "completed")
+            ? CircleDashedCheckIcon
+            : hasVariant($state, "status", "rejected")
+              ? TimeDurationOffIcon
+              : hasVariant($state, "status", "canceled")
+                ? WashDrycleanOffIcon
+                : hasVariant($state, "status", "confirmed")
+                  ? CircleCheckIcon
+                  : ClockIcon
+        }
+        className={classNames("all", sty.svg, {
+          [sty.svgstatus_canceled]: hasVariant($state, "status", "canceled"),
+          [sty.svgstatus_completed]: hasVariant($state, "status", "completed"),
+          [sty.svgstatus_confirmed]: hasVariant($state, "status", "confirmed"),
+          [sty.svgstatus_pending]: hasVariant($state, "status", "pending"),
+          [sty.svgstatus_rejected]: hasVariant($state, "status", "rejected")
+        })}
         role={"img"}
       />
     </div>

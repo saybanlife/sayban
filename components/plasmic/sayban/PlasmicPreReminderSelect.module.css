@@ -6,8 +6,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  row-gap: var(--token-xf2ijuTrDk1U);
-  padding: var(--token-73iLa06AE6f4);
+  row-gap: var(--token-cfon0PHiXQoL);
+  padding: var(--token-73iLa06AE6f4) 0px;
 }
 .freeBox___73GTl {
   display: flex;
@@ -18,10 +18,9 @@
   max-width: 100%;
   justify-content: space-between;
   align-items: center;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
   min-width: 0;
   padding: 8px;
+  border-bottom: 1px solid var(--token-pyhDq7s0RTkz);
 }
 .checkbox4:global(.__wab_instance) {
   max-width: 100%;
@@ -33,5 +32,6 @@
   text-align: right;
   font-size: var(--token-N8Pb0ZuDQAeF);
   font-weight: 400;
+  color: var(--token-KjATzAYJ5IB7);
   min-width: 0;
 }
