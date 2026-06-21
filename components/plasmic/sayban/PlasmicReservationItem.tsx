@@ -274,7 +274,11 @@ function PlasmicReservationItem__RenderFunc(props: {
                   second: date.getSeconds()
                 };
               }
-              const newCreatedAt = addTime($props?.currentItem?.start_time);
+              const newCreatedAt = addTime(
+                $props?.currentItem?.start_time,
+                3,
+                30
+              );
               return newCreatedAt;
             })()}
           />
