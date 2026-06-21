@@ -29237,6 +29237,58 @@
           "cssFilePath": "plasmic/sayban/PlasmicCategoryItem.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "HqZV6_TZqqbI",
+          "name": "MainPageReservation",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicMainPageReservation.tsx",
+          "importSpec": {
+            "modulePath": "MainPageReservation.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicMainPageReservation.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "4UaemkVPEyQ4",
+          "name": "ReservationItem",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicReservationItem.tsx",
+          "importSpec": {
+            "modulePath": "ReservationItem.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicReservationItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "bbXD3HDP8ith",
+          "name": "ReservationIcons",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicReservationIcons.tsx",
+          "importSpec": {
+            "modulePath": "ReservationIcons.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicReservationIcons.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "zJ2RueI-cLbg",
+          "name": "StatusIcon",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicStatusIcon.tsx",
+          "importSpec": {
+            "modulePath": "StatusIcon.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicStatusIcon.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

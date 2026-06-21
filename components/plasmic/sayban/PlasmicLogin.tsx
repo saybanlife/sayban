@@ -902,6 +902,11 @@ function PlasmicLogin__RenderFunc(props: {
                     $state,
                     "page",
                     "code"
+                  ),
+                  [sty.svgpage_name__x7Iqjaq9MH]: hasVariant(
+                    $state,
+                    "page",
+                    "name"
                   )
                 })}
                 role={"img"}
