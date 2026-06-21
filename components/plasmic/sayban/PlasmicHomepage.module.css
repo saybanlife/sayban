@@ -237,6 +237,9 @@
 .homePagehomePage2_reminder {
   display: flex;
 }
+.homePagehomePage2_reminder_page_reminderSetting {
+  display: none;
+}
 .section__iGcIn {
   display: grid;
   align-content: flex-start;

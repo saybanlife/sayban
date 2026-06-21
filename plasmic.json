@@ -29289,6 +29289,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicStatusIcon.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "_Vn_IJAgvRM-",
+          "name": "PayResult",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicPayResult.tsx",
+          "importSpec": {
+            "modulePath": "PayResult.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicPayResult.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -30231,6 +30244,26 @@
           "id": "QEeZsrIqF2Ae",
           "name": "Icon108Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon108.tsx"
+        },
+        {
+          "id": "skM94sJtKRsa",
+          "name": "EmojiSadSquareSvgrepoComSvgIcon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__EmojiSadSquareSvgrepoComSvg.tsx"
+        },
+        {
+          "id": "U9FcwRlMMWFj",
+          "name": "EmojiHappySquareSvgrepoComSvg2Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__EmojiHappySquareSvgrepoComSvg2.tsx"
+        },
+        {
+          "id": "QYvfkgvMdi0M",
+          "name": "Icon109Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon109.tsx"
+        },
+        {
+          "id": "dYyNok7sDTqN",
+          "name": "Icon110Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon110.tsx"
         }
       ],
       "images": [

@@ -84,6 +84,7 @@ export const PlasmicLoaction2__VariantProps = new Array<VariantPropType>(
 );
 
 export type PlasmicLoaction2__ArgsType = {
+  address?: string;
   onAddressChange?: (val: string) => void;
   onLatChange?: (val: string) => void;
   onLonChange?: (val: string) => void;
@@ -99,6 +100,7 @@ export type PlasmicLoaction2__ArgsType = {
 };
 type ArgPropType = keyof PlasmicLoaction2__ArgsType;
 export const PlasmicLoaction2__ArgProps = new Array<ArgPropType>(
+  "address",
   "onAddressChange",
   "onLatChange",
   "onLonChange",
@@ -126,6 +128,7 @@ export type PlasmicLoaction2__OverridesType = {
 };
 
 export interface DefaultLoaction2Props {
+  address?: string;
   onAddressChange?: (val: string) => void;
   onLatChange?: (val: string) => void;
   onLonChange?: (val: string) => void;
@@ -185,10 +188,10 @@ function PlasmicLoaction2__RenderFunc(props: {
     () => [
       {
         path: "loaction.value",
-        type: "readonly",
+        type: "writable",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "",
 
+        valueProp: "address",
         onChangeProp: "onAddressChange"
       },
       {

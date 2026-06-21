@@ -236,7 +236,7 @@ function PlasmicHeader__RenderFunc(props: {
             onClick={async event => {
               const $steps = {};
 
-              $steps["runCode"] = $state.runCode
+              $steps["runCode"] = !$state.runCode
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
@@ -256,7 +256,7 @@ function PlasmicHeader__RenderFunc(props: {
                 $steps["runCode"] = await $steps["runCode"];
               }
 
-              $steps["runBack"] = !$state.runCode
+              $steps["runBack"] = $state.runCode
                 ? (() => {
                     const actionArgs = { eventRef: $props["back"] };
                     return (({ eventRef, args }) => {

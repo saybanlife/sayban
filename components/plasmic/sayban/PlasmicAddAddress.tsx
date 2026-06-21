@@ -209,7 +209,7 @@ function PlasmicAddAddress__RenderFunc(props: {
         path: "loaction2.address",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "loaction2.lat",
@@ -333,6 +333,7 @@ function PlasmicAddAddress__RenderFunc(props: {
       <Loaction2
         data-plasmic-name={"loaction2"}
         data-plasmic-override={overrides.loaction2}
+        address={generateStateValueProp($state, ["loaction2", "address"])}
         address2={generateStateValueProp($state, ["loaction2", "address2"])}
         city2={generateStateValueProp($state, ["loaction2", "city2"])}
         className={classNames("__wab_instance", sty.loaction2)}

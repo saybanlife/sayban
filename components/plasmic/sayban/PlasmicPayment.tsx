@@ -109,7 +109,7 @@ export type PlasmicPayment__OverridesType = {
   service2?: Flex__<typeof Service2>;
   img?: Flex__<typeof PlasmicImg__>;
   textCollapse?: Flex__<typeof TextCollapse>;
-  textAreaInput?: Flex__<typeof TextAreaInput>;
+  description?: Flex__<typeof TextAreaInput>;
   checkboxGroup?: Flex__<typeof CheckboxGroup>;
   option1?: Flex__<typeof Checkbox>;
   section?: Flex__<"section">;
@@ -361,7 +361,7 @@ function PlasmicPayment__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "textAreaInput.value",
+        path: "description.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
@@ -688,17 +688,14 @@ function PlasmicPayment__RenderFunc(props: {
                       </div>
                     </div>
                     <TextAreaInput
-                      data-plasmic-name={"textAreaInput"}
-                      data-plasmic-override={overrides.textAreaInput}
+                      data-plasmic-name={"description"}
+                      data-plasmic-override={overrides.description}
                       autoFocus={false}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.textAreaInput
-                      )}
+                      className={classNames("__wab_instance", sty.description)}
                       disabled={false}
                       onChange={async (...eventArgs: any) => {
                         generateStateOnChangeProp($state, [
-                          "textAreaInput",
+                          "description",
                           "value"
                         ]).apply(null, eventArgs);
 
@@ -717,7 +714,7 @@ function PlasmicPayment__RenderFunc(props: {
                       readOnly={false}
                       type={"outline"}
                       value={generateStateValueProp($state, [
-                        "textAreaInput",
+                        "description",
                         "value"
                       ])}
                     />
@@ -1271,6 +1268,7 @@ function PlasmicPayment__RenderFunc(props: {
                                       $state.basic.data.result.payment
                                         .final_price,
                                     payment_method: $state.checkboxGroup.value,
+                                    description: $state.description.value,
                                     status: "pending"
                                   };
                                 } catch (e) {
@@ -1481,7 +1479,7 @@ const PlasmicDescendants = {
     "service2",
     "img",
     "textCollapse",
-    "textAreaInput",
+    "description",
     "checkboxGroup",
     "option1",
     "section",
@@ -1497,7 +1495,7 @@ const PlasmicDescendants = {
     "service2",
     "img",
     "textCollapse",
-    "textAreaInput",
+    "description",
     "checkboxGroup",
     "option1",
     "section",
@@ -1509,7 +1507,7 @@ const PlasmicDescendants = {
   service2: ["service2", "img", "textCollapse"],
   img: ["img"],
   textCollapse: ["textCollapse"],
-  textAreaInput: ["textAreaInput"],
+  description: ["description"],
   checkboxGroup: ["checkboxGroup", "option1"],
   option1: ["option1"],
   section: ["section", "online", "button", "inPerson", "button2"],
@@ -1529,7 +1527,7 @@ type NodeDefaultElementType = {
   service2: typeof Service2;
   img: typeof PlasmicImg__;
   textCollapse: typeof TextCollapse;
-  textAreaInput: typeof TextAreaInput;
+  description: typeof TextAreaInput;
   checkboxGroup: typeof CheckboxGroup;
   option1: typeof Checkbox;
   section: "section";
@@ -1607,7 +1605,7 @@ export const PlasmicPayment = Object.assign(
     service2: makeNodeComponent("service2"),
     img: makeNodeComponent("img"),
     textCollapse: makeNodeComponent("textCollapse"),
-    textAreaInput: makeNodeComponent("textAreaInput"),
+    description: makeNodeComponent("description"),
     checkboxGroup: makeNodeComponent("checkboxGroup"),
     option1: makeNodeComponent("option1"),
     section: makeNodeComponent("section"),

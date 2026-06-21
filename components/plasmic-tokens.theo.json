@@ -3791,6 +3791,16 @@
       }
     },
     {
+      "name": "border gray light dark",
+      "type": "color",
+      "value": "rgb(48,48,48)",
+      "category": "color",
+      "meta": {
+        "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+        "id": "u4K3HGUHLazG"
+      }
+    },
+    {
       "name": "cyan-100",
       "type": "color",
       "value": "#CFFAFE",
