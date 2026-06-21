@@ -7,7 +7,7 @@
   height: 400px;
   justify-content: flex-start;
   align-items: center;
-  row-gap: var(--token-73iLa06AE6f4);
+  row-gap: var(--token-RuQNZpYm0Yds);
   min-width: 0;
   padding: 0px;
 }
@@ -36,7 +36,7 @@
   z-index: 1;
   right: auto;
   min-width: 0;
-  padding: var(--token-xf2ijuTrDk1U);
+  padding: var(--token-73iLa06AE6f4) 0px 0px;
 }
 .text__wvsLs {
   animation: none;
@@ -45,15 +45,16 @@
   height: auto;
   max-width: 100%;
   font-weight: 700;
-  font-size: var(--token-Tca_MqWoqq_b);
+  font-size: var(--token-hbNq_Oz393_j);
   text-align: center;
   font-family: "Roboto", sans-serif;
   font-style: normal;
-  color: #535353;
+  color: var(--token-9M5jRUPt8Msb);
   text-transform: none;
   line-height: 1.5;
   letter-spacing: normal;
   white-space: pre-wrap;
+  padding-bottom: var(--token-rfsFxiclAtek);
   min-width: 0;
 }
 .freeBox__sEMv2 {
@@ -65,10 +66,10 @@
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
-  overflow: hidden;
+  overflow: auto;
   background: none;
   min-width: 0;
-  padding: 0px;
+  padding: 0px var(--token-73iLa06AE6f4);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__sEMv2 {
@@ -92,16 +93,14 @@
   align-items: stretch;
   justify-content: flex-start;
   width: 100%;
-  height: 100%;
+  height: auto;
   max-width: 100%;
   row-gap: var(--token-LBC0X5IbL9bo);
-  overflow: auto;
   left: auto;
   top: auto;
   z-index: 1;
   min-width: 0;
-  min-height: 0;
-  padding: var(--token-xf2ijuTrDk1U) var(--token-xf2ijuTrDk1U) 100px;
+  padding: var(--token-xf2ijuTrDk1U) var(--token-73iLa06AE6f4) 100px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__g6Urn {
@@ -140,11 +139,11 @@
   height: auto;
   max-width: 100%;
   text-align: right;
-  font-size: var(--token-hbNq_Oz393_j);
+  font-size: var(--token-N8Pb0ZuDQAeF);
   font-weight: 700;
   font-family: "Roboto", sans-serif;
   font-style: normal;
-  color: #535353;
+  color: var(--token-9M5jRUPt8Msb);
   text-transform: none;
   line-height: 1.5;
   letter-spacing: normal;

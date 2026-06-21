@@ -699,12 +699,6 @@ function PlasmicLiad__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "mainLiad.profile2",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
         path: "mainLiad.loading",
         type: "private",
         variableType: "boolean",
@@ -715,6 +709,12 @@ function PlasmicLiad__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "mainLiad.userId",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -3212,20 +3212,6 @@ function PlasmicLiad__RenderFunc(props: {
             return;
           }
         }}
-        onProfileChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["mainLiad", "profile2"]).apply(
-            null,
-            eventArgs
-          );
-
-          if (
-            eventArgs.length > 1 &&
-            eventArgs[1] &&
-            eventArgs[1]._plasmic_state_init_
-          ) {
-            return;
-          }
-        }}
         onRefreshChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["mainLiad", "refresh"]).apply(
             null,
@@ -3296,6 +3282,20 @@ function PlasmicLiad__RenderFunc(props: {
             return;
           }
         }}
+        onUserIdChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainLiad", "userId"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
         onUserInfoChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["mainLiad", "userInfo"]).apply(
             null,
@@ -3311,7 +3311,6 @@ function PlasmicLiad__RenderFunc(props: {
           }
         }}
         page={"reminder"}
-        profile2={generateStateValueProp($state, ["mainLiad", "profile2"])}
         refresh={generateStateValueProp($state, ["mainLiad", "refresh"])}
         remind={generateStateValueProp($state, ["mainLiad", "remind"])}
         telegramDialog={generateStateValueProp($state, [
@@ -3319,6 +3318,7 @@ function PlasmicLiad__RenderFunc(props: {
           "telegramDialog"
         ])}
         token={generateStateValueProp($state, ["mainLiad", "token"])}
+        userId={generateStateValueProp($state, ["mainLiad", "userId"])}
         userInfo={generateStateValueProp($state, ["mainLiad", "userInfo"])}
       />
     </div>

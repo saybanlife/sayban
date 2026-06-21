@@ -426,7 +426,18 @@ function PlasmicRadioGrop__RenderFunc(props: {
               />
             ),
 
-            value: args.slot
+            value: args.slot,
+            className: classNames(sty.slotTargetSlot, {
+              [sty.slotTargetSlotdirection_v]: hasVariant(
+                $state,
+                "direction",
+                "v"
+              ),
+              [sty.slotTargetSloticon]: hasVariant($state, "icon", "icon"),
+              [sty.slotTargetSlotstyle2_lineligt_icon]:
+                hasVariant($state, "icon", "icon") &&
+                hasVariant($state, "style2", "lineligt")
+            })
           })
         : null}
       <div
@@ -449,11 +460,15 @@ function PlasmicRadioGrop__RenderFunc(props: {
           [sty.freeBoxselected_style3_radio]:
             hasVariant($state, "style3", "radio") &&
             hasVariant($state, "selected", "selected"),
+          [sty.freeBoxstyle2_line]: hasVariant($state, "style2", "line"),
           [sty.freeBoxstyle2_lineligt]: hasVariant(
             $state,
             "style2",
             "lineligt"
           ),
+          [sty.freeBoxstyle2_lineligt_selected]:
+            hasVariant($state, "style2", "lineligt") &&
+            hasVariant($state, "selected", "selected"),
           [sty.freeBoxstyle3_radio]: hasVariant($state, "style3", "radio")
         })}
       >
@@ -515,6 +530,13 @@ function PlasmicRadioGrop__RenderFunc(props: {
               "style2",
               "lineligt"
             ),
+            [sty.slotTargetChildrenstyle2_lineligt_icon]:
+              hasVariant($state, "icon", "icon") &&
+              hasVariant($state, "style2", "lineligt"),
+            [sty.slotTargetChildrenstyle2_lineligt_icon_color_light]:
+              hasVariant($state, "icon", "icon") &&
+              hasVariant($state, "style2", "lineligt") &&
+              hasVariant($state, "color", "light"),
             [sty.slotTargetChildrenstyle2_lineligt_selected]:
               hasVariant($state, "style2", "lineligt") &&
               hasVariant($state, "selected", "selected"),

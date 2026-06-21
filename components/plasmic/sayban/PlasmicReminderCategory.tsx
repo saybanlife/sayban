@@ -648,6 +648,58 @@ function PlasmicReminderCategory__RenderFunc(props: {
                       "__wab_instance",
                       sty.radioGroupLiom2
                     ),
+                    click: async () => {
+                      const $steps = {};
+
+                      $steps["runCode"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return (() => {
+                                  $state.radioGroupLiom2.forEach((item, i) => {
+                                    if (i !== currentIndex) {
+                                      item.selected = null;
+                                    }
+                                  });
+                                  $state.select = currentItem.items.find(
+                                    i =>
+                                      i.type ==
+                                      $state.radioGroupLiom2[currentIndex]
+                                        .selected
+                                  );
+                                  return ($state.title = $state.select.type_fa);
+                                })();
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runCode"] != null &&
+                        typeof $steps["runCode"] === "object" &&
+                        typeof $steps["runCode"].then === "function"
+                      ) {
+                        $steps["runCode"] = await $steps["runCode"];
+                      }
+
+                      $steps["runOk"] = true
+                        ? (() => {
+                            const actionArgs = { eventRef: $props["ok"] };
+                            return (({ eventRef, args }) => {
+                              return eventRef?.(...(args ?? []));
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runOk"] != null &&
+                        typeof $steps["runOk"] === "object" &&
+                        typeof $steps["runOk"].then === "function"
+                      ) {
+                        $steps["runOk"] = await $steps["runOk"];
+                      }
+                    },
                     color: "line",
                     icon: true,
                     list: generateStateValueProp($state, [

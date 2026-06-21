@@ -496,6 +496,7 @@ function PlasmicRadioGroupLiom__RenderFunc(props: {
                   ),
                   [sty.menuIconicon]: hasVariant($state, "icon", "icon")
                 })}
+                color={"praimery"}
                 icons={(() => {
                   try {
                     return (() => {

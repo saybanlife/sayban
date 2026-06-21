@@ -90,9 +90,8 @@
   max-width: 100%;
   text-align: right;
   font-size: var(--token-N8Pb0ZuDQAeF);
-  border-bottom-width: 2px;
-  border-bottom-style: dashed;
   min-width: 0;
+  border-bottom: 2px dashed var(--token-pyhDq7s0RTkz);
 }
 .text__cxPdu {
   width: 100%;
@@ -108,10 +107,11 @@
   flex-direction: column;
   position: relative;
   width: 100%;
-  height: auto;
+  height: 100%;
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
   min-width: 0;
+  min-height: 0;
   padding: 0px;
 }

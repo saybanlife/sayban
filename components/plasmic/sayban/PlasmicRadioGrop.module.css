@@ -4,16 +4,15 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: #ffffff;
+  background: var(--token-80wG4y4sryg5);
   justify-self: flex-start;
   width: 100%;
   min-width: 0;
   border-radius: 8px;
   padding: 8px;
-  border: 1px solid #c8c7c1;
+  border: 1px solid var(--token-KjATzAYJ5IB7);
 }
 .rootselected {
-  background: #7444bcb3;
   border-width: 0px;
 }
 .rootselectedLine {
@@ -43,6 +42,8 @@
 .rooticon {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   column-gap: 0px;
 }
 .rootstyle3_circle {
@@ -72,9 +73,9 @@
   background: var(--token-kI60KiRr_Lur);
 }
 .rootstyle2_lineligt_selected {
-  background: #dceac0;
+  background: var(--token-Ws0-_dtROA6x);
   border-width: 1px;
-  border-color: #8254c6;
+  border-color: var(--token-ee2TuxDknsJj);
 }
 .rootchoise_selected {
   background: var(--token-kI60KiRr_Lur);
@@ -86,7 +87,7 @@
 }
 .rootstyle2_lineligt_icon {
   box-shadow: none;
-  border-color: var(--token-5IORLB32cx8g);
+  border-color: var(--token-KjATzAYJ5IB7);
 }
 .rootcomingSoon_style3_radio {
   border-width: 1px;
@@ -113,6 +114,9 @@
   background: none;
   border-width: 0px;
 }
+.slotTargetSlotstyle2_lineligt_icon {
+  color: var(--token-KjATzAYJ5IB7);
+}
 .svg__zqrAs {
   object-fit: cover;
   max-width: 100%;
@@ -131,6 +135,10 @@
 }
 .freeBoxcomingSoon {
   opacity: 0.6;
+}
+.freeBoxicon {
+  padding: 0px;
+  margin: 0px;
 }
 .freeBoxstyle3_radio {
   column-gap: var(--token-rfsFxiclAtek);
@@ -167,24 +175,30 @@
   font-weight: 700;
   text-align: center;
   white-space: pre;
+  color: var(--token-KjATzAYJ5IB7);
 }
 .slotTargetChildrenselected {
   color: var(--token-jgohepLVeKvh);
 }
 .slotTargetChildrensize_mini {
-  font-size: 12px;
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  font-weight: 700;
 }
 .slotTargetChildrenselected_color_light {
   color: #8254c6;
 }
 .slotTargetChildrenstyle2_lineligt_selected {
-  color: #535353;
+  color: var(--token-9M5jRUPt8Msb);
 }
 .slotTargetChildrenchoise_selected {
   color: var(--token-80wG4y4sryg5);
 }
 .slotTargetChildrenselected_style3_radio {
   color: #535353;
+}
+.slotTargetChildrenstyle2_lineligt_icon {
+  color: var(--token-KjATzAYJ5IB7);
+  font-size: var(--token-N8Pb0ZuDQAeF);
 }
 .slotTargetChildrenselected_style2_grayBackgerand_color_light {
   color: var(--token-lszuI__rluy0);

@@ -207,7 +207,7 @@ function PlasmicSteps2__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
-        "fade-in"
+        ""
       )}
     >
       <div className={classNames("all", sty.freeBox__mZhY0)}>

@@ -62,20 +62,20 @@ import {
 import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
 import HeaderLiom from "../../HeaderLiom"; // plasmic-import: b_w8hk3_vJDJ/component
 import CreaditButten from "../../CreaditButten"; // plasmic-import: llzFxmPBny5m/component
+import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import Checkbox2 from "../../Checkbox2"; // plasmic-import: j9vU5tCoB4-4/component
 import Steps2 from "../../Steps2"; // plasmic-import: QZYUQRBHdlCN/component
 import Repead from "../../Repead"; // plasmic-import: VWpKR1l00Jdu/component
 import RadioGrop from "../../RadioGrop"; // plasmic-import: 1Z5DhPAqCT-z/component
-import ProcessReminders from "../../ProcessReminders"; // plasmic-import: hth_nosTucNX/component
-import Button2 from "../../Button2"; // plasmic-import: SlKtguGGSfon/component
 import Report2 from "../../Report2"; // plasmic-import: 4RTq2hUW48dj/component
+import Button2 from "../../Button2"; // plasmic-import: SlKtguGGSfon/component
+import ProcessReminders from "../../ProcessReminders"; // plasmic-import: hth_nosTucNX/component
 import ReminderCategory from "../../ReminderCategory"; // plasmic-import: bHwlgwlCwi1B/component
 import { DatePickers } from "@/components/DatePickers"; // plasmic-import: Dz5TQ2vEY9XS/codeComponent
 import { Pickers } from "@/components/Pickers"; // plasmic-import: -vvUVmcfMiRl/codeComponent
 import { TimePickerCustom } from "@/components/TimePickerCustom"; // plasmic-import: 4tsOFSHTfvZu/codeComponent
 import CheckboxGroup2 from "../../CheckboxGroup2"; // plasmic-import: 0hmH7c7HbwPk/component
 import PreReminderSelect from "../../PreReminderSelect"; // plasmic-import: Jx7eenPQCA-m/component
-import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import LineClomp2 from "../../LineClomp2"; // plasmic-import: eRH1dQQhqm8q/component
 import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
 import Switchbest from "../../Switchbest"; // plasmic-import: ERWwOButDms-/component
@@ -218,9 +218,9 @@ export type PlasmicReminderSetting__OverridesType = {
   steps2?: Flex__<typeof Steps2>;
   textbox?: Flex__<"input">;
   repead?: Flex__<typeof Repead>;
-  button14?: Flex__<typeof Button2>;
   report2?: Flex__<typeof Report2>;
   button5?: Flex__<typeof Button2>;
+  button14?: Flex__<typeof Button2>;
   dialog2?: Flex__<typeof Dialog>;
   reminderCategory2?: Flex__<typeof ReminderCategory>;
   dateDiolog?: Flex__<typeof Dialog>;
@@ -243,7 +243,6 @@ export type PlasmicReminderSetting__OverridesType = {
   button13?: Flex__<typeof Button2>;
   button10?: Flex__<typeof Button2>;
   frame?: Flex__<"div">;
-  header?: Flex__<typeof Header>;
   frame2?: Flex__<"div">;
   button7?: Flex__<typeof Button2>;
   todayMeeting?: Flex__<"div">;
@@ -1996,20 +1995,22 @@ function PlasmicReminderSetting__RenderFunc(props: {
               </div>
             </div>
           </HeaderLiom>
+          <Header
+            className={classNames("__wab_instance", sty.header__bnNzf)}
+            slot={
+              <React.Fragment>
+                {$state.select2.add ? "رویداد جدید" : "ویرایش رویداد"}
+              </React.Fragment>
+            }
+          />
+
           <div
             className={classNames("all", sty.freeBox__sUO1, {
               [sty.freeBoxadd__sUO1232G]: hasVariant($state, "add", "add")
             })}
           >
-            <div className={classNames("all", sty.freeBox__lb2Rv)}>
-              <div className={classNames("all", "__wab_text", sty.text__ba9L1)}>
-                {
-                  "\u0631\u0648\u06cc\u062f\u0627\u062f \u062c\u062f\u06cc\u062f"
-                }
-              </div>
-            </div>
             <div
-              className={classNames("all", sty.freeBox__woCiQ, {
+              className={classNames("all", sty.freeBox__woCiQ, "page", {
                 [sty.freeBoxadd__woCiQ232G]: hasVariant($state, "add", "add")
               })}
             >
@@ -3817,272 +3818,6 @@ function PlasmicReminderSetting__RenderFunc(props: {
                         </div>
                       </div>
                     ) : null}
-                    <div className={classNames("all", sty.freeBox__reDfY)}>
-                      <div className={classNames("all", sty.freeBox__fr0I3)}>
-                        <div
-                          className={classNames(
-                            "all",
-                            "__wab_text",
-                            sty.text__sHr5
-                          )}
-                        >
-                          {
-                            "\u0645\u062c\u0645\u0648\u0639 \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0647\u0627:"
-                          }
-                        </div>
-                        <ProcessReminders
-                          className={classNames(
-                            "__wab_instance",
-                            sty.processReminders__vgUra
-                          )}
-                          data={(() => {
-                            try {
-                              return (() => {
-                                var report = {};
-                                report.schedule_type =
-                                  $state.select2.schedule_type;
-                                report.weekdays = $state.week?.length
-                                  ? JSON.stringify($state.week)
-                                  : undefined;
-                                if ($state.date.length > 0) {
-                                  let dates = $state.date.map(i => i.start.f);
-                                  if (report.schedule_type === "everyYear") {
-                                    dates = $state.date.map(i => {
-                                      let parts = i.start.f.split(/[-/]/);
-                                      parts[0] = "0000";
-                                      return i.start.f.includes("-")
-                                        ? parts.join("-")
-                                        : parts.join("/");
-                                    });
-                                  }
-                                  report.dates = JSON.stringify(dates);
-                                } else {
-                                  report.dates = undefined;
-                                }
-                                if ($state.finishDate?.f) {
-                                  report.finishTime = $state.finishDate.f;
-                                } else {
-                                  report.finishTime = undefined;
-                                }
-                                report.pre =
-                                  $state.date.length > 0 ? $state.pre : [];
-                                report.active = 1;
-                                report.times = JSON.stringify(
-                                  $state.time2.map(
-                                    t =>
-                                      `${String(t.hour).padStart(2, "0")}:${String(t.minute).padStart(2, "0")}`
-                                  )
-                                );
-                                report.name = $state.title;
-                                return report;
-                              })();
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}
-                        />
-                      </div>
-                      <Button2
-                        data-plasmic-name={"button14"}
-                        data-plasmic-override={overrides.button14}
-                        className={classNames("__wab_instance", sty.button14)}
-                        color={generateStateValueProp($state, [
-                          "button14",
-                          "color"
-                        ])}
-                        load={generateStateValueProp($state, [
-                          "button14",
-                          "load"
-                        ])}
-                        loading={generateStateValueProp($state, [
-                          "button14",
-                          "loading"
-                        ])}
-                        onClick={async event => {
-                          const $steps = {};
-
-                          $steps["runCode"] = (
-                            $state.select2.schedule_type === "everyYear"
-                              ? $state.time2.length != 0 &&
-                                $state.date.length != 0
-                              : $state.time2.length != 0
-                          )
-                            ? (() => {
-                                const actionArgs = {
-                                  customFunction: async () => {
-                                    return (() => {
-                                      $state.steps2.look = true;
-                                      return ($state.steps2.currentStep = 1);
-                                    })();
-                                  }
-                                };
-                                return (({ customFunction }) => {
-                                  return customFunction();
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["runCode"] != null &&
-                            typeof $steps["runCode"] === "object" &&
-                            typeof $steps["runCode"].then === "function"
-                          ) {
-                            $steps["runCode"] = await $steps["runCode"];
-                          }
-
-                          $steps["invokeGlobalAction"] =
-                            $state.time2.length == 0
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      "error",
-                                      "\u0632\u0645\u0627\u0646 \u0627\u0631\u0633\u0627\u0644 \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0631\u0627 \u0645\u0634\u062e\u0635 \u06a9\u0646\u06cc\u062f.",
-                                      "bottom-center"
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "Fragment.showToast"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
-                          if (
-                            $steps["invokeGlobalAction"] != null &&
-                            typeof $steps["invokeGlobalAction"] === "object" &&
-                            typeof $steps["invokeGlobalAction"].then ===
-                              "function"
-                          ) {
-                            $steps["invokeGlobalAction"] =
-                              await $steps["invokeGlobalAction"];
-                          }
-
-                          $steps["invokeGlobalAction2"] =
-                            $state.select2.schedule_type == "everyYear" &&
-                            $state.date.length == 0
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      "error",
-                                      "\u062a\u0627\u0631\u06cc\u062e \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0631\u0627 \u0645\u0634\u062e\u0635 \u06a9\u0646\u06cc\u062f.",
-                                      "bottom-center"
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "Fragment.showToast"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
-                          if (
-                            $steps["invokeGlobalAction2"] != null &&
-                            typeof $steps["invokeGlobalAction2"] === "object" &&
-                            typeof $steps["invokeGlobalAction2"].then ===
-                              "function"
-                          ) {
-                            $steps["invokeGlobalAction2"] =
-                              await $steps["invokeGlobalAction2"];
-                          }
-
-                          $steps["runCode2"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  customFunction: async () => {
-                                    return (() => {
-                                      if (
-                                        $state.select2.schedule_type ==
-                                        "everyYear"
-                                      ) {
-                                        if ($state.time2.length === 0) {
-                                          $state.timeIndex = -1;
-                                          return ($state.time.opendialog = true);
-                                        } else if ($state.date.length === 0) {
-                                          $state.dateIndex = -1;
-                                          $state.dateDiolog.opendialog = true;
-                                          return ($state.dateType = "start");
-                                        }
-                                      } else if ($state.time2.length === 0) {
-                                        $state.timeIndex = -1;
-                                        return ($state.time.opendialog = true);
-                                      }
-                                    })();
-                                  }
-                                };
-                                return (({ customFunction }) => {
-                                  return customFunction();
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["runCode2"] != null &&
-                            typeof $steps["runCode2"] === "object" &&
-                            typeof $steps["runCode2"].then === "function"
-                          ) {
-                            $steps["runCode2"] = await $steps["runCode2"];
-                          }
-                        }}
-                        onColorChange={async (...eventArgs: any) => {
-                          ((...eventArgs) => {
-                            generateStateOnChangeProp($state, [
-                              "button14",
-                              "color"
-                            ])(eventArgs[0]);
-                          }).apply(null, eventArgs);
-
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        }}
-                        onLoadChange={async (...eventArgs: any) => {
-                          ((...eventArgs) => {
-                            generateStateOnChangeProp($state, [
-                              "button14",
-                              "load"
-                            ])(eventArgs[0]);
-                          }).apply(null, eventArgs);
-
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        }}
-                        onLoadingChange={async (...eventArgs: any) => {
-                          ((...eventArgs) => {
-                            generateStateOnChangeProp($state, [
-                              "button14",
-                              "loading"
-                            ])(eventArgs[0]);
-                          }).apply(null, eventArgs);
-
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        }}
-                      >
-                        <div
-                          className={classNames(
-                            "all",
-                            "__wab_text",
-                            sty.text__zTktl
-                          )}
-                        >
-                          {"\u0627\u062f\u0627\u0645\u0647"}
-                        </div>
-                      </Button2>
-                    </div>
                   </div>
                 ) : null}
                 {(() => {
@@ -4882,6 +4617,266 @@ function PlasmicReminderSetting__RenderFunc(props: {
                 ) : null}
               </Steps2>
             </div>
+            {(() => {
+              try {
+                return $state.steps2.currentStep == 0;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <div className={classNames("all", sty.freeBox__reDfY, "page")}>
+                <div className={classNames("all", sty.freeBox__fr0I3)}>
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__sHr5)}
+                  >
+                    {
+                      "\u0645\u062c\u0645\u0648\u0639 \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0647\u0627:"
+                    }
+                  </div>
+                  <ProcessReminders
+                    className={classNames(
+                      "__wab_instance",
+                      sty.processReminders__vgUra
+                    )}
+                    data={(() => {
+                      try {
+                        return (() => {
+                          var report = {};
+                          report.schedule_type = $state.select2.schedule_type;
+                          report.weekdays = $state.week?.length
+                            ? JSON.stringify($state.week)
+                            : undefined;
+                          if ($state.date.length > 0) {
+                            let dates = $state.date.map(i => i.start.f);
+                            if (report.schedule_type === "everyYear") {
+                              dates = $state.date.map(i => {
+                                let parts = i.start.f.split(/[-/]/);
+                                parts[0] = "0000";
+                                return i.start.f.includes("-")
+                                  ? parts.join("-")
+                                  : parts.join("/");
+                              });
+                            }
+                            report.dates = JSON.stringify(dates);
+                          } else {
+                            report.dates = undefined;
+                          }
+                          if ($state.finishDate?.f) {
+                            report.finishTime = $state.finishDate.f;
+                          } else {
+                            report.finishTime = undefined;
+                          }
+                          report.pre = $state.date.length > 0 ? $state.pre : [];
+                          report.active = 1;
+                          report.times = JSON.stringify(
+                            $state.time2.map(
+                              t =>
+                                `${String(t.hour).padStart(2, "0")}:${String(t.minute).padStart(2, "0")}`
+                            )
+                          );
+                          report.name = $state.title;
+                          return report;
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                  />
+                </div>
+                <Button2
+                  data-plasmic-name={"button14"}
+                  data-plasmic-override={overrides.button14}
+                  className={classNames("__wab_instance", sty.button14)}
+                  color={generateStateValueProp($state, ["button14", "color"])}
+                  load={generateStateValueProp($state, ["button14", "load"])}
+                  loading={generateStateValueProp($state, [
+                    "button14",
+                    "loading"
+                  ])}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["runCode"] = (
+                      $state.select2.schedule_type === "everyYear"
+                        ? $state.time2.length != 0 && $state.date.length != 0
+                        : $state.time2.length != 0
+                    )
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return (() => {
+                                $state.steps2.look = true;
+                                return ($state.steps2.currentStep = 1);
+                              })();
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+
+                    $steps["invokeGlobalAction"] =
+                      $state.time2.length == 0
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "error",
+                                "\u0632\u0645\u0627\u0646 \u0627\u0631\u0633\u0627\u0644 \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0631\u0627 \u0645\u0634\u062e\u0635 \u06a9\u0646\u06cc\u062f.",
+                                "bottom-center"
+                              ]
+                            };
+                            return $globalActions["Fragment.showToast"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["invokeGlobalAction"] != null &&
+                      typeof $steps["invokeGlobalAction"] === "object" &&
+                      typeof $steps["invokeGlobalAction"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction"] =
+                        await $steps["invokeGlobalAction"];
+                    }
+
+                    $steps["invokeGlobalAction2"] =
+                      $state.select2.schedule_type == "everyYear" &&
+                      $state.date.length == 0
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "error",
+                                "\u062a\u0627\u0631\u06cc\u062e \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0631\u0627 \u0645\u0634\u062e\u0635 \u06a9\u0646\u06cc\u062f.",
+                                "bottom-center"
+                              ]
+                            };
+                            return $globalActions["Fragment.showToast"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["invokeGlobalAction2"] != null &&
+                      typeof $steps["invokeGlobalAction2"] === "object" &&
+                      typeof $steps["invokeGlobalAction2"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction2"] =
+                        await $steps["invokeGlobalAction2"];
+                    }
+
+                    $steps["runCode2"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return (() => {
+                                if (
+                                  $state.select2.schedule_type == "everyYear"
+                                ) {
+                                  if ($state.time2.length === 0) {
+                                    $state.timeIndex = -1;
+                                    return ($state.time.opendialog = true);
+                                  } else if ($state.date.length === 0) {
+                                    $state.dateIndex = -1;
+                                    $state.dateDiolog.opendialog = true;
+                                    return ($state.dateType = "start");
+                                  }
+                                } else if ($state.time2.length === 0) {
+                                  $state.timeIndex = -1;
+                                  return ($state.time.opendialog = true);
+                                }
+                              })();
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode2"] != null &&
+                      typeof $steps["runCode2"] === "object" &&
+                      typeof $steps["runCode2"].then === "function"
+                    ) {
+                      $steps["runCode2"] = await $steps["runCode2"];
+                    }
+                  }}
+                  onColorChange={async (...eventArgs: any) => {
+                    ((...eventArgs) => {
+                      generateStateOnChangeProp($state, ["button14", "color"])(
+                        eventArgs[0]
+                      );
+                    }).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onLoadChange={async (...eventArgs: any) => {
+                    ((...eventArgs) => {
+                      generateStateOnChangeProp($state, ["button14", "load"])(
+                        eventArgs[0]
+                      );
+                    }).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onLoadingChange={async (...eventArgs: any) => {
+                    ((...eventArgs) => {
+                      generateStateOnChangeProp($state, [
+                        "button14",
+                        "loading"
+                      ])(eventArgs[0]);
+                    }).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                >
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__zTktl)}
+                  >
+                    {"\u0627\u062f\u0627\u0645\u0647"}
+                  </div>
+                </Button2>
+              </div>
+            ) : null}
           </div>
         </Dialog>
         <Dialog
@@ -4894,6 +4889,7 @@ function PlasmicReminderSetting__RenderFunc(props: {
               hasVariant($state, "slide", "_1") &&
               hasVariant($state, "small", "small")
           })}
+          nopadding={true}
           onOpendialogChange={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["dialog2", "opendialog"]).apply(
               null,
@@ -5269,6 +5265,7 @@ function PlasmicReminderSetting__RenderFunc(props: {
                   return;
                 }
               }}
+              selected={"love"}
               show={generateStateValueProp($state, [
                 "reminderCategory2",
                 "show"
@@ -7122,9 +7119,7 @@ function PlasmicReminderSetting__RenderFunc(props: {
           })}
         >
           <Header
-            data-plasmic-name={"header"}
-            data-plasmic-override={overrides.header}
-            className={classNames("__wab_instance", sty.header)}
+            className={classNames("__wab_instance", sty.header__bdkHv)}
             slot={
               "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc "
             }
@@ -14499,9 +14494,9 @@ const PlasmicDescendants = {
     "steps2",
     "textbox",
     "repead",
-    "button14",
     "report2",
     "button5",
+    "button14",
     "dialog2",
     "reminderCategory2",
     "dateDiolog",
@@ -14524,7 +14519,6 @@ const PlasmicDescendants = {
     "button13",
     "button10",
     "frame",
-    "header",
     "frame2",
     "button7",
     "todayMeeting",
@@ -14564,9 +14558,9 @@ const PlasmicDescendants = {
     "steps2",
     "textbox",
     "repead",
-    "button14",
     "report2",
     "button5",
+    "button14",
     "dialog2",
     "reminderCategory2",
     "dateDiolog",
@@ -14593,19 +14587,19 @@ const PlasmicDescendants = {
     "steps2",
     "textbox",
     "repead",
-    "button14",
     "report2",
-    "button5"
+    "button5",
+    "button14"
   ],
   headerLiom: ["headerLiom", "creaditButten"],
   creaditButten: ["creaditButten"],
   checkbox2: ["checkbox2"],
-  steps2: ["steps2", "textbox", "repead", "button14", "report2", "button5"],
+  steps2: ["steps2", "textbox", "repead", "report2", "button5"],
   textbox: ["textbox"],
   repead: ["repead"],
-  button14: ["button14"],
   report2: ["report2", "button5"],
   button5: ["button5"],
+  button14: ["button14"],
   dialog2: ["dialog2", "reminderCategory2"],
   reminderCategory2: ["reminderCategory2"],
   dateDiolog: ["dateDiolog", "datePickers", "button4"],
@@ -14627,8 +14621,7 @@ const PlasmicDescendants = {
   button9: ["button9"],
   button13: ["button13"],
   button10: ["button10"],
-  frame: ["frame", "header", "frame2", "button7"],
-  header: ["header"],
+  frame: ["frame", "frame2", "button7"],
   frame2: ["frame2", "button7"],
   button7: ["button7"],
   todayMeeting: [
@@ -14738,9 +14731,9 @@ type NodeDefaultElementType = {
   steps2: typeof Steps2;
   textbox: "input";
   repead: typeof Repead;
-  button14: typeof Button2;
   report2: typeof Report2;
   button5: typeof Button2;
+  button14: typeof Button2;
   dialog2: typeof Dialog;
   reminderCategory2: typeof ReminderCategory;
   dateDiolog: typeof Dialog;
@@ -14763,7 +14756,6 @@ type NodeDefaultElementType = {
   button13: typeof Button2;
   button10: typeof Button2;
   frame: "div";
-  header: typeof Header;
   frame2: "div";
   button7: typeof Button2;
   todayMeeting: "div";
@@ -14865,9 +14857,9 @@ export const PlasmicReminderSetting = Object.assign(
     steps2: makeNodeComponent("steps2"),
     textbox: makeNodeComponent("textbox"),
     repead: makeNodeComponent("repead"),
-    button14: makeNodeComponent("button14"),
     report2: makeNodeComponent("report2"),
     button5: makeNodeComponent("button5"),
+    button14: makeNodeComponent("button14"),
     dialog2: makeNodeComponent("dialog2"),
     reminderCategory2: makeNodeComponent("reminderCategory2"),
     dateDiolog: makeNodeComponent("dateDiolog"),
@@ -14890,7 +14882,6 @@ export const PlasmicReminderSetting = Object.assign(
     button13: makeNodeComponent("button13"),
     button10: makeNodeComponent("button10"),
     frame: makeNodeComponent("frame"),
-    header: makeNodeComponent("header"),
     frame2: makeNodeComponent("frame2"),
     button7: makeNodeComponent("button7"),
     todayMeeting: makeNodeComponent("todayMeeting"),

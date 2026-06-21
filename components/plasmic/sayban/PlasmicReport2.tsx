@@ -62,6 +62,7 @@ import {
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import ReportItem from "../../ReportItem"; // plasmic-import: kRuf7d9ACGjr/component
+import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import Button2 from "../../Button2"; // plasmic-import: SlKtguGGSfon/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -109,6 +110,7 @@ export type PlasmicReport2__OverridesType = {
   sideEffect?: Flex__<typeof SideEffect>;
   apiRequest?: Flex__<typeof ApiRequest>;
   reportItem?: Flex__<typeof ReportItem>;
+  line?: Flex__<typeof Line>;
 };
 
 export interface DefaultReport2Props {
@@ -527,8 +529,8 @@ function PlasmicReport2__RenderFunc(props: {
                             __html: (() => {
                               try {
                                 return $state.data2.schedule_type == "everyYear"
-                                  ? "قیمت‌ها به‌صورت یک دوره <span style='color:#552F96; font-weight:bold;'>سالانه</span> محاسبه شده‌اند."
-                                  : "قیمت‌ها به‌صورت <span style='color:#552F96; font-weight:bold;'>ماهانه</span> محاسبه شده‌اند.";
+                                  ? "قیمت‌ها به‌صورت یک دوره <span style=' font-weight:bold;'>سالانه</span> محاسبه شده‌اند."
+                                  : "قیمت‌ها به‌صورت <span style='font-weight:bold;'>ماهانه</span> محاسبه شده‌اند.";
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -547,7 +549,11 @@ function PlasmicReport2__RenderFunc(props: {
                 );
               })}
             </div>
-            <div className={classNames("all", sty.freeBox__hyCas)} />
+            <Line
+              data-plasmic-name={"line"}
+              data-plasmic-override={overrides.line}
+              className={classNames("__wab_instance", sty.line)}
+            />
 
             <div className={classNames("all", sty.freeBox__sApOj)}>
               <div className={classNames("all", "__wab_text", sty.text__pEzqu)}>
@@ -671,98 +677,85 @@ function PlasmicReport2__RenderFunc(props: {
                   );
                 })}
               </div>
-              <div className={classNames("all", sty.freeBox__yhvDe)}>
-                <div className={classNames("all", sty.freeBox__oReja)}>
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__b1214)}
-                  >
-                    {
-                      "\u00ab \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a \u0647\u0646\u06af\u0627\u0645 \u0627\u0631\u0633\u0627\u0644 \u0647\u0631 \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0627\u0632 \u0645\u0648\u062c\u0648\u062f\u06cc \u0634\u0645\u0627 \u06a9\u0633\u0631 \u0645\u06cc\u200c\u0634\u0648\u062f \u00bb"
-                    }
-                  </div>
-                </div>
-                <div className={classNames("all", sty.freeBox__ju9Ge)}>
-                  <div className={classNames("all", sty.freeBox__uZgwj)}>
-                    <div className={classNames("all", sty.freeBox__hvdb8)}>
-                      <div
-                        className={classNames(
-                          "all",
-                          "__wab_text",
-                          sty.text___4IgNl
-                        )}
-                      >
-                        {"\u062c\u0645\u0639 \u06a9\u0644"}
-                      </div>
-                    </div>
-                    <div
-                      className={classNames(
-                        "all",
-                        "__wab_text",
-                        sty.text__oLnI
-                      )}
-                    >
-                      <div
-                        className={"__wab_expr_html_text"}
-                        dangerouslySetInnerHTML={{
-                          __html: (() => {
-                            try {
-                              return (() => {
-                                const totalCost = $state.selectchanels.reduce(
-                                  (sum, channel) => {
-                                    const cost =
-                                      $state.apiRequest.data.results[0].costs[
-                                        channel
-                                      ] || 0;
-                                    return sum + cost;
-                                  },
-                                  0
-                                );
-                                return totalCost == 0
-                                  ? '<span class="swiper-ltr" style="background-color:rgba(34,197,94,0.2); padding:2px 6px; border-radius:6px; font-weight:bold;">رایگان</span>'
-                                  : totalCost.toLocaleString() +
-                                      ' <span style="font-size:0.85em;">تومان</span>';
-                              })();
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "";
-                              }
-                              throw e;
-                            }
-                          })()
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
-                {renderPlasmicSlot({
-                  defaultContents: (
-                    <Button2
-                      className={classNames(
-                        "__wab_instance",
-                        sty.button2___2GUhg
-                      )}
-                    />
-                  ),
-
-                  value: args.button2
-                })}
-              </div>
             </div>
           </div>
         </ApiRequest>
+      </div>
+      <div className={classNames("all", sty.freeBox__yhvDe, "page")}>
+        <div className={classNames("all", sty.freeBox__oReja)}>
+          <div className={classNames("all", "__wab_text", sty.text__b1214)}>
+            {
+              "\u00ab \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a \u0647\u0646\u06af\u0627\u0645 \u0627\u0631\u0633\u0627\u0644 \u0647\u0631 \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0627\u0632 \u0645\u0648\u062c\u0648\u062f\u06cc \u0634\u0645\u0627 \u06a9\u0633\u0631 \u0645\u06cc\u200c\u0634\u0648\u062f \u00bb"
+            }
+          </div>
+        </div>
+        <div className={classNames("all", sty.freeBox__ju9Ge)}>
+          <div className={classNames("all", sty.freeBox__uZgwj)}>
+            <div className={classNames("all", sty.freeBox__hvdb8)}>
+              <div
+                className={classNames("all", "__wab_text", sty.text___4IgNl)}
+              >
+                {"\u062c\u0645\u0639 \u06a9\u0644"}
+              </div>
+            </div>
+            <div className={classNames("all", "__wab_text", sty.text__oLnI)}>
+              <div
+                className={"__wab_expr_html_text"}
+                dangerouslySetInnerHTML={{
+                  __html: (() => {
+                    try {
+                      return (() => {
+                        const totalCost = $state.selectchanels.reduce(
+                          (sum, channel) => {
+                            const cost =
+                              $state.apiRequest.data.results[0].costs[
+                                channel
+                              ] || 0;
+                            return sum + cost;
+                          },
+                          0
+                        );
+                        return totalCost == 0
+                          ? '<span class="swiper-ltr" style="background-color:rgba(34,197,94,0.2); padding:2px 6px; border-radius:6px; font-weight:bold;">رایگان</span>'
+                          : totalCost.toLocaleString() +
+                              ' <span style="font-size:0.85em;">تومان</span>';
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "";
+                      }
+                      throw e;
+                    }
+                  })()
+                }}
+              />
+            </div>
+          </div>
+        </div>
+        {renderPlasmicSlot({
+          defaultContents: (
+            <Button2
+              className={classNames("__wab_instance", sty.button2___2GUhg)}
+            >
+              {"\u062a\u0627\u06cc\u06cc\u062f"}
+            </Button2>
+          ),
+          value: args.button2
+        })}
       </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "sideEffect", "apiRequest", "reportItem"],
+  root: ["root", "sideEffect", "apiRequest", "reportItem", "line"],
   sideEffect: ["sideEffect"],
-  apiRequest: ["apiRequest", "reportItem"],
-  reportItem: ["reportItem"]
+  apiRequest: ["apiRequest", "reportItem", "line"],
+  reportItem: ["reportItem"],
+  line: ["line"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -772,6 +765,7 @@ type NodeDefaultElementType = {
   sideEffect: typeof SideEffect;
   apiRequest: typeof ApiRequest;
   reportItem: typeof ReportItem;
+  line: typeof Line;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -839,6 +833,7 @@ export const PlasmicReport2 = Object.assign(
     sideEffect: makeNodeComponent("sideEffect"),
     apiRequest: makeNodeComponent("apiRequest"),
     reportItem: makeNodeComponent("reportItem"),
+    line: makeNodeComponent("line"),
 
     // Metadata about props expected for PlasmicReport2
     internalVariantProps: PlasmicReport2__VariantProps,

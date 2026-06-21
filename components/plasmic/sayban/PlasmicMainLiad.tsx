@@ -60,10 +60,8 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
-import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
-import Reminder from "../../Reminder"; // plasmic-import: 3oLBMgFOIYFC/component
-import DialogTooltip from "../../DialogTooltip"; // plasmic-import: Ja5GPSQ1q6Qz/component
 import { LottieWrapper } from "@plasmicpkgs/lottie-react";
+import Reminder from "../../Reminder"; // plasmic-import: 3oLBMgFOIYFC/component
 import Dialog2 from "../../Dialog2"; // plasmic-import: olR2fMb0XmJG/component
 import CopyBox from "../../CopyBox"; // plasmic-import: dbGhFgxUm-xc/component
 import Button2 from "../../Button2"; // plasmic-import: SlKtguGGSfon/component
@@ -82,10 +80,10 @@ import Icon106Icon from "./icons/PlasmicIcon__Icon106"; // plasmic-import: Zjluv
 createPlasmicElementProxy;
 
 export type PlasmicMainLiad__VariantMembers = {
-  page: "calendar" | "self" | "reminder" | "bot" | "l";
+  page: "reminder";
 };
 export type PlasmicMainLiad__VariantsArgs = {
-  page?: SingleChoiceArg<"calendar" | "self" | "reminder" | "bot" | "l">;
+  page?: SingleChoiceArg<"reminder">;
 };
 type VariantPropType = keyof PlasmicMainLiad__VariantsArgs;
 export const PlasmicMainLiad__VariantProps = new Array<VariantPropType>("page");
@@ -105,11 +103,11 @@ export type PlasmicMainLiad__ArgsType = {
   onRefreshChange?: (val: string) => void;
   reminderSetting?: () => void;
   onReminderBalanceChange?: (val: number) => void;
-  profile2?: any;
-  onProfileChange?: (val: any) => void;
   onLoadingChange?: (val: string) => void;
   telegramDialog?: boolean;
   onTelegramDialogChange?: (val: boolean) => void;
+  userId?: string;
+  onUserIdChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicMainLiad__ArgsType;
 export const PlasmicMainLiad__ArgProps = new Array<ArgPropType>(
@@ -127,23 +125,19 @@ export const PlasmicMainLiad__ArgProps = new Array<ArgPropType>(
   "onRefreshChange",
   "reminderSetting",
   "onReminderBalanceChange",
-  "profile2",
-  "onProfileChange",
   "onLoadingChange",
   "telegramDialog",
-  "onTelegramDialogChange"
+  "onTelegramDialogChange",
+  "userId",
+  "onUserIdChange"
 );
 
 export type PlasmicMainLiad__OverridesType = {
   root?: Flex__<"div">;
-  profile?: Flex__<typeof ApiRequest>;
-  reveal?: Flex__<typeof Reveal>;
-  reminder?: Flex__<typeof Reminder>;
   reminderApi?: Flex__<typeof ApiRequest>;
-  category?: Flex__<typeof ApiRequest>;
-  dialogTooltip?: Flex__<typeof DialogTooltip>;
-  dialog?: Flex__<typeof ApiRequest>;
   lottie?: Flex__<typeof LottieWrapper>;
+  reminder?: Flex__<typeof Reminder>;
+  category?: Flex__<typeof ApiRequest>;
   telegram?: Flex__<typeof Dialog2>;
   img?: Flex__<typeof PlasmicImg__>;
   copyBox?: Flex__<typeof CopyBox>;
@@ -167,12 +161,12 @@ export interface DefaultMainLiadProps {
   onRefreshChange?: (val: string) => void;
   reminderSetting?: () => void;
   onReminderBalanceChange?: (val: number) => void;
-  profile2?: any;
-  onProfileChange?: (val: any) => void;
   onLoadingChange?: (val: string) => void;
   telegramDialog?: boolean;
   onTelegramDialogChange?: (val: boolean) => void;
-  page?: SingleChoiceArg<"calendar" | "self" | "reminder" | "bot" | "l">;
+  userId?: string;
+  onUserIdChange?: (val: string) => void;
+  page?: SingleChoiceArg<"reminder">;
   className?: string;
 }
 
@@ -260,7 +254,7 @@ function PlasmicMainLiad__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
-              return $props.activeSmsNotif;
+              return "";
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -293,24 +287,6 @@ function PlasmicMainLiad__RenderFunc(props: {
         onChangeProp: "onRemindChange"
       },
       {
-        path: "reminderApi.data",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "reminderApi.error",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "reminderApi.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
         path: "refresh",
         type: "writable",
         variableType: "text",
@@ -340,43 +316,6 @@ function PlasmicMainLiad__RenderFunc(props: {
         path: "reminder.active",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          (() => {
-            try {
-              return $state.page == "reminder";
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return false;
-              }
-              throw e;
-            }
-          })()
-      },
-      {
-        path: "dialog.data",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "dialog.error",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "dialog.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "dialogTooltip.opendialog",
-        type: "private",
-        variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
@@ -404,26 +343,6 @@ function PlasmicMainLiad__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
-      {
-        path: "profile.data",
-        type: "writable",
-        variableType: "object",
-
-        valueProp: "profile2",
-        onChangeProp: "onProfileChange"
-      },
-      {
-        path: "profile.error",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "profile.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "loading",
@@ -469,373 +388,39 @@ function PlasmicMainLiad__RenderFunc(props: {
         path: "reminder.category",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          (() => {
-            try {
-              return {
-                category: [
-                  {
-                    id: 1,
-                    name: "love",
-                    name_fa: "عاشقانه",
-                    description: "مناسبت‌ها و یادآورهای احساسی و رمانتیک.",
-                    color: "#E91E63"
-                  },
-                  {
-                    id: 2,
-                    name: "birthday",
-                    name_fa: "تولد",
-                    description: "یادآور تولد عزیزان و دوستان.",
-                    color: "#FFC107"
-                  },
-                  {
-                    id: 3,
-                    name: "health",
-                    name_fa: "سلامت",
-                    description:
-                      "یادآورهای مرتبط با سلامت جسم و روان، مانند چکاپ، دارو و ورزش.",
-                    color: "#4CAF50"
-                  },
-                  {
-                    id: 4,
-                    name: "international_days",
-                    name_fa: "روزهای جهانی",
-                    description:
-                      "یادآور روزهای جهانی مهم مانند روز زمین، روز زن و ...",
-                    color: "#2196F3"
-                  },
-                  {
-                    id: 5,
-                    name: "religious_days",
-                    name_fa: "روزهای مذهبی",
-                    description:
-                      "یادآور مناسبت‌ها و تعطیلات مذهبی مانند عید قربان، رمضان و ...",
-                    color: "#9C27B0"
-                  },
-                  {
-                    id: 6,
-                    name: "national_days",
-                    name_fa: "روزهای ملی",
-                    description:
-                      "یادآور مناسبت‌ها و روزهای ملی مانند روز معلم، پدر، پرستار و دهه فجر",
-                    color: "#FF7043"
-                  }
-                ],
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "reminderApi.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "reminderApi.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "reminderApi.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "userId",
+        type: "writable",
+        variableType: "text",
 
-                type: [
-                  {
-                    category_id: 1,
-                    category_name: "love",
-                    category_name_fa: "عاشقانه",
-                    items: [
-                      {
-                        id: 1,
-                        category_id: 1,
-                        type: "wedding_anniversary",
-                        schedule_type: "everyYear",
-                        type_fa: "سالگرد ازدواج",
-                        description: "یادآور سالگرد ازدواج با همسر.",
-                        date: null,
-                        text: "marriage",
-                        tag: null,
-                        color: "#E91E63",
-                        icon: "wedding_anniversary"
-                      },
-                      {
-                        id: 2,
-                        category_id: 1,
-                        type: "relationship_anniversary",
-                        schedule_type: "everyYear",
-                        type_fa: "سالگرد آشنایی",
-                        description: "یادآور سالگرد آشنایی یا شروع رابطه.",
-                        date: null,
-                        text: "relationship_anniversary",
-                        tag: null,
-                        color: "#EC407A",
-                        icon: "relationship_anniversary"
-                      }
-                    ]
-                  },
-                  {
-                    category_id: 2,
-                    category_name: "birthday",
-                    category_name_fa: "تولد",
-                    items: [
-                      {
-                        id: 3,
-                        category_id: 2,
-                        type: "spouse_birthday",
-                        schedule_type: "everyYear",
-                        type_fa: "تولد همسر",
-                        description: "یادآور تولد همسر.",
-                        date: null,
-                        text: "birthdayWife",
-                        tag: null,
-                        color: "#FFB300",
-                        icon: "spouse_birthday"
-                      },
-                      {
-                        id: 4,
-                        category_id: 2,
-                        type: "mother_birthday",
-                        schedule_type: "everyYear",
-                        type_fa: "تولد مادر",
-                        description: "یادآور تولد مادر.",
-                        date: null,
-                        text: "birthdayMother",
-                        tag: null,
-                        color: "#FFC107",
-                        icon: "mother_birthday"
-                      },
-                      {
-                        id: 5,
-                        category_id: 2,
-                        type: "father_birthday",
-                        schedule_type: "everyYear",
-                        type_fa: "تولد پدر",
-                        description: "یادآور تولد پدر.",
-                        date: null,
-                        text: "birthdayFather",
-                        tag: null,
-                        color: "#FFD54F",
-                        icon: "father_birthday"
-                      },
-                      {
-                        id: 6,
-                        category_id: 2,
-                        type: "child_birthday",
-                        schedule_type: "everyYear",
-                        type_fa: "تولد فرزند",
-                        description: "یادآور تولد فرزند.",
-                        date: null,
-                        text: "birthdayChild",
-                        tag: null,
-                        color: "#FFE082",
-                        icon: "child_birthday"
-                      },
-                      {
-                        id: 20,
-                        category_id: 2,
-                        type: "other_birthday",
-                        schedule_type: "everyYear",
-                        type_fa: "تولد ...",
-                        description: "یادآور تولد همسر.",
-                        date: null,
-                        text: "birthday",
-                        tag: null,
-                        color: "#FFB300",
-                        icon: "spouse_birthday"
-                      }
-                    ]
-                  },
-                  {
-                    category_id: 3,
-                    category_name: "health",
-                    category_name_fa: "سلامت",
-                    items: [
-                      {
-                        id: 9,
-                        category_id: 3,
-                        type: "medicine_time",
-                        schedule_type: "everyDay",
-                        type_fa: "مصرف دارو",
-                        description: "یادآور زمان مصرف دارو.",
-                        date: null,
-                        text: "pill",
-                        tag: '["repead"]',
-                        color: "#66BB6A",
-                        icon: "medicine_time"
-                      },
-                      {
-                        id: 18,
-                        category_id: 3,
-                        type: "water_time",
-                        schedule_type: "everyDay",
-                        type_fa: "نوشیدن آب",
-                        description: "یادآور زمان نوشیدن آب.",
-                        date: null,
-                        text: "drinkWater",
-                        tag: null,
-                        color: "#66BB6A",
-                        icon: "water"
-                      },
-                      {
-                        id: 24,
-                        category_id: 3,
-                        type: "routine_skin",
-                        schedule_type: "everyDay",
-                        type_fa: "روتین پوست",
-                        description: "یادآور زمان نوشیدن آب.",
-                        date: null,
-                        text: "routineSkin",
-                        tag: null,
-                        color: "#66BB6A",
-                        icon: "routine_skin"
-                      }
-                    ]
-                  },
-                  {
-                    category_id: 4,
-                    category_name: "international_days",
-                    category_name_fa: "روزهای جهانی",
-                    items: [
-                      {
-                        id: 12,
-                        category_id: 4,
-                        type: "valentine_day",
-                        schedule_type: "everyYear",
-                        type_fa: "روز ولنتاین",
-                        description: "روز جهانی عشق و محبت.",
-                        date: "0000-02-14",
-                        text: "valentine",
-                        tag: null,
-                        color: "#F06292",
-                        icon: "valentine_day"
-                      },
-                      {
-                        id: 13,
-                        category_id: 4,
-                        type: "womens_day",
-                        schedule_type: "everyYear",
-                        type_fa: "روز جهانی دختر",
-                        description: "روز جهانی زن و حقوق برابر.",
-                        date: "0000-04-19",
-                        text: "girlsGlobal",
-                        tag: null,
-                        color: "#42A5F5",
-                        icon: "womens_day"
-                      },
-                      {
-                        id: 14,
-                        category_id: 4,
-                        type: "mothers_day",
-                        schedule_type: "everyYear",
-                        type_fa: "روز جهانی زن",
-                        description: "روز قدردانی از مادران در سراسر جهان.",
-                        date: "0000-03-08",
-                        text: "mothers_day",
-                        tag: null,
-                        color: "#64B5F6",
-                        icon: "mothers_day"
-                      },
-                      {
-                        id: 21,
-                        category_id: 4,
-                        type: "boys_day",
-                        schedule_type: "everyYear",
-                        type_fa: "روز جهانی پسر",
-                        description:
-                          "روز توجه به پسران و اهمیت رشد، آموزش و سلامت روان آنان.",
-                        date: "0000-05-16",
-                        text: "boys_day",
-                        tag: null,
-                        color: "#64B5F6",
-                        icon: "mens_day"
-                      },
-                      {
-                        id: 22,
-                        category_id: 4,
-                        type: "mens_day",
-                        schedule_type: "everyYear",
-                        type_fa: "روز جهانی مرد",
-                        description:
-                          "روز قدردانی از مردان و نقش آنان در خانواده و جامعه.",
-                        date: "0000-11-19",
-                        text: "mens_day",
-                        tag: null,
-                        color: "#4FC3F7",
-                        icon: "mens_day"
-                      }
-                    ]
-                  },
-                  {
-                    category_id: 5,
-                    category_name: "religious_days",
-                    category_name_fa: "روزهای مذهبی",
-                    items: [
-                      {
-                        id: 16,
-                        category_id: 5,
-                        type: "religious_womens_day",
-                        schedule_type: "everyYear",
-                        type_fa: "روز زن ",
-                        description: "روز بزرگداشت مقام زن در اسلام.",
-                        date: "0000-12-11",
-                        text: "motherAndWifeDayIran",
-                        tag: null,
-                        color: "#CE93D8",
-                        icon: "womens_day"
-                      },
-                      {
-                        id: 19,
-                        category_id: 5,
-                        type: "religious_girl_day",
-                        schedule_type: "everyYear",
-                        type_fa: "روز دختر ",
-                        description: "روز بزرگداشت مقام دختر در اسلام.",
-                        date: "0000-04-19",
-                        text: "religious_girl_day",
-                        tag: null,
-                        color: "#CE93D8",
-                        icon: "womens_day"
-                      },
-                      {
-                        id: 23,
-                        category_id: 5,
-                        type: "islamic_mens_day",
-                        schedule_type: "everyYear",
-                        type_fa: "روز مرد",
-                        description:
-                          "روز ولادت حضرت علی (ع) و بزرگداشت مقام پدر و مرد در فرهنگ اسلامی.",
-                        date: "0000-01-03",
-                        text: "islamic_mens_day",
-                        tag: null,
-                        color: "#81C784",
-                        icon: "mens_day"
-                      }
-                    ]
-                  },
-                  {
-                    category_id: 6,
-                    category_name: "national_days",
-                    category_name_fa: "روزهای ملی",
-                    items: [
-                      {
-                        id: 17,
-                        category_id: 6,
-                        type: "sepandarmazgan",
-                        schedule_type: "everyYear",
-                        type_fa: "روز سپندارمذگان",
-                        description:
-                          "روز عشق ایرانی، جشن مهر و محبت در فرهنگ پارسی.",
-                        date: "0000-02-18",
-                        text: "sepandarmazgan",
-                        tag: null,
-                        color: "#F48FB1",
-                        icon: "sepandarmazgan"
-                      }
-                    ]
-                  }
-                ]
-              };
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()
+        valueProp: "userId",
+        onChangeProp: "onUserIdChange"
       }
     ],
     [$props, $ctx, $refs]
   );
 
   const globalVariants = _useGlobalVariants();
-
-  const $globalActions = useGlobalActions?.();
 
   const $state = useDollarState(stateSpecs, {
     $props,
@@ -860,37 +445,883 @@ function PlasmicMainLiad__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
-        {
-          [sty.rootpage_calendar]: hasVariant($state, "page", "calendar"),
-          [sty.rootpage_l]: hasVariant($state, "page", "l"),
-          [sty.rootpage_reminder]: hasVariant($state, "page", "reminder"),
-          [sty.rootpage_self]: hasVariant($state, "page", "self")
-        }
+        { [sty.rootpage_reminder]: hasVariant($state, "page", "reminder") }
       )}
     >
       <ApiRequest
-        data-plasmic-name={"profile"}
-        data-plasmic-override={overrides.profile}
-        className={classNames("__wab_instance", sty.profile, {
-          [sty.profilepage_reminder]: hasVariant($state, "page", "reminder")
-        })}
-        errorDisplay={null}
-        loadingDisplay={null}
+        data-plasmic-name={"reminderApi"}
+        data-plasmic-override={overrides.reminderApi}
+        className={classNames("__wab_instance", sty.reminderApi)}
+        errorDisplay={
+          <div className={classNames("all", "__wab_text", sty.text__jTel)}>
+            {"Error fetching data"}
+          </div>
+        }
+        loadingDisplay={
+          <div className={classNames("all", sty.freeBox__cfS09)}>
+            <LottieWrapper
+              data-plasmic-name={"lottie"}
+              data-plasmic-override={overrides.lottie}
+              animationData={{
+                v: "5.1.6",
+                fr: 30,
+                ip: 0,
+                op: 94,
+                w: 300,
+                h: 300,
+                nm: "Comp 2",
+                ddd: 0,
+                assets: [
+                  {
+                    id: "comp_0",
+                    layers: [
+                      {
+                        ddd: 0,
+                        ind: 1,
+                        ty: 4,
+                        nm: "Shape Layer 3",
+                        sr: 1,
+                        ks: {
+                          o: { a: 0, k: 100, ix: 11 },
+                          r: { a: 0, k: 0, ix: 10 },
+                          p: { a: 0, k: [81, 59.26, 0], ix: 2 },
+                          a: { a: 0, k: [-30, -6.544, 0], ix: 1 },
+                          s: {
+                            a: 1,
+                            k: [
+                              {
+                                i: {
+                                  x: [0.651, 0.667, 0.667],
+                                  y: [0.998, 1, 1]
+                                },
+                                o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
+                                n: [
+                                  "0p651_0p998_0p333_0",
+                                  "0p667_1_0p333_0",
+                                  "0p667_1_0p333_0"
+                                ],
+                                t: 9,
+                                s: [0, 75.476, 100],
+                                e: [110, 75.476, 100]
+                              },
+                              {
+                                i: {
+                                  x: [0.524, 0.833, 0.833],
+                                  y: [0.97, 1, 1]
+                                },
+                                o: {
+                                  x: [0.379, 0.167, 0.167],
+                                  y: [0.013, 0, 0]
+                                },
+                                n: [
+                                  "0p524_0p97_0p379_0p013",
+                                  "0p833_1_0p167_0",
+                                  "0p833_1_0p167_0"
+                                ],
+                                t: 21,
+                                s: [110, 75.476, 100],
+                                e: [100, 75.476, 100]
+                              },
+                              { t: 29 }
+                            ],
+                            ix: 6
+                          }
+                        },
+                        ao: 0,
+                        shapes: [
+                          {
+                            ty: "gr",
+                            it: [
+                              {
+                                ty: "rc",
+                                d: 1,
+                                s: { a: 0, k: [85.26, 14.271], ix: 2 },
+                                p: { a: 0, k: [0, 0], ix: 3 },
+                                r: { a: 0, k: 2, ix: 4 },
+                                nm: "Rectangle Path 1",
+                                mn: "ADBE Vector Shape - Rect",
+                                hd: false
+                              },
+                              {
+                                ty: "fl",
+                                c: {
+                                  a: 0,
+                                  k: [0.882353, 0.835294, 0.670588, 1],
+                                  ix: 4
+                                },
+                                o: { a: 0, k: 100, ix: 5 },
+                                r: 1,
+                                nm: "Fill 1",
+                                mn: "ADBE Vector Graphic - Fill",
+                                hd: false
+                              },
+                              {
+                                ty: "tr",
+                                p: { a: 0, k: [12.63, -8.364], ix: 2 },
+                                a: { a: 0, k: [0, 0], ix: 1 },
+                                s: { a: 0, k: [100, 100], ix: 3 },
+                                r: { a: 0, k: 0, ix: 6 },
+                                o: { a: 0, k: 100, ix: 7 },
+                                sk: { a: 0, k: 0, ix: 4 },
+                                sa: { a: 0, k: 0, ix: 5 },
+                                nm: "Transform"
+                              }
+                            ],
+                            nm: "Rectangle 1",
+                            np: 3,
+                            cix: 2,
+                            ix: 1,
+                            mn: "ADBE Vector Group",
+                            hd: false
+                          }
+                        ],
+                        ip: 0,
+                        op: 118,
+                        st: 0,
+                        bm: 0
+                      },
+                      {
+                        ddd: 0,
+                        ind: 2,
+                        ty: 4,
+                        nm: "Shape Layer 2",
+                        sr: 1,
+                        ks: {
+                          o: { a: 0, k: 100, ix: 11 },
+                          r: { a: 0, k: 0, ix: 10 },
+                          p: { a: 0, k: [81, 41.26, 0], ix: 2 },
+                          a: { a: 0, k: [-30, -6.544, 0], ix: 1 },
+                          s: {
+                            a: 1,
+                            k: [
+                              {
+                                i: {
+                                  x: [0.651, 0.667, 0.667],
+                                  y: [0.997, 1, 1]
+                                },
+                                o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
+                                n: [
+                                  "0p651_0p997_0p333_0",
+                                  "0p667_1_0p333_0",
+                                  "0p667_1_0p333_0"
+                                ],
+                                t: 3,
+                                s: [0, 75.476, 100],
+                                e: [90, 75.476, 100]
+                              },
+                              {
+                                i: {
+                                  x: [0.524, 0.833, 0.833],
+                                  y: [0.94, 1, 1]
+                                },
+                                o: {
+                                  x: [0.379, 0.167, 0.167],
+                                  y: [0.027, 0, 0]
+                                },
+                                n: [
+                                  "0p524_0p94_0p379_0p027",
+                                  "0p833_1_0p167_0",
+                                  "0p833_1_0p167_0"
+                                ],
+                                t: 15,
+                                s: [90, 75.476, 100],
+                                e: [85, 75.476, 100]
+                              },
+                              { t: 23 }
+                            ],
+                            ix: 6
+                          }
+                        },
+                        ao: 0,
+                        shapes: [
+                          {
+                            ty: "gr",
+                            it: [
+                              {
+                                ty: "rc",
+                                d: 1,
+                                s: { a: 0, k: [85.26, 14.271], ix: 2 },
+                                p: { a: 0, k: [0, 0], ix: 3 },
+                                r: { a: 0, k: 2, ix: 4 },
+                                nm: "Rectangle Path 1",
+                                mn: "ADBE Vector Shape - Rect",
+                                hd: false
+                              },
+                              {
+                                ty: "fl",
+                                c: {
+                                  a: 0,
+                                  k: [0.882353, 0.835294, 0.670588, 1],
+                                  ix: 4
+                                },
+                                o: { a: 0, k: 100, ix: 5 },
+                                r: 1,
+                                nm: "Fill 1",
+                                mn: "ADBE Vector Graphic - Fill",
+                                hd: false
+                              },
+                              {
+                                ty: "tr",
+                                p: { a: 0, k: [12.63, -8.364], ix: 2 },
+                                a: { a: 0, k: [0, 0], ix: 1 },
+                                s: { a: 0, k: [100, 100], ix: 3 },
+                                r: { a: 0, k: 0, ix: 6 },
+                                o: { a: 0, k: 100, ix: 7 },
+                                sk: { a: 0, k: 0, ix: 4 },
+                                sa: { a: 0, k: 0, ix: 5 },
+                                nm: "Transform"
+                              }
+                            ],
+                            nm: "Rectangle 1",
+                            np: 3,
+                            cix: 2,
+                            ix: 1,
+                            mn: "ADBE Vector Group",
+                            hd: false
+                          }
+                        ],
+                        ip: 0,
+                        op: 166,
+                        st: 0,
+                        bm: 0
+                      },
+                      {
+                        ddd: 0,
+                        ind: 3,
+                        ty: 4,
+                        nm: "Shape Layer 1",
+                        sr: 1,
+                        ks: {
+                          o: { a: 0, k: 100, ix: 11 },
+                          r: { a: 0, k: 0, ix: 10 },
+                          p: { a: 0, k: [48.961, 49.211, 0], ix: 2 },
+                          a: { a: 0, k: [-66.789, -32.789, 0], ix: 1 },
+                          s: {
+                            a: 1,
+                            k: [
+                              {
+                                i: {
+                                  x: [0.044, 0.044, 0.667],
+                                  y: [0.991, 0.991, 1]
+                                },
+                                o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
+                                n: [
+                                  "0p044_0p991_0p333_0",
+                                  "0p044_0p991_0p333_0",
+                                  "0p667_1_0p333_0"
+                                ],
+                                t: 0,
+                                s: [0, 0, 100],
+                                e: [93, 93, 100]
+                              },
+                              { t: 12 }
+                            ],
+                            ix: 6
+                          }
+                        },
+                        ao: 0,
+                        shapes: [
+                          {
+                            ty: "gr",
+                            it: [
+                              {
+                                ty: "rc",
+                                d: 1,
+                                s: { a: 0, k: [38.422, 38.422], ix: 2 },
+                                p: { a: 0, k: [0, 0], ix: 3 },
+                                r: { a: 0, k: 4, ix: 4 },
+                                nm: "Rectangle Path 1",
+                                mn: "ADBE Vector Shape - Rect",
+                                hd: false
+                              },
+                              {
+                                ty: "fl",
+                                c: {
+                                  a: 0,
+                                  k: [0.882353, 0.835294, 0.670588, 1],
+                                  ix: 4
+                                },
+                                o: { a: 0, k: 100, ix: 5 },
+                                r: 1,
+                                nm: "Fill 1",
+                                mn: "ADBE Vector Graphic - Fill",
+                                hd: false
+                              },
+                              {
+                                ty: "tr",
+                                p: { a: 0, k: [-66.789, -32.789], ix: 2 },
+                                a: { a: 0, k: [0, 0], ix: 1 },
+                                s: { a: 0, k: [100, 100], ix: 3 },
+                                r: { a: 0, k: 0, ix: 6 },
+                                o: { a: 0, k: 100, ix: 7 },
+                                sk: { a: 0, k: 0, ix: 4 },
+                                sa: { a: 0, k: 0, ix: 5 },
+                                nm: "Transform"
+                              }
+                            ],
+                            nm: "Rectangle 1",
+                            np: 3,
+                            cix: 2,
+                            ix: 1,
+                            mn: "ADBE Vector Group",
+                            hd: false
+                          }
+                        ],
+                        ip: 0,
+                        op: 166,
+                        st: 0,
+                        bm: 0
+                      }
+                    ]
+                  }
+                ],
+                layers: [
+                  {
+                    ddd: 0,
+                    ind: 1,
+                    ty: 0,
+                    nm: "Comp 1",
+                    refId: "comp_0",
+                    sr: 1,
+                    ks: {
+                      o: { a: 0, k: 100, ix: 11 },
+                      r: { a: 0, k: 0, ix: 10 },
+                      p: { a: 0, k: [150, 175, 0], ix: 2 },
+                      a: { a: 0, k: [100, 50, 0], ix: 1 },
+                      s: { a: 0, k: [100, 100, 100], ix: 6 }
+                    },
+                    ao: 0,
+                    w: 200,
+                    h: 100,
+                    ip: 62,
+                    op: 152,
+                    st: 62,
+                    bm: 0
+                  },
+                  {
+                    ddd: 0,
+                    ind: 2,
+                    ty: 0,
+                    nm: "Comp 1",
+                    refId: "comp_0",
+                    sr: 1,
+                    ks: {
+                      o: {
+                        a: 1,
+                        k: [
+                          {
+                            i: { x: [0.833], y: [0.833] },
+                            o: { x: [0.167], y: [0.167] },
+                            n: ["0p833_0p833_0p167_0p167"],
+                            t: 62,
+                            s: [100],
+                            e: [60]
+                          },
+                          {
+                            i: { x: [0.833], y: [0.833] },
+                            o: { x: [0.167], y: [0.167] },
+                            n: ["0p833_0p833_0p167_0p167"],
+                            t: 76,
+                            s: [60],
+                            e: [60]
+                          },
+                          { t: 94 }
+                        ],
+                        ix: 11
+                      },
+                      r: { a: 0, k: 0, ix: 10 },
+                      p: {
+                        a: 1,
+                        k: [
+                          {
+                            i: { x: 0.182, y: 1 },
+                            o: { x: 0.333, y: 0 },
+                            n: "0p182_1_0p333_0",
+                            t: 62,
+                            s: [150, 175, 0],
+                            e: [150, 123.5, 0],
+                            to: [0, -8.58333301544189, 0],
+                            ti: [0, 8.58333301544189, 0]
+                          },
+                          {
+                            i: { x: 0.182, y: 0.182 },
+                            o: { x: 0.167, y: 0.167 },
+                            n: "0p182_0p182_0p167_0p167",
+                            t: 76,
+                            s: [150, 123.5, 0],
+                            e: [150, 123.5, 0],
+                            to: [0, 0, 0],
+                            ti: [0, 0, 0]
+                          },
+                          { t: 94 }
+                        ],
+                        ix: 2
+                      },
+                      a: { a: 0, k: [100, 50, 0], ix: 1 },
+                      s: {
+                        a: 1,
+                        k: [
+                          {
+                            i: {
+                              x: [0.069, 0.069, 0.667],
+                              y: [0.995, 0.995, 1]
+                            },
+                            o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
+                            n: [
+                              "0p069_0p995_0p333_0",
+                              "0p069_0p995_0p333_0",
+                              "0p667_1_0p333_0"
+                            ],
+                            t: 62,
+                            s: [100, 100, 100],
+                            e: [80, 80, 100]
+                          },
+                          {
+                            i: { x: [0.833, 0.833, 0.833], y: [1, 1, 1] },
+                            o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
+                            n: [
+                              "0p833_1_0p333_0",
+                              "0p833_1_0p333_0",
+                              "0p833_1_0p333_0"
+                            ],
+                            t: 76,
+                            s: [80, 80, 100],
+                            e: [80, 80, 100]
+                          },
+                          { t: 94 }
+                        ],
+                        ix: 6
+                      }
+                    },
+                    ao: 0,
+                    w: 200,
+                    h: 100,
+                    ip: 30,
+                    op: 120,
+                    st: 30,
+                    bm: 0
+                  },
+                  {
+                    ddd: 0,
+                    ind: 3,
+                    ty: 0,
+                    nm: "Comp 1",
+                    refId: "comp_0",
+                    sr: 1,
+                    ks: {
+                      o: {
+                        a: 1,
+                        k: [
+                          {
+                            i: { x: [0.833], y: [0.833] },
+                            o: { x: [0.167], y: [0.167] },
+                            n: ["0p833_0p833_0p167_0p167"],
+                            t: 30,
+                            s: [100],
+                            e: [60]
+                          },
+                          {
+                            i: { x: [0.833], y: [0.833] },
+                            o: { x: [0.167], y: [0.167] },
+                            n: ["0p833_0p833_0p167_0p167"],
+                            t: 44,
+                            s: [60],
+                            e: [60]
+                          },
+                          {
+                            i: { x: [0.833], y: [0.833] },
+                            o: { x: [0.167], y: [0.167] },
+                            n: ["0p833_0p833_0p167_0p167"],
+                            t: 62,
+                            s: [60],
+                            e: [0]
+                          },
+                          { t: 76 }
+                        ],
+                        ix: 11
+                      },
+                      r: { a: 0, k: 0, ix: 10 },
+                      p: {
+                        a: 1,
+                        k: [
+                          {
+                            i: { x: 0.182, y: 1 },
+                            o: { x: 0.333, y: 0 },
+                            n: "0p182_1_0p333_0",
+                            t: 30,
+                            s: [150, 175, 0],
+                            e: [150, 123.5, 0],
+                            to: [0, -8.58333301544189, 0],
+                            ti: [0, 8.58333301544189, 0]
+                          },
+                          {
+                            i: { x: 0.182, y: 0.182 },
+                            o: { x: 0.167, y: 0.167 },
+                            n: "0p182_0p182_0p167_0p167",
+                            t: 44,
+                            s: [150, 123.5, 0],
+                            e: [150, 123.5, 0],
+                            to: [0, 0, 0],
+                            ti: [0, 0, 0]
+                          },
+                          {
+                            i: { x: 0.182, y: 1 },
+                            o: { x: 0.167, y: 0 },
+                            n: "0p182_1_0p167_0",
+                            t: 62,
+                            s: [150, 123.5, 0],
+                            e: [150, 86.5, 0],
+                            to: [0, -6.16666650772095, 0],
+                            ti: [0, 6.16666650772095, 0]
+                          },
+                          { t: 76 }
+                        ],
+                        ix: 2
+                      },
+                      a: { a: 0, k: [100, 50, 0], ix: 1 },
+                      s: {
+                        a: 1,
+                        k: [
+                          {
+                            i: {
+                              x: [0.069, 0.069, 0.667],
+                              y: [0.995, 0.995, 1]
+                            },
+                            o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
+                            n: [
+                              "0p069_0p995_0p333_0",
+                              "0p069_0p995_0p333_0",
+                              "0p667_1_0p333_0"
+                            ],
+                            t: 30,
+                            s: [100, 100, 100],
+                            e: [80, 80, 100]
+                          },
+                          {
+                            i: { x: [0.833, 0.833, 0.833], y: [1, 1, 1] },
+                            o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
+                            n: [
+                              "0p833_1_0p333_0",
+                              "0p833_1_0p333_0",
+                              "0p833_1_0p333_0"
+                            ],
+                            t: 44,
+                            s: [80, 80, 100],
+                            e: [80, 80, 100]
+                          },
+                          {
+                            i: { x: [0.833, 0.833, 0.833], y: [1, 1, 1] },
+                            o: { x: [0.167, 0.167, 0.167], y: [0, 0, 0] },
+                            n: [
+                              "0p833_1_0p167_0",
+                              "0p833_1_0p167_0",
+                              "0p833_1_0p167_0"
+                            ],
+                            t: 62,
+                            s: [80, 80, 100],
+                            e: [50, 50, 100]
+                          },
+                          { t: 76 }
+                        ],
+                        ix: 6
+                      }
+                    },
+                    ao: 0,
+                    w: 200,
+                    h: 100,
+                    ip: -2,
+                    op: 88,
+                    st: -2,
+                    bm: 0
+                  },
+                  {
+                    ddd: 0,
+                    ind: 4,
+                    ty: 0,
+                    nm: "Comp 1",
+                    refId: "comp_0",
+                    sr: 1,
+                    ks: {
+                      o: {
+                        a: 1,
+                        k: [
+                          {
+                            i: { x: [0.833], y: [0.833] },
+                            o: { x: [0.167], y: [0.167] },
+                            n: ["0p833_0p833_0p167_0p167"],
+                            t: -1,
+                            s: [100],
+                            e: [60]
+                          },
+                          {
+                            i: { x: [0.833], y: [0.833] },
+                            o: { x: [0.167], y: [0.167] },
+                            n: ["0p833_0p833_0p167_0p167"],
+                            t: 13,
+                            s: [60],
+                            e: [60]
+                          },
+                          {
+                            i: { x: [0.833], y: [0.833] },
+                            o: { x: [0.167], y: [0.167] },
+                            n: ["0p833_0p833_0p167_0p167"],
+                            t: 31,
+                            s: [60],
+                            e: [0]
+                          },
+                          { t: 45 }
+                        ],
+                        ix: 11
+                      },
+                      r: { a: 0, k: 0, ix: 10 },
+                      p: {
+                        a: 1,
+                        k: [
+                          {
+                            i: { x: 0.182, y: 1 },
+                            o: { x: 0.333, y: 0 },
+                            n: "0p182_1_0p333_0",
+                            t: -1,
+                            s: [150, 175, 0],
+                            e: [150, 123.5, 0],
+                            to: [0, -8.58333301544189, 0],
+                            ti: [0, 8.58333301544189, 0]
+                          },
+                          {
+                            i: { x: 0.182, y: 0.182 },
+                            o: { x: 0.167, y: 0.167 },
+                            n: "0p182_0p182_0p167_0p167",
+                            t: 13,
+                            s: [150, 123.5, 0],
+                            e: [150, 123.5, 0],
+                            to: [0, 0, 0],
+                            ti: [0, 0, 0]
+                          },
+                          {
+                            i: { x: 0.182, y: 1 },
+                            o: { x: 0.167, y: 0 },
+                            n: "0p182_1_0p167_0",
+                            t: 31,
+                            s: [150, 123.5, 0],
+                            e: [150, 86.5, 0],
+                            to: [0, -6.16666650772095, 0],
+                            ti: [0, 6.16666650772095, 0]
+                          },
+                          { t: 45 }
+                        ],
+                        ix: 2
+                      },
+                      a: { a: 0, k: [100, 50, 0], ix: 1 },
+                      s: {
+                        a: 1,
+                        k: [
+                          {
+                            i: {
+                              x: [0.069, 0.069, 0.667],
+                              y: [0.995, 0.995, 1]
+                            },
+                            o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
+                            n: [
+                              "0p069_0p995_0p333_0",
+                              "0p069_0p995_0p333_0",
+                              "0p667_1_0p333_0"
+                            ],
+                            t: -1,
+                            s: [100, 100, 100],
+                            e: [80, 80, 100]
+                          },
+                          {
+                            i: { x: [0.833, 0.833, 0.833], y: [1, 1, 1] },
+                            o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
+                            n: [
+                              "0p833_1_0p333_0",
+                              "0p833_1_0p333_0",
+                              "0p833_1_0p333_0"
+                            ],
+                            t: 13,
+                            s: [80, 80, 100],
+                            e: [80, 80, 100]
+                          },
+                          {
+                            i: { x: [0.833, 0.833, 0.833], y: [1, 1, 1] },
+                            o: { x: [0.167, 0.167, 0.167], y: [0, 0, 0] },
+                            n: [
+                              "0p833_1_0p167_0",
+                              "0p833_1_0p167_0",
+                              "0p833_1_0p167_0"
+                            ],
+                            t: 31,
+                            s: [80, 80, 100],
+                            e: [50, 50, 100]
+                          },
+                          { t: 45 }
+                        ],
+                        ix: 6
+                      }
+                    },
+                    ao: 0,
+                    w: 200,
+                    h: 100,
+                    ip: -33,
+                    op: 57,
+                    st: -33,
+                    bm: 0
+                  },
+                  {
+                    ddd: 0,
+                    ind: 5,
+                    ty: 0,
+                    nm: "Comp 1",
+                    refId: "comp_0",
+                    sr: 1,
+                    ks: {
+                      o: {
+                        a: 1,
+                        k: [
+                          {
+                            i: { x: [0.833], y: [0.833] },
+                            o: { x: [0.167], y: [0.167] },
+                            n: ["0p833_0p833_0p167_0p167"],
+                            t: -35,
+                            s: [100],
+                            e: [60]
+                          },
+                          {
+                            i: { x: [0.833], y: [0.833] },
+                            o: { x: [0.167], y: [0.167] },
+                            n: ["0p833_0p833_0p167_0p167"],
+                            t: -21,
+                            s: [60],
+                            e: [60]
+                          },
+                          {
+                            i: { x: [0.833], y: [0.833] },
+                            o: { x: [0.167], y: [0.167] },
+                            n: ["0p833_0p833_0p167_0p167"],
+                            t: -1,
+                            s: [60],
+                            e: [0]
+                          },
+                          { t: 13 }
+                        ],
+                        ix: 11
+                      },
+                      r: { a: 0, k: 0, ix: 10 },
+                      p: {
+                        a: 1,
+                        k: [
+                          {
+                            i: { x: 0.182, y: 1 },
+                            o: { x: 0.333, y: 0 },
+                            n: "0p182_1_0p333_0",
+                            t: -35,
+                            s: [150, 175, 0],
+                            e: [150, 123.5, 0],
+                            to: [0, -8.58333301544189, 0],
+                            ti: [0, 8.58333301544189, 0]
+                          },
+                          {
+                            i: { x: 0.182, y: 0.182 },
+                            o: { x: 0.167, y: 0.167 },
+                            n: "0p182_0p182_0p167_0p167",
+                            t: -21,
+                            s: [150, 123.5, 0],
+                            e: [150, 123.5, 0],
+                            to: [0, 0, 0],
+                            ti: [0, 0, 0]
+                          },
+                          {
+                            i: { x: 0.182, y: 1 },
+                            o: { x: 0.167, y: 0 },
+                            n: "0p182_1_0p167_0",
+                            t: -1,
+                            s: [150, 123.5, 0],
+                            e: [150, 86.5, 0],
+                            to: [0, -6.16666650772095, 0],
+                            ti: [0, 6.16666650772095, 0]
+                          },
+                          { t: 13 }
+                        ],
+                        ix: 2
+                      },
+                      a: { a: 0, k: [100, 50, 0], ix: 1 },
+                      s: {
+                        a: 1,
+                        k: [
+                          {
+                            i: {
+                              x: [0.069, 0.069, 0.667],
+                              y: [0.995, 0.995, 1]
+                            },
+                            o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
+                            n: [
+                              "0p069_0p995_0p333_0",
+                              "0p069_0p995_0p333_0",
+                              "0p667_1_0p333_0"
+                            ],
+                            t: -35,
+                            s: [100, 100, 100],
+                            e: [80, 80, 100]
+                          },
+                          {
+                            i: { x: [0.833, 0.833, 0.833], y: [1, 1, 1] },
+                            o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
+                            n: [
+                              "0p833_1_0p333_0",
+                              "0p833_1_0p333_0",
+                              "0p833_1_0p333_0"
+                            ],
+                            t: -21,
+                            s: [80, 80, 100],
+                            e: [80, 80, 100]
+                          },
+                          {
+                            i: { x: [0.833, 0.833, 0.833], y: [1, 1, 1] },
+                            o: { x: [0.167, 0.167, 0.167], y: [0, 0, 0] },
+                            n: [
+                              "0p833_1_0p167_0",
+                              "0p833_1_0p167_0",
+                              "0p833_1_0p167_0"
+                            ],
+                            t: -1,
+                            s: [80, 80, 100],
+                            e: [50, 50, 100]
+                          },
+                          { t: 13 }
+                        ],
+                        ix: 6
+                      }
+                    },
+                    ao: 0,
+                    w: 200,
+                    h: 100,
+                    ip: -76,
+                    op: 14,
+                    st: -76,
+                    bm: 0
+                  }
+                ],
+                markers: []
+              }}
+              className={classNames("__wab_instance", sty.lottie)}
+            />
+          </div>
+        }
         method={"GET"}
         onError={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["profile", "error"]).apply(
+          generateStateOnChangeProp($state, ["reminderApi", "error"]).apply(
             null,
             eventArgs
           );
         }}
         onLoading={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["profile", "loading"]).apply(
+          generateStateOnChangeProp($state, ["reminderApi", "loading"]).apply(
             null,
             eventArgs
           );
         }}
         onSuccess={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["profile", "data"]).apply(
+          generateStateOnChangeProp($state, ["reminderApi", "data"]).apply(
             null,
             eventArgs
           );
@@ -898,7 +1329,7 @@ function PlasmicMainLiad__RenderFunc(props: {
           (async data => {
             const $steps = {};
 
-            $steps["updateRemind"] = ($state.profile?.data ? true : false)
+            $steps["updateRemind"] = $state.reminderApi?.data?.success
               ? (() => {
                   const actionArgs = {
                     variable: {
@@ -906,7 +1337,7 @@ function PlasmicMainLiad__RenderFunc(props: {
                       variablePath: ["remind"]
                     },
                     operation: 0,
-                    value: $state.profile?.data
+                    value: $state.reminderApi?.data?.reminders
                   };
                   return (({ variable, value, startIndex, deleteCount }) => {
                     if (!variable) {
@@ -926,78 +1357,11 @@ function PlasmicMainLiad__RenderFunc(props: {
             ) {
               $steps["updateRemind"] = await $steps["updateRemind"];
             }
-
-            $steps["runCode"] = true
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return (() => {
-                        if (
-                          $state.remind.length == 0 &&
-                          !window.localStorage.getItem("reminder")
-                        )
-                          window.localStorage.setItem("reminder", "false");
-                        return localStorage.setItem(
-                          "refCode",
-                          $state?.profile?.data?.result?.user?.refCode
-                        );
-                      })();
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode"] != null &&
-              typeof $steps["runCode"] === "object" &&
-              typeof $steps["runCode"].then === "function"
-            ) {
-              $steps["runCode"] = await $steps["runCode"];
-            }
           }).apply(null, eventArgs);
         }}
-        params={(() => {
-          try {
-            return { authorization: $state.token };
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-        shouldFetch={(() => {
-          try {
-            return $state.token != "";
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return true;
-            }
-            throw e;
-          }
-        })()}
-        url={"https://n8n.staas.ir/webhook/calendar/rest/user/profile/edit"}
-      />
-
-      <Reveal
-        data-plasmic-name={"reveal"}
-        data-plasmic-override={overrides.reveal}
-        className={classNames("__wab_instance", sty.reveal, {
-          [sty.revealpage_calendar]: hasVariant($state, "page", "calendar"),
-          [sty.revealpage_reminder]: hasVariant($state, "page", "reminder"),
-          [sty.revealpage_self]: hasVariant($state, "page", "self")
-        })}
-        damping={0.2}
-        effect={hasVariant($state, "page", "calendar") ? "fade" : "fade"}
-        triggerOnce={true}
+        params={{ userId: $state.userId }}
+        shouldFetch={true}
+        url={"https://n8n.staas.ir/webhook/user/task/list"}
       >
         <Reminder
           data-plasmic-name={"reminder"}
@@ -1029,11 +1393,7 @@ function PlasmicMainLiad__RenderFunc(props: {
           balance={generateStateValueProp($state, ["reminder", "balance"])}
           category={generateStateValueProp($state, ["reminder", "category"])}
           className={classNames("__wab_instance", sty.reminder, {
-            [sty.reminderpage_bot]: hasVariant($state, "page", "bot"),
-            [sty.reminderpage_calendar]: hasVariant($state, "page", "calendar"),
-            [sty.reminderpage_l]: hasVariant($state, "page", "l"),
-            [sty.reminderpage_reminder]: hasVariant($state, "page", "reminder"),
-            [sty.reminderpage_self]: hasVariant($state, "page", "self")
+            [sty.reminderpage_reminder]: hasVariant($state, "page", "reminder")
           })}
           data={(() => {
             try {
@@ -1451,10 +1811,9 @@ function PlasmicMainLiad__RenderFunc(props: {
             }
           })()}
           first={generateStateValueProp($state, ["reminder", "first"])}
-          liad={true}
           manId={(() => {
             try {
-              return $state.profile?.data?.result?.user?.id;
+              return $state.userId;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -1624,244 +1983,18 @@ function PlasmicMainLiad__RenderFunc(props: {
               return;
             }
           }}
-          phone={(() => {
-            try {
-              return $state.profile?.data?.result?.user.mobile;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()}
-          profile={(() => {
-            try {
-              return $state.profile;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()}
           refresh={generateStateValueProp($state, ["reminder", "refresh"])}
           setting={args.reminderSetting}
           slide3={generateStateValueProp($state, ["reminder", "slide3"])}
           sms={generateStateValueProp($state, ["reminder", "sms"])}
           subscription={false}
           tel={generateStateValueProp($state, ["reminder", "tel"])}
-          telegram={(() => {
-            try {
-              return $state.profile?.data?.result?.user?.telegramId
-                ? true
-                : false;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return false;
-              }
-              throw e;
-            }
-          })()}
-          telegramId={(() => {
-            try {
-              return $state.profile?.data?.result?.user?.telegramId;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()}
-          token={(() => {
-            try {
-              return $state.token;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()}
         />
-      </Reveal>
-      <ApiRequest
-        data-plasmic-name={"reminderApi"}
-        data-plasmic-override={overrides.reminderApi}
-        body={(() => {
-          try {
-            return {
-              r: $state.refresh,
-              userId: $state.profile?.data?.result?.user?.id
-            };
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-        className={classNames("__wab_instance", sty.reminderApi)}
-        errorDisplay={
-          <div className={classNames("all", "__wab_text", sty.text__huXc)}>
-            {"Enter some text"}
-          </div>
-        }
-        loadingDisplay={null}
-        method={"GET"}
-        onError={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["reminderApi", "error"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        onLoading={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["reminderApi", "loading"]).apply(
-            null,
-            eventArgs
-          );
-
-          (async loading => {
-            const $steps = {};
-
-            $steps["updateLoading"] = true
-              ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["loading"]
-                    },
-                    operation: 0,
-                    value: true
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
-
-                    $stateSet(objRoot, variablePath, value);
-                    return value;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["updateLoading"] != null &&
-              typeof $steps["updateLoading"] === "object" &&
-              typeof $steps["updateLoading"].then === "function"
-            ) {
-              $steps["updateLoading"] = await $steps["updateLoading"];
-            }
-          }).apply(null, eventArgs);
-        }}
-        onSuccess={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["reminderApi", "data"]).apply(
-            null,
-            eventArgs
-          );
-
-          (async data => {
-            const $steps = {};
-
-            $steps["updateRemind"] = $state.reminderApi?.data?.success
-              ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["remind"]
-                    },
-                    operation: 0,
-                    value: $state.reminderApi?.data?.reminders
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
-
-                    $stateSet(objRoot, variablePath, value);
-                    return value;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["updateRemind"] != null &&
-              typeof $steps["updateRemind"] === "object" &&
-              typeof $steps["updateRemind"].then === "function"
-            ) {
-              $steps["updateRemind"] = await $steps["updateRemind"];
-            }
-
-            $steps["runCode"] = true
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return (() => {
-                        if (
-                          $state.remind.length == 0 &&
-                          !window.localStorage.getItem("reminder")
-                        )
-                          return window.localStorage.setItem(
-                            "reminder",
-                            "false"
-                          );
-                      })();
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode"] != null &&
-              typeof $steps["runCode"] === "object" &&
-              typeof $steps["runCode"].then === "function"
-            ) {
-              $steps["runCode"] = await $steps["runCode"];
-            }
-          }).apply(null, eventArgs);
-        }}
-        params={{ userId: 1 }}
-        shouldFetch={(() => {
-          try {
-            return $state.profile?.data?.result?.user?.id;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return true;
-            }
-            throw e;
-          }
-        })()}
-        url={"https://n8n.staas.ir/webhook/user/task/list"}
-      >
-        <div className={classNames("all", "__wab_text", sty.text__dftTd)}>
-          {"Enter some text"}
-        </div>
       </ApiRequest>
       <ApiRequest
         data-plasmic-name={"category"}
         data-plasmic-override={overrides.category}
+        children={null}
         className={classNames("__wab_instance", sty.category)}
         errorDisplay={null}
         loadingDisplay={null}
@@ -1910,1026 +2043,8 @@ function PlasmicMainLiad__RenderFunc(props: {
         }}
         shouldFetch={true}
         url={"https://n8n.staas.ir/webhook/reminders/category"}
-      >
-        <div className={classNames("all", "__wab_text", sty.text__qLPsI)}>
-          {"Enter some text"}
-        </div>
-      </ApiRequest>
-      <DialogTooltip
-        data-plasmic-name={"dialogTooltip"}
-        data-plasmic-override={overrides.dialogTooltip}
-        className={classNames("__wab_instance", sty.dialogTooltip)}
-        data={(() => {
-          try {
-            return $state.dialog?.data;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return {
-                success: true,
-                result: {
-                  dialogs: [
-                    {
-                      acceptTextColor: "#6e015c",
-                      rejectTextColor: "#999999",
-                      acceptText:
-                        "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u062f\u0648\u0628\u0627\u0631\u0647",
-                      acceptAction: "#customSubscription-husband_sms",
-                      type: "native",
-                      title:
-                        "\u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0628\u0647 \u0647\u0645\u0633\u0631\u062a \u0645\u062a\u0648\u0642\u0641 \u0634\u062f\u0647",
-                      isActive: false,
-                      titleColor: "#C2185B",
-                      isSpecial: false,
-                      id: "1500e79b-c504-43bd-b406-029e0a33b879",
-                      text: "\u0627\u0634\u062a\u0631\u0627\u06a9 \u067e\u06cc\u0627\u0645\u06a9\u200c\u0647\u0627\u06cc \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc \u0628\u0647 \u0647\u0645\u0633\u0631\u062a \u062a\u0645\u0648\u0645 \u0634\u062f\u0647. \u0628\u0631\u0627\u06cc \u0627\u062f\u0627\u0645\u0647 \u062d\u0645\u0627\u06cc\u062a\u060c \u062a\u0645\u062f\u06cc\u062f \u06a9\u0646.",
-                      image: "",
-                      backgroundColor: "#FFF3F8",
-                      btnText:
-                        "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u062f\u0648\u0628\u0627\u0631\u0647",
-                      custom: true,
-                      active: false,
-                      rejectText: "\u0641\u0639\u0644\u0627 \u0646\u0647",
-                      textColor: "#333333",
-                      target: "husband-sms-after-end-subscription",
-                      badge: "",
-                      healthStatus: "period",
-                      background: "#FFF3F8",
-                      subName: "",
-                      btnColor: "#FF4081"
-                    }
-                  ]
-                }
-              };
-            }
-            throw e;
-          }
-        })()}
-        onOpendialogChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, [
-            "dialogTooltip",
-            "opendialog"
-          ]).apply(null, eventArgs);
-
-          if (
-            eventArgs.length > 1 &&
-            eventArgs[1] &&
-            eventArgs[1]._plasmic_state_init_
-          ) {
-            return;
-          }
-        }}
-        opendialog={generateStateValueProp($state, [
-          "dialogTooltip",
-          "opendialog"
-        ])}
-        token={(() => {
-          try {
-            return $state.token;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
       />
 
-      <ApiRequest
-        data-plasmic-name={"dialog"}
-        data-plasmic-override={overrides.dialog}
-        children={null}
-        className={classNames("__wab_instance", sty.dialog)}
-        config={(() => {
-          try {
-            return {
-              headers: {
-                authorization: $state.token
-              }
-            };
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-        errorDisplay={null}
-        loadingDisplay={null}
-        method={"GET"}
-        onError={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["dialog", "error"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        onLoading={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["dialog", "loading"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        onSuccess={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["dialog", "data"]).apply(
-            null,
-            eventArgs
-          );
-
-          (async data => {
-            const $steps = {};
-
-            $steps["runCode"] = $state?.dialog?.data?.result
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return ($state.dialogTooltip.opendialog =
-                        $state.dialog.data.result.dialogs.length > 0
-                          ? true
-                          : false);
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode"] != null &&
-              typeof $steps["runCode"] === "object" &&
-              typeof $steps["runCode"].then === "function"
-            ) {
-              $steps["runCode"] = await $steps["runCode"];
-            }
-          }).apply(null, eventArgs);
-        }}
-        params={(() => {
-          try {
-            return {
-              footer: $state.page
-            };
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-        shouldFetch={false}
-        url={"https://n8n.staas.ir/webhook/user/onConnect"}
-      />
-
-      {(() => {
-        try {
-          return $state.loading && $state.reminderApi.loading;
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return true;
-          }
-          throw e;
-        }
-      })() ? (
-        <div className={classNames("all", sty.freeBox__cfS09)}>
-          <LottieWrapper
-            data-plasmic-name={"lottie"}
-            data-plasmic-override={overrides.lottie}
-            animationData={{
-              v: "5.1.6",
-              fr: 30,
-              ip: 0,
-              op: 94,
-              w: 300,
-              h: 300,
-              nm: "Comp 2",
-              ddd: 0,
-              assets: [
-                {
-                  id: "comp_0",
-                  layers: [
-                    {
-                      ddd: 0,
-                      ind: 1,
-                      ty: 4,
-                      nm: "Shape Layer 3",
-                      sr: 1,
-                      ks: {
-                        o: { a: 0, k: 100, ix: 11 },
-                        r: { a: 0, k: 0, ix: 10 },
-                        p: { a: 0, k: [81, 59.26, 0], ix: 2 },
-                        a: { a: 0, k: [-30, -6.544, 0], ix: 1 },
-                        s: {
-                          a: 1,
-                          k: [
-                            {
-                              i: { x: [0.651, 0.667, 0.667], y: [0.998, 1, 1] },
-                              o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
-                              n: [
-                                "0p651_0p998_0p333_0",
-                                "0p667_1_0p333_0",
-                                "0p667_1_0p333_0"
-                              ],
-                              t: 9,
-                              s: [0, 75.476, 100],
-                              e: [110, 75.476, 100]
-                            },
-                            {
-                              i: { x: [0.524, 0.833, 0.833], y: [0.97, 1, 1] },
-                              o: { x: [0.379, 0.167, 0.167], y: [0.013, 0, 0] },
-                              n: [
-                                "0p524_0p97_0p379_0p013",
-                                "0p833_1_0p167_0",
-                                "0p833_1_0p167_0"
-                              ],
-                              t: 21,
-                              s: [110, 75.476, 100],
-                              e: [100, 75.476, 100]
-                            },
-                            { t: 29 }
-                          ],
-                          ix: 6
-                        }
-                      },
-                      ao: 0,
-                      shapes: [
-                        {
-                          ty: "gr",
-                          it: [
-                            {
-                              ty: "rc",
-                              d: 1,
-                              s: { a: 0, k: [85.26, 14.271], ix: 2 },
-                              p: { a: 0, k: [0, 0], ix: 3 },
-                              r: { a: 0, k: 2, ix: 4 },
-                              nm: "Rectangle Path 1",
-                              mn: "ADBE Vector Shape - Rect",
-                              hd: false
-                            },
-                            {
-                              ty: "fl",
-                              c: {
-                                a: 0,
-                                k: [
-                                  0.941176470588, 0.949019607843,
-                                  0.960784313725, 1
-                                ],
-                                ix: 4
-                              },
-                              o: { a: 0, k: 100, ix: 5 },
-                              r: 1,
-                              nm: "Fill 1",
-                              mn: "ADBE Vector Graphic - Fill",
-                              hd: false
-                            },
-                            {
-                              ty: "tr",
-                              p: { a: 0, k: [12.63, -8.364], ix: 2 },
-                              a: { a: 0, k: [0, 0], ix: 1 },
-                              s: { a: 0, k: [100, 100], ix: 3 },
-                              r: { a: 0, k: 0, ix: 6 },
-                              o: { a: 0, k: 100, ix: 7 },
-                              sk: { a: 0, k: 0, ix: 4 },
-                              sa: { a: 0, k: 0, ix: 5 },
-                              nm: "Transform"
-                            }
-                          ],
-                          nm: "Rectangle 1",
-                          np: 3,
-                          cix: 2,
-                          ix: 1,
-                          mn: "ADBE Vector Group",
-                          hd: false
-                        }
-                      ],
-                      ip: 0,
-                      op: 118,
-                      st: 0,
-                      bm: 0
-                    },
-                    {
-                      ddd: 0,
-                      ind: 2,
-                      ty: 4,
-                      nm: "Shape Layer 2",
-                      sr: 1,
-                      ks: {
-                        o: { a: 0, k: 100, ix: 11 },
-                        r: { a: 0, k: 0, ix: 10 },
-                        p: { a: 0, k: [81, 41.26, 0], ix: 2 },
-                        a: { a: 0, k: [-30, -6.544, 0], ix: 1 },
-                        s: {
-                          a: 1,
-                          k: [
-                            {
-                              i: { x: [0.651, 0.667, 0.667], y: [0.997, 1, 1] },
-                              o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
-                              n: [
-                                "0p651_0p997_0p333_0",
-                                "0p667_1_0p333_0",
-                                "0p667_1_0p333_0"
-                              ],
-                              t: 3,
-                              s: [0, 75.476, 100],
-                              e: [90, 75.476, 100]
-                            },
-                            {
-                              i: { x: [0.524, 0.833, 0.833], y: [0.94, 1, 1] },
-                              o: { x: [0.379, 0.167, 0.167], y: [0.027, 0, 0] },
-                              n: [
-                                "0p524_0p94_0p379_0p027",
-                                "0p833_1_0p167_0",
-                                "0p833_1_0p167_0"
-                              ],
-                              t: 15,
-                              s: [90, 75.476, 100],
-                              e: [85, 75.476, 100]
-                            },
-                            { t: 23 }
-                          ],
-                          ix: 6
-                        }
-                      },
-                      ao: 0,
-                      shapes: [
-                        {
-                          ty: "gr",
-                          it: [
-                            {
-                              ty: "rc",
-                              d: 1,
-                              s: { a: 0, k: [85.26, 14.271], ix: 2 },
-                              p: { a: 0, k: [0, 0], ix: 3 },
-                              r: { a: 0, k: 2, ix: 4 },
-                              nm: "Rectangle Path 1",
-                              mn: "ADBE Vector Shape - Rect",
-                              hd: false
-                            },
-                            {
-                              ty: "fl",
-                              c: {
-                                a: 0,
-                                k: [
-                                  0.941176470588, 0.949019607843,
-                                  0.960784313725, 1
-                                ],
-                                ix: 4
-                              },
-                              o: { a: 0, k: 100, ix: 5 },
-                              r: 1,
-                              nm: "Fill 1",
-                              mn: "ADBE Vector Graphic - Fill",
-                              hd: false
-                            },
-                            {
-                              ty: "tr",
-                              p: { a: 0, k: [12.63, -8.364], ix: 2 },
-                              a: { a: 0, k: [0, 0], ix: 1 },
-                              s: { a: 0, k: [100, 100], ix: 3 },
-                              r: { a: 0, k: 0, ix: 6 },
-                              o: { a: 0, k: 100, ix: 7 },
-                              sk: { a: 0, k: 0, ix: 4 },
-                              sa: { a: 0, k: 0, ix: 5 },
-                              nm: "Transform"
-                            }
-                          ],
-                          nm: "Rectangle 1",
-                          np: 3,
-                          cix: 2,
-                          ix: 1,
-                          mn: "ADBE Vector Group",
-                          hd: false
-                        }
-                      ],
-                      ip: 0,
-                      op: 166,
-                      st: 0,
-                      bm: 0
-                    },
-                    {
-                      ddd: 0,
-                      ind: 3,
-                      ty: 4,
-                      nm: "Shape Layer 1",
-                      sr: 1,
-                      ks: {
-                        o: { a: 0, k: 100, ix: 11 },
-                        r: { a: 0, k: 0, ix: 10 },
-                        p: { a: 0, k: [48.961, 49.211, 0], ix: 2 },
-                        a: { a: 0, k: [-66.789, -32.789, 0], ix: 1 },
-                        s: {
-                          a: 1,
-                          k: [
-                            {
-                              i: {
-                                x: [0.044, 0.044, 0.667],
-                                y: [0.991, 0.991, 1]
-                              },
-                              o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
-                              n: [
-                                "0p044_0p991_0p333_0",
-                                "0p044_0p991_0p333_0",
-                                "0p667_1_0p333_0"
-                              ],
-                              t: 0,
-                              s: [0, 0, 100],
-                              e: [93, 93, 100]
-                            },
-                            { t: 12 }
-                          ],
-                          ix: 6
-                        }
-                      },
-                      ao: 0,
-                      shapes: [
-                        {
-                          ty: "gr",
-                          it: [
-                            {
-                              ty: "rc",
-                              d: 1,
-                              s: { a: 0, k: [38.422, 38.422], ix: 2 },
-                              p: { a: 0, k: [0, 0], ix: 3 },
-                              r: { a: 0, k: 4, ix: 4 },
-                              nm: "Rectangle Path 1",
-                              mn: "ADBE Vector Shape - Rect",
-                              hd: false
-                            },
-                            {
-                              ty: "fl",
-                              c: {
-                                a: 0,
-                                k: [
-                                  0.894117647059, 0.901960784314,
-                                  0.921568627451, 1
-                                ],
-                                ix: 4
-                              },
-                              o: { a: 0, k: 100, ix: 5 },
-                              r: 1,
-                              nm: "Fill 1",
-                              mn: "ADBE Vector Graphic - Fill",
-                              hd: false
-                            },
-                            {
-                              ty: "tr",
-                              p: { a: 0, k: [-66.789, -32.789], ix: 2 },
-                              a: { a: 0, k: [0, 0], ix: 1 },
-                              s: { a: 0, k: [100, 100], ix: 3 },
-                              r: { a: 0, k: 0, ix: 6 },
-                              o: { a: 0, k: 100, ix: 7 },
-                              sk: { a: 0, k: 0, ix: 4 },
-                              sa: { a: 0, k: 0, ix: 5 },
-                              nm: "Transform"
-                            }
-                          ],
-                          nm: "Rectangle 1",
-                          np: 3,
-                          cix: 2,
-                          ix: 1,
-                          mn: "ADBE Vector Group",
-                          hd: false
-                        }
-                      ],
-                      ip: 0,
-                      op: 166,
-                      st: 0,
-                      bm: 0
-                    }
-                  ]
-                }
-              ],
-              layers: [
-                {
-                  ddd: 0,
-                  ind: 1,
-                  ty: 0,
-                  nm: "Comp 1",
-                  refId: "comp_0",
-                  sr: 1,
-                  ks: {
-                    o: { a: 0, k: 100, ix: 11 },
-                    r: { a: 0, k: 0, ix: 10 },
-                    p: { a: 0, k: [150, 175, 0], ix: 2 },
-                    a: { a: 0, k: [100, 50, 0], ix: 1 },
-                    s: { a: 0, k: [100, 100, 100], ix: 6 }
-                  },
-                  ao: 0,
-                  w: 200,
-                  h: 100,
-                  ip: 62,
-                  op: 152,
-                  st: 62,
-                  bm: 0
-                },
-                {
-                  ddd: 0,
-                  ind: 2,
-                  ty: 0,
-                  nm: "Comp 1",
-                  refId: "comp_0",
-                  sr: 1,
-                  ks: {
-                    o: {
-                      a: 1,
-                      k: [
-                        {
-                          i: { x: [0.833], y: [0.833] },
-                          o: { x: [0.167], y: [0.167] },
-                          n: ["0p833_0p833_0p167_0p167"],
-                          t: 62,
-                          s: [100],
-                          e: [60]
-                        },
-                        {
-                          i: { x: [0.833], y: [0.833] },
-                          o: { x: [0.167], y: [0.167] },
-                          n: ["0p833_0p833_0p167_0p167"],
-                          t: 76,
-                          s: [60],
-                          e: [60]
-                        },
-                        { t: 94 }
-                      ],
-                      ix: 11
-                    },
-                    r: { a: 0, k: 0, ix: 10 },
-                    p: {
-                      a: 1,
-                      k: [
-                        {
-                          i: { x: 0.182, y: 1 },
-                          o: { x: 0.333, y: 0 },
-                          n: "0p182_1_0p333_0",
-                          t: 62,
-                          s: [150, 175, 0],
-                          e: [150, 123.5, 0],
-                          to: [0, -8.58333301544189, 0],
-                          ti: [0, 8.58333301544189, 0]
-                        },
-                        {
-                          i: { x: 0.182, y: 0.182 },
-                          o: { x: 0.167, y: 0.167 },
-                          n: "0p182_0p182_0p167_0p167",
-                          t: 76,
-                          s: [150, 123.5, 0],
-                          e: [150, 123.5, 0],
-                          to: [0, 0, 0],
-                          ti: [0, 0, 0]
-                        },
-                        { t: 94 }
-                      ],
-                      ix: 2
-                    },
-                    a: { a: 0, k: [100, 50, 0], ix: 1 },
-                    s: {
-                      a: 1,
-                      k: [
-                        {
-                          i: { x: [0.069, 0.069, 0.667], y: [0.995, 0.995, 1] },
-                          o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
-                          n: [
-                            "0p069_0p995_0p333_0",
-                            "0p069_0p995_0p333_0",
-                            "0p667_1_0p333_0"
-                          ],
-                          t: 62,
-                          s: [100, 100, 100],
-                          e: [80, 80, 100]
-                        },
-                        {
-                          i: { x: [0.833, 0.833, 0.833], y: [1, 1, 1] },
-                          o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
-                          n: [
-                            "0p833_1_0p333_0",
-                            "0p833_1_0p333_0",
-                            "0p833_1_0p333_0"
-                          ],
-                          t: 76,
-                          s: [80, 80, 100],
-                          e: [80, 80, 100]
-                        },
-                        { t: 94 }
-                      ],
-                      ix: 6
-                    }
-                  },
-                  ao: 0,
-                  w: 200,
-                  h: 100,
-                  ip: 30,
-                  op: 120,
-                  st: 30,
-                  bm: 0
-                },
-                {
-                  ddd: 0,
-                  ind: 3,
-                  ty: 0,
-                  nm: "Comp 1",
-                  refId: "comp_0",
-                  sr: 1,
-                  ks: {
-                    o: {
-                      a: 1,
-                      k: [
-                        {
-                          i: { x: [0.833], y: [0.833] },
-                          o: { x: [0.167], y: [0.167] },
-                          n: ["0p833_0p833_0p167_0p167"],
-                          t: 30,
-                          s: [100],
-                          e: [60]
-                        },
-                        {
-                          i: { x: [0.833], y: [0.833] },
-                          o: { x: [0.167], y: [0.167] },
-                          n: ["0p833_0p833_0p167_0p167"],
-                          t: 44,
-                          s: [60],
-                          e: [60]
-                        },
-                        {
-                          i: { x: [0.833], y: [0.833] },
-                          o: { x: [0.167], y: [0.167] },
-                          n: ["0p833_0p833_0p167_0p167"],
-                          t: 62,
-                          s: [60],
-                          e: [0]
-                        },
-                        { t: 76 }
-                      ],
-                      ix: 11
-                    },
-                    r: { a: 0, k: 0, ix: 10 },
-                    p: {
-                      a: 1,
-                      k: [
-                        {
-                          i: { x: 0.182, y: 1 },
-                          o: { x: 0.333, y: 0 },
-                          n: "0p182_1_0p333_0",
-                          t: 30,
-                          s: [150, 175, 0],
-                          e: [150, 123.5, 0],
-                          to: [0, -8.58333301544189, 0],
-                          ti: [0, 8.58333301544189, 0]
-                        },
-                        {
-                          i: { x: 0.182, y: 0.182 },
-                          o: { x: 0.167, y: 0.167 },
-                          n: "0p182_0p182_0p167_0p167",
-                          t: 44,
-                          s: [150, 123.5, 0],
-                          e: [150, 123.5, 0],
-                          to: [0, 0, 0],
-                          ti: [0, 0, 0]
-                        },
-                        {
-                          i: { x: 0.182, y: 1 },
-                          o: { x: 0.167, y: 0 },
-                          n: "0p182_1_0p167_0",
-                          t: 62,
-                          s: [150, 123.5, 0],
-                          e: [150, 86.5, 0],
-                          to: [0, -6.16666650772095, 0],
-                          ti: [0, 6.16666650772095, 0]
-                        },
-                        { t: 76 }
-                      ],
-                      ix: 2
-                    },
-                    a: { a: 0, k: [100, 50, 0], ix: 1 },
-                    s: {
-                      a: 1,
-                      k: [
-                        {
-                          i: { x: [0.069, 0.069, 0.667], y: [0.995, 0.995, 1] },
-                          o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
-                          n: [
-                            "0p069_0p995_0p333_0",
-                            "0p069_0p995_0p333_0",
-                            "0p667_1_0p333_0"
-                          ],
-                          t: 30,
-                          s: [100, 100, 100],
-                          e: [80, 80, 100]
-                        },
-                        {
-                          i: { x: [0.833, 0.833, 0.833], y: [1, 1, 1] },
-                          o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
-                          n: [
-                            "0p833_1_0p333_0",
-                            "0p833_1_0p333_0",
-                            "0p833_1_0p333_0"
-                          ],
-                          t: 44,
-                          s: [80, 80, 100],
-                          e: [80, 80, 100]
-                        },
-                        {
-                          i: { x: [0.833, 0.833, 0.833], y: [1, 1, 1] },
-                          o: { x: [0.167, 0.167, 0.167], y: [0, 0, 0] },
-                          n: [
-                            "0p833_1_0p167_0",
-                            "0p833_1_0p167_0",
-                            "0p833_1_0p167_0"
-                          ],
-                          t: 62,
-                          s: [80, 80, 100],
-                          e: [50, 50, 100]
-                        },
-                        { t: 76 }
-                      ],
-                      ix: 6
-                    }
-                  },
-                  ao: 0,
-                  w: 200,
-                  h: 100,
-                  ip: -2,
-                  op: 88,
-                  st: -2,
-                  bm: 0
-                },
-                {
-                  ddd: 0,
-                  ind: 4,
-                  ty: 0,
-                  nm: "Comp 1",
-                  refId: "comp_0",
-                  sr: 1,
-                  ks: {
-                    o: {
-                      a: 1,
-                      k: [
-                        {
-                          i: { x: [0.833], y: [0.833] },
-                          o: { x: [0.167], y: [0.167] },
-                          n: ["0p833_0p833_0p167_0p167"],
-                          t: -1,
-                          s: [100],
-                          e: [60]
-                        },
-                        {
-                          i: { x: [0.833], y: [0.833] },
-                          o: { x: [0.167], y: [0.167] },
-                          n: ["0p833_0p833_0p167_0p167"],
-                          t: 13,
-                          s: [60],
-                          e: [60]
-                        },
-                        {
-                          i: { x: [0.833], y: [0.833] },
-                          o: { x: [0.167], y: [0.167] },
-                          n: ["0p833_0p833_0p167_0p167"],
-                          t: 31,
-                          s: [60],
-                          e: [0]
-                        },
-                        { t: 45 }
-                      ],
-                      ix: 11
-                    },
-                    r: { a: 0, k: 0, ix: 10 },
-                    p: {
-                      a: 1,
-                      k: [
-                        {
-                          i: { x: 0.182, y: 1 },
-                          o: { x: 0.333, y: 0 },
-                          n: "0p182_1_0p333_0",
-                          t: -1,
-                          s: [150, 175, 0],
-                          e: [150, 123.5, 0],
-                          to: [0, -8.58333301544189, 0],
-                          ti: [0, 8.58333301544189, 0]
-                        },
-                        {
-                          i: { x: 0.182, y: 0.182 },
-                          o: { x: 0.167, y: 0.167 },
-                          n: "0p182_0p182_0p167_0p167",
-                          t: 13,
-                          s: [150, 123.5, 0],
-                          e: [150, 123.5, 0],
-                          to: [0, 0, 0],
-                          ti: [0, 0, 0]
-                        },
-                        {
-                          i: { x: 0.182, y: 1 },
-                          o: { x: 0.167, y: 0 },
-                          n: "0p182_1_0p167_0",
-                          t: 31,
-                          s: [150, 123.5, 0],
-                          e: [150, 86.5, 0],
-                          to: [0, -6.16666650772095, 0],
-                          ti: [0, 6.16666650772095, 0]
-                        },
-                        { t: 45 }
-                      ],
-                      ix: 2
-                    },
-                    a: { a: 0, k: [100, 50, 0], ix: 1 },
-                    s: {
-                      a: 1,
-                      k: [
-                        {
-                          i: { x: [0.069, 0.069, 0.667], y: [0.995, 0.995, 1] },
-                          o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
-                          n: [
-                            "0p069_0p995_0p333_0",
-                            "0p069_0p995_0p333_0",
-                            "0p667_1_0p333_0"
-                          ],
-                          t: -1,
-                          s: [100, 100, 100],
-                          e: [80, 80, 100]
-                        },
-                        {
-                          i: { x: [0.833, 0.833, 0.833], y: [1, 1, 1] },
-                          o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
-                          n: [
-                            "0p833_1_0p333_0",
-                            "0p833_1_0p333_0",
-                            "0p833_1_0p333_0"
-                          ],
-                          t: 13,
-                          s: [80, 80, 100],
-                          e: [80, 80, 100]
-                        },
-                        {
-                          i: { x: [0.833, 0.833, 0.833], y: [1, 1, 1] },
-                          o: { x: [0.167, 0.167, 0.167], y: [0, 0, 0] },
-                          n: [
-                            "0p833_1_0p167_0",
-                            "0p833_1_0p167_0",
-                            "0p833_1_0p167_0"
-                          ],
-                          t: 31,
-                          s: [80, 80, 100],
-                          e: [50, 50, 100]
-                        },
-                        { t: 45 }
-                      ],
-                      ix: 6
-                    }
-                  },
-                  ao: 0,
-                  w: 200,
-                  h: 100,
-                  ip: -33,
-                  op: 57,
-                  st: -33,
-                  bm: 0
-                },
-                {
-                  ddd: 0,
-                  ind: 5,
-                  ty: 0,
-                  nm: "Comp 1",
-                  refId: "comp_0",
-                  sr: 1,
-                  ks: {
-                    o: {
-                      a: 1,
-                      k: [
-                        {
-                          i: { x: [0.833], y: [0.833] },
-                          o: { x: [0.167], y: [0.167] },
-                          n: ["0p833_0p833_0p167_0p167"],
-                          t: -35,
-                          s: [100],
-                          e: [60]
-                        },
-                        {
-                          i: { x: [0.833], y: [0.833] },
-                          o: { x: [0.167], y: [0.167] },
-                          n: ["0p833_0p833_0p167_0p167"],
-                          t: -21,
-                          s: [60],
-                          e: [60]
-                        },
-                        {
-                          i: { x: [0.833], y: [0.833] },
-                          o: { x: [0.167], y: [0.167] },
-                          n: ["0p833_0p833_0p167_0p167"],
-                          t: -1,
-                          s: [60],
-                          e: [0]
-                        },
-                        { t: 13 }
-                      ],
-                      ix: 11
-                    },
-                    r: { a: 0, k: 0, ix: 10 },
-                    p: {
-                      a: 1,
-                      k: [
-                        {
-                          i: { x: 0.182, y: 1 },
-                          o: { x: 0.333, y: 0 },
-                          n: "0p182_1_0p333_0",
-                          t: -35,
-                          s: [150, 175, 0],
-                          e: [150, 123.5, 0],
-                          to: [0, -8.58333301544189, 0],
-                          ti: [0, 8.58333301544189, 0]
-                        },
-                        {
-                          i: { x: 0.182, y: 0.182 },
-                          o: { x: 0.167, y: 0.167 },
-                          n: "0p182_0p182_0p167_0p167",
-                          t: -21,
-                          s: [150, 123.5, 0],
-                          e: [150, 123.5, 0],
-                          to: [0, 0, 0],
-                          ti: [0, 0, 0]
-                        },
-                        {
-                          i: { x: 0.182, y: 1 },
-                          o: { x: 0.167, y: 0 },
-                          n: "0p182_1_0p167_0",
-                          t: -1,
-                          s: [150, 123.5, 0],
-                          e: [150, 86.5, 0],
-                          to: [0, -6.16666650772095, 0],
-                          ti: [0, 6.16666650772095, 0]
-                        },
-                        { t: 13 }
-                      ],
-                      ix: 2
-                    },
-                    a: { a: 0, k: [100, 50, 0], ix: 1 },
-                    s: {
-                      a: 1,
-                      k: [
-                        {
-                          i: { x: [0.069, 0.069, 0.667], y: [0.995, 0.995, 1] },
-                          o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
-                          n: [
-                            "0p069_0p995_0p333_0",
-                            "0p069_0p995_0p333_0",
-                            "0p667_1_0p333_0"
-                          ],
-                          t: -35,
-                          s: [100, 100, 100],
-                          e: [80, 80, 100]
-                        },
-                        {
-                          i: { x: [0.833, 0.833, 0.833], y: [1, 1, 1] },
-                          o: { x: [0.333, 0.333, 0.333], y: [0, 0, 0] },
-                          n: [
-                            "0p833_1_0p333_0",
-                            "0p833_1_0p333_0",
-                            "0p833_1_0p333_0"
-                          ],
-                          t: -21,
-                          s: [80, 80, 100],
-                          e: [80, 80, 100]
-                        },
-                        {
-                          i: { x: [0.833, 0.833, 0.833], y: [1, 1, 1] },
-                          o: { x: [0.167, 0.167, 0.167], y: [0, 0, 0] },
-                          n: [
-                            "0p833_1_0p167_0",
-                            "0p833_1_0p167_0",
-                            "0p833_1_0p167_0"
-                          ],
-                          t: -1,
-                          s: [80, 80, 100],
-                          e: [50, 50, 100]
-                        },
-                        { t: 13 }
-                      ],
-                      ix: 6
-                    }
-                  },
-                  ao: 0,
-                  w: 200,
-                  h: 100,
-                  ip: -76,
-                  op: 14,
-                  st: -76,
-                  bm: 0
-                }
-              ],
-              markers: []
-            }}
-            className={classNames("__wab_instance", sty.lottie)}
-          />
-        </div>
-      ) : null}
       <Dialog2
         data-plasmic-name={"telegram"}
         data-plasmic-override={overrides.telegram}
@@ -3124,13 +2239,48 @@ function PlasmicMainLiad__RenderFunc(props: {
       </Dialog2>
       <div className={classNames("all", sty.freeBox__nx1Oy, "page")}>
         <div className={classNames("all", sty.freeBox__rXAr4)}>
-          <Icon106Icon
-            data-plasmic-name={"svg"}
-            data-plasmic-override={overrides.svg}
-            className={classNames("all", sty.svg)}
-            role={"img"}
-          />
+          {(() => {
+            try {
+              return $state.remind.length > 0;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })() ? (
+            <Icon106Icon
+              data-plasmic-name={"svg"}
+              data-plasmic-override={overrides.svg}
+              className={classNames("all", sty.svg)}
+              onClick={async event => {
+                const $steps = {};
 
+                $steps["runReminderSetting"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        eventRef: $props["reminderSetting"]
+                      };
+                      return (({ eventRef, args }) => {
+                        return eventRef?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runReminderSetting"] != null &&
+                  typeof $steps["runReminderSetting"] === "object" &&
+                  typeof $steps["runReminderSetting"].then === "function"
+                ) {
+                  $steps["runReminderSetting"] =
+                    await $steps["runReminderSetting"];
+                }
+              }}
+              role={"img"}
+            />
+          ) : null}
           <CreaditButten
             data-plasmic-name={"creaditButten"}
             data-plasmic-override={overrides.creaditButten}
@@ -3156,67 +2306,6 @@ function PlasmicMainLiad__RenderFunc(props: {
                 typeof $steps["runCode"].then === "function"
               ) {
                 $steps["runCode"] = await $steps["runCode"];
-              }
-
-              $steps["invokeGlobalAction"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "POST",
-                        "https://api.liom.app/service/log",
-                        undefined,
-                        (() => {
-                          try {
-                            return {
-                              appKey:
-                                "eyiaophkahaMAQwpqwjhr218aeewfuiaey-xxluyhawd2012-qigwi-oooh",
-                              userId: $props.manId,
-                              pageName: "reminder",
-                              action: "goToWallet",
-                              extraData: {}
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })(),
-                        (() => {
-                          try {
-                            return {
-                              headers: {
-                                Authorization:
-                                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaGFteWFyIiwiaWQiOjF9.lnqUqAP4PBM0ygfBoBEcDPQz6owyyNXCreKqjjsYcAM"
-                              }
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
-              ) {
-                $steps["invokeGlobalAction"] =
-                  await $steps["invokeGlobalAction"];
               }
             }}
             onCreaditChange2={async (...eventArgs: any) => {
@@ -3256,14 +2345,10 @@ function PlasmicMainLiad__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "profile",
-    "reveal",
-    "reminder",
     "reminderApi",
-    "category",
-    "dialogTooltip",
-    "dialog",
     "lottie",
+    "reminder",
+    "category",
     "telegram",
     "img",
     "copyBox",
@@ -3271,14 +2356,10 @@ const PlasmicDescendants = {
     "svg",
     "creaditButten"
   ],
-  profile: ["profile"],
-  reveal: ["reveal", "reminder"],
-  reminder: ["reminder"],
-  reminderApi: ["reminderApi"],
-  category: ["category"],
-  dialogTooltip: ["dialogTooltip"],
-  dialog: ["dialog"],
+  reminderApi: ["reminderApi", "lottie", "reminder"],
   lottie: ["lottie"],
+  reminder: ["reminder"],
+  category: ["category"],
   telegram: ["telegram", "img", "copyBox", "button"],
   img: ["img"],
   copyBox: ["copyBox"],
@@ -3291,14 +2372,10 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  profile: typeof ApiRequest;
-  reveal: typeof Reveal;
-  reminder: typeof Reminder;
   reminderApi: typeof ApiRequest;
-  category: typeof ApiRequest;
-  dialogTooltip: typeof DialogTooltip;
-  dialog: typeof ApiRequest;
   lottie: typeof LottieWrapper;
+  reminder: typeof Reminder;
+  category: typeof ApiRequest;
   telegram: typeof Dialog2;
   img: typeof PlasmicImg__;
   copyBox: typeof CopyBox;
@@ -3369,14 +2446,10 @@ export const PlasmicMainLiad = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    profile: makeNodeComponent("profile"),
-    reveal: makeNodeComponent("reveal"),
-    reminder: makeNodeComponent("reminder"),
     reminderApi: makeNodeComponent("reminderApi"),
-    category: makeNodeComponent("category"),
-    dialogTooltip: makeNodeComponent("dialogTooltip"),
-    dialog: makeNodeComponent("dialog"),
     lottie: makeNodeComponent("lottie"),
+    reminder: makeNodeComponent("reminder"),
+    category: makeNodeComponent("category"),
     telegram: makeNodeComponent("telegram"),
     img: makeNodeComponent("img"),
     copyBox: makeNodeComponent("copyBox"),

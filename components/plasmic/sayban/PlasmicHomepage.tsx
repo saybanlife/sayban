@@ -368,7 +368,8 @@ function PlasmicHomepage__RenderFunc(props: {
         path: "token",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwaXJlIjoxNzgyMDY5NjQxfQ.L7Ww4anvl1AoFXY1R3dPvmcON8zS832w8BF2VqwWuD4"
       },
       {
         path: "search.data",
@@ -658,12 +659,6 @@ function PlasmicHomepage__RenderFunc(props: {
         path: "mainLiad.reminderBalance",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "mainLiad.profile2",
-        type: "private",
-        variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
@@ -1233,6 +1228,25 @@ function PlasmicHomepage__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "mainLiad.userId",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return `sayban-${$state?.profile?.data?.result?.id}`;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -1373,7 +1387,7 @@ function PlasmicHomepage__RenderFunc(props: {
             onMount={async () => {
               const $steps = {};
 
-              $steps["getCookie"] = true
+              $steps["getCookie"] = false
                 ? (() => {
                     const actionArgs = { args: ["token"] };
                     return $globalActions["Fragment.getCookie"]?.apply(null, [
@@ -1389,24 +1403,23 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["getCookie"] = await $steps["getCookie"];
               }
 
-              $steps["goToLogin"] =
-                $steps.getCookie == null || $steps.getCookie == ""
-                  ? (() => {
-                      const actionArgs = { destination: `/login/[[...step]]` };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
+              $steps["goToLogin"] = false
+                ? (() => {
+                    const actionArgs = { destination: `/login/[[...step]]` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
               if (
                 $steps["goToLogin"] != null &&
                 typeof $steps["goToLogin"] === "object" &&
@@ -1415,7 +1428,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["goToLogin"] = await $steps["goToLogin"];
               }
 
-              $steps["updateToken"] = true
+              $steps["updateToken"] = false
                 ? (() => {
                     const actionArgs = {
                       variable: {
@@ -2516,20 +2529,6 @@ function PlasmicHomepage__RenderFunc(props: {
                       return;
                     }
                   }}
-                  onProfileChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "mainLiad",
-                      "profile2"
-                    ]).apply(null, eventArgs);
-
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
-                    }
-                  }}
                   onRefreshChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "mainLiad",
@@ -2600,6 +2599,20 @@ function PlasmicHomepage__RenderFunc(props: {
                       return;
                     }
                   }}
+                  onUserIdChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "mainLiad",
+                      "userId"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
                   onUserInfoChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "mainLiad",
@@ -2614,10 +2627,6 @@ function PlasmicHomepage__RenderFunc(props: {
                       return;
                     }
                   }}
-                  profile2={generateStateValueProp($state, [
-                    "mainLiad",
-                    "profile2"
-                  ])}
                   refresh={generateStateValueProp($state, [
                     "mainLiad",
                     "refresh"
@@ -2626,11 +2635,72 @@ function PlasmicHomepage__RenderFunc(props: {
                     "mainLiad",
                     "remind"
                   ])}
+                  reminderSetting={async () => {
+                    const $steps = {};
+
+                    $steps["goToHomepage"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/${(() => {
+                              try {
+                                return $ctx.params.page;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}/${(() => {
+                              try {
+                                return (() => {
+                                  $state.slug.push("reminderSetting");
+                                  return $state.slug.join("/");
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToHomepage"] != null &&
+                      typeof $steps["goToHomepage"] === "object" &&
+                      typeof $steps["goToHomepage"].then === "function"
+                    ) {
+                      $steps["goToHomepage"] = await $steps["goToHomepage"];
+                    }
+                  }}
                   telegramDialog={generateStateValueProp($state, [
                     "mainLiad",
                     "telegramDialog"
                   ])}
                   token={generateStateValueProp($state, ["mainLiad", "token"])}
+                  userId={generateStateValueProp($state, [
+                    "mainLiad",
+                    "userId"
+                  ])}
                   userInfo={generateStateValueProp($state, [
                     "mainLiad",
                     "userInfo"
@@ -4574,10 +4644,220 @@ function PlasmicHomepage__RenderFunc(props: {
               "reminderSetting",
               "creaditButtenCreadit"
             ])}
+            data={(() => {
+              try {
+                return $state.mainLiad.remind;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [
+                    {
+                      id: 831,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "womens_day",
+                      name: "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u062f\u062e\u062a\u0631",
+                      text: "girlsGlobal",
+                      token1: null,
+                      dates: '["2026-04-19"]',
+                      weekdays: null,
+                      times: '["13:30"]',
+                      finishTime: null,
+                      chanels: '["notification"]',
+                      pre_reminders: null,
+                      times_pre_reminders: null,
+                      active: 1,
+                      timestamp: "2025-12-08 11:35:46"
+                    },
+                    {
+                      id: 832,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "wedding_anniversary",
+                      name: "\u0633\u0627\u0644\u06af\u0631\u062f \u0627\u0632\u062f\u0648\u0627\u062c",
+                      text: "marriage",
+                      token1: null,
+                      dates: '["2025-12-31"]',
+                      weekdays: null,
+                      times: '["11:55"]',
+                      finishTime: null,
+                      chanels: '["notification","telegram"]',
+                      pre_reminders: null,
+                      times_pre_reminders: null,
+                      active: 1,
+                      timestamp: "2025-12-14 13:21:20"
+                    },
+                    {
+                      id: 835,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "boys_day",
+                      name: "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u067e\u0633\u0631",
+                      text: "boys_day",
+                      token1: null,
+                      dates: '["2026-05-16"]',
+                      weekdays: null,
+                      times: '["16:30"]',
+                      finishTime: null,
+                      chanels: '["notification"]',
+                      pre_reminders: null,
+                      times_pre_reminders: null,
+                      active: 1,
+                      timestamp: "2025-12-08 11:35:46"
+                    },
+                    {
+                      id: 1069,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyDay",
+                      type: "medicine_time",
+                      name: "\u062f\u0646\u062f\u0648\u0646 \u062f\u0631\u062f",
+                      text: "pill",
+                      token1: null,
+                      dates: null,
+                      weekdays: '["saturday"]',
+                      times: '["20:00"]',
+                      finishTime: null,
+                      chanels: '["telegram"]',
+                      pre_reminders: null,
+                      times_pre_reminders: null,
+                      active: 1,
+                      timestamp: "2025-12-14 13:38:40"
+                    },
+                    {
+                      id: 1190,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "spouse_birthday",
+                      name: "\u062a\u0648\u0644\u062f \u0647\u0645\u0633\u0631",
+                      text: "birthdayWife",
+                      token1: null,
+                      dates: '["2025-12-31"]',
+                      weekdays: null,
+                      times: '["04:30"]',
+                      finishTime: null,
+                      chanels: '["notification","telegram"]',
+                      pre_reminders:
+                        '["0000-12-21", "0000-12-24", "0000-12-28", "0000-12-30"]',
+                      times_pre_reminders: '["09:55"]',
+                      active: 1,
+                      timestamp: "2025-12-19 17:34:18"
+                    },
+                    {
+                      id: 1248,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "mothers_day",
+                      name: "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u0632\u0646",
+                      text: "mothers_day",
+                      token1: null,
+                      dates: '["2026-03-08"]',
+                      weekdays: null,
+                      times: '["09:30"]',
+                      finishTime: null,
+                      chanels: '["notification"]',
+                      pre_reminders: null,
+                      times_pre_reminders: null,
+                      active: 0,
+                      timestamp: "2025-12-15 11:52:12"
+                    },
+                    {
+                      id: 1264,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "valentine_day",
+                      name: "\u0631\u0648\u0632 \u0648\u0644\u0646\u062a\u0627\u06cc\u0646",
+                      text: "valentine",
+                      token1: null,
+                      dates: '["2026-02-14"]',
+                      weekdays: null,
+                      times: '["17:30"]',
+                      finishTime: null,
+                      chanels: '["notification"]',
+                      pre_reminders:
+                        '["0000-02-04","0000-02-09","0000-02-11","0000-02-13"]',
+                      times_pre_reminders: '["09:45"]',
+                      active: 1,
+                      timestamp: "2025-12-19 17:16:25"
+                    },
+                    {
+                      id: 1265,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "sepandarmazgan",
+                      name: "\u0631\u0648\u0632 \u0633\u067e\u0646\u062f\u0627\u0631\u0645\u0630\u06af\u0627\u0646",
+                      text: "sepandarmazgan",
+                      token1: null,
+                      dates: '["2026-02-18"]',
+                      weekdays: null,
+                      times: '["18:30"]',
+                      finishTime: null,
+                      chanels: '["notification"]',
+                      pre_reminders: null,
+                      times_pre_reminders: null,
+                      active: 1,
+                      timestamp: "2025-12-16 09:57:59"
+                    },
+                    {
+                      id: 1291,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "spouse_birthday",
+                      name: "\u062a\u0648\u0644\u062f \u0647\u0645\u0633\u0631",
+                      text: "birthdayWife",
+                      token1: null,
+                      dates: '["2025-12-31"]',
+                      weekdays: null,
+                      times: '["09:30"]',
+                      finishTime: null,
+                      chanels: "[]",
+                      pre_reminders:
+                        '["0000-12-21", "0000-12-24", "0000-12-28", "0000-12-30"]',
+                      times_pre_reminders: '["09:55"]',
+                      active: 1,
+                      timestamp: "2025-12-19 17:34:18"
+                    }
+                  ];
+                }
+                throw e;
+              }
+            })()}
             dialogOpendialog3={generateStateValueProp($state, [
               "reminderSetting",
               "dialogOpendialog3"
             ])}
+            manId={(() => {
+              try {
+                return `sayban-${$state?.profile?.data?.result?.id}`;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
             onCategoryChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "reminderSetting",
