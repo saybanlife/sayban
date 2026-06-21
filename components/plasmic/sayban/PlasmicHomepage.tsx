@@ -5607,7 +5607,7 @@ function PlasmicHomepage__RenderFunc(props: {
                             return (() => {
                               $state.slug = $state.slug || [];
                               $state.slug.push(
-                                `pay_${window.sessionStorage.getItem("payId")}`
+                                `pay_${$ctx.query.reservation_id || window.sessionStorage.getItem("payId")}`
                               );
                               return $state.slug.join("/");
                             })();
@@ -5644,7 +5644,25 @@ function PlasmicHomepage__RenderFunc(props: {
                   $steps["goToHomepage"] = await $steps["goToHomepage"];
                 }
               },
-              status: false
+              status: (() => {
+                try {
+                  return (() => {
+                    {
+                      {
+                        return $ctx.query.status?.toUpperCase() === "OK";
+                      }
+                    }
+                  })();
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })()
             };
 
             initializePlasmicStates(
