@@ -1270,7 +1270,7 @@ function PlasmicHomepage__RenderFunc(props: {
           (() => {
             {
               {
-                return ["OK", "NOK"].includes($ctx.query.status);
+                return ["true", "false"].includes($ctx.query.status);
               }
             }
           })()
@@ -5649,7 +5649,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   return (() => {
                     {
                       {
-                        return $ctx.query.status?.toUpperCase() === "OK";
+                        return $ctx.query.status === "true";
                       }
                     }
                   })();
@@ -5674,7 +5674,7 @@ function PlasmicHomepage__RenderFunc(props: {
                     (() => {
                       {
                         {
-                          return ["OK", "NOK"].includes($ctx.query.status);
+                          return ["true", "false"].includes($ctx.query.status);
                         }
                       }
                     })()
