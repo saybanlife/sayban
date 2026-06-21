@@ -170,14 +170,13 @@
   position: fixed;
   align-content: flex-start;
   justify-items: center;
-  width: 100%;
+  width: auto;
   padding-left: 0;
   padding-right: 0;
-  left: 0px;
-  top: -1px;
+  left: 0;
+  top: 0;
   z-index: 1;
-  grid-column-start: 1 !important;
-  grid-column-end: -1 !important;
+  right: 0;
   grid-template-columns:
     var(--plsmc-viewport-gap) 1fr minmax(0, var(--plsmc-wide-chunk))
     min(
@@ -189,6 +188,11 @@
 .section > * {
   grid-column: 4;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .section > * {
+    grid-column: 4;
+  }
+}
 .header:global(.__wab_instance) {
   max-width: 100%;
   left: auto;
@@ -196,6 +200,13 @@
   z-index: 1;
   position: relative;
   right: auto;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .header:global(.__wab_instance) {
+    width: 100%;
+    grid-column-start: 1 !important;
+    grid-column-end: -1 !important;
+  }
 }
 .text___26COw {
   padding-bottom: 0px;

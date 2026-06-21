@@ -76,6 +76,11 @@
 .rootpage_booking > * {
   grid-column: 4;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .rootpage_booking > * {
+    grid-column: 4;
+  }
+}
 .rootpage_notif > * {
   grid-column: 4;
 }
