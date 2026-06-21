@@ -103,6 +103,7 @@ export type PlasmicMainPageReservation__ArgsType = {
   state?: string;
   slected?: any;
   onSlectedChange?: (val: string) => void;
+  centerId?: string;
 };
 type ArgPropType = keyof PlasmicMainPageReservation__ArgsType;
 export const PlasmicMainPageReservation__ArgProps = new Array<ArgPropType>(
@@ -117,7 +118,8 @@ export const PlasmicMainPageReservation__ArgProps = new Array<ArgPropType>(
   "onListChange2",
   "state",
   "slected",
-  "onSlectedChange"
+  "onSlectedChange",
+  "centerId"
 );
 
 export type PlasmicMainPageReservation__OverridesType = {
@@ -145,6 +147,7 @@ export interface DefaultMainPageReservationProps {
   state?: string;
   slected?: any;
   onSlectedChange?: (val: string) => void;
+  centerId?: string;
   className?: string;
 }
 
@@ -544,6 +547,9 @@ function PlasmicMainPageReservation__RenderFunc(props: {
                   $steps["runCode"] = await $steps["runCode"];
                 }
               }).apply(null, eventArgs);
+            }}
+            params={{
+              r: $state.restart
             }}
             shouldFetch={(() => {
               try {

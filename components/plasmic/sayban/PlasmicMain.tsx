@@ -75,7 +75,7 @@ import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
 import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import MainPageCategories from "../../MainPageCategories"; // plasmic-import: fn1vTVaTFnJQ/component
-import MainPageReservations from "../../MainPageReservations"; // plasmic-import: TGG8jbyroWy4/component
+import MainPageReservation from "../../MainPageReservation"; // plasmic-import: HqZV6_TZqqbI/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import Snackbar from "../../Snackbar"; // plasmic-import: CaodI8ra68z4/component
@@ -142,7 +142,7 @@ export type PlasmicMain__OverridesType = {
   submit2?: Flex__<typeof Button>;
   button6?: Flex__<typeof Button>;
   mainPageCategories?: Flex__<typeof MainPageCategories>;
-  mainPageReservations?: Flex__<typeof MainPageReservations>;
+  mainPageReservation?: Flex__<typeof MainPageReservation>;
   categories?: Flex__<typeof ApiRequest>;
   embedHtml?: Flex__<typeof Embed>;
   deleteSnakbar?: Flex__<typeof Snackbar>;
@@ -544,43 +544,6 @@ function PlasmicMain__RenderFunc(props: {
           })()
       },
       {
-        path: "mainPageReservations.selectedRow",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "mainPageReservations.categpty",
-        type: "private",
-        variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
-      },
-      {
-        path: "mainPageReservations.restart",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
-      },
-      {
-        path: "mainPageReservations.list",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          (() => {
-            try {
-              return $state.page == "reservations";
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return false;
-              }
-              throw e;
-            }
-          })()
-      },
-      {
         path: "mainPageCategories.categpty",
         type: "private",
         variableType: "array",
@@ -707,6 +670,30 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "mainPageReservation.categpty",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "mainPageReservation.restart",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "mainPageReservation.list",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
+      },
+      {
+        path: "mainPageReservation.slected",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -736,7 +723,14 @@ function PlasmicMain__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        {
+          [sty.rootpage_reservations]: hasVariant(
+            $state,
+            "page",
+            "reservations"
+          )
+        }
       )}
     >
       <TopPage
@@ -2780,24 +2774,24 @@ function PlasmicMain__RenderFunc(props: {
         ])}
       />
 
-      <MainPageReservations
-        data-plasmic-name={"mainPageReservations"}
-        data-plasmic-override={overrides.mainPageReservations}
+      <MainPageReservation
+        data-plasmic-name={"mainPageReservation"}
+        data-plasmic-override={overrides.mainPageReservation}
         categpty={generateStateValueProp($state, [
-          "mainPageReservations",
+          "mainPageReservation",
           "categpty"
         ])}
-        className={classNames("__wab_instance", sty.mainPageReservations, {
-          [sty.mainPageReservationspage_reservations]: hasVariant(
+        className={classNames("__wab_instance", sty.mainPageReservation, {
+          [sty.mainPageReservationpage_reservations]: hasVariant(
             $state,
             "page",
             "reservations"
           )
         })}
-        list={generateStateValueProp($state, ["mainPageReservations", "list"])}
+        list={generateStateValueProp($state, ["mainPageReservation", "list"])}
         onCategptyChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
-            "mainPageReservations",
+            "mainPageReservation",
             "categpty"
           ]).apply(null, eventArgs);
 
@@ -2809,9 +2803,9 @@ function PlasmicMain__RenderFunc(props: {
             return;
           }
         }}
-        onListChange={async (...eventArgs: any) => {
+        onListChange2={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
-            "mainPageReservations",
+            "mainPageReservation",
             "list"
           ]).apply(null, eventArgs);
 
@@ -2825,7 +2819,7 @@ function PlasmicMain__RenderFunc(props: {
         }}
         onRestartChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
-            "mainPageReservations",
+            "mainPageReservation",
             "restart"
           ]).apply(null, eventArgs);
 
@@ -2837,10 +2831,10 @@ function PlasmicMain__RenderFunc(props: {
             return;
           }
         }}
-        onSelectedRowChange={async (...eventArgs: any) => {
+        onSlectedChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
-            "mainPageReservations",
-            "selectedRow"
+            "mainPageReservation",
+            "slected"
           ]).apply(null, eventArgs);
 
           if (
@@ -2852,12 +2846,12 @@ function PlasmicMain__RenderFunc(props: {
           }
         }}
         restart={generateStateValueProp($state, [
-          "mainPageReservations",
+          "mainPageReservation",
           "restart"
         ])}
-        selectedRow={generateStateValueProp($state, [
-          "mainPageReservations",
-          "selectedRow"
+        slected={generateStateValueProp($state, [
+          "mainPageReservation",
+          "slected"
         ])}
       />
 
@@ -2866,7 +2860,12 @@ function PlasmicMain__RenderFunc(props: {
         data-plasmic-override={overrides.categories}
         children={null}
         className={classNames("__wab_instance", sty.categories, {
-          [sty.categoriespage_center]: hasVariant($state, "page", "center")
+          [sty.categoriespage_center]: hasVariant($state, "page", "center"),
+          [sty.categoriespage_reservations]: hasVariant(
+            $state,
+            "page",
+            "reservations"
+          )
         })}
         config={{
           headers: {
@@ -3552,7 +3551,7 @@ const PlasmicDescendants = {
     "submit2",
     "button6",
     "mainPageCategories",
-    "mainPageReservations",
+    "mainPageReservation",
     "categories",
     "embedHtml",
     "deleteSnakbar",
@@ -3601,7 +3600,7 @@ const PlasmicDescendants = {
   submit2: ["submit2"],
   button6: ["button6"],
   mainPageCategories: ["mainPageCategories"],
-  mainPageReservations: ["mainPageReservations"],
+  mainPageReservation: ["mainPageReservation"],
   categories: ["categories"],
   embedHtml: ["embedHtml"],
   deleteSnakbar: ["deleteSnakbar", "buttonDelete", "buttonClose"],
@@ -3637,7 +3636,7 @@ type NodeDefaultElementType = {
   submit2: typeof Button;
   button6: typeof Button;
   mainPageCategories: typeof MainPageCategories;
-  mainPageReservations: typeof MainPageReservations;
+  mainPageReservation: typeof MainPageReservation;
   categories: typeof ApiRequest;
   embedHtml: typeof Embed;
   deleteSnakbar: typeof Snackbar;
@@ -3731,7 +3730,7 @@ export const PlasmicMain = Object.assign(
     submit2: makeNodeComponent("submit2"),
     button6: makeNodeComponent("button6"),
     mainPageCategories: makeNodeComponent("mainPageCategories"),
-    mainPageReservations: makeNodeComponent("mainPageReservations"),
+    mainPageReservation: makeNodeComponent("mainPageReservation"),
     categories: makeNodeComponent("categories"),
     embedHtml: makeNodeComponent("embedHtml"),
     deleteSnakbar: makeNodeComponent("deleteSnakbar"),

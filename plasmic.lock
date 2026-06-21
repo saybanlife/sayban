@@ -27367,12 +27367,12 @@
         {
           "type": "renderModule",
           "assetId": "FYuKeNpu5zZ7",
-          "checksum": "7145b487cdc66176e5f373548fe6892e"
+          "checksum": "73b1ca80d81daaf4ad9075e0e18289c2"
         },
         {
           "type": "cssRules",
           "assetId": "FYuKeNpu5zZ7",
-          "checksum": "7145b487cdc66176e5f373548fe6892e"
+          "checksum": "73b1ca80d81daaf4ad9075e0e18289c2"
         },
         {
           "type": "renderModule",
@@ -29287,22 +29287,22 @@
         {
           "type": "renderModule",
           "assetId": "HqZV6_TZqqbI",
-          "checksum": "7102eb5c66bed6a14538c03a2c9d205d"
+          "checksum": "7038e212cd6cd62771810b600092320f"
         },
         {
           "type": "cssRules",
           "assetId": "HqZV6_TZqqbI",
-          "checksum": "7102eb5c66bed6a14538c03a2c9d205d"
+          "checksum": "7038e212cd6cd62771810b600092320f"
         },
         {
           "type": "renderModule",
           "assetId": "4UaemkVPEyQ4",
-          "checksum": "886602c6ce1b766e554096a614ac0fb2"
+          "checksum": "c9ce424674945fd0ccbb650452c47339"
         },
         {
           "type": "cssRules",
           "assetId": "4UaemkVPEyQ4",
-          "checksum": "886602c6ce1b766e554096a614ac0fb2"
+          "checksum": "c9ce424674945fd0ccbb650452c47339"
         },
         {
           "type": "renderModule",
@@ -29358,6 +29358,21 @@
           "assetId": "qARqpE4p5tZmJuNxFbTaPz",
           "type": "projectCss",
           "checksum": "77b11a66d4e116e2452405c7002cc30f"
+        },
+        {
+          "type": "icon",
+          "assetId": "SE-QBCAsg5DR",
+          "checksum": "325e82f6f919e4fc58fa09e34a845794"
+        },
+        {
+          "type": "icon",
+          "assetId": "pFj3YtqnC73k",
+          "checksum": "986d05eb40c14c9c6dc3d8507739c6e0"
+        },
+        {
+          "type": "icon",
+          "assetId": "usK66jCTq1J4",
+          "checksum": "99950bf0fcfc550a4143d9cf71899419"
         }
       ],
       "codegenVersion": "0.0.3"

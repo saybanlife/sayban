@@ -71,6 +71,7 @@ import sty from "./PlasmicReservationItem.module.css"; // plasmic-import: 4Uaemk
 
 import CheckIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Check"; // plasmic-import: DtxnCWLfceEB/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+import UserIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__User"; // plasmic-import: d1LJS78vGoJH/icon
 
 createPlasmicElementProxy;
 
@@ -283,40 +284,53 @@ function PlasmicReservationItem__RenderFunc(props: {
             })()}
           />
         </div>
-        <Button
-          data-plasmic-name={"add"}
-          data-plasmic-override={overrides.add}
-          className={classNames("__wab_instance", sty.add)}
-          color={"success"}
-          iconStart={true}
-          label={
-            <div className={classNames("all", "__wab_text", sty.text__pPgHu)}>
-              {"\u062a\u0627\u06cc\u06cc\u062f \u0631\u0632\u0631\u0648"}
-            </div>
-          }
-          loading={generateStateValueProp($state, ["add", "loading"])}
-          onLoadingChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["add", "loading"]).apply(
-              null,
-              eventArgs
-            );
-
+        {(() => {
+          try {
+            return $props.currentItem.status == "pending";
+          } catch (e) {
             if (
-              eventArgs.length > 1 &&
-              eventArgs[1] &&
-              eventArgs[1]._plasmic_state_init_
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
             ) {
-              return;
+              return true;
             }
-          }}
-          start={
-            <CheckIcon
-              className={classNames("all", sty.svg__irS4T)}
-              role={"img"}
-            />
+            throw e;
           }
-        />
+        })() ? (
+          <Button
+            data-plasmic-name={"add"}
+            data-plasmic-override={overrides.add}
+            className={classNames("__wab_instance", sty.add)}
+            color={"success"}
+            iconStart={true}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__pPgHu)}>
+                {"\u062a\u0627\u06cc\u06cc\u062f \u0631\u0632\u0631\u0648"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["add", "loading"])}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["add", "loading"]).apply(
+                null,
+                eventArgs
+              );
 
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            start={
+              <CheckIcon
+                className={classNames("all", sty.svg__irS4T)}
+                role={"img"}
+              />
+            }
+          />
+        ) : null}
         <ChevronDownIcon
           className={classNames("all", sty.svg__dwid7, {
             [sty.svgopen__dwid7Lb9Mw]: hasVariant($state, "open", "open")
@@ -324,39 +338,139 @@ function PlasmicReservationItem__RenderFunc(props: {
           role={"img"}
         />
       </div>
-      {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-        (() => {
-          try {
-            return $props.user[0].subcategories;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return [];
-            }
-            throw e;
+      {(() => {
+        try {
+          return $state.open;
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return true;
           }
-        })()
-      ).map((__plasmic_item_0, __plasmic_idx_0) => {
-        const currentItem = __plasmic_item_0;
-        const currentIndex = __plasmic_idx_0;
-        return (
+          throw e;
+        }
+      })() ? (
+        <div className={classNames("all", sty.freeBox__kZi99)}>
           <div
-            className={classNames("all", sty.freeBox__g5Ljn, {
-              [sty.freeBoxopen__g5LjnLb9Mw]: hasVariant($state, "open", "open")
-            })}
-            key={currentIndex}
+            className={classNames("all", sty.freeBox__eUwF)}
+            id={"accordion-content"}
           >
-            <div className={classNames("all", "__wab_text", sty.text__jQxhK)}>
-              <React.Fragment>{currentItem.name}</React.Fragment>
-            </div>
-            <div className={classNames("all", "__wab_text", sty.text__tfY45)}>
-              <React.Fragment>{currentItem.description}</React.Fragment>
+            <div className={classNames("all", sty.freeBox___8WjW7)}>
+              <div className={classNames("all", sty.freeBox__pMYy)}>
+                <div className={classNames("all", sty.freeBox__q5WS9)}>
+                  <UserIcon
+                    className={classNames("all", sty.svg__tzwA4)}
+                    role={"img"}
+                  />
+
+                  <span
+                    className={classNames(
+                      "all",
+                      "span",
+                      "span__qARqp",
+                      "__wab_text",
+                      sty.span__afpmj
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return $props.currentItem.user.name;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "\u06a9\u0627\u0631\u0628\u0631: \u0627\u0645\u06cc\u0631\u062d\u0633\u06cc\u0646 \u0627\u062d\u0645\u062f\u06cc";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </span>
+                </div>
+                <div className={classNames("all", sty.freeBox__zNvEm)}>
+                  <span
+                    className={classNames(
+                      "all",
+                      "span",
+                      "span__qARqp",
+                      "__wab_text",
+                      sty.span__pygIt
+                    )}
+                  >
+                    {"\u0634\u0645\u0627\u0631\u0647 \u062a\u0645\u0627\u0633:"}
+                  </span>
+                  <span
+                    className={classNames(
+                      "all",
+                      "span",
+                      "span__qARqp",
+                      "__wab_text",
+                      sty.span__e2DtY
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return $props.currentItem.user.mobile;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "09123456789";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </span>
+                </div>
+                <div className={classNames("all", sty.freeBox__x4NvF)}>
+                  <span
+                    className={classNames(
+                      "all",
+                      "span",
+                      "span__qARqp",
+                      "__wab_text",
+                      sty.span__i6DVn
+                    )}
+                  >
+                    {"\u06a9\u062f \u0645\u0644\u06cc :"}
+                  </span>
+                  <span
+                    className={classNames(
+                      "all",
+                      "span",
+                      "span__qARqp",
+                      "__wab_text",
+                      sty.span___0VYxv
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return $props.currentItem.user.national_code;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "09123456789";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-        );
-      })}
+        </div>
+      ) : null}
     </div>
   ) as React.ReactElement | null;
 }

@@ -90,43 +90,71 @@
 .svgopen__dwid7Lb9Mw {
   transform: rotate3d(0, 0, -1, -180deg);
 }
-.freeBox__g5Ljn {
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  justify-content: flex-start;
-  align-items: center;
-  background: var(--token-k-47TemksE2v);
-  cursor: pointer;
-  row-gap: var(--token-RuQNZpYm0Yds);
-  min-width: 0;
-  display: none;
-  border-radius: var(--token-LBC0X5IbL9bo);
-  padding: var(--token-rfsFxiclAtek) var(--token-73iLa06AE6f4);
-}
-.freeBoxopen__g5LjnLb9Mw {
+.freeBox__kZi99 {
   display: flex;
-}
-.text__jQxhK {
-  position: relative;
+  flex-direction: row;
   width: 100%;
-  height: auto;
+  min-width: 0;
+}
+.freeBox__eUwF {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+.freeBox___8WjW7 {
+  display: flex;
+  flex-direction: row;
+  column-gap: var(--token-73iLa06AE6f4);
+  padding-top: var(--token-73iLa06AE6f4);
+}
+.freeBox__pMYy {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--token-cfon0PHiXQoL);
+}
+.freeBox__q5WS9 {
+  display: flex;
+  flex-direction: row;
+  column-gap: var(--token-cfon0PHiXQoL);
+}
+.svg__tzwA4 {
+  object-fit: cover;
   max-width: 100%;
-  text-align: right;
+  color: var(--token-ccqYe7dhXoNZ);
+  width: var(--token-P3I_D0uxQRnt);
+  height: var(--token-P3I_D0uxQRnt);
+  align-self: center;
+  flex-shrink: 0;
+}
+.span__afpmj {
+  color: var(--token-9M5jRUPt8Msb);
+  font-weight: 600;
+  font-size: var(--token-hbNq_Oz393_j);
+}
+.freeBox__zNvEm {
+  display: flex;
+  flex-direction: row;
+  column-gap: var(--token-rfsFxiclAtek);
+}
+.span__pygIt {
+  color: var(--token-KjATzAYJ5IB7);
   font-size: var(--token-N8Pb0ZuDQAeF);
-  font-weight: 700;
-  color: var(--token-KjATzAYJ5IB7);
-  min-width: 0;
 }
-.text__tfY45 {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  text-align: right;
-  font-size: var(--token-R7X4jvpZsbD-);
+.span__e2DtY {
+  color: var(--token-9M5jRUPt8Msb);
+  font-size: var(--token-N8Pb0ZuDQAeF);
+}
+.freeBox__x4NvF {
+  display: flex;
+  flex-direction: row;
+  column-gap: var(--token-rfsFxiclAtek);
+}
+.span__i6DVn {
   color: var(--token-KjATzAYJ5IB7);
-  min-width: 0;
+  font-size: var(--token-N8Pb0ZuDQAeF);
+}
+.span___0VYxv {
+  color: var(--token-9M5jRUPt8Msb);
+  font-size: var(--token-N8Pb0ZuDQAeF);
 }
