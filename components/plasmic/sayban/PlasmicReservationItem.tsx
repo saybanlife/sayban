@@ -60,6 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import StatusIcon from "../../StatusIcon"; // plasmic-import: zJ2RueI-cLbg/component
+import UploudeTime from "../../UploudeTime"; // plasmic-import: IxvwO5AMD5ex/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -99,6 +100,7 @@ export const PlasmicReservationItem__ArgProps = new Array<ArgPropType>(
 export type PlasmicReservationItem__OverridesType = {
   root?: Flex__<"div">;
   statusIcon?: Flex__<typeof StatusIcon>;
+  uploudeTime?: Flex__<typeof UploudeTime>;
   add?: Flex__<typeof Button>;
 };
 
@@ -251,9 +253,31 @@ function PlasmicReservationItem__RenderFunc(props: {
           <div className={classNames("all", "__wab_text", sty.text__wnq7Y)}>
             <React.Fragment>{`${$props.currentItem.name} (${$props.currentItem.service_name})`}</React.Fragment>
           </div>
-          <div className={classNames("all", "__wab_text", sty.text__bFfmy)}>
-            <React.Fragment>{`${$props.currentItem.centers_count} مرکز در این دسته بندی وجود دارد `}</React.Fragment>
-          </div>
+          <UploudeTime
+            data-plasmic-name={"uploudeTime"}
+            data-plasmic-override={overrides.uploudeTime}
+            className={classNames("__wab_instance", sty.uploudeTime)}
+            posttime={(() => {
+              function addTime(dateString, addHours = 0, addMinutes = 0) {
+                if (!dateString) return null;
+                const date = new Date(dateString.replace(" ", "T"));
+                if (!date) return null;
+                date.setMinutes(
+                  date.getMinutes() + (addHours * 60 + addMinutes)
+                );
+                return {
+                  year: date.getFullYear(),
+                  month: date.getMonth() + 1,
+                  day: date.getDate(),
+                  hour: date.getHours(),
+                  minute: date.getMinutes(),
+                  second: date.getSeconds()
+                };
+              }
+              const newCreatedAt = addTime($props?.currentItem?.start_time);
+              return newCreatedAt;
+            })()}
+          />
         </div>
         <Button
           data-plasmic-name={"add"}
@@ -334,8 +358,9 @@ function PlasmicReservationItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "statusIcon", "add"],
+  root: ["root", "statusIcon", "uploudeTime", "add"],
   statusIcon: ["statusIcon"],
+  uploudeTime: ["uploudeTime"],
   add: ["add"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -344,6 +369,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   statusIcon: typeof StatusIcon;
+  uploudeTime: typeof UploudeTime;
   add: typeof Button;
 };
 
@@ -410,6 +436,7 @@ export const PlasmicReservationItem = Object.assign(
   {
     // Helper components rendering sub-elements
     statusIcon: makeNodeComponent("statusIcon"),
+    uploudeTime: makeNodeComponent("uploudeTime"),
     add: makeNodeComponent("add"),
 
     // Metadata about props expected for PlasmicReservationItem
