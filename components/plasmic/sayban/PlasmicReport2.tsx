@@ -159,11 +159,6 @@ function PlasmicReport2__RenderFunc(props: {
               value: "telegram",
               paid: false
             },
-            {
-              label: "\u067e\u06cc\u0627\u0645\u06a9",
-              value: "sms",
-              paid: true
-            },
             { label: "\u0628\u0644\u0647", value: "bale", paid: true }
           ]
         },

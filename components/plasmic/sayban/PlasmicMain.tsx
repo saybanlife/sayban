@@ -2781,6 +2781,19 @@ function PlasmicMain__RenderFunc(props: {
           "mainPageReservation",
           "categpty"
         ])}
+        centerId={(() => {
+          try {
+            return $props.centerId;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
         className={classNames("__wab_instance", sty.mainPageReservation, {
           [sty.mainPageReservationpage_reservations]: hasVariant(
             $state,

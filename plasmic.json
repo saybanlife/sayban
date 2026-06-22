@@ -29302,6 +29302,32 @@
           "cssFilePath": "plasmic/sayban/PlasmicPayResult.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "E0nCffMes_wS",
+          "name": "PaginationItem",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicPaginationItem.tsx",
+          "importSpec": {
+            "modulePath": "PaginationItem.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicPaginationItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "SZj80mEq7ul9",
+          "name": "Pagination",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicPagination.tsx",
+          "importSpec": {
+            "modulePath": "Pagination.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicPagination.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

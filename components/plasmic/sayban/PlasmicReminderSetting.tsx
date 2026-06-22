@@ -4765,11 +4765,6 @@ function PlasmicReminderSetting__RenderFunc(props: {
                                     label: "بله",
                                     value: "bale",
                                     paid: false
-                                  },
-                                  {
-                                    label: "پیامک",
-                                    value: "sms",
-                                    paid: true
                                   }
                                 ];
                               } catch (e) {

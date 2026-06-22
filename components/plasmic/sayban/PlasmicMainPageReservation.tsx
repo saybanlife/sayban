@@ -68,6 +68,7 @@ import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-impor
 import Errorpage from "../../Errorpage"; // plasmic-import: HTnfDJNIbaau/component
 import ReservationItem from "../../ReservationItem"; // plasmic-import: 4UaemkVPEyQ4/component
 import EmptyPage from "../../EmptyPage"; // plasmic-import: q5YsvjSR6-JD/component
+import Pagination from "../../Pagination"; // plasmic-import: SZj80mEq7ul9/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -132,6 +133,7 @@ export type PlasmicMainPageReservation__OverridesType = {
   button2?: Flex__<typeof Button>;
   reservationItem?: Flex__<typeof ReservationItem>;
   emptyPage?: Flex__<typeof EmptyPage>;
+  pagination?: Flex__<typeof Pagination>;
 };
 
 export interface DefaultMainPageReservationProps {
@@ -294,6 +296,62 @@ function PlasmicMainPageReservation__RenderFunc(props: {
         path: "reservationItem[].open",
         type: "private",
         variableType: "boolean"
+      },
+      {
+        path: "page",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 0
+      },
+      {
+        path: "limit",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 0
+      },
+      {
+        path: "pagination.page",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.reservation?.data?.pagination?.page || 1;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return 0;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "pagination.limit",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 10
+      },
+      {
+        path: "pagination.totalPages",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.reservation?.data?.pagination?.totalPages;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return 0;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -549,7 +607,10 @@ function PlasmicMainPageReservation__RenderFunc(props: {
               }).apply(null, eventArgs);
             }}
             params={{
-              r: $state.restart
+              center_id: $props.centerId,
+              r: $state.restart,
+              page: $state.pagination.page,
+              limit: $state.pagination.limit
             }}
             shouldFetch={(() => {
               try {
@@ -727,6 +788,59 @@ function PlasmicMainPageReservation__RenderFunc(props: {
               />
             ) : null}
           </ApiRequest>
+          <Pagination
+            data-plasmic-name={"pagination"}
+            data-plasmic-override={overrides.pagination}
+            className={classNames("__wab_instance", sty.pagination)}
+            limit={generateStateValueProp($state, ["pagination", "limit"])}
+            onLimitChange2={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["pagination", "limit"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onPageChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["pagination", "page"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onTotalPagesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "pagination",
+                "totalPages"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            page={generateStateValueProp($state, ["pagination", "page"])}
+            totalPages={generateStateValueProp($state, [
+              "pagination",
+              "totalPages"
+            ])}
+          />
         </div>
       </div>
     </div>
@@ -743,7 +857,8 @@ const PlasmicDescendants = {
     "errorpage",
     "button2",
     "reservationItem",
-    "emptyPage"
+    "emptyPage",
+    "pagination"
   ],
   textInput: ["textInput"],
   button: ["button"],
@@ -758,7 +873,8 @@ const PlasmicDescendants = {
   errorpage: ["errorpage"],
   button2: ["button2"],
   reservationItem: ["reservationItem"],
-  emptyPage: ["emptyPage"]
+  emptyPage: ["emptyPage"],
+  pagination: ["pagination"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -773,6 +889,7 @@ type NodeDefaultElementType = {
   button2: typeof Button;
   reservationItem: typeof ReservationItem;
   emptyPage: typeof EmptyPage;
+  pagination: typeof Pagination;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -845,6 +962,7 @@ export const PlasmicMainPageReservation = Object.assign(
     button2: makeNodeComponent("button2"),
     reservationItem: makeNodeComponent("reservationItem"),
     emptyPage: makeNodeComponent("emptyPage"),
+    pagination: makeNodeComponent("pagination"),
 
     // Metadata about props expected for PlasmicMainPageReservation
     internalVariantProps: PlasmicMainPageReservation__VariantProps,

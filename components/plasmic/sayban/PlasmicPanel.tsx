@@ -60,11 +60,12 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
-import LoadingPanel from "../../LoadingPanel"; // plasmic-import: K12Va91eFAEa/component
+import Load from "../../Load"; // plasmic-import: giI5l8wTGhHv/component
 import PanelMenu from "../../PanelMenu"; // plasmic-import: H67gJZiYVEqw/component
 import Main from "../../Main"; // plasmic-import: FYuKeNpu5zZ7/component
 import LoginPanel from "../../LoginPanel"; // plasmic-import: hZEy0JIfmlF9/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
+import LoadingPanel from "../../LoadingPanel"; // plasmic-import: K12Va91eFAEa/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -119,13 +120,13 @@ export const PlasmicPanel__ArgProps = new Array<ArgPropType>();
 export type PlasmicPanel__OverridesType = {
   root?: Flex__<"div">;
   apiRequest?: Flex__<typeof ApiRequest>;
-  loadingPanel?: Flex__<typeof LoadingPanel>;
-  text?: Flex__<"div">;
+  load?: Flex__<typeof Load>;
   freeBox?: Flex__<"div">;
   panelMenu?: Flex__<typeof PanelMenu>;
   main?: Flex__<typeof Main>;
   loginPanel?: Flex__<typeof LoginPanel>;
   sideEffect?: Flex__<typeof SideEffect>;
+  loadingPanel?: Flex__<typeof LoadingPanel>;
 };
 
 export interface DefaultPanelProps {}
@@ -203,9 +204,12 @@ function PlasmicPanel__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({
-          role: "super_admin",
-          full_name: "\u0633\u0627\u06cc\u0647 \u0628\u0627\u0646",
-          center_id: ""
+          role: "center_admin",
+          full_name:
+            "\u0627\u0644\u0647\u0647 \u0627\u0645\u06cc\u0631\u0639\u0628\u0627\u0633\u06cc",
+          center_id: 4,
+          token:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJmdWxsTmFtZSI6Itin2YTZh9mHINin2YXbjNix2LnYqNin2LPbjCIsInJvbGUiOiJjZW50ZXJfYWRtaW4iLCJjZW50ZXIiOiI0IiwiaWF0IjoxNzgyMDYzNTMzfQ.juZ8jweyC7b3NjmA1BqY5kFoieTHIxesmAjCKc6nO-g"
         })
       },
       {
@@ -362,7 +366,7 @@ function PlasmicPanel__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJmdWxsTmFtZSI6Itiz2KfbjNmHINio2KfZhiIsIm1vYmlsZSI6IjEyMzQ1Njc4Iiwicm9sZSI6InN1cGVyX2FkbWluIiwiY2VudGVyIjoiIiwiaWF0IjoxNzgwMjE3NTQxfQ.jTXYr1Xa3ELQNrjV2uH8_MOm7BY3QMeMNixaiLXcDAk"
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJmdWxsTmFtZSI6Itin2YTZh9mHINin2YXbjNix2LnYqNin2LPbjCIsInJvbGUiOiJjZW50ZXJfYWRtaW4iLCJjZW50ZXIiOiI0IiwiaWF0IjoxNzgyMDYzNTMzfQ.juZ8jweyC7b3NjmA1BqY5kFoieTHIxesmAjCKc6nO-g"
       },
       {
         path: "panelMenu.subItemSelect",
@@ -399,6 +403,12 @@ function PlasmicPanel__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "load.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
       }
     ],
     [$props, $ctx, $refs]
@@ -467,20 +477,27 @@ function PlasmicPanel__RenderFunc(props: {
               Authorization: `Bearer ${$state.token}`
             }
           }}
-          errorDisplay={
-            <div
-              data-plasmic-name={"text"}
-              data-plasmic-override={overrides.text}
-              className={classNames("all", "__wab_text", sty.text)}
-            >
-              {"Error fetching data"}
-            </div>
-          }
+          errorDisplay={null}
           loadingDisplay={
-            <LoadingPanel
-              data-plasmic-name={"loadingPanel"}
-              data-plasmic-override={overrides.loadingPanel}
-              className={classNames("__wab_instance", sty.loadingPanel)}
+            <Load
+              data-plasmic-name={"load"}
+              data-plasmic-override={overrides.load}
+              className={classNames("__wab_instance", sty.load)}
+              loading={generateStateValueProp($state, ["load", "loading"])}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["load", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
             />
           }
           method={"GET"}
@@ -505,7 +522,7 @@ function PlasmicPanel__RenderFunc(props: {
             (async data => {
               const $steps = {};
 
-              $steps["runCode"] = false
+              $steps["runCode"] = $state.apiRequest?.data?.success
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
@@ -526,7 +543,7 @@ function PlasmicPanel__RenderFunc(props: {
                 $steps["runCode"] = await $steps["runCode"];
               }
 
-              $steps["goToPanel"] = false
+              $steps["goToPanel"] = $state.apiRequest?.data?.success
                 ? (() => {
                     const actionArgs = {
                       destination: `/panel/${(() => {
@@ -898,7 +915,7 @@ function PlasmicPanel__RenderFunc(props: {
                 data-plasmic-override={overrides.main}
                 centerId={(() => {
                   try {
-                    return $ctx.params?.page?.[0] === "center"
+                    return $state.userInfo.center_id
                       ? $state.userInfo.center_id
                       : $ctx.params?.page?.[0] === "center-list"
                         ? null
@@ -1203,6 +1220,12 @@ function PlasmicPanel__RenderFunc(props: {
             }
           }}
         />
+
+        <LoadingPanel
+          data-plasmic-name={"loadingPanel"}
+          data-plasmic-override={overrides.loadingPanel}
+          className={classNames("__wab_instance", sty.loadingPanel)}
+        />
       </div>
     </React.Fragment>
   ) as React.ReactElement | null;
@@ -1212,29 +1235,22 @@ const PlasmicDescendants = {
   root: [
     "root",
     "apiRequest",
-    "loadingPanel",
-    "text",
+    "load",
     "freeBox",
     "panelMenu",
     "main",
     "loginPanel",
-    "sideEffect"
+    "sideEffect",
+    "loadingPanel"
   ],
-  apiRequest: [
-    "apiRequest",
-    "loadingPanel",
-    "text",
-    "freeBox",
-    "panelMenu",
-    "main"
-  ],
-  loadingPanel: ["loadingPanel"],
-  text: ["text"],
+  apiRequest: ["apiRequest", "load", "freeBox", "panelMenu", "main"],
+  load: ["load"],
   freeBox: ["freeBox", "panelMenu", "main"],
   panelMenu: ["panelMenu"],
   main: ["main"],
   loginPanel: ["loginPanel"],
-  sideEffect: ["sideEffect"]
+  sideEffect: ["sideEffect"],
+  loadingPanel: ["loadingPanel"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1242,13 +1258,13 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   apiRequest: typeof ApiRequest;
-  loadingPanel: typeof LoadingPanel;
-  text: "div";
+  load: typeof Load;
   freeBox: "div";
   panelMenu: typeof PanelMenu;
   main: typeof Main;
   loginPanel: typeof LoginPanel;
   sideEffect: typeof SideEffect;
+  loadingPanel: typeof LoadingPanel;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1314,13 +1330,13 @@ export const PlasmicPanel = Object.assign(
   {
     // Helper components rendering sub-elements
     apiRequest: makeNodeComponent("apiRequest"),
-    loadingPanel: makeNodeComponent("loadingPanel"),
-    text: makeNodeComponent("text"),
+    load: makeNodeComponent("load"),
     freeBox: makeNodeComponent("freeBox"),
     panelMenu: makeNodeComponent("panelMenu"),
     main: makeNodeComponent("main"),
     loginPanel: makeNodeComponent("loginPanel"),
     sideEffect: makeNodeComponent("sideEffect"),
+    loadingPanel: makeNodeComponent("loadingPanel"),
 
     // Metadata about props expected for PlasmicPanel
     internalVariantProps: PlasmicPanel__VariantProps,
