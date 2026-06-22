@@ -226,7 +226,7 @@ function PlasmicMainCalendar__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
-              return $ctx.params.mainPage?.[0] || "calendar";
+              return $ctx.params.page?.[0] || "calendar";
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -1194,7 +1194,7 @@ function PlasmicMainCalendar__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
-              return $ctx.params.mainPage[1];
+              return $ctx.params.page[1];
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -1590,7 +1590,7 @@ function PlasmicMainCalendar__RenderFunc(props: {
                         destination: `/main/${(() => {
                           try {
                             return (() => {
-                              var s = $ctx.params.mainPage || ["calendar"];
+                              var s = $ctx.params.page || ["calendar"];
                               s.push("setting");
                               return s.join("/");
                             })();
@@ -1704,7 +1704,7 @@ function PlasmicMainCalendar__RenderFunc(props: {
                               const actionArgs = {
                                 destination: `/main/${(() => {
                                   try {
-                                    return $state.footerMain.type;
+                                    return $state.footerMain.type || "calendar";
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -1751,7 +1751,7 @@ function PlasmicMainCalendar__RenderFunc(props: {
                         initFunc: ({ $props, $state, $queries, $q }) =>
                           (() => {
                             try {
-                              return $ctx.params.mainPage?.[0] || "calendar";
+                              return $ctx.params.page?.[0] || "calendar";
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -1833,7 +1833,20 @@ function PlasmicMainCalendar__RenderFunc(props: {
                           $state.mainHeader.dopen == false
                             ? (() => {
                                 const actionArgs = {
-                                  destination: `/main/[[...mainPage]]`
+                                  destination: `/main/${(() => {
+                                    try {
+                                      return $ctx.params.page.join("/");
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}`
                                 };
                                 return (({ destination }) => {
                                   if (
@@ -1864,7 +1877,24 @@ function PlasmicMainCalendar__RenderFunc(props: {
                       $steps["goToMain2"] = true
                         ? (() => {
                             const actionArgs = {
-                              destination: `/main/[[...mainPage]]`
+                              destination: `/main/${(() => {
+                                try {
+                                  return (() => {
+                                    var s = $ctx.params.page;
+                                    s.push("edit");
+                                    return s.join("/");
+                                  })();
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()}`
                             };
                             return (({ destination }) => {
                               if (
@@ -2831,7 +2861,24 @@ function PlasmicMainCalendar__RenderFunc(props: {
                                 $steps["goToMain2"] = true
                                   ? (() => {
                                       const actionArgs = {
-                                        destination: `/main/[[...mainPage]]`
+                                        destination: `/main/${(() => {
+                                          try {
+                                            return (() => {
+                                              var s = $ctx.params.page;
+                                              s.push("reminderSetting");
+                                              return s.join("/");
+                                            })();
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return undefined;
+                                            }
+                                            throw e;
+                                          }
+                                        })()}`
                                       };
                                       return (({ destination }) => {
                                         if (
@@ -3021,7 +3068,20 @@ function PlasmicMainCalendar__RenderFunc(props: {
                             $steps["goToMain2"] = true
                               ? (() => {
                                   const actionArgs = {
-                                    destination: `/main/[[...mainPage]]?menu=${"true"}`
+                                    destination: `/main/${(() => {
+                                      try {
+                                        return $ctx.params.page.join("/");
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()}?menu=${"true"}`
                                   };
                                   return (({ destination }) => {
                                     if (
@@ -3114,7 +3174,21 @@ function PlasmicMainCalendar__RenderFunc(props: {
                 $steps["goToMain2"] = true
                   ? (() => {
                       const actionArgs = {
-                        destination: `/main/[[...mainPage]]`
+                        destination: `/main/${(() => {
+                          try {
+                            return $ctx.params.page
+                              .filter(i => i != "setting")
+                              .join("/");
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}`
                       };
                       return (({ destination }) => {
                         if (
@@ -3300,7 +3374,21 @@ function PlasmicMainCalendar__RenderFunc(props: {
                 $steps["goToMain2"] = true
                   ? (() => {
                       const actionArgs = {
-                        destination: `/main/[[...mainPage]]`
+                        destination: `/main/${(() => {
+                          try {
+                            return $ctx.params.page
+                              .filter(i => i != "edit")
+                              .join("/");
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}`
                       };
                       return (({ destination }) => {
                         if (
@@ -3411,7 +3499,21 @@ function PlasmicMainCalendar__RenderFunc(props: {
                 $steps["goToMain2"] = true
                   ? (() => {
                       const actionArgs = {
-                        destination: `/main/[[...mainPage]]`
+                        destination: `/main/${(() => {
+                          try {
+                            return $ctx.params.page
+                              .filter(i => i != "cycle")
+                              .join("/");
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}`
                       };
                       return (({ destination }) => {
                         if (
@@ -3711,7 +3813,21 @@ function PlasmicMainCalendar__RenderFunc(props: {
                 $steps["goToMain2"] = true
                   ? (() => {
                       const actionArgs = {
-                        destination: `/main/[[...mainPage]]`
+                        destination: `/main/${(() => {
+                          try {
+                            return $ctx.params.page
+                              .filter(i => i != "reminderSetting")
+                              .join("/");
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}`
                       };
                       return (({ destination }) => {
                         if (
@@ -4779,8 +4895,8 @@ export const PlasmicMainCalendar = Object.assign(
     internalArgProps: PlasmicMainCalendar__ArgProps,
 
     pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
-      pageRoute: "/main/[[...mainPage]]",
-      pagePath: "/main/[[...mainPage]]",
+      pageRoute: "/main/[[...page]]",
+      pagePath: "/main/[[...page]]",
       params: {},
       query: {}
     })

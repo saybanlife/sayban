@@ -791,7 +791,7 @@ function PlasmicLiad__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
-              return $ctx.params.liadPage[1];
+              return $ctx.params.page[1];
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -1509,7 +1509,7 @@ function PlasmicLiad__RenderFunc(props: {
                         destination: `/liad/${(() => {
                           try {
                             return (() => {
-                              var s = $ctx.params.liadPage || ["reminder"];
+                              var s = $ctx.params.page || ["reminder"];
                               s.push("reminderSetting");
                               return s.join("/");
                             })();
@@ -1555,7 +1555,7 @@ function PlasmicLiad__RenderFunc(props: {
                         destination: `/liad/${(() => {
                           try {
                             return (() => {
-                              var s = $ctx.params.liadPage || ["reminder"];
+                              var s = $ctx.params.page || ["reminder"];
                               s.push("setting");
                               return s.join("/");
                             })();
@@ -1646,7 +1646,20 @@ function PlasmicLiad__RenderFunc(props: {
                       $steps["goToMain2"] = true
                         ? (() => {
                             const actionArgs = {
-                              destination: `/main/[[...mainPage]]`
+                              destination: `/main/${(() => {
+                                try {
+                                  return $state.footerMain.type || "calendar";
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()}`
                             };
                             return (({ destination }) => {
                               if (
@@ -1784,7 +1797,20 @@ function PlasmicLiad__RenderFunc(props: {
                         $state.mainHeader.dopen == false
                           ? (() => {
                               const actionArgs = {
-                                destination: `/liad/[[...liadPage]]`
+                                destination: `/liad/${(() => {
+                                  try {
+                                    return $ctx.params.page.join("/");
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()}`
                               };
                               return (({ destination }) => {
                                 if (
@@ -1815,7 +1841,23 @@ function PlasmicLiad__RenderFunc(props: {
                     $steps["goToMain2"] = true
                       ? (() => {
                           const actionArgs = {
-                            destination: `/liad/[[...liadPage]]`
+                            destination: `/liad/${(() => {
+                              try {
+                                return (() => {
+                                  var s = $ctx.params.page;
+                                  s.push("edit");
+                                  return s.join("/");
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}`
                           };
                           return (({ destination }) => {
                             if (
@@ -1845,7 +1887,23 @@ function PlasmicLiad__RenderFunc(props: {
                     $steps["goToLiad"] = true
                       ? (() => {
                           const actionArgs = {
-                            destination: `/liad/[[...liadPage]]`
+                            destination: `/liad/${(() => {
+                              try {
+                                return (() => {
+                                  var s = $ctx.params.page;
+                                  s.push("reminderSetting");
+                                  return s.join("/");
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}`
                           };
                           return (({ destination }) => {
                             if (
@@ -1879,7 +1937,24 @@ function PlasmicLiad__RenderFunc(props: {
                           $steps["goToMain2"] = true
                             ? (() => {
                                 const actionArgs = {
-                                  destination: `/liad/[[...liadPage]]`
+                                  destination: `/liad/${(() => {
+                                    try {
+                                      return (() => {
+                                        var s = $ctx.params.page;
+                                        s.push("reminderSetting");
+                                        return s.join("/");
+                                      })();
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}`
                                 };
                                 return (({ destination }) => {
                                   if (
@@ -2026,7 +2101,20 @@ function PlasmicLiad__RenderFunc(props: {
                           $steps["goToMain2"] = true
                             ? (() => {
                                 const actionArgs = {
-                                  destination: `/liad/[[...liadPage]]?menu=${"true"}`
+                                  destination: `/liad/${(() => {
+                                    try {
+                                      return $ctx.params.page.join("/");
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}?menu=${"true"}`
                                 };
                                 return (({ destination }) => {
                                   if (
@@ -2102,7 +2190,21 @@ function PlasmicLiad__RenderFunc(props: {
                 $steps["goToMain2"] = true
                   ? (() => {
                       const actionArgs = {
-                        destination: `/liad/[[...liadPage]]`
+                        destination: `/liad/${(() => {
+                          try {
+                            return $ctx.params.page
+                              .filter(i => i != "edit")
+                              .join("/");
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}`
                       };
                       return (({ destination }) => {
                         if (
@@ -2275,7 +2377,21 @@ function PlasmicLiad__RenderFunc(props: {
                 $steps["goToMain2"] = true
                   ? (() => {
                       const actionArgs = {
-                        destination: `/liad/[[...liadPage]]`
+                        destination: `/liad/${(() => {
+                          try {
+                            return $ctx.params.page
+                              .filter(i => i != "reminderSetting")
+                              .join("/");
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}`
                       };
                       return (({ destination }) => {
                         if (
@@ -3089,8 +3205,8 @@ export const PlasmicLiad = Object.assign(
     internalArgProps: PlasmicLiad__ArgProps,
 
     pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
-      pageRoute: "/liad/[[...liadPage]]",
-      pagePath: "/liad/[[...liadPage]]",
+      pageRoute: "/liad/[[...page]]",
+      pagePath: "/liad/[[...page]]",
       params: {},
       query: {}
     })

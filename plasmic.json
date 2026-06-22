@@ -4648,7 +4648,7 @@
           "projectId": "suVPi77vb6vv9K5rYJwyxC",
           "renderModuleFilePath": "plasmic/liom_hamyar/PlasmicHamyar.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/hamyar/[[...hamyarPage]].tsx"
+            "modulePath": "../src/pages/hamyar/[[...page]].tsx"
           },
           "cssFilePath": "plasmic/liom_hamyar/PlasmicHamyar.module.css",
           "scheme": "blackbox",
@@ -5122,7 +5122,7 @@
           "projectId": "suVPi77vb6vv9K5rYJwyxC",
           "renderModuleFilePath": "plasmic/liom_hamyar/PlasmicMainCalendar.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/main/[[...mainPage]].tsx"
+            "modulePath": "../src/pages/main/[[...page]].tsx"
           },
           "cssFilePath": "plasmic/liom_hamyar/PlasmicMainCalendar.module.css",
           "scheme": "blackbox",
@@ -5188,7 +5188,7 @@
           "projectId": "suVPi77vb6vv9K5rYJwyxC",
           "renderModuleFilePath": "plasmic/liom_hamyar/PlasmicLiad.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/liad/[[...liadPage]].tsx"
+            "modulePath": "../src/pages/liad/[[...page]].tsx"
           },
           "cssFilePath": "plasmic/liom_hamyar/PlasmicLiad.module.css",
           "scheme": "blackbox",

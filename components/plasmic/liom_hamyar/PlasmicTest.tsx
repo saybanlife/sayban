@@ -65,7 +65,6 @@ import { usePlasmicDataSourceContext } from "@plasmicapp/data-sources-context";
 import Button from "../../Button"; // plasmic-import: ErJEaLhimwjN/component
 import LineClomp from "../../LineClomp"; // plasmic-import: XsM8QG4wUKlk/component
 import DialogTooltip from "../../DialogTooltip"; // plasmic-import: 0nKndp-acHhb/component
-import Comment from "../../Comment"; // plasmic-import: Q00r5f4C3XYv/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: suVPi77vb6vv9K5rYJwyxC/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: suVPi77vb6vv9K5rYJwyxC/styleTokensProvider
 
@@ -125,7 +124,6 @@ export type PlasmicTest__OverridesType = {
   text?: Flex__<"div">;
   dialogTooltip?: Flex__<typeof DialogTooltip>;
   img?: Flex__<typeof PlasmicImg__>;
-  comment?: Flex__<typeof Comment>;
 };
 
 export interface DefaultTestProps {}
@@ -203,18 +201,6 @@ function PlasmicTest__RenderFunc(props: {
       },
       {
         path: "dialogTooltip.opendialog",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
-      {
-        path: "comment.commentData",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
-      },
-      {
-        path: "comment.like",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
@@ -494,45 +480,6 @@ function PlasmicTest__RenderFunc(props: {
               "https://liom.storage.c2.liara.space/config/self_care/chatBotOutlined.png"
             }
           />
-
-          <Comment
-            data-plasmic-name={"comment"}
-            data-plasmic-override={overrides.comment}
-            className={classNames("__wab_instance", sty.comment)}
-            commentData={generateStateValueProp($state, [
-              "comment",
-              "commentData"
-            ])}
-            like={generateStateValueProp($state, ["comment", "like"])}
-            onCommentDataChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "comment",
-                "commentData"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            onLikeChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["comment", "like"]).apply(
-                null,
-                eventArgs
-              );
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-          />
         </div>
       </div>
     </React.Fragment>
@@ -540,21 +487,12 @@ function PlasmicTest__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: [
-    "root",
-    "button",
-    "lineClomp",
-    "text",
-    "dialogTooltip",
-    "img",
-    "comment"
-  ],
+  root: ["root", "button", "lineClomp", "text", "dialogTooltip", "img"],
   button: ["button"],
   lineClomp: ["lineClomp"],
   text: ["text"],
   dialogTooltip: ["dialogTooltip"],
-  img: ["img"],
-  comment: ["comment"]
+  img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -566,7 +504,6 @@ type NodeDefaultElementType = {
   text: "div";
   dialogTooltip: typeof DialogTooltip;
   img: typeof PlasmicImg__;
-  comment: typeof Comment;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -661,7 +598,6 @@ export const PlasmicTest = Object.assign(
     text: makeNodeComponent("text"),
     dialogTooltip: makeNodeComponent("dialogTooltip"),
     img: makeNodeComponent("img"),
-    comment: makeNodeComponent("comment"),
 
     // Metadata about props expected for PlasmicTest
     internalVariantProps: PlasmicTest__VariantProps,

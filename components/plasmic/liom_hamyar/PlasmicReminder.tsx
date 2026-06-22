@@ -5422,7 +5422,7 @@ function PlasmicReminder__RenderFunc(props: {
                     $steps["goToHamyar"] = true
                       ? (() => {
                           const actionArgs = {
-                            destination: `/hamyar/[[...hamyarPage]]`
+                            destination: `/hamyar/${"reminder"}`
                           };
                           return (({ destination }) => {
                             if (

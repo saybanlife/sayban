@@ -740,7 +740,7 @@ function PlasmicHamyar__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
-              return $ctx.params.hamyarPage?.[0] || "hamyar";
+              return $ctx.params.page?.[0] || "hamyar";
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -2791,7 +2791,7 @@ function PlasmicHamyar__RenderFunc(props: {
                         initFunc: ({ $props, $state, $queries, $q }) =>
                           (() => {
                             try {
-                              return $ctx.params.hamyarPage?.[0] || "hamyar";
+                              return $ctx.params.page?.[0] || "hamyar";
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -7350,11 +7350,6 @@ function PlasmicHamyar__RenderFunc(props: {
                   "editCycle",
                   "editCycle"
                 ),
-                [sty.settingCycle4lackOfCourseInformation]: hasVariant(
-                  $state,
-                  "lackOfCourseInformation",
-                  "lackOfCourseInformation"
-                ),
                 [sty.settingCycle4noPartner]: hasVariant(
                   $state,
                   "noPartner",
@@ -8132,8 +8127,8 @@ export const PlasmicHamyar = Object.assign(
     internalArgProps: PlasmicHamyar__ArgProps,
 
     pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
-      pageRoute: "/hamyar/[[...hamyarPage]]",
-      pagePath: "/hamyar/[[...hamyarPage]]",
+      pageRoute: "/hamyar/[[...page]]",
+      pagePath: "/hamyar/[[...page]]",
       params: {},
       query: {}
     })
