@@ -201,14 +201,7 @@ function PlasmicPanel__RenderFunc(props: {
         path: "userInfo",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({
-          role: "center_admin",
-          full_name:
-            "\u0627\u0644\u0647\u0647 \u0627\u0645\u06cc\u0631\u0639\u0628\u0627\u0633\u06cc",
-          center_id: 4,
-          token:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJmdWxsTmFtZSI6Itin2YTZh9mHINin2YXbjNix2LnYqNin2LPbjCIsInJvbGUiOiJjZW50ZXJfYWRtaW4iLCJjZW50ZXIiOiI0IiwiaWF0IjoxNzgyMDYzNTMzfQ.juZ8jweyC7b3NjmA1BqY5kFoieTHIxesmAjCKc6nO-g"
-        })
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "menu",
@@ -363,8 +356,7 @@ function PlasmicPanel__RenderFunc(props: {
         path: "token",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJmdWxsTmFtZSI6Itin2YTZh9mHINin2YXbjNix2LnYqNin2LPbjCIsInJvbGUiOiJjZW50ZXJfYWRtaW4iLCJjZW50ZXIiOiI0IiwiaWF0IjoxNzgyMDYzNTMzfQ.juZ8jweyC7b3NjmA1BqY5kFoieTHIxesmAjCKc6nO-g"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "panelMenu.subItemSelect",
