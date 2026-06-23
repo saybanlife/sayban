@@ -218,3 +218,303 @@
   height: 100%;
   min-height: 0;
 }
+.dialog:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.freeBox___4C6QB {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-0tl2H1TRPHhV);
+  min-width: 0;
+  padding: var(--token-73iLa06AE6f4);
+}
+.text__ovoCa {
+  font-size: var(--token-Tca_MqWoqq_b);
+  width: 100%;
+  text-align: center;
+  color: var(--token-9M5jRUPt8Msb);
+  font-weight: 600;
+  min-width: 0;
+}
+.nameInput:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.slugInput:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.textAreaInput:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.checkbox:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.text__xNnjM {
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  width: 100%;
+  text-align: right;
+  color: var(--token-Unt2O2MnUneb);
+  min-width: 0;
+}
+.text__dQio {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+.freeBox__y1Pqp {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-73iLa06AE6f4);
+  min-width: 0;
+  padding: var(--token-73iLa06AE6f4);
+}
+.button3:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  height: 45px;
+  width: 100%;
+  min-width: 0;
+}
+.svg___3Go6B {
+  position: relative;
+  height: 1em;
+}
+.text__cqYu5 {
+  white-space: pre;
+  color: var(--token-k-47TemksE2v);
+}
+.svg__wdZ0L {
+  position: relative;
+  height: 1em;
+}
+.button4:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  height: 45px;
+  width: 100%;
+  min-width: 0;
+}
+.svg__rxMGr {
+  position: relative;
+  height: 1em;
+}
+.text__bJaFc {
+  white-space: pre;
+  color: var(--token-1aP3XjRZIKFV);
+}
+.svg__iSl5I {
+  position: relative;
+  height: 1em;
+}
+.dialog2:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.freeBox__aooNq {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-0tl2H1TRPHhV);
+  min-width: 0;
+  padding: var(--token-73iLa06AE6f4);
+}
+.text__mCzfV {
+  font-size: var(--token-Tca_MqWoqq_b);
+  width: 100%;
+  text-align: center;
+  color: var(--token-9M5jRUPt8Msb);
+  font-weight: 600;
+  min-width: 0;
+}
+.nameInput2:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.slugInput1:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.textAreaInput2:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.checkbox2:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.text__rcLJu {
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  width: 100%;
+  text-align: right;
+  color: var(--token-Unt2O2MnUneb);
+  min-width: 0;
+}
+.text__dmtiF {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+.freeBox__sXoqy {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-73iLa06AE6f4);
+  min-width: 0;
+  padding: var(--token-73iLa06AE6f4);
+}
+.button7:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  height: 45px;
+  width: 100%;
+  min-width: 0;
+}
+.svg___7CUeL {
+  position: relative;
+  height: 1em;
+}
+.text__skJAp {
+  white-space: pre;
+  color: var(--token-k-47TemksE2v);
+}
+.svg__dyces {
+  position: relative;
+  height: 1em;
+}
+.button8:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  height: 45px;
+  width: 100%;
+  min-width: 0;
+}
+.svg__o7TBs {
+  position: relative;
+  height: 1em;
+}
+.text__iIzxE {
+  white-space: pre;
+  color: var(--token-1aP3XjRZIKFV);
+}
+.svg__adeYh {
+  position: relative;
+  height: 1em;
+}
+.snackbar:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.freeBox__lzhEx {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-73iLa06AE6f4);
+  min-width: 0;
+  padding: 0px;
+}
+.button5:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  height: 45px;
+  width: 100%;
+  min-width: 0;
+}
+.svg__atWn1 {
+  position: relative;
+  height: 1em;
+}
+.text__xBlEa {
+  white-space: pre;
+  color: var(--token-k-47TemksE2v);
+}
+.svg___5QTdX {
+  position: relative;
+  height: 1em;
+}
+.button6:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  height: 45px;
+  width: 100%;
+  min-width: 0;
+}
+.svg__cRs1M {
+  position: relative;
+  height: 1em;
+}
+.text___09Peh {
+  white-space: pre;
+  color: var(--token-1aP3XjRZIKFV);
+}
+.svg__kimSx {
+  position: relative;
+  height: 1em;
+}
+.snackbar2:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.freeBox__auCyb {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-73iLa06AE6f4);
+  min-width: 0;
+  padding: 0px;
+}
+.button9:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  height: 45px;
+  width: 100%;
+  min-width: 0;
+}
+.svg__qekbp {
+  position: relative;
+  height: 1em;
+}
+.text__vpOev {
+  white-space: pre;
+  color: var(--token-k-47TemksE2v);
+}
+.svg__hZzo8 {
+  position: relative;
+  height: 1em;
+}
+.button10:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  height: 45px;
+  width: 100%;
+  min-width: 0;
+}
+.svg__n3TE {
+  position: relative;
+  height: 1em;
+}
+.text__d7MeR {
+  white-space: pre;
+  color: var(--token-1aP3XjRZIKFV);
+}
+.svg__sya0 {
+  position: relative;
+  height: 1em;
+}

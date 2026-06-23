@@ -74,6 +74,7 @@ import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-impor
 import Icon92Icon from "./icons/PlasmicIcon__Icon92"; // plasmic-import: 5xE4Rx5gdqwV/icon
 import Icon94Icon from "./icons/PlasmicIcon__Icon94"; // plasmic-import: cEQZhPJdr_D3/icon
 import Icon58Icon from "./icons/PlasmicIcon__Icon58"; // plasmic-import: ZZecBkDFVPaA/icon
+import Icon70Icon from "./icons/PlasmicIcon__Icon70"; // plasmic-import: PWsALiD1VW02/icon
 
 createPlasmicElementProxy;
 
@@ -92,12 +93,26 @@ export type PlasmicCategoryItem__ArgsType = {
   user?: any;
   currentItem?: any;
   onOpenChange?: (val: any) => void;
+  onEdit?: (event: any) => void;
+  onDelete?: (event: any) => void;
+  addOnClick?: (event: any) => void;
+  selected?: any;
+  onSelectedChange?: (val: string) => void;
+  deleteSubcategories?: (event: any) => void;
+  editSubcategories?: (event: any) => void;
 };
 type ArgPropType = keyof PlasmicCategoryItem__ArgsType;
 export const PlasmicCategoryItem__ArgProps = new Array<ArgPropType>(
   "user",
   "currentItem",
-  "onOpenChange"
+  "onOpenChange",
+  "onEdit",
+  "onDelete",
+  "addOnClick",
+  "selected",
+  "onSelectedChange",
+  "deleteSubcategories",
+  "editSubcategories"
 );
 
 export type PlasmicCategoryItem__OverridesType = {
@@ -111,6 +126,13 @@ export interface DefaultCategoryItemProps {
   user?: any;
   currentItem?: any;
   onOpenChange?: (val: any) => void;
+  onEdit?: (event: any) => void;
+  onDelete?: (event: any) => void;
+  addOnClick?: (event: any) => void;
+  selected?: any;
+  onSelectedChange?: (val: string) => void;
+  deleteSubcategories?: (event: any) => void;
+  editSubcategories?: (event: any) => void;
   open?: SingleBooleanChoiceArg<"open">;
   className?: string;
 }
@@ -177,10 +199,20 @@ function PlasmicCategoryItem__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "selected",
+        type: "writable",
+        variableType: "object",
+
+        valueProp: "selected",
+        onChangeProp: "onSelectedChange"
       }
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
 
   const $state = useDollarState(stateSpecs, {
     $props,
@@ -206,6 +238,19 @@ function PlasmicCategoryItem__RenderFunc(props: {
         styleTokensClassNames,
         sty.root
       )}
+      id={(() => {
+        try {
+          return `categoryId-${$props.currentItem.category_id}`;
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return undefined;
+          }
+          throw e;
+        }
+      })()}
     >
       <div
         className={classNames("all", sty.freeBox__pmh6X)}
@@ -261,8 +306,31 @@ function PlasmicCategoryItem__RenderFunc(props: {
           />
         </div>
         <div className={classNames("all", sty.freeBox__vu5Vc)}>
-          <div className={classNames("all", "__wab_text", sty.text__lc6Fi)}>
-            <React.Fragment>{$props.currentItem.name}</React.Fragment>
+          <div className={classNames("all", sty.freeBox__v6FgA)}>
+            <div className={classNames("all", "__wab_text", sty.text__lc6Fi)}>
+              <React.Fragment>{$props.currentItem.name}</React.Fragment>
+            </div>
+            {(() => {
+              try {
+                return $props.currentItem.is_popular;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <div className={classNames("all", sty.freeBox__yzZnk)}>
+                <div
+                  className={classNames("all", "__wab_text", sty.text___7T2SI)}
+                >
+                  {"\u0645\u062d\u0628\u0648\u0628"}
+                </div>
+              </div>
+            ) : null}
           </div>
           <div className={classNames("all", "__wab_text", sty.text__eIT)}>
             <React.Fragment>{`${$props.currentItem.centers_count} مرکز در این دسته بندی وجود دارد `}</React.Fragment>
@@ -282,6 +350,7 @@ function PlasmicCategoryItem__RenderFunc(props: {
             </div>
           }
           loading={generateStateValueProp($state, ["add", "loading"])}
+          onClick={args.addOnClick}
           onLoadingChange={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["add", "loading"]).apply(
               null,
@@ -311,7 +380,10 @@ function PlasmicCategoryItem__RenderFunc(props: {
           className={classNames("__wab_instance", sty.popover)}
           content={
             <div className={classNames("all", sty.freeBox__arA5F)}>
-              <div className={classNames("all", sty.freeBox__dqrCp)}>
+              <div
+                className={classNames("all", sty.freeBox__dqrCp)}
+                onClick={args.onEdit}
+              >
                 <Icon94Icon
                   className={classNames("all", sty.svg___9Xzl)}
                   role={"img"}
@@ -325,9 +397,7 @@ function PlasmicCategoryItem__RenderFunc(props: {
               </div>
               <div
                 className={classNames("all", sty.freeBox__bFpAd)}
-                onClick={async event => {
-                  const $steps = {};
-                }}
+                onClick={args.onDelete}
               >
                 <Icon58Icon
                   className={classNames("all", sty.svg__tBpNn)}
@@ -366,6 +436,29 @@ function PlasmicCategoryItem__RenderFunc(props: {
         >
           <Icon92Icon
             className={classNames("all", sty.svg__aiHxz)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return event.stopPropagation();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
             role={"img"}
           />
         </AntdPopover>
@@ -379,7 +472,7 @@ function PlasmicCategoryItem__RenderFunc(props: {
       {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
         (() => {
           try {
-            return $props.user[0].subcategories;
+            return $props.currentItem.subcategories;
           } catch (e) {
             if (
               e instanceof TypeError ||
@@ -398,13 +491,185 @@ function PlasmicCategoryItem__RenderFunc(props: {
             className={classNames("all", sty.freeBox___33G2, {
               [sty.freeBoxopen___33G2W9XVq]: hasVariant($state, "open", "open")
             })}
+            id={(() => {
+              try {
+                return `subcategoryId-${$props.currentItem.category_id}`;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
             key={currentIndex}
           >
-            <div className={classNames("all", "__wab_text", sty.text__c0GYq)}>
-              <React.Fragment>{currentItem.name}</React.Fragment>
+            <div className={classNames("all", sty.freeBox__kMDyz)}>
+              <div className={classNames("all", "__wab_text", sty.text__c0GYq)}>
+                <React.Fragment>{currentItem.name}</React.Fragment>
+              </div>
+              <div className={classNames("all", "__wab_text", sty.text__dsoZj)}>
+                <React.Fragment>{currentItem.description}</React.Fragment>
+              </div>
             </div>
-            <div className={classNames("all", "__wab_text", sty.text__dsoZj)}>
-              <React.Fragment>{currentItem.description}</React.Fragment>
+            <div className={classNames("all", sty.freeBox___6GvT)}>
+              <Icon70Icon
+                className={classNames("all", sty.svg__jguxG)}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateSelected"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["selected"]
+                          },
+                          operation: 0,
+                          value: currentItem
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateSelected"] != null &&
+                    typeof $steps["updateSelected"] === "object" &&
+                    typeof $steps["updateSelected"].then === "function"
+                  ) {
+                    $steps["updateSelected"] = await $steps["updateSelected"];
+                  }
+
+                  $steps["invokeGlobalAction"] = true
+                    ? (() => {
+                        const actionArgs = { args: [200] };
+                        return $globalActions["Fragment.wait"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction"] != null &&
+                    typeof $steps["invokeGlobalAction"] === "object" &&
+                    typeof $steps["invokeGlobalAction"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction"] =
+                      await $steps["invokeGlobalAction"];
+                  }
+
+                  $steps["runEditSubcategories"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          eventRef: $props["editSubcategories"]
+                        };
+                        return (({ eventRef, args }) => {
+                          return eventRef?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runEditSubcategories"] != null &&
+                    typeof $steps["runEditSubcategories"] === "object" &&
+                    typeof $steps["runEditSubcategories"].then === "function"
+                  ) {
+                    $steps["runEditSubcategories"] =
+                      await $steps["runEditSubcategories"];
+                  }
+                }}
+                role={"img"}
+              />
+
+              <Icon58Icon
+                className={classNames("all", sty.svg__bbSsE)}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateSelected"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["selected"]
+                          },
+                          operation: 0,
+                          value: currentItem
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateSelected"] != null &&
+                    typeof $steps["updateSelected"] === "object" &&
+                    typeof $steps["updateSelected"].then === "function"
+                  ) {
+                    $steps["updateSelected"] = await $steps["updateSelected"];
+                  }
+
+                  $steps["invokeGlobalAction"] = true
+                    ? (() => {
+                        const actionArgs = { args: [200] };
+                        return $globalActions["Fragment.wait"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction"] != null &&
+                    typeof $steps["invokeGlobalAction"] === "object" &&
+                    typeof $steps["invokeGlobalAction"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction"] =
+                      await $steps["invokeGlobalAction"];
+                  }
+
+                  $steps["runDeleteSubcategories"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          eventRef: $props["deleteSubcategories"]
+                        };
+                        return (({ eventRef, args }) => {
+                          return eventRef?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runDeleteSubcategories"] != null &&
+                    typeof $steps["runDeleteSubcategories"] === "object" &&
+                    typeof $steps["runDeleteSubcategories"].then === "function"
+                  ) {
+                    $steps["runDeleteSubcategories"] =
+                      await $steps["runDeleteSubcategories"];
+                  }
+                }}
+                role={"img"}
+              />
             </div>
           </div>
         );

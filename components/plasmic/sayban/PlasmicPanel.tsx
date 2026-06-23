@@ -232,7 +232,7 @@ function PlasmicPanel__RenderFunc(props: {
           {
             label:
               "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062e\u062f\u0645\u0627\u062a",
-            value: "services_management",
+            value: "services",
             icon: "service",
             permissions: ["center_admin"]
           },

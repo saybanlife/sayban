@@ -68,6 +68,10 @@ import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-impor
 import Errorpage from "../../Errorpage"; // plasmic-import: HTnfDJNIbaau/component
 import CategoryItem from "../../CategoryItem"; // plasmic-import: qV-4fgZ_BL9-/component
 import EmptyPage from "../../EmptyPage"; // plasmic-import: q5YsvjSR6-JD/component
+import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
+import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
+import Checkbox from "../../Checkbox"; // plasmic-import: 7eMtZduHzknK/component
+import Snackbar from "../../Snackbar"; // plasmic-import: CaodI8ra68z4/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -130,6 +134,26 @@ export type PlasmicMainPageCategories__OverridesType = {
   button2?: Flex__<typeof Button>;
   categoryItem?: Flex__<typeof CategoryItem>;
   emptyPage?: Flex__<typeof EmptyPage>;
+  dialog?: Flex__<typeof Dialog>;
+  nameInput?: Flex__<typeof TextInput>;
+  slugInput?: Flex__<typeof TextInput>;
+  textAreaInput?: Flex__<typeof TextAreaInput>;
+  checkbox?: Flex__<typeof Checkbox>;
+  button3?: Flex__<typeof Button>;
+  button4?: Flex__<typeof Button>;
+  dialog2?: Flex__<typeof Dialog>;
+  nameInput2?: Flex__<typeof TextInput>;
+  slugInput1?: Flex__<typeof TextInput>;
+  textAreaInput2?: Flex__<typeof TextAreaInput>;
+  checkbox2?: Flex__<typeof Checkbox>;
+  button7?: Flex__<typeof Button>;
+  button8?: Flex__<typeof Button>;
+  snackbar?: Flex__<typeof Snackbar>;
+  button5?: Flex__<typeof Button>;
+  button6?: Flex__<typeof Button>;
+  snackbar2?: Flex__<typeof Snackbar>;
+  button9?: Flex__<typeof Button>;
+  button10?: Flex__<typeof Button>;
 };
 
 export interface DefaultMainPageCategoriesProps {
@@ -291,10 +315,257 @@ function PlasmicMainPageCategories__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "dialog.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "nameInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.selected.name;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "slugInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.selected.slug;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "textAreaInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.selected.category_description;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "checkbox.isSelected",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "button3.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button4.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "selected",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "snackbar.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "snackbar.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "snackbar.index",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "button5.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button6.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "dialog2.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "nameInput2.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.selected.name;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "slugInput1.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.selected.slug;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "textAreaInput2.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.selected.description;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "checkbox2.isSelected",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "button7.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button8.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "id",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 0
+      },
+      {
+        path: "categoryItem[].selected",
+        type: "private",
+        variableType: "object"
+      },
+      {
+        path: "snackbar2.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "snackbar2.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "snackbar2.index",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "button9.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button10.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "search",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
 
   const $state = useDollarState(stateSpecs, {
     $props,
@@ -339,6 +610,38 @@ function PlasmicMainPageCategories__RenderFunc(props: {
           <TextInput
             data-plasmic-name={"textInput"}
             data-plasmic-override={overrides.textInput}
+            ariaInputOnBlur={async focusEvent => {
+              const $steps = {};
+
+              $steps["updateSearch"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["search"]
+                      },
+                      operation: 0,
+                      value: $state.textInput.value
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSearch"] != null &&
+                typeof $steps["updateSearch"] === "object" &&
+                typeof $steps["updateSearch"].then === "function"
+              ) {
+                $steps["updateSearch"] = await $steps["updateSearch"];
+              }
+            }}
             className={classNames("__wab_instance", sty.textInput)}
             onChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["textInput", "value"]).apply(
@@ -365,6 +668,169 @@ function PlasmicMainPageCategories__RenderFunc(props: {
 
           <SearchSvgIcon
             className={classNames("all", sty.svg__fRlNo)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateSearch"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["search"]
+                      },
+                      operation: 0,
+                      value: $state.textInput.value
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSearch"] != null &&
+                typeof $steps["updateSearch"] === "object" &&
+                typeof $steps["updateSearch"].then === "function"
+              ) {
+                $steps["updateSearch"] = await $steps["updateSearch"];
+              }
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          const categories = $state.user || [];
+                          const searchTerm = $state.search || "";
+                          if (!searchTerm.trim()) return null;
+                          const lowerCaseSearchTerm = searchTerm.toLowerCase();
+                          const foundItem = categories
+                            .flatMap(cat => {
+                              const catNameMatch = cat.name
+                                ?.toLowerCase()
+                                .includes(lowerCaseSearchTerm);
+                              const catSlugMatch = cat.slug
+                                ?.toLowerCase()
+                                .includes(lowerCaseSearchTerm);
+                              if (catNameMatch || catSlugMatch) {
+                                return { categoryId: cat.category_id };
+                              }
+                              const sub = cat.subcategories?.find(
+                                s =>
+                                  s.name
+                                    ?.toLowerCase()
+                                    .includes(lowerCaseSearchTerm) ||
+                                  s.slug
+                                    ?.toLowerCase()
+                                    .includes(lowerCaseSearchTerm)
+                              );
+                              if (sub) {
+                                return {
+                                  categoryId: cat.category_id,
+                                  subcategoryId: sub.id
+                                };
+                              }
+                              return [];
+                            })
+                            .find(
+                              item =>
+                                item !== null &&
+                                item !== undefined &&
+                                Object.keys(item).length > 0
+                            );
+                          return foundItem || null;
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["runCode2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          const searchResult = $steps.runCode;
+                          if (!searchResult) return null;
+                          const isSubcategoryResult =
+                            searchResult.subcategoryId !== undefined &&
+                            searchResult.subcategoryId !== null;
+                          const isCategoryResult =
+                            searchResult.categoryId !== undefined &&
+                            searchResult.categoryId !== null;
+                          let finalTargetId = null;
+                          let categoryIdToExpand = null;
+                          if (isSubcategoryResult) {
+                            finalTargetId = `subcategoryId-${searchResult.subcategoryId}`;
+                            categoryIdToExpand = searchResult.categoryId;
+                          } else if (isCategoryResult) {
+                            finalTargetId = `categoryId-${searchResult.categoryId}`;
+                          } else {
+                            return null;
+                          }
+                          let needsRenderUpdate = false;
+                          if (categoryIdToExpand) {
+                            const categoryIndex = (
+                              $state.categoryItems || []
+                            ).findIndex(item => item.id === categoryIdToExpand);
+                            if (
+                              categoryIndex !== -1 &&
+                              !$state.categoryItem[categoryIndex].open
+                            ) {
+                              needsRenderUpdate = true;
+                              $state.categoryItem[categoryIndex].open = true;
+                            }
+                          }
+                          const renderDelay = needsRenderUpdate ? 500 : 50;
+                          setTimeout(() => {
+                            const element =
+                              document.getElementById(finalTargetId);
+                            if (element) {
+                              element.scrollIntoView({
+                                behavior: "smooth",
+                                block: "center"
+                              });
+                              element.classList.add("highlighted-shine");
+                              setTimeout(
+                                () =>
+                                  element.classList.remove("highlighted-shine"),
+                                1500
+                              );
+                            }
+                            $state.currentSearchResult = null;
+                          }, renderDelay);
+                          return null;
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode2"] != null &&
+                typeof $steps["runCode2"] === "object" &&
+                typeof $steps["runCode2"].then === "function"
+              ) {
+                $steps["runCode2"] = await $steps["runCode2"];
+              }
+            }}
             role={"img"}
           />
         </div>
@@ -389,7 +855,32 @@ function PlasmicMainPageCategories__RenderFunc(props: {
               </div>
             }
             loading={generateStateValueProp($state, ["button", "loading"])}
-            onClick={args.openEdit}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.dialog.opendialog = true;
+                          return ($state.selected = {});
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
             onLoadingChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["button", "loading"]).apply(
                 null,
@@ -545,6 +1036,7 @@ function PlasmicMainPageCategories__RenderFunc(props: {
                 }
               }).apply(null, eventArgs);
             }}
+            params={{ r: $state.restart }}
             shouldFetch={(() => {
               try {
                 return $state.list;
@@ -702,10 +1194,150 @@ function PlasmicMainPageCategories__RenderFunc(props: {
                   const currentIndex = __plasmic_idx_0;
                   return (() => {
                     const child$Props = {
+                      addOnClick: async event => {
+                        const $steps = {};
+
+                        $steps["runCode"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return (() => {
+                                    $state.dialog2.opendialog = true;
+                                    $state.selected = {};
+                                    return ($state.id =
+                                      currentItem.category_id);
+                                  })();
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["runCode"] != null &&
+                          typeof $steps["runCode"] === "object" &&
+                          typeof $steps["runCode"].then === "function"
+                        ) {
+                          $steps["runCode"] = await $steps["runCode"];
+                        }
+                      },
                       className: classNames("__wab_instance", sty.categoryItem),
                       currentItem: currentItem,
 
+                      deleteSubcategories: async event => {
+                        const $steps = {};
+
+                        $steps["runCode"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return (() => {
+                                    $state.snackbar2.opendialog = true;
+                                    return ($state.selected =
+                                      $state.categoryItem[
+                                        currentIndex
+                                      ].selected);
+                                  })();
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["runCode"] != null &&
+                          typeof $steps["runCode"] === "object" &&
+                          typeof $steps["runCode"].then === "function"
+                        ) {
+                          $steps["runCode"] = await $steps["runCode"];
+                        }
+                      },
+                      editSubcategories: async event => {
+                        const $steps = {};
+
+                        $steps["runCode"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return (() => {
+                                    $state.dialog2.opendialog = true;
+                                    $state.selected =
+                                      $state.categoryItem[
+                                        currentIndex
+                                      ].selected;
+                                    return ($state.id =
+                                      currentItem.category_id);
+                                  })();
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["runCode"] != null &&
+                          typeof $steps["runCode"] === "object" &&
+                          typeof $steps["runCode"].then === "function"
+                        ) {
+                          $steps["runCode"] = await $steps["runCode"];
+                        }
+                      },
                       key: currentIndex,
+                      onDelete: async event => {
+                        const $steps = {};
+
+                        $steps["runCode"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return (() => {
+                                    $state.snackbar.opendialog = true;
+                                    return ($state.selected = currentItem);
+                                  })();
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["runCode"] != null &&
+                          typeof $steps["runCode"] === "object" &&
+                          typeof $steps["runCode"].then === "function"
+                        ) {
+                          $steps["runCode"] = await $steps["runCode"];
+                        }
+                      },
+                      onEdit: async event => {
+                        const $steps = {};
+
+                        $steps["runCode"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return (() => {
+                                    $state.dialog.opendialog = true;
+                                    return ($state.selected = currentItem);
+                                  })();
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["runCode"] != null &&
+                          typeof $steps["runCode"] === "object" &&
+                          typeof $steps["runCode"].then === "function"
+                        ) {
+                          $steps["runCode"] = await $steps["runCode"];
+                        }
+                      },
                       onOpenChange: async (...eventArgs: any) => {
                         generateStateOnChangeProp($state, [
                           "categoryItem",
@@ -721,10 +1353,30 @@ function PlasmicMainPageCategories__RenderFunc(props: {
                           return;
                         }
                       },
+                      onSelectedChange: async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "categoryItem",
+                          __plasmic_idx_0,
+                          "selected"
+                        ]).apply(null, eventArgs);
+
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
+                          return;
+                        }
+                      },
                       open: generateStateValueProp($state, [
                         "categoryItem",
                         __plasmic_idx_0,
                         "open"
+                      ]),
+                      selected: generateStateValueProp($state, [
+                        "categoryItem",
+                        __plasmic_idx_0,
+                        "selected"
                       ]),
                       user: $state.user
                     };
@@ -736,6 +1388,10 @@ function PlasmicMainPageCategories__RenderFunc(props: {
                           name: "categoryItem[].open",
                           initFunc: ({ $props, $state, $queries, $q }) =>
                             undefined
+                        },
+                        {
+                          name: "categoryItem[].selected",
+                          initFunc: ({ $props, $state, $queries, $q }) => ({})
                         }
                       ],
                       [__plasmic_idx_0]
@@ -774,6 +1430,1437 @@ function PlasmicMainPageCategories__RenderFunc(props: {
           </ApiRequest>
         </div>
       </div>
+      <Dialog
+        data-plasmic-name={"dialog"}
+        data-plasmic-override={overrides.dialog}
+        className={classNames("__wab_instance", sty.dialog)}
+        nopadding={true}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["dialog", "opendialog"])}
+      >
+        <div className={classNames("all", sty.freeBox___4C6QB, "dark")}>
+          <div className={classNames("all", "__wab_text", sty.text__ovoCa)}>
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $state.selected.id
+                    ? "ویرایش دسته بندی"
+                    : "افزودن دسته بندی";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "\u0627\u0641\u0632\u0648\u062f\u0646 \u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+          <TextInput
+            data-plasmic-name={"nameInput"}
+            data-plasmic-override={overrides.nameInput}
+            className={classNames("__wab_instance", sty.nameInput)}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["nameInput", "value"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            placeholder={
+              "\u0646\u0627\u0645 \u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc"
+            }
+            type={"line"}
+            value={generateStateValueProp($state, ["nameInput", "value"])}
+          />
+
+          <TextInput
+            data-plasmic-name={"slugInput"}
+            data-plasmic-override={overrides.slugInput}
+            className={classNames("__wab_instance", sty.slugInput)}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["slugInput", "value"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            placeholder={
+              "\u06a9\u0644\u06cc\u062f \u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc"
+            }
+            type={"line"}
+            value={generateStateValueProp($state, ["slugInput", "value"])}
+          />
+
+          <TextAreaInput
+            data-plasmic-name={"textAreaInput"}
+            data-plasmic-override={overrides.textAreaInput}
+            className={classNames("__wab_instance", sty.textAreaInput)}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "textAreaInput",
+                "value"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            placeholder={"\u062a\u0648\u0636\u06cc\u062d\u0627\u062a"}
+            type={"line"}
+            value={generateStateValueProp($state, ["textAreaInput", "value"])}
+          />
+
+          <Checkbox
+            data-plasmic-name={"checkbox"}
+            data-plasmic-override={overrides.checkbox}
+            autoFocus={false}
+            className={classNames("__wab_instance", sty.checkbox)}
+            disabled={false}
+            isSelected={generateStateValueProp($state, [
+              "checkbox",
+              "isSelected"
+            ])}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__xNnjM)}>
+                {
+                  "\u0646\u0645\u0627\u06cc\u0634 \u062f\u0631 \u0628\u062e\u0634 \u0645\u062d\u0628\u0648\u0628\u200c\u0647\u0627\r\n"
+                }
+              </div>
+            }
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "checkbox",
+                "isSelected"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            tims={true}
+            value={(() => {
+              try {
+                return $state.selected.is_popular;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          >
+            <div className={classNames("all", "__wab_text", sty.text__dQio)}>
+              {""}
+            </div>
+          </Checkbox>
+        </div>
+        <div className={classNames("all", sty.freeBox__y1Pqp)}>
+          <Button
+            data-plasmic-name={"button3"}
+            data-plasmic-override={overrides.button3}
+            className={classNames("__wab_instance", sty.button3)}
+            color={"success"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__cqYu5)}>
+                {"\u062a\u0627\u06cc\u06cc\u062f"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button3", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.button3.loading = true);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["check"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          if (!$state.nameInput.value) {
+                            return "نام دسته‌بندی را وارد کنید";
+                          }
+                          if (!$state.slugInput.value) {
+                            return "کلید را وارد کنید";
+                          }
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["check"] != null &&
+                typeof $steps["check"] === "object" &&
+                typeof $steps["check"].then === "function"
+              ) {
+                $steps["check"] = await $steps["check"];
+              }
+
+              $steps["invokeGlobalAction"] = !$steps.check
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "/panel/categories",
+                        undefined,
+                        {
+                          id: $state.selected.category_id || null,
+                          name: $state.nameInput.value,
+                          slug: $state.slugInput.value,
+                          is_popular: $state.checkbox.isSelected,
+                          description: $state.textAreaInput.value
+                        }
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["invokeGlobalAction2"] = $steps.invokeGlobalAction?.data
+                ?.message
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        $steps.invokeGlobalAction.data.success
+                          ? "success"
+                          : "error",
+                        (() => {
+                          try {
+                            return $steps.invokeGlobalAction.data.message;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        "top-left"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction2"] != null &&
+                typeof $steps["invokeGlobalAction2"] === "object" &&
+                typeof $steps["invokeGlobalAction2"].then === "function"
+              ) {
+                $steps["invokeGlobalAction2"] =
+                  await $steps["invokeGlobalAction2"];
+              }
+
+              $steps["runCode3"] = $steps.invokeGlobalAction?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.nameInput.value = "";
+                          $state.slugInput.value = "";
+                          $state.checkbox.isSelected = false;
+                          $state.textAreaInput.value = "";
+                          $state.dialog.opendialog = false;
+                          $state.restart = Date.now().toString();
+                          return ($state.selected = {});
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode3"] != null &&
+                typeof $steps["runCode3"] === "object" &&
+                typeof $steps["runCode3"].then === "function"
+              ) {
+                $steps["runCode3"] = await $steps["runCode3"];
+              }
+
+              $steps["invokeGlobalAction3"] = $steps.check
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "error",
+                        (() => {
+                          try {
+                            return $steps.check;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        "top-left"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction3"] != null &&
+                typeof $steps["invokeGlobalAction3"] === "object" &&
+                typeof $steps["invokeGlobalAction3"].then === "function"
+              ) {
+                $steps["invokeGlobalAction3"] =
+                  await $steps["invokeGlobalAction3"];
+              }
+
+              $steps["runCode2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.button3.loading = false);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode2"] != null &&
+                typeof $steps["runCode2"] === "object" &&
+                typeof $steps["runCode2"].then === "function"
+              ) {
+                $steps["runCode2"] = await $steps["runCode2"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button3", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+
+          <Button
+            data-plasmic-name={"button4"}
+            data-plasmic-override={overrides.button4}
+            className={classNames("__wab_instance", sty.button4)}
+            color={"neutral"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__bJaFc)}>
+                {"\u0644\u0641\u0648"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button4", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.dialog.opendialog = false);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button4", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </Dialog>
+      <Dialog
+        data-plasmic-name={"dialog2"}
+        data-plasmic-override={overrides.dialog2}
+        className={classNames("__wab_instance", sty.dialog2)}
+        nopadding={true}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog2", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["dialog2", "opendialog"])}
+      >
+        <div className={classNames("all", sty.freeBox__aooNq, "dark")}>
+          <div className={classNames("all", "__wab_text", sty.text__mCzfV)}>
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $state.selected.id
+                    ? "ویرایش زیر دسته بندی"
+                    : "افزودن زیر دسته بندی";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "\u0627\u0641\u0632\u0648\u062f\u0646 \u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+          <TextInput
+            data-plasmic-name={"nameInput2"}
+            data-plasmic-override={overrides.nameInput2}
+            className={classNames("__wab_instance", sty.nameInput2)}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["nameInput2", "value"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            placeholder={
+              "\u0646\u0627\u0645 \u0632\u06cc\u0631 \u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc"
+            }
+            type={"line"}
+            value={generateStateValueProp($state, ["nameInput2", "value"])}
+          />
+
+          <TextInput
+            data-plasmic-name={"slugInput1"}
+            data-plasmic-override={overrides.slugInput1}
+            className={classNames("__wab_instance", sty.slugInput1)}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["slugInput1", "value"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            placeholder={
+              "\u06a9\u0644\u06cc\u062f \u0632\u06cc\u0631 \u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc"
+            }
+            type={"line"}
+            value={generateStateValueProp($state, ["slugInput1", "value"])}
+          />
+
+          <TextAreaInput
+            data-plasmic-name={"textAreaInput2"}
+            data-plasmic-override={overrides.textAreaInput2}
+            className={classNames("__wab_instance", sty.textAreaInput2)}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "textAreaInput2",
+                "value"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            placeholder={"\u062a\u0648\u0636\u06cc\u062d\u0627\u062a"}
+            type={"line"}
+            value={generateStateValueProp($state, ["textAreaInput2", "value"])}
+          />
+
+          <Checkbox
+            data-plasmic-name={"checkbox2"}
+            data-plasmic-override={overrides.checkbox2}
+            autoFocus={false}
+            className={classNames("__wab_instance", sty.checkbox2)}
+            disabled={false}
+            isSelected={generateStateValueProp($state, [
+              "checkbox2",
+              "isSelected"
+            ])}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__rcLJu)}>
+                {
+                  "\u0646\u0645\u0627\u06cc\u0634 \u062f\u0631 \u0627\u0628\u062a\u062f\u0627 \u0635\u0641\u062d\u0647"
+                }
+              </div>
+            }
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "checkbox2",
+                "isSelected"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            tims={true}
+            value={(() => {
+              try {
+                return $state.selected.is_popular;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          >
+            <div className={classNames("all", "__wab_text", sty.text__dmtiF)}>
+              {""}
+            </div>
+          </Checkbox>
+        </div>
+        <div className={classNames("all", sty.freeBox__sXoqy)}>
+          <Button
+            data-plasmic-name={"button7"}
+            data-plasmic-override={overrides.button7}
+            className={classNames("__wab_instance", sty.button7)}
+            color={"success"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__skJAp)}>
+                {"\u062a\u0627\u06cc\u06cc\u062f"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button7", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.button7.loading = true);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["check"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          if (!$state.nameInput2.value) {
+                            return "نام دسته‌بندی را وارد کنید";
+                          }
+                          if (!$state.slugInput1.value) {
+                            return "کلید را وارد کنید";
+                          }
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["check"] != null &&
+                typeof $steps["check"] === "object" &&
+                typeof $steps["check"].then === "function"
+              ) {
+                $steps["check"] = await $steps["check"];
+              }
+
+              $steps["invokeGlobalAction"] = !$steps.check
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "/panel/subcategories",
+                        undefined,
+                        {
+                          category_id: $state.id,
+                          id: $state.selected.id || null,
+                          name: $state.nameInput2.value,
+                          slug: $state.slugInput1.value,
+                          has_banner: $state.checkbox2.isSelected,
+                          description: $state.textAreaInput2.value
+                        }
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["invokeGlobalAction2"] = $steps.invokeGlobalAction?.data
+                ?.message
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        $steps.invokeGlobalAction.data.success
+                          ? "success"
+                          : "error",
+                        (() => {
+                          try {
+                            return $steps.invokeGlobalAction.data.message;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        "top-left"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction2"] != null &&
+                typeof $steps["invokeGlobalAction2"] === "object" &&
+                typeof $steps["invokeGlobalAction2"].then === "function"
+              ) {
+                $steps["invokeGlobalAction2"] =
+                  await $steps["invokeGlobalAction2"];
+              }
+
+              $steps["runCode3"] = $steps.invokeGlobalAction?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.nameInput2.value = "";
+                          $state.slugInput1.value = "";
+                          $state.checkbox2.isSelected = false;
+                          $state.textAreaInput2.value = "";
+                          $state.dialog2.opendialog = false;
+                          $state.restart = Date.now().toString();
+                          return ($state.selected = {});
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode3"] != null &&
+                typeof $steps["runCode3"] === "object" &&
+                typeof $steps["runCode3"].then === "function"
+              ) {
+                $steps["runCode3"] = await $steps["runCode3"];
+              }
+
+              $steps["invokeGlobalAction3"] = $steps.check
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "error",
+                        (() => {
+                          try {
+                            return $steps.check;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        "top-left"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction3"] != null &&
+                typeof $steps["invokeGlobalAction3"] === "object" &&
+                typeof $steps["invokeGlobalAction3"].then === "function"
+              ) {
+                $steps["invokeGlobalAction3"] =
+                  await $steps["invokeGlobalAction3"];
+              }
+
+              $steps["runCode2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.button7.loading = false);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode2"] != null &&
+                typeof $steps["runCode2"] === "object" &&
+                typeof $steps["runCode2"].then === "function"
+              ) {
+                $steps["runCode2"] = await $steps["runCode2"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button7", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+
+          <Button
+            data-plasmic-name={"button8"}
+            data-plasmic-override={overrides.button8}
+            className={classNames("__wab_instance", sty.button8)}
+            color={"neutral"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__iIzxE)}>
+                {"\u0644\u0641\u0648"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button8", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.dialog2.opendialog = false);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button8", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </Dialog>
+      <Snackbar
+        data-plasmic-name={"snackbar"}
+        data-plasmic-override={overrides.snackbar}
+        className={classNames("__wab_instance", sty.snackbar)}
+        data={generateStateValueProp($state, ["snackbar", "data"])}
+        index={generateStateValueProp($state, ["snackbar", "index"])}
+        onDataChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["snackbar", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onIndexChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["snackbar", "index"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["snackbar", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["snackbar", "opendialog"])}
+        slot={
+          "\u062d\u0630\u0641 \u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc "
+        }
+        slot2={
+          <React.Fragment>{`آیا از حذف دسته‌بندی «${$state.selected.name}» اطمینان دارید؟`}</React.Fragment>
+        }
+        type={"error"}
+      >
+        <div className={classNames("all", sty.freeBox__lzhEx)}>
+          <Button
+            data-plasmic-name={"button5"}
+            data-plasmic-override={overrides.button5}
+            className={classNames("__wab_instance", sty.button5)}
+            color={"errorDestructive"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__xBlEa)}>
+                {"\u062d\u0630\u0641"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button5", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.button5.loading = true);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["invokeGlobalAction"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "/panel/categories/delete",
+                        undefined,
+                        { id: $state.selected.category_id || null }
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["invokeGlobalAction2"] = $steps.invokeGlobalAction?.data
+                ?.message
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        $steps.invokeGlobalAction.data.success
+                          ? "success"
+                          : "error",
+                        (() => {
+                          try {
+                            return $steps.invokeGlobalAction.data.message;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        "top-left"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction2"] != null &&
+                typeof $steps["invokeGlobalAction2"] === "object" &&
+                typeof $steps["invokeGlobalAction2"].then === "function"
+              ) {
+                $steps["invokeGlobalAction2"] =
+                  await $steps["invokeGlobalAction2"];
+              }
+
+              $steps["runCode3"] = $steps.invokeGlobalAction?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.nameInput.value = "";
+                          $state.slugInput.value = "";
+                          $state.checkbox.isSelected = false;
+                          $state.textAreaInput.value = "";
+                          $state.snackbar.opendialog = false;
+                          $state.restart = Date.now().toString();
+                          return ($state.selected = {});
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode3"] != null &&
+                typeof $steps["runCode3"] === "object" &&
+                typeof $steps["runCode3"].then === "function"
+              ) {
+                $steps["runCode3"] = await $steps["runCode3"];
+              }
+
+              $steps["runCode2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.button5.loading = false);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode2"] != null &&
+                typeof $steps["runCode2"] === "object" &&
+                typeof $steps["runCode2"].then === "function"
+              ) {
+                $steps["runCode2"] = await $steps["runCode2"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button5", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+
+          <Button
+            data-plasmic-name={"button6"}
+            data-plasmic-override={overrides.button6}
+            className={classNames("__wab_instance", sty.button6)}
+            color={"neutral"}
+            label={
+              <div
+                className={classNames("all", "__wab_text", sty.text___09Peh)}
+              >
+                {"\u0644\u0641\u0648"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button6", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.snackbar.opendialog = false);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button6", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </Snackbar>
+      <Snackbar
+        data-plasmic-name={"snackbar2"}
+        data-plasmic-override={overrides.snackbar2}
+        className={classNames("__wab_instance", sty.snackbar2)}
+        data={generateStateValueProp($state, ["snackbar2", "data"])}
+        index={generateStateValueProp($state, ["snackbar2", "index"])}
+        onDataChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["snackbar2", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onIndexChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["snackbar2", "index"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["snackbar2", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["snackbar2", "opendialog"])}
+        slot={
+          "\u062d\u0630\u0641 \u0632\u06cc\u0631 \u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc "
+        }
+        slot2={
+          <React.Fragment>{`آیا از حذف زیر دسته‌بندی «${$state.selected.name}» اطمینان دارید؟`}</React.Fragment>
+        }
+        type={"error"}
+      >
+        <div className={classNames("all", sty.freeBox__auCyb)}>
+          <Button
+            data-plasmic-name={"button9"}
+            data-plasmic-override={overrides.button9}
+            className={classNames("__wab_instance", sty.button9)}
+            color={"errorDestructive"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__vpOev)}>
+                {"\u062d\u0630\u0641"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button9", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.button9.loading = true);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["invokeGlobalAction"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "/panel/subcategories/delete",
+                        undefined,
+                        { id: $state.selected.id || null }
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["invokeGlobalAction2"] = $steps.invokeGlobalAction?.data
+                ?.message
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        $steps.invokeGlobalAction.data.success
+                          ? "success"
+                          : "error",
+                        (() => {
+                          try {
+                            return $steps.invokeGlobalAction.data.message;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        "top-left"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction2"] != null &&
+                typeof $steps["invokeGlobalAction2"] === "object" &&
+                typeof $steps["invokeGlobalAction2"].then === "function"
+              ) {
+                $steps["invokeGlobalAction2"] =
+                  await $steps["invokeGlobalAction2"];
+              }
+
+              $steps["runCode3"] = $steps.invokeGlobalAction?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.nameInput.value = "";
+                          $state.slugInput.value = "";
+                          $state.checkbox.isSelected = false;
+                          $state.textAreaInput.value = "";
+                          $state.snackbar2.opendialog = false;
+                          $state.restart = Date.now().toString();
+                          return ($state.selected = {});
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode3"] != null &&
+                typeof $steps["runCode3"] === "object" &&
+                typeof $steps["runCode3"].then === "function"
+              ) {
+                $steps["runCode3"] = await $steps["runCode3"];
+              }
+
+              $steps["runCode2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.button9.loading = false);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode2"] != null &&
+                typeof $steps["runCode2"] === "object" &&
+                typeof $steps["runCode2"].then === "function"
+              ) {
+                $steps["runCode2"] = await $steps["runCode2"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button9", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+
+          <Button
+            data-plasmic-name={"button10"}
+            data-plasmic-override={overrides.button10}
+            className={classNames("__wab_instance", sty.button10)}
+            color={"neutral"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__d7MeR)}>
+                {"\u0644\u0641\u0648"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button10", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.snackbar2.opendialog = false);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button10", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </Snackbar>
     </div>
   ) as React.ReactElement | null;
 }
@@ -788,7 +2875,27 @@ const PlasmicDescendants = {
     "errorpage",
     "button2",
     "categoryItem",
-    "emptyPage"
+    "emptyPage",
+    "dialog",
+    "nameInput",
+    "slugInput",
+    "textAreaInput",
+    "checkbox",
+    "button3",
+    "button4",
+    "dialog2",
+    "nameInput2",
+    "slugInput1",
+    "textAreaInput2",
+    "checkbox2",
+    "button7",
+    "button8",
+    "snackbar",
+    "button5",
+    "button6",
+    "snackbar2",
+    "button9",
+    "button10"
   ],
   textInput: ["textInput"],
   button: ["button"],
@@ -803,7 +2910,43 @@ const PlasmicDescendants = {
   errorpage: ["errorpage"],
   button2: ["button2"],
   categoryItem: ["categoryItem"],
-  emptyPage: ["emptyPage"]
+  emptyPage: ["emptyPage"],
+  dialog: [
+    "dialog",
+    "nameInput",
+    "slugInput",
+    "textAreaInput",
+    "checkbox",
+    "button3",
+    "button4"
+  ],
+  nameInput: ["nameInput"],
+  slugInput: ["slugInput"],
+  textAreaInput: ["textAreaInput"],
+  checkbox: ["checkbox"],
+  button3: ["button3"],
+  button4: ["button4"],
+  dialog2: [
+    "dialog2",
+    "nameInput2",
+    "slugInput1",
+    "textAreaInput2",
+    "checkbox2",
+    "button7",
+    "button8"
+  ],
+  nameInput2: ["nameInput2"],
+  slugInput1: ["slugInput1"],
+  textAreaInput2: ["textAreaInput2"],
+  checkbox2: ["checkbox2"],
+  button7: ["button7"],
+  button8: ["button8"],
+  snackbar: ["snackbar", "button5", "button6"],
+  button5: ["button5"],
+  button6: ["button6"],
+  snackbar2: ["snackbar2", "button9", "button10"],
+  button9: ["button9"],
+  button10: ["button10"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -818,6 +2961,26 @@ type NodeDefaultElementType = {
   button2: typeof Button;
   categoryItem: typeof CategoryItem;
   emptyPage: typeof EmptyPage;
+  dialog: typeof Dialog;
+  nameInput: typeof TextInput;
+  slugInput: typeof TextInput;
+  textAreaInput: typeof TextAreaInput;
+  checkbox: typeof Checkbox;
+  button3: typeof Button;
+  button4: typeof Button;
+  dialog2: typeof Dialog;
+  nameInput2: typeof TextInput;
+  slugInput1: typeof TextInput;
+  textAreaInput2: typeof TextAreaInput;
+  checkbox2: typeof Checkbox;
+  button7: typeof Button;
+  button8: typeof Button;
+  snackbar: typeof Snackbar;
+  button5: typeof Button;
+  button6: typeof Button;
+  snackbar2: typeof Snackbar;
+  button9: typeof Button;
+  button10: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -890,6 +3053,26 @@ export const PlasmicMainPageCategories = Object.assign(
     button2: makeNodeComponent("button2"),
     categoryItem: makeNodeComponent("categoryItem"),
     emptyPage: makeNodeComponent("emptyPage"),
+    dialog: makeNodeComponent("dialog"),
+    nameInput: makeNodeComponent("nameInput"),
+    slugInput: makeNodeComponent("slugInput"),
+    textAreaInput: makeNodeComponent("textAreaInput"),
+    checkbox: makeNodeComponent("checkbox"),
+    button3: makeNodeComponent("button3"),
+    button4: makeNodeComponent("button4"),
+    dialog2: makeNodeComponent("dialog2"),
+    nameInput2: makeNodeComponent("nameInput2"),
+    slugInput1: makeNodeComponent("slugInput1"),
+    textAreaInput2: makeNodeComponent("textAreaInput2"),
+    checkbox2: makeNodeComponent("checkbox2"),
+    button7: makeNodeComponent("button7"),
+    button8: makeNodeComponent("button8"),
+    snackbar: makeNodeComponent("snackbar"),
+    button5: makeNodeComponent("button5"),
+    button6: makeNodeComponent("button6"),
+    snackbar2: makeNodeComponent("snackbar2"),
+    button9: makeNodeComponent("button9"),
+    button10: makeNodeComponent("button10"),
 
     // Metadata about props expected for PlasmicMainPageCategories
     internalVariantProps: PlasmicMainPageCategories__VariantProps,

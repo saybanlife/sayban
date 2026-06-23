@@ -352,6 +352,12 @@ function PlasmicMainPageReservation__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "search",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -400,6 +406,38 @@ function PlasmicMainPageReservation__RenderFunc(props: {
           <TextInput
             data-plasmic-name={"textInput"}
             data-plasmic-override={overrides.textInput}
+            ariaInputOnBlur={async focusEvent => {
+              const $steps = {};
+
+              $steps["updateSearch"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["search"]
+                      },
+                      operation: 0,
+                      value: $state.textInput.value
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSearch"] != null &&
+                typeof $steps["updateSearch"] === "object" &&
+                typeof $steps["updateSearch"].then === "function"
+              ) {
+                $steps["updateSearch"] = await $steps["updateSearch"];
+              }
+            }}
             className={classNames("__wab_instance", sty.textInput)}
             onChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["textInput", "value"]).apply(
@@ -417,7 +455,7 @@ function PlasmicMainPageReservation__RenderFunc(props: {
             }}
             padded={["left"]}
             placeholder={
-              "\u062c\u0633\u062a\u062c\u0648  \u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc"
+              "\u062c\u0633\u062a\u062c\u0648 \u0628\u0631 \u0627\u0633\u0627\u0633 \u06a9\u062f \u0631\u0632\u0631\u0648\u060c \u0646\u0627\u0645 \u0645\u0631\u06a9\u0632 \u06cc\u0627 \u062e\u062f\u0645\u062a"
             }
             size={"langh"}
             type={"soft"}
@@ -426,6 +464,38 @@ function PlasmicMainPageReservation__RenderFunc(props: {
 
           <SearchSvgIcon
             className={classNames("all", sty.svg__ukd7E)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateSearch"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["search"]
+                      },
+                      operation: 0,
+                      value: $state.textInput.value
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSearch"] != null &&
+                typeof $steps["updateSearch"] === "object" &&
+                typeof $steps["updateSearch"].then === "function"
+              ) {
+                $steps["updateSearch"] = await $steps["updateSearch"];
+              }
+            }}
             role={"img"}
           />
         </div>
@@ -610,7 +680,9 @@ function PlasmicMainPageReservation__RenderFunc(props: {
               center_id: $props.centerId,
               r: $state.restart,
               page: $state.pagination.page,
-              limit: $state.pagination.limit
+              limit: $state.pagination.limit,
+              state: $props.state,
+              search: $state.search
             }}
             shouldFetch={(() => {
               try {
@@ -651,7 +723,10 @@ function PlasmicMainPageReservation__RenderFunc(props: {
                     ? (() => {
                         const actionArgs = {
                           customFunction: async () => {
-                            return ($state.restart = Date.now().toString());
+                            return (() => {
+                              $state.restart = Date.now().toString();
+                              return ($state.pagination.page = 1);
+                            })();
                           }
                         };
                         return (({ customFunction }) => {
@@ -768,9 +843,7 @@ function PlasmicMainPageReservation__RenderFunc(props: {
             })}
             {(() => {
               try {
-                return (
-                  !!$state.user?.[0] && Object.keys($state.user[0]).length == 0
-                );
+                return $state.user.length == 0;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -787,60 +860,60 @@ function PlasmicMainPageReservation__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.emptyPage)}
               />
             ) : null}
-          </ApiRequest>
-          <Pagination
-            data-plasmic-name={"pagination"}
-            data-plasmic-override={overrides.pagination}
-            className={classNames("__wab_instance", sty.pagination)}
-            limit={generateStateValueProp($state, ["pagination", "limit"])}
-            onLimitChange2={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["pagination", "limit"]).apply(
-                null,
-                eventArgs
-              );
+            <Pagination
+              data-plasmic-name={"pagination"}
+              data-plasmic-override={overrides.pagination}
+              className={classNames("__wab_instance", sty.pagination)}
+              limit={generateStateValueProp($state, ["pagination", "limit"])}
+              onLimitChange2={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "pagination",
+                  "limit"
+                ]).apply(null, eventArgs);
 
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            onPageChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["pagination", "page"]).apply(
-                null,
-                eventArgs
-              );
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              onPageChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["pagination", "page"]).apply(
+                  null,
+                  eventArgs
+                );
 
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            onTotalPagesChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              onTotalPagesChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "pagination",
+                  "totalPages"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              page={generateStateValueProp($state, ["pagination", "page"])}
+              totalPages={generateStateValueProp($state, [
                 "pagination",
                 "totalPages"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            page={generateStateValueProp($state, ["pagination", "page"])}
-            totalPages={generateStateValueProp($state, [
-              "pagination",
-              "totalPages"
-            ])}
-          />
+              ])}
+            />
+          </ApiRequest>
         </div>
       </div>
     </div>
@@ -868,7 +941,8 @@ const PlasmicDescendants = {
     "errorpage",
     "button2",
     "reservationItem",
-    "emptyPage"
+    "emptyPage",
+    "pagination"
   ],
   errorpage: ["errorpage"],
   button2: ["button2"],

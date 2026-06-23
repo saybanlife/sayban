@@ -174,6 +174,8 @@ function PlasmicReservationItem__RenderFunc(props: {
     [$props, $ctx, $refs]
   );
 
+  const $globalActions = useGlobalActions?.();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -309,6 +311,133 @@ function PlasmicReservationItem__RenderFunc(props: {
               </div>
             }
             loading={generateStateValueProp($state, ["add", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.add.loading = true);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["invokeGlobalAction"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "https://sayban.darkube.app/webhook/panel/reservations/confirm",
+                        undefined,
+                        {
+                          code: $props.currentItem.reservation_code
+                        }
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["invokeGlobalAction2"] = $steps.invokeGlobalAction?.data
+                ?.message
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        $steps.invokeGlobalAction.data.success
+                          ? "success"
+                          : "error",
+                        (() => {
+                          try {
+                            return $steps.invokeGlobalAction.data.message;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        "top-left"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction2"] != null &&
+                typeof $steps["invokeGlobalAction2"] === "object" &&
+                typeof $steps["invokeGlobalAction2"].then === "function"
+              ) {
+                $steps["invokeGlobalAction2"] =
+                  await $steps["invokeGlobalAction2"];
+              }
+
+              $steps["runCode3"] = $steps.invokeGlobalAction?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($props.currentItem.status = "confirmed");
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode3"] != null &&
+                typeof $steps["runCode3"] === "object" &&
+                typeof $steps["runCode3"].then === "function"
+              ) {
+                $steps["runCode3"] = await $steps["runCode3"];
+              }
+
+              $steps["runCode2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.add.loading = false);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode2"] != null &&
+                typeof $steps["runCode2"] === "object" &&
+                typeof $steps["runCode2"].then === "function"
+              ) {
+                $steps["runCode2"] = await $steps["runCode2"];
+              }
+            }}
             onLoadingChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["add", "loading"]).apply(
                 null,

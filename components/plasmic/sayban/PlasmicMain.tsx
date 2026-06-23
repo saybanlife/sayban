@@ -2866,6 +2866,19 @@ function PlasmicMain__RenderFunc(props: {
           "mainPageReservation",
           "slected"
         ])}
+        state={(() => {
+          try {
+            return $props.state;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
       />
 
       <ApiRequest
