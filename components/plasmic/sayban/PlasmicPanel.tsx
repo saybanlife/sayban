@@ -1066,55 +1066,6 @@ function PlasmicPanel__RenderFunc(props: {
                 ) {
                   $steps["updateUserInfo"] = await $steps["updateUserInfo"];
                 }
-
-                $steps["goToPanel"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        destination: `/panel/${(() => {
-                          try {
-                            return (() => {
-                              const role = $state.userInfo?.role;
-                              const centerId = $state.userInfo?.center_id;
-                              let result;
-                              if (role === "super_admin") {
-                                result = "centers";
-                              } else if (role === "center_admin") {
-                                result = `center`;
-                              }
-                              return result;
-                            })();
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}`
-                      };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToPanel"] != null &&
-                  typeof $steps["goToPanel"] === "object" &&
-                  typeof $steps["goToPanel"].then === "function"
-                ) {
-                  $steps["goToPanel"] = await $steps["goToPanel"];
-                }
               }).apply(null, eventArgs);
             }}
             onUserinfoChange={async (...eventArgs: any) => {
@@ -1166,55 +1117,6 @@ function PlasmicPanel__RenderFunc(props: {
                   typeof $steps["updateUserInfo"].then === "function"
                 ) {
                   $steps["updateUserInfo"] = await $steps["updateUserInfo"];
-                }
-
-                $steps["goToPanel"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        destination: `/panel/${(() => {
-                          try {
-                            return (() => {
-                              const role = $state.userInfo?.role;
-                              const centerId = $state.userInfo?.center_id;
-                              let result;
-                              if (role === "super_admin") {
-                                result = "centers";
-                              } else if (role === "center_admin") {
-                                result = `center`;
-                              }
-                              return result;
-                            })();
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}`
-                      };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToPanel"] != null &&
-                  typeof $steps["goToPanel"] === "object" &&
-                  typeof $steps["goToPanel"].then === "function"
-                ) {
-                  $steps["goToPanel"] = await $steps["goToPanel"];
                 }
               }).apply(null, eventArgs);
             }}
