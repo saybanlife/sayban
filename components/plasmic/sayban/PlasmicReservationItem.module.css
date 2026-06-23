@@ -60,7 +60,7 @@
 }
 .add:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
-  width: 120px;
+  width: 100px;
   flex-shrink: 0;
 }
 .svg__irS4T {
@@ -73,6 +73,24 @@
   color: var(--token-k-47TemksE2v);
 }
 .svg__nLi8C {
+  position: relative;
+  height: 1em;
+}
+.add2:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  width: 100px;
+  flex-shrink: 0;
+}
+.svg__rcpZa {
+  position: relative;
+  color: var(--token-k-47TemksE2v);
+  height: 1em;
+}
+.text__qFzGk {
+  white-space: pre;
+  color: var(--token-k-47TemksE2v);
+}
+.svg__q81YE {
   position: relative;
   height: 1em;
 }

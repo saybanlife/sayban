@@ -76,6 +76,7 @@ import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import MainPageCategories from "../../MainPageCategories"; // plasmic-import: fn1vTVaTFnJQ/component
 import MainPageReservation from "../../MainPageReservation"; // plasmic-import: HqZV6_TZqqbI/component
+import MainPageServise from "../../MainPageServise"; // plasmic-import: k99WG1yHSNAb/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import Snackbar from "../../Snackbar"; // plasmic-import: CaodI8ra68z4/component
@@ -93,11 +94,17 @@ import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-impor
 createPlasmicElementProxy;
 
 export type PlasmicMain__VariantMembers = {
-  page: "centers" | "center" | "users" | "reservations" | "categories";
+  page:
+    | "centers"
+    | "center"
+    | "users"
+    | "reservations"
+    | "categories"
+    | "services";
 };
 export type PlasmicMain__VariantsArgs = {
   page?: SingleChoiceArg<
-    "centers" | "center" | "users" | "reservations" | "categories"
+    "centers" | "center" | "users" | "reservations" | "categories" | "services"
   >;
 };
 type VariantPropType = keyof PlasmicMain__VariantsArgs;
@@ -143,6 +150,7 @@ export type PlasmicMain__OverridesType = {
   button6?: Flex__<typeof Button>;
   mainPageCategories?: Flex__<typeof MainPageCategories>;
   mainPageReservation?: Flex__<typeof MainPageReservation>;
+  mainPageServise?: Flex__<typeof MainPageServise>;
   categories?: Flex__<typeof ApiRequest>;
   embedHtml?: Flex__<typeof Embed>;
   deleteSnakbar?: Flex__<typeof Snackbar>;
@@ -160,7 +168,7 @@ export interface DefaultMainProps {
   token?: string;
   state?: string;
   page?: SingleChoiceArg<
-    "centers" | "center" | "users" | "reservations" | "categories"
+    "centers" | "center" | "users" | "reservations" | "categories" | "services"
   >;
   className?: string;
 }
@@ -694,6 +702,49 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "mainPageServise.selectedRow",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "mainPageServise.categpty",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "mainPageServise.center",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "mainPageServise.restart",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "mainPageServise.list",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.page == "services";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -729,7 +780,8 @@ function PlasmicMain__RenderFunc(props: {
             $state,
             "page",
             "reservations"
-          )
+          ),
+          [sty.rootpage_services]: hasVariant($state, "page", "services")
         }
       )}
     >
@@ -2705,6 +2757,11 @@ function PlasmicMain__RenderFunc(props: {
             $state,
             "page",
             "categories"
+          ),
+          [sty.mainPageCategoriespage_services]: hasVariant(
+            $state,
+            "page",
+            "services"
           )
         })}
         list={generateStateValueProp($state, ["mainPageCategories", "list"])}
@@ -2799,6 +2856,11 @@ function PlasmicMain__RenderFunc(props: {
             $state,
             "page",
             "reservations"
+          ),
+          [sty.mainPageReservationpage_services]: hasVariant(
+            $state,
+            "page",
+            "services"
           )
         })}
         list={generateStateValueProp($state, ["mainPageReservation", "list"])}
@@ -2879,6 +2941,111 @@ function PlasmicMain__RenderFunc(props: {
             throw e;
           }
         })()}
+      />
+
+      <MainPageServise
+        data-plasmic-name={"mainPageServise"}
+        data-plasmic-override={overrides.mainPageServise}
+        categpty={generateStateValueProp($state, [
+          "mainPageServise",
+          "categpty"
+        ])}
+        centerId={(() => {
+          try {
+            return $props.centerId;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+        className={classNames("__wab_instance", sty.mainPageServise, {
+          [sty.mainPageServisepage_services]: hasVariant(
+            $state,
+            "page",
+            "services"
+          )
+        })}
+        list={generateStateValueProp($state, ["mainPageServise", "list"])}
+        onCategptyChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageServise",
+            "categpty"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onCenterChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageServise",
+            "center"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onListChange2={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainPageServise", "list"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onRestartChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageServise",
+            "restart"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onSelectedRowChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageServise",
+            "selectedRow"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        restart={generateStateValueProp($state, ["mainPageServise", "restart"])}
+        selectedRow={generateStateValueProp($state, [
+          "mainPageServise",
+          "selectedRow"
+        ])}
       />
 
       <ApiRequest
@@ -3578,6 +3745,7 @@ const PlasmicDescendants = {
     "button6",
     "mainPageCategories",
     "mainPageReservation",
+    "mainPageServise",
     "categories",
     "embedHtml",
     "deleteSnakbar",
@@ -3627,6 +3795,7 @@ const PlasmicDescendants = {
   button6: ["button6"],
   mainPageCategories: ["mainPageCategories"],
   mainPageReservation: ["mainPageReservation"],
+  mainPageServise: ["mainPageServise"],
   categories: ["categories"],
   embedHtml: ["embedHtml"],
   deleteSnakbar: ["deleteSnakbar", "buttonDelete", "buttonClose"],
@@ -3663,6 +3832,7 @@ type NodeDefaultElementType = {
   button6: typeof Button;
   mainPageCategories: typeof MainPageCategories;
   mainPageReservation: typeof MainPageReservation;
+  mainPageServise: typeof MainPageServise;
   categories: typeof ApiRequest;
   embedHtml: typeof Embed;
   deleteSnakbar: typeof Snackbar;
@@ -3757,6 +3927,7 @@ export const PlasmicMain = Object.assign(
     button6: makeNodeComponent("button6"),
     mainPageCategories: makeNodeComponent("mainPageCategories"),
     mainPageReservation: makeNodeComponent("mainPageReservation"),
+    mainPageServise: makeNodeComponent("mainPageServise"),
     categories: makeNodeComponent("categories"),
     embedHtml: makeNodeComponent("embedHtml"),
     deleteSnakbar: makeNodeComponent("deleteSnakbar"),

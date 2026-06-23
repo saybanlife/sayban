@@ -339,6 +339,17 @@
 .mainPageReservationpage_reservations:global(.__wab_instance) {
   display: flex;
 }
+.mainPageServise:global(.__wab_instance) {
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  top: -2px;
+  right: 0;
+  display: none;
+}
+.mainPageServisepage_services:global(.__wab_instance) {
+  display: flex;
+}
 .categories:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;

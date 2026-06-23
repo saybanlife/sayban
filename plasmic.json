@@ -29328,6 +29328,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicPagination.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "k99WG1yHSNAb",
+          "name": "MainPageServise",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicMainPageServise.tsx",
+          "importSpec": {
+            "modulePath": "MainPageServise.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicMainPageServise.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

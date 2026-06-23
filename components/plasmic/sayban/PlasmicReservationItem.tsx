@@ -69,8 +69,9 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicReservationItem.module.css"; // plasmic-import: 4UaemkVPEyQ4/css
 
-import CheckIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Check"; // plasmic-import: DtxnCWLfceEB/icon
+import Icon11Icon from "./icons/PlasmicIcon__Icon11"; // plasmic-import: TLjQehPXSyaR/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+import CheckIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Check"; // plasmic-import: DtxnCWLfceEB/icon
 import UserIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__User"; // plasmic-import: d1LJS78vGoJH/icon
 
 createPlasmicElementProxy;
@@ -103,6 +104,7 @@ export type PlasmicReservationItem__OverridesType = {
   statusIcon?: Flex__<typeof StatusIcon>;
   uploudeTime?: Flex__<typeof UploudeTime>;
   add?: Flex__<typeof Button>;
+  add2?: Flex__<typeof Button>;
 };
 
 export interface DefaultReservationItemProps {
@@ -166,6 +168,12 @@ function PlasmicReservationItem__RenderFunc(props: {
       },
       {
         path: "add.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "add2.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
@@ -303,11 +311,11 @@ function PlasmicReservationItem__RenderFunc(props: {
             data-plasmic-name={"add"}
             data-plasmic-override={overrides.add}
             className={classNames("__wab_instance", sty.add)}
-            color={"success"}
+            color={"errorDestructive"}
             iconStart={true}
             label={
               <div className={classNames("all", "__wab_text", sty.text__pPgHu)}>
-                {"\u062a\u0627\u06cc\u06cc\u062f \u0631\u0632\u0631\u0648"}
+                {"\u0644\u063a\u0648 \u0631\u0632\u0631\u0648"}
               </div>
             }
             loading={generateStateValueProp($state, ["add", "loading"])}
@@ -339,7 +347,7 @@ function PlasmicReservationItem__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "POST",
-                        "https://sayban.darkube.app/webhook/panel/reservations/confirm",
+                        "https://sayban.darkube.app/webhook/panel/reservations/canceled",
                         undefined,
                         {
                           code: $props.currentItem.reservation_code
@@ -453,8 +461,182 @@ function PlasmicReservationItem__RenderFunc(props: {
               }
             }}
             start={
-              <CheckIcon
+              <Icon11Icon
                 className={classNames("all", sty.svg__irS4T)}
+                role={"img"}
+              />
+            }
+          />
+        ) : null}
+        {(() => {
+          try {
+            return $props.currentItem.status == "pending";
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })() ? (
+          <Button
+            data-plasmic-name={"add2"}
+            data-plasmic-override={overrides.add2}
+            className={classNames("__wab_instance", sty.add2)}
+            color={"success"}
+            iconStart={true}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__qFzGk)}>
+                {"\u062a\u0627\u06cc\u06cc\u062f \u0631\u0632\u0631\u0648"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["add2", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.add2.loading = true);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["invokeGlobalAction"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "https://sayban.darkube.app/webhook/panel/reservations/confirm",
+                        undefined,
+                        {
+                          code: $props.currentItem.reservation_code
+                        }
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["invokeGlobalAction2"] = $steps.invokeGlobalAction?.data
+                ?.message
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        $steps.invokeGlobalAction.data.success
+                          ? "success"
+                          : "error",
+                        (() => {
+                          try {
+                            return $steps.invokeGlobalAction.data.message;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        "top-left"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction2"] != null &&
+                typeof $steps["invokeGlobalAction2"] === "object" &&
+                typeof $steps["invokeGlobalAction2"].then === "function"
+              ) {
+                $steps["invokeGlobalAction2"] =
+                  await $steps["invokeGlobalAction2"];
+              }
+
+              $steps["runCode3"] = $steps.invokeGlobalAction?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($props.currentItem.status = "confirmed");
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode3"] != null &&
+                typeof $steps["runCode3"] === "object" &&
+                typeof $steps["runCode3"].then === "function"
+              ) {
+                $steps["runCode3"] = await $steps["runCode3"];
+              }
+
+              $steps["runCode2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.add2.loading = false);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode2"] != null &&
+                typeof $steps["runCode2"] === "object" &&
+                typeof $steps["runCode2"].then === "function"
+              ) {
+                $steps["runCode2"] = await $steps["runCode2"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["add2", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            start={
+              <CheckIcon
+                className={classNames("all", sty.svg__rcpZa)}
                 role={"img"}
               />
             }
@@ -605,10 +787,11 @@ function PlasmicReservationItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "statusIcon", "uploudeTime", "add"],
+  root: ["root", "statusIcon", "uploudeTime", "add", "add2"],
   statusIcon: ["statusIcon"],
   uploudeTime: ["uploudeTime"],
-  add: ["add"]
+  add: ["add"],
+  add2: ["add2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -618,6 +801,7 @@ type NodeDefaultElementType = {
   statusIcon: typeof StatusIcon;
   uploudeTime: typeof UploudeTime;
   add: typeof Button;
+  add2: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -685,6 +869,7 @@ export const PlasmicReservationItem = Object.assign(
     statusIcon: makeNodeComponent("statusIcon"),
     uploudeTime: makeNodeComponent("uploudeTime"),
     add: makeNodeComponent("add"),
+    add2: makeNodeComponent("add2"),
 
     // Metadata about props expected for PlasmicReservationItem
     internalVariantProps: PlasmicReservationItem__VariantProps,
