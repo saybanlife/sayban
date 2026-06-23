@@ -208,7 +208,7 @@ function PlasmicLogin2__RenderFunc(props: {
         path: "age",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 0
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 5
       }
     ],
     [$props, $ctx, $refs]

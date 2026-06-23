@@ -100,7 +100,7 @@ export type PlasmicMainPageReservation__ArgsType = {
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
-  onListChange2?: (val: string) => void;
+  onListChange?: (val: string) => void;
   state?: string;
   slected?: any;
   onSlectedChange?: (val: string) => void;
@@ -116,7 +116,7 @@ export const PlasmicMainPageReservation__ArgProps = new Array<ArgPropType>(
   "restart",
   "onRestartChange",
   "list",
-  "onListChange2",
+  "onListChange",
   "state",
   "slected",
   "onSlectedChange",
@@ -145,7 +145,7 @@ export interface DefaultMainPageReservationProps {
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
-  onListChange2?: (val: string) => void;
+  onListChange?: (val: string) => void;
   state?: string;
   slected?: any;
   onSlectedChange?: (val: string) => void;
@@ -264,7 +264,7 @@ function PlasmicMainPageReservation__RenderFunc(props: {
         variableType: "boolean",
 
         valueProp: "list",
-        onChangeProp: "onListChange2"
+        onChangeProp: "onListChange"
       },
       {
         path: "slected",

@@ -1058,6 +1058,26 @@ function PlasmicPanel__RenderFunc(props: {
                 ) {
                   $steps["updateUserInfo"] = await $steps["updateUserInfo"];
                 }
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return ($state.token = $state.userInfo.token);
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
               }).apply(null, eventArgs);
             }}
             onUserinfoChange={async (...eventArgs: any) => {
@@ -1109,6 +1129,26 @@ function PlasmicPanel__RenderFunc(props: {
                   typeof $steps["updateUserInfo"].then === "function"
                 ) {
                   $steps["updateUserInfo"] = await $steps["updateUserInfo"];
+                }
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return ($state.token = $state.userInfo.token);
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
                 }
               }).apply(null, eventArgs);
             }}

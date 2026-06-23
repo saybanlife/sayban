@@ -695,7 +695,20 @@ function PlasmicMain__RenderFunc(props: {
         path: "mainPageReservation.list",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.page == "reservations";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "mainPageReservation.slected",
@@ -859,6 +872,11 @@ function PlasmicMain__RenderFunc(props: {
             "page",
             "centers"
           ),
+          [sty.mainPageCenterpage_reservations]: hasVariant(
+            $state,
+            "page",
+            "reservations"
+          ),
           [sty.mainPageCenterpage_services]: hasVariant(
             $state,
             "page",
@@ -895,7 +913,7 @@ function PlasmicMain__RenderFunc(props: {
             return;
           }
         }}
-        onListChange={async (...eventArgs: any) => {
+        onListChange2={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["mainPageCenter", "list"]).apply(
             null,
             eventArgs
@@ -1127,6 +1145,11 @@ function PlasmicMain__RenderFunc(props: {
         className={classNames("__wab_instance", sty.centerPage, {
           [sty.centerPagepage_center]: hasVariant($state, "page", "center"),
           [sty.centerPagepage_centers]: hasVariant($state, "page", "centers"),
+          [sty.centerPagepage_reservations]: hasVariant(
+            $state,
+            "page",
+            "reservations"
+          ),
           [sty.centerPagepage_services]: hasVariant($state, "page", "services")
         })}
         data={generateStateValueProp($state, ["centerPage", "data"])}
@@ -2235,7 +2258,12 @@ function PlasmicMain__RenderFunc(props: {
         data-plasmic-override={overrides.addService}
         className={classNames("__wab_instance", sty.addService, {
           [sty.addServicepage_center]: hasVariant($state, "page", "center"),
-          [sty.addServicepage_centers]: hasVariant($state, "page", "centers")
+          [sty.addServicepage_centers]: hasVariant($state, "page", "centers"),
+          [sty.addServicepage_reservations]: hasVariant(
+            $state,
+            "page",
+            "reservations"
+          )
         })}
         closeOnBackdropClick={false}
         content={
@@ -2900,7 +2928,7 @@ function PlasmicMain__RenderFunc(props: {
             return;
           }
         }}
-        onListChange2={async (...eventArgs: any) => {
+        onListChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "mainPageReservation",
             "list"
@@ -3009,6 +3037,11 @@ function PlasmicMain__RenderFunc(props: {
           }
         })()}
         className={classNames("__wab_instance", sty.mainPageServise, {
+          [sty.mainPageServisepage_reservations]: hasVariant(
+            $state,
+            "page",
+            "reservations"
+          ),
           [sty.mainPageServisepage_services]: hasVariant(
             $state,
             "page",

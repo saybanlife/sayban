@@ -99,7 +99,7 @@ export type PlasmicMainPageCenter__ArgsType = {
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
-  onListChange?: (val: string) => void;
+  onListChange2?: (val: string) => void;
   state?: string;
   addService?: (event: any) => void;
   rule?: string;
@@ -117,7 +117,7 @@ export const PlasmicMainPageCenter__ArgProps = new Array<ArgPropType>(
   "restart",
   "onRestartChange",
   "list",
-  "onListChange",
+  "onListChange2",
   "state",
   "addService",
   "rule"
@@ -150,7 +150,7 @@ export interface DefaultMainPageCenterProps {
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
-  onListChange?: (val: string) => void;
+  onListChange2?: (val: string) => void;
   state?: string;
   addService?: (event: any) => void;
   rule?: string;
@@ -334,7 +334,7 @@ function PlasmicMainPageCenter__RenderFunc(props: {
         variableType: "boolean",
 
         valueProp: "list",
-        onChangeProp: "onListChange"
+        onChangeProp: "onListChange2"
       },
       {
         path: "button2.loading",
