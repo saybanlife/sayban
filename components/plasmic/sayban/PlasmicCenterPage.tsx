@@ -115,6 +115,7 @@ export type PlasmicCenterPage__ArgsType = {
   deleteCenter?: () => void;
   data?: any;
   onDataChange?: (val: string) => void;
+  rule?: string;
 };
 type ArgPropType = keyof PlasmicCenterPage__ArgsType;
 export const PlasmicCenterPage__ArgProps = new Array<ArgPropType>(
@@ -129,7 +130,8 @@ export const PlasmicCenterPage__ArgProps = new Array<ArgPropType>(
   "categories",
   "deleteCenter",
   "data",
-  "onDataChange"
+  "onDataChange",
+  "rule"
 );
 
 export type PlasmicCenterPage__OverridesType = {
@@ -179,6 +181,7 @@ export interface DefaultCenterPageProps {
   deleteCenter?: () => void;
   data?: any;
   onDataChange?: (val: string) => void;
+  rule?: string;
   role?: SingleChoiceArg<"superAdmin" | "centerAdmin">;
   className?: string;
 }
@@ -1135,7 +1138,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                           const actionArgs = {
                             args: [
                               "POST",
-                              "https://sayban.darkube.app/webhook/panel/update/info",
+                              "/panel/update/info",
                               undefined,
                               {
                                 info: {

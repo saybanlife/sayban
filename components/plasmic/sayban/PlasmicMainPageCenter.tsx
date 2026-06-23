@@ -102,6 +102,7 @@ export type PlasmicMainPageCenter__ArgsType = {
   onListChange?: (val: string) => void;
   state?: string;
   addService?: (event: any) => void;
+  rule?: string;
 };
 type ArgPropType = keyof PlasmicMainPageCenter__ArgsType;
 export const PlasmicMainPageCenter__ArgProps = new Array<ArgPropType>(
@@ -118,7 +119,8 @@ export const PlasmicMainPageCenter__ArgProps = new Array<ArgPropType>(
   "list",
   "onListChange",
   "state",
-  "addService"
+  "addService",
+  "rule"
 );
 
 export type PlasmicMainPageCenter__OverridesType = {
@@ -151,6 +153,7 @@ export interface DefaultMainPageCenterProps {
   onListChange?: (val: string) => void;
   state?: string;
   addService?: (event: any) => void;
+  rule?: string;
   className?: string;
 }
 
@@ -602,41 +605,56 @@ function PlasmicMainPageCenter__RenderFunc(props: {
             }}
           />
 
-          <Button
-            data-plasmic-name={"button2"}
-            data-plasmic-override={overrides.button2}
-            className={classNames("__wab_instance", sty.button2)}
-            color={"warning"}
-            end={
-              <Icon56Icon
-                className={classNames("all", sty.svg__cXmq9)}
-                role={"img"}
-              />
-            }
-            iconEnd={true}
-            label={
-              <div className={classNames("all", "__wab_text", sty.text__gDVn)}>
-                {"\u062e\u062f\u0645\u062a \u062c\u062f\u06cc\u062f"}
-              </div>
-            }
-            loading={generateStateValueProp($state, ["button2", "loading"])}
-            onClick={args.addService}
-            onLoadingChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["button2", "loading"]).apply(
-                null,
-                eventArgs
-              );
-
+          {(() => {
+            try {
+              return $props.rule == "super_admin";
+            } catch (e) {
               if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
               ) {
-                return;
+                return true;
               }
-            }}
-          />
+              throw e;
+            }
+          })() ? (
+            <Button
+              data-plasmic-name={"button2"}
+              data-plasmic-override={overrides.button2}
+              className={classNames("__wab_instance", sty.button2)}
+              color={"warning"}
+              end={
+                <Icon56Icon
+                  className={classNames("all", sty.svg__cXmq9)}
+                  role={"img"}
+                />
+              }
+              iconEnd={true}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text__gDVn)}
+                >
+                  {"\u062e\u062f\u0645\u062a \u062c\u062f\u06cc\u062f"}
+                </div>
+              }
+              loading={generateStateValueProp($state, ["button2", "loading"])}
+              onClick={args.addService}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["button2", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
 
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+            />
+          ) : null}
           <div className={classNames("all", sty.freeBox__a8U8E)}>
             <Select
               data-plasmic-name={"select"}
@@ -1019,16 +1037,17 @@ function PlasmicMainPageCenter__RenderFunc(props: {
                               const actionArgs = {
                                 customFunction: async () => {
                                   return (() => {
+                                    event.stopPropagation();
                                     const row = event?.target?.closest("tr");
                                     if (!row) return;
                                     const cells = row.querySelectorAll("td");
                                     if (cells.length < 3) return;
-                                    const data = {
-                                      id: cells[1]?.innerText?.trim() || "",
+                                    return ($state.table.selectedRow = {
+                                      id:
+                                        Number(cells[1]?.innerText?.trim()) ||
+                                        0,
                                       name: cells[2]?.innerText?.trim() || ""
-                                    };
-                                    console.log(data);
-                                    return ($state.table.selectedRow = data);
+                                    });
                                   })();
                                 }
                               };
@@ -1073,16 +1092,17 @@ function PlasmicMainPageCenter__RenderFunc(props: {
                               const actionArgs = {
                                 customFunction: async () => {
                                   return (() => {
+                                    event.stopPropagation();
                                     const row = event?.target?.closest("tr");
                                     if (!row) return;
                                     const cells = row.querySelectorAll("td");
                                     if (cells.length < 3) return;
-                                    const data = {
-                                      id: cells[1]?.innerText?.trim() || "",
+                                    return ($state.table.selectedRow = {
+                                      id:
+                                        Number(cells[1]?.innerText?.trim()) ||
+                                        0,
                                       name: cells[2]?.innerText?.trim() || ""
-                                    };
-                                    console.log(data);
-                                    return ($state.table.selectedRow = data);
+                                    });
                                   })();
                                 }
                               };

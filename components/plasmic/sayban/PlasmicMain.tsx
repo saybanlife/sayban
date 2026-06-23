@@ -859,6 +859,11 @@ function PlasmicMain__RenderFunc(props: {
             "page",
             "centers"
           ),
+          [sty.mainPageCenterpage_services]: hasVariant(
+            $state,
+            "page",
+            "services"
+          ),
           [sty.mainPageCenterpage_users]: hasVariant($state, "page", "users")
         })}
         list={generateStateValueProp($state, ["mainPageCenter", "list"])}
@@ -1121,7 +1126,8 @@ function PlasmicMain__RenderFunc(props: {
         categpty={generateStateValueProp($state, ["centerPage", "categpty"])}
         className={classNames("__wab_instance", sty.centerPage, {
           [sty.centerPagepage_center]: hasVariant($state, "page", "center"),
-          [sty.centerPagepage_centers]: hasVariant($state, "page", "centers")
+          [sty.centerPagepage_centers]: hasVariant($state, "page", "centers"),
+          [sty.centerPagepage_services]: hasVariant($state, "page", "services")
         })}
         data={generateStateValueProp($state, ["centerPage", "data"])}
         deleteCenter={async () => {
@@ -3087,7 +3093,7 @@ function PlasmicMain__RenderFunc(props: {
           );
         }}
         shouldFetch={true}
-        url={"panel/centers"}
+        url={"/panel/categories/full"}
       />
 
       <Embed

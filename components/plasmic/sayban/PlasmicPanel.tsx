@@ -65,7 +65,6 @@ import PanelMenu from "../../PanelMenu"; // plasmic-import: H67gJZiYVEqw/compone
 import Main from "../../Main"; // plasmic-import: FYuKeNpu5zZ7/component
 import LoginPanel from "../../LoginPanel"; // plasmic-import: hZEy0JIfmlF9/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
-import LoadingPanel from "../../LoadingPanel"; // plasmic-import: K12Va91eFAEa/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -126,7 +125,6 @@ export type PlasmicPanel__OverridesType = {
   main?: Flex__<typeof Main>;
   loginPanel?: Flex__<typeof LoginPanel>;
   sideEffect?: Flex__<typeof SideEffect>;
-  loadingPanel?: Flex__<typeof LoadingPanel>;
 };
 
 export interface DefaultPanelProps {}
@@ -549,9 +547,8 @@ function PlasmicPanel__RenderFunc(props: {
                       destination: `/panel/${(() => {
                         try {
                           return (() => {
-                            const role = $steps.loginApi?.data?.result?.role;
-                            const centerId =
-                              $steps.loginApi?.data?.result?.center_id;
+                            const role = $state.userInfo?.role;
+                            const centerId = $state.userInfo?.center_id;
                             let result;
                             if (role === "super_admin") {
                               result = "centers";
@@ -1069,6 +1066,55 @@ function PlasmicPanel__RenderFunc(props: {
                 ) {
                   $steps["updateUserInfo"] = await $steps["updateUserInfo"];
                 }
+
+                $steps["goToPanel"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        destination: `/panel/${(() => {
+                          try {
+                            return (() => {
+                              const role = $state.userInfo?.role;
+                              const centerId = $state.userInfo?.center_id;
+                              let result;
+                              if (role === "super_admin") {
+                                result = "centers";
+                              } else if (role === "center_admin") {
+                                result = `center`;
+                              }
+                              return result;
+                            })();
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}`
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToPanel"] != null &&
+                  typeof $steps["goToPanel"] === "object" &&
+                  typeof $steps["goToPanel"].then === "function"
+                ) {
+                  $steps["goToPanel"] = await $steps["goToPanel"];
+                }
               }).apply(null, eventArgs);
             }}
             onUserinfoChange={async (...eventArgs: any) => {
@@ -1121,6 +1167,55 @@ function PlasmicPanel__RenderFunc(props: {
                 ) {
                   $steps["updateUserInfo"] = await $steps["updateUserInfo"];
                 }
+
+                $steps["goToPanel"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        destination: `/panel/${(() => {
+                          try {
+                            return (() => {
+                              const role = $state.userInfo?.role;
+                              const centerId = $state.userInfo?.center_id;
+                              let result;
+                              if (role === "super_admin") {
+                                result = "centers";
+                              } else if (role === "center_admin") {
+                                result = `center`;
+                              }
+                              return result;
+                            })();
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}`
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToPanel"] != null &&
+                  typeof $steps["goToPanel"] === "object" &&
+                  typeof $steps["goToPanel"].then === "function"
+                ) {
+                  $steps["goToPanel"] = await $steps["goToPanel"];
+                }
               }).apply(null, eventArgs);
             }}
             page={(() => {
@@ -1149,7 +1244,7 @@ function PlasmicPanel__RenderFunc(props: {
           onMount={async () => {
             const $steps = {};
 
-            $steps["getCookie"] = false
+            $steps["getCookie"] = true
               ? (() => {
                   const actionArgs = { args: ["panelToken"] };
                   return $globalActions["Fragment.getCookie"]?.apply(null, [
@@ -1165,7 +1260,7 @@ function PlasmicPanel__RenderFunc(props: {
               $steps["getCookie"] = await $steps["getCookie"];
             }
 
-            $steps["updateToken"] = false
+            $steps["updateToken"] = true
               ? (() => {
                   const actionArgs = {
                     variable: {
@@ -1194,23 +1289,24 @@ function PlasmicPanel__RenderFunc(props: {
               $steps["updateToken"] = await $steps["updateToken"];
             }
 
-            $steps["goToPanel"] = false
-              ? (() => {
-                  const actionArgs = { destination: `/panel/${"login"}` };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
+            $steps["goToPanel"] =
+              $state.token == null && $ctx.params.page[0] != "login"
+                ? (() => {
+                    const actionArgs = { destination: `/panel/${"login"}` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
             if (
               $steps["goToPanel"] != null &&
               typeof $steps["goToPanel"] === "object" &&
@@ -1219,12 +1315,6 @@ function PlasmicPanel__RenderFunc(props: {
               $steps["goToPanel"] = await $steps["goToPanel"];
             }
           }}
-        />
-
-        <LoadingPanel
-          data-plasmic-name={"loadingPanel"}
-          data-plasmic-override={overrides.loadingPanel}
-          className={classNames("__wab_instance", sty.loadingPanel)}
         />
       </div>
     </React.Fragment>
@@ -1240,8 +1330,7 @@ const PlasmicDescendants = {
     "panelMenu",
     "main",
     "loginPanel",
-    "sideEffect",
-    "loadingPanel"
+    "sideEffect"
   ],
   apiRequest: ["apiRequest", "load", "freeBox", "panelMenu", "main"],
   load: ["load"],
@@ -1249,8 +1338,7 @@ const PlasmicDescendants = {
   panelMenu: ["panelMenu"],
   main: ["main"],
   loginPanel: ["loginPanel"],
-  sideEffect: ["sideEffect"],
-  loadingPanel: ["loadingPanel"]
+  sideEffect: ["sideEffect"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1264,7 +1352,6 @@ type NodeDefaultElementType = {
   main: typeof Main;
   loginPanel: typeof LoginPanel;
   sideEffect: typeof SideEffect;
-  loadingPanel: typeof LoadingPanel;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1336,7 +1423,6 @@ export const PlasmicPanel = Object.assign(
     main: makeNodeComponent("main"),
     loginPanel: makeNodeComponent("loginPanel"),
     sideEffect: makeNodeComponent("sideEffect"),
-    loadingPanel: makeNodeComponent("loadingPanel"),
 
     // Metadata about props expected for PlasmicPanel
     internalVariantProps: PlasmicPanel__VariantProps,
