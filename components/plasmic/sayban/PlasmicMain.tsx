@@ -2240,99 +2240,114 @@ function PlasmicMain__RenderFunc(props: {
         closeOnBackdropClick={false}
         content={
           <div className={classNames("all", sty.freeBox__oTin)}>
-            <Select
-              data-plasmic-name={"select"}
-              data-plasmic-override={overrides.select}
-              className={classNames("__wab_instance", sty.select)}
-              isOpen={generateStateValueProp($state, ["select", "isOpen"])}
-              items={(_par =>
-                !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                (() => {
-                  try {
-                    return $state.mainPageCenter.center;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return [];
-                    }
-                    throw e;
-                  }
-                })()
-              ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                const currentItem = __plasmic_item_0;
-                const currentIndex = __plasmic_idx_0;
-                return (
-                  <MenuItem
-                    data-plasmic-name={"menuItem"}
-                    data-plasmic-override={overrides.menuItem}
-                    key={currentIndex}
-                    label={(() => {
-                      try {
-                        return currentItem.نام;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()}
-                    value={(() => {
-                      try {
-                        return currentItem.شناسه;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()}
-                  />
-                );
-              })}
-              onChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["select", "value"]).apply(
-                  null,
-                  eventArgs
-                );
-
+            {(() => {
+              try {
+                return $state.role == "super_admin";
+              } catch (e) {
                 if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
                 ) {
-                  return;
+                  return true;
                 }
-              }}
-              onOpenChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["select", "isOpen"]).apply(
-                  null,
-                  eventArgs
-                );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              placeholder={
-                "\u0645\u0631\u06a9\u0632 \u0645\u0648\u0631\u062f \u0646\u0638\u0631 \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
+                throw e;
               }
-              showLabel={false}
-              type={"lineBox"}
-              value={generateStateValueProp($state, ["select", "value"])}
-            />
+            })() ? (
+              <div className={classNames("all", sty.freeBox__qtlij)}>
+                <Select
+                  data-plasmic-name={"select"}
+                  data-plasmic-override={overrides.select}
+                  className={classNames("__wab_instance", sty.select)}
+                  isOpen={generateStateValueProp($state, ["select", "isOpen"])}
+                  items={(_par =>
+                    !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                    (() => {
+                      try {
+                        return $state.mainPageCenter.center;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()
+                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                    const currentItem = __plasmic_item_0;
+                    const currentIndex = __plasmic_idx_0;
+                    return (
+                      <MenuItem
+                        data-plasmic-name={"menuItem"}
+                        data-plasmic-override={overrides.menuItem}
+                        key={currentIndex}
+                        label={(() => {
+                          try {
+                            return currentItem.نام;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}
+                        value={(() => {
+                          try {
+                            return currentItem.شناسه;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}
+                      />
+                    );
+                  })}
+                  onChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "select",
+                      "value"
+                    ]).apply(null, eventArgs);
 
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onOpenChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "select",
+                      "isOpen"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  placeholder={
+                    "\u0645\u0631\u06a9\u0632 \u0645\u0648\u0631\u062f \u0646\u0638\u0631 \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
+                  }
+                  showLabel={false}
+                  type={"lineBox"}
+                  value={generateStateValueProp($state, ["select", "value"])}
+                />
+              </div>
+            ) : null}
             <AddServise
               data-plasmic-name={"addServise2"}
               data-plasmic-override={overrides.addServise2}
@@ -2448,7 +2463,8 @@ function PlasmicMain__RenderFunc(props: {
                           (() => {
                             try {
                               return {
-                                center_id: $state.select.value,
+                                center_id:
+                                  $props.centerId || $state.select.value,
                                 service: $state.addServise2.servises
                               };
                             } catch (e) {
@@ -2952,6 +2968,29 @@ function PlasmicMain__RenderFunc(props: {
       <MainPageServise
         data-plasmic-name={"mainPageServise"}
         data-plasmic-override={overrides.mainPageServise}
+        addService={async event => {
+          const $steps = {};
+
+          $steps["runCode"] = true
+            ? (() => {
+                const actionArgs = {
+                  customFunction: async () => {
+                    return ($state.addService.isOpen = true);
+                  }
+                };
+                return (({ customFunction }) => {
+                  return customFunction();
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["runCode"] != null &&
+            typeof $steps["runCode"] === "object" &&
+            typeof $steps["runCode"].then === "function"
+          ) {
+            $steps["runCode"] = await $steps["runCode"];
+          }
+        }}
         categpty={generateStateValueProp($state, [
           "mainPageServise",
           "categpty"
