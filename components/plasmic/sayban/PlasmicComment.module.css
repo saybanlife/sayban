@@ -16,6 +16,10 @@
     animation: none;
   }
 }
+.rootpanel {
+  background: var(--token-KPGXdu9o7llP);
+  border-radius: var(--token-rfsFxiclAtek);
+}
 .freeBox__ueb4J {
   animation: none;
   display: flex;
@@ -83,18 +87,19 @@
   top: auto;
   left: auto;
   min-width: 0;
-  padding: 8px;
+  padding: 0px;
 }
 .freeBox__mvcG {
   animation: none;
   display: flex;
   flex-direction: row;
   position: relative;
-  align-items: stretch;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
   height: auto;
   max-width: 100%;
+  column-gap: var(--token-cfon0PHiXQoL);
   min-width: 0;
   padding: 0px;
 }
@@ -103,9 +108,35 @@
     animation: none;
   }
 }
+.freeBox__cdjjr {
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 30px;
+  height: 30px;
+  max-width: 100%;
+  background: var(--token-Es3BYpS8XP38);
+  flex-shrink: 0;
+  display: none;
+  border-radius: 50px;
+  padding: 4px;
+}
+.freeBoxpanel__cdjjr5NC34 {
+  display: flex;
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-CoQ7kPLW8rRe);
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
 .text__qSc5D {
   animation: none;
-  width: auto;
+  width: 100%;
   height: auto;
   max-width: 100%;
   font-size: 13px;
@@ -113,11 +144,12 @@
   font-weight: normal;
   font-style: normal;
   color: var(--token-9M5jRUPt8Msb);
-  text-align: left;
+  text-align: right;
   text-transform: none;
   line-height: 1.5;
   letter-spacing: normal;
   white-space: pre-wrap;
+  min-width: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .text__qSc5D {
@@ -127,7 +159,7 @@
 .text__v6Sse {
   animation: none;
   position: relative;
-  width: auto;
+  width: 100%;
   height: auto;
   max-width: 100%;
   align-self: flex-start;
@@ -142,6 +174,12 @@
   letter-spacing: normal;
   white-space: pre-wrap;
   opacity: 0.7;
+  min-width: 0;
+}
+.textpanel__v6Sse5NC34 {
+  color: var(--token-5bOpHmsvlymK);
+  width: 100%;
+  min-width: 0;
 }
 .freeBox__poXve {
   animation: none;

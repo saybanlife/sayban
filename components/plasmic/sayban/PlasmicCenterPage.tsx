@@ -68,6 +68,7 @@ import Tags from "../../Tags"; // plasmic-import: Lr-0_vYS3Xmt/component
 import ImageEdit from "../../ImageEdit"; // plasmic-import: PU02M3FSmgy6/component
 import AddServise2 from "../../AddServise2"; // plasmic-import: ldHafC0LATYt/component
 import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
+import Comments from "../../Comments"; // plasmic-import: cWL9dXIRpWvf/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Modal from "../../Modal"; // plasmic-import: Oo9r7A7X8FP7/component
 import CenterInfo from "../../CenterInfo"; // plasmic-import: 5fhUfrSk0s6y/component
@@ -149,6 +150,7 @@ export type PlasmicCenterPage__OverridesType = {
   imageEdit?: Flex__<typeof ImageEdit>;
   addServise2?: Flex__<typeof AddServise2>;
   timeWeek?: Flex__<typeof TimeWeek>;
+  comments?: Flex__<typeof Comments>;
   center?: Flex__<typeof ApiRequest>;
   info?: Flex__<typeof Modal>;
   centerInfo?: Flex__<typeof CenterInfo>;
@@ -207,7 +209,7 @@ function PlasmicCenterPage__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          id: "a87ff679a2f3e71d9181a67b7542122c",
+          id: "4",
           token:
             "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwaXJlIjoxNzY0NTA2MjczfQ.A6wRqW0jMYVg_rZ4OMZ5oXrcOVwKq3BG4i_wmvKf_8A",
           categories: []
@@ -664,6 +666,44 @@ function PlasmicCenterPage__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "comments.percentages",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.center.data.result.percentages;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "comments.reviews",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.center.data.reviews;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -2011,6 +2051,64 @@ function PlasmicCenterPage__RenderFunc(props: {
                   }
                 }}
                 week={generateStateValueProp($state, ["timeWeek", "week"])}
+              />
+            </div>
+            <div className={classNames("all", sty.freeBox___00JXf)}>
+              <div className={classNames("all", sty.freeBox__bu3Om)}>
+                <Icon67Icon
+                  className={classNames("all", sty.svg__ax64M)}
+                  role={"img"}
+                />
+
+                <div
+                  className={classNames("all", "__wab_text", sty.text__oUkv)}
+                >
+                  {
+                    "\u0646\u0638\u0631 \u06a9\u0627\u0631\u0628\u0631\u0627\u0646"
+                  }
+                </div>
+              </div>
+              <Comments
+                data-plasmic-name={"comments"}
+                data-plasmic-override={overrides.comments}
+                className={classNames("__wab_instance", sty.comments)}
+                onPercentagesChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "comments",
+                    "percentages"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                onReviewsChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "comments",
+                    "reviews"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                percentages={generateStateValueProp($state, [
+                  "comments",
+                  "percentages"
+                ])}
+                rate={$state.center.data.result.rating_avg}
+                reviews={generateStateValueProp($state, [
+                  "comments",
+                  "reviews"
+                ])}
               />
             </div>
           </div>
@@ -3638,6 +3736,7 @@ const PlasmicDescendants = {
     "imageEdit",
     "addServise2",
     "timeWeek",
+    "comments",
     "center",
     "info",
     "centerInfo",
@@ -3669,6 +3768,7 @@ const PlasmicDescendants = {
   imageEdit: ["imageEdit"],
   addServise2: ["addServise2"],
   timeWeek: ["timeWeek"],
+  comments: ["comments"],
   center: ["center"],
   info: ["info", "centerInfo", "saveInfo", "button5"],
   centerInfo: ["centerInfo"],
@@ -3705,6 +3805,7 @@ type NodeDefaultElementType = {
   imageEdit: typeof ImageEdit;
   addServise2: typeof AddServise2;
   timeWeek: typeof TimeWeek;
+  comments: typeof Comments;
   center: typeof ApiRequest;
   info: typeof Modal;
   centerInfo: typeof CenterInfo;
@@ -3799,6 +3900,7 @@ export const PlasmicCenterPage = Object.assign(
     imageEdit: makeNodeComponent("imageEdit"),
     addServise2: makeNodeComponent("addServise2"),
     timeWeek: makeNodeComponent("timeWeek"),
+    comments: makeNodeComponent("comments"),
     center: makeNodeComponent("center"),
     info: makeNodeComponent("info"),
     centerInfo: makeNodeComponent("centerInfo"),

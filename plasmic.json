@@ -29341,6 +29341,32 @@
           "cssFilePath": "plasmic/sayban/PlasmicMainPageServise.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "rqLmDuRYxZHF",
+          "name": "Center2",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicCenter2.tsx",
+          "importSpec": {
+            "modulePath": "Center2.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicCenter2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "cWL9dXIRpWvf",
+          "name": "Comments",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicComments.tsx",
+          "importSpec": {
+            "modulePath": "Comments.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicComments.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -30318,6 +30344,21 @@
           "id": "usK66jCTq1J4",
           "name": "Icon114Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon114.tsx"
+        },
+        {
+          "id": "srS6ttVWGtoY",
+          "name": "Icon116Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon116.tsx"
+        },
+        {
+          "id": "oMBwNrwKHAsL",
+          "name": "Icon117Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon117.tsx"
+        },
+        {
+          "id": "F0U3QQgACgil",
+          "name": "Icon118Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon118.tsx"
         }
       ],
       "images": [
@@ -30580,6 +30621,16 @@
           "id": "fZRKkley48rV",
           "name": "image 35",
           "filePath": "../public/plasmic/sayban/images/image35.svg"
+        },
+        {
+          "id": "ZVxNtAudESCR",
+          "name": "image 36",
+          "filePath": "../public/plasmic/sayban/images/image36.svg"
+        },
+        {
+          "id": "dz2wP756vYj5",
+          "name": "image 37",
+          "filePath": "../public/plasmic/sayban/images/image37.svg"
         }
       ],
       "indirect": false,
@@ -30983,6 +31034,6 @@
   "nextjsConfig": {
     "pagesDir": "../src/pages"
   },
-  "cliVersion": "0.1.364",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.364/dist/plasmic.schema.json"
+  "cliVersion": "0.1.365",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.365/dist/plasmic.schema.json"
 }

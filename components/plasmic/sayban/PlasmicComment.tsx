@@ -67,12 +67,18 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicComment.module.css"; // plasmic-import: 4NLVwAuHCB3Q/css
 
+import Icon5Icon from "./icons/PlasmicIcon__Icon5"; // plasmic-import: 8vOA1S70pHdl/icon
+
 createPlasmicElementProxy;
 
-export type PlasmicComment__VariantMembers = {};
-export type PlasmicComment__VariantsArgs = {};
+export type PlasmicComment__VariantMembers = {
+  panel: "panel";
+};
+export type PlasmicComment__VariantsArgs = {
+  panel?: SingleBooleanChoiceArg<"panel">;
+};
 type VariantPropType = keyof PlasmicComment__VariantsArgs;
-export const PlasmicComment__VariantProps = new Array<VariantPropType>();
+export const PlasmicComment__VariantProps = new Array<VariantPropType>("panel");
 
 export type PlasmicComment__ArgsType = { user?: any };
 type ArgPropType = keyof PlasmicComment__ArgsType;
@@ -80,11 +86,13 @@ export const PlasmicComment__ArgProps = new Array<ArgPropType>("user");
 
 export type PlasmicComment__OverridesType = {
   root?: Flex__<"div">;
+  svg?: Flex__<"svg">;
   stars?: Flex__<typeof Stars>;
 };
 
 export interface DefaultCommentProps {
   user?: any;
+  panel?: SingleBooleanChoiceArg<"panel">;
   className?: string;
 }
 
@@ -127,7 +135,27 @@ function PlasmicComment__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "panel",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.panel
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+
   const globalVariants = _useGlobalVariants();
+
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $q: {},
+    $refs
+  });
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -143,7 +171,8 @@ function PlasmicComment__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        { [sty.rootpanel]: hasVariant($state, "panel", "panel") }
       )}
     >
       <div className={classNames("all", sty.freeBox__ueb4J)}>
@@ -247,6 +276,22 @@ function PlasmicComment__RenderFunc(props: {
         </div>
         <div className={classNames("all", sty.freeBox__mjAw1)}>
           <div className={classNames("all", sty.freeBox__mvcG)}>
+            <div
+              className={classNames("all", sty.freeBox__cdjjr, {
+                [sty.freeBoxpanel__cdjjr5NC34]: hasVariant(
+                  $state,
+                  "panel",
+                  "panel"
+                )
+              })}
+            >
+              <Icon5Icon
+                data-plasmic-name={"svg"}
+                data-plasmic-override={overrides.svg}
+                className={classNames("all", sty.svg)}
+                role={"img"}
+              />
+            </div>
             <div className={classNames("all", "__wab_text", sty.text__qSc5D)}>
               <React.Fragment>
                 {(() => {
@@ -264,7 +309,15 @@ function PlasmicComment__RenderFunc(props: {
                 })()}
               </React.Fragment>
             </div>
-            <div className={classNames("all", "__wab_text", sty.text__v6Sse)}>
+            <div
+              className={classNames("all", "__wab_text", sty.text__v6Sse, {
+                [sty.textpanel__v6Sse5NC34]: hasVariant(
+                  $state,
+                  "panel",
+                  "panel"
+                )
+              })}
+            >
               <React.Fragment>
                 {(() => {
                   try {
@@ -284,7 +337,15 @@ function PlasmicComment__RenderFunc(props: {
               </React.Fragment>
             </div>
           </div>
-          <div className={classNames("all", sty.freeBox__poXve)}>
+          <div
+            className={classNames("all", sty.freeBox__poXve, {
+              [sty.freeBoxpanel__poXve5NC34]: hasVariant(
+                $state,
+                "panel",
+                "panel"
+              )
+            })}
+          >
             {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
               (() => {
                 try {
@@ -328,7 +389,11 @@ function PlasmicComment__RenderFunc(props: {
           </div>
         </div>
       </div>
-      <div className={classNames("all", "__wab_text", sty.text__h7X7L)}>
+      <div
+        className={classNames("all", "__wab_text", sty.text__h7X7L, {
+          [sty.textpanel__h7X7L5NC34]: hasVariant($state, "panel", "panel")
+        })}
+      >
         <React.Fragment>
           {(() => {
             try {
@@ -353,7 +418,8 @@ function PlasmicComment__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "stars"],
+  root: ["root", "svg", "stars"],
+  svg: ["svg"],
   stars: ["stars"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -361,6 +427,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  svg: "svg";
   stars: typeof Stars;
 };
 
@@ -426,6 +493,7 @@ export const PlasmicComment = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    svg: makeNodeComponent("svg"),
     stars: makeNodeComponent("stars"),
 
     // Metadata about props expected for PlasmicComment

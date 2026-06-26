@@ -69,6 +69,7 @@ import Errorpage from "../../Errorpage"; // plasmic-import: HTnfDJNIbaau/compone
 import { RichTable } from "@plasmicpkgs/plasmic-rich-components/skinny/rich-table";
 import { tableHelpers as RichTable_Helpers } from "@plasmicpkgs/plasmic-rich-components/skinny/rich-table";
 import EmptyPage from "../../EmptyPage"; // plasmic-import: q5YsvjSR6-JD/component
+import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -99,10 +100,12 @@ export type PlasmicMainPageCenter__ArgsType = {
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
-  onListChange2?: (val: string) => void;
+  onListChange?: (val: string) => void;
   state?: string;
   addService?: (event: any) => void;
   rule?: string;
+  selected?: any;
+  onSelectedChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicMainPageCenter__ArgsType;
 export const PlasmicMainPageCenter__ArgProps = new Array<ArgPropType>(
@@ -117,10 +120,12 @@ export const PlasmicMainPageCenter__ArgProps = new Array<ArgPropType>(
   "restart",
   "onRestartChange",
   "list",
-  "onListChange2",
+  "onListChange",
   "state",
   "addService",
-  "rule"
+  "rule",
+  "selected",
+  "onSelectedChange"
 );
 
 export type PlasmicMainPageCenter__OverridesType = {
@@ -136,6 +141,8 @@ export type PlasmicMainPageCenter__OverridesType = {
   errorpage?: Flex__<typeof Errorpage>;
   table?: Flex__<typeof RichTable>;
   emptyPage?: Flex__<typeof EmptyPage>;
+  embedHtml?: Flex__<typeof Embed>;
+  img?: Flex__<typeof PlasmicImg__>;
 };
 
 export interface DefaultMainPageCenterProps {
@@ -150,10 +157,12 @@ export interface DefaultMainPageCenterProps {
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
-  onListChange2?: (val: string) => void;
+  onListChange?: (val: string) => void;
   state?: string;
   addService?: (event: any) => void;
   rule?: string;
+  selected?: any;
+  onSelectedChange?: (val: string) => void;
   className?: string;
 }
 
@@ -334,13 +343,21 @@ function PlasmicMainPageCenter__RenderFunc(props: {
         variableType: "boolean",
 
         valueProp: "list",
-        onChangeProp: "onListChange2"
+        onChangeProp: "onListChange"
       },
       {
         path: "button2.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "selected",
+        type: "writable",
+        variableType: "object",
+
+        valueProp: "selected",
+        onChangeProp: "onSelectedChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -889,7 +906,7 @@ function PlasmicMainPageCenter__RenderFunc(props: {
                 throw e;
               }
             })()}
-            url={"https://sayban.darkube.ir/webhook/panel/centers"}
+            url={"/panel/centers"}
           >
             {(() => {
               try {
@@ -926,7 +943,13 @@ function PlasmicMainPageCenter__RenderFunc(props: {
                     })(),
                     fields: (() => {
                       const __composite = [
-                        { key: "id", fieldId: "id" },
+                        {
+                          key: "main_image",
+                          fieldId: "main_image",
+                          isHidden: null,
+                          title: null
+                        },
+                        { key: "id", fieldId: "id", isHidden: null },
                         { key: "name", fieldId: "name" },
                         { key: "city", fieldId: "city" },
                         {
@@ -934,13 +957,16 @@ function PlasmicMainPageCenter__RenderFunc(props: {
                           fieldId: "name subcategories"
                         },
                         { key: "area", fieldId: "area" },
-                        {
-                          key: "main_image",
-                          fieldId: "main_image",
-                          isHidden: null
-                        }
+                        { key: "نام", fieldId: "نام" },
+                        { key: "آدرس", fieldId: "آدرس" },
+                        { key: "شهر", fieldId: "شهر" },
+                        { key: "استان", fieldId: "استان" },
+                        { key: "تلفن", fieldId: "تلفن" },
+                        { key: "ساعات کاری", fieldId: "ساعات کاری" }
                       ];
-                      __composite["5"]["isHidden"] = true;
+                      __composite["0"]["isHidden"] = false;
+                      __composite["0"]["title"] = "  ";
+                      __composite["1"]["isHidden"] = true;
                       return __composite;
                     })(),
 
@@ -948,7 +974,7 @@ function PlasmicMainPageCenter__RenderFunc(props: {
                     hideDensity: true,
                     hideExports: false,
                     hideSearch: false,
-                    hideSelectionBar: true,
+                    hideSelectionBar: false,
                     onRowClick: async (rowKey, row, event) => {
                       const $steps = {};
 
@@ -1023,8 +1049,7 @@ function PlasmicMainPageCenter__RenderFunc(props: {
                           label: null,
                           children: null,
                           onClick: null
-                        },
-                        { type: "item", label: null, onClick: null }
+                        }
                       ];
                       __composite["0"]["type"] = "item";
                       __composite["0"]["label"] = "\u274c";
@@ -1037,17 +1062,8 @@ function PlasmicMainPageCenter__RenderFunc(props: {
                               const actionArgs = {
                                 customFunction: async () => {
                                   return (() => {
-                                    event.stopPropagation();
-                                    const row = event?.target?.closest("tr");
-                                    if (!row) return;
-                                    const cells = row.querySelectorAll("td");
-                                    if (cells.length < 3) return;
-                                    return ($state.table.selectedRow = {
-                                      id:
-                                        Number(cells[1]?.innerText?.trim()) ||
-                                        0,
-                                      name: cells[2]?.innerText?.trim() || ""
-                                    });
+                                    $state.selected.id = rowKey;
+                                    return ($state.selected.name = row["نام"]);
                                   })();
                                 }
                               };
@@ -1062,6 +1078,25 @@ function PlasmicMainPageCenter__RenderFunc(props: {
                           typeof $steps["runCode"].then === "function"
                         ) {
                           $steps["runCode"] = await $steps["runCode"];
+                        }
+
+                        $steps["invokeGlobalAction"] = true
+                          ? (() => {
+                              const actionArgs = { args: [200] };
+                              return $globalActions["Fragment.wait"]?.apply(
+                                null,
+                                [...actionArgs.args]
+                              );
+                            })()
+                          : undefined;
+                        if (
+                          $steps["invokeGlobalAction"] != null &&
+                          typeof $steps["invokeGlobalAction"] === "object" &&
+                          typeof $steps["invokeGlobalAction"].then ===
+                            "function"
+                        ) {
+                          $steps["invokeGlobalAction"] =
+                            await $steps["invokeGlobalAction"];
                         }
 
                         $steps["runCenterDelete"] = true
@@ -1081,61 +1116,6 @@ function PlasmicMainPageCenter__RenderFunc(props: {
                         ) {
                           $steps["runCenterDelete"] =
                             await $steps["runCenterDelete"];
-                        }
-                      };
-                      __composite["1"]["label"] = "\u270f\ufe0f";
-                      __composite["1"]["onClick"] = async (rowKey, row) => {
-                        const $steps = {};
-
-                        $steps["runCode"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                customFunction: async () => {
-                                  return (() => {
-                                    event.stopPropagation();
-                                    const row = event?.target?.closest("tr");
-                                    if (!row) return;
-                                    const cells = row.querySelectorAll("td");
-                                    if (cells.length < 3) return;
-                                    return ($state.table.selectedRow = {
-                                      id:
-                                        Number(cells[1]?.innerText?.trim()) ||
-                                        0,
-                                      name: cells[2]?.innerText?.trim() || ""
-                                    });
-                                  })();
-                                }
-                              };
-                              return (({ customFunction }) => {
-                                return customFunction();
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["runCode"] != null &&
-                          typeof $steps["runCode"] === "object" &&
-                          typeof $steps["runCode"].then === "function"
-                        ) {
-                          $steps["runCode"] = await $steps["runCode"];
-                        }
-
-                        $steps["runOnRowClicked"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                eventRef: $props["onRowClicked"]
-                              };
-                              return (({ eventRef, args }) => {
-                                return eventRef?.(...(args ?? []));
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["runOnRowClicked"] != null &&
-                          typeof $steps["runOnRowClicked"] === "object" &&
-                          typeof $steps["runOnRowClicked"].then === "function"
-                        ) {
-                          $steps["runOnRowClicked"] =
-                            await $steps["runOnRowClicked"];
                         }
                       };
                       return __composite;
@@ -1293,6 +1273,39 @@ function PlasmicMainPageCenter__RenderFunc(props: {
               </div>
             </div>
           </div>
+          <Embed
+            data-plasmic-name={"embedHtml"}
+            data-plasmic-override={overrides.embedHtml}
+            className={classNames("__wab_instance", sty.embedHtml)}
+            code={
+              "<script>\r\n(function() {\r\n    const observer = new MutationObserver(function() {\r\n        const inputs = document.querySelectorAll('input[placeholder=\"Search\"]');\r\n        inputs.forEach(input => {\r\n            input.setAttribute('placeholder', '\u062c\u0633\u062a\u062c\u0648');\r\n            input.style.textAlign = 'right';\r\n        });\r\n\r\n        const profileIcon = document.getElementById('profile-icon');\r\n        const cells = document.querySelectorAll('table tr td:nth-child(2)');\r\n\r\n        if (profileIcon) {\r\n            profileIcon.style.display = 'none';\r\n        }\r\n\r\n        if (profileIcon && cells.length > 0) {\r\n            cells.forEach(cell => {\r\n                const rawText = Array.from(cell.childNodes)\r\n                    .filter(node => node.nodeType === Node.TEXT_NODE)\r\n                    .map(node => node.textContent.trim())\r\n                    .join(' ')\r\n                    .trim();\r\n\r\n                const isImageUrl = /^https?:\\/\\/.+\\.(jpg|jpeg|png|gif|webp|svg)(\\?.*)?$/i.test(rawText);\r\n\r\n                let clone = cell.querySelector('.profile-icon-clone');\r\n\r\n                // \u0628\u0631\u0627\u06cc \u0647\u0645\u0647 \u0633\u0644\u0648\u0644\u200c\u0647\u0627 clone \u0628\u0633\u0627\u0632\r\n                if (!clone) {\r\n                    clone = profileIcon.cloneNode(true);\r\n                    clone.removeAttribute('id');\r\n                    clone.classList.add('profile-icon-clone');\r\n                    clone.style.display = '';\r\n                    cell.appendChild(clone);\r\n                }\r\n\r\n                // \u0627\u06af\u0631 \u0644\u06cc\u0646\u06a9 \u0639\u06a9\u0633 \u0628\u0648\u062f\u060c src \u0631\u0627 \u0639\u0648\u0636 \u06a9\u0646\r\n                if (isImageUrl) {\r\n                    const img = clone.querySelector('img.__wab_img');\r\n                    if (img) {\r\n                        img.src = rawText;\r\n                    }\r\n\r\n                    // \u0645\u062a\u0646 \u0644\u06cc\u0646\u06a9 \u0631\u0627 \u067e\u0627\u06a9 \u06a9\u0646\r\n                    Array.from(cell.childNodes).forEach(node => {\r\n                        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {\r\n                            node.textContent = '';\r\n                        }\r\n                    });\r\n                }\r\n            });\r\n        }\r\n    });\r\n\r\n    observer.observe(document.body, {\r\n        childList: true,\r\n        subtree: true\r\n    });\r\n})();\r\n</script>\r\n"
+            }
+          />
+
+          <div
+            className={classNames("all", sty.freeBox__tpXpy)}
+            id={"profile-icon"}
+          >
+            <PlasmicImg__
+              data-plasmic-name={"img"}
+              data-plasmic-override={overrides.img}
+              alt={""}
+              className={classNames(sty.img)}
+              displayHeight={"100%"}
+              displayMaxHeight={"none"}
+              displayMaxWidth={"100%"}
+              displayMinHeight={"0"}
+              displayMinWidth={"0"}
+              displayWidth={"100%"}
+              loading={"lazy"}
+              src={{
+                src: "/plasmic/sayban/images/image37.svg",
+                fullWidth: 24,
+                fullHeight: 24,
+                aspectRatio: undefined
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -1312,7 +1325,9 @@ const PlasmicDescendants = {
     "centers",
     "errorpage",
     "table",
-    "emptyPage"
+    "emptyPage",
+    "embedHtml",
+    "img"
   ],
   select2: ["select2", "menuSection"],
   menuSection: ["menuSection"],
@@ -1324,7 +1339,9 @@ const PlasmicDescendants = {
   centers: ["centers", "errorpage", "table", "emptyPage"],
   errorpage: ["errorpage"],
   table: ["table"],
-  emptyPage: ["emptyPage"]
+  emptyPage: ["emptyPage"],
+  embedHtml: ["embedHtml"],
+  img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1342,6 +1359,8 @@ type NodeDefaultElementType = {
   errorpage: typeof Errorpage;
   table: typeof RichTable;
   emptyPage: typeof EmptyPage;
+  embedHtml: typeof Embed;
+  img: typeof PlasmicImg__;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1417,6 +1436,8 @@ export const PlasmicMainPageCenter = Object.assign(
     errorpage: makeNodeComponent("errorpage"),
     table: makeNodeComponent("table"),
     emptyPage: makeNodeComponent("emptyPage"),
+    embedHtml: makeNodeComponent("embedHtml"),
+    img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicMainPageCenter
     internalVariantProps: PlasmicMainPageCenter__VariantProps,

@@ -156,6 +156,9 @@ export type PlasmicMain__OverridesType = {
   deleteSnakbar?: Flex__<typeof Snackbar>;
   buttonDelete?: Flex__<typeof Button>;
   buttonClose?: Flex__<typeof Button>;
+  deleteUser?: Flex__<typeof Snackbar>;
+  buttonDelete3?: Flex__<typeof Button>;
+  buttonClose3?: Flex__<typeof Button>;
   deleteSnakbarcat?: Flex__<typeof Snackbar>;
   buttonDelete2?: Flex__<typeof Button>;
   buttonClose2?: Flex__<typeof Button>;
@@ -758,6 +761,48 @@ function PlasmicMain__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "deleteUser.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "deleteUser.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "deleteUser.index",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "buttonDelete3.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "buttonClose3.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "mainPageUser.selected",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "mainPageCenter.selected",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -847,7 +892,7 @@ function PlasmicMain__RenderFunc(props: {
                   customFunction: async () => {
                     return (() => {
                       $state.deleteSnakbar.data =
-                        $state.mainPageCenter.selectedRow;
+                        $state.mainPageCenter.selected;
                       return ($state.deleteSnakbar.opendialog = true);
                     })();
                   }
@@ -913,7 +958,7 @@ function PlasmicMain__RenderFunc(props: {
             return;
           }
         }}
-        onListChange2={async (...eventArgs: any) => {
+        onListChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["mainPageCenter", "list"]).apply(
             null,
             eventArgs
@@ -983,6 +1028,20 @@ function PlasmicMain__RenderFunc(props: {
             $steps["goToPanel"] = await $steps["goToPanel"];
           }
         }}
+        onSelectedChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageCenter",
+            "selected"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
         onSelectedRowChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "mainPageCenter",
@@ -1031,6 +1090,10 @@ function PlasmicMain__RenderFunc(props: {
           }
         }}
         restart={generateStateValueProp($state, ["mainPageCenter", "restart"])}
+        selected={generateStateValueProp($state, [
+          "mainPageCenter",
+          "selected"
+        ])}
         selectedRow={generateStateValueProp($state, [
           "mainPageCenter",
           "selectedRow"
@@ -1054,6 +1117,32 @@ function PlasmicMain__RenderFunc(props: {
         data-plasmic-name={"mainPageUser"}
         data-plasmic-override={overrides.mainPageUser}
         categpty={generateStateValueProp($state, ["mainPageUser", "categpty"])}
+        centerDelete={async () => {
+          const $steps = {};
+
+          $steps["runCode"] = true
+            ? (() => {
+                const actionArgs = {
+                  customFunction: async () => {
+                    return (() => {
+                      $state.deleteUser.data = $state.mainPageUser.selected;
+                      return ($state.deleteUser.opendialog = true);
+                    })();
+                  }
+                };
+                return (({ customFunction }) => {
+                  return customFunction();
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["runCode"] != null &&
+            typeof $steps["runCode"] === "object" &&
+            typeof $steps["runCode"].then === "function"
+          ) {
+            $steps["runCode"] = await $steps["runCode"];
+          }
+        }}
         className={classNames("__wab_instance", sty.mainPageUser, {
           [sty.mainPageUserpage_users]: hasVariant($state, "page", "users")
         })}
@@ -1072,7 +1161,7 @@ function PlasmicMain__RenderFunc(props: {
             return;
           }
         }}
-        onListChange={async (...eventArgs: any) => {
+        onListChange2={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["mainPageUser", "list"]).apply(
             null,
             eventArgs
@@ -1100,6 +1189,20 @@ function PlasmicMain__RenderFunc(props: {
             return;
           }
         }}
+        onSelectedChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainPageUser", "selected"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
         onSelectedRowChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "mainPageUser",
@@ -1115,6 +1218,7 @@ function PlasmicMain__RenderFunc(props: {
           }
         }}
         restart={generateStateValueProp($state, ["mainPageUser", "restart"])}
+        selected={generateStateValueProp($state, ["mainPageUser", "selected"])}
         selectedRow={generateStateValueProp($state, [
           "mainPageUser",
           "selectedRow"
@@ -2928,7 +3032,7 @@ function PlasmicMain__RenderFunc(props: {
             return;
           }
         }}
-        onListChange={async (...eventArgs: any) => {
+        onListChange2={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "mainPageReservation",
             "list"
@@ -3484,6 +3588,341 @@ function PlasmicMain__RenderFunc(props: {
         </div>
       </Snackbar>
       <Snackbar
+        data-plasmic-name={"deleteUser"}
+        data-plasmic-override={overrides.deleteUser}
+        className={classNames("__wab_instance", sty.deleteUser)}
+        data={generateStateValueProp($state, ["deleteUser", "data"])}
+        index={generateStateValueProp($state, ["deleteUser", "index"])}
+        onDataChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["deleteUser", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onIndexChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["deleteUser", "index"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["deleteUser", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, [
+          "deleteUser",
+          "opendialog"
+        ])}
+        slot={
+          <div className={classNames("all", "__wab_text", sty.text__zFHa9)}>
+            <React.Fragment>
+              {(() => {
+                try {
+                  return `حذف کاربر  ${$state.deleteUser.data.name}`;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "\u062d\u0630\u0641 \u0645\u0631\u06a9\u0632";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+        }
+        slot2={
+          <div className={classNames("all", "__wab_text", sty.text__iKn7M)}>
+            {
+              "\u0622\u06cc\u0627 \u0627\u0632 \u062d\u0630\u0641 \u0645\u0637\u0645\u0626\u0646 \u0647\u0633\u062a\u06cc\u062f\u061f"
+            }
+          </div>
+        }
+        type={"error"}
+      >
+        <div className={classNames("all", sty.freeBox__zcim5)}>
+          <Button
+            data-plasmic-name={"buttonDelete3"}
+            data-plasmic-override={overrides.buttonDelete3}
+            className={classNames("__wab_instance", sty.buttonDelete3)}
+            color={"errorDestructive"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__nKhvg)}>
+                {"\u062d\u0630\u0641"}
+              </div>
+            }
+            loading={generateStateValueProp($state, [
+              "buttonDelete3",
+              "loading"
+            ])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateButtonDeleteLoading"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["buttonDelete3", "loading"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateButtonDeleteLoading"] != null &&
+                typeof $steps["updateButtonDeleteLoading"] === "object" &&
+                typeof $steps["updateButtonDeleteLoading"].then === "function"
+              ) {
+                $steps["updateButtonDeleteLoading"] =
+                  await $steps["updateButtonDeleteLoading"];
+              }
+
+              $steps["centerDelete"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "panel/users/delete",
+                        undefined,
+                        {
+                          id: $state.deleteUser.data.id
+                        }
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["centerDelete"] != null &&
+                typeof $steps["centerDelete"] === "object" &&
+                typeof $steps["centerDelete"].then === "function"
+              ) {
+                $steps["centerDelete"] = await $steps["centerDelete"];
+              }
+
+              $steps["invokeGlobalAction"] = $steps.centerDelete?.data?.message
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return $steps.centerDelete.data.success
+                              ? "success"
+                              : "error";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "success";
+                            }
+                            throw e;
+                          }
+                        })(),
+                        (() => {
+                          try {
+                            return $steps.centerDelete.data.message;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        "top-left"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["runCode"] = $steps.centerDelete.data.success
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.deleteUser.opendialog = false;
+                          return ($state.mainPageUser.restart += "1");
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["updateButtonDeleteLoading2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["buttonDelete3", "loading"]
+                      },
+                      operation: 0,
+                      value: false
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateButtonDeleteLoading2"] != null &&
+                typeof $steps["updateButtonDeleteLoading2"] === "object" &&
+                typeof $steps["updateButtonDeleteLoading2"].then === "function"
+              ) {
+                $steps["updateButtonDeleteLoading2"] =
+                  await $steps["updateButtonDeleteLoading2"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "buttonDelete3",
+                "loading"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+
+          <Button
+            data-plasmic-name={"buttonClose3"}
+            data-plasmic-override={overrides.buttonClose3}
+            className={classNames("__wab_instance", sty.buttonClose3)}
+            color={"clear"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__wLkKq)}>
+                {"\u0644\u063a\u0648"}
+              </div>
+            }
+            loading={generateStateValueProp($state, [
+              "buttonClose3",
+              "loading"
+            ])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateSnackbarOpendialog"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["deleteUser", "opendialog"]
+                      },
+                      operation: 0,
+                      value: false
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSnackbarOpendialog"] != null &&
+                typeof $steps["updateSnackbarOpendialog"] === "object" &&
+                typeof $steps["updateSnackbarOpendialog"].then === "function"
+              ) {
+                $steps["updateSnackbarOpendialog"] =
+                  await $steps["updateSnackbarOpendialog"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "buttonClose3",
+                "loading"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </Snackbar>
+      <Snackbar
         data-plasmic-name={"deleteSnakbarcat"}
         data-plasmic-override={overrides.deleteSnakbarcat}
         className={classNames("__wab_instance", sty.deleteSnakbarcat)}
@@ -3829,6 +4268,9 @@ const PlasmicDescendants = {
     "deleteSnakbar",
     "buttonDelete",
     "buttonClose",
+    "deleteUser",
+    "buttonDelete3",
+    "buttonClose3",
     "deleteSnakbarcat",
     "buttonDelete2",
     "buttonClose2"
@@ -3879,6 +4321,9 @@ const PlasmicDescendants = {
   deleteSnakbar: ["deleteSnakbar", "buttonDelete", "buttonClose"],
   buttonDelete: ["buttonDelete"],
   buttonClose: ["buttonClose"],
+  deleteUser: ["deleteUser", "buttonDelete3", "buttonClose3"],
+  buttonDelete3: ["buttonDelete3"],
+  buttonClose3: ["buttonClose3"],
   deleteSnakbarcat: ["deleteSnakbarcat", "buttonDelete2", "buttonClose2"],
   buttonDelete2: ["buttonDelete2"],
   buttonClose2: ["buttonClose2"]
@@ -3916,6 +4361,9 @@ type NodeDefaultElementType = {
   deleteSnakbar: typeof Snackbar;
   buttonDelete: typeof Button;
   buttonClose: typeof Button;
+  deleteUser: typeof Snackbar;
+  buttonDelete3: typeof Button;
+  buttonClose3: typeof Button;
   deleteSnakbarcat: typeof Snackbar;
   buttonDelete2: typeof Button;
   buttonClose2: typeof Button;
@@ -4011,6 +4459,9 @@ export const PlasmicMain = Object.assign(
     deleteSnakbar: makeNodeComponent("deleteSnakbar"),
     buttonDelete: makeNodeComponent("buttonDelete"),
     buttonClose: makeNodeComponent("buttonClose"),
+    deleteUser: makeNodeComponent("deleteUser"),
+    buttonDelete3: makeNodeComponent("buttonDelete3"),
+    buttonClose3: makeNodeComponent("buttonClose3"),
     deleteSnakbarcat: makeNodeComponent("deleteSnakbarcat"),
     buttonDelete2: makeNodeComponent("buttonDelete2"),
     buttonClose2: makeNodeComponent("buttonClose2"),

@@ -144,6 +144,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
+  text-align: right;
   min-width: 0;
 }
 .text__vRatB {
@@ -151,5 +152,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
+  text-align: right;
+  color: var(--token-BKmjqB94eNCW);
   min-width: 0;
 }

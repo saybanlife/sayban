@@ -347,7 +347,7 @@ function PlasmicReservationItem__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "POST",
-                        "https://sayban.darkube.app/webhook/panel/reservations/canceled",
+                        "panel/reservations/canceled",
                         undefined,
                         {
                           code: $props.currentItem.reservation_code
@@ -521,7 +521,7 @@ function PlasmicReservationItem__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "POST",
-                        "https://sayban.darkube.app/webhook/panel/reservations/confirm",
+                        "panel/reservations/confirm",
                         undefined,
                         {
                           code: $props.currentItem.reservation_code

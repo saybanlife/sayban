@@ -1515,7 +1515,7 @@ function PlasmicMainPageCategories__RenderFunc(props: {
               }
             }}
             placeholder={
-              "\u06a9\u0644\u06cc\u062f \u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc"
+              "\u0646\u0627\u0645\u06a9 \u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc (\u0646\u0627\u0645 \u0627\u0646\u06af\u0644\u06cc\u0633\u06cc)"
             }
             type={"line"}
             value={generateStateValueProp($state, ["slugInput", "value"])}
@@ -1831,7 +1831,7 @@ function PlasmicMainPageCategories__RenderFunc(props: {
             color={"neutral"}
             label={
               <div className={classNames("all", "__wab_text", sty.text__bJaFc)}>
-                {"\u0644\u0641\u0648"}
+                {"\u0644\u063a\u0648"}
               </div>
             }
             loading={generateStateValueProp($state, ["button4", "loading"])}
@@ -1960,7 +1960,7 @@ function PlasmicMainPageCategories__RenderFunc(props: {
               }
             }}
             placeholder={
-              "\u06a9\u0644\u06cc\u062f \u0632\u06cc\u0631 \u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc"
+              "\u0646\u0627\u0645\u06a9 \u0632\u06cc\u0631 \u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc (\u0646\u0627\u0645 \u0627\u0646\u06af\u0644\u06cc\u0633\u06cc)"
             }
             type={"line"}
             value={generateStateValueProp($state, ["slugInput1", "value"])}
@@ -2277,7 +2277,7 @@ function PlasmicMainPageCategories__RenderFunc(props: {
             color={"neutral"}
             label={
               <div className={classNames("all", "__wab_text", sty.text__iIzxE)}>
-                {"\u0644\u0641\u0648"}
+                {"\u0644\u063a\u0648"}
               </div>
             }
             loading={generateStateValueProp($state, ["button8", "loading"])}

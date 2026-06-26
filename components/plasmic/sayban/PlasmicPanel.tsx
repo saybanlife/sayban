@@ -232,23 +232,7 @@ function PlasmicPanel__RenderFunc(props: {
               "\u0645\u062f\u06cc\u0631\u06cc\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
             value: "users",
             icon: "users",
-            permissions: ["super_admin"],
-            children: [
-              {
-                label:
-                  "\u0644\u06cc\u0633\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
-                value: "users_list",
-                icon: "list",
-                permissions: ["super_admin"]
-              },
-              {
-                label:
-                  "\u06a9\u0627\u0631\u0628\u0631\u0627\u0646 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644",
-                value: "inactive",
-                icon: "user-x",
-                permissions: ["super_admin"]
-              }
-            ]
+            permissions: ["super_admin"]
           },
           {
             label:

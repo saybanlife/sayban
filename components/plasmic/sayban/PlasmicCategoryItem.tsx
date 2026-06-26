@@ -71,10 +71,11 @@ import sty from "./PlasmicCategoryItem.module.css"; // plasmic-import: qV-4fgZ_B
 
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
-import Icon92Icon from "./icons/PlasmicIcon__Icon92"; // plasmic-import: 5xE4Rx5gdqwV/icon
+import Icon118Icon from "./icons/PlasmicIcon__Icon118"; // plasmic-import: F0U3QQgACgil/icon
 import Icon94Icon from "./icons/PlasmicIcon__Icon94"; // plasmic-import: cEQZhPJdr_D3/icon
 import Icon58Icon from "./icons/PlasmicIcon__Icon58"; // plasmic-import: ZZecBkDFVPaA/icon
-import Icon70Icon from "./icons/PlasmicIcon__Icon70"; // plasmic-import: PWsALiD1VW02/icon
+import Icon93Icon from "./icons/PlasmicIcon__Icon93"; // plasmic-import: ZRj_fPh4gSKd/icon
+import Icon117Icon from "./icons/PlasmicIcon__Icon117"; // plasmic-import: oMBwNrwKHAsL/icon
 
 createPlasmicElementProxy;
 
@@ -333,7 +334,7 @@ function PlasmicCategoryItem__RenderFunc(props: {
             ) : null}
           </div>
           <div className={classNames("all", "__wab_text", sty.text__eIT)}>
-            <React.Fragment>{`${$props.currentItem.centers_count} مرکز در این دسته بندی وجود دارد `}</React.Fragment>
+            <React.Fragment>{`${$props.currentItem.subcategories.length} زیر‌دسته‌بندی در این دسته‌بندی وجود دارد`}</React.Fragment>
           </div>
         </div>
         <Button
@@ -434,7 +435,7 @@ function PlasmicCategoryItem__RenderFunc(props: {
           title={null}
           trigger={"click"}
         >
-          <Icon92Icon
+          <Icon118Icon
             className={classNames("all", sty.svg__aiHxz)}
             onClick={async event => {
               const $steps = {};
@@ -515,7 +516,7 @@ function PlasmicCategoryItem__RenderFunc(props: {
               </div>
             </div>
             <div className={classNames("all", sty.freeBox___6GvT)}>
-              <Icon70Icon
+              <Icon93Icon
                 className={classNames("all", sty.svg__jguxG)}
                 onClick={async event => {
                   const $steps = {};
@@ -593,7 +594,7 @@ function PlasmicCategoryItem__RenderFunc(props: {
                 role={"img"}
               />
 
-              <Icon58Icon
+              <Icon117Icon
                 className={classNames("all", sty.svg__bbSsE)}
                 onClick={async event => {
                   const $steps = {};
