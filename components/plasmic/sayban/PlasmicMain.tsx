@@ -4190,6 +4190,19 @@ function PlasmicMain__RenderFunc(props: {
           "apiRequestData"
         ])}
         categpty={generateStateValueProp($state, ["profilePage", "categpty"])}
+        centerShouldFetch={(() => {
+          try {
+            return $props.token != "" && $state.page == "profile";
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })()}
         className={classNames("__wab_instance", sty.profilePage, {
           [sty.profilePagepage_profile]: hasVariant($state, "page", "profile")
         })}

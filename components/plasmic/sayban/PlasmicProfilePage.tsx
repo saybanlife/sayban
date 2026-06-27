@@ -107,6 +107,7 @@ export type PlasmicProfilePage__ArgsType = {
   data?: any;
   onDataChange?: (val: string) => void;
   rule?: string;
+  centerShouldFetch?: boolean;
 };
 type ArgPropType = keyof PlasmicProfilePage__ArgsType;
 export const PlasmicProfilePage__ArgProps = new Array<ArgPropType>(
@@ -122,7 +123,8 @@ export const PlasmicProfilePage__ArgProps = new Array<ArgPropType>(
   "deleteCenter",
   "data",
   "onDataChange",
-  "rule"
+  "rule",
+  "centerShouldFetch"
 );
 
 export type PlasmicProfilePage__OverridesType = {
@@ -162,6 +164,7 @@ export interface DefaultProfilePageProps {
   data?: any;
   onDataChange?: (val: string) => void;
   rule?: string;
+  centerShouldFetch?: boolean;
   role?: SingleChoiceArg<"superAdmin" | "centerAdmin">;
   className?: string;
 }
@@ -190,7 +193,20 @@ function PlasmicProfilePage__RenderFunc(props: {
           id: "4",
           token:
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJmdWxsTmFtZSI6Itiz2KfbjNmHINio2KfZhiIsInJvbGUiOiJzdXBlcl9hZG1pbiIsImNlbnRlciI6IiIsImlhdCI6MTc4MjU0NDYxMn0.aVbuQBj62IB4h8533vFerqs5kmg8hLgMkJu-5a-sSMw",
-          categories: []
+          categories: [],
+          centerShouldFetch: (() => {
+            try {
+              return $props.token != "";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })()
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
@@ -831,19 +847,7 @@ function PlasmicProfilePage__RenderFunc(props: {
             throw e;
           }
         })()}
-        shouldFetch={(() => {
-          try {
-            return $props.token != "";
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return true;
-            }
-            throw e;
-          }
-        })()}
+        shouldFetch={args.centerShouldFetch}
         url={"/panel/user/getProfile"}
       />
 
