@@ -309,7 +309,7 @@ function PlasmicCategoryItem__RenderFunc(props: {
         <div className={classNames("all", sty.freeBox__vu5Vc)}>
           <div className={classNames("all", sty.freeBox__v6FgA)}>
             <div className={classNames("all", "__wab_text", sty.text__lc6Fi)}>
-              <React.Fragment>{$props.currentItem.name}</React.Fragment>
+              <React.Fragment>{$props.currentItem?.name}</React.Fragment>
             </div>
             {(() => {
               try {
@@ -334,7 +334,24 @@ function PlasmicCategoryItem__RenderFunc(props: {
             ) : null}
           </div>
           <div className={classNames("all", "__wab_text", sty.text__eIT)}>
-            <React.Fragment>{`${$props.currentItem.subcategories.length} زیر‌دسته‌بندی در این دسته‌بندی وجود دارد`}</React.Fragment>
+            <React.Fragment>
+              {(() => {
+                try {
+                  return (
+                    $props.currentItem?.subcategories?.length ||
+                    0 + " زیر‌دسته‌بندی در این دسته‌بندی وجود دارد"
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
           </div>
         </div>
         <Button

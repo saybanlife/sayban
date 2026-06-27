@@ -230,7 +230,7 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          hasVariant($state, "page", "centers") ? false : false
+          hasVariant($state, "page", "centers") ? false : true
       },
       {
         path: "button2.loading",
