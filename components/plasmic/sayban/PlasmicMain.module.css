@@ -561,3 +561,10 @@
   position: relative;
   height: 1em;
 }
+.profilePage:global(.__wab_instance) {
+  max-width: 100%;
+  display: none;
+}
+.profilePagepage_profile:global(.__wab_instance) {
+  display: flex;
+}

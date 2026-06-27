@@ -29367,6 +29367,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicComments.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "-7D4X813T-mx",
+          "name": "ProfilePage",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicProfilePage.tsx",
+          "importSpec": {
+            "modulePath": "ProfilePage.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicProfilePage.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

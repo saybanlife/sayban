@@ -81,6 +81,7 @@ import CenterInfo from "../../CenterInfo"; // plasmic-import: 5fhUfrSk0s6y/compo
 import Imag from "../../Imag"; // plasmic-import: ScLhJpeVxPbk/component
 import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
 import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
+import ProfilePage from "../../ProfilePage"; // plasmic-import: -7D4X813T-mx/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -101,11 +102,18 @@ export type PlasmicMain__VariantMembers = {
     | "users"
     | "reservations"
     | "categories"
-    | "services";
+    | "services"
+    | "profile";
 };
 export type PlasmicMain__VariantsArgs = {
   page?: SingleChoiceArg<
-    "centers" | "center" | "users" | "reservations" | "categories" | "services"
+    | "centers"
+    | "center"
+    | "users"
+    | "reservations"
+    | "categories"
+    | "services"
+    | "profile"
   >;
 };
 type VariantPropType = keyof PlasmicMain__VariantsArgs;
@@ -163,6 +171,7 @@ export type PlasmicMain__OverridesType = {
   button2?: Flex__<typeof Button>;
   submit?: Flex__<typeof Button>;
   button3?: Flex__<typeof Button>;
+  profilePage?: Flex__<typeof ProfilePage>;
 };
 
 export interface DefaultMainProps {
@@ -172,7 +181,13 @@ export interface DefaultMainProps {
   token?: string;
   state?: string;
   page?: SingleChoiceArg<
-    "centers" | "center" | "users" | "reservations" | "categories" | "services"
+    | "centers"
+    | "center"
+    | "users"
+    | "reservations"
+    | "categories"
+    | "services"
+    | "profile"
   >;
   className?: string;
 }
@@ -797,6 +812,24 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "profilePage.categpty",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "profilePage.apiRequestData",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "profilePage.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -828,6 +861,7 @@ function PlasmicMain__RenderFunc(props: {
         styleTokensClassNames,
         sty.root,
         {
+          [sty.rootpage_profile]: hasVariant($state, "page", "profile"),
           [sty.rootpage_reservations]: hasVariant(
             $state,
             "page",
@@ -4148,6 +4182,75 @@ function PlasmicMain__RenderFunc(props: {
           />
         </div>
       </AntdModal>
+      <ProfilePage
+        data-plasmic-name={"profilePage"}
+        data-plasmic-override={overrides.profilePage}
+        apiRequestData={generateStateValueProp($state, [
+          "profilePage",
+          "apiRequestData"
+        ])}
+        categpty={generateStateValueProp($state, ["profilePage", "categpty"])}
+        className={classNames("__wab_instance", sty.profilePage, {
+          [sty.profilePagepage_profile]: hasVariant($state, "page", "profile")
+        })}
+        data={generateStateValueProp($state, ["profilePage", "data"])}
+        id={""}
+        onApiRequestDataChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "profilePage",
+            "apiRequestData"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onCategptyChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["profilePage", "categpty"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onDataChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["profilePage", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        token={(() => {
+          try {
+            return $props.token;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+      />
     </div>
   ) as React.ReactElement | null;
 }
@@ -4188,7 +4291,8 @@ const PlasmicDescendants = {
     "timeWeek",
     "button2",
     "submit",
-    "button3"
+    "button3",
+    "profilePage"
   ],
   topPage: ["topPage"],
   mainPageCenter: ["mainPageCenter"],
@@ -4241,7 +4345,8 @@ const PlasmicDescendants = {
   timeWeek: ["timeWeek"],
   button2: ["button2"],
   submit: ["submit"],
-  button3: ["button3"]
+  button3: ["button3"],
+  profilePage: ["profilePage"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -4282,6 +4387,7 @@ type NodeDefaultElementType = {
   button2: typeof Button;
   submit: typeof Button;
   button3: typeof Button;
+  profilePage: typeof ProfilePage;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -4380,6 +4486,7 @@ export const PlasmicMain = Object.assign(
     button2: makeNodeComponent("button2"),
     submit: makeNodeComponent("submit"),
     button3: makeNodeComponent("button3"),
+    profilePage: makeNodeComponent("profilePage"),
 
     // Metadata about props expected for PlasmicMain
     internalVariantProps: PlasmicMain__VariantProps,

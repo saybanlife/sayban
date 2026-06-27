@@ -59,9 +59,9 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
 import Modal from "../../Modal"; // plasmic-import: Oo9r7A7X8FP7/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -69,14 +69,14 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicTopPage.module.css"; // plasmic-import: g_3hTxUM0f5d/css
 
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+import Icon342Icon from "./icons/PlasmicIcon__Icon342"; // plasmic-import: 3cI93FpEy9Rj/icon
 import Icon53Icon from "./icons/PlasmicIcon__Icon53"; // plasmic-import: TLGayeiIYfbW/icon
 import Icon270Icon from "./icons/PlasmicIcon__Icon270"; // plasmic-import: xtBcS_RDta6A/icon
 import Icon5Icon from "./icons/PlasmicIcon__Icon5"; // plasmic-import: 8vOA1S70pHdl/icon
 import UserEditIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__UserEdit"; // plasmic-import: ml0No70rMVNC/icon
 import DoorExitIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__DoorExit"; // plasmic-import: BhKck9w58Ezp/icon
-import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
-import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
-import Icon342Icon from "./icons/PlasmicIcon__Icon342"; // plasmic-import: 3cI93FpEy9Rj/icon
 
 createPlasmicElementProxy;
 
@@ -91,10 +91,10 @@ export const PlasmicTopPage__ArgProps = new Array<ArgPropType>("createProfile");
 
 export type PlasmicTopPage__OverridesType = {
   root?: Flex__<"div">;
-  popover?: Flex__<typeof AntdPopover>;
   modal?: Flex__<typeof Modal>;
   button2?: Flex__<typeof Button>;
   button3?: Flex__<typeof Button>;
+  popover?: Flex__<typeof AntdPopover>;
 };
 
 export interface DefaultTopPageProps {
@@ -202,108 +202,6 @@ function PlasmicTopPage__RenderFunc(props: {
         sty.root
       )}
     >
-      <div className={classNames("all", sty.freeBox__xzCvt)}>
-        <Icon53Icon
-          className={classNames("all", sty.svg__l4HHx)}
-          role={"img"}
-        />
-
-        <Icon270Icon
-          className={classNames("all", sty.svg__kgj09)}
-          role={"img"}
-        />
-
-        <AntdPopover
-          data-plasmic-name={"popover"}
-          data-plasmic-override={overrides.popover}
-          arrow={true}
-          className={classNames("__wab_instance", sty.popover)}
-          content={
-            <div className={classNames("all", sty.freeBox__zGv7U)}>
-              <div className={classNames("all", sty.freeBox__wdPjl)}>
-                <UserEditIcon
-                  className={classNames("all", sty.svg__kbMHm)}
-                  role={"img"}
-                />
-
-                <div
-                  className={classNames("all", "__wab_text", sty.text__lNrBl)}
-                >
-                  {
-                    "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u06a9\u0627\u0631\u0628\u0631\u06cc"
-                  }
-                </div>
-              </div>
-              <div
-                className={classNames("all", sty.freeBox__jFh7V)}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["runCode"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          customFunction: async () => {
-                            return ($state.modal.isOpen = true);
-                          }
-                        };
-                        return (({ customFunction }) => {
-                          return customFunction();
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runCode"] != null &&
-                    typeof $steps["runCode"] === "object" &&
-                    typeof $steps["runCode"].then === "function"
-                  ) {
-                    $steps["runCode"] = await $steps["runCode"];
-                  }
-                }}
-              >
-                <DoorExitIcon
-                  className={classNames("all", sty.svg__lt1F4)}
-                  role={"img"}
-                />
-
-                <div
-                  className={classNames("all", "__wab_text", sty.text__lMfuq)}
-                >
-                  {"\u062e\u0631\u0648\u062c"}
-                </div>
-              </div>
-            </div>
-          }
-          contentText={"Popover contents"}
-          defaultOpen={false}
-          defaultStylesClassName={classNames(
-            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
-            "plasmic_default_styles",
-            "plasmic_mixins",
-            styleTokensClassNames
-          )}
-          mouseEnterDelay={0}
-          mouseLeaveDelay={0}
-          onOpenChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["popover", "open"]).apply(
-              null,
-              eventArgs
-            );
-          }}
-          open={generateStateValueProp($state, ["popover", "open"])}
-          placement={"bottomRight"}
-          popoverScopeClassName={sty["popover__popover"]}
-          title={null}
-          trigger={"click"}
-        >
-          <div className={classNames("all", sty.freeBox__zJvMl)}>
-            <Icon5Icon
-              className={classNames("all", sty.svg__nPyev)}
-              onClick={args.createProfile}
-              role={"img"}
-            />
-          </div>
-        </AntdPopover>
-      </div>
       <Modal
         data-plasmic-name={"modal"}
         data-plasmic-override={overrides.modal}
@@ -477,26 +375,161 @@ function PlasmicTopPage__RenderFunc(props: {
         showFooter={false}
         showHeader={false}
       />
+
+      <div className={classNames("all", sty.freeBox__xzCvt)}>
+        <Icon53Icon
+          className={classNames("all", sty.svg__l4HHx)}
+          role={"img"}
+        />
+
+        <Icon270Icon
+          className={classNames("all", sty.svg__kgj09)}
+          role={"img"}
+        />
+
+        <AntdPopover
+          data-plasmic-name={"popover"}
+          data-plasmic-override={overrides.popover}
+          arrow={true}
+          className={classNames("__wab_instance", sty.popover)}
+          content={
+            <div className={classNames("all", sty.freeBox__zGv7U)}>
+              <div
+                className={classNames("all", sty.freeBox__wdPjl)}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["goToPanel"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          destination: `/panel/${"profile"}`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToPanel"] != null &&
+                    typeof $steps["goToPanel"] === "object" &&
+                    typeof $steps["goToPanel"].then === "function"
+                  ) {
+                    $steps["goToPanel"] = await $steps["goToPanel"];
+                  }
+                }}
+              >
+                <UserEditIcon
+                  className={classNames("all", sty.svg__kbMHm)}
+                  role={"img"}
+                />
+
+                <div
+                  className={classNames("all", "__wab_text", sty.text__lNrBl)}
+                >
+                  {
+                    "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u06a9\u0627\u0631\u0628\u0631\u06cc"
+                  }
+                </div>
+              </div>
+              <div
+                className={classNames("all", sty.freeBox__jFh7V)}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["runCode"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return ($state.modal.isOpen = true);
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode"] != null &&
+                    typeof $steps["runCode"] === "object" &&
+                    typeof $steps["runCode"].then === "function"
+                  ) {
+                    $steps["runCode"] = await $steps["runCode"];
+                  }
+                }}
+              >
+                <DoorExitIcon
+                  className={classNames("all", sty.svg__lt1F4)}
+                  role={"img"}
+                />
+
+                <div
+                  className={classNames("all", "__wab_text", sty.text__lMfuq)}
+                >
+                  {"\u062e\u0631\u0648\u062c"}
+                </div>
+              </div>
+            </div>
+          }
+          contentText={"Popover contents"}
+          defaultOpen={false}
+          defaultStylesClassName={classNames(
+            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+            "plasmic_default_styles",
+            "plasmic_mixins",
+            styleTokensClassNames
+          )}
+          mouseEnterDelay={0}
+          mouseLeaveDelay={0}
+          onOpenChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["popover", "open"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          open={generateStateValueProp($state, ["popover", "open"])}
+          placement={"bottomRight"}
+          popoverScopeClassName={sty["popover__popover"]}
+          title={null}
+          trigger={"click"}
+        >
+          <div className={classNames("all", sty.freeBox__zJvMl)}>
+            <Icon5Icon
+              className={classNames("all", sty.svg__nPyev)}
+              onClick={args.createProfile}
+              role={"img"}
+            />
+          </div>
+        </AntdPopover>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "popover", "modal", "button2", "button3"],
-  popover: ["popover"],
+  root: ["root", "modal", "button2", "button3", "popover"],
   modal: ["modal", "button2", "button3"],
   button2: ["button2"],
-  button3: ["button3"]
+  button3: ["button3"],
+  popover: ["popover"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  popover: typeof AntdPopover;
   modal: typeof Modal;
   button2: typeof Button;
   button3: typeof Button;
+  popover: typeof AntdPopover;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -561,10 +594,10 @@ export const PlasmicTopPage = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    popover: makeNodeComponent("popover"),
     modal: makeNodeComponent("modal"),
     button2: makeNodeComponent("button2"),
     button3: makeNodeComponent("button3"),
+    popover: makeNodeComponent("popover"),
 
     // Metadata about props expected for PlasmicTopPage
     internalVariantProps: PlasmicTopPage__VariantProps,
