@@ -674,7 +674,7 @@ function PlasmicCenterPage__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
-              return $state.center.data.result.percentages;
+              return $state.center?.data?.result?.percentages || [];
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -693,7 +693,7 @@ function PlasmicCenterPage__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
-              return $state.center.data.reviews;
+              return $state.center?.data?.reviews || [];
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -2104,7 +2104,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                   "comments",
                   "percentages"
                 ])}
-                rate={$state.center.data.result.rating_avg}
+                rate={$state.center?.data?.result?.rating_avg || ""}
                 reviews={generateStateValueProp($state, [
                   "comments",
                   "reviews"

@@ -136,3 +136,132 @@
   text-align: right;
   min-width: 0;
 }
+.modal:global(.__wab_instance):global(.__wab_instance) {
+  animation: none;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+.button___0CdNy:global(.__wab_instance):global(.__wab_instance) {
+  display: none;
+}
+.svg__nAaJb {
+  position: relative;
+  height: 1em;
+}
+.svg__kshEw {
+  position: relative;
+  height: 1em;
+}
+.freeBox__qdasi {
+  animation: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-rfsFxiclAtek);
+  min-width: 0;
+  padding: var(--token-73iLa06AE6f4) 0px 0px;
+}
+.freeBox__oyd1 {
+  animation: none;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  background: var(--token-Ws0-_dtROA6x);
+  border-radius: var(--token--_xqF59Qmd-S);
+  padding: var(--token-cfon0PHiXQoL);
+}
+.svg__tbsj3 {
+  animation: none;
+  object-fit: cover;
+  max-width: 100%;
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+}
+.text___37XeZ {
+  animation: none;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: center;
+  color: var(--token-9M5jRUPt8Msb);
+  font-weight: 700;
+  font-size: var(--token-Tca_MqWoqq_b);
+  min-width: 0;
+}
+.text__biViZ {
+  animation: none;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-weight: 400;
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  color: var(--token-KjATzAYJ5IB7);
+  text-align: right;
+  min-width: 0;
+}
+.freeBox__xQk7U {
+  animation: none;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-73iLa06AE6f4);
+  min-width: 0;
+  padding: var(--token-73iLa06AE6f4);
+}
+.button2:global(.__wab_instance):global(.__wab_instance) {
+  animation: none;
+  max-width: 100%;
+  width: 100%;
+  height: 40px;
+  min-width: 0;
+}
+.svg__tcWn {
+  position: relative;
+  height: 1em;
+}
+.text__adG {
+  animation: none;
+  white-space: pre;
+  color: var(--token-1aP3XjRZIKFV);
+}
+.svg__qgNW {
+  position: relative;
+  height: 1em;
+}
+.button3:global(.__wab_instance):global(.__wab_instance) {
+  animation: none;
+  max-width: 100%;
+  width: 100%;
+  height: 40px;
+  min-width: 0;
+}
+.svg__n82SE {
+  position: relative;
+  height: 1em;
+}
+.text__sUXcX {
+  animation: none;
+  white-space: pre;
+  color: var(--token-1aP3XjRZIKFV);
+}
+.svg__cbMYz {
+  position: relative;
+  height: 1em;
+}
