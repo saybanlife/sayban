@@ -893,7 +893,7 @@ function PlasmicMainPageUser__RenderFunc(props: {
                                 customFunction: async () => {
                                   return (() => {
                                     $state.selected.name = row["نام"];
-                                    return ($state.selected.id = rowKey);
+                                    return ($state.selected.id = row["شناسه"]);
                                   })();
                                 }
                               };

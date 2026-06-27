@@ -337,10 +337,7 @@ function PlasmicCategoryItem__RenderFunc(props: {
             <React.Fragment>
               {(() => {
                 try {
-                  return (
-                    $props.currentItem?.subcategories?.length ||
-                    0 + " زیر‌دسته‌بندی در این دسته‌بندی وجود دارد"
-                  );
+                  return `${$props.currentItem?.subcategories?.length ?? 0} زیر‌دسته‌بندی در این دسته‌بندی وجود دارد`;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||

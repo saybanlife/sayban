@@ -230,7 +230,7 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          hasVariant($state, "page", "centers") ? false : true
+          hasVariant($state, "page", "centers") ? false : false
       },
       {
         path: "button2.loading",
@@ -1283,7 +1283,19 @@ function PlasmicMain__RenderFunc(props: {
             $steps["runCode"] = await $steps["runCode"];
           }
         }}
-        id={args.centerId}
+        id={(() => {
+          try {
+            return $props.centerId;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
         onApiRequestDataChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "centerPage",
@@ -2338,6 +2350,7 @@ function PlasmicMain__RenderFunc(props: {
           </div>
         }
         heading={null}
+        isKeyboardDismissDisabled={false}
         isOpen={generateStateValueProp($state, ["addCenter", "isOpen"])}
         onOpenChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["addCenter", "isOpen"]).apply(
@@ -3242,11 +3255,6 @@ function PlasmicMain__RenderFunc(props: {
             "reservations"
           )
         })}
-        config={{
-          headers: {
-            Authorization: `Bearer ${$props.token}`
-          }
-        }}
         errorDisplay={null}
         loadingDisplay={null}
         method={"GET"}

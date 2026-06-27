@@ -1062,7 +1062,7 @@ function PlasmicMainPageCenter__RenderFunc(props: {
                               const actionArgs = {
                                 customFunction: async () => {
                                   return (() => {
-                                    $state.selected.id = rowKey;
+                                    $state.selected.id = row["id"];
                                     return ($state.selected.name = row["نام"]);
                                   })();
                                 }

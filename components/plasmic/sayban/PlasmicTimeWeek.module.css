@@ -143,6 +143,10 @@
 .timePickerStart:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
+  z-index: 100000;
+  left: 0px;
+  top: 0px;
+  position: sticky;
 }
 .end:global(.__wab_instance) {
   max-width: 100%;
@@ -172,6 +176,10 @@
   max-width: 100%;
   object-fit: cover;
   background: #ffffff;
+  z-index: 100000;
+  left: 0px;
+  top: 0px;
+  position: sticky;
 }
 .option1:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;

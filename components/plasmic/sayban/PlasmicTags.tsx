@@ -202,7 +202,10 @@ function PlasmicTags__RenderFunc(props: {
         data-plasmic-name={"tags"}
         data-plasmic-override={overrides.tags}
         allowClear={false}
+        autoFocus={true}
+        bordered={true}
         className={classNames("__wab_instance", sty.tags)}
+        defaultOpen={false}
         defaultStylesClassName={classNames(
           "root_reset_qARqpE4p5tZmJuNxFbTaPz",
           "plasmic_default_styles",
@@ -234,6 +237,7 @@ function PlasmicTags__RenderFunc(props: {
         })()}
         placeholder={"\u062a\u06af \u0647\u0627"}
         popupScopeClassName={sty["tags__popup"]}
+        size={"middle"}
         value={generateStateValueProp($state, ["tags", "value"])}
       />
     </div>

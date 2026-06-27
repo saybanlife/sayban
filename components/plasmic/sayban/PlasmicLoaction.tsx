@@ -60,9 +60,9 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
-import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -106,11 +106,11 @@ export const PlasmicLoaction__ArgProps = new Array<ArgPropType>(
 export type PlasmicLoaction__OverridesType = {
   root?: Flex__<"div">;
   embedHtml?: Flex__<typeof Embed>;
+  apiRequest?: Flex__<typeof ApiRequest>;
   state?: Flex__<typeof TextInput>;
   city?: Flex__<typeof TextInput>;
   loaction?: Flex__<typeof TextAreaInput>;
   call?: Flex__<typeof TextInput>;
-  apiRequest?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultLoactionProps {
@@ -272,6 +272,117 @@ function PlasmicLoaction__RenderFunc(props: {
         }
       />
 
+      <ApiRequest
+        data-plasmic-name={"apiRequest"}
+        data-plasmic-override={overrides.apiRequest}
+        className={classNames("__wab_instance", sty.apiRequest)}
+        config={{
+          headers: {
+            "Api-Key": "service.a0319015d66645799e1ed0986dd18773",
+            "Accept-Language": "fa"
+          }
+        }}
+        errorDisplay={
+          <div className={classNames("all", "__wab_text", sty.text__vRatB)}>
+            {
+              "\u0645\u062a\u0627\u0633\u0641\u0627\u0646\u0647 \u0622\u062f\u0631\u0633 \u062f\u0631\u06cc\u0627\u0641\u062a \u0646\u0634\u062f."
+            }
+          </div>
+        }
+        loadingDisplay={
+          <div className={classNames("all", "__wab_text", sty.text__nSvbn)}>
+            {
+              "\u062f\u0631 \u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0622\u062f\u0631\u0633 \u0634\u0645\u0627..."
+            }
+          </div>
+        }
+        method={"GET"}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          (async data => {
+            const $steps = {};
+
+            $steps["runCode"] =
+              $state.apiRequest?.data?.status == "OK"
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.loaction.value =
+                            $state.apiRequest.data.formatted_address;
+                          $state.city.value = (
+                            $state.apiRequest.data.city || ""
+                          ).replace(/^شهر\s*/, "");
+                          return ($state.state.value = (
+                            $state.apiRequest.data.state || ""
+                          ).replace("استان", ""));
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+            if (
+              $steps["runCode"] != null &&
+              typeof $steps["runCode"] === "object" &&
+              typeof $steps["runCode"].then === "function"
+            ) {
+              $steps["runCode"] = await $steps["runCode"];
+            }
+          }).apply(null, eventArgs);
+        }}
+        params={(() => {
+          try {
+            return {
+              lng: $state.lon,
+              lat: $state.lat,
+              format: "json",
+              "accept-language": "fa"
+            };
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+        shouldFetch={(() => {
+          try {
+            return $state.lon != "" && $state.lat != "";
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })()}
+        url={"https://api.neshan.org/v5/reverse"}
+      />
+
       <div className={classNames("all", sty.freeBox___0ZFmw)}>
         <div className={classNames("all", sty.freeBox__v4L4)}>
           <div className={classNames("all", "__wab_text", sty.text__bfIS)}>
@@ -416,121 +527,6 @@ function PlasmicLoaction__RenderFunc(props: {
           value={generateStateValueProp($state, ["call", "value"])}
         />
       </div>
-      <ApiRequest
-        data-plasmic-name={"apiRequest"}
-        data-plasmic-override={overrides.apiRequest}
-        className={classNames("__wab_instance", sty.apiRequest)}
-        errorDisplay={
-          <div className={classNames("all", "__wab_text", sty.text__vRatB)}>
-            {
-              "\u0645\u062a\u0627\u0633\u0641\u0627\u0646\u0647 \u0622\u062f\u0631\u0633 \u062f\u0631\u06cc\u0627\u0641\u062a \u0646\u0634\u062f."
-            }
-          </div>
-        }
-        loadingDisplay={
-          <div className={classNames("all", "__wab_text", sty.text__nSvbn)}>
-            {
-              "\u062f\u0631 \u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0622\u062f\u0631\u0633 \u0634\u0645\u0627..."
-            }
-          </div>
-        }
-        method={"GET"}
-        onError={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        onLoading={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        onSuccess={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
-            null,
-            eventArgs
-          );
-
-          (async data => {
-            const $steps = {};
-
-            $steps["runCode"] = $state.apiRequest?.data?.address
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return (() => {
-                        const city = $state.apiRequest.data.address.city;
-                        const neighbourhood =
-                          $state.apiRequest.data.address.neighbourhood;
-                        const road = $state.apiRequest.data.address.road;
-                        const amenity = $state.apiRequest.data.address.amenity;
-                        let address = city;
-                        if (neighbourhood && neighbourhood.trim() !== "") {
-                          address += ", " + neighbourhood;
-                        }
-                        address += ", " + road;
-                        if (amenity && amenity.trim() !== "") {
-                          address += ", " + amenity;
-                        }
-                        $state.loaction.value = address;
-                        $state.city.value = (
-                          $state.apiRequest.data.address.city || ""
-                        ).replace(/^شهر\s*/, "");
-                        return ($state.state.value = (
-                          $state.apiRequest.data.address.state || ""
-                        ).replace("استان", ""));
-                      })();
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode"] != null &&
-              typeof $steps["runCode"] === "object" &&
-              typeof $steps["runCode"].then === "function"
-            ) {
-              $steps["runCode"] = await $steps["runCode"];
-            }
-          }).apply(null, eventArgs);
-        }}
-        params={(() => {
-          try {
-            return {
-              lon: $state.lon,
-              lat: $state.lat,
-              format: "json",
-              "accept-language": "fa"
-            };
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-        shouldFetch={(() => {
-          try {
-            return $state.lon != "" && $state.lat != "";
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return true;
-            }
-            throw e;
-          }
-        })()}
-        url={"https://nominatim.openstreetmap.org/reverse"}
-      />
     </div>
   ) as React.ReactElement | null;
 }
@@ -539,18 +535,18 @@ const PlasmicDescendants = {
   root: [
     "root",
     "embedHtml",
+    "apiRequest",
     "state",
     "city",
     "loaction",
-    "call",
-    "apiRequest"
+    "call"
   ],
   embedHtml: ["embedHtml"],
+  apiRequest: ["apiRequest"],
   state: ["state"],
   city: ["city"],
   loaction: ["loaction"],
-  call: ["call"],
-  apiRequest: ["apiRequest"]
+  call: ["call"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -558,11 +554,11 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   embedHtml: typeof Embed;
+  apiRequest: typeof ApiRequest;
   state: typeof TextInput;
   city: typeof TextInput;
   loaction: typeof TextAreaInput;
   call: typeof TextInput;
-  apiRequest: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -628,11 +624,11 @@ export const PlasmicLoaction = Object.assign(
   {
     // Helper components rendering sub-elements
     embedHtml: makeNodeComponent("embedHtml"),
+    apiRequest: makeNodeComponent("apiRequest"),
     state: makeNodeComponent("state"),
     city: makeNodeComponent("city"),
     loaction: makeNodeComponent("loaction"),
     call: makeNodeComponent("call"),
-    apiRequest: makeNodeComponent("apiRequest"),
 
     // Metadata about props expected for PlasmicLoaction
     internalVariantProps: PlasmicLoaction__VariantProps,

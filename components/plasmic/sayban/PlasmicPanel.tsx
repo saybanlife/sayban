@@ -72,8 +72,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicPanel.module.css"; // plasmic-import: UG_cnsXdRiaM/css
 
-import __lib_md5 from "md5";
-
 const emptyProxy: any = new Proxy(() => "", {
   get(_, prop) {
     return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
@@ -129,9 +127,7 @@ export type PlasmicPanel__OverridesType = {
 
 export interface DefaultPanelProps {}
 
-const $$ = {
-  md5: __lib_md5
-};
+const $$ = {};
 
 function useNextRouter() {
   try {
@@ -893,7 +889,7 @@ function PlasmicPanel__RenderFunc(props: {
                       : $ctx.params?.page?.[0] === "center-list"
                         ? null
                         : $ctx.params?.page?.[0]?.includes("-")
-                          ? $$.md5($ctx.params.page[0].split("-")[1])
+                          ? $ctx.params.page[0].split("-")[1]
                           : null;
                   } catch (e) {
                     if (

@@ -7,6 +7,7 @@
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
+  overflow: auto;
   min-width: 0;
   padding: 0px;
 }
@@ -181,5 +182,13 @@
 }
 .tags:global(.__wab_instance) {
   width: 100%;
+  z-index: 10000;
+  transition-property: all;
+  transition-duration: 1s;
+  left: auto;
+  top: auto;
+  position: relative;
   min-width: 0;
+  -webkit-transition-property: all;
+  -webkit-transition-duration: 1s;
 }

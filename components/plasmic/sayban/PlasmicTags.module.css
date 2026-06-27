@@ -29,6 +29,7 @@
   object-fit: cover;
   width: 100%;
   text-align: right;
-  background: none;
+  background: var(--token-KPGXdu9o7llP);
+  z-index: 1000000000000;
   min-width: 0;
 }
