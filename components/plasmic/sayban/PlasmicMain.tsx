@@ -940,7 +940,7 @@ function PlasmicMain__RenderFunc(props: {
             ? (() => {
                 const actionArgs = {
                   customFunction: async () => {
-                    return ($state.modal.open = true);
+                    return ($state.addService.isOpen = true);
                   }
                 };
                 return (({ customFunction }) => {
@@ -1131,6 +1131,29 @@ function PlasmicMain__RenderFunc(props: {
             eventArgs[1]._plasmic_state_init_
           ) {
             return;
+          }
+        }}
+        openEdit={async event => {
+          const $steps = {};
+
+          $steps["runCode"] = true
+            ? (() => {
+                const actionArgs = {
+                  customFunction: async () => {
+                    return ($state.modal.open = true);
+                  }
+                };
+                return (({ customFunction }) => {
+                  return customFunction();
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["runCode"] != null &&
+            typeof $steps["runCode"] === "object" &&
+            typeof $steps["runCode"].then === "function"
+          ) {
+            $steps["runCode"] = await $steps["runCode"];
           }
         }}
         restart={generateStateValueProp($state, ["mainPageCenter", "restart"])}
