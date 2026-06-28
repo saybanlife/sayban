@@ -29380,6 +29380,32 @@
           "cssFilePath": "plasmic/sayban/PlasmicProfilePage.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "cBSVDnOcnP2x",
+          "name": "CenterUser",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicCenterUser.tsx",
+          "importSpec": {
+            "modulePath": "CenterUser.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicCenterUser.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "mfeVOEZjveoq",
+          "name": "MainPagePayment",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicMainPagePayment.tsx",
+          "importSpec": {
+            "modulePath": "MainPagePayment.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicMainPagePayment.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

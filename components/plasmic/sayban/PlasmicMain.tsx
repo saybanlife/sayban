@@ -82,6 +82,7 @@ import Imag from "../../Imag"; // plasmic-import: ScLhJpeVxPbk/component
 import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
 import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
 import ProfilePage from "../../ProfilePage"; // plasmic-import: -7D4X813T-mx/component
+import MainPagePayment from "../../MainPagePayment"; // plasmic-import: mfeVOEZjveoq/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -103,7 +104,8 @@ export type PlasmicMain__VariantMembers = {
     | "reservations"
     | "categories"
     | "services"
-    | "profile";
+    | "profile"
+    | "payments";
 };
 export type PlasmicMain__VariantsArgs = {
   page?: SingleChoiceArg<
@@ -114,6 +116,7 @@ export type PlasmicMain__VariantsArgs = {
     | "categories"
     | "services"
     | "profile"
+    | "payments"
   >;
 };
 type VariantPropType = keyof PlasmicMain__VariantsArgs;
@@ -172,6 +175,7 @@ export type PlasmicMain__OverridesType = {
   submit?: Flex__<typeof Button>;
   button3?: Flex__<typeof Button>;
   profilePage?: Flex__<typeof ProfilePage>;
+  mainPagePayment?: Flex__<typeof MainPagePayment>;
 };
 
 export interface DefaultMainProps {
@@ -188,6 +192,7 @@ export interface DefaultMainProps {
     | "categories"
     | "services"
     | "profile"
+    | "payments"
   >;
   className?: string;
 }
@@ -830,6 +835,49 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "mainPagePayment.selectedRow",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "mainPagePayment.categpty",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "mainPagePayment.restart",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "mainPagePayment.list",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.page == "payments";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "mainPagePayment.selected",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -861,6 +909,7 @@ function PlasmicMain__RenderFunc(props: {
         styleTokensClassNames,
         sty.root,
         {
+          [sty.rootpage_payments]: hasVariant($state, "page", "payments"),
           [sty.rootpage_profile]: hasVariant($state, "page", "profile"),
           [sty.rootpage_reservations]: hasVariant(
             $state,
@@ -4190,24 +4239,63 @@ function PlasmicMain__RenderFunc(props: {
           "apiRequestData"
         ])}
         categpty={generateStateValueProp($state, ["profilePage", "categpty"])}
-        centerShouldFetch={(() => {
-          try {
-            return $props.token != "" && $state.page == "profile";
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return true;
-            }
-            throw e;
-          }
-        })()}
         className={classNames("__wab_instance", sty.profilePage, {
-          [sty.profilePagepage_profile]: hasVariant($state, "page", "profile")
+          [sty.profilePagepage_categories]: hasVariant(
+            $state,
+            "page",
+            "categories"
+          ),
+          [sty.profilePagepage_center]: hasVariant($state, "page", "center"),
+          [sty.profilePagepage_centers]: hasVariant($state, "page", "centers"),
+          [sty.profilePagepage_payments]: hasVariant(
+            $state,
+            "page",
+            "payments"
+          ),
+          [sty.profilePagepage_profile]: hasVariant($state, "page", "profile"),
+          [sty.profilePagepage_reservations]: hasVariant(
+            $state,
+            "page",
+            "reservations"
+          ),
+          [sty.profilePagepage_services]: hasVariant(
+            $state,
+            "page",
+            "services"
+          ),
+          [sty.profilePagepage_users]: hasVariant($state, "page", "users")
         })}
         data={generateStateValueProp($state, ["profilePage", "data"])}
         id={""}
+        list={
+          hasVariant($state, "page", "payments")
+            ? (() => {
+                try {
+                  return $props.token != "" && $state.page == "profile";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })()
+            : (() => {
+                try {
+                  return $props?.token != "" && $state.page == "profile";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })()
+        }
         onApiRequestDataChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "profilePage",
@@ -4264,6 +4352,128 @@ function PlasmicMain__RenderFunc(props: {
           }
         })()}
       />
+
+      <MainPagePayment
+        data-plasmic-name={"mainPagePayment"}
+        data-plasmic-override={overrides.mainPagePayment}
+        categpty={generateStateValueProp($state, [
+          "mainPagePayment",
+          "categpty"
+        ])}
+        centerId={(() => {
+          try {
+            return $props.centerId;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+        className={classNames("__wab_instance", sty.mainPagePayment, {
+          [sty.mainPagePaymentpage_payments]: hasVariant(
+            $state,
+            "page",
+            "payments"
+          )
+        })}
+        list={generateStateValueProp($state, ["mainPagePayment", "list"])}
+        onCategptyChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPagePayment",
+            "categpty"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onListChange2={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainPagePayment", "list"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onRestartChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPagePayment",
+            "restart"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onSelectedChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPagePayment",
+            "selected"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onSelectedRowChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPagePayment",
+            "selectedRow"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        restart={generateStateValueProp($state, ["mainPagePayment", "restart"])}
+        selected={generateStateValueProp($state, [
+          "mainPagePayment",
+          "selected"
+        ])}
+        selectedRow={generateStateValueProp($state, [
+          "mainPagePayment",
+          "selectedRow"
+        ])}
+        state={(() => {
+          try {
+            return $props.state;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+      />
     </div>
   ) as React.ReactElement | null;
 }
@@ -4305,7 +4515,8 @@ const PlasmicDescendants = {
     "button2",
     "submit",
     "button3",
-    "profilePage"
+    "profilePage",
+    "mainPagePayment"
   ],
   topPage: ["topPage"],
   mainPageCenter: ["mainPageCenter"],
@@ -4359,7 +4570,8 @@ const PlasmicDescendants = {
   button2: ["button2"],
   submit: ["submit"],
   button3: ["button3"],
-  profilePage: ["profilePage"]
+  profilePage: ["profilePage"],
+  mainPagePayment: ["mainPagePayment"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -4401,6 +4613,7 @@ type NodeDefaultElementType = {
   submit: typeof Button;
   button3: typeof Button;
   profilePage: typeof ProfilePage;
+  mainPagePayment: typeof MainPagePayment;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -4500,6 +4713,7 @@ export const PlasmicMain = Object.assign(
     submit: makeNodeComponent("submit"),
     button3: makeNodeComponent("button3"),
     profilePage: makeNodeComponent("profilePage"),
+    mainPagePayment: makeNodeComponent("mainPagePayment"),
 
     // Metadata about props expected for PlasmicMain
     internalVariantProps: PlasmicMain__VariantProps,

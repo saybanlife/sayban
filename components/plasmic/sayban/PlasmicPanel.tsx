@@ -297,15 +297,22 @@ function PlasmicPanel__RenderFunc(props: {
             children: [
               {
                 label:
+                  "\u0647\u0645\u0647 \u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627",
+                value: "all",
+                icon: "list",
+                permissions: ["super_admin", "center_admin"]
+              },
+              {
+                label:
                   "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0645\u0648\u0641\u0642",
-                value: "payments_success",
+                value: "success",
                 icon: "check-circle",
                 permissions: ["super_admin", "center_admin"]
               },
               {
                 label:
                   "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0646\u0627\u0645\u0648\u0641\u0642",
-                value: "payments_failed",
+                value: "failed",
                 icon: "x-circle",
                 permissions: ["super_admin"]
               }
