@@ -3643,7 +3643,7 @@ function PlasmicMain__RenderFunc(props: {
               </AntdTabItem>
               <AntdTabItem
                 className={classNames("__wab_instance", sty.tabItem___7Ihuq)}
-                key={"3"}
+                key={"4"}
                 label={
                   <div
                     className={classNames("all", "__wab_text", sty.text__xW6M)}
@@ -3754,7 +3754,7 @@ function PlasmicMain__RenderFunc(props: {
               </AntdTabItem>
               <AntdTabItem
                 className={classNames("__wab_instance", sty.tabItem__hvk4I)}
-                key={"4"}
+                key={"5"}
                 label={
                   <div
                     className={classNames("all", "__wab_text", sty.text__xwmKh)}
@@ -3789,7 +3789,7 @@ function PlasmicMain__RenderFunc(props: {
               </AntdTabItem>
               <AntdTabItem
                 className={classNames("__wab_instance", sty.tabItem__aD35U)}
-                key={"5"}
+                key={"6"}
                 label={
                   <div
                     className={classNames("all", "__wab_text", sty.text__ge21W)}
@@ -3840,7 +3840,7 @@ function PlasmicMain__RenderFunc(props: {
         <div className={classNames("all", sty.freeBox__cGp8Z)}>
           {(() => {
             try {
-              return $state.tabs.activeKey != "5";
+              return $state.tabs.activeKey != "6";
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -3909,7 +3909,7 @@ function PlasmicMain__RenderFunc(props: {
           ) : null}
           {(() => {
             try {
-              return $state.tabs.activeKey == "5";
+              return $state.tabs.activeKey == "6";
             } catch (e) {
               if (
                 e instanceof TypeError ||
