@@ -246,7 +246,7 @@ function PlasmicMain__RenderFunc(props: {
         path: "tabs.activeKey",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "6"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "1"
       },
       {
         path: "button2.loading",
@@ -3389,7 +3389,7 @@ function PlasmicMain__RenderFunc(props: {
           animateTabContent={false}
           animated={true}
           className={classNames("__wab_instance", sty.tabs)}
-          defaultActiveKey={"6"}
+          defaultActiveKey={"1"}
           items={
             <React.Fragment>
               <AntdTabItem
@@ -3400,7 +3400,7 @@ function PlasmicMain__RenderFunc(props: {
                     className={classNames("all", "__wab_text", sty.text__jL3WD)}
                   >
                     {
-                      "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u0628\u0631\u06cc"
+                      "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0648\u0631\u0648\u062f"
                     }
                   </div>
                 }
