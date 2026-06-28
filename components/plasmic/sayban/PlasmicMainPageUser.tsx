@@ -628,7 +628,7 @@ function PlasmicMainPageUser__RenderFunc(props: {
         </div>
       </div>
       <div className={classNames("all", sty.freeBox__xhZ4K)}>
-        <div className={classNames("all", sty.freeBox__at9R7)}>
+        <div className={classNames("all", sty.freeBox__at9R7, "users")}>
           <ApiRequest
             data-plasmic-name={"users"}
             data-plasmic-override={overrides.users}
@@ -1038,7 +1038,7 @@ function PlasmicMainPageUser__RenderFunc(props: {
             data-plasmic-override={overrides.embedHtml}
             className={classNames("__wab_instance", sty.embedHtml)}
             code={
-              "<script>\r\n(function() {\r\n    const observer = new MutationObserver(function() {\r\n        const inputs = document.querySelectorAll('input[placeholder=\"Search\"]');\r\n        inputs.forEach(input => {\r\n            input.setAttribute('placeholder', '\u062c\u0633\u062a\u062c\u0648');\r\n            input.style.textAlign = 'right';\r\n        });\r\n\r\n        const profileIcon = document.getElementById('profile-icon');\r\n        const cells = document.querySelectorAll('table tr td:nth-child(2)');\r\n\r\n        if (profileIcon) {\r\n            profileIcon.style.display = 'none'; // \u0645\u062e\u0641\u06cc \u06a9\u0631\u062f\u0646 \u0627\u0644\u0645\u0646\u062a \u0627\u0635\u0644\u06cc\r\n        }\r\n\r\n        if (profileIcon && cells.length > 0) {\r\n            cells.forEach(cell => {\r\n                if (!cell.querySelector('.profile-icon-clone')) {\r\n                    const clone = profileIcon.cloneNode(true);\r\n                    clone.removeAttribute('id');\r\n                    clone.classList.add('profile-icon-clone');\r\n                    clone.style.display = ''; // \u062a\u0627 clone \u062f\u06cc\u062f\u0647 \u0634\u0648\u062f\r\n                    cell.appendChild(clone);\r\n                }\r\n            });\r\n        }\r\n    });\r\n\r\n    observer.observe(document.body, {\r\n        childList: true,\r\n        subtree: true\r\n    });\r\n})();\r\n</script>\r\n"
+              "<script>\r\n(function() {\r\n    const observer = new MutationObserver(function() {\r\n        const inputs = document.querySelectorAll('input[placeholder=\"Search\"]');\r\n        inputs.forEach(input => {\r\n            input.setAttribute('placeholder', '\u062c\u0633\u062a\u062c\u0648');\r\n            input.style.textAlign = 'right';\r\n        });\r\n\r\n        const profileIcon = document.getElementById('profile-icon');\r\n        const cells = document.querySelectorAll('.users table tr td:nth-child(2)');\r\n\r\n        if (profileIcon) {\r\n            profileIcon.style.display = 'none'; // \u0645\u062e\u0641\u06cc \u06a9\u0631\u062f\u0646 \u0627\u0644\u0645\u0646\u062a \u0627\u0635\u0644\u06cc\r\n        }\r\n\r\n        if (profileIcon && cells.length > 0) {\r\n            cells.forEach(cell => {\r\n                if (!cell.querySelector('.profile-icon-clone')) {\r\n                    const clone = profileIcon.cloneNode(true);\r\n                    clone.removeAttribute('id');\r\n                    clone.classList.add('profile-icon-clone');\r\n                    clone.style.display = ''; // \u062a\u0627 clone \u062f\u06cc\u062f\u0647 \u0634\u0648\u062f\r\n                    cell.appendChild(clone);\r\n                }\r\n            });\r\n        }\r\n    });\r\n\r\n    observer.observe(document.body, {\r\n        childList: true,\r\n        subtree: true\r\n    });\r\n})();\r\n</script>\r\n"
             }
           />
         </div>
