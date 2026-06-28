@@ -837,6 +837,11 @@ function PlasmicCenterPage__RenderFunc(props: {
             data-plasmic-name={"button"}
             data-plasmic-override={overrides.button}
             className={classNames("__wab_instance", sty.button, {
+              [sty.buttonrole_centerAdmin]: hasVariant(
+                $state,
+                "role",
+                "centerAdmin"
+              ),
               [sty.buttonrole_superAdmin]: hasVariant(
                 $state,
                 "role",
@@ -862,6 +867,11 @@ function PlasmicCenterPage__RenderFunc(props: {
             label={
               <div
                 className={classNames("all", "__wab_text", sty.text__auq3U, {
+                  [sty.textrole_centerAdmin__auq3U2AC0]: hasVariant(
+                    $state,
+                    "role",
+                    "centerAdmin"
+                  ),
                   [sty.textrole_superAdmin__auq3UjtYNs]: hasVariant(
                     $state,
                     "role",
@@ -869,9 +879,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                   )
                 })}
               >
-                {hasVariant($state, "role", "superAdmin")
-                  ? "\u0630\u062e\u06cc\u0631\u0647"
-                  : "\u062d\u0630\u0641"}
+                {"\u062d\u0630\u0641"}
               </div>
             }
             loading={generateStateValueProp($state, ["button", "loading"])}
@@ -939,6 +947,11 @@ function PlasmicCenterPage__RenderFunc(props: {
             label={
               <div
                 className={classNames("all", "__wab_text", sty.text__mp2Oa, {
+                  [sty.textrole_centerAdmin__mp2Oa2AC0]: hasVariant(
+                    $state,
+                    "role",
+                    "centerAdmin"
+                  ),
                   [sty.textrole_superAdmin__mp2OAjtYNs]: hasVariant(
                     $state,
                     "role",
@@ -946,9 +959,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                   )
                 })}
               >
-                {hasVariant($state, "role", "superAdmin")
-                  ? "\u0630\u062e\u06cc\u0631\u0647"
-                  : "\u0628\u0631\u0648\u0632\u0631\u0633\u0627\u0646\u06cc"}
+                {"\u0628\u0631\u0648\u0632\u0631\u0633\u0627\u0646\u06cc"}
               </div>
             }
             loading={generateStateValueProp($state, ["updates", "loading"])}

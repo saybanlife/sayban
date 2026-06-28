@@ -4246,6 +4246,9 @@ function PlasmicMain__RenderFunc(props: {
                       const actionArgs = {
                         customFunction: async () => {
                           return (() => {
+                            $state.userPanelInfo.emailvalue = "";
+                            $state.userPanelInfo.mobileValue = "";
+                            $state.userPanelInfo.password1 = "";
                             $state.centerInfo.title = "";
                             $state.centerInfo.description = "";
                             $state.centerInfo.subcategory2 = "";
@@ -4259,7 +4262,8 @@ function PlasmicMain__RenderFunc(props: {
                             $state.imag.uploadFiles = [];
                             $state.timeWeek.week = [];
                             $state.addServise.servises = [];
-                            return ($state.modal.open = false);
+                            $state.modal.open = false;
+                            return ($state.mainPageCenter.restart += "1");
                           })();
                         }
                       };
