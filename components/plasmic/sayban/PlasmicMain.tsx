@@ -2379,6 +2379,7 @@ function PlasmicMain__RenderFunc(props: {
             eventArgs
           );
         }}
+        params={{ page: $state.page }}
         shouldFetch={(() => {
           try {
             return $state.page != null;
@@ -3393,7 +3394,7 @@ function PlasmicMain__RenderFunc(props: {
             <React.Fragment>
               <AntdTabItem
                 className={classNames("__wab_instance", sty.tabItem__v9K1)}
-                key={"6"}
+                key={"1"}
                 label={
                   <div
                     className={classNames("all", "__wab_text", sty.text__jL3WD)}
@@ -3484,7 +3485,7 @@ function PlasmicMain__RenderFunc(props: {
               </AntdTabItem>
               <AntdTabItem
                 className={classNames("__wab_instance", sty.tabItem__m6Scq)}
-                key={"1"}
+                key={"2"}
                 label={
                   <div
                     className={classNames("all", "__wab_text", sty.text__vuwH)}
@@ -3607,7 +3608,7 @@ function PlasmicMain__RenderFunc(props: {
               </AntdTabItem>
               <AntdTabItem
                 className={classNames("__wab_instance", sty.tabItem___9Pwwy)}
-                key={"2"}
+                key={"3"}
                 label={
                   <div
                     className={classNames("all", "__wab_text", sty.text__q0V5E)}
