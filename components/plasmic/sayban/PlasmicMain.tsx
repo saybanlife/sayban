@@ -2379,7 +2379,19 @@ function PlasmicMain__RenderFunc(props: {
             eventArgs
           );
         }}
-        shouldFetch={true}
+        shouldFetch={(() => {
+          try {
+            return $state.page != null;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })()}
         url={"/panel/categories/full"}
       />
 
