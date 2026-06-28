@@ -77,6 +77,7 @@ import Snackbar from "../../Snackbar"; // plasmic-import: CaodI8ra68z4/component
 import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
 import { AntdTabs } from "@plasmicpkgs/antd5/skinny/registerTabs";
 import { AntdTabItem } from "@plasmicpkgs/antd5/skinny/registerTabs";
+import UserPanelInfo from "../../UserPanelInfo"; // plasmic-import: NJmPC7ZHblW7/component
 import CenterInfo from "../../CenterInfo"; // plasmic-import: 5fhUfrSk0s6y/component
 import Imag from "../../Imag"; // plasmic-import: ScLhJpeVxPbk/component
 import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
@@ -166,6 +167,7 @@ export type PlasmicMain__OverridesType = {
   buttonClose2?: Flex__<typeof Button>;
   modal?: Flex__<typeof AntdModal>;
   tabs?: Flex__<typeof AntdTabs>;
+  userPanelInfo?: Flex__<typeof UserPanelInfo>;
   centerInfo?: Flex__<typeof CenterInfo>;
   imag?: Flex__<typeof Imag>;
   loaction?: Flex__<typeof Loaction>;
@@ -244,7 +246,7 @@ function PlasmicMain__RenderFunc(props: {
         path: "tabs.activeKey",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "1"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "6"
       },
       {
         path: "button2.loading",
@@ -679,18 +681,6 @@ function PlasmicMain__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "centerInfo.userName",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "centerInfo.password1",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
         path: "mainPageReservation.categpty",
         type: "private",
         variableType: "array",
@@ -878,6 +868,30 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "userPanelInfo.categories",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "userPanelInfo.emailvalue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "userPanelInfo.password1",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "userPanelInfo.mobileValue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -3352,6 +3366,7 @@ function PlasmicMain__RenderFunc(props: {
         open={generateStateValueProp($state, ["modal", "open"])}
         title={null}
         trigger={null}
+        width={"600"}
       >
         <AntdTabs
           data-plasmic-name={"tabs"}
@@ -3361,9 +3376,100 @@ function PlasmicMain__RenderFunc(props: {
           animateTabContent={false}
           animated={true}
           className={classNames("__wab_instance", sty.tabs)}
-          defaultActiveKey={"1"}
+          defaultActiveKey={"6"}
           items={
             <React.Fragment>
+              <AntdTabItem
+                className={classNames("__wab_instance", sty.tabItem__v9K1)}
+                key={"6"}
+                label={
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__jL3WD)}
+                  >
+                    {
+                      "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u0628\u0631\u06cc"
+                    }
+                  </div>
+                }
+              >
+                <UserPanelInfo
+                  data-plasmic-name={"userPanelInfo"}
+                  data-plasmic-override={overrides.userPanelInfo}
+                  categories={generateStateValueProp($state, [
+                    "userPanelInfo",
+                    "categories"
+                  ])}
+                  className={classNames("__wab_instance", sty.userPanelInfo)}
+                  emailvalue={generateStateValueProp($state, [
+                    "userPanelInfo",
+                    "emailvalue"
+                  ])}
+                  mobileValue={generateStateValueProp($state, [
+                    "userPanelInfo",
+                    "mobileValue"
+                  ])}
+                  onCategoriesChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "userPanelInfo",
+                      "categories"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onEmailvalueChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "userPanelInfo",
+                      "emailvalue"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onMobileValueChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "userPanelInfo",
+                      "mobileValue"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onPasswordChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "userPanelInfo",
+                      "password1"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  password1={generateStateValueProp($state, [
+                    "userPanelInfo",
+                    "password1"
+                  ])}
+                />
+              </AntdTabItem>
               <AntdTabItem
                 className={classNames("__wab_instance", sty.tabItem__m6Scq)}
                 key={"1"}
@@ -3433,20 +3539,6 @@ function PlasmicMain__RenderFunc(props: {
                       return;
                     }
                   }}
-                  onPasswordChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "centerInfo",
-                      "password1"
-                    ]).apply(null, eventArgs);
-
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
-                    }
-                  }}
                   onSubcategory2Change={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "centerInfo",
@@ -3489,24 +3581,6 @@ function PlasmicMain__RenderFunc(props: {
                       return;
                     }
                   }}
-                  onUserNameChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "centerInfo",
-                      "userName"
-                    ]).apply(null, eventArgs);
-
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
-                    }
-                  }}
-                  password1={generateStateValueProp($state, [
-                    "centerInfo",
-                    "password1"
-                  ])}
                   subcategory2={generateStateValueProp($state, [
                     "centerInfo",
                     "subcategory2"
@@ -3516,10 +3590,6 @@ function PlasmicMain__RenderFunc(props: {
                   title={generateStateValueProp($state, [
                     "centerInfo",
                     "title"
-                  ])}
-                  userName={generateStateValueProp($state, [
-                    "centerInfo",
-                    "userName"
                   ])}
                 />
               </AntdTabItem>
@@ -3893,8 +3963,18 @@ function PlasmicMain__RenderFunc(props: {
                       const actionArgs = {
                         customFunction: async () => {
                           return (() => {
-                            let __plasmic_ret = undefined;
                             const validations = [
+                              {
+                                value:
+                                  $state.userPanelInfo.emailvalue ||
+                                  $state.userPanelInfo.mobileValue,
+                                message:
+                                  "ایمیل یا شماره موبایل کاربر را وارد کنید."
+                              },
+                              {
+                                value: $state.userPanelInfo.password1,
+                                message: "رمز عبور را وارد کنید."
+                              },
                               {
                                 value: $state.centerInfo.title,
                                 message: "نام مرکز را وارد کنید."
@@ -3940,21 +4020,24 @@ function PlasmicMain__RenderFunc(props: {
                                 message: "ساعات کاری را مشخص کنید."
                               },
                               {
-                                value: $state.centerInfo.tag,
-                                message: "تگ را وارد کنید."
-                              },
-                              {
                                 value: $state.addServise.servises?.length,
                                 message: "حداقل یک سرویس اضافه کنید."
+                              },
+                              {
+                                value: $state.imag.uploadFiles?.length,
+                                message: "حداقل یک تصویر اضافه کنید."
                               }
                             ];
 
+                            const errors = [];
                             for (const v of validations) {
                               if (!v.value) {
-                                return v.message;
+                                errors.push(v.message);
                               }
                             }
-                            return __plasmic_ret;
+                            if (errors.length) {
+                              return errors.join("\n");
+                            }
                           })();
                         }
                       };
@@ -3982,8 +4065,9 @@ function PlasmicMain__RenderFunc(props: {
                             try {
                               return {
                                 name: $state.centerInfo.title,
-                                user_name: $state.centerInfo.userName,
-                                password: $state.centerInfo.password1,
+                                email: $state.userPanelInfo.emailvalue,
+                                mobile: $state.userPanelInfo.mobileValue,
+                                password: $state.userPanelInfo.password1,
                                 description: $state.centerInfo.description,
                                 subcategory_id: $state.centerInfo.subcategory2,
                                 address: $state.loaction.address,
@@ -4042,7 +4126,8 @@ function PlasmicMain__RenderFunc(props: {
                               throw e;
                             }
                           })(),
-                          "top-left"
+                          "top-left",
+                          10000
                         ]
                       };
                       return $globalActions["Fragment.showToast"]?.apply(null, [
@@ -4083,21 +4168,22 @@ function PlasmicMain__RenderFunc(props: {
                     await $steps["invokeGlobalAction3"];
                 }
 
-                $steps["invokeGlobalAction4"] = !$steps.invokeGlobalAction?.data
-                  ?.success
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "error",
-                          "\u0645\u0634\u06a9\u0644\u06cc \u0631\u062e \u062f\u0627\u062f\u0647 \u0627\u0633\u062a \u0644\u0637\u0641\u0627 \u0646\u062c\u062f\u062f\u0627 \u062a\u0644\u0627\u0634 \u06a9\u0646\u06cc\u062f.",
-                          "top-left"
-                        ]
-                      };
-                      return $globalActions["Fragment.showToast"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
+                $steps["invokeGlobalAction4"] =
+                  !$steps.invokeGlobalAction?.data?.success && !$steps.runCode
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u0645\u0634\u06a9\u0644\u06cc \u0631\u062e \u062f\u0627\u062f\u0647 \u0627\u0633\u062a \u0644\u0637\u0641\u0627 \u0645\u062c\u062f\u062f\u0627 \u062a\u0644\u0627\u0634 \u06a9\u0646\u06cc\u062f.",
+                            "top-left"
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
                 if (
                   $steps["invokeGlobalAction4"] != null &&
                   typeof $steps["invokeGlobalAction4"] === "object" &&
@@ -4530,6 +4616,7 @@ const PlasmicDescendants = {
     "buttonClose2",
     "modal",
     "tabs",
+    "userPanelInfo",
     "centerInfo",
     "imag",
     "loaction",
@@ -4575,6 +4662,7 @@ const PlasmicDescendants = {
   modal: [
     "modal",
     "tabs",
+    "userPanelInfo",
     "centerInfo",
     "imag",
     "loaction",
@@ -4584,7 +4672,16 @@ const PlasmicDescendants = {
     "submit",
     "button3"
   ],
-  tabs: ["tabs", "centerInfo", "imag", "loaction", "addServise", "timeWeek"],
+  tabs: [
+    "tabs",
+    "userPanelInfo",
+    "centerInfo",
+    "imag",
+    "loaction",
+    "addServise",
+    "timeWeek"
+  ],
+  userPanelInfo: ["userPanelInfo"],
   centerInfo: ["centerInfo"],
   imag: ["imag"],
   loaction: ["loaction"],
@@ -4627,6 +4724,7 @@ type NodeDefaultElementType = {
   buttonClose2: typeof Button;
   modal: typeof AntdModal;
   tabs: typeof AntdTabs;
+  userPanelInfo: typeof UserPanelInfo;
   centerInfo: typeof CenterInfo;
   imag: typeof Imag;
   loaction: typeof Loaction;
@@ -4727,6 +4825,7 @@ export const PlasmicMain = Object.assign(
     buttonClose2: makeNodeComponent("buttonClose2"),
     modal: makeNodeComponent("modal"),
     tabs: makeNodeComponent("tabs"),
+    userPanelInfo: makeNodeComponent("userPanelInfo"),
     centerInfo: makeNodeComponent("centerInfo"),
     imag: makeNodeComponent("imag"),
     loaction: makeNodeComponent("loaction"),

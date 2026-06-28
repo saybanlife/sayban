@@ -29406,6 +29406,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicMainPagePayment.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "NJmPC7ZHblW7",
+          "name": "UserPanelInfo",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicUserPanelInfo.tsx",
+          "importSpec": {
+            "modulePath": "UserPanelInfo.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicUserPanelInfo.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

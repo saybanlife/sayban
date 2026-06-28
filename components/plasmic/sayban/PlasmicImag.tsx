@@ -300,7 +300,9 @@ function PlasmicImag__RenderFunc(props: {
               {"\u0645\u06a9\u0627\u0646"}
             </div>
             <div className={classNames("all", "__wab_text", sty.text__yz6Rk)}>
-              {"\u0627\u0635\u0644\u06cc"}
+              {
+                "\u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0645\u0631\u06a9\u0632"
+              }
             </div>
             <div className={classNames("all", "__wab_text", sty.text__ktMT)}>
               {"\u062a\u0639\u0637\u06cc\u0644"}

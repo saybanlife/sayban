@@ -656,18 +656,6 @@ function PlasmicCenterPage__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
-        path: "centerInfo.userName",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "centerInfo.password1",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
         path: "comments.percentages",
         type: "private",
         variableType: "array",
@@ -2329,20 +2317,6 @@ function PlasmicCenterPage__RenderFunc(props: {
                   return;
                 }
               }}
-              onPasswordChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "centerInfo",
-                  "password1"
-                ]).apply(null, eventArgs);
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
               onSubcategory2Change={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "centerInfo",
@@ -2385,24 +2359,6 @@ function PlasmicCenterPage__RenderFunc(props: {
                   return;
                 }
               }}
-              onUserNameChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "centerInfo",
-                  "userName"
-                ]).apply(null, eventArgs);
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              password1={generateStateValueProp($state, [
-                "centerInfo",
-                "password1"
-              ])}
               subcategory2={generateStateValueProp($state, [
                 "centerInfo",
                 "subcategory2"
@@ -2410,10 +2366,6 @@ function PlasmicCenterPage__RenderFunc(props: {
               tag={generateStateValueProp($state, ["centerInfo", "tag"])}
               tagsitem={args.tagsitem}
               title={generateStateValueProp($state, ["centerInfo", "title"])}
-              userName={generateStateValueProp($state, [
-                "centerInfo",
-                "userName"
-              ])}
             />
           </div>
         }
