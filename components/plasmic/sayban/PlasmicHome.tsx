@@ -60,8 +60,8 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { SwiperSlider } from "@/components/SwiperSlider"; // plasmic-import: byElilYJKEPk/codeComponent
-import ToolsItem from "../../ToolsItem"; // plasmic-import: M_mJLv9BDPmq/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import ToolsItem from "../../ToolsItem"; // plasmic-import: M_mJLv9BDPmq/component
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import Item from "../../Item"; // plasmic-import: lqR7VxT6h9YH/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
@@ -112,6 +112,7 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>(
 export type PlasmicHome__OverridesType = {
   root?: Flex__<"div">;
   swiperSlider2?: Flex__<typeof SwiperSlider>;
+  button2?: Flex__<typeof Button>;
   button?: Flex__<typeof Button>;
   reveal?: Flex__<typeof Reveal>;
   item?: Flex__<typeof Item>;
@@ -210,6 +211,12 @@ function PlasmicHome__RenderFunc(props: {
       },
       {
         path: "button.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button2.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
@@ -364,6 +371,72 @@ function PlasmicHome__RenderFunc(props: {
           )
         })}
       >
+        <div className={classNames("all", sty.freeBox__cWlS)}>
+          <div className={classNames("all", sty.freeBox___219Hk)}>
+            <div className={classNames("all", sty.freeBox__yaEfQ)}>
+              <div
+                className={classNames("all", "__wab_text", sty.text___55UG7)}
+              >
+                {
+                  "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645\r"
+                }
+              </div>
+              <div className={classNames("all", "__wab_text", sty.text__rRyj)}>
+                {
+                  "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645 \u0645\u062a\u0646 \u0633\u0627\u062e\u062a\u06af\u06cc \u0628\u0627 \u062a\u0648\u0644\u06cc\u062f \u0633\u0627\u062f\u06af\u06cc \u0646\u0627\u0645\u0641\u0647\u0648\u0645 \r\n"
+                }
+              </div>
+              <Button
+                data-plasmic-name={"button2"}
+                data-plasmic-override={overrides.button2}
+                className={classNames("__wab_instance", sty.button2)}
+                color={"second"}
+                label={
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__dlHfv)}
+                  >
+                    {
+                      "\u0645\u0634\u0627\u0647\u062f\u0647 \u0628\u06cc\u0634\u062a\u0631"
+                    }
+                  </div>
+                }
+                loading={generateStateValueProp($state, ["button2", "loading"])}
+                onLoadingChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "button2",
+                    "loading"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                roundedFull={true}
+              />
+            </div>
+            <PlasmicImg__
+              alt={""}
+              className={classNames(sty.img___24Gka)}
+              displayHeight={"150px"}
+              displayMaxHeight={"none"}
+              displayMaxWidth={"100%"}
+              displayMinHeight={"0"}
+              displayMinWidth={"0"}
+              displayWidth={"150px"}
+              loading={"lazy"}
+              src={{
+                src: "/plasmic/sayban/images/chatGptImageDec232025112923AmPng.png",
+                fullWidth: 1024,
+                fullHeight: 998,
+                aspectRatio: undefined
+              }}
+            />
+          </div>
+        </div>
         <div className={classNames("all", "__wab_text", sty.text__gVzmw)}>
           {"\u062e\u062f\u0645\u0627\u062a"}
         </div>
@@ -647,6 +720,7 @@ function PlasmicHome__RenderFunc(props: {
             />
           </div>
         </div>
+        <div className={classNames("all", sty.freeBox__vQqMi)} />
       </div>
       <div
         className={classNames("all", sty.freeBox___8ZSjn, {
@@ -768,8 +842,9 @@ function PlasmicHome__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "swiperSlider2", "button", "reveal", "item"],
+  root: ["root", "swiperSlider2", "button2", "button", "reveal", "item"],
   swiperSlider2: ["swiperSlider2"],
+  button2: ["button2"],
   button: ["button"],
   reveal: ["reveal", "item"],
   item: ["item"]
@@ -780,6 +855,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   swiperSlider2: typeof SwiperSlider;
+  button2: typeof Button;
   button: typeof Button;
   reveal: typeof Reveal;
   item: typeof Item;
@@ -848,6 +924,7 @@ export const PlasmicHome = Object.assign(
   {
     // Helper components rendering sub-elements
     swiperSlider2: makeNodeComponent("swiperSlider2"),
+    button2: makeNodeComponent("button2"),
     button: makeNodeComponent("button"),
     reveal: makeNodeComponent("reveal"),
     item: makeNodeComponent("item"),

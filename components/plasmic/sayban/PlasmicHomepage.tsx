@@ -62,11 +62,11 @@ import {
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import Menu2 from "../../Menu2"; // plasmic-import: z9yXgH-e4ant/component
 import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
-import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import User from "../../User"; // plasmic-import: PVZXFz1DIsfR/component
 import MainLiad from "../../MainLiad"; // plasmic-import: 9XN_qwXFJeGM/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import Home from "../../Home"; // plasmic-import: m-UDUThzN-63/component
 import Categories from "../../Categories"; // plasmic-import: R95SHqmqnvX5/component
 import Subcategories from "../../Subcategories"; // plasmic-import: JM9_woEGqy8m/component
@@ -190,11 +190,11 @@ export type PlasmicHomepage__OverridesType = {
   homePage?: Flex__<"div">;
   menu2?: Flex__<typeof Menu2>;
   textInput?: Flex__<typeof TextInput>;
-  button?: Flex__<typeof Button>;
-  img?: Flex__<typeof PlasmicImg__>;
   user?: Flex__<typeof User>;
   mainLiad?: Flex__<typeof MainLiad>;
   categories2?: Flex__<typeof ApiRequest>;
+  button2?: Flex__<typeof Button>;
+  img?: Flex__<typeof PlasmicImg__>;
   home?: Flex__<typeof Home>;
   profile?: Flex__<typeof ApiRequest>;
   categories?: Flex__<typeof Categories>;
@@ -407,12 +407,6 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
-      },
-      {
-        path: "button.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "search2",
@@ -1274,6 +1268,12 @@ function PlasmicHomepage__RenderFunc(props: {
               }
             }
           })()
+      },
+      {
+        path: "button2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -1745,34 +1745,29 @@ function PlasmicHomepage__RenderFunc(props: {
                 })}
               >
                 <div
-                  className={classNames(
-                    "all",
-                    sty.freeBox__ibbNl,
-                    "fixed-box",
-                    {
-                      [sty.freeBoxhomePage2_home__ibbNlRvb1B]: hasVariant(
-                        $state,
-                        "homePage2",
-                        "home"
-                      ),
-                      [sty.freeBoxhomePage2_reminder__ibbNlWvbFy]: hasVariant(
-                        $state,
-                        "homePage2",
-                        "reminder"
-                      ),
-                      [sty.freeBoxhomePage2_user__ibbNl33Nz]: hasVariant(
-                        $state,
-                        "homePage2",
-                        "user"
-                      ),
-                      [sty.freeBoxsearch2__ibbNlUfPhZ]: hasVariant(
-                        $state,
-                        "search2",
-                        "search2"
-                      )
-                    }
-                  )}
-                  id={"headerMain"}
+                  className={classNames("all", sty.freeBox__ibbNl, "page", {
+                    [sty.freeBoxhomePage2_home__ibbNlRvb1B]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "home"
+                    ),
+                    [sty.freeBoxhomePage2_reminder__ibbNlWvbFy]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "reminder"
+                    ),
+                    [sty.freeBoxhomePage2_user__ibbNl33Nz]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "user"
+                    ),
+                    [sty.freeBoxsearch2__ibbNlUfPhZ]: hasVariant(
+                      $state,
+                      "search2",
+                      "search2"
+                    )
+                  })}
+                  id={""}
                 >
                   <div
                     className={classNames("all", sty.freeBox___73Ayi, {
@@ -2134,115 +2129,6 @@ function PlasmicHomepage__RenderFunc(props: {
                       />
                     ) : null}
                   </div>
-                  <div
-                    className={classNames(
-                      "all",
-                      sty.freeBox___4JaU4,
-                      (() => {
-                        try {
-                          return $state.home.search != true
-                            ? "fade-in"
-                            : "fade-out";
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()
-                    )}
-                  >
-                    <div className={classNames("all", sty.freeBox__k4OH1)}>
-                      <div
-                        className={classNames(
-                          "all",
-                          "__wab_text",
-                          sty.text__fmPbl
-                        )}
-                      >
-                        {
-                          "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645\r"
-                        }
-                      </div>
-                      <div
-                        className={classNames(
-                          "all",
-                          "__wab_text",
-                          sty.text__qxfk
-                        )}
-                      >
-                        {
-                          "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645 \u0645\u062a\u0646 \u0633\u0627\u062e\u062a\u06af\u06cc \u0628\u0627 \u062a\u0648\u0644\u06cc\u062f \u0633\u0627\u062f\u06af\u06cc \u0646\u0627\u0645\u0641\u0647\u0648\u0645 \r\n"
-                        }
-                      </div>
-                      <Button
-                        data-plasmic-name={"button"}
-                        data-plasmic-override={overrides.button}
-                        className={classNames("__wab_instance", sty.button)}
-                        color={"second"}
-                        label={
-                          <div
-                            className={classNames(
-                              "all",
-                              "__wab_text",
-                              sty.text__ekymK
-                            )}
-                          >
-                            {
-                              "\u0645\u0634\u0627\u0647\u062f\u0647 \u0628\u06cc\u0634\u062a\u0631"
-                            }
-                          </div>
-                        }
-                        loading={generateStateValueProp($state, [
-                          "button",
-                          "loading"
-                        ])}
-                        onLoadingChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "button",
-                            "loading"
-                          ]).apply(null, eventArgs);
-
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        }}
-                        roundedFull={true}
-                      />
-                    </div>
-                    <PlasmicImg__
-                      data-plasmic-name={"img"}
-                      data-plasmic-override={overrides.img}
-                      alt={""}
-                      className={classNames(sty.img, {
-                        [sty.imghomePage2_home]: hasVariant(
-                          $state,
-                          "homePage2",
-                          "home"
-                        )
-                      })}
-                      displayHeight={"150px"}
-                      displayMaxHeight={"none"}
-                      displayMaxWidth={"100%"}
-                      displayMinHeight={"0"}
-                      displayMinWidth={"0"}
-                      displayWidth={"150px"}
-                      loading={"lazy"}
-                      src={{
-                        src: "/plasmic/sayban/images/chatGptImageDec232025112923AmPng.png",
-                        fullWidth: 1024,
-                        fullHeight: 998,
-                        aspectRatio: undefined
-                      }}
-                    />
-                  </div>
                   {(() => {
                     try {
                       return $state.home.search;
@@ -2256,7 +2142,15 @@ function PlasmicHomepage__RenderFunc(props: {
                       throw e;
                     }
                   })() ? (
-                    <div className={classNames("all", sty.freeBox__t0TZ)} />
+                    <div
+                      className={classNames("all", sty.freeBox__t0TZ, {
+                        [sty.freeBoxhomePage2_home__t0TZRvb1B]: hasVariant(
+                          $state,
+                          "homePage2",
+                          "home"
+                        )
+                      })}
+                    />
                   ) : null}
                 </div>
               </section>
@@ -2959,6 +2853,11 @@ function PlasmicHomepage__RenderFunc(props: {
                 data-plasmic-name={"categories2"}
                 data-plasmic-override={overrides.categories2}
                 className={classNames("__wab_instance", sty.categories2, {
+                  [sty.categories2homePage2_home]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "home"
+                  ),
                   [sty.categories2homePage2_reminder]: hasVariant(
                     $state,
                     "homePage2",
@@ -3009,7 +2908,108 @@ function PlasmicHomepage__RenderFunc(props: {
                 })()}
                 errorDisplay={null}
                 loadingDisplay={
-                  <div className={classNames("all", sty.freeBox__sCmYa)}>
+                  <div
+                    className={classNames("all", sty.freeBox__sCmYa, {
+                      [sty.freeBoxhomePage2_booking__sCmYazQze8]: hasVariant(
+                        $state,
+                        "homePage2",
+                        "booking"
+                      ),
+                      [sty.freeBoxhomePage2_home__sCmYaRvb1B]: hasVariant(
+                        $state,
+                        "homePage2",
+                        "home"
+                      )
+                    })}
+                  >
+                    <div className={classNames("all", sty.freeBox__tm0AO)}>
+                      <div className={classNames("all", sty.freeBox__kfxpp)}>
+                        <div className={classNames("all", sty.freeBox__vc3Zg)}>
+                          <div
+                            className={classNames(
+                              "all",
+                              "__wab_text",
+                              sty.text__t3HeK
+                            )}
+                          >
+                            {
+                              "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645\r"
+                            }
+                          </div>
+                          <div
+                            className={classNames(
+                              "all",
+                              "__wab_text",
+                              sty.text__e4Rv7
+                            )}
+                          >
+                            {
+                              "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645 \u0645\u062a\u0646 \u0633\u0627\u062e\u062a\u06af\u06cc \u0628\u0627 \u062a\u0648\u0644\u06cc\u062f \u0633\u0627\u062f\u06af\u06cc \u0646\u0627\u0645\u0641\u0647\u0648\u0645 \r\n"
+                            }
+                          </div>
+                          <Button
+                            data-plasmic-name={"button2"}
+                            data-plasmic-override={overrides.button2}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.button2
+                            )}
+                            color={"second"}
+                            label={
+                              <div
+                                className={classNames(
+                                  "all",
+                                  "__wab_text",
+                                  sty.text___6MR7
+                                )}
+                              >
+                                {
+                                  "\u0645\u0634\u0627\u0647\u062f\u0647 \u0628\u06cc\u0634\u062a\u0631"
+                                }
+                              </div>
+                            }
+                            loading={generateStateValueProp($state, [
+                              "button2",
+                              "loading"
+                            ])}
+                            onLoadingChange={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "button2",
+                                "loading"
+                              ]).apply(null, eventArgs);
+
+                              if (
+                                eventArgs.length > 1 &&
+                                eventArgs[1] &&
+                                eventArgs[1]._plasmic_state_init_
+                              ) {
+                                return;
+                              }
+                            }}
+                            roundedFull={true}
+                          />
+                        </div>
+                        <PlasmicImg__
+                          data-plasmic-name={"img"}
+                          data-plasmic-override={overrides.img}
+                          alt={""}
+                          className={classNames(sty.img)}
+                          displayHeight={"150px"}
+                          displayMaxHeight={"none"}
+                          displayMaxWidth={"100%"}
+                          displayMinHeight={"0"}
+                          displayMinWidth={"0"}
+                          displayWidth={"150px"}
+                          loading={"lazy"}
+                          src={{
+                            src: "/plasmic/sayban/images/chatGptImageDec232025112923AmPng.png",
+                            fullWidth: 1024,
+                            fullHeight: 998,
+                            aspectRatio: undefined
+                          }}
+                        />
+                      </div>
+                    </div>
                     <div className={classNames("all", sty.freeBox___19TiU)}>
                       {(_par =>
                         !_par ? [] : Array.isArray(_par) ? _par : [_par])(
@@ -3049,6 +3049,7 @@ function PlasmicHomepage__RenderFunc(props: {
                         );
                       })}
                     </div>
+                    <div className={classNames("all", sty.freeBox__jBh0L)} />
                   </div>
                 }
                 method={"GET"}
@@ -3116,6 +3117,9 @@ function PlasmicHomepage__RenderFunc(props: {
                       "homePage2",
                       "home"
                     ),
+                    [sty.homehomePage2_home_search2]:
+                      hasVariant($state, "homePage2", "home") &&
+                      hasVariant($state, "search2", "search2"),
                     [sty.homehomePage2_reminder]: hasVariant(
                       $state,
                       "homePage2",
@@ -5718,11 +5722,11 @@ const PlasmicDescendants = {
     "homePage",
     "menu2",
     "textInput",
-    "button",
-    "img",
     "user",
     "mainLiad",
     "categories2",
+    "button2",
+    "img",
     "home",
     "profile",
     "categories",
@@ -5744,22 +5748,14 @@ const PlasmicDescendants = {
     "payResult"
   ],
   sideEffect: ["sideEffect"],
-  homePage: [
-    "homePage",
-    "menu2",
-    "textInput",
-    "button",
-    "img",
-    "user",
-    "mainLiad"
-  ],
+  homePage: ["homePage", "menu2", "textInput", "user", "mainLiad"],
   menu2: ["menu2"],
   textInput: ["textInput"],
-  button: ["button"],
-  img: ["img"],
   user: ["user"],
   mainLiad: ["mainLiad"],
-  categories2: ["categories2", "home"],
+  categories2: ["categories2", "button2", "img", "home"],
+  button2: ["button2"],
+  img: ["img"],
   home: ["home"],
   profile: ["profile"],
   categories: ["categories"],
@@ -5789,11 +5785,11 @@ type NodeDefaultElementType = {
   homePage: "div";
   menu2: typeof Menu2;
   textInput: typeof TextInput;
-  button: typeof Button;
-  img: typeof PlasmicImg__;
   user: typeof User;
   mainLiad: typeof MainLiad;
   categories2: typeof ApiRequest;
+  button2: typeof Button;
+  img: typeof PlasmicImg__;
   home: typeof Home;
   profile: typeof ApiRequest;
   categories: typeof Categories;
@@ -5881,11 +5877,11 @@ export const PlasmicHomepage = Object.assign(
     homePage: makeNodeComponent("homePage"),
     menu2: makeNodeComponent("menu2"),
     textInput: makeNodeComponent("textInput"),
-    button: makeNodeComponent("button"),
-    img: makeNodeComponent("img"),
     user: makeNodeComponent("user"),
     mainLiad: makeNodeComponent("mainLiad"),
     categories2: makeNodeComponent("categories2"),
+    button2: makeNodeComponent("button2"),
+    img: makeNodeComponent("img"),
     home: makeNodeComponent("home"),
     profile: makeNodeComponent("profile"),
     categories: makeNodeComponent("categories"),

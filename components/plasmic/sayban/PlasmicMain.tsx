@@ -1305,7 +1305,7 @@ function PlasmicMain__RenderFunc(props: {
                 const actionArgs = {
                   destination: `/panel/${(() => {
                     try {
-                      return "user-" + $state.mainPageUser.selectedRow.id;
+                      return "user-" + $state.mainPageUser.selectedRow["شناسه"];
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -2418,7 +2418,6 @@ function PlasmicMain__RenderFunc(props: {
       <ApiRequest
         data-plasmic-name={"categories"}
         data-plasmic-override={overrides.categories}
-        children={null}
         className={classNames("__wab_instance", sty.categories, {
           [sty.categoriespage_center]: hasVariant($state, "page", "center"),
           [sty.categoriespage_reservations]: hasVariant(
@@ -2463,8 +2462,11 @@ function PlasmicMain__RenderFunc(props: {
           }
         })()}
         url={"/panel/categories/full"}
-      />
-
+      >
+        <div className={classNames("all", "__wab_text", sty.text__rm8A1)}>
+          {""}
+        </div>
+      </ApiRequest>
       <Embed
         data-plasmic-name={"embedHtml"}
         data-plasmic-override={overrides.embedHtml}
