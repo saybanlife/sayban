@@ -3732,7 +3732,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://sayban.darkube.app/webhook/panel/update/info",
+                            "/panel/update/info",
                             undefined,
                             (() => {
                               const data = {
@@ -3799,12 +3799,12 @@ function PlasmicCenterPage__RenderFunc(props: {
                       await $steps["updateSaveInfoLoading2"];
                   }
 
-                  $steps["updateInfoIsOpen"] = $steps.update?.data?.success
+                  $steps["updateMapIsOpen"] = $steps.update?.data?.success
                     ? (() => {
                         const actionArgs = {
                           variable: {
                             objRoot: $state,
-                            variablePath: ["info", "isOpen"]
+                            variablePath: ["map", "isOpen"]
                           },
                           operation: 4
                         };
@@ -3826,12 +3826,11 @@ function PlasmicCenterPage__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["updateInfoIsOpen"] != null &&
-                    typeof $steps["updateInfoIsOpen"] === "object" &&
-                    typeof $steps["updateInfoIsOpen"].then === "function"
+                    $steps["updateMapIsOpen"] != null &&
+                    typeof $steps["updateMapIsOpen"] === "object" &&
+                    typeof $steps["updateMapIsOpen"].then === "function"
                   ) {
-                    $steps["updateInfoIsOpen"] =
-                      await $steps["updateInfoIsOpen"];
+                    $steps["updateMapIsOpen"] = await $steps["updateMapIsOpen"];
                   }
 
                   $steps["invokeGlobalAction"] = $steps.update?.data?.success
