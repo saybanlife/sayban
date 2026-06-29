@@ -84,6 +84,7 @@ import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
 import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
 import ProfilePage from "../../ProfilePage"; // plasmic-import: -7D4X813T-mx/component
 import MainPagePayment from "../../MainPagePayment"; // plasmic-import: mfeVOEZjveoq/component
+import UserMain from "../../UserMain"; // plasmic-import: cBSVDnOcnP2x/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -106,7 +107,8 @@ export type PlasmicMain__VariantMembers = {
     | "categories"
     | "services"
     | "profile"
-    | "payments";
+    | "payments"
+    | "user";
 };
 export type PlasmicMain__VariantsArgs = {
   page?: SingleChoiceArg<
@@ -118,6 +120,7 @@ export type PlasmicMain__VariantsArgs = {
     | "services"
     | "profile"
     | "payments"
+    | "user"
   >;
 };
 type VariantPropType = keyof PlasmicMain__VariantsArgs;
@@ -129,6 +132,7 @@ export type PlasmicMain__ArgsType = {
   onRoleChange?: (val: string) => void;
   token?: string;
   state?: string;
+  userId?: string;
 };
 type ArgPropType = keyof PlasmicMain__ArgsType;
 export const PlasmicMain__ArgProps = new Array<ArgPropType>(
@@ -136,7 +140,8 @@ export const PlasmicMain__ArgProps = new Array<ArgPropType>(
   "role",
   "onRoleChange",
   "token",
-  "state"
+  "state",
+  "userId"
 );
 
 export type PlasmicMain__OverridesType = {
@@ -178,6 +183,7 @@ export type PlasmicMain__OverridesType = {
   button3?: Flex__<typeof Button>;
   profilePage?: Flex__<typeof ProfilePage>;
   mainPagePayment?: Flex__<typeof MainPagePayment>;
+  userMain?: Flex__<typeof UserMain>;
 };
 
 export interface DefaultMainProps {
@@ -186,6 +192,7 @@ export interface DefaultMainProps {
   onRoleChange?: (val: string) => void;
   token?: string;
   state?: string;
+  userId?: string;
   page?: SingleChoiceArg<
     | "centers"
     | "center"
@@ -195,6 +202,7 @@ export interface DefaultMainProps {
     | "services"
     | "profile"
     | "payments"
+    | "user"
   >;
   className?: string;
 }
@@ -220,7 +228,8 @@ function PlasmicMain__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          centerId: "a87ff679a2f3e71d9181a67b7542122c"
+          centerId: "a87ff679a2f3e71d9181a67b7542122c",
+          userId: "2"
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
@@ -892,6 +901,24 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "userMain.categpty",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "userMain.apiRequestData",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "userMain.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -1268,6 +1295,48 @@ function PlasmicMain__RenderFunc(props: {
             eventArgs[1]._plasmic_state_init_
           ) {
             return;
+          }
+        }}
+        onRowClicked={async (rowKey, row, event) => {
+          const $steps = {};
+
+          $steps["goToPanel"] = true
+            ? (() => {
+                const actionArgs = {
+                  destination: `/panel/${(() => {
+                    try {
+                      return "user-" + $state.mainPageUser.selectedRow.id;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}`
+                };
+                return (({ destination }) => {
+                  if (
+                    typeof destination === "string" &&
+                    destination.startsWith("#")
+                  ) {
+                    document
+                      .getElementById(destination.substr(1))
+                      .scrollIntoView({ behavior: "smooth" });
+                  } else {
+                    __nextRouter?.push(destination);
+                  }
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["goToPanel"] != null &&
+            typeof $steps["goToPanel"] === "object" &&
+            typeof $steps["goToPanel"].then === "function"
+          ) {
+            $steps["goToPanel"] = await $steps["goToPanel"];
           }
         }}
         onSelectedChange={async (...eventArgs: any) => {
@@ -3369,6 +3438,7 @@ function PlasmicMain__RenderFunc(props: {
         )}
         hideFooter={true}
         maskClosable={false}
+        modalContentClassName={classNames({ [sty["pcls_WoJHmoc2ht1Q"]]: true })}
         modalScopeClassName={sty["modal__modal"]}
         onOpenChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["modal", "open"]).apply(
@@ -3380,6 +3450,7 @@ function PlasmicMain__RenderFunc(props: {
         title={null}
         trigger={null}
         width={"600"}
+        wrapClassName={classNames({ [sty["pcls_qLH08TvZbmzO"]]: true })}
       >
         <AntdTabs
           data-plasmic-name={"tabs"}
@@ -4013,14 +4084,6 @@ function PlasmicMain__RenderFunc(props: {
                                 message: "استان را انتخاب کنید."
                               },
                               {
-                                value: $state.loaction.lat,
-                                message: "لوکیشن را مشخص کنید."
-                              },
-                              {
-                                value: $state.loaction.lon,
-                                message: "لوکیشن را مشخص کنید."
-                              },
-                              {
                                 value: $state.loaction.call2,
                                 message: "شماره تماس را وارد کنید."
                               },
@@ -4086,8 +4149,8 @@ function PlasmicMain__RenderFunc(props: {
                                 address: $state.loaction.address,
                                 city: $state.loaction.city2,
                                 state: $state.loaction.state2,
-                                latitude: $state.loaction.lat,
-                                longitude: $state.loaction.lon,
+                                latitude: $state.loaction.lat || 0,
+                                longitude: $state.loaction.lon || 0,
                                 phone: $state.loaction.call2,
                                 image: $state.imag.uploadFiles,
                                 week: $state.timeWeek.week,
@@ -4600,6 +4663,114 @@ function PlasmicMain__RenderFunc(props: {
           }
         })()}
       />
+
+      <UserMain
+        data-plasmic-name={"userMain"}
+        data-plasmic-override={overrides.userMain}
+        apiRequestData={generateStateValueProp($state, [
+          "userMain",
+          "apiRequestData"
+        ])}
+        categpty={generateStateValueProp($state, ["userMain", "categpty"])}
+        className={classNames("__wab_instance", sty.userMain, {
+          [sty.userMainpage_user]: hasVariant($state, "page", "user")
+        })}
+        data={generateStateValueProp($state, ["userMain", "data"])}
+        deleteCenter={async () => {
+          const $steps = {};
+
+          $steps["runCode"] = true
+            ? (() => {
+                const actionArgs = {
+                  customFunction: async () => {
+                    return (() => {
+                      $state.deleteUser.data = $state.userMain.data;
+                      return ($state.deleteUser.opendialog = true);
+                    })();
+                  }
+                };
+                return (({ customFunction }) => {
+                  return customFunction();
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["runCode"] != null &&
+            typeof $steps["runCode"] === "object" &&
+            typeof $steps["runCode"].then === "function"
+          ) {
+            $steps["runCode"] = await $steps["runCode"];
+          }
+        }}
+        id={(() => {
+          try {
+            return $props.userId;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+        onApiRequestDataChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "userMain",
+            "apiRequestData"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onCategptyChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["userMain", "categpty"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onDataChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["userMain", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        token={(() => {
+          try {
+            return $props.token;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+      />
     </div>
   ) as React.ReactElement | null;
 }
@@ -4643,7 +4814,8 @@ const PlasmicDescendants = {
     "submit",
     "button3",
     "profilePage",
-    "mainPagePayment"
+    "mainPagePayment",
+    "userMain"
   ],
   topPage: ["topPage"],
   mainPageCenter: ["mainPageCenter"],
@@ -4708,7 +4880,8 @@ const PlasmicDescendants = {
   submit: ["submit"],
   button3: ["button3"],
   profilePage: ["profilePage"],
-  mainPagePayment: ["mainPagePayment"]
+  mainPagePayment: ["mainPagePayment"],
+  userMain: ["userMain"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -4752,6 +4925,7 @@ type NodeDefaultElementType = {
   button3: typeof Button;
   profilePage: typeof ProfilePage;
   mainPagePayment: typeof MainPagePayment;
+  userMain: typeof UserMain;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -4853,6 +5027,7 @@ export const PlasmicMain = Object.assign(
     button3: makeNodeComponent("button3"),
     profilePage: makeNodeComponent("profilePage"),
     mainPagePayment: makeNodeComponent("mainPagePayment"),
+    userMain: makeNodeComponent("userMain"),
 
     // Metadata about props expected for PlasmicMain
     internalVariantProps: PlasmicMain__VariantProps,

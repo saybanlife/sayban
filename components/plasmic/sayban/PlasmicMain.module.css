@@ -399,6 +399,11 @@
   max-width: 100%;
   object-fit: cover;
 }
+.modal__modal :global(.ant-modal-content) {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+}
 .tabs:global(.__wab_instance) {
   width: 600px;
   max-width: 100%;
@@ -603,5 +608,16 @@
   display: none;
 }
 .mainPagePaymentpage_payments:global(.__wab_instance) {
+  display: flex;
+}
+.userMain:global(.__wab_instance) {
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  display: none;
+}
+.userMainpage_user:global(.__wab_instance) {
   display: flex;
 }

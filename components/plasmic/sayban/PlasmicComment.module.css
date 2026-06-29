@@ -156,6 +156,9 @@
     animation: none;
   }
 }
+.textuser2__qSc5DeGnrT {
+  display: none;
+}
 .text__v6Sse {
   animation: none;
   position: relative;
@@ -180,6 +183,13 @@
   color: var(--token-5bOpHmsvlymK);
   width: 100%;
   min-width: 0;
+}
+.textuser2__v6SseeGnrT {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  width: auto;
 }
 .freeBox__poXve {
   animation: none;

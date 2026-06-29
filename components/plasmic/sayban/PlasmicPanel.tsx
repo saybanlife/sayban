@@ -928,6 +928,7 @@ function PlasmicPanel__RenderFunc(props: {
                     return (() => {
                       const page = $ctx.params.page?.[0] ?? "";
                       if (page.startsWith("center-")) return "center";
+                      if (page.startsWith("user-")) return "user";
                       return $ctx.params.page?.[0];
                     })();
                   } catch (e) {
@@ -957,6 +958,21 @@ function PlasmicPanel__RenderFunc(props: {
                 token={(() => {
                   try {
                     return $state.token;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                userId={(() => {
+                  try {
+                    return $ctx.params?.page?.[0]?.startsWith("user-")
+                      ? $ctx.params.page[0].split("-")[1]
+                      : null;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||

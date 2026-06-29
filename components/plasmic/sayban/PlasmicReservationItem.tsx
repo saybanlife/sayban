@@ -78,13 +78,16 @@ createPlasmicElementProxy;
 
 export type PlasmicReservationItem__VariantMembers = {
   open: "open";
+  user2: "user2";
 };
 export type PlasmicReservationItem__VariantsArgs = {
   open?: SingleBooleanChoiceArg<"open">;
+  user2?: SingleBooleanChoiceArg<"user2">;
 };
 type VariantPropType = keyof PlasmicReservationItem__VariantsArgs;
 export const PlasmicReservationItem__VariantProps = new Array<VariantPropType>(
-  "open"
+  "open",
+  "user2"
 );
 
 export type PlasmicReservationItem__ArgsType = {
@@ -112,6 +115,7 @@ export interface DefaultReservationItemProps {
   currentItem?: any;
   onOpenChange?: (val: any) => void;
   open?: SingleBooleanChoiceArg<"open">;
+  user2?: SingleBooleanChoiceArg<"user2">;
   className?: string;
 }
 
@@ -177,6 +181,12 @@ function PlasmicReservationItem__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "user2",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.user2
       }
     ],
     [$props, $ctx, $refs]
@@ -206,11 +216,14 @@ function PlasmicReservationItem__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        { [sty.rootuser2]: hasVariant($state, "user2", "user2") }
       )}
     >
       <div
-        className={classNames("all", sty.freeBox__xiDa9)}
+        className={classNames("all", sty.freeBox__xiDa9, {
+          [sty.freeBoxuser2__xiDa9IZq9P]: hasVariant($state, "user2", "user2")
+        })}
         onClick={async event => {
           const $steps = {};
 
@@ -261,8 +274,16 @@ function PlasmicReservationItem__RenderFunc(props: {
         />
 
         <div className={classNames("all", sty.freeBox__vCUW)}>
-          <div className={classNames("all", "__wab_text", sty.text__wnq7Y)}>
-            <React.Fragment>{`${$props.currentItem.name} (${$props.currentItem.service_name})`}</React.Fragment>
+          <div
+            className={classNames("all", "__wab_text", sty.text__wnq7Y, {
+              [sty.textuser2__wnq7YiZq9P]: hasVariant($state, "user2", "user2")
+            })}
+          >
+            {hasVariant($state, "user2", "user2") ? (
+              <React.Fragment>{`${$props.currentItem.center_name} (${$props.currentItem.service_name})`}</React.Fragment>
+            ) : (
+              <React.Fragment>{`${$props.currentItem.name} (${$props.currentItem.service_name})`}</React.Fragment>
+            )}
           </div>
           <UploudeTime
             data-plasmic-name={"uploudeTime"}
@@ -644,25 +665,34 @@ function PlasmicReservationItem__RenderFunc(props: {
         ) : null}
         <ChevronDownIcon
           className={classNames("all", sty.svg__dwid7, {
-            [sty.svgopen__dwid7Lb9Mw]: hasVariant($state, "open", "open")
+            [sty.svgopen__dwid7Lb9Mw]: hasVariant($state, "open", "open"),
+            [sty.svguser2__dwid7IZq9P]: hasVariant($state, "user2", "user2")
           })}
           role={"img"}
         />
       </div>
-      {(() => {
-        try {
-          return $state.open;
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return true;
-          }
-          throw e;
-        }
-      })() ? (
-        <div className={classNames("all", sty.freeBox__kZi99)}>
+      {(
+        hasVariant($state, "user2", "user2")
+          ? true
+          : (() => {
+              try {
+                return $state.open;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()
+      ) ? (
+        <div
+          className={classNames("all", sty.freeBox__kZi99, {
+            [sty.freeBoxuser2__kZi99IZq9P]: hasVariant($state, "user2", "user2")
+          })}
+        >
           <div
             className={classNames("all", sty.freeBox__eUwF)}
             id={"accordion-content"}

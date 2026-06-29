@@ -108,11 +108,17 @@
 .svgopen__dwid7Lb9Mw {
   transform: rotate3d(0, 0, -1, -180deg);
 }
+.svguser2__dwid7IZq9P {
+  display: none;
+}
 .freeBox__kZi99 {
   display: flex;
   flex-direction: row;
   width: 100%;
   min-width: 0;
+}
+.freeBoxuser2__kZi99IZq9P {
+  display: none;
 }
 .freeBox__eUwF {
   display: flex;

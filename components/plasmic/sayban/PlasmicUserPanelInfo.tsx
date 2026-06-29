@@ -67,6 +67,8 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicUserPanelInfo.module.css"; // plasmic-import: NJmPC7ZHblW7/css
 
+import InfoCircleIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__InfoCircle"; // plasmic-import: uQcTfBHdDn4g/icon
+
 createPlasmicElementProxy;
 
 export type PlasmicUserPanelInfo__VariantMembers = {};
@@ -100,6 +102,7 @@ export const PlasmicUserPanelInfo__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicUserPanelInfo__OverridesType = {
   root?: Flex__<"div">;
+  svg?: Flex__<"svg">;
   email?: Flex__<typeof TextInput>;
   mobile?: Flex__<typeof TextInput>;
   password?: Flex__<typeof TextInput>;
@@ -220,6 +223,20 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
         sty.root
       )}
     >
+      <div className={classNames("all", sty.freeBox__kltJv)}>
+        <InfoCircleIcon
+          data-plasmic-name={"svg"}
+          data-plasmic-override={overrides.svg}
+          className={classNames("all", sty.svg)}
+          role={"img"}
+        />
+
+        <div className={classNames("all", "__wab_text", sty.text__boPkU)}>
+          {
+            "\u0627\u06cc\u0646 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u062c\u0647\u062a \u0648\u0631\u0648\u062f \u0645\u062f\u06cc\u0631\u06cc\u062a \u0645\u0631\u06a9\u0632 \u0628\u0647 \u067e\u0646\u0644 \u06a9\u0627\u0631\u0628\u0631\u06cc \u0627\u0633\u062a."
+          }
+        </div>
+      </div>
       <div className={classNames("all", sty.freeBox___6MUo)}>
         <div className={classNames("all", sty.freeBox__nO9P)}>
           <div className={classNames("all", "__wab_text", sty.text__djw7J)}>
@@ -308,7 +325,8 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "email", "mobile", "password"],
+  root: ["root", "svg", "email", "mobile", "password"],
+  svg: ["svg"],
   email: ["email"],
   mobile: ["mobile"],
   password: ["password"]
@@ -318,6 +336,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  svg: "svg";
   email: typeof TextInput;
   mobile: typeof TextInput;
   password: typeof TextInput;
@@ -385,6 +404,7 @@ export const PlasmicUserPanelInfo = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    svg: makeNodeComponent("svg"),
     email: makeNodeComponent("email"),
     mobile: makeNodeComponent("mobile"),
     password: makeNodeComponent("password"),

@@ -29382,19 +29382,6 @@
           "componentType": "component"
         },
         {
-          "id": "cBSVDnOcnP2x",
-          "name": "CenterUser",
-          "type": "managed",
-          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
-          "renderModuleFilePath": "plasmic/sayban/PlasmicCenterUser.tsx",
-          "importSpec": {
-            "modulePath": "CenterUser.tsx"
-          },
-          "cssFilePath": "plasmic/sayban/PlasmicCenterUser.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "mfeVOEZjveoq",
           "name": "MainPagePayment",
           "type": "managed",
@@ -29417,6 +29404,19 @@
             "modulePath": "UserPanelInfo.tsx"
           },
           "cssFilePath": "plasmic/sayban/PlasmicUserPanelInfo.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "cBSVDnOcnP2x",
+          "name": "UserMain",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicUserMain.tsx",
+          "importSpec": {
+            "modulePath": "UserMain.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicUserMain.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
@@ -30411,6 +30411,16 @@
           "id": "F0U3QQgACgil",
           "name": "Icon118Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon118.tsx"
+        },
+        {
+          "id": "DFRMCS7obYXb",
+          "name": "Icon119Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon119.tsx"
+        },
+        {
+          "id": "Lz-rWZjdwsmA",
+          "name": "Icon120Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon120.tsx"
         }
       ],
       "images": [
@@ -30683,6 +30693,16 @@
           "id": "dz2wP756vYj5",
           "name": "image 37",
           "filePath": "../public/plasmic/sayban/images/image37.svg"
+        },
+        {
+          "id": "83wOAWxGtmrl",
+          "name": "Untitled-1.png 2",
+          "filePath": "../public/plasmic/sayban/images/untitled1Png2.png"
+        },
+        {
+          "id": "w1uchH4iJGyL",
+          "name": "Untitled-1.png 3",
+          "filePath": "../public/plasmic/sayban/images/untitled1Png3.png"
         }
       ],
       "indirect": false,

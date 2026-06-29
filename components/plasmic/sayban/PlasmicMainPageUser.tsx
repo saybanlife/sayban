@@ -832,6 +832,24 @@ function PlasmicMainPageUser__RenderFunc(props: {
                     onRowClick: async (rowKey, row, event) => {
                       const $steps = {};
 
+                      $steps["invokeGlobalAction"] = true
+                        ? (() => {
+                            const actionArgs = { args: [200] };
+                            return $globalActions["Fragment.wait"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["invokeGlobalAction"] != null &&
+                        typeof $steps["invokeGlobalAction"] === "object" &&
+                        typeof $steps["invokeGlobalAction"].then === "function"
+                      ) {
+                        $steps["invokeGlobalAction"] =
+                          await $steps["invokeGlobalAction"];
+                      }
+
                       $steps["runOnRowClicked"] = true
                         ? (() => {
                             const actionArgs = {

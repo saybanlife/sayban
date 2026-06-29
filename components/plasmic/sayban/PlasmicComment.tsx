@@ -73,12 +73,17 @@ createPlasmicElementProxy;
 
 export type PlasmicComment__VariantMembers = {
   panel: "panel";
+  user2: "user2";
 };
 export type PlasmicComment__VariantsArgs = {
   panel?: SingleBooleanChoiceArg<"panel">;
+  user2?: SingleBooleanChoiceArg<"user2">;
 };
 type VariantPropType = keyof PlasmicComment__VariantsArgs;
-export const PlasmicComment__VariantProps = new Array<VariantPropType>("panel");
+export const PlasmicComment__VariantProps = new Array<VariantPropType>(
+  "panel",
+  "user2"
+);
 
 export type PlasmicComment__ArgsType = { user?: any };
 type ArgPropType = keyof PlasmicComment__ArgsType;
@@ -93,6 +98,7 @@ export type PlasmicComment__OverridesType = {
 export interface DefaultCommentProps {
   user?: any;
   panel?: SingleBooleanChoiceArg<"panel">;
+  user2?: SingleBooleanChoiceArg<"user2">;
   className?: string;
 }
 
@@ -142,6 +148,12 @@ function PlasmicComment__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.panel
+      },
+      {
+        path: "user2",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.user2
       }
     ],
     [$props, $ctx, $refs]
@@ -292,7 +304,15 @@ function PlasmicComment__RenderFunc(props: {
                 role={"img"}
               />
             </div>
-            <div className={classNames("all", "__wab_text", sty.text__qSc5D)}>
+            <div
+              className={classNames("all", "__wab_text", sty.text__qSc5D, {
+                [sty.textuser2__qSc5DeGnrT]: hasVariant(
+                  $state,
+                  "user2",
+                  "user2"
+                )
+              })}
+            >
               <React.Fragment>
                 {(() => {
                   try {
@@ -315,6 +335,11 @@ function PlasmicComment__RenderFunc(props: {
                   $state,
                   "panel",
                   "panel"
+                ),
+                [sty.textuser2__v6SseeGnrT]: hasVariant(
+                  $state,
+                  "user2",
+                  "user2"
                 )
               })}
             >

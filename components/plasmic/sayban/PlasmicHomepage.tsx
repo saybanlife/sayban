@@ -4006,6 +4006,11 @@ function PlasmicHomepage__RenderFunc(props: {
                 "homePage2",
                 "booking"
               ),
+              [sty.bookinghomePage2_home]: hasVariant(
+                $state,
+                "homePage2",
+                "home"
+              ),
               [sty.bookinghomePage2_user_page_booking]:
                 hasVariant($state, "page", "booking") &&
                 hasVariant($state, "homePage2", "user"),
@@ -4110,6 +4115,11 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-name={"payment"}
             data-plasmic-override={overrides.payment}
             className={classNames("__wab_instance", sty.payment, {
+              [sty.paymenthomePage2_home]: hasVariant(
+                $state,
+                "homePage2",
+                "home"
+              ),
               [sty.paymentpage_center]: hasVariant($state, "page", "center"),
               [sty.paymentpage_payment]: hasVariant($state, "page", "payment")
             })}
@@ -4562,6 +4572,11 @@ function PlasmicHomepage__RenderFunc(props: {
             })()}
             children={null}
             className={classNames("__wab_instance", sty.search, {
+              [sty.searchhomePage2_home]: hasVariant(
+                $state,
+                "homePage2",
+                "home"
+              ),
               [sty.searchhomePage2_reminder]: hasVariant(
                 $state,
                 "homePage2",

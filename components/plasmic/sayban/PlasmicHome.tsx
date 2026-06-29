@@ -61,6 +61,7 @@ import {
 
 import { SwiperSlider } from "@/components/SwiperSlider"; // plasmic-import: byElilYJKEPk/codeComponent
 import ToolsItem from "../../ToolsItem"; // plasmic-import: M_mJLv9BDPmq/component
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import Item from "../../Item"; // plasmic-import: lqR7VxT6h9YH/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
@@ -69,6 +70,9 @@ import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-impor
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicHome.module.css"; // plasmic-import: m-UDUThzN-63/css
+
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 
 createPlasmicElementProxy;
 
@@ -108,6 +112,7 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>(
 export type PlasmicHome__OverridesType = {
   root?: Flex__<"div">;
   swiperSlider2?: Flex__<typeof SwiperSlider>;
+  button?: Flex__<typeof Button>;
   reveal?: Flex__<typeof Reveal>;
   item?: Flex__<typeof Item>;
 };
@@ -202,6 +207,12 @@ function PlasmicHome__RenderFunc(props: {
 
         valueProp: "selectedCenderid",
         onChangeProp: "onSelectedCenderidChange"
+      },
+      {
+        path: "button.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -566,6 +577,76 @@ function PlasmicHome__RenderFunc(props: {
             );
           })}
         </div>
+        <div className={classNames("all", sty.freeBox__llq3L)}>
+          <div
+            className={classNames("all", sty.freeBox__rpoEk)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = { destination: `/${"reminder"}/${""}` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+          >
+            <div className={classNames("all", "__wab_text", sty.text__uYsXs)}>
+              {
+                "\u0628\u0627 \u06cc\u0627\u062f\u0622\u0648\u0631 \u0647\u0648\u0634\u0645\u0646\u062f\u060c \u062f\u06cc\u06af\u0631 \u0647\u06cc\u0686 \u062f\u0627\u0631\u0648\u06cc\u06cc \u0641\u0631\u0627\u0645\u0648\u0634 \u0646\u0645\u06cc\u200c\u0634\u0648\u062f."
+              }
+            </div>
+            <Button
+              data-plasmic-name={"button"}
+              data-plasmic-override={overrides.button}
+              className={classNames("__wab_instance", sty.button)}
+              color={"neutral"}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text___5QQpw)}
+                >
+                  {
+                    "\u062a\u0646\u0638\u06cc\u0645 \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc"
+                  }
+                </div>
+              }
+              loading={generateStateValueProp($state, ["button", "loading"])}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["button", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              roundedFull={true}
+            />
+          </div>
+        </div>
       </div>
       <div
         className={classNames("all", sty.freeBox___8ZSjn, {
@@ -687,8 +768,9 @@ function PlasmicHome__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "swiperSlider2", "reveal", "item"],
+  root: ["root", "swiperSlider2", "button", "reveal", "item"],
   swiperSlider2: ["swiperSlider2"],
+  button: ["button"],
   reveal: ["reveal", "item"],
   item: ["item"]
 } as const;
@@ -698,6 +780,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   swiperSlider2: typeof SwiperSlider;
+  button: typeof Button;
   reveal: typeof Reveal;
   item: typeof Item;
 };
@@ -765,6 +848,7 @@ export const PlasmicHome = Object.assign(
   {
     // Helper components rendering sub-elements
     swiperSlider2: makeNodeComponent("swiperSlider2"),
+    button: makeNodeComponent("button"),
     reveal: makeNodeComponent("reveal"),
     item: makeNodeComponent("item"),
 
