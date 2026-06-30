@@ -919,6 +919,12 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "userPanelInfo.nameValue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -3494,6 +3500,10 @@ function PlasmicMain__RenderFunc(props: {
                     "userPanelInfo",
                     "mobileValue"
                   ])}
+                  nameValue={generateStateValueProp($state, [
+                    "userPanelInfo",
+                    "nameValue"
+                  ])}
                   onCategoriesChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "userPanelInfo",
@@ -3526,6 +3536,20 @@ function PlasmicMain__RenderFunc(props: {
                     generateStateOnChangeProp($state, [
                       "userPanelInfo",
                       "mobileValue"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onNameValueChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "userPanelInfo",
+                      "nameValue"
                     ]).apply(null, eventArgs);
 
                     if (

@@ -71,10 +71,16 @@ import InfoCircleIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__InfoC
 
 createPlasmicElementProxy;
 
-export type PlasmicUserPanelInfo__VariantMembers = {};
-export type PlasmicUserPanelInfo__VariantsArgs = {};
+export type PlasmicUserPanelInfo__VariantMembers = {
+  edit: "edit";
+};
+export type PlasmicUserPanelInfo__VariantsArgs = {
+  edit?: SingleBooleanChoiceArg<"edit">;
+};
 type VariantPropType = keyof PlasmicUserPanelInfo__VariantsArgs;
-export const PlasmicUserPanelInfo__VariantProps = new Array<VariantPropType>();
+export const PlasmicUserPanelInfo__VariantProps = new Array<VariantPropType>(
+  "edit"
+);
 
 export type PlasmicUserPanelInfo__ArgsType = {
   tagsitem?: any;
@@ -86,6 +92,8 @@ export type PlasmicUserPanelInfo__ArgsType = {
   onPasswordChange?: (val: string) => void;
   mobileValue?: string;
   onMobileValueChange?: (val: string) => void;
+  nameValue?: string;
+  onNameValueChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicUserPanelInfo__ArgsType;
 export const PlasmicUserPanelInfo__ArgProps = new Array<ArgPropType>(
@@ -97,12 +105,15 @@ export const PlasmicUserPanelInfo__ArgProps = new Array<ArgPropType>(
   "password1",
   "onPasswordChange",
   "mobileValue",
-  "onMobileValueChange"
+  "onMobileValueChange",
+  "nameValue",
+  "onNameValueChange"
 );
 
 export type PlasmicUserPanelInfo__OverridesType = {
   root?: Flex__<"div">;
   svg?: Flex__<"svg">;
+  name?: Flex__<typeof TextInput>;
   email?: Flex__<typeof TextInput>;
   mobile?: Flex__<typeof TextInput>;
   password?: Flex__<typeof TextInput>;
@@ -118,6 +129,9 @@ export interface DefaultUserPanelInfoProps {
   onPasswordChange?: (val: string) => void;
   mobileValue?: string;
   onMobileValueChange?: (val: string) => void;
+  nameValue?: string;
+  onNameValueChange?: (val: string) => void;
+  edit?: SingleBooleanChoiceArg<"edit">;
   className?: string;
 }
 
@@ -193,6 +207,20 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
 
         valueProp: "mobileValue",
         onChangeProp: "onMobileValueChange"
+      },
+      {
+        path: "edit",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.edit
+      },
+      {
+        path: "name.value",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "nameValue",
+        onChangeProp: "onNameValueChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -223,7 +251,11 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
         sty.root
       )}
     >
-      <div className={classNames("all", sty.freeBox__kltJv)}>
+      <div
+        className={classNames("all", sty.freeBox__kltJv, {
+          [sty.freeBoxedit__kltJv1N5Q]: hasVariant($state, "edit", "edit")
+        })}
+      >
         <InfoCircleIcon
           data-plasmic-name={"svg"}
           data-plasmic-override={overrides.svg}
@@ -237,9 +269,54 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
           }
         </div>
       </div>
-      <div className={classNames("all", sty.freeBox___6MUo)}>
-        <div className={classNames("all", sty.freeBox__nO9P)}>
-          <div className={classNames("all", "__wab_text", sty.text__djw7J)}>
+      <div
+        className={classNames("all", sty.freeBox___6MUo, {
+          [sty.freeBoxedit___6MUo1N5Q]: hasVariant($state, "edit", "edit")
+        })}
+      >
+        {(hasVariant($state, "edit", "edit") ? true : false) ? (
+          <div
+            className={classNames("all", sty.freeBox__iXkgd, {
+              [sty.freeBoxedit__iXkgd1N5Q]: hasVariant($state, "edit", "edit")
+            })}
+          >
+            <div className={classNames("all", "__wab_text", sty.text___5SjWh)}>
+              {"\u0646\u0627\u0645"}
+            </div>
+            <TextInput
+              data-plasmic-name={"name"}
+              data-plasmic-override={overrides.name}
+              className={classNames("__wab_instance", sty.name)}
+              inputType={"text"}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["name", "value"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              type={"line"}
+              value={generateStateValueProp($state, ["name", "value"])}
+            />
+          </div>
+        ) : null}
+        <div
+          className={classNames("all", sty.freeBox__nO9P, {
+            [sty.freeBoxedit__nO9P1N5Q]: hasVariant($state, "edit", "edit")
+          })}
+        >
+          <div
+            className={classNames("all", "__wab_text", sty.text__djw7J, {
+              [sty.textedit__djw7J1N5Q]: hasVariant($state, "edit", "edit")
+            })}
+          >
             {"\u0627\u06cc\u0645\u06cc\u0644"}
           </div>
           <TextInput
@@ -292,14 +369,20 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
             value={generateStateValueProp($state, ["mobile", "value"])}
           />
         </div>
-        <div className={classNames("all", sty.freeBox___31P8B)}>
+        <div
+          className={classNames("all", sty.freeBox___31P8B, {
+            [sty.freeBoxedit___31P8B1N5Q]: hasVariant($state, "edit", "edit")
+          })}
+        >
           <div className={classNames("all", "__wab_text", sty.text__bTGeg)}>
             {"\u0631\u0645\u0632 \u0639\u0628\u0648\u0631"}
           </div>
           <TextInput
             data-plasmic-name={"password"}
             data-plasmic-override={overrides.password}
-            className={classNames("__wab_instance", sty.password)}
+            className={classNames("__wab_instance", sty.password, {
+              [sty.passwordedit]: hasVariant($state, "edit", "edit")
+            })}
             inputType={"text"}
             onChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["password", "value"]).apply(
@@ -325,8 +408,9 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "svg", "email", "mobile", "password"],
+  root: ["root", "svg", "name", "email", "mobile", "password"],
   svg: ["svg"],
+  name: ["name"],
   email: ["email"],
   mobile: ["mobile"],
   password: ["password"]
@@ -337,6 +421,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   svg: "svg";
+  name: typeof TextInput;
   email: typeof TextInput;
   mobile: typeof TextInput;
   password: typeof TextInput;
@@ -405,6 +490,7 @@ export const PlasmicUserPanelInfo = Object.assign(
   {
     // Helper components rendering sub-elements
     svg: makeNodeComponent("svg"),
+    _name: makeNodeComponent("name"),
     email: makeNodeComponent("email"),
     mobile: makeNodeComponent("mobile"),
     password: makeNodeComponent("password"),
