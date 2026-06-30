@@ -242,7 +242,9 @@ function PlasmicImageProfile__RenderFunc(props: {
               loading={"lazy"}
               src={(() => {
                 try {
-                  return `data:${$state.upload.files[0].type};base64,${$state.upload.files[0].contents}`;
+                  return $state.upload?.files[0]?.type
+                    ? `data:${$state.upload.files[0].type};base64,${$state.upload.files[0].contents}`
+                    : $state.upload.files[0];
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -369,7 +371,7 @@ function PlasmicImageProfile__RenderFunc(props: {
             $steps["updateUploadload"] = await $steps["updateUploadload"];
           }
         }}
-        runWhileEditing={false}
+        runWhileEditing={true}
       />
     </div>
   ) as React.ReactElement | null;

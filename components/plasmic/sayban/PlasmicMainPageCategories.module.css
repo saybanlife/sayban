@@ -242,6 +242,9 @@
   font-weight: 600;
   min-width: 0;
 }
+.imageProfile:global(.__wab_instance) {
+  max-width: 100%;
+}
 .nameInput:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
@@ -339,6 +342,9 @@
   color: var(--token-9M5jRUPt8Msb);
   font-weight: 600;
   min-width: 0;
+}
+.imageProfile2:global(.__wab_instance) {
+  max-width: 100%;
 }
 .nameInput2:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;

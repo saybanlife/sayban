@@ -33,14 +33,28 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  width: auto;
-  height: auto;
+  width: 56px;
+  height: 56px;
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
   background: var(--token-oMej9DCdGzNU);
+  flex-shrink: 0;
   border-radius: var(--token-LBC0X5IbL9bo);
   padding: var(--token-rfsFxiclAtek);
+}
+.menueIcon:global(.__wab_instance) {
+  display: none;
+}
+.img {
+  object-fit: cover;
+  max-width: 100%;
+  width: var(--token-OJSN3W0Myvht);
+  height: var(--token-OJSN3W0Myvht);
+  flex-shrink: 0;
+}
+.img > picture > img {
+  object-fit: cover;
 }
 .freeBox__vu5Vc {
   display: flex;

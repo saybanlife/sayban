@@ -58,6 +58,7 @@
 }
 .menueIcon:global(.__wab_instance) {
   max-width: 100%;
+  display: none;
 }
 .menueIconback:global(.__wab_instance) {
   width: 3.8rem;
@@ -65,6 +66,21 @@
   flex-shrink: 0;
 }
 .menueIcontop:global(.__wab_instance) {
+  width: 5rem;
+  height: 5rem;
+  flex-shrink: 0;
+}
+.img {
+  object-fit: cover;
+  max-width: 100%;
+  width: 3.8rem;
+  height: 3.8rem;
+  flex-shrink: 0;
+}
+.img > picture > img {
+  object-fit: cover;
+}
+.imgback_top {
   width: 5rem;
   height: 5rem;
   flex-shrink: 0;

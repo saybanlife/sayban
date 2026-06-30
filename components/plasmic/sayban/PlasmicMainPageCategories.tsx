@@ -69,6 +69,7 @@ import Errorpage from "../../Errorpage"; // plasmic-import: HTnfDJNIbaau/compone
 import CategoryItem from "../../CategoryItem"; // plasmic-import: qV-4fgZ_BL9-/component
 import EmptyPage from "../../EmptyPage"; // plasmic-import: q5YsvjSR6-JD/component
 import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
+import ImageProfile from "../../ImageProfile"; // plasmic-import: NCgtBMbIwpli/component
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
 import Checkbox from "../../Checkbox"; // plasmic-import: 7eMtZduHzknK/component
 import Snackbar from "../../Snackbar"; // plasmic-import: CaodI8ra68z4/component
@@ -135,6 +136,7 @@ export type PlasmicMainPageCategories__OverridesType = {
   categoryItem?: Flex__<typeof CategoryItem>;
   emptyPage?: Flex__<typeof EmptyPage>;
   dialog?: Flex__<typeof Dialog>;
+  imageProfile?: Flex__<typeof ImageProfile>;
   nameInput?: Flex__<typeof TextInput>;
   slugInput?: Flex__<typeof TextInput>;
   textAreaInput?: Flex__<typeof TextAreaInput>;
@@ -142,6 +144,7 @@ export type PlasmicMainPageCategories__OverridesType = {
   button3?: Flex__<typeof Button>;
   button4?: Flex__<typeof Button>;
   dialog2?: Flex__<typeof Dialog>;
+  imageProfile2?: Flex__<typeof ImageProfile>;
   nameInput2?: Flex__<typeof TextInput>;
   slugInput1?: Flex__<typeof TextInput>;
   textAreaInput2?: Flex__<typeof TextAreaInput>;
@@ -560,6 +563,20 @@ function PlasmicMainPageCategories__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "imageProfile.uploadFiles",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $state.selected.icon ? [$state.selected.icon] : []
+      },
+      {
+        path: "imageProfile2.uploadFiles",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $state.selected.icon ? [$state.selected.icon] : []
       }
     ],
     [$props, $ctx, $refs]
@@ -1471,6 +1488,30 @@ function PlasmicMainPageCategories__RenderFunc(props: {
               })()}
             </React.Fragment>
           </div>
+          <ImageProfile
+            data-plasmic-name={"imageProfile"}
+            data-plasmic-override={overrides.imageProfile}
+            className={classNames("__wab_instance", sty.imageProfile)}
+            onUploadFilesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "imageProfile",
+                "uploadFiles"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            uploadFiles={generateStateValueProp($state, [
+              "imageProfile",
+              "uploadFiles"
+            ])}
+          />
+
           <TextInput
             data-plasmic-name={"nameInput"}
             data-plasmic-override={overrides.nameInput}
@@ -1665,6 +1706,11 @@ function PlasmicMainPageCategories__RenderFunc(props: {
                         "/panel/categories",
                         undefined,
                         {
+                          image: $state.imageProfile.uploadFiles?.some(
+                            f => f.type
+                          )
+                            ? $state.imageProfile.uploadFiles
+                            : null,
                           id: $state.selected.category_id || null,
                           name: $state.nameInput.value,
                           slug: $state.slugInput.value,
@@ -1916,6 +1962,30 @@ function PlasmicMainPageCategories__RenderFunc(props: {
               })()}
             </React.Fragment>
           </div>
+          <ImageProfile
+            data-plasmic-name={"imageProfile2"}
+            data-plasmic-override={overrides.imageProfile2}
+            className={classNames("__wab_instance", sty.imageProfile2)}
+            onUploadFilesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "imageProfile2",
+                "uploadFiles"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            uploadFiles={generateStateValueProp($state, [
+              "imageProfile2",
+              "uploadFiles"
+            ])}
+          />
+
           <TextInput
             data-plasmic-name={"nameInput2"}
             data-plasmic-override={overrides.nameInput2}
@@ -2110,6 +2180,11 @@ function PlasmicMainPageCategories__RenderFunc(props: {
                         "/panel/subcategories",
                         undefined,
                         {
+                          image: $state.imageProfile2.uploadFiles?.some(
+                            f => f.type
+                          )
+                            ? $state.imageProfile2.uploadFiles
+                            : null,
                           category_id: $state.id,
                           id: $state.selected.id || null,
                           name: $state.nameInput2.value,
@@ -2877,6 +2952,7 @@ const PlasmicDescendants = {
     "categoryItem",
     "emptyPage",
     "dialog",
+    "imageProfile",
     "nameInput",
     "slugInput",
     "textAreaInput",
@@ -2884,6 +2960,7 @@ const PlasmicDescendants = {
     "button3",
     "button4",
     "dialog2",
+    "imageProfile2",
     "nameInput2",
     "slugInput1",
     "textAreaInput2",
@@ -2913,6 +2990,7 @@ const PlasmicDescendants = {
   emptyPage: ["emptyPage"],
   dialog: [
     "dialog",
+    "imageProfile",
     "nameInput",
     "slugInput",
     "textAreaInput",
@@ -2920,6 +2998,7 @@ const PlasmicDescendants = {
     "button3",
     "button4"
   ],
+  imageProfile: ["imageProfile"],
   nameInput: ["nameInput"],
   slugInput: ["slugInput"],
   textAreaInput: ["textAreaInput"],
@@ -2928,6 +3007,7 @@ const PlasmicDescendants = {
   button4: ["button4"],
   dialog2: [
     "dialog2",
+    "imageProfile2",
     "nameInput2",
     "slugInput1",
     "textAreaInput2",
@@ -2935,6 +3015,7 @@ const PlasmicDescendants = {
     "button7",
     "button8"
   ],
+  imageProfile2: ["imageProfile2"],
   nameInput2: ["nameInput2"],
   slugInput1: ["slugInput1"],
   textAreaInput2: ["textAreaInput2"],
@@ -2962,6 +3043,7 @@ type NodeDefaultElementType = {
   categoryItem: typeof CategoryItem;
   emptyPage: typeof EmptyPage;
   dialog: typeof Dialog;
+  imageProfile: typeof ImageProfile;
   nameInput: typeof TextInput;
   slugInput: typeof TextInput;
   textAreaInput: typeof TextAreaInput;
@@ -2969,6 +3051,7 @@ type NodeDefaultElementType = {
   button3: typeof Button;
   button4: typeof Button;
   dialog2: typeof Dialog;
+  imageProfile2: typeof ImageProfile;
   nameInput2: typeof TextInput;
   slugInput1: typeof TextInput;
   textAreaInput2: typeof TextAreaInput;
@@ -3054,6 +3137,7 @@ export const PlasmicMainPageCategories = Object.assign(
     categoryItem: makeNodeComponent("categoryItem"),
     emptyPage: makeNodeComponent("emptyPage"),
     dialog: makeNodeComponent("dialog"),
+    imageProfile: makeNodeComponent("imageProfile"),
     nameInput: makeNodeComponent("nameInput"),
     slugInput: makeNodeComponent("slugInput"),
     textAreaInput: makeNodeComponent("textAreaInput"),
@@ -3061,6 +3145,7 @@ export const PlasmicMainPageCategories = Object.assign(
     button3: makeNodeComponent("button3"),
     button4: makeNodeComponent("button4"),
     dialog2: makeNodeComponent("dialog2"),
+    imageProfile2: makeNodeComponent("imageProfile2"),
     nameInput2: makeNodeComponent("nameInput2"),
     slugInput1: makeNodeComponent("slugInput1"),
     textAreaInput2: makeNodeComponent("textAreaInput2"),

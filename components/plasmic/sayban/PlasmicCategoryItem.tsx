@@ -119,6 +119,7 @@ export const PlasmicCategoryItem__ArgProps = new Array<ArgPropType>(
 export type PlasmicCategoryItem__OverridesType = {
   root?: Flex__<"div">;
   menueIcon?: Flex__<typeof MenueIcon>;
+  img?: Flex__<typeof PlasmicImg__>;
   add?: Flex__<typeof Button>;
   popover?: Flex__<typeof AntdPopover>;
 };
@@ -289,6 +290,7 @@ function PlasmicCategoryItem__RenderFunc(props: {
           <MenueIcon
             data-plasmic-name={"menueIcon"}
             data-plasmic-override={overrides.menueIcon}
+            className={classNames("__wab_instance", sty.menueIcon)}
             color={"dark"}
             icons={(() => {
               try {
@@ -304,6 +306,38 @@ function PlasmicCategoryItem__RenderFunc(props: {
               }
             })()}
             size={"min"}
+          />
+
+          <PlasmicImg__
+            data-plasmic-name={"img"}
+            data-plasmic-override={overrides.img}
+            alt={""}
+            className={classNames(sty.img)}
+            displayHeight={"2rem"}
+            displayMaxHeight={"none"}
+            displayMaxWidth={"100%"}
+            displayMinHeight={"0"}
+            displayMinWidth={"0"}
+            displayWidth={"2rem"}
+            loading={"lazy"}
+            src={(() => {
+              try {
+                return $props.currentItem.icon;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return {
+                    src: "/plasmic/sayban/images/untitledPicturePng.png",
+                    fullWidth: 3629,
+                    fullHeight: 2887,
+                    aspectRatio: undefined
+                  };
+                }
+                throw e;
+              }
+            })()}
           />
         </div>
         <div className={classNames("all", sty.freeBox__vu5Vc)}>
@@ -694,8 +728,9 @@ function PlasmicCategoryItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "menueIcon", "add", "popover"],
+  root: ["root", "menueIcon", "img", "add", "popover"],
   menueIcon: ["menueIcon"],
+  img: ["img"],
   add: ["add"],
   popover: ["popover"]
 } as const;
@@ -705,6 +740,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   menueIcon: typeof MenueIcon;
+  img: typeof PlasmicImg__;
   add: typeof Button;
   popover: typeof AntdPopover;
 };
@@ -772,6 +808,7 @@ export const PlasmicCategoryItem = Object.assign(
   {
     // Helper components rendering sub-elements
     menueIcon: makeNodeComponent("menueIcon"),
+    img: makeNodeComponent("img"),
     add: makeNodeComponent("add"),
     popover: makeNodeComponent("popover"),
 
