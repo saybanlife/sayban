@@ -1062,11 +1062,12 @@ function PlasmicCenterPage__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "POST",
-                        "panel/update/service",
+                        "panel/update/center",
                         undefined,
                         {
                           info: $state.addServise2.servises,
-                          times: $state.timeWeek.week
+                          times: $state.timeWeek.week,
+                          center_id: $props.id
                         }
                       ]
                     };
@@ -1111,6 +1112,52 @@ function PlasmicCenterPage__RenderFunc(props: {
               ) {
                 $steps["updateUpdatesLoading2"] =
                   await $steps["updateUpdatesLoading2"];
+              }
+
+              $steps["invokeGlobalAction"] = $steps.update?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "success",
+                        "\u0628\u0647 \u0631\u0648\u0632\u0631\u0633\u0627\u0646\u06cc \u0627\u0646\u062c\u0627\u0645 \u0634\u062f",
+                        "top-center"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["invokeGlobalAction2"] = !$steps.update?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "error",
+                        "\u0628\u0631\u0648\u0632\u0631\u0633\u0627\u0646\u06cc \u0646\u0627\u0645\u0648\u0641\u0642 \u0628\u0648\u062f\u060c \u0645\u062c\u062f\u062f \u062a\u0644\u0627\u0634 \u06a9\u0646\u06cc\u062f.",
+                        "top-center"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction2"] != null &&
+                typeof $steps["invokeGlobalAction2"] === "object" &&
+                typeof $steps["invokeGlobalAction2"].then === "function"
+              ) {
+                $steps["invokeGlobalAction2"] =
+                  await $steps["invokeGlobalAction2"];
               }
             }}
             onLoadingChange={async (...eventArgs: any) => {
@@ -3494,6 +3541,7 @@ function PlasmicCenterPage__RenderFunc(props: {
               <Imag
                 data-plasmic-name={"imag"}
                 data-plasmic-override={overrides.imag}
+                add={true}
                 className={classNames("__wab_instance", sty.imag)}
                 onUploadFilesChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
@@ -3575,7 +3623,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://sayban.darkube.app/webhook/panel/update/image",
+                            "/panel/update/image",
                             undefined,
                             {
                               image: $state.imag.uploadFiles,
@@ -3856,7 +3904,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://sayban.darkube.app/webhook-test/panel/update/profile",
+                            "/panel/update/profile",
                             undefined,
                             {
                               image: $state.imageProfile2.uploadFiles,

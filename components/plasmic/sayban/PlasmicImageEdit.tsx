@@ -368,7 +368,7 @@ function PlasmicImageEdit__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "POST",
-                        "https://sayban.darkube.app/webhook/delete/image",
+                        "/delete/image",
                         undefined,
                         {
                           id: $state.snackbar.data.id

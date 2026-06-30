@@ -263,7 +263,7 @@ function PlasmicPanel__RenderFunc(props: {
           {
             label: "\u0631\u0632\u0631\u0648\u0647\u0627",
             value: "reservations",
-            icon: "calendar-check",
+            icon: "calendar",
             permissions: ["super_admin", "center_admin", "staff"],
             children: [
               {
@@ -292,14 +292,14 @@ function PlasmicPanel__RenderFunc(props: {
           {
             label: "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627",
             value: "payments",
-            icon: "credit-card",
+            icon: "pey",
             permissions: ["super_admin", "center_admin"],
             children: [
               {
                 label:
                   "\u0647\u0645\u0647 \u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627",
                 value: "all",
-                icon: "list",
+                icon: "pey",
                 permissions: ["super_admin", "center_admin"]
               },
               {

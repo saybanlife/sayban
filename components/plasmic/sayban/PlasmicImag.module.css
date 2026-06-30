@@ -95,6 +95,9 @@
   min-width: 0;
   padding: var(--token-cfon0PHiXQoL);
 }
+.freeBoxadd__rNbNx59Cn {
+  display: none;
+}
 .text__tmlBb {
   position: relative;
   width: auto;
@@ -112,6 +115,9 @@
   text-align: right;
   font-weight: 400;
 }
+.textadd__xnxNhX59Cn {
+  display: none;
+}
 .text__yz6Rk {
   position: relative;
   width: auto;
@@ -119,6 +125,9 @@
   max-width: 100%;
   text-align: right;
   font-weight: 400;
+}
+.textadd__yz6RkX59Cn {
+  display: none;
 }
 .text__ktMT {
   position: relative;
@@ -182,9 +191,15 @@
   border-radius: var(--token-c8-rjzKYORFj);
   padding: var(--token-cfon0PHiXQoL) var(--token-rfsFxiclAtek);
 }
+.textadd__brXqX59Cn {
+  display: none;
+}
 .radio:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
   width: auto;
+}
+.radioadd:global(.__wab_instance):global(.__wab_instance) {
+  display: none;
 }
 .text__kkirI {
   position: relative;

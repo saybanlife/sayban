@@ -1437,7 +1437,7 @@ function PlasmicAddServise2__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "POST",
-                        "https://sayban.darkube.app/webhook/delete/service",
+                        "/delete/service",
                         undefined,
                         {
                           id: $state.snackbar.data.id
