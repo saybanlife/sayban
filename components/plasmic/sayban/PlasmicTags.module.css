@@ -30,6 +30,6 @@
   width: 100%;
   text-align: right;
   background: var(--token-KPGXdu9o7llP);
-  z-index: 1000000000000;
+  z-index: 0;
   min-width: 0;
 }

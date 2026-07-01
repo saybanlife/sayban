@@ -3003,7 +3003,7 @@ function PlasmicCenterPage__RenderFunc(props: {
           );
         }}
         open={generateStateValueProp($state, ["modal", "open"])}
-        title={"Modal title"}
+        title={null}
         trigger={null}
       >
         <div className={classNames("all", sty.freeBox__uBam)}>
