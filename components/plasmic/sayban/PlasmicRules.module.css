@@ -109,6 +109,9 @@
   min-width: 0;
   padding: 0px;
 }
+.p {
+  text-align: right;
+}
 .h2__sJg6S {
   font-size: var(--token-N8Pb0ZuDQAeF);
 }

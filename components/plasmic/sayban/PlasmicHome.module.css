@@ -221,6 +221,7 @@
   width: 150px;
   height: 150px;
   align-self: flex-end;
+  filter: contrast(130%);
   flex-shrink: 0;
 }
 .img___24Gka > picture > img {

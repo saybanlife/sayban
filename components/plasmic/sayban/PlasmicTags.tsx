@@ -202,7 +202,7 @@ function PlasmicTags__RenderFunc(props: {
         data-plasmic-name={"tags"}
         data-plasmic-override={overrides.tags}
         allowClear={false}
-        autoFocus={true}
+        autoFocus={false}
         bordered={true}
         className={classNames("__wab_instance", sty.tags)}
         defaultOpen={false}

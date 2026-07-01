@@ -429,9 +429,9 @@ function PlasmicHome__RenderFunc(props: {
               displayWidth={"150px"}
               loading={"lazy"}
               src={{
-                src: "/plasmic/sayban/images/chatGptImageDec232025112923AmPng.png",
-                fullWidth: 1024,
-                fullHeight: 998,
+                src: "/plasmic/sayban/images/میPng.png",
+                fullWidth: 512,
+                fullHeight: 520,
                 aspectRatio: undefined
               }}
             />

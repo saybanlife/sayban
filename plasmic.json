@@ -29432,6 +29432,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicChangePass.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "DKFJiURVeYup",
+          "name": "ServicePage",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicServicePage.tsx",
+          "importSpec": {
+            "modulePath": "ServicePage.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicServicePage.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -30726,6 +30739,21 @@
           "id": "w1uchH4iJGyL",
           "name": "Untitled-1.png 3",
           "filePath": "../public/plasmic/sayban/images/untitled1Png3.png"
+        },
+        {
+          "id": "oWUjvpp3fE1x",
+          "name": "می.png",
+          "filePath": "../public/plasmic/sayban/images/میPng.png"
+        },
+        {
+          "id": "IzXNzynmDddH",
+          "name": "Gemini_Generated_Image_gz414ogz414ogz41-Photoroom.png",
+          "filePath": "../public/plasmic/sayban/images/geminiGeneratedImageGz414Ogz414Ogz41PhotoroomPng.png"
+        },
+        {
+          "id": "wLfYL_SXI6H4",
+          "name": "Gemini_Generated_Image_yumi5oyumi5oyumi-removebg-preview.png",
+          "filePath": "../public/plasmic/sayban/images/geminiGeneratedImageYumi5Oyumi5OyumiRemovebgPreviewPng.png"
         }
       ],
       "indirect": false,

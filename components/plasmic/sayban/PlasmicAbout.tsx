@@ -224,9 +224,9 @@ function PlasmicAbout__RenderFunc(props: {
             displayWidth={"80%"}
             loading={"lazy"}
             src={{
-              src: "/plasmic/sayban/images/af3Dd6B94Ebe41E5A9D1Bd2D1B8E72B4Png.png",
-              fullWidth: 1254,
-              fullHeight: 1254,
+              src: "/plasmic/sayban/images/geminiGeneratedImageGz414Ogz414Ogz41PhotoroomPng.png",
+              fullWidth: 1078,
+              fullHeight: 976,
               aspectRatio: undefined
             }}
           />
