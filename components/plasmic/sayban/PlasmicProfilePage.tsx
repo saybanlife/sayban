@@ -62,11 +62,9 @@ import {
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
-import Modal from "../../Modal"; // plasmic-import: Oo9r7A7X8FP7/component
-import CenterInfo from "../../CenterInfo"; // plasmic-import: 5fhUfrSk0s6y/component
-import Imag from "../../Imag"; // plasmic-import: ScLhJpeVxPbk/component
-import ImageProfile from "../../ImageProfile"; // plasmic-import: NCgtBMbIwpli/component
-import Loaction from "../../Loaction"; // plasmic-import: sTw08-1jIWRS/component
+import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
+import UserPanelInfo from "../../UserPanelInfo"; // plasmic-import: NJmPC7ZHblW7/component
+import ChangePass from "../../ChangePass"; // plasmic-import: Ga93_OGgGtUe/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -134,21 +132,13 @@ export type PlasmicProfilePage__OverridesType = {
   button?: Flex__<typeof Button>;
   button2?: Flex__<typeof Button>;
   center?: Flex__<typeof ApiRequest>;
-  info?: Flex__<typeof Modal>;
-  centerInfo?: Flex__<typeof CenterInfo>;
-  saveInfo?: Flex__<typeof Button>;
-  button5?: Flex__<typeof Button>;
-  imageinsert?: Flex__<typeof Modal>;
-  imag?: Flex__<typeof Imag>;
-  saveUpload?: Flex__<typeof Button>;
-  close?: Flex__<typeof Button>;
-  imageProfile?: Flex__<typeof Modal>;
-  imageProfile2?: Flex__<typeof ImageProfile>;
-  saveUpload2?: Flex__<typeof Button>;
-  close2?: Flex__<typeof Button>;
-  map?: Flex__<typeof Modal>;
-  loaction?: Flex__<typeof Loaction>;
-  saveInfo2?: Flex__<typeof Button>;
+  modal?: Flex__<typeof AntdModal>;
+  userPanelInfo?: Flex__<typeof UserPanelInfo>;
+  saveInfo3?: Flex__<typeof Button>;
+  button6?: Flex__<typeof Button>;
+  modal2?: Flex__<typeof AntdModal>;
+  changePass?: Flex__<typeof ChangePass>;
+  saveInfo4?: Flex__<typeof Button>;
   button7?: Flex__<typeof Button>;
 };
 
@@ -254,144 +244,10 @@ function PlasmicProfilePage__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.role
       },
       {
-        path: "centerInfo.title",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "centerInfo.subcategory2",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "1"
-      },
-      {
-        path: "centerInfo.categorie",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "1"
-      },
-      {
-        path: "centerInfo.description",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "centerInfo.tag",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          ($state.center?.data?.result?.tags || []).map(i => i.tag_id)
-      },
-      {
-        path: "centerInfo.categories",
-        type: "private",
-        variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          $props["categories"]
-      },
-      {
-        path: "saveInfo.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "button5.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "button7.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "loaction.address",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "loaction.call2",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "loaction.lat",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "loaction.lon",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "loaction.state2",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "loaction.city2",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "info.isOpen",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
-      {
-        path: "map.isOpen",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
-      {
-        path: "imageinsert.isOpen",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
-      {
-        path: "saveUpload.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "close.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "imag.uploadFiles",
-        type: "private",
-        variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
-      },
-      {
         path: "restart",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
-      },
-      {
-        path: "saveInfo2.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "centerData",
@@ -414,30 +270,6 @@ function PlasmicProfilePage__RenderFunc(props: {
         onChangeProp: "onDataChange"
       },
       {
-        path: "imageProfile.isOpen",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
-      {
-        path: "saveUpload2.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "close2.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "imageProfile2.uploadFiles",
-        type: "private",
-        variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
-      },
-      {
         path: "button.loading",
         type: "private",
         variableType: "boolean",
@@ -447,6 +279,102 @@ function PlasmicProfilePage__RenderFunc(props: {
         path: "button2.loading",
         type: "private",
         variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "modal.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "saveInfo3.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button6.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "userPanelInfo.categories",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "userPanelInfo.emailvalue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "userPanelInfo.password1",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "userPanelInfo.mobileValue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "userPanelInfo.nameValue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "modal2.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "saveInfo4.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button7.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "changePass.passwordNow",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "changePass.savePass",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "changePass.passwordRepeat",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "changePass.userinfo",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "changePass.passwordNew",
+        type: "private",
+        variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
@@ -626,6 +554,70 @@ function PlasmicProfilePage__RenderFunc(props: {
                 </div>
               }
               loading={generateStateValueProp($state, ["button", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            $state.userPanelInfo.emailvalue =
+                              $state.centerData.email;
+                            $state.userPanelInfo.mobileValue =
+                              $state.centerData.mobile;
+                            return ($state.userPanelInfo.nameValue =
+                              $state.centerData.full_name);
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+
+                $steps["updateModalOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["modal", "open"]
+                        },
+                        operation: 4
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateModalOpen"] != null &&
+                  typeof $steps["updateModalOpen"] === "object" &&
+                  typeof $steps["updateModalOpen"].then === "function"
+                ) {
+                  $steps["updateModalOpen"] = await $steps["updateModalOpen"];
+                }
+              }}
               onLoadingChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, ["button", "loading"]).apply(
                   null,
@@ -664,6 +656,43 @@ function PlasmicProfilePage__RenderFunc(props: {
                 </div>
               }
               loading={generateStateValueProp($state, ["button2", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateModal2Open"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["modal2", "open"]
+                        },
+                        operation: 4
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateModal2Open"] != null &&
+                  typeof $steps["updateModal2Open"] === "object" &&
+                  typeof $steps["updateModal2Open"].then === "function"
+                ) {
+                  $steps["updateModal2Open"] = await $steps["updateModal2Open"];
+                }
+              }}
               onLoadingChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, ["button2", "loading"]).apply(
                   null,
@@ -842,1422 +871,850 @@ function PlasmicProfilePage__RenderFunc(props: {
         url={"/panel/user/getProfile"}
       />
 
-      <Modal
-        data-plasmic-name={"info"}
-        data-plasmic-override={overrides.info}
-        className={classNames("__wab_instance", sty.info)}
-        closeOnBackdropClick={false}
-        content={
-          <div className={classNames("all", sty.freeBox__upWjw)}>
-            <CenterInfo
-              data-plasmic-name={"centerInfo"}
-              data-plasmic-override={overrides.centerInfo}
-              categorie={generateStateValueProp($state, [
-                "centerInfo",
-                "categorie"
-              ])}
-              categories={generateStateValueProp($state, [
-                "centerInfo",
-                "categories"
-              ])}
-              className={classNames("__wab_instance", sty.centerInfo)}
-              description={generateStateValueProp($state, [
-                "centerInfo",
-                "description"
-              ])}
-              onCategorieChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "centerInfo",
-                  "categorie"
-                ]).apply(null, eventArgs);
+      <AntdModal
+        data-plasmic-name={"modal"}
+        data-plasmic-override={overrides.modal}
+        className={classNames("__wab_instance", sty.modal)}
+        defaultStylesClassName={classNames(
+          "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+          "plasmic_default_styles",
+          "plasmic_mixins",
+          styleTokensClassNames
+        )}
+        hideFooter={true}
+        modalContentClassName={classNames({ [sty["pcls_cjwtSm-6qUk6"]]: true })}
+        modalScopeClassName={sty["modal__modal"]}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["modal", "open"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        open={generateStateValueProp($state, ["modal", "open"])}
+        title={null}
+        trigger={null}
+      >
+        <UserPanelInfo
+          data-plasmic-name={"userPanelInfo"}
+          data-plasmic-override={overrides.userPanelInfo}
+          categories={generateStateValueProp($state, [
+            "userPanelInfo",
+            "categories"
+          ])}
+          className={classNames("__wab_instance", sty.userPanelInfo)}
+          edit={true}
+          emailvalue={generateStateValueProp($state, [
+            "userPanelInfo",
+            "emailvalue"
+          ])}
+          mobileValue={generateStateValueProp($state, [
+            "userPanelInfo",
+            "mobileValue"
+          ])}
+          nameValue={generateStateValueProp($state, [
+            "userPanelInfo",
+            "nameValue"
+          ])}
+          onCategoriesChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "userPanelInfo",
+              "categories"
+            ]).apply(null, eventArgs);
 
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              onCategoriesChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "centerInfo",
-                  "categories"
-                ]).apply(null, eventArgs);
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onEmailvalueChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "userPanelInfo",
+              "emailvalue"
+            ]).apply(null, eventArgs);
 
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              onDescriptionChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "centerInfo",
-                  "description"
-                ]).apply(null, eventArgs);
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onMobileValueChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "userPanelInfo",
+              "mobileValue"
+            ]).apply(null, eventArgs);
 
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              onSubcategory2Change={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "centerInfo",
-                  "subcategory2"
-                ]).apply(null, eventArgs);
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onNameValueChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "userPanelInfo",
+              "nameValue"
+            ]).apply(null, eventArgs);
 
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              onTagChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["centerInfo", "tag"]).apply(
-                  null,
-                  eventArgs
-                );
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onPasswordChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "userPanelInfo",
+              "password1"
+            ]).apply(null, eventArgs);
 
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              onTitleChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "centerInfo",
-                  "title"
-                ]).apply(null, eventArgs);
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          password1={generateStateValueProp($state, [
+            "userPanelInfo",
+            "password1"
+          ])}
+        />
 
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              subcategory2={generateStateValueProp($state, [
-                "centerInfo",
-                "subcategory2"
-              ])}
-              tag={generateStateValueProp($state, ["centerInfo", "tag"])}
-              tagsitem={args.tagsitem}
-              title={generateStateValueProp($state, ["centerInfo", "title"])}
-            />
-          </div>
-        }
-        footer={
-          <div className={classNames("all", sty.freeBox___72R6)}>
-            <Button
-              data-plasmic-name={"saveInfo"}
-              data-plasmic-override={overrides.saveInfo}
-              className={classNames("__wab_instance", sty.saveInfo)}
-              color={"success"}
-              label={
-                <div
-                  className={classNames("all", "__wab_text", sty.text___7RtP)}
-                >
-                  {"\u0630\u062e\u06cc\u0631\u0647"}
-                </div>
+        <div className={classNames("all", sty.freeBox__xUo2W)}>
+          <Button
+            data-plasmic-name={"saveInfo3"}
+            data-plasmic-override={overrides.saveInfo3}
+            className={classNames("__wab_instance", sty.saveInfo3)}
+            color={"success"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__rbyNc)}>
+                {"\u0630\u062e\u06cc\u0631\u0647"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["saveInfo3", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateSaveInfoLoading"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["saveInfo3", "loading"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSaveInfoLoading"] != null &&
+                typeof $steps["updateSaveInfoLoading"] === "object" &&
+                typeof $steps["updateSaveInfoLoading"].then === "function"
+              ) {
+                $steps["updateSaveInfoLoading"] =
+                  await $steps["updateSaveInfoLoading"];
               }
-              loading={generateStateValueProp($state, ["saveInfo", "loading"])}
-              onClick={async event => {
-                const $steps = {};
 
-                $steps["updateSaveInfoLoading"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["saveInfo", "loading"]
-                        },
-                        operation: 4
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
+              $steps["update"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "/panel/users/edit",
+                        undefined,
+                        {
+                          id: $state.center.data.result.id,
+                          email: $state.userPanelInfo.emailvalue,
+                          mobile: $state.userPanelInfo.mobileValue,
+                          name: $state.userPanelInfo.nameValue
                         }
-                        const { objRoot, variablePath } = variable;
-
-                        const oldValue = $stateGet(objRoot, variablePath);
-                        $stateSet(objRoot, variablePath, !oldValue);
-                        return !oldValue;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateSaveInfoLoading"] != null &&
-                  typeof $steps["updateSaveInfoLoading"] === "object" &&
-                  typeof $steps["updateSaveInfoLoading"].then === "function"
-                ) {
-                  $steps["updateSaveInfoLoading"] =
-                    await $steps["updateSaveInfoLoading"];
-                }
-
-                $steps["update"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "POST",
-                          "/panel/update/info",
-                          undefined,
-                          (() => {
-                            const data = {
-                              info: {
-                                id: $state.center.data.result.id,
-                                subcategory_id: $state.centerInfo.subcategory2,
-                                name: $state.centerInfo.title,
-                                description: $state.centerInfo.description
-                              },
-                              tags: $state.centerInfo.tag
-                            };
-                            return data;
-                          })()
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
-                if (
-                  $steps["update"] != null &&
-                  typeof $steps["update"] === "object" &&
-                  typeof $steps["update"].then === "function"
-                ) {
-                  $steps["update"] = await $steps["update"];
-                }
-
-                $steps["updateSaveInfoLoading2"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["saveInfo", "loading"]
-                        },
-                        operation: 4
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        const oldValue = $stateGet(objRoot, variablePath);
-                        $stateSet(objRoot, variablePath, !oldValue);
-                        return !oldValue;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateSaveInfoLoading2"] != null &&
-                  typeof $steps["updateSaveInfoLoading2"] === "object" &&
-                  typeof $steps["updateSaveInfoLoading2"].then === "function"
-                ) {
-                  $steps["updateSaveInfoLoading2"] =
-                    await $steps["updateSaveInfoLoading2"];
-                }
-
-                $steps["updateInfoIsOpen"] = $steps.update?.data?.success
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["info", "isOpen"]
-                        },
-                        operation: 4
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        const oldValue = $stateGet(objRoot, variablePath);
-                        $stateSet(objRoot, variablePath, !oldValue);
-                        return !oldValue;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateInfoIsOpen"] != null &&
-                  typeof $steps["updateInfoIsOpen"] === "object" &&
-                  typeof $steps["updateInfoIsOpen"].then === "function"
-                ) {
-                  $steps["updateInfoIsOpen"] = await $steps["updateInfoIsOpen"];
-                }
-
-                $steps["invokeGlobalAction"] = $steps.update?.data?.success
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "success",
-                          "\u0639\u0645\u0644\u06cc\u0627\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0646\u062c\u0627\u0645 \u0634\u062f.",
-                          "top-center"
-                        ]
-                      };
-                      return $globalActions["Fragment.showToast"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["invokeGlobalAction"] != null &&
-                  typeof $steps["invokeGlobalAction"] === "object" &&
-                  typeof $steps["invokeGlobalAction"].then === "function"
-                ) {
-                  $steps["invokeGlobalAction"] =
-                    await $steps["invokeGlobalAction"];
-                }
-
-                $steps["runCode"] = $steps.update?.data?.success
-                  ? (() => {
-                      const actionArgs = {
-                        customFunction: async () => {
-                          return ($state.restart += "1");
-                        }
-                      };
-                      return (({ customFunction }) => {
-                        return customFunction();
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["runCode"] != null &&
-                  typeof $steps["runCode"] === "object" &&
-                  typeof $steps["runCode"].then === "function"
-                ) {
-                  $steps["runCode"] = await $steps["runCode"];
-                }
-              }}
-              onLoadingChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "saveInfo",
-                  "loading"
-                ]).apply(null, eventArgs);
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-            />
-
-            <Button
-              data-plasmic-name={"button5"}
-              data-plasmic-override={overrides.button5}
-              className={classNames("__wab_instance", sty.button5)}
-              color={"neutral"}
-              label={
-                <div
-                  className={classNames("all", "__wab_text", sty.text___1XiV)}
-                >
-                  {"\u0644\u063a\u0648"}
-                </div>
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["update"] != null &&
+                typeof $steps["update"] === "object" &&
+                typeof $steps["update"].then === "function"
+              ) {
+                $steps["update"] = await $steps["update"];
               }
-              loading={generateStateValueProp($state, ["button5", "loading"])}
-              onClick={async event => {
-                const $steps = {};
 
-                $steps["updateModalIsOpen"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["info", "isOpen"]
+              $steps["updateSaveInfoLoading2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["saveInfo3", "loading"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSaveInfoLoading2"] != null &&
+                typeof $steps["updateSaveInfoLoading2"] === "object" &&
+                typeof $steps["updateSaveInfoLoading2"].then === "function"
+              ) {
+                $steps["updateSaveInfoLoading2"] =
+                  await $steps["updateSaveInfoLoading2"];
+              }
+
+              $steps["updateModalOpen"] = $steps.update?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["modal", "open"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateModalOpen"] != null &&
+                typeof $steps["updateModalOpen"] === "object" &&
+                typeof $steps["updateModalOpen"].then === "function"
+              ) {
+                $steps["updateModalOpen"] = await $steps["updateModalOpen"];
+              }
+
+              $steps["invokeGlobalAction"] = $steps.update?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "success",
+                        "\u0639\u0645\u0644\u06cc\u0627\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0646\u062c\u0627\u0645 \u0634\u062f.",
+                        "top-center"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["runCode"] = $steps.update?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.restart += "1");
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["saveInfo3", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+
+          <Button
+            data-plasmic-name={"button6"}
+            data-plasmic-override={overrides.button6}
+            className={classNames("__wab_instance", sty.button6)}
+            color={"neutral"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__uw9Ik)}>
+                {"\u0644\u063a\u0648"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button6", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateModalIsOpen"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["modal", "open"]
+                      },
+                      operation: 4,
+                      value: true
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateModalIsOpen"] != null &&
+                typeof $steps["updateModalIsOpen"] === "object" &&
+                typeof $steps["updateModalIsOpen"].then === "function"
+              ) {
+                $steps["updateModalIsOpen"] = await $steps["updateModalIsOpen"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button6", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </AntdModal>
+      <AntdModal
+        data-plasmic-name={"modal2"}
+        data-plasmic-override={overrides.modal2}
+        className={classNames("__wab_instance", sty.modal2)}
+        defaultStylesClassName={classNames(
+          "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+          "plasmic_default_styles",
+          "plasmic_mixins",
+          styleTokensClassNames
+        )}
+        hideFooter={true}
+        modalContentClassName={classNames({ [sty["pcls_I9d_xZtY1UQ6"]]: true })}
+        modalScopeClassName={sty["modal2__modal"]}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["modal2", "open"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        open={generateStateValueProp($state, ["modal2", "open"])}
+        title={null}
+        trigger={null}
+      >
+        <ChangePass
+          data-plasmic-name={"changePass"}
+          data-plasmic-override={overrides.changePass}
+          className={classNames("__wab_instance", sty.changePass)}
+          onPasswordNewChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "changePass",
+              "passwordNew"
+            ]).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onPasswordNowChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "changePass",
+              "passwordNow"
+            ]).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onPasswordRepeatChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "changePass",
+              "passwordRepeat"
+            ]).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onSavePassChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["changePass", "savePass"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onUserinfoChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["changePass", "userinfo"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          passwordNew={generateStateValueProp($state, [
+            "changePass",
+            "passwordNew"
+          ])}
+          passwordNow={generateStateValueProp($state, [
+            "changePass",
+            "passwordNow"
+          ])}
+          passwordRepeat={generateStateValueProp($state, [
+            "changePass",
+            "passwordRepeat"
+          ])}
+          userinfo={generateStateValueProp($state, ["changePass", "userinfo"])}
+        />
+
+        <div className={classNames("all", sty.freeBox__lm1Uf)}>
+          <Button
+            data-plasmic-name={"saveInfo4"}
+            data-plasmic-override={overrides.saveInfo4}
+            className={classNames("__wab_instance", sty.saveInfo4)}
+            color={"success"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__nNBr6)}>
+                {"\u0630\u062e\u06cc\u0631\u0647"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["saveInfo4", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateSaveInfoLoading"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["saveInfo4", "loading"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSaveInfoLoading"] != null &&
+                typeof $steps["updateSaveInfoLoading"] === "object" &&
+                typeof $steps["updateSaveInfoLoading"].then === "function"
+              ) {
+                $steps["updateSaveInfoLoading"] =
+                  await $steps["updateSaveInfoLoading"];
+              }
+
+              $steps["runCode2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          if (!$state.changePass.passwordNow) {
+                            return "رمز عبور فعلی را وارد کنید";
+                          }
+                          if (!$state.changePass.passwordNew) {
+                            return "رمز عبور را وارد کنید";
+                          }
+                          if (!$state.changePass.passwordRepeat) {
+                            return "تکرار رمز عبور را وارد کنید";
+                          }
+                          if ($state.changePass.savePass < 60) {
+                            return "رمز عبور ضعیف است";
+                          }
+                          if (
+                            $state.changePass.passwordNew !==
+                            $state.changePass.passwordRepeat
+                          ) {
+                            return "رمز عبور و تکرار آن یکسان نیست";
+                          }
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode2"] != null &&
+                typeof $steps["runCode2"] === "object" &&
+                typeof $steps["runCode2"].then === "function"
+              ) {
+                $steps["runCode2"] = await $steps["runCode2"];
+              }
+
+              $steps["update"] = !$steps.runCode2
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "panel/change/pass",
+                        undefined,
+                        {
+                          password: $state.changePass.passwordNow,
+                          newPass: $state.changePass.passwordNew
                         },
-                        operation: 4,
-                        value: true
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
+
+                        {
+                          headers: {
+                            Authorization: `Bearer ${$props.token}`
+                          }
                         }
-                        const { objRoot, variablePath } = variable;
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["update"] != null &&
+                typeof $steps["update"] === "object" &&
+                typeof $steps["update"].then === "function"
+              ) {
+                $steps["update"] = await $steps["update"];
+              }
 
-                        const oldValue = $stateGet(objRoot, variablePath);
-                        $stateSet(objRoot, variablePath, !oldValue);
-                        return !oldValue;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateModalIsOpen"] != null &&
-                  typeof $steps["updateModalIsOpen"] === "object" &&
-                  typeof $steps["updateModalIsOpen"].then === "function"
-                ) {
-                  $steps["updateModalIsOpen"] =
-                    await $steps["updateModalIsOpen"];
-                }
-              }}
-              onLoadingChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["button5", "loading"]).apply(
-                  null,
-                  eventArgs
-                );
+              $steps["updateSaveInfoLoading2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["saveInfo4", "loading"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
 
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-            />
-          </div>
-        }
-        heading={null}
-        isOpen={generateStateValueProp($state, ["info", "isOpen"])}
-        onOpenChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["info", "isOpen"]).apply(
-            null,
-            eventArgs
-          );
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSaveInfoLoading2"] != null &&
+                typeof $steps["updateSaveInfoLoading2"] === "object" &&
+                typeof $steps["updateSaveInfoLoading2"].then === "function"
+              ) {
+                $steps["updateSaveInfoLoading2"] =
+                  await $steps["updateSaveInfoLoading2"];
+              }
 
-          if (
-            eventArgs.length > 1 &&
-            eventArgs[1] &&
-            eventArgs[1]._plasmic_state_init_
-          ) {
-            return;
-          }
-        }}
-        showFooter={false}
-        showHeader={false}
-        trigger={null}
-      />
+              $steps["updateModal2Open"] = $steps.update?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["modal2", "open"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
 
-      <Modal
-        data-plasmic-name={"imageinsert"}
-        data-plasmic-override={overrides.imageinsert}
-        className={classNames("__wab_instance", sty.imageinsert)}
-        closeOnBackdropClick={false}
-        content={
-          <React.Fragment>
-            <div className={classNames("all", sty.freeBox__vLlDj)}>
-              <Imag
-                data-plasmic-name={"imag"}
-                data-plasmic-override={overrides.imag}
-                className={classNames("__wab_instance", sty.imag)}
-                onUploadFilesChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "imag",
-                    "uploadFiles"
-                  ]).apply(null, eventArgs);
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateModal2Open"] != null &&
+                typeof $steps["updateModal2Open"] === "object" &&
+                typeof $steps["updateModal2Open"].then === "function"
+              ) {
+                $steps["updateModal2Open"] = await $steps["updateModal2Open"];
+              }
 
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                uploadFiles={generateStateValueProp($state, [
-                  "imag",
-                  "uploadFiles"
-                ])}
-              />
-            </div>
-            <div className={classNames("all", sty.freeBox___81TN9)}>
-              <Button
-                data-plasmic-name={"saveUpload"}
-                data-plasmic-override={overrides.saveUpload}
-                className={classNames("__wab_instance", sty.saveUpload)}
-                color={"success"}
-                label={
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__vwxC)}
-                  >
-                    {"\u0630\u062e\u06cc\u0631\u0647"}
-                  </div>
-                }
-                loading={generateStateValueProp($state, [
-                  "saveUpload",
-                  "loading"
-                ])}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["updateSaveUploadLoading"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["saveUpload", "loading"]
-                          },
-                          operation: 4
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          const oldValue = $stateGet(objRoot, variablePath);
-                          $stateSet(objRoot, variablePath, !oldValue);
-                          return !oldValue;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateSaveUploadLoading"] != null &&
-                    typeof $steps["updateSaveUploadLoading"] === "object" &&
-                    typeof $steps["updateSaveUploadLoading"].then === "function"
-                  ) {
-                    $steps["updateSaveUploadLoading"] =
-                      await $steps["updateSaveUploadLoading"];
-                  }
-
-                  $steps["imageInsert"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "POST",
-                            "https://sayban.darkube.app/webhook/panel/update/image",
-                            undefined,
-                            {
-                              image: $state.imag.uploadFiles,
-                              center_id: $state.center.data.result.id
+              $steps["invokeGlobalAction"] = $steps.update?.data?.message
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return $steps.update?.data?.success
+                              ? "success"
+                              : "error";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "success";
                             }
-                          ]
-                        };
-                        return $globalActions["Fragment.apiRequest"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                  if (
-                    $steps["imageInsert"] != null &&
-                    typeof $steps["imageInsert"] === "object" &&
-                    typeof $steps["imageInsert"].then === "function"
-                  ) {
-                    $steps["imageInsert"] = await $steps["imageInsert"];
-                  }
-
-                  $steps["runCode"] = $steps.imageInsert?.data?.success
-                    ? (() => {
-                        const actionArgs = {
-                          customFunction: async () => {
-                            return (() => {
-                              $state.imageinsert.isOpen = false;
-                              return ($state.restart += "1");
-                            })();
+                            throw e;
                           }
-                        };
-                        return (({ customFunction }) => {
-                          return customFunction();
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runCode"] != null &&
-                    typeof $steps["runCode"] === "object" &&
-                    typeof $steps["runCode"].then === "function"
-                  ) {
-                    $steps["runCode"] = await $steps["runCode"];
-                  }
-
-                  $steps["updateSaveUploadLoading2"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["saveUpload", "loading"]
-                          },
-                          operation: 4
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          const oldValue = $stateGet(objRoot, variablePath);
-                          $stateSet(objRoot, variablePath, !oldValue);
-                          return !oldValue;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateSaveUploadLoading2"] != null &&
-                    typeof $steps["updateSaveUploadLoading2"] === "object" &&
-                    typeof $steps["updateSaveUploadLoading2"].then ===
-                      "function"
-                  ) {
-                    $steps["updateSaveUploadLoading2"] =
-                      await $steps["updateSaveUploadLoading2"];
-                  }
-                }}
-                onLoadingChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "saveUpload",
-                    "loading"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-              />
-
-              <Button
-                data-plasmic-name={"close"}
-                data-plasmic-override={overrides.close}
-                className={classNames("__wab_instance", sty.close)}
-                color={"neutral"}
-                label={
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__vOxNe)}
-                  >
-                    {"\u0644\u063a\u0648"}
-                  </div>
-                }
-                loading={generateStateValueProp($state, ["close", "loading"])}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["updateModalIsOpen"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["imageinsert", "isOpen"]
-                          },
-                          operation: 4,
-                          value: true
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          const oldValue = $stateGet(objRoot, variablePath);
-                          $stateSet(objRoot, variablePath, !oldValue);
-                          return !oldValue;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateModalIsOpen"] != null &&
-                    typeof $steps["updateModalIsOpen"] === "object" &&
-                    typeof $steps["updateModalIsOpen"].then === "function"
-                  ) {
-                    $steps["updateModalIsOpen"] =
-                      await $steps["updateModalIsOpen"];
-                  }
-                }}
-                onLoadingChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, ["close", "loading"]).apply(
-                    null,
-                    eventArgs
-                  );
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-              />
-            </div>
-          </React.Fragment>
-        }
-        footer={null}
-        heading={null}
-        isOpen={generateStateValueProp($state, ["imageinsert", "isOpen"])}
-        onOpenChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["imageinsert", "isOpen"]).apply(
-            null,
-            eventArgs
-          );
-
-          if (
-            eventArgs.length > 1 &&
-            eventArgs[1] &&
-            eventArgs[1]._plasmic_state_init_
-          ) {
-            return;
-          }
-        }}
-        showFooter={false}
-        showHeader={false}
-        trigger={null}
-      />
-
-      <Modal
-        data-plasmic-name={"imageProfile"}
-        data-plasmic-override={overrides.imageProfile}
-        className={classNames("__wab_instance", sty.imageProfile)}
-        closeOnBackdropClick={false}
-        content={
-          <React.Fragment>
-            <div className={classNames("all", sty.freeBox__nDzD)}>
-              <ImageProfile
-                data-plasmic-name={"imageProfile2"}
-                data-plasmic-override={overrides.imageProfile2}
-                className={classNames("__wab_instance", sty.imageProfile2)}
-                onUploadFilesChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "imageProfile2",
-                    "uploadFiles"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                uploadFiles={generateStateValueProp($state, [
-                  "imageProfile2",
-                  "uploadFiles"
-                ])}
-              />
-            </div>
-            <div className={classNames("all", sty.freeBox__lc148)}>
-              <Button
-                data-plasmic-name={"saveUpload2"}
-                data-plasmic-override={overrides.saveUpload2}
-                className={classNames("__wab_instance", sty.saveUpload2)}
-                color={"success"}
-                label={
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__xdH0R)}
-                  >
-                    {"\u0630\u062e\u06cc\u0631\u0647"}
-                  </div>
-                }
-                loading={generateStateValueProp($state, [
-                  "saveUpload2",
-                  "loading"
-                ])}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["updateSaveUploadLoading"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["saveUpload2", "loading"]
-                          },
-                          operation: 4
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          const oldValue = $stateGet(objRoot, variablePath);
-                          $stateSet(objRoot, variablePath, !oldValue);
-                          return !oldValue;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateSaveUploadLoading"] != null &&
-                    typeof $steps["updateSaveUploadLoading"] === "object" &&
-                    typeof $steps["updateSaveUploadLoading"].then === "function"
-                  ) {
-                    $steps["updateSaveUploadLoading"] =
-                      await $steps["updateSaveUploadLoading"];
-                  }
-
-                  $steps["invokeGlobalAction"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "POST",
-                            "https://sayban.darkube.app/webhook-test/panel/update/profile",
-                            undefined,
-                            {
-                              image: $state.imageProfile2.uploadFiles,
-                              center_id: $state.center.data.result.id
+                        })(),
+                        (() => {
+                          try {
+                            return $steps.update?.data?.message;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
                             }
-                          ]
-                        };
-                        return $globalActions["Fragment.apiRequest"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                  if (
-                    $steps["invokeGlobalAction"] != null &&
-                    typeof $steps["invokeGlobalAction"] === "object" &&
-                    typeof $steps["invokeGlobalAction"].then === "function"
-                  ) {
-                    $steps["invokeGlobalAction"] =
-                      await $steps["invokeGlobalAction"];
-                  }
-
-                  $steps["updateImageinsertIsOpen"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["imageProfile", "isOpen"]
-                          },
-                          operation: 4
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
+                            throw e;
                           }
-                          const { objRoot, variablePath } = variable;
+                        })(),
+                        "top-center"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
 
-                          const oldValue = $stateGet(objRoot, variablePath);
-                          $stateSet(objRoot, variablePath, !oldValue);
-                          return !oldValue;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateImageinsertIsOpen"] != null &&
-                    typeof $steps["updateImageinsertIsOpen"] === "object" &&
-                    typeof $steps["updateImageinsertIsOpen"].then === "function"
-                  ) {
-                    $steps["updateImageinsertIsOpen"] =
-                      await $steps["updateImageinsertIsOpen"];
-                  }
+              $steps["runCode"] = $steps.update?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.changePass.passwordNew = "";
+                          $state.changePass.passwordNow = "";
+                          return ($state.changePass.passwordRepeat = "");
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
 
-                  $steps["updateSaveUploadLoading2"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["saveUpload2", "loading"]
-                          },
-                          operation: 4
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
+              $steps["invokeGlobalAction2"] = $steps.runCode2
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "error",
+                        (() => {
+                          try {
+                            return $steps.runCode2;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
                           }
-                          const { objRoot, variablePath } = variable;
+                        })(),
+                        "top-center"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction2"] != null &&
+                typeof $steps["invokeGlobalAction2"] === "object" &&
+                typeof $steps["invokeGlobalAction2"].then === "function"
+              ) {
+                $steps["invokeGlobalAction2"] =
+                  await $steps["invokeGlobalAction2"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["saveInfo4", "loading"]).apply(
+                null,
+                eventArgs
+              );
 
-                          const oldValue = $stateGet(objRoot, variablePath);
-                          $stateSet(objRoot, variablePath, !oldValue);
-                          return !oldValue;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateSaveUploadLoading2"] != null &&
-                    typeof $steps["updateSaveUploadLoading2"] === "object" &&
-                    typeof $steps["updateSaveUploadLoading2"].then ===
-                      "function"
-                  ) {
-                    $steps["updateSaveUploadLoading2"] =
-                      await $steps["updateSaveUploadLoading2"];
-                  }
-                }}
-                onLoadingChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "saveUpload2",
-                    "loading"
-                  ]).apply(null, eventArgs);
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
 
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-              />
+          <Button
+            data-plasmic-name={"button7"}
+            data-plasmic-override={overrides.button7}
+            className={classNames("__wab_instance", sty.button7)}
+            color={"neutral"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__zYFrb)}>
+                {"\u0644\u063a\u0648"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button7", "loading"])}
+            onClick={async event => {
+              const $steps = {};
 
-              <Button
-                data-plasmic-name={"close2"}
-                data-plasmic-override={overrides.close2}
-                className={classNames("__wab_instance", sty.close2)}
-                color={"neutral"}
-                label={
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__ny7J3)}
-                  >
-                    {"\u0644\u063a\u0648"}
-                  </div>
-                }
-                loading={generateStateValueProp($state, ["close2", "loading"])}
-                onClick={async event => {
-                  const $steps = {};
+              $steps["updateModalIsOpen"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["modal2", "open"]
+                      },
+                      operation: 4,
+                      value: true
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
 
-                  $steps["updateModalIsOpen"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["imageProfile", "isOpen"]
-                          },
-                          operation: 4,
-                          value: true
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateModalIsOpen"] != null &&
+                typeof $steps["updateModalIsOpen"] === "object" &&
+                typeof $steps["updateModalIsOpen"].then === "function"
+              ) {
+                $steps["updateModalIsOpen"] = await $steps["updateModalIsOpen"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button7", "loading"]).apply(
+                null,
+                eventArgs
+              );
 
-                          const oldValue = $stateGet(objRoot, variablePath);
-                          $stateSet(objRoot, variablePath, !oldValue);
-                          return !oldValue;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateModalIsOpen"] != null &&
-                    typeof $steps["updateModalIsOpen"] === "object" &&
-                    typeof $steps["updateModalIsOpen"].then === "function"
-                  ) {
-                    $steps["updateModalIsOpen"] =
-                      await $steps["updateModalIsOpen"];
-                  }
-                }}
-                onLoadingChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "close2",
-                    "loading"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-              />
-            </div>
-          </React.Fragment>
-        }
-        footer={null}
-        heading={null}
-        isOpen={generateStateValueProp($state, ["imageProfile", "isOpen"])}
-        onOpenChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["imageProfile", "isOpen"]).apply(
-            null,
-            eventArgs
-          );
-
-          if (
-            eventArgs.length > 1 &&
-            eventArgs[1] &&
-            eventArgs[1]._plasmic_state_init_
-          ) {
-            return;
-          }
-        }}
-        showFooter={false}
-        showHeader={false}
-        trigger={null}
-      />
-
-      <Modal
-        data-plasmic-name={"map"}
-        data-plasmic-override={overrides.map}
-        className={classNames("__wab_instance", sty.map)}
-        closeOnBackdropClick={false}
-        content={
-          <React.Fragment>
-            <div className={classNames("all", sty.freeBox__tlVqb)}>
-              <Loaction
-                data-plasmic-name={"loaction"}
-                data-plasmic-override={overrides.loaction}
-                address={generateStateValueProp($state, [
-                  "loaction",
-                  "address"
-                ])}
-                call2={generateStateValueProp($state, ["loaction", "call2"])}
-                city2={generateStateValueProp($state, ["loaction", "city2"])}
-                className={classNames("__wab_instance", sty.loaction)}
-                onAddressChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "loaction",
-                    "address"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                onCallChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "loaction",
-                    "call2"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                onCityChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "loaction",
-                    "city2"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                onLatChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, ["loaction", "lat"]).apply(
-                    null,
-                    eventArgs
-                  );
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                onLonChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, ["loaction", "lon"]).apply(
-                    null,
-                    eventArgs
-                  );
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                onStateChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "loaction",
-                    "state2"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                state2={generateStateValueProp($state, ["loaction", "state2"])}
-              />
-            </div>
-            <div className={classNames("all", sty.freeBox__cqf0J)}>
-              <Button
-                data-plasmic-name={"saveInfo2"}
-                data-plasmic-override={overrides.saveInfo2}
-                className={classNames("__wab_instance", sty.saveInfo2)}
-                color={"success"}
-                label={
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__yUorr)}
-                  >
-                    {"\u0630\u062e\u06cc\u0631\u0647"}
-                  </div>
-                }
-                loading={generateStateValueProp($state, [
-                  "saveInfo2",
-                  "loading"
-                ])}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["updateSaveInfoLoading"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["saveInfo2", "loading"]
-                          },
-                          operation: 4
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          const oldValue = $stateGet(objRoot, variablePath);
-                          $stateSet(objRoot, variablePath, !oldValue);
-                          return !oldValue;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateSaveInfoLoading"] != null &&
-                    typeof $steps["updateSaveInfoLoading"] === "object" &&
-                    typeof $steps["updateSaveInfoLoading"].then === "function"
-                  ) {
-                    $steps["updateSaveInfoLoading"] =
-                      await $steps["updateSaveInfoLoading"];
-                  }
-
-                  $steps["update"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "POST",
-                            "https://sayban.darkube.app/webhook/panel/update/info",
-                            undefined,
-                            (() => {
-                              const data = {
-                                info: {
-                                  id: $state.center.data.result.id,
-                                  address: $state.loaction.address,
-                                  state: $state.loaction.state2,
-                                  city: $state.loaction.city2,
-                                  phone: $state.loaction.call2,
-                                  latitude: $state.loaction.lat,
-                                  longitude: $state.loaction.lon
-                                }
-                              };
-                              return data;
-                            })()
-                          ]
-                        };
-                        return $globalActions["Fragment.apiRequest"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                  if (
-                    $steps["update"] != null &&
-                    typeof $steps["update"] === "object" &&
-                    typeof $steps["update"].then === "function"
-                  ) {
-                    $steps["update"] = await $steps["update"];
-                  }
-
-                  $steps["updateSaveInfoLoading2"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["saveInfo2", "loading"]
-                          },
-                          operation: 4
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          const oldValue = $stateGet(objRoot, variablePath);
-                          $stateSet(objRoot, variablePath, !oldValue);
-                          return !oldValue;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateSaveInfoLoading2"] != null &&
-                    typeof $steps["updateSaveInfoLoading2"] === "object" &&
-                    typeof $steps["updateSaveInfoLoading2"].then === "function"
-                  ) {
-                    $steps["updateSaveInfoLoading2"] =
-                      await $steps["updateSaveInfoLoading2"];
-                  }
-
-                  $steps["updateInfoIsOpen"] = $steps.update?.data?.success
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["info", "isOpen"]
-                          },
-                          operation: 4
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          const oldValue = $stateGet(objRoot, variablePath);
-                          $stateSet(objRoot, variablePath, !oldValue);
-                          return !oldValue;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateInfoIsOpen"] != null &&
-                    typeof $steps["updateInfoIsOpen"] === "object" &&
-                    typeof $steps["updateInfoIsOpen"].then === "function"
-                  ) {
-                    $steps["updateInfoIsOpen"] =
-                      await $steps["updateInfoIsOpen"];
-                  }
-
-                  $steps["invokeGlobalAction"] = $steps.update?.data?.success
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "success",
-                            "\u0639\u0645\u0644\u06cc\u0627\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0646\u062c\u0627\u0645 \u0634\u062f.",
-                            "top-center"
-                          ]
-                        };
-                        return $globalActions["Fragment.showToast"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                  if (
-                    $steps["invokeGlobalAction"] != null &&
-                    typeof $steps["invokeGlobalAction"] === "object" &&
-                    typeof $steps["invokeGlobalAction"].then === "function"
-                  ) {
-                    $steps["invokeGlobalAction"] =
-                      await $steps["invokeGlobalAction"];
-                  }
-
-                  $steps["runCode"] = $steps.update?.data?.success
-                    ? (() => {
-                        const actionArgs = {
-                          customFunction: async () => {
-                            return ($state.restart += "1");
-                          }
-                        };
-                        return (({ customFunction }) => {
-                          return customFunction();
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runCode"] != null &&
-                    typeof $steps["runCode"] === "object" &&
-                    typeof $steps["runCode"].then === "function"
-                  ) {
-                    $steps["runCode"] = await $steps["runCode"];
-                  }
-                }}
-                onLoadingChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "saveInfo2",
-                    "loading"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-              />
-
-              <Button
-                data-plasmic-name={"button7"}
-                data-plasmic-override={overrides.button7}
-                className={classNames("__wab_instance", sty.button7)}
-                color={"neutral"}
-                label={
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__pEt9R)}
-                  >
-                    {"\u0644\u063a\u0648"}
-                  </div>
-                }
-                loading={generateStateValueProp($state, ["button7", "loading"])}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["updateInfoOpendialog"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["map", "isOpen"]
-                          },
-                          operation: 4,
-                          value: true
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          const oldValue = $stateGet(objRoot, variablePath);
-                          $stateSet(objRoot, variablePath, !oldValue);
-                          return !oldValue;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateInfoOpendialog"] != null &&
-                    typeof $steps["updateInfoOpendialog"] === "object" &&
-                    typeof $steps["updateInfoOpendialog"].then === "function"
-                  ) {
-                    $steps["updateInfoOpendialog"] =
-                      await $steps["updateInfoOpendialog"];
-                  }
-                }}
-                onLoadingChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "button7",
-                    "loading"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-              />
-            </div>
-          </React.Fragment>
-        }
-        footer={null}
-        heading={null}
-        isOpen={generateStateValueProp($state, ["map", "isOpen"])}
-        onOpenChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["map", "isOpen"]).apply(
-            null,
-            eventArgs
-          );
-
-          if (
-            eventArgs.length > 1 &&
-            eventArgs[1] &&
-            eventArgs[1]._plasmic_state_init_
-          ) {
-            return;
-          }
-        }}
-        showFooter={false}
-        showHeader={false}
-        trigger={null}
-      />
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </AntdModal>
     </div>
   ) as React.ReactElement | null;
 }
@@ -2268,41 +1725,25 @@ const PlasmicDescendants = {
     "button",
     "button2",
     "center",
-    "info",
-    "centerInfo",
-    "saveInfo",
-    "button5",
-    "imageinsert",
-    "imag",
-    "saveUpload",
-    "close",
-    "imageProfile",
-    "imageProfile2",
-    "saveUpload2",
-    "close2",
-    "map",
-    "loaction",
-    "saveInfo2",
+    "modal",
+    "userPanelInfo",
+    "saveInfo3",
+    "button6",
+    "modal2",
+    "changePass",
+    "saveInfo4",
     "button7"
   ],
   button: ["button"],
   button2: ["button2"],
   center: ["center"],
-  info: ["info", "centerInfo", "saveInfo", "button5"],
-  centerInfo: ["centerInfo"],
-  saveInfo: ["saveInfo"],
-  button5: ["button5"],
-  imageinsert: ["imageinsert", "imag", "saveUpload", "close"],
-  imag: ["imag"],
-  saveUpload: ["saveUpload"],
-  close: ["close"],
-  imageProfile: ["imageProfile", "imageProfile2", "saveUpload2", "close2"],
-  imageProfile2: ["imageProfile2"],
-  saveUpload2: ["saveUpload2"],
-  close2: ["close2"],
-  map: ["map", "loaction", "saveInfo2", "button7"],
-  loaction: ["loaction"],
-  saveInfo2: ["saveInfo2"],
+  modal: ["modal", "userPanelInfo", "saveInfo3", "button6"],
+  userPanelInfo: ["userPanelInfo"],
+  saveInfo3: ["saveInfo3"],
+  button6: ["button6"],
+  modal2: ["modal2", "changePass", "saveInfo4", "button7"],
+  changePass: ["changePass"],
+  saveInfo4: ["saveInfo4"],
   button7: ["button7"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -2313,21 +1754,13 @@ type NodeDefaultElementType = {
   button: typeof Button;
   button2: typeof Button;
   center: typeof ApiRequest;
-  info: typeof Modal;
-  centerInfo: typeof CenterInfo;
-  saveInfo: typeof Button;
-  button5: typeof Button;
-  imageinsert: typeof Modal;
-  imag: typeof Imag;
-  saveUpload: typeof Button;
-  close: typeof Button;
-  imageProfile: typeof Modal;
-  imageProfile2: typeof ImageProfile;
-  saveUpload2: typeof Button;
-  close2: typeof Button;
-  map: typeof Modal;
-  loaction: typeof Loaction;
-  saveInfo2: typeof Button;
+  modal: typeof AntdModal;
+  userPanelInfo: typeof UserPanelInfo;
+  saveInfo3: typeof Button;
+  button6: typeof Button;
+  modal2: typeof AntdModal;
+  changePass: typeof ChangePass;
+  saveInfo4: typeof Button;
   button7: typeof Button;
 };
 
@@ -2396,21 +1829,13 @@ export const PlasmicProfilePage = Object.assign(
     button: makeNodeComponent("button"),
     button2: makeNodeComponent("button2"),
     center: makeNodeComponent("center"),
-    info: makeNodeComponent("info"),
-    centerInfo: makeNodeComponent("centerInfo"),
-    saveInfo: makeNodeComponent("saveInfo"),
-    button5: makeNodeComponent("button5"),
-    imageinsert: makeNodeComponent("imageinsert"),
-    imag: makeNodeComponent("imag"),
-    saveUpload: makeNodeComponent("saveUpload"),
-    close: makeNodeComponent("close"),
-    imageProfile: makeNodeComponent("imageProfile"),
-    imageProfile2: makeNodeComponent("imageProfile2"),
-    saveUpload2: makeNodeComponent("saveUpload2"),
-    close2: makeNodeComponent("close2"),
-    map: makeNodeComponent("map"),
-    loaction: makeNodeComponent("loaction"),
-    saveInfo2: makeNodeComponent("saveInfo2"),
+    modal: makeNodeComponent("modal"),
+    userPanelInfo: makeNodeComponent("userPanelInfo"),
+    saveInfo3: makeNodeComponent("saveInfo3"),
+    button6: makeNodeComponent("button6"),
+    modal2: makeNodeComponent("modal2"),
+    changePass: makeNodeComponent("changePass"),
+    saveInfo4: makeNodeComponent("saveInfo4"),
     button7: makeNodeComponent("button7"),
 
     // Metadata about props expected for PlasmicProfilePage

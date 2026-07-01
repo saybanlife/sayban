@@ -29419,6 +29419,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicUserMain.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "Ga93_OGgGtUe",
+          "name": "ChangePass",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicChangePass.tsx",
+          "importSpec": {
+            "modulePath": "ChangePass.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicChangePass.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
