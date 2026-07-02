@@ -604,7 +604,9 @@ function PlasmicAddServisePage__RenderFunc(props: {
                           ? (() => {
                               const actionArgs = {
                                 customFunction: async () => {
-                                  return ($state.servises[currentIndex].time2 =
+                                  return ($state.servises[
+                                    currentIndex
+                                  ].buffer_minutes =
                                     $state.time2[currentIndex].value);
                                 }
                               };

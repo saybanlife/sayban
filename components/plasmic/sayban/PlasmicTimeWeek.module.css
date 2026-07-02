@@ -148,6 +148,23 @@
   top: 0px;
   position: sticky;
 }
+.button:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.svg__tq4XC {
+  position: relative;
+  height: 1em;
+}
+.text__otKGo {
+  white-space: pre;
+  color: var(--token-1aP3XjRZIKFV);
+}
+.svg__rmE6T {
+  position: relative;
+  height: 1em;
+}
 .end:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
@@ -180,6 +197,23 @@
   left: 0px;
   top: 0px;
   position: sticky;
+}
+.button3:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.svg__ff1H9 {
+  position: relative;
+  height: 1em;
+}
+.text__xNycm {
+  white-space: pre;
+  color: var(--token-1aP3XjRZIKFV);
+}
+.svg___8MgKd {
+  position: relative;
+  height: 1em;
 }
 .option1:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
