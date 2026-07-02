@@ -66,8 +66,8 @@ import Service2 from "../../Service2"; // plasmic-import: -12Fp4g9XO2-/component
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
 import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
-import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
 import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
+import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -112,8 +112,8 @@ export type PlasmicPayment__OverridesType = {
   textCollapse?: Flex__<typeof TextCollapse>;
   description?: Flex__<typeof TextAreaInput>;
   radioGroup?: Flex__<typeof RadioGroup>;
-  menuIcon?: Flex__<typeof MenuIcon>;
   radio?: Flex__<typeof Radio>;
+  menuIcon?: Flex__<typeof MenuIcon>;
   section?: Flex__<"section">;
   online?: Flex__<"div">;
   button?: Flex__<typeof Button>;
@@ -778,80 +778,6 @@ function PlasmicPayment__RenderFunc(props: {
                                 )}
                                 key={currentIndex}
                               >
-                                <div
-                                  className={classNames(
-                                    "all",
-                                    sty.freeBox__xApBf
-                                  )}
-                                >
-                                  {(() => {
-                                    try {
-                                      return true;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return true;
-                                      }
-                                      throw e;
-                                    }
-                                  })() ? (
-                                    <MenuIcon
-                                      data-plasmic-name={"menuIcon"}
-                                      data-plasmic-override={overrides.menuIcon}
-                                      className={classNames(
-                                        "__wab_instance",
-                                        sty.menuIcon
-                                      )}
-                                      icons={(() => {
-                                        try {
-                                          return currentItem.value;
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return [];
-                                          }
-                                          throw e;
-                                        }
-                                      })()}
-                                      size={"_25"}
-                                    />
-                                  ) : null}
-                                  <div
-                                    className={classNames(
-                                      "all",
-                                      sty.freeBox__ayYVs
-                                    )}
-                                  >
-                                    <div
-                                      className={classNames(
-                                        "all",
-                                        "__wab_text",
-                                        sty.text__jDoV
-                                      )}
-                                    >
-                                      <React.Fragment>
-                                        {currentItem.label}
-                                      </React.Fragment>
-                                    </div>
-                                    <div
-                                      className={classNames(
-                                        "all",
-                                        "__wab_text",
-                                        sty.text__zuShO
-                                      )}
-                                    >
-                                      <React.Fragment>
-                                        {currentItem.description}
-                                      </React.Fragment>
-                                    </div>
-                                  </div>
-                                </div>
                                 <Radio
                                   data-plasmic-name={"radio"}
                                   data-plasmic-override={overrides.radio}
@@ -861,6 +787,7 @@ function PlasmicPayment__RenderFunc(props: {
                                   )}
                                   disabled={false}
                                   label={null}
+                                  right={true}
                                   value={(() => {
                                     try {
                                       return currentItem.value;
@@ -875,7 +802,84 @@ function PlasmicPayment__RenderFunc(props: {
                                       throw e;
                                     }
                                   })()}
-                                />
+                                >
+                                  <div
+                                    className={classNames(
+                                      "all",
+                                      sty.freeBox__xApBf
+                                    )}
+                                  >
+                                    {(() => {
+                                      try {
+                                        return true;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return true;
+                                        }
+                                        throw e;
+                                      }
+                                    })() ? (
+                                      <MenuIcon
+                                        data-plasmic-name={"menuIcon"}
+                                        data-plasmic-override={
+                                          overrides.menuIcon
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.menuIcon
+                                        )}
+                                        icons={(() => {
+                                          try {
+                                            return currentItem.value;
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return [];
+                                            }
+                                            throw e;
+                                          }
+                                        })()}
+                                        size={"_25"}
+                                      />
+                                    ) : null}
+                                    <div
+                                      className={classNames(
+                                        "all",
+                                        sty.freeBox__ayYVs
+                                      )}
+                                    >
+                                      <div
+                                        className={classNames(
+                                          "all",
+                                          "__wab_text",
+                                          sty.text__jDoV
+                                        )}
+                                      >
+                                        <React.Fragment>
+                                          {currentItem.label}
+                                        </React.Fragment>
+                                      </div>
+                                      <div
+                                        className={classNames(
+                                          "all",
+                                          "__wab_text",
+                                          sty.text__zuShO
+                                        )}
+                                      >
+                                        <React.Fragment>
+                                          {currentItem.description}
+                                        </React.Fragment>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </Radio>
                               </div>
                             );
                           })}
@@ -1350,7 +1354,7 @@ function PlasmicPayment__RenderFunc(props: {
                           const actionArgs = {
                             args: [
                               "POST",
-                              "/reservations/update",
+                              "/reservations/update/pay",
                               undefined,
                               (() => {
                                 try {
@@ -1462,7 +1466,7 @@ function PlasmicPayment__RenderFunc(props: {
                         await $steps["invokeGlobalAction"];
                     }
 
-                    $steps["invokeGlobalAction2"] = true
+                    $steps["invokeGlobalAction2"] = $steps.pay?.data?.success
                       ? (() => {
                           const actionArgs = {
                             args: [
@@ -1541,8 +1545,8 @@ const PlasmicDescendants = {
     "textCollapse",
     "description",
     "radioGroup",
-    "menuIcon",
     "radio",
+    "menuIcon",
     "section",
     "online",
     "button",
@@ -1558,8 +1562,8 @@ const PlasmicDescendants = {
     "textCollapse",
     "description",
     "radioGroup",
-    "menuIcon",
     "radio",
+    "menuIcon",
     "section",
     "online",
     "button",
@@ -1570,9 +1574,9 @@ const PlasmicDescendants = {
   img: ["img"],
   textCollapse: ["textCollapse"],
   description: ["description"],
-  radioGroup: ["radioGroup", "menuIcon", "radio"],
+  radioGroup: ["radioGroup", "radio", "menuIcon"],
+  radio: ["radio", "menuIcon"],
   menuIcon: ["menuIcon"],
-  radio: ["radio"],
   section: ["section", "online", "button", "inPerson", "button3"],
   online: ["online", "button"],
   button: ["button"],
@@ -1592,8 +1596,8 @@ type NodeDefaultElementType = {
   textCollapse: typeof TextCollapse;
   description: typeof TextAreaInput;
   radioGroup: typeof RadioGroup;
-  menuIcon: typeof MenuIcon;
   radio: typeof Radio;
+  menuIcon: typeof MenuIcon;
   section: "section";
   online: "div";
   button: typeof Button;
@@ -1671,8 +1675,8 @@ export const PlasmicPayment = Object.assign(
     textCollapse: makeNodeComponent("textCollapse"),
     description: makeNodeComponent("description"),
     radioGroup: makeNodeComponent("radioGroup"),
-    menuIcon: makeNodeComponent("menuIcon"),
     radio: makeNodeComponent("radio"),
+    menuIcon: makeNodeComponent("menuIcon"),
     section: makeNodeComponent("section"),
     online: makeNodeComponent("online"),
     button: makeNodeComponent("button"),

@@ -69,25 +69,31 @@ import sty from "./PlasmicRadio.module.css"; // plasmic-import: 4jWqJWAaH2_L/css
 
 createPlasmicElementProxy;
 
-export type PlasmicRadio__VariantMembers = {};
-export type PlasmicRadio__VariantsArgs = {};
+export type PlasmicRadio__VariantMembers = {
+  right: "right";
+};
+export type PlasmicRadio__VariantsArgs = {
+  right?: SingleBooleanChoiceArg<"right">;
+};
 type VariantPropType = keyof PlasmicRadio__VariantsArgs;
-export const PlasmicRadio__VariantProps = new Array<VariantPropType>();
+export const PlasmicRadio__VariantProps = new Array<VariantPropType>("right");
 
 export type PlasmicRadio__ArgsType = {
   value?: string;
-  label?: React.ReactNode;
   autoFocus?: boolean;
   disabled?: boolean;
   ariaLabel?: string;
+  children?: React.ReactNode;
+  label?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicRadio__ArgsType;
 export const PlasmicRadio__ArgProps = new Array<ArgPropType>(
   "value",
-  "label",
   "autoFocus",
   "disabled",
-  "ariaLabel"
+  "ariaLabel",
+  "children",
+  "label"
 );
 
 export type PlasmicRadio__OverridesType = {
@@ -96,10 +102,12 @@ export type PlasmicRadio__OverridesType = {
 
 export interface DefaultRadioProps {
   value?: string;
-  label?: React.ReactNode;
   autoFocus?: boolean;
   disabled?: boolean;
   ariaLabel?: string;
+  children?: React.ReactNode;
+  label?: React.ReactNode;
+  right?: SingleBooleanChoiceArg<"right">;
   className?: string;
 }
 
@@ -142,6 +150,26 @@ function PlasmicRadio__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "right",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.right
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $q: {},
+    $refs
+  });
+
   const styleTokensClassNames = _useStyleTokens();
 
   const [$ccVariants, setDollarCcVariants] = React.useState<
@@ -181,19 +209,44 @@ function PlasmicRadio__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.ariaRadio
+        sty.ariaRadio,
+        { [sty.ariaRadioright]: hasVariant($state, "right", "right") }
       )}
       isDisabled={args.disabled}
       plasmicUpdateVariant={updateVariant}
       value={args.value}
     >
-      <div className={classNames("all", sty.freeBox__mhm1M)}>
-        <div className={classNames("all", sty.freeBox___1P7Rh)} />
+      <div
+        className={classNames("all", sty.freeBox__u3E6I, {
+          [sty.freeBoxright__u3E6IleiDa]: hasVariant($state, "right", "right")
+        })}
+      >
+        {renderPlasmicSlot({
+          defaultContents: "Enter some text",
+          value: args.children
+        })}
       </div>
-      {renderPlasmicSlot({
-        defaultContents: "Option",
-        value: args.label
-      })}
+      <div
+        className={classNames("all", sty.freeBox__mhm1M, {
+          [sty.freeBoxright__mhm1MleiDa]: hasVariant($state, "right", "right")
+        })}
+      >
+        <div
+          className={classNames("all", sty.freeBox___1P7Rh, {
+            [sty.freeBoxright___1P7RhleiDa]: hasVariant(
+              $state,
+              "right",
+              "right"
+            )
+          })}
+        />
+      </div>
+      {(hasVariant($state, "right", "right") ? false : true)
+        ? renderPlasmicSlot({
+            defaultContents: "Option",
+            value: args.label
+          })
+        : null}
     </BaseRadio>
   ) as React.ReactElement | null;
 }

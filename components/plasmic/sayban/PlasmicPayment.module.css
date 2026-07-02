@@ -386,12 +386,17 @@
   padding: var(--token-LBC0X5IbL9bo);
   border-bottom: 1px solid var(--token-Es3BYpS8XP38);
 }
+.radio:global(.__wab_instance):global(.__wab_instance) {
+  width: 100%;
+  height: 40px;
+  min-width: 0;
+}
 .freeBox__xApBf {
   display: flex;
   flex-direction: row;
   position: relative;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: auto;
   height: auto;
   max-width: 100%;
@@ -431,10 +436,6 @@
   max-width: 100%;
   text-align: right;
   min-width: 0;
-}
-.radio:global(.__wab_instance):global(.__wab_instance) {
-  width: auto;
-  height: 40px;
 }
 .text__mPoub {
   animation: none;
