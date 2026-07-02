@@ -14,8 +14,8 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .root {
     width: 100%;
-    padding-right: var(--token-D_3fp_JIDs1G);
-    padding-left: var(--token-D_3fp_JIDs1G);
+    padding-right: 0px;
+    padding-left: 0px;
     grid-column-start: 1 !important;
     grid-column-end: -1 !important;
   }
@@ -272,6 +272,11 @@
   padding-bottom: var(--token-cfon0PHiXQoL);
   padding-top: 0px;
   min-width: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .text___26Ec {
+    padding-top: var(--token-ekJK2BNXfyOR);
+  }
 }
 .freeBox__ozEqI {
   display: grid;

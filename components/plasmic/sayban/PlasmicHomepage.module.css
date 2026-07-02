@@ -97,6 +97,11 @@
 .roothomePage2_home > * {
   grid-column: 4;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .roothomePage2_home > * {
+    grid-column: 4;
+  }
+}
 .roothomePage2_reminder {
   padding: 0px;
 }
@@ -410,6 +415,11 @@
   position: relative;
   grid-column-start: 1 !important;
   grid-column-end: -1 !important;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBoxhomePage2_home__ibbNlRvb1B {
+    padding-bottom: 1.25rem;
+  }
 }
 .freeBoxhomePage2_reminder__ibbNlWvbFy {
   display: none;

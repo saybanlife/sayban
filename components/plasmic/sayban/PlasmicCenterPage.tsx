@@ -148,6 +148,7 @@ export type PlasmicCenterPage__OverridesType = {
   img?: Flex__<typeof PlasmicImg__>;
   edit3?: Flex__<typeof Button>;
   edit4?: Flex__<typeof Button>;
+  edit6?: Flex__<typeof Button>;
   tags?: Flex__<typeof Tags>;
   button2?: Flex__<typeof Button>;
   imageEdit?: Flex__<typeof ImageEdit>;
@@ -457,7 +458,8 @@ function PlasmicCenterPage__RenderFunc(props: {
         path: "centerInfo.description",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u062a\u06a9\u0645\u06cc\u0644\u06cc"
       },
       {
         path: "centerInfo.tag",
@@ -495,7 +497,7 @@ function PlasmicCenterPage__RenderFunc(props: {
         path: "loaction.address",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "loaction.call2",
@@ -753,6 +755,18 @@ function PlasmicCenterPage__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "edit6.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "centerInfo.refresh",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -2181,10 +2195,109 @@ function PlasmicCenterPage__RenderFunc(props: {
               />
             </div>
             <div className={classNames("all", sty.freeBox___24Voz)}>
-              <div
-                className={classNames("all", "__wab_text", sty.text___4Cini)}
-              >
-                {"\u062a\u06af \u0647\u0627"}
+              <div className={classNames("all", sty.freeBox__mMmRj)}>
+                <div
+                  className={classNames("all", "__wab_text", sty.text___4Cini)}
+                >
+                  {"\u062a\u06af \u0647\u0627"}
+                </div>
+                <Button
+                  data-plasmic-name={"edit6"}
+                  data-plasmic-override={overrides.edit6}
+                  className={classNames("__wab_instance", sty.edit6)}
+                  color={"clear"}
+                  label={
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text__fNkHx
+                      )}
+                    >
+                      {"\u0648\u06cc\u0631\u0627\u06cc\u0634"}
+                    </div>
+                  }
+                  loading={generateStateValueProp($state, ["edit6", "loading"])}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return (() => {
+                                $state.centerInfo.title =
+                                  $state.center.data.result.name;
+                                $state.centerInfo.description =
+                                  $state.center.data.result.description;
+                                return ($state.centerInfo.categorie =
+                                  $state.center.data.result.category_id);
+                              })();
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+
+                    $steps["updateModalIsOpen"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["modal", "open"]
+                            },
+                            operation: 4
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            const oldValue = $stateGet(objRoot, variablePath);
+                            $stateSet(objRoot, variablePath, !oldValue);
+                            return !oldValue;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateModalIsOpen"] != null &&
+                      typeof $steps["updateModalIsOpen"] === "object" &&
+                      typeof $steps["updateModalIsOpen"].then === "function"
+                    ) {
+                      $steps["updateModalIsOpen"] =
+                        await $steps["updateModalIsOpen"];
+                    }
+                  }}
+                  onLoadingChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "edit6",
+                      "loading"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                />
               </div>
               <Tags
                 data-plasmic-name={"tags"}
@@ -2196,6 +2309,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                     "centerAdmin"
                   )
                 })}
+                disabel={true}
                 lable={true}
                 onSelect3ValueChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
@@ -3065,6 +3179,20 @@ function PlasmicCenterPage__RenderFunc(props: {
                 return;
               }
             }}
+            onRefreshChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "centerInfo",
+                "refresh"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
             onSubcategory2Change={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "centerInfo",
@@ -3107,6 +3235,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                 return;
               }
             }}
+            refresh={generateStateValueProp($state, ["centerInfo", "refresh"])}
             subcategory2={generateStateValueProp($state, [
               "centerInfo",
               "subcategory2"
@@ -4539,6 +4668,7 @@ const PlasmicDescendants = {
     "img",
     "edit3",
     "edit4",
+    "edit6",
     "tags",
     "button2",
     "imageEdit",
@@ -4576,6 +4706,7 @@ const PlasmicDescendants = {
   img: ["img"],
   edit3: ["edit3"],
   edit4: ["edit4"],
+  edit6: ["edit6"],
   tags: ["tags"],
   button2: ["button2"],
   imageEdit: ["imageEdit"],
@@ -4618,6 +4749,7 @@ type NodeDefaultElementType = {
   img: typeof PlasmicImg__;
   edit3: typeof Button;
   edit4: typeof Button;
+  edit6: typeof Button;
   tags: typeof Tags;
   button2: typeof Button;
   imageEdit: typeof ImageEdit;
@@ -4718,6 +4850,7 @@ export const PlasmicCenterPage = Object.assign(
     img: makeNodeComponent("img"),
     edit3: makeNodeComponent("edit3"),
     edit4: makeNodeComponent("edit4"),
+    edit6: makeNodeComponent("edit6"),
     tags: makeNodeComponent("tags"),
     button2: makeNodeComponent("button2"),
     imageEdit: makeNodeComponent("imageEdit"),

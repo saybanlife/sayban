@@ -241,7 +241,8 @@ function PlasmicAddServise__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        "dark"
       )}
     >
       {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -422,6 +423,8 @@ function PlasmicAddServise__RenderFunc(props: {
                           }
                         }).apply(null, eventArgs);
                       },
+                      placeholder:
+                        "\u0645\u062b\u0627\u0644: \u0622\u0628 \u062f\u0631\u0645\u0627\u0646\u06cc",
                       type: "line",
                       value: generateStateValueProp($state, [
                         "name",
@@ -502,6 +505,8 @@ function PlasmicAddServise__RenderFunc(props: {
                           }
                         }).apply(null, eventArgs);
                       },
+                      placeholder:
+                        "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u062a\u06a9\u0645\u06cc\u0644\u06cc",
                       type: "line",
                       value: generateStateValueProp($state, [
                         "description",
@@ -587,7 +592,8 @@ function PlasmicAddServise__RenderFunc(props: {
                             }
                           }).apply(null, eventArgs);
                         },
-                        placeholder: "0 \u062f\u0642\u06cc\u0642\u0647",
+                        placeholder:
+                          "\u0645\u062f\u062a \u0632\u0645\u0627\u0646 (\u0628\u0647 \u062f\u0642\u06cc\u0642\u0647) - \u0645\u062b\u0627\u0644: 20",
                         type: "line",
                         value: generateStateValueProp($state, [
                           "time",
@@ -601,8 +607,7 @@ function PlasmicAddServise__RenderFunc(props: {
                         [
                           {
                             name: "time[].value",
-                            initFunc: ({ $props, $state, $queries, $q }) =>
-                              undefined
+                            initFunc: ({ $props, $state, $queries, $q }) => "60"
                           }
                         ],
                         [__plasmic_idx_0]
@@ -675,7 +680,8 @@ function PlasmicAddServise__RenderFunc(props: {
                             }
                           }).apply(null, eventArgs);
                         },
-                        placeholder: "15 \u062f\u0642\u06cc\u0642\u0647",
+                        placeholder:
+                          "\u0641\u0627\u0635\u0644\u0647 \u0628\u06cc\u0646 \u0646\u0648\u0628\u062a\u200c\u0647\u0627 (\u0645\u062b\u0627\u0644: 10 \u062f\u0642\u06cc\u0642\u0647)",
                         type: "line",
                         value: generateStateValueProp($state, [
                           "time2",
@@ -689,8 +695,7 @@ function PlasmicAddServise__RenderFunc(props: {
                         [
                           {
                             name: "time2[].value",
-                            initFunc: ({ $props, $state, $queries, $q }) =>
-                              undefined
+                            initFunc: ({ $props, $state, $queries, $q }) => "10"
                           }
                         ],
                         [__plasmic_idx_0]
@@ -763,6 +768,8 @@ function PlasmicAddServise__RenderFunc(props: {
                             }
                           }).apply(null, eventArgs);
                         },
+                        placeholder:
+                          "\u0642\u06cc\u0645\u062a (\u062a\u0648\u0645\u0627\u0646)",
                         type: "line",
                         value: generateStateValueProp($state, [
                           "prise",
@@ -777,7 +784,7 @@ function PlasmicAddServise__RenderFunc(props: {
                           {
                             name: "prise[].value",
                             initFunc: ({ $props, $state, $queries, $q }) =>
-                              undefined
+                              "300000"
                           }
                         ],
                         [__plasmic_idx_0]
@@ -917,6 +924,10 @@ function PlasmicAddServise__RenderFunc(props: {
                                 value: "in_person"
                               },
                               {
+                                label: "رایگان",
+                                value: "in_person"
+                              },
+                              {
                                 label: "آنلاین و حضوری",
                                 value: "both"
                               }
@@ -1025,7 +1036,8 @@ function PlasmicAddServise__RenderFunc(props: {
                           return;
                         }
                       },
-                      placeholder: ``,
+                      placeholder:
+                        "\u0631\u0648\u0634 \u067e\u0631\u062f\u0627\u062e\u062a (\u0622\u0646\u0644\u0627\u06cc\u0646 / \u062d\u0636\u0648\u0631\u06cc)",
                       showLabel: false,
                       type: "line",
                       value: generateStateValueProp($state, [

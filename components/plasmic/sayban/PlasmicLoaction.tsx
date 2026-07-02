@@ -260,7 +260,8 @@ function PlasmicLoaction__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        "dark"
       )}
     >
       <Embed
@@ -407,6 +408,9 @@ function PlasmicLoaction__RenderFunc(props: {
                 return;
               }
             }}
+            placeholder={
+              "\u0645\u062b\u0627\u0644: \u062a\u0647\u0631\u0627\u0646"
+            }
             type={"line"}
             value={generateStateValueProp($state, ["state", "value"])}
           />
@@ -434,6 +438,9 @@ function PlasmicLoaction__RenderFunc(props: {
                 return;
               }
             }}
+            placeholder={
+              "\u0645\u062b\u0627\u0644: \u062a\u0647\u0631\u0627\u0646"
+            }
             type={"line"}
             value={generateStateValueProp($state, ["city", "value"])}
           />
@@ -462,6 +469,9 @@ function PlasmicLoaction__RenderFunc(props: {
             }
           }}
           padded={[]}
+          placeholder={
+            "\u0645\u062b\u0627\u0644: \u062a\u0647\u0631\u0627\u0646\u060c \u062e\u06cc\u0627\u0628\u0627\u0646 \u0648\u0644\u06cc\u0639\u0635\u0631\u060c \u067e\u0644\u0627\u06a9 \u06f1\u06f2"
+          }
           readOnly={false}
           type={"line"}
           value={generateStateValueProp($state, ["loaction", "value"])}
@@ -523,6 +533,9 @@ function PlasmicLoaction__RenderFunc(props: {
               return;
             }
           }}
+          placeholder={
+            "\u0634\u0645\u0627\u0631\u0647 \u062a\u0645\u0627\u0633 (\u0645\u0648\u0628\u0627\u06cc\u0644 \u06cc\u0627 \u062b\u0627\u0628\u062a)"
+          }
           type={"line"}
           value={generateStateValueProp($state, ["call", "value"])}
         />

@@ -71,12 +71,17 @@ createPlasmicElementProxy;
 
 export type PlasmicTags__VariantMembers = {
   lable: "lable";
+  disabel: "disabel";
 };
 export type PlasmicTags__VariantsArgs = {
   lable?: SingleBooleanChoiceArg<"lable">;
+  disabel?: SingleBooleanChoiceArg<"disabel">;
 };
 type VariantPropType = keyof PlasmicTags__VariantsArgs;
-export const PlasmicTags__VariantProps = new Array<VariantPropType>("lable");
+export const PlasmicTags__VariantProps = new Array<VariantPropType>(
+  "lable",
+  "disabel"
+);
 
 export type PlasmicTags__ArgsType = {
   select3Value?: string;
@@ -101,6 +106,7 @@ export interface DefaultTagsProps {
   onSelect3ValueChange?: (val: string) => void;
   tagsitem?: any;
   lable?: SingleBooleanChoiceArg<"lable">;
+  disabel?: SingleBooleanChoiceArg<"disabel">;
   className?: string;
 }
 
@@ -158,6 +164,12 @@ function PlasmicTags__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.lable
+      },
+      {
+        path: "disabel",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.disabel
       }
     ],
     [$props, $ctx, $refs]
@@ -204,7 +216,9 @@ function PlasmicTags__RenderFunc(props: {
         allowClear={false}
         autoFocus={false}
         bordered={true}
-        className={classNames("__wab_instance", sty.tags)}
+        className={classNames("__wab_instance", sty.tags, {
+          [sty.tagsdisabel]: hasVariant($state, "disabel", "disabel")
+        })}
         defaultOpen={false}
         defaultStylesClassName={classNames(
           "root_reset_qARqpE4p5tZmJuNxFbTaPz",
@@ -212,6 +226,7 @@ function PlasmicTags__RenderFunc(props: {
           "plasmic_mixins",
           styleTokensClassNames
         )}
+        disabled={hasVariant($state, "disabel", "disabel") ? true : undefined}
         mode={"tags"}
         onChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["tags", "value"]).apply(

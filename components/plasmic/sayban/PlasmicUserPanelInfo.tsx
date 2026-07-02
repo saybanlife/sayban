@@ -248,7 +248,8 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        "dark"
       )}
     >
       <div
@@ -302,6 +303,7 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
                   return;
                 }
               }}
+              placeholder={"\u0646\u0627\u0645 \u06a9\u0627\u0631\u0628\u0631"}
               type={"line"}
               value={generateStateValueProp($state, ["name", "value"])}
             />
@@ -338,6 +340,7 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
                 return;
               }
             }}
+            placeholder={"example@email.com"}
             type={"line"}
             value={generateStateValueProp($state, ["email", "value"])}
           />
@@ -365,6 +368,7 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
                 return;
               }
             }}
+            placeholder={"09xxxxxxxxx"}
             type={"line"}
             value={generateStateValueProp($state, ["mobile", "value"])}
           />
@@ -398,6 +402,9 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
                 return;
               }
             }}
+            placeholder={
+              "\u062d\u062f\u0627\u0642\u0644 8 \u06a9\u0627\u0631\u0627\u06a9\u062a\u0631"
+            }
             type={"line"}
             value={generateStateValueProp($state, ["password", "value"])}
           />

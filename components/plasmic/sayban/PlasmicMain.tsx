@@ -321,7 +321,7 @@ function PlasmicMain__RenderFunc(props: {
         path: "loaction.address",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "loaction.lon",
@@ -442,7 +442,8 @@ function PlasmicMain__RenderFunc(props: {
         path: "centerInfo.description",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u062a\u06a9\u0645\u06cc\u0644\u06cc"
       },
       {
         path: "centerInfo.tag",
@@ -925,6 +926,12 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "centerInfo.refresh",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -2453,7 +2460,10 @@ function PlasmicMain__RenderFunc(props: {
             eventArgs
           );
         }}
-        params={{ page: $state.page }}
+        params={{
+          page: $state.page,
+          r: $state.centerInfo.refresh
+        }}
         shouldFetch={(() => {
           try {
             return $state.page != null;
@@ -3649,6 +3659,20 @@ function PlasmicMain__RenderFunc(props: {
                       return;
                     }
                   }}
+                  onRefreshChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "centerInfo",
+                      "refresh"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
                   onSubcategory2Change={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "centerInfo",
@@ -3691,6 +3715,10 @@ function PlasmicMain__RenderFunc(props: {
                       return;
                     }
                   }}
+                  refresh={generateStateValueProp($state, [
+                    "centerInfo",
+                    "refresh"
+                  ])}
                   subcategory2={generateStateValueProp($state, [
                     "centerInfo",
                     "subcategory2"

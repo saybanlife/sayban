@@ -29445,6 +29445,32 @@
           "cssFilePath": "plasmic/sayban/PlasmicServicePage.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "qeMB46LjWCSW",
+          "name": "AddServisePage",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicAddServisePage.tsx",
+          "importSpec": {
+            "modulePath": "AddServisePage.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicAddServisePage.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "u73vHai14kpP",
+          "name": "AddTags",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicAddTags.tsx",
+          "importSpec": {
+            "modulePath": "AddTags.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicAddTags.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
