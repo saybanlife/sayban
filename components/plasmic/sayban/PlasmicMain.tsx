@@ -85,6 +85,7 @@ import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
 import ProfilePage from "../../ProfilePage"; // plasmic-import: -7D4X813T-mx/component
 import MainPagePayment from "../../MainPagePayment"; // plasmic-import: mfeVOEZjveoq/component
 import UserMain from "../../UserMain"; // plasmic-import: cBSVDnOcnP2x/component
+import ServicePage from "../../ServicePage"; // plasmic-import: DKFJiURVeYup/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -108,7 +109,8 @@ export type PlasmicMain__VariantMembers = {
     | "services"
     | "profile"
     | "payments"
-    | "user";
+    | "user"
+    | "service";
 };
 export type PlasmicMain__VariantsArgs = {
   page?: SingleChoiceArg<
@@ -121,6 +123,7 @@ export type PlasmicMain__VariantsArgs = {
     | "profile"
     | "payments"
     | "user"
+    | "service"
   >;
 };
 type VariantPropType = keyof PlasmicMain__VariantsArgs;
@@ -133,6 +136,7 @@ export type PlasmicMain__ArgsType = {
   token?: string;
   state?: string;
   userId?: string;
+  serviceId?: string;
 };
 type ArgPropType = keyof PlasmicMain__ArgsType;
 export const PlasmicMain__ArgProps = new Array<ArgPropType>(
@@ -141,7 +145,8 @@ export const PlasmicMain__ArgProps = new Array<ArgPropType>(
   "onRoleChange",
   "token",
   "state",
-  "userId"
+  "userId",
+  "serviceId"
 );
 
 export type PlasmicMain__OverridesType = {
@@ -184,6 +189,7 @@ export type PlasmicMain__OverridesType = {
   profilePage?: Flex__<typeof ProfilePage>;
   mainPagePayment?: Flex__<typeof MainPagePayment>;
   userMain?: Flex__<typeof UserMain>;
+  servicePage?: Flex__<typeof ServicePage>;
 };
 
 export interface DefaultMainProps {
@@ -193,6 +199,7 @@ export interface DefaultMainProps {
   token?: string;
   state?: string;
   userId?: string;
+  serviceId?: string;
   page?: SingleChoiceArg<
     | "centers"
     | "center"
@@ -203,6 +210,7 @@ export interface DefaultMainProps {
     | "profile"
     | "payments"
     | "user"
+    | "service"
   >;
   className?: string;
 }
@@ -932,6 +940,24 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "servicePage.categpty",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "servicePage.apiRequestData",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "servicePage.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -1052,6 +1078,11 @@ function PlasmicMain__RenderFunc(props: {
             $state,
             "page",
             "reservations"
+          ),
+          [sty.mainPageCenterpage_service]: hasVariant(
+            $state,
+            "page",
+            "service"
           ),
           [sty.mainPageCenterpage_services]: hasVariant(
             $state,
@@ -1417,6 +1448,7 @@ function PlasmicMain__RenderFunc(props: {
             "page",
             "reservations"
           ),
+          [sty.centerPagepage_service]: hasVariant($state, "page", "service"),
           [sty.centerPagepage_services]: hasVariant($state, "page", "services")
         })}
         data={generateStateValueProp($state, ["centerPage", "data"])}
@@ -4825,6 +4857,75 @@ function PlasmicMain__RenderFunc(props: {
           }
         })()}
       />
+
+      <ServicePage
+        data-plasmic-name={"servicePage"}
+        data-plasmic-override={overrides.servicePage}
+        apiRequestData={generateStateValueProp($state, [
+          "servicePage",
+          "apiRequestData"
+        ])}
+        categpty={generateStateValueProp($state, ["servicePage", "categpty"])}
+        className={classNames("__wab_instance", sty.servicePage, {
+          [sty.servicePagepage_service]: hasVariant($state, "page", "service")
+        })}
+        data={generateStateValueProp($state, ["servicePage", "data"])}
+        id={(() => {
+          try {
+            return $props.serviceId;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+        onApiRequestDataChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "servicePage",
+            "apiRequestData"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onCategptyChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["servicePage", "categpty"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onDataChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["servicePage", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+      />
     </div>
   ) as React.ReactElement | null;
 }
@@ -4869,7 +4970,8 @@ const PlasmicDescendants = {
     "button3",
     "profilePage",
     "mainPagePayment",
-    "userMain"
+    "userMain",
+    "servicePage"
   ],
   topPage: ["topPage"],
   mainPageCenter: ["mainPageCenter"],
@@ -4935,7 +5037,8 @@ const PlasmicDescendants = {
   button3: ["button3"],
   profilePage: ["profilePage"],
   mainPagePayment: ["mainPagePayment"],
-  userMain: ["userMain"]
+  userMain: ["userMain"],
+  servicePage: ["servicePage"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -4980,6 +5083,7 @@ type NodeDefaultElementType = {
   profilePage: typeof ProfilePage;
   mainPagePayment: typeof MainPagePayment;
   userMain: typeof UserMain;
+  servicePage: typeof ServicePage;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -5082,6 +5186,7 @@ export const PlasmicMain = Object.assign(
     profilePage: makeNodeComponent("profilePage"),
     mainPagePayment: makeNodeComponent("mainPagePayment"),
     userMain: makeNodeComponent("userMain"),
+    servicePage: makeNodeComponent("servicePage"),
 
     // Metadata about props expected for PlasmicMain
     internalVariantProps: PlasmicMain__VariantProps,

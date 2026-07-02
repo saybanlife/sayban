@@ -74,6 +74,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import sty from "./PlasmicAddServise2.module.css"; // plasmic-import: ldHafC0LATYt/css
 
 import ChevronLeftIcon from "./icons/PlasmicIcon__ChevronLeft"; // plasmic-import: vQC4_6sr1Yuo/icon
+import Icon270Icon from "./icons/PlasmicIcon__Icon270"; // plasmic-import: xtBcS_RDta6A/icon
 import Icon58Icon from "./icons/PlasmicIcon__Icon58"; // plasmic-import: ZZecBkDFVPaA/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
@@ -327,38 +328,86 @@ function PlasmicAddServise2__RenderFunc(props: {
 
             expandIconPosition: "end",
             extra: (
-              <Icon58Icon
-                className={classNames("all", sty.svg__an7Lw)}
-                onClick={async event => {
-                  const $steps = {};
+              <div className={classNames("all", sty.freeBox__rDf2)}>
+                <Icon270Icon
+                  className={classNames("all", sty.svg__an7Lw)}
+                  onClick={async event => {
+                    const $steps = {};
 
-                  $steps["runCode"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          customFunction: async () => {
-                            return (() => {
-                              $state.snackbar.data = currentItem;
-                              return ($state.snackbar.opendialog = true);
-                            })();
-                          }
-                        };
-                        return (({ customFunction }) => {
-                          return customFunction();
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runCode"] != null &&
-                    typeof $steps["runCode"] === "object" &&
-                    typeof $steps["runCode"].then === "function"
-                  ) {
-                    $steps["runCode"] = await $steps["runCode"];
-                  }
-                }}
-                role={"img"}
-              />
+                    $steps["goToPanel"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/panel/${(() => {
+                              try {
+                                return `service-${currentItem.id}`;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToPanel"] != null &&
+                      typeof $steps["goToPanel"] === "object" &&
+                      typeof $steps["goToPanel"].then === "function"
+                    ) {
+                      $steps["goToPanel"] = await $steps["goToPanel"];
+                    }
+                  }}
+                  role={"img"}
+                />
+
+                <Icon58Icon
+                  className={classNames("all", sty.svg__xR0BL)}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return (() => {
+                                $state.snackbar.data = currentItem;
+                                return ($state.snackbar.opendialog = true);
+                              })();
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+                  }}
+                  role={"img"}
+                />
+              </div>
             ),
-
             key: currentIndex,
             label2: (
               <div className={classNames("all", "__wab_text", sty.text__yGv7B)}>

@@ -627,3 +627,14 @@
 .userMainpage_user:global(.__wab_instance) {
   display: flex;
 }
+.servicePage:global(.__wab_instance) {
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  display: none;
+}
+.servicePagepage_service:global(.__wab_instance) {
+  display: flex;
+}

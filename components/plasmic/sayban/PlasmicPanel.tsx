@@ -928,6 +928,7 @@ function PlasmicPanel__RenderFunc(props: {
                     return (() => {
                       const page = $ctx.params.page?.[0] ?? "";
                       if (page.startsWith("center-")) return "center";
+                      if (page.startsWith("service-")) return "service";
                       if (page.startsWith("user-")) return "user";
                       return $ctx.params.page?.[0];
                     })();
@@ -942,6 +943,21 @@ function PlasmicPanel__RenderFunc(props: {
                   }
                 })()}
                 role={generateStateValueProp($state, ["main", "role"])}
+                serviceId={(() => {
+                  try {
+                    return $ctx.params?.page?.[0]?.startsWith("service-")
+                      ? $ctx.params.page[0].split("-")[1]
+                      : null;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
                 state={(() => {
                   try {
                     return $state.state;
