@@ -86,11 +86,13 @@ export const PlasmicAddServise__VariantProps = new Array<VariantPropType>();
 export type PlasmicAddServise__ArgsType = {
   servises?: any;
   onServisesChange?: (val: string) => void;
+  centerId?: string;
 };
 type ArgPropType = keyof PlasmicAddServise__ArgsType;
 export const PlasmicAddServise__ArgProps = new Array<ArgPropType>(
   "servises",
-  "onServisesChange"
+  "onServisesChange",
+  "centerId"
 );
 
 export type PlasmicAddServise__OverridesType = {
@@ -110,6 +112,7 @@ export type PlasmicAddServise__OverridesType = {
 export interface DefaultAddServiseProps {
   servises?: any;
   onServisesChange?: (val: string) => void;
+  centerId?: string;
   className?: string;
 }
 
@@ -573,9 +576,16 @@ function PlasmicAddServise__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].time = $state.time[currentIndex].value);
+                                      return (() => {
+                                        $state.time[currentIndex].value =
+                                          $state.time[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].duration_minutes =
+                                          $state.time[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -660,10 +670,16 @@ function PlasmicAddServise__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].time2 =
-                                        $state.time2[currentIndex].value);
+                                      return (() => {
+                                        $state.time2[currentIndex].value =
+                                          $state.time2[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].buffer_minutes =
+                                          $state.time2[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -748,10 +764,16 @@ function PlasmicAddServise__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].prise =
-                                        $state.prise[currentIndex].value);
+                                      return (() => {
+                                        $state.prise[currentIndex].value =
+                                          $state.prise[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].prise =
+                                          $state.prise[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -849,9 +871,16 @@ function PlasmicAddServise__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].off = $state.off[currentIndex].value);
+                                      return (() => {
+                                        $state.off[currentIndex].value =
+                                          $state.off[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].discount_percent =
+                                          $state.off[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -1101,7 +1130,7 @@ function PlasmicAddServise__RenderFunc(props: {
             ? (() => {
                 const actionArgs = {
                   customFunction: async () => {
-                    return $state.servises.push({});
+                    return $state.servises.push({ center_id: $props.centerId });
                   }
                 };
                 return (({ customFunction }) => {

@@ -65,8 +65,9 @@ import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-impor
 import Service2 from "../../Service2"; // plasmic-import: -12Fp4g9XO2-/component
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
-import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo/component
-import Checkbox from "../../Checkbox"; // plasmic-import: 7eMtZduHzknK/component
+import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
+import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
+import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -110,13 +111,14 @@ export type PlasmicPayment__OverridesType = {
   img?: Flex__<typeof PlasmicImg__>;
   textCollapse?: Flex__<typeof TextCollapse>;
   description?: Flex__<typeof TextAreaInput>;
-  checkboxGroup?: Flex__<typeof CheckboxGroup>;
-  option1?: Flex__<typeof Checkbox>;
+  radioGroup?: Flex__<typeof RadioGroup>;
+  menuIcon?: Flex__<typeof MenuIcon>;
+  radio?: Flex__<typeof Radio>;
   section?: Flex__<"section">;
   online?: Flex__<"div">;
   button?: Flex__<typeof Button>;
   inPerson?: Flex__<"div">;
-  button2?: Flex__<typeof Button>;
+  button3?: Flex__<typeof Button>;
 };
 
 export interface DefaultPaymentProps {
@@ -294,73 +296,6 @@ function PlasmicPayment__RenderFunc(props: {
           })()
       },
       {
-        path: "checkboxGroup.value",
-        type: "private",
-        variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          hasVariant(globalVariants, "screen", "mobileOnly")
-            ? (() => {
-                try {
-                  return undefined;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()
-            : (() => {
-                try {
-                  return (() => {
-                    const paymentOptions = [
-                      {
-                        value: "online",
-                        label: "پرداخت آنلاین",
-                        description: "پرداخت فقط به صورت آنلاین امکان‌پذیر است."
-                      },
-                      {
-                        value: "in_person",
-                        label: "پرداخت حضوری",
-                        description: "پرداخت فقط به صورت حضوری امکان‌پذیر است."
-                      }
-                    ];
-
-                    function getPayments(method) {
-                      if (method === "both") return paymentOptions;
-                      return paymentOptions.filter(
-                        item => item.value === method
-                      );
-                    }
-                    return getPayments(
-                      $state.basic.data.result.service.payment_method
-                    )[0].value;
-                  })();
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return [];
-                  }
-                  throw e;
-                }
-              })()
-      },
-      {
-        path: "option1[].isSelected",
-        type: "private",
-        variableType: "boolean"
-      },
-      {
-        path: "button2.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
         path: "description.value",
         type: "private",
         variableType: "text",
@@ -371,12 +306,44 @@ function PlasmicPayment__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "radioGroup.value",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            const paymentOptions = [
+              {
+                value: "online",
+                label: "پرداخت آنلاین",
+                description: "پرداخت فقط به صورت آنلاین امکان‌پذیر است."
+              },
+              {
+                value: "in_person",
+                label: "پرداخت حضوری",
+                description: "پرداخت فقط به صورت حضوری امکان‌پذیر است."
+              }
+            ];
+
+            function getPayments(method) {
+              if (method === "both") return paymentOptions;
+              return paymentOptions.filter(item => item.value === method);
+            }
+            return getPayments(
+              $state.basic?.data?.result?.service?.payment_method
+            )[0]?.value;
+          })()
+      },
+      {
+        path: "button3.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
   );
-
-  const globalVariants = _useGlobalVariants();
 
   const $globalActions = useGlobalActions?.();
 
@@ -738,16 +705,13 @@ function PlasmicPayment__RenderFunc(props: {
                         }
                       </div>
                     </div>
-                    <CheckboxGroup
-                      data-plasmic-name={"checkboxGroup"}
-                      data-plasmic-override={overrides.checkboxGroup}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.checkboxGroup
-                      )}
+                    <RadioGroup
+                      data-plasmic-name={"radioGroup"}
+                      data-plasmic-override={overrides.radioGroup}
+                      className={classNames("__wab_instance", sty.radioGroup)}
                       onChange={async (...eventArgs: any) => {
                         generateStateOnChangeProp($state, [
-                          "checkboxGroup",
+                          "radioGroup",
                           "value"
                         ]).apply(null, eventArgs);
 
@@ -758,253 +722,168 @@ function PlasmicPayment__RenderFunc(props: {
                         ) {
                           return;
                         }
-
-                        (async val => {
-                          const $steps = {};
-
-                          $steps["updateCheckboxGroupValue"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["checkboxGroup", "value"]
-                                  },
-                                  operation: 0
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["updateCheckboxGroupValue"] != null &&
-                            typeof $steps["updateCheckboxGroupValue"] ===
-                              "object" &&
-                            typeof $steps["updateCheckboxGroupValue"].then ===
-                              "function"
-                          ) {
-                            $steps["updateCheckboxGroupValue"] =
-                              await $steps["updateCheckboxGroupValue"];
-                          }
-                        }).apply(null, eventArgs);
                       }}
-                      options={(_par =>
-                        !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                        (() => {
-                          try {
-                            return (() => {
-                              const paymentOptions = [
-                                {
-                                  value: "online",
-                                  label: "پرداخت آنلاین",
-                                  description:
-                                    "پرداخت فقط به صورت آنلاین امکان‌پذیر است."
-                                },
-                                {
-                                  value: "in_person",
-                                  label: "پرداخت حضوری",
-                                  description:
-                                    "پرداخت فقط به صورت حضوری امکان‌پذیر است."
-                                }
-                              ];
-
-                              function getPayments(method) {
-                                if (method === "both") return paymentOptions;
-                                return paymentOptions.filter(
-                                  item => item.value === method
-                                );
-                              }
-                              return getPayments(
-                                $state.basic.data.result.service.payment_method
-                              );
-                            })();
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return [];
-                            }
-                            throw e;
-                          }
-                        })()
-                      ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                        const currentItem = __plasmic_item_0;
-                        const currentIndex = __plasmic_idx_0;
-                        return (
-                          <div
-                            className={classNames("all", sty.freeBox__lQ8Ia)}
-                            key={currentIndex}
-                          >
-                            {(() => {
-                              const child$Props = {
-                                className: classNames(
-                                  "__wab_instance",
-                                  sty.option1
-                                ),
-                                icon: (() => {
-                                  try {
-                                    return currentItem.value;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
+                      options={
+                        <div className={classNames("all", sty.freeBox__azMmh)}>
+                          {(_par =>
+                            !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                            (() => {
+                              try {
+                                return (() => {
+                                  const paymentOptions = [
+                                    {
+                                      value: "online",
+                                      label: "پرداخت آنلاین",
+                                      description:
+                                        "پرداخت فقط به صورت آنلاین امکان‌پذیر است."
+                                    },
+                                    {
+                                      value: "in_person",
+                                      label: "پرداخت حضوری",
+                                      description:
+                                        "پرداخت فقط به صورت حضوری امکان‌پذیر است."
                                     }
-                                    throw e;
+                                  ];
+
+                                  function getPayments(method) {
+                                    if (method === "both")
+                                      return paymentOptions;
+                                    return paymentOptions.filter(
+                                      item => item.value === method
+                                    );
                                   }
-                                })(),
-                                isSelected: generateStateValueProp($state, [
-                                  "option1",
-                                  __plasmic_idx_0,
-                                  "isSelected"
-                                ]),
-                                label: (
-                                  <div
-                                    className={classNames(
-                                      "all",
-                                      "__wab_text",
-                                      sty.text__xa1Le
-                                    )}
-                                  >
-                                    <React.Fragment>
-                                      {(() => {
+                                  return getPayments(
+                                    $state.basic.data.result.service
+                                      .payment_method
+                                  );
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return [];
+                                }
+                                throw e;
+                              }
+                            })()
+                          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                            const currentItem = __plasmic_item_0;
+                            const currentIndex = __plasmic_idx_0;
+                            return (
+                              <div
+                                className={classNames(
+                                  "all",
+                                  sty.freeBox__hlKky
+                                )}
+                                key={currentIndex}
+                              >
+                                <div
+                                  className={classNames(
+                                    "all",
+                                    sty.freeBox__xApBf
+                                  )}
+                                >
+                                  {(() => {
+                                    try {
+                                      return true;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return true;
+                                      }
+                                      throw e;
+                                    }
+                                  })() ? (
+                                    <MenuIcon
+                                      data-plasmic-name={"menuIcon"}
+                                      data-plasmic-override={overrides.menuIcon}
+                                      className={classNames(
+                                        "__wab_instance",
+                                        sty.menuIcon
+                                      )}
+                                      icons={(() => {
                                         try {
-                                          return currentItem.label;
+                                          return currentItem.value;
                                         } catch (e) {
                                           if (
                                             e instanceof TypeError ||
                                             e?.plasmicType ===
                                               "PlasmicUndefinedDataError"
                                           ) {
-                                            return "Option 1";
+                                            return [];
                                           }
                                           throw e;
                                         }
                                       })()}
-                                    </React.Fragment>
+                                      size={"_25"}
+                                    />
+                                  ) : null}
+                                  <div
+                                    className={classNames(
+                                      "all",
+                                      sty.freeBox__ayYVs
+                                    )}
+                                  >
+                                    <div
+                                      className={classNames(
+                                        "all",
+                                        "__wab_text",
+                                        sty.text__jDoV
+                                      )}
+                                    >
+                                      <React.Fragment>
+                                        {currentItem.label}
+                                      </React.Fragment>
+                                    </div>
+                                    <div
+                                      className={classNames(
+                                        "all",
+                                        "__wab_text",
+                                        sty.text__zuShO
+                                      )}
+                                    >
+                                      <React.Fragment>
+                                        {currentItem.description}
+                                      </React.Fragment>
+                                    </div>
                                   </div>
-                                ),
-                                onChange: async (...eventArgs: any) => {
-                                  generateStateOnChangeProp($state, [
-                                    "option1",
-                                    __plasmic_idx_0,
-                                    "isSelected"
-                                  ]).apply(null, eventArgs);
-
-                                  if (
-                                    eventArgs.length > 1 &&
-                                    eventArgs[1] &&
-                                    eventArgs[1]._plasmic_state_init_
-                                  ) {
-                                    return;
-                                  }
-                                },
-                                shape: "circle",
-                                value: hasVariant(
-                                  globalVariants,
-                                  "screen",
-                                  "mobileOnly"
-                                )
-                                  ? (() => {
-                                      try {
-                                        return currentItem.value;
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
+                                </div>
+                                <Radio
+                                  data-plasmic-name={"radio"}
+                                  data-plasmic-override={overrides.radio}
+                                  className={classNames(
+                                    "__wab_instance",
+                                    sty.radio
+                                  )}
+                                  disabled={false}
+                                  label={null}
+                                  value={(() => {
+                                    try {
+                                      return currentItem.value;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
                                       }
-                                    })()
-                                  : (() => {
-                                      try {
-                                        return currentItem.value;
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                              };
-
-                              initializePlasmicStates(
-                                $state,
-                                [
-                                  {
-                                    name: "option1[].isSelected",
-                                    initFunc: ({
-                                      $props,
-                                      $state,
-                                      $queries,
-                                      $q
-                                    }) => false
-                                  }
-                                ],
-                                [__plasmic_idx_0]
-                              );
-                              return (
-                                <Checkbox
-                                  data-plasmic-name={"option1"}
-                                  data-plasmic-override={overrides.option1}
-                                  {...child$Props}
-                                >
-                                  <React.Fragment>
-                                    {currentItem.description}
-                                  </React.Fragment>
-                                </Checkbox>
-                              );
-                            })()}
-                            {(() => {
-                              try {
-                                return true;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return true;
-                                }
-                                throw e;
-                              }
-                            })() ? (
-                              <div
-                                className={classNames(
-                                  "all",
-                                  "__wab_text",
-                                  sty.text__rItN4
-                                )}
-                              >
-                                {""}
+                                      throw e;
+                                    }
+                                  })()}
+                                />
                               </div>
-                            ) : null}
-                          </div>
-                        );
-                      })}
+                            );
+                          })}
+                        </div>
+                      }
                       showLabel={false}
                       value={generateStateValueProp($state, [
-                        "checkboxGroup",
+                        "radioGroup",
                         "value"
                       ])}
                     />
@@ -1121,7 +1000,10 @@ function PlasmicPayment__RenderFunc(props: {
             </div>
             {(() => {
               try {
-                return $state.checkboxGroup.value == "online";
+                return (
+                  $state.radioGroup.value == "online" &&
+                  $state.basic.data?.result?.payment?.final_price != 0
+                );
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -1267,7 +1149,7 @@ function PlasmicPayment__RenderFunc(props: {
                                     amount:
                                       $state.basic.data.result.payment
                                         .final_price,
-                                    payment_method: $state.checkboxGroup.value,
+                                    payment_method: $state.radioGroup.value,
                                     description: $state.description.value,
                                     status: "pending"
                                   };
@@ -1402,7 +1284,10 @@ function PlasmicPayment__RenderFunc(props: {
             ) : null}
             {(() => {
               try {
-                return $state.checkboxGroup.value == "in_person";
+                return (
+                  $state.radioGroup.value == "in_person" ||
+                  $state.basic.data?.result?.payment?.final_price == 0
+                );
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -1418,37 +1303,212 @@ function PlasmicPayment__RenderFunc(props: {
                 data-plasmic-override={overrides.inPerson}
                 className={classNames("all", sty.inPerson)}
               >
-                <div className={classNames("all", sty.freeBox__vWvh7)}>
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__jYNaO)}
-                  >
-                    <React.Fragment>
-                      {"هزینه به‌صورت حضوری دریافت می‌شود."}
-                    </React.Fragment>
-                  </div>
-                </div>
                 <Button
-                  data-plasmic-name={"button2"}
-                  data-plasmic-override={overrides.button2}
-                  className={classNames("__wab_instance", sty.button2)}
+                  data-plasmic-name={"button3"}
+                  data-plasmic-override={overrides.button3}
+                  className={classNames("__wab_instance", sty.button3)}
                   label={
                     <div
                       className={classNames(
                         "all",
                         "__wab_text",
-                        sty.text__jHJv
+                        sty.text__ubxR
                       )}
                     >
                       {"\u0631\u0632\u0631\u0648 \u0632\u0645\u0627\u0646"}
                     </div>
                   }
                   loading={generateStateValueProp($state, [
-                    "button2",
+                    "button3",
                     "loading"
                   ])}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return ($state.button3.loading = true);
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+
+                    $steps["pay"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "POST",
+                              "/reservations/update",
+                              undefined,
+                              (() => {
+                                try {
+                                  return {
+                                    id: $props.id,
+                                    payment_status: "paid",
+                                    type: $state.basic.data.result.name,
+                                    type: $state.basic.data.result.name,
+                                    amount:
+                                      $state.basic.data.result.payment
+                                        .final_price,
+                                    payment_method: $state.radioGroup.value,
+                                    description: $state.description.value,
+                                    status: "pending"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })(),
+                              (() => {
+                                try {
+                                  return {
+                                    headers: {
+                                      Authorization: `Bearer ${$props.token}`
+                                    }
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["pay"] != null &&
+                      typeof $steps["pay"] === "object" &&
+                      typeof $steps["pay"].then === "function"
+                    ) {
+                      $steps["pay"] = await $steps["pay"];
+                    }
+
+                    $steps["runCode3"] = $steps.pay?.data?.success
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/${"home"}/${""}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode3"] != null &&
+                      typeof $steps["runCode3"] === "object" &&
+                      typeof $steps["runCode3"].then === "function"
+                    ) {
+                      $steps["runCode3"] = await $steps["runCode3"];
+                    }
+
+                    $steps["invokeGlobalAction"] = !$steps.pay?.data?.success
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "error",
+                              "\u0645\u0634\u06a9\u0644\u06cc \u0631\u062e \u062f\u0627\u062f. \u0644\u0637\u0641\u0627\u064b \u062f\u0648\u0628\u0627\u0631\u0647 \u062a\u0644\u0627\u0634 \u06a9\u0646\u06cc\u062f.",
+                              "bottom-center"
+                            ]
+                          };
+                          return $globalActions["Fragment.showToast"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["invokeGlobalAction"] != null &&
+                      typeof $steps["invokeGlobalAction"] === "object" &&
+                      typeof $steps["invokeGlobalAction"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction"] =
+                        await $steps["invokeGlobalAction"];
+                    }
+
+                    $steps["invokeGlobalAction2"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "success",
+                              "\u0631\u0632\u0631\u0648 \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f.",
+                              "bottom-center"
+                            ]
+                          };
+                          return $globalActions["Fragment.showToast"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["invokeGlobalAction2"] != null &&
+                      typeof $steps["invokeGlobalAction2"] === "object" &&
+                      typeof $steps["invokeGlobalAction2"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction2"] =
+                        await $steps["invokeGlobalAction2"];
+                    }
+
+                    $steps["runCode2"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return ($state.button3.loading = false);
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode2"] != null &&
+                      typeof $steps["runCode2"] === "object" &&
+                      typeof $steps["runCode2"].then === "function"
+                    ) {
+                      $steps["runCode2"] = await $steps["runCode2"];
+                    }
+                  }}
                   onLoadingChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
-                      "button2",
+                      "button3",
                       "loading"
                     ]).apply(null, eventArgs);
 
@@ -1480,13 +1540,14 @@ const PlasmicDescendants = {
     "img",
     "textCollapse",
     "description",
-    "checkboxGroup",
-    "option1",
+    "radioGroup",
+    "menuIcon",
+    "radio",
     "section",
     "online",
     "button",
     "inPerson",
-    "button2"
+    "button3"
   ],
   embedHtml: ["embedHtml"],
   header: ["header"],
@@ -1496,25 +1557,27 @@ const PlasmicDescendants = {
     "img",
     "textCollapse",
     "description",
-    "checkboxGroup",
-    "option1",
+    "radioGroup",
+    "menuIcon",
+    "radio",
     "section",
     "online",
     "button",
     "inPerson",
-    "button2"
+    "button3"
   ],
   service2: ["service2", "img", "textCollapse"],
   img: ["img"],
   textCollapse: ["textCollapse"],
   description: ["description"],
-  checkboxGroup: ["checkboxGroup", "option1"],
-  option1: ["option1"],
-  section: ["section", "online", "button", "inPerson", "button2"],
+  radioGroup: ["radioGroup", "menuIcon", "radio"],
+  menuIcon: ["menuIcon"],
+  radio: ["radio"],
+  section: ["section", "online", "button", "inPerson", "button3"],
   online: ["online", "button"],
   button: ["button"],
-  inPerson: ["inPerson", "button2"],
-  button2: ["button2"]
+  inPerson: ["inPerson", "button3"],
+  button3: ["button3"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1528,13 +1591,14 @@ type NodeDefaultElementType = {
   img: typeof PlasmicImg__;
   textCollapse: typeof TextCollapse;
   description: typeof TextAreaInput;
-  checkboxGroup: typeof CheckboxGroup;
-  option1: typeof Checkbox;
+  radioGroup: typeof RadioGroup;
+  menuIcon: typeof MenuIcon;
+  radio: typeof Radio;
   section: "section";
   online: "div";
   button: typeof Button;
   inPerson: "div";
-  button2: typeof Button;
+  button3: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1606,13 +1670,14 @@ export const PlasmicPayment = Object.assign(
     img: makeNodeComponent("img"),
     textCollapse: makeNodeComponent("textCollapse"),
     description: makeNodeComponent("description"),
-    checkboxGroup: makeNodeComponent("checkboxGroup"),
-    option1: makeNodeComponent("option1"),
+    radioGroup: makeNodeComponent("radioGroup"),
+    menuIcon: makeNodeComponent("menuIcon"),
+    radio: makeNodeComponent("radio"),
     section: makeNodeComponent("section"),
     online: makeNodeComponent("online"),
     button: makeNodeComponent("button"),
     inPerson: makeNodeComponent("inPerson"),
-    button2: makeNodeComponent("button2"),
+    button3: makeNodeComponent("button3"),
 
     // Metadata about props expected for PlasmicPayment
     internalVariantProps: PlasmicPayment__VariantProps,

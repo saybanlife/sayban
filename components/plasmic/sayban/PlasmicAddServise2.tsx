@@ -92,13 +92,15 @@ export type PlasmicAddServise2__ArgsType = {
   onServisesChange?: (val: string) => void;
   restart?: string;
   onRestartChange?: (val: string) => void;
+  centerId?: string;
 };
 type ArgPropType = keyof PlasmicAddServise2__ArgsType;
 export const PlasmicAddServise2__ArgProps = new Array<ArgPropType>(
   "servises",
   "onServisesChange",
   "restart",
-  "onRestartChange"
+  "onRestartChange",
+  "centerId"
 );
 
 export type PlasmicAddServise2__OverridesType = {
@@ -123,6 +125,7 @@ export interface DefaultAddServise2Props {
   onServisesChange?: (val: string) => void;
   restart?: string;
   onRestartChange?: (val: string) => void;
+  centerId?: string;
   className?: string;
 }
 
@@ -329,59 +332,73 @@ function PlasmicAddServise2__RenderFunc(props: {
             expandIconPosition: "end",
             extra: (
               <div className={classNames("all", sty.freeBox__rDf2)}>
-                <Icon270Icon
-                  className={classNames("all", sty.svg__an7Lw)}
-                  onClick={async event => {
-                    const $steps = {};
-
-                    $steps["goToPanel"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            destination: `/panel/${(() => {
-                              try {
-                                return `service-${currentItem.id}`;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()}`
-                          };
-                          return (({ destination }) => {
-                            if (
-                              typeof destination === "string" &&
-                              destination.startsWith("#")
-                            ) {
-                              document
-                                .getElementById(destination.substr(1))
-                                .scrollIntoView({ behavior: "smooth" });
-                            } else {
-                              __nextRouter?.push(destination);
-                            }
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
+                {(() => {
+                  try {
+                    return currentItem.id;
+                  } catch (e) {
                     if (
-                      $steps["goToPanel"] != null &&
-                      typeof $steps["goToPanel"] === "object" &&
-                      typeof $steps["goToPanel"].then === "function"
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
                     ) {
-                      $steps["goToPanel"] = await $steps["goToPanel"];
+                      return true;
                     }
-                  }}
-                  role={"img"}
-                />
+                    throw e;
+                  }
+                })() ? (
+                  <Icon270Icon
+                    className={classNames("all", sty.svg__an7Lw)}
+                    onClick={async event => {
+                      const $steps = {};
 
+                      $steps["goToPanel"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              destination: `/panel/${(() => {
+                                try {
+                                  return `service-${currentItem.id}`;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()}`
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["goToPanel"] != null &&
+                        typeof $steps["goToPanel"] === "object" &&
+                        typeof $steps["goToPanel"].then === "function"
+                      ) {
+                        $steps["goToPanel"] = await $steps["goToPanel"];
+                      }
+                    }}
+                    role={"img"}
+                  />
+                ) : null}
                 <Icon58Icon
                   className={classNames("all", sty.svg__xR0BL)}
                   onClick={async event => {
                     const $steps = {};
 
-                    $steps["runCode"] = true
+                    $steps["runCode"] = currentItem.id
                       ? (() => {
                           const actionArgs = {
                             customFunction: async () => {
@@ -402,6 +419,26 @@ function PlasmicAddServise2__RenderFunc(props: {
                       typeof $steps["runCode"].then === "function"
                     ) {
                       $steps["runCode"] = await $steps["runCode"];
+                    }
+
+                    $steps["runCode2"] = !currentItem.id
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return $state.servises.splice(currentIndex, 1);
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode2"] != null &&
+                      typeof $steps["runCode2"] === "object" &&
+                      typeof $steps["runCode2"].then === "function"
+                    ) {
+                      $steps["runCode2"] = await $steps["runCode2"];
                     }
                   }}
                   role={"img"}
@@ -501,7 +538,7 @@ function PlasmicAddServise2__RenderFunc(props: {
               data-plasmic-override={overrides.collapse}
               {...child$Props}
             >
-              <div className={classNames("all", sty.freeBox__tHlCa)}>
+              <div className={classNames("all", sty.freeBox__tHlCa, "dark")}>
                 <div className={classNames("all", sty.freeBox___2J1Jy)}>
                   <div
                     className={classNames("all", "__wab_text", sty.text__tiCJu)}
@@ -722,9 +759,16 @@ function PlasmicAddServise2__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].time = $state.time[currentIndex].value);
+                                      return (() => {
+                                        $state.time[currentIndex].value =
+                                          $state.time[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].duration_minutes =
+                                          $state.time[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -741,7 +785,8 @@ function PlasmicAddServise2__RenderFunc(props: {
                             }
                           }).apply(null, eventArgs);
                         },
-                        placeholder: "0 \u062f\u0642\u06cc\u0642\u0647",
+                        placeholder:
+                          "\u0628\u0647 \u062f\u0642\u06cc\u0642\u0647",
                         type: "line",
                         value: generateStateValueProp($state, [
                           "time",
@@ -822,10 +867,16 @@ function PlasmicAddServise2__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].time2 =
-                                        $state.time2[currentIndex].value);
+                                      return (() => {
+                                        $state.time2[currentIndex].value =
+                                          $state.time2[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].buffer_minutes =
+                                          $state.time2[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -842,7 +893,8 @@ function PlasmicAddServise2__RenderFunc(props: {
                             }
                           }).apply(null, eventArgs);
                         },
-                        placeholder: "15 \u062f\u0642\u06cc\u0642\u0647",
+                        placeholder:
+                          "\u0628\u0647 \u062f\u0642\u06cc\u0642\u0647",
                         type: "line",
                         value: generateStateValueProp($state, [
                           "time2",
@@ -923,10 +975,16 @@ function PlasmicAddServise2__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].prise =
-                                        $state.prise[currentIndex].value);
+                                      return (() => {
+                                        $state.prise[currentIndex].value =
+                                          $state.prise[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].prise =
+                                          $state.prise[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -943,6 +1001,8 @@ function PlasmicAddServise2__RenderFunc(props: {
                             }
                           }).apply(null, eventArgs);
                         },
+                        placeholder:
+                          "\u0642\u06cc\u0645\u062a \u0628\u0647 \u062a\u0648\u0645\u0627\u0646",
                         type: "line",
                         value: generateStateValueProp($state, [
                           "prise",
@@ -1035,9 +1095,16 @@ function PlasmicAddServise2__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].off = $state.off[currentIndex].value);
+                                      return (() => {
+                                        $state.off[currentIndex].value =
+                                          $state.off[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].discount_percent =
+                                          $state.off[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -1054,6 +1121,8 @@ function PlasmicAddServise2__RenderFunc(props: {
                             }
                           }).apply(null, eventArgs);
                         },
+                        placeholder:
+                          "\u062f\u0631\u0635\u062f \u062a\u062e\u0641\u06cc\u0641",
                         type: "line",
                         value: generateStateValueProp($state, [
                           "off",
@@ -1122,6 +1191,10 @@ function PlasmicAddServise2__RenderFunc(props: {
                               {
                                 label: "پرداخت آنلاین",
                                 value: "online"
+                              },
+                              {
+                                label: "رایگان",
+                                value: "in_person"
                               },
                               {
                                 label: "پرداخت حضوری",
@@ -1314,7 +1387,7 @@ function PlasmicAddServise2__RenderFunc(props: {
             ? (() => {
                 const actionArgs = {
                   customFunction: async () => {
-                    return $state.servises.push({});
+                    return $state.servises.push({ center_id: $props.centerId });
                   }
                 };
                 return (({ customFunction }) => {

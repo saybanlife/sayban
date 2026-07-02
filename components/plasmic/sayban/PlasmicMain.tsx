@@ -996,6 +996,7 @@ function PlasmicMain__RenderFunc(props: {
             "page",
             "reservations"
           ),
+          [sty.rootpage_service]: hasVariant($state, "page", "service"),
           [sty.rootpage_services]: hasVariant($state, "page", "services")
         }
       )}
