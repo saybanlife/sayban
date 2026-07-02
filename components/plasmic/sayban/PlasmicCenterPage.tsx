@@ -2489,6 +2489,19 @@ function PlasmicCenterPage__RenderFunc(props: {
               <AddServise2
                 data-plasmic-name={"addServise2"}
                 data-plasmic-override={overrides.addServise2}
+                centerId={(() => {
+                  try {
+                    return $props.id;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
                 className={classNames("__wab_instance", sty.addServise2)}
                 onRestartChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [

@@ -3924,6 +3924,19 @@ function PlasmicMain__RenderFunc(props: {
                 <AddServise
                   data-plasmic-name={"addServise"}
                   data-plasmic-override={overrides.addServise}
+                  centerId={(() => {
+                    try {
+                      return $props.centerId;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
                   className={classNames("__wab_instance", sty.addServise)}
                   onServisesChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
