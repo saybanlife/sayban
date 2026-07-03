@@ -600,7 +600,7 @@ function PlasmicPanel__RenderFunc(props: {
         >
           {(() => {
             try {
-              return $ctx.params?.page?.[0] != "login" && $state.token != null;
+              return $state.userInfo?.role;
             } catch (e) {
               if (
                 e instanceof TypeError ||
