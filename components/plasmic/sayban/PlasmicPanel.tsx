@@ -61,6 +61,7 @@ import {
 
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Load from "../../Load"; // plasmic-import: giI5l8wTGhHv/component
+import Errorpage from "../../Errorpage"; // plasmic-import: HTnfDJNIbaau/component
 import PanelMenu from "../../PanelMenu"; // plasmic-import: H67gJZiYVEqw/component
 import Main from "../../Main"; // plasmic-import: FYuKeNpu5zZ7/component
 import LoginPanel from "../../LoginPanel"; // plasmic-import: hZEy0JIfmlF9/component
@@ -118,6 +119,7 @@ export type PlasmicPanel__OverridesType = {
   root?: Flex__<"div">;
   apiRequest?: Flex__<typeof ApiRequest>;
   load?: Flex__<typeof Load>;
+  errorpage?: Flex__<typeof Errorpage>;
   freeBox?: Flex__<"div">;
   panelMenu?: Flex__<typeof PanelMenu>;
   main?: Flex__<typeof Main>;
@@ -454,7 +456,13 @@ function PlasmicPanel__RenderFunc(props: {
               Authorization: `Bearer ${$state.token}`
             }
           }}
-          errorDisplay={null}
+          errorDisplay={
+            <Errorpage
+              data-plasmic-name={"errorpage"}
+              data-plasmic-override={overrides.errorpage}
+              className={classNames("__wab_instance", sty.errorpage)}
+            />
+          }
           loadingDisplay={
             <Load
               data-plasmic-name={"load"}
@@ -572,7 +580,12 @@ function PlasmicPanel__RenderFunc(props: {
           }}
           shouldFetch={(() => {
             try {
-              return $state.token != "" && $state.token != null;
+              return (
+                $state.token != "" &&
+                $state.token != null &&
+                $ctx.params?.page?.[0] != "login" &&
+                $ctx.params?.page?.[0] != "create"
+              );
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -1243,7 +1256,9 @@ function PlasmicPanel__RenderFunc(props: {
             }
 
             $steps["goToPanel"] =
-              $state.token == null && $ctx.params.page[0] != "login"
+              $state.token == null &&
+              $ctx.params?.page?.[0] != "login" &&
+              $ctx.params?.page?.[0] != "create"
                 ? (() => {
                     const actionArgs = { destination: `/panel/${"login"}` };
                     return (({ destination }) => {
@@ -1279,14 +1294,23 @@ const PlasmicDescendants = {
     "root",
     "apiRequest",
     "load",
+    "errorpage",
     "freeBox",
     "panelMenu",
     "main",
     "loginPanel",
     "sideEffect"
   ],
-  apiRequest: ["apiRequest", "load", "freeBox", "panelMenu", "main"],
+  apiRequest: [
+    "apiRequest",
+    "load",
+    "errorpage",
+    "freeBox",
+    "panelMenu",
+    "main"
+  ],
   load: ["load"],
+  errorpage: ["errorpage"],
   freeBox: ["freeBox", "panelMenu", "main"],
   panelMenu: ["panelMenu"],
   main: ["main"],
@@ -1300,6 +1324,7 @@ type NodeDefaultElementType = {
   root: "div";
   apiRequest: typeof ApiRequest;
   load: typeof Load;
+  errorpage: typeof Errorpage;
   freeBox: "div";
   panelMenu: typeof PanelMenu;
   main: typeof Main;
@@ -1371,6 +1396,7 @@ export const PlasmicPanel = Object.assign(
     // Helper components rendering sub-elements
     apiRequest: makeNodeComponent("apiRequest"),
     load: makeNodeComponent("load"),
+    errorpage: makeNodeComponent("errorpage"),
     freeBox: makeNodeComponent("freeBox"),
     panelMenu: makeNodeComponent("panelMenu"),
     main: makeNodeComponent("main"),
