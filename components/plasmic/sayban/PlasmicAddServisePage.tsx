@@ -805,7 +805,9 @@ function PlasmicAddServisePage__RenderFunc(props: {
                           ? (() => {
                               const actionArgs = {
                                 customFunction: async () => {
-                                  return ($state.servises[currentIndex].off =
+                                  return ($state.servises[
+                                    currentIndex
+                                  ].discount_percent =
                                     $state.off[currentIndex].value);
                                 }
                               };

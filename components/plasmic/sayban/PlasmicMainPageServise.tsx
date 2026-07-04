@@ -810,8 +810,7 @@ function PlasmicMainPageServise__RenderFunc(props: {
                           label: null,
                           children: null,
                           onClick: null
-                        },
-                        { type: "item", label: null, onClick: null }
+                        }
                       ];
                       __composite["0"]["type"] = "item";
                       __composite["0"]["label"] = "\u274c";
@@ -867,60 +866,6 @@ function PlasmicMainPageServise__RenderFunc(props: {
                         ) {
                           $steps["runCenterDelete"] =
                             await $steps["runCenterDelete"];
-                        }
-                      };
-                      __composite["1"]["label"] = "\u270f\ufe0f";
-                      __composite["1"]["onClick"] = async (rowKey, row) => {
-                        const $steps = {};
-
-                        $steps["runCode"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                customFunction: async () => {
-                                  return (() => {
-                                    const row = event?.target?.closest("tr");
-                                    if (!row) return;
-                                    const cells = row.querySelectorAll("td");
-                                    if (cells.length < 3) return;
-                                    const data = {
-                                      id: cells[1]?.innerText?.trim() || "",
-                                      name: cells[2]?.innerText?.trim() || ""
-                                    };
-                                    console.log(data);
-                                    return ($state.table.selectedRow = data);
-                                  })();
-                                }
-                              };
-                              return (({ customFunction }) => {
-                                return customFunction();
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["runCode"] != null &&
-                          typeof $steps["runCode"] === "object" &&
-                          typeof $steps["runCode"].then === "function"
-                        ) {
-                          $steps["runCode"] = await $steps["runCode"];
-                        }
-
-                        $steps["runOnRowClicked"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                eventRef: $props["onRowClicked"]
-                              };
-                              return (({ eventRef, args }) => {
-                                return eventRef?.(...(args ?? []));
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["runOnRowClicked"] != null &&
-                          typeof $steps["runOnRowClicked"] === "object" &&
-                          typeof $steps["runOnRowClicked"].then === "function"
-                        ) {
-                          $steps["runOnRowClicked"] =
-                            await $steps["runOnRowClicked"];
                         }
                       };
                       return __composite;

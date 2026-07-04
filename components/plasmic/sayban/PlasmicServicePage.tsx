@@ -1510,6 +1510,28 @@ function PlasmicServicePage__RenderFunc(props: {
             ) {
               $steps["updateCenters"] = await $steps["updateCenters"];
             }
+
+            $steps["runCode"] =
+              $state.center?.data?.success == true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.centerData.prise =
+                          $state.centerData.price);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+            if (
+              $steps["runCode"] != null &&
+              typeof $steps["runCode"] === "object" &&
+              typeof $steps["runCode"].then === "function"
+            ) {
+              $steps["runCode"] = await $steps["runCode"];
+            }
           }).apply(null, eventArgs);
         }}
         params={(() => {

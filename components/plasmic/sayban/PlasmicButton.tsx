@@ -397,7 +397,7 @@ function PlasmicButton__RenderFunc(props: {
         }
       )}
       href={args.linkTo}
-      isDisabled={args.disabled}
+      isDisabled={hasVariant($state, "loading", "loading") ? true : undefined}
       onPress={args.onClick}
       plasmicUpdateVariant={updateVariant}
       resetsForm={args.resetsForm}
