@@ -7,8 +7,9 @@ import { PlasmicRootProvider } from "@plasmicapp/react-web";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 
-import { initFcm } from "@/lib/fcm"; // مطمئن شو مسیر درست است
-import NotificationModal from "@/components/NotificationModal"; // مطمئن شو مسیر درست است
+// Import توابع از فایل fcm.ts
+import { initFcm, requestNotificationPermission } from "@/lib/fcm"; // اطمینان حاصل کنید مسیر درست است
+import NotificationModal from "@/components/NotificationModal"; // اطمینان حاصل کنید مسیر درست است
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   // State برای کنترل نمایش مودال
@@ -19,7 +20,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     // این useEffect فقط در سمت کلاینت (مرورگر) اجرا می‌شود
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator && 'Notification' in window) {
-      
+
       // چک کردن localStorage برای یادآوری (اگر کاربر قبلا "بعداً" را انتخاب کرده)
       const reminderSetTime = localStorage.getItem('notificationReminderLater');
       const now = new Date().getTime();
@@ -27,7 +28,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       // اگر زمان یادآوری تنظیم شده و هنوز نگذشته، مودال را نمایش نده
       const shouldShowModal = !reminderSetTime || now >= Number(reminderSetTime);
 
-      const checkAndShowPrompt = async () => {
+      const checkPermissionsAndShowPrompt = async () => {
         const permission = Notification.permission;
         setHasNotificationPermission(permission === 'granted');
 
@@ -39,23 +40,35 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           }, 2000); // تاخیر ۲ ثانیه‌ای مثال
         } else if (permission === 'granted') {
           // اگر قبلاً اجازه داده شده، initFcm را صدا بزن تا توکن تنظیم شود
+          // initFcm در این حالت به دلیل بررسی permission در خودش، کار را انجام خواهد داد.
           await initFcm();
+        } else {
+          // اگر permission 'denied' باشد، مودال را نشان نمی‌دهیم
+          setHasNotificationPrompt(false);
         }
       };
-      checkAndShowPrompt();
+      checkPermissionsAndShowPrompt();
     }
   }, []);
 
   // تابع برای فعال کردن اعلان‌ها از داخل مودال
   const handleEnableNotifications = async () => {
-    // تابع initFcm باید درخواست رسمی اجازه از مرورگر را انجام دهد
-    await initFcm(); 
-    // وضعیت اجازه را دوباره چک کن
-    setHasNotificationPermission(Notification.permission === 'granted');
+    // 1. ابتدا درخواست رسمی اجازه از مرورگر را انجام بده
+    const permissionGranted = await requestNotificationPermission();
+
+    if (permissionGranted) {
+      // 2. اگر اجازه داده شد، initFcm را صدا بزن تا توکن را بگیرد و listeners را تنظیم کند
+      await initFcm();
+      setHasNotificationPermission(true); // وضعیت را آپدیت کن
+    } else {
+      console.log("User denied notification permission after modal prompt.");
+      setHasNotificationPermission(false); // وضعیت را آپدیت کن
+      // اگر کاربر اجازه نداد، ممکن است بخواهید یک پیام به او نشان دهید
+    }
     // مودال را ببند
     setShowNotificationPrompt(false);
     // اگر کاربر اجازه داد، کلید یادآوری را حذف می‌کنیم چون دیگر لازم نیست
-    localStorage.removeItem('notificationReminderLater'); 
+    localStorage.removeItem('notificationReminderLater');
   };
 
   // تابع برای بستن مودال (رد کردن موقت)
@@ -63,7 +76,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     setShowNotificationPrompt(false);
     // ذخیره کردن زمان یادآوری مجدد در localStorage (مثلاً برای 7 روز)
     const oneWeekFromNow = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
-    localStorage.setItem('notificationReminderLater', String(oneWeekFromNow)); 
+    localStorage.setItem('notificationReminderLater', String(oneWeekFromNow));
   };
 
   return (
@@ -80,6 +93,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       {/* Conditionally render the NotificationModal */}
+      {/* مودال فقط زمانی نمایش داده شود که نیاز به پرسیدن باشد و کاربر قبلا اجازه نداده باشد */}
       {showNotificationPrompt && !hasNotificationPermission && (
         <NotificationModal
           handleEnableNotifications={handleEnableNotifications}
