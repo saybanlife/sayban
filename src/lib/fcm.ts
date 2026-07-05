@@ -2,7 +2,7 @@ import { firebaseApp } from "./firebase";
 import { getMessaging, getToken, isSupported, onMessage } from "firebase/messaging";
 
 // کلید VAPID تولید شده در کنسول فایربیس را اینجا بگذارید:
-const VAPID_KEY = "YOUR_GENERATED_VAPID_KEY_HERE";
+const VAPID_KEY = "BB5iK65gAz1q5PnKQDv_6wqV-dXMMpNg4E6iaAZje7kLM1Nrxb_NPkw2HFDo7Y-FJKiq8nlov7RZsvtkGeGEIj0";
 
 export const initFcm = async () => {
   if (typeof window === "undefined") return;
