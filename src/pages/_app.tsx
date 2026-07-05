@@ -9,7 +9,7 @@ import Head from "next/head";
 
 // Import توابع از فایل fcm.ts
 import { initFcm, requestNotificationPermission } from "@/lib/fcm"; // اطمینان حاصل کنید مسیر درست است
-import NotificationModal from "../components/NotificationModal";
+import NotificationModal from "../../components/NotificationModal";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   // State برای کنترل نمایش مودال
