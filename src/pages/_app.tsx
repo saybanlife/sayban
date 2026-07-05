@@ -16,6 +16,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <PlasmicRootProvider Head={Head}>
+      <Head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#6F8A3A" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Sayban" />
+        <link rel="apple-touch-icon" href="/icon-192x192.png" />
+      </Head>
+
       <Component {...pageProps} />
     </PlasmicRootProvider>
   );
