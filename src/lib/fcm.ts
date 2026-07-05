@@ -8,7 +8,7 @@ const VAPID_KEY = "BB5iK65gAz1q5PnKQDv_6wqV-dXMMpNg4E6iaAZje7kLM1Nrxb_NPkw2HFDo7
 // آدرس API سرور شما برای ثبت توکن FCM
 const SERVER_URL = "YOUR_SERVER_API_ENDPOINT"; // <-- این را با آدرس واقعی سرور خود جایگزین کنید
 // نام کوکی که توکن احراز هویت کاربر در آن ذخیره شده است
-const AUTH_COOKIE_NAME = "your_auth_cookie_name"; // <-- نام کوکی را اینجا وارد کنید (مثلا 'session_token', 'authToken', ...)
+const AUTH_COOKIE_NAME = "token"; // <-- نام کوکی را اینجا وارد کنید (مثلا 'session_token', 'authToken', ...)
 // ------------------------
 
 
