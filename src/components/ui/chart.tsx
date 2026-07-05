@@ -1,11 +1,13 @@
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
 
+// فرض می‌کنیم مسیر utils شما این است. آن را بر اساس ساختار پروژه خود تنظیم کنید.
 import { cn } from "@/lib/utils"
 
-// Format: { THEME_NAME: CSS_SELECTOR }
+// تعریف تم‌ها: کلید نام تم، مقدار سلکتور CSS مربوط به آن.
 const THEMES = { light: "", dark: ".dark" } as const
 
+// تعریف نوع ChartConfig
 export type ChartConfig = {
   [k in string]: {
     label?: React.ReactNode
@@ -16,22 +18,24 @@ export type ChartConfig = {
   )
 }
 
+// پراپ‌های مورد نیاز برای ChartContext
 type ChartContextProps = {
   config: ChartConfig
 }
 
+// ایجاد یک Context برای به اشتراک‌گذاری پیکربندی نمودار
 const ChartContext = React.createContext<ChartContextProps | null>(null)
 
+// هوک سفارشی برای دسترسی به ChartContext
 function useChart() {
   const context = React.useContext(ChartContext)
-
   if (!context) {
     throw new Error("useChart must be used within a <ChartContainer />")
   }
-
   return context
 }
 
+// کامپوننت اصلی کانتینر نمودار
 const ChartContainer = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & {
@@ -65,9 +69,10 @@ const ChartContainer = React.forwardRef<
 })
 ChartContainer.displayName = "Chart"
 
+// کامپوننت برای تزریق استایل‌های CSS
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   const colorConfig = Object.entries(config).filter(
-    ([_, config]) => config.theme || config.color
+    ([_, configItem]) => configItem.theme || configItem.color
   )
 
   if (!colorConfig.length) {
@@ -90,14 +95,29 @@ ${colorConfig
   .join("\n")}
 }
 `
-        ),
+        ).join('')
       }}
     />
   )
 }
 
+// Wrapper ساده برای Tooltip
 const ChartTooltip = RechartsPrimitive.Tooltip
 
+// تعریف Interface سفارشی برای Payload
+// این Interface پراپرتی‌های اصلی که از payload استفاده می‌کنیم را پوشش می‌دهد
+interface CustomPayload {
+  value?: number | string
+  name?: string
+  payload: any // Payload اصلی که ممکن است شامل داده‌های بیشتری باشد
+  color?: string
+  fill?: string
+  dataKey?: string // برای مطابقت با نمونه‌های احتمالی
+  // سایر پراپرتی‌های مورد نیاز را در صورت نیاز اضافه کنید
+}
+
+// کامپوننت سفارشی برای نمایش محتوای Tooltip
+// شامل رفع خطای 'index' و تعریف پارامترهای formatter
 const ChartTooltipContent = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
@@ -107,6 +127,19 @@ const ChartTooltipContent = React.forwardRef<
       indicator?: "line" | "dot" | "dashed"
       nameKey?: string
       labelKey?: string
+      // تعریف formatter که index را نیز دریافت می‌کند و از CustomPayload استفاده می‌کند
+      formatter?: (
+        value: number | string,
+        name: string,
+        item: CustomPayload, // <<< استفاده از CustomPayload
+        index: number, // اضافه شد
+        payload: CustomPayload[] // <<< استفاده از CustomPayload[]
+      ) => React.ReactNode
+      // تعریف labelFormatter که index را نیز دریافت می‌کند
+      labelFormatter?: (
+        value: any,
+        payload: CustomPayload[] // <<< استفاده از CustomPayload[]
+      ) => React.ReactNode
     }
 >(
   (
@@ -115,12 +148,12 @@ const ChartTooltipContent = React.forwardRef<
       payload,
       className,
       indicator = "dot",
-      hideLabel = false,
-      hideIndicator = false,
+      hideLabel,
+      hideIndicator,
       label,
       labelFormatter,
       labelClassName,
-      formatter,
+      formatter, // اکنون formatter پارامتر index را می‌پذیرد
       color,
       nameKey,
       labelKey,
@@ -134,7 +167,10 @@ const ChartTooltipContent = React.forwardRef<
         return null
       }
 
-      const [item] = payload
+      // اطمینان از اینکه payload حاوی آیتم‌های CustomPayload است
+      const typedPayload = payload as CustomPayload[];
+      const [item] = typedPayload;
+
       const key = `${labelKey || item.dataKey || item.name || "value"}`
       const itemConfig = getPayloadConfigFromPayload(config, item, key)
       const value =
@@ -142,10 +178,12 @@ const ChartTooltipContent = React.forwardRef<
           ? config[label as keyof typeof config]?.label || label
           : itemConfig?.label
 
+      // اگر labelFormatter تعریف شده باشد، از آن با پارامترهای لازم استفاده کنید
       if (labelFormatter) {
+        // فرض بر این است که labelFormatter نیز پارامتر payload (به صورت CustomPayload[]) را دریافت می‌کند
         return (
           <div className={cn("font-medium", labelClassName)}>
-            {labelFormatter(value, payload)}
+            {labelFormatter(value, typedPayload)}
           </div>
         )
       }
@@ -158,7 +196,7 @@ const ChartTooltipContent = React.forwardRef<
     }, [
       label,
       labelFormatter,
-      payload,
+      payload, // payload به عنوان آرایه CustomPayload در نظر گرفته می‌شود
       hideLabel,
       labelClassName,
       config,
@@ -169,7 +207,10 @@ const ChartTooltipContent = React.forwardRef<
       return null
     }
 
-    const nestLabel = payload.length === 1 && indicator !== "dot"
+    // اطمینان از اینکه payload حاوی آیتم‌های CustomPayload است
+    const typedPayload = payload as CustomPayload[];
+
+    const nestLabel = typedPayload.length === 1 && indicator !== "dot"
 
     return (
       <div
@@ -181,21 +222,24 @@ const ChartTooltipContent = React.forwardRef<
       >
         {!nestLabel ? tooltipLabel : null}
         <div className="grid gap-1.5">
-          {payload.map((item, index) => {
-            const key = `${nameKey || item.name || item.dataKey || "value"}`
+          {typedPayload.map((item, index) => { // index در اینجا تعریف شده است
+            const key = `${nameKey || item.dataKey || "value"}`
             const itemConfig = getPayloadConfigFromPayload(config, item, key)
-            const indicatorColor = color || item.payload.fill || item.color
+            // استفاده از ?. برای ایمنی بیشتر در دسترسی به payload.fill
+            const indicatorColor = color || item.payload?.fill || item.color
 
             return (
               <div
-                key={item.dataKey}
+                key={item.dataKey || index} // استفاده از index به عنوان key پشتیبان
                 className={cn(
                   "flex w-full items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-muted-foreground",
                   indicator === "dot" && "items-center"
                 )}
               >
-                {formatter && item.value && item.name ? (
-                  formatter(item.value, item.name, item, index, item.payload)
+                {/* اگر formatter سفارشی تعریف شده باشد، از آن استفاده کن */}
+                {formatter && item.value !== undefined && item.name !== undefined ? (
+                  // !!! اینجا formatter با پارامترهای کامل صدا زده می‌شود !!!
+                  formatter(item.value, item.name, item, index, typedPayload)
                 ) : (
                   <>
                     {itemConfig?.icon ? (
@@ -234,7 +278,7 @@ const ChartTooltipContent = React.forwardRef<
                           {itemConfig?.label || item.name}
                         </span>
                       </div>
-                      {item.value && (
+                      {item.value !== undefined && ( // بررسی برای undefined
                         <span className="font-mono font-medium tabular-nums text-foreground">
                           {item.value.toLocaleString()}
                         </span>
@@ -252,8 +296,10 @@ const ChartTooltipContent = React.forwardRef<
 )
 ChartTooltipContent.displayName = "ChartTooltip"
 
+// Wrapper ساده برای Legend
 const ChartLegend = RechartsPrimitive.Legend
 
+// کامپوننت سفارشی برای نمایش محتوای Legend
 const ChartLegendContent = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> &
@@ -272,6 +318,9 @@ const ChartLegendContent = React.forwardRef<
       return null
     }
 
+    // اطمینان از اینکه payload حاوی آیتم‌های CustomPayload است
+    const typedPayload = payload as CustomPayload[]
+
     return (
       <div
         ref={ref}
@@ -281,13 +330,13 @@ const ChartLegendContent = React.forwardRef<
           className
         )}
       >
-        {payload.map((item) => {
+        {typedPayload.map((item) => {
           const key = `${nameKey || item.dataKey || "value"}`
           const itemConfig = getPayloadConfigFromPayload(config, item, key)
 
           return (
             <div
-              key={item.value}
+              key={item.dataKey || item.name} // استفاده از name به عنوان key پشتیبان
               className={cn(
                 "flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-muted-foreground"
               )}
@@ -312,45 +361,46 @@ const ChartLegendContent = React.forwardRef<
 )
 ChartLegendContent.displayName = "ChartLegend"
 
-// Helper to extract item config from a payload.
+// تابع کمکی برای استخراج تنظیمات پیکربندی یک آیتم از payload
 function getPayloadConfigFromPayload(
   config: ChartConfig,
-  payload: unknown,
+  payload: CustomPayload, // <<< تغییر داده شد به CustomPayload
   key: string
-) {
+): { label?: React.ReactNode; icon?: React.ComponentType } | undefined {
   if (typeof payload !== "object" || payload === null) {
     return undefined
   }
 
-  const payloadPayload =
-    "payload" in payload &&
-    typeof payload.payload === "object" &&
-    payload.payload !== null
-      ? payload.payload
-      : undefined
+  // اطمینان از اینکه payload.payload نیز درست مدیریت می‌شود
+  const payloadPayload = payload.payload && typeof payload.payload === "object"
+    ? payload.payload
+    : undefined;
 
   let configLabelKey: string = key
 
-  if (
-    key in payload &&
-    typeof payload[key as keyof typeof payload] === "string"
-  ) {
-    configLabelKey = payload[key as keyof typeof payload] as string
-  } else if (
-    payloadPayload &&
-    key in payloadPayload &&
-    typeof payloadPayload[key as keyof typeof payloadPayload] === "string"
-  ) {
-    configLabelKey = payloadPayload[
-      key as keyof typeof payloadPayload
-    ] as string
+  // تلاش برای یافتن کلید پیکربندی مناسب
+  if (key in payload && typeof payload[key as keyof typeof payload] === "string") {
+     // اگر کلید مستقیماً در payload به عنوان string وجود دارد
+     configLabelKey = payload[key as keyof typeof payload] as string;
+  } else if (payloadPayload && key in payloadPayload && typeof payloadPayload[key as keyof typeof payloadPayload] === "string") {
+     // اگر کلید در payload.payload به عنوان string وجود دارد
+     configLabelKey = payloadPayload[key as keyof typeof payloadPayload] as string;
+  } else if (payload.name && typeof payload.name === 'string') {
+      // اگر payload.name وجود دارد و string است، از آن استفاده کن
+      configLabelKey = payload.name;
+  } else if (payload.dataKey && typeof payload.dataKey === 'string') {
+      // اگر payload.dataKey وجود دارد و string است، از آن استفاده کن
+      configLabelKey = payload.dataKey;
   }
+  // در نهایت، اگر هیچکدام یافت نشد، از کلید اصلی استفاده می‌شود.
 
+  // جستجو در config با کلید یافت شده یا کلید اصلی
   return configLabelKey in config
     ? config[configLabelKey]
-    : config[key as keyof typeof config]
+    : config[key as keyof typeof config];
 }
 
+// خروجی دادن کامپوننت‌های اصلی
 export {
   ChartContainer,
   ChartTooltip,
