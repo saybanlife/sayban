@@ -109,10 +109,6 @@ export const initFcm = async () => {
  */
 const sendTokenToServer = async (fcmToken: string) => {
   // بررسی اینکه آیا URL سرور تنظیم شده است
-  if (!SERVER_URL || SERVER_URL === "YOUR_SERVER_API_ENDPOINT") {
-    console.warn("Server URL for sending FCM token is not configured. Skipping request.");
-    return;
-  }
 
   // دریافت توکن احراز هویت کاربر از کوکی
   const authToken = getCookie(AUTH_COOKIE_NAME);
