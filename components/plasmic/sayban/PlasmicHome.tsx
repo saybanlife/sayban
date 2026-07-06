@@ -73,6 +73,8 @@ import sty from "./PlasmicHome.module.css"; // plasmic-import: m-UDUThzN-63/css
 
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+import Icon33Icon from "./icons/PlasmicIcon__Icon33"; // plasmic-import: MJBmXdq7GQ5D/icon
+import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: L5-0jFcT5N2O/icon
 
 createPlasmicElementProxy;
 
@@ -440,106 +442,128 @@ function PlasmicHome__RenderFunc(props: {
         <div className={classNames("all", "__wab_text", sty.text__gVzmw)}>
           {"\u062e\u062f\u0645\u0627\u062a"}
         </div>
-        <div
-          className={classNames("all", sty.freeBox___0N18J, "container-scroll")}
-        >
-          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-            (() => {
-              try {
-                return $props.categories;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return [];
+        <div className={classNames("all", sty.freeBox___9Bjvc)}>
+          <div className={classNames("all", sty.freeBox__lO0ZP)}>
+            <Icon33Icon
+              className={classNames("all", sty.svg__ndpXg)}
+              role={"img"}
+            />
+          </div>
+          <div className={classNames("all", sty.freeBox__ebc3V)}>
+            <Icon34Icon
+              className={classNames("all", sty.svg__ubk1X)}
+              role={"img"}
+            />
+          </div>
+          <div
+            className={classNames(
+              "all",
+              sty.freeBox___0N18J,
+              "container-scroll"
+            )}
+          >
+            {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+              (() => {
+                try {
+                  return $props.categories;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
                 }
-                throw e;
-              }
-            })()
-          ).map((__plasmic_item_0, __plasmic_idx_0) => {
-            const currentItem = __plasmic_item_0;
-            const currentIndex = __plasmic_idx_0;
-            return (
-              <ToolsItem
-                back={true}
-                className={classNames("__wab_instance", sty.toolsItem___1Kg6M, {
-                  [sty.toolsItemsearch___1Kg6MMh4IK]: hasVariant(
-                    $state,
-                    "search",
-                    "search"
-                  )
-                })}
-                data={(() => {
-                  try {
-                    return currentItem;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+              })()
+            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+              const currentItem = __plasmic_item_0;
+              const currentIndex = __plasmic_idx_0;
+              return (
+                <ToolsItem
+                  back={true}
+                  className={classNames(
+                    "__wab_instance",
+                    sty.toolsItem___1Kg6M,
+                    {
+                      [sty.toolsItemsearch___1Kg6MMh4IK]: hasVariant(
+                        $state,
+                        "search",
+                        "search"
+                      )
                     }
-                    throw e;
-                  }
-                })()}
-                key={currentIndex}
-                onClick={async event => {
-                  const $steps = {};
+                  )}
+                  data={(() => {
+                    try {
+                      return currentItem;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                  key={currentIndex}
+                  onClick={async event => {
+                    const $steps = {};
 
-                  $steps["updateCategori"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["categori"]
-                          },
-                          operation: 0,
-                          value: currentItem
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
+                    $steps["updateCategori"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["categori"]
+                            },
+                            operation: 0,
+                            value: currentItem
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
 
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateCategori"] != null &&
-                    typeof $steps["updateCategori"] === "object" &&
-                    typeof $steps["updateCategori"].then === "function"
-                  ) {
-                    $steps["updateCategori"] = await $steps["updateCategori"];
-                  }
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateCategori"] != null &&
+                      typeof $steps["updateCategori"] === "object" &&
+                      typeof $steps["updateCategori"].then === "function"
+                    ) {
+                      $steps["updateCategori"] = await $steps["updateCategori"];
+                    }
 
-                  $steps["runOnCategori"] = true
-                    ? (() => {
-                        const actionArgs = { eventRef: $props["onCategori"] };
-                        return (({ eventRef, args }) => {
-                          return eventRef?.(...(args ?? []));
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runOnCategori"] != null &&
-                    typeof $steps["runOnCategori"] === "object" &&
-                    typeof $steps["runOnCategori"].then === "function"
-                  ) {
-                    $steps["runOnCategori"] = await $steps["runOnCategori"];
-                  }
-                }}
-              />
-            );
-          })}
+                    $steps["runOnCategori"] = true
+                      ? (() => {
+                          const actionArgs = { eventRef: $props["onCategori"] };
+                          return (({ eventRef, args }) => {
+                            return eventRef?.(...(args ?? []));
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runOnCategori"] != null &&
+                      typeof $steps["runOnCategori"] === "object" &&
+                      typeof $steps["runOnCategori"].then === "function"
+                    ) {
+                      $steps["runOnCategori"] = await $steps["runOnCategori"];
+                    }
+                  }}
+                />
+              );
+            })}
+          </div>
         </div>
         <div
           className={classNames("all", "__wab_text", sty.text___26Ec, {

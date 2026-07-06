@@ -74,7 +74,6 @@ import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-impor
 import Icon342Icon from "./icons/PlasmicIcon__Icon342"; // plasmic-import: 3cI93FpEy9Rj/icon
 import Icon53Icon from "./icons/PlasmicIcon__Icon53"; // plasmic-import: TLGayeiIYfbW/icon
 import Icon270Icon from "./icons/PlasmicIcon__Icon270"; // plasmic-import: xtBcS_RDta6A/icon
-import Icon5Icon from "./icons/PlasmicIcon__Icon5"; // plasmic-import: 8vOA1S70pHdl/icon
 import UserEditIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__UserEdit"; // plasmic-import: ml0No70rMVNC/icon
 import DoorExitIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__DoorExit"; // plasmic-import: BhKck9w58Ezp/icon
 
@@ -95,6 +94,7 @@ export type PlasmicTopPage__OverridesType = {
   button2?: Flex__<typeof Button>;
   button3?: Flex__<typeof Button>;
   popover?: Flex__<typeof AntdPopover>;
+  img?: Flex__<typeof PlasmicImg__>;
 };
 
 export interface DefaultTopPageProps {
@@ -502,10 +502,24 @@ function PlasmicTopPage__RenderFunc(props: {
           trigger={"click"}
         >
           <div className={classNames("all", sty.freeBox__zJvMl)}>
-            <Icon5Icon
-              className={classNames("all", sty.svg__nPyev)}
-              onClick={args.createProfile}
-              role={"img"}
+            <PlasmicImg__
+              data-plasmic-name={"img"}
+              data-plasmic-override={overrides.img}
+              alt={""}
+              className={classNames(sty.img)}
+              displayHeight={"45px"}
+              displayMaxHeight={"none"}
+              displayMaxWidth={"100%"}
+              displayMinHeight={"0"}
+              displayMinWidth={"0"}
+              displayWidth={"45px"}
+              loading={"lazy"}
+              src={{
+                src: "/plasmic/sayban/images/ad5Af234B2811Ebaa92E22C8C6D993B9Png.png",
+                fullWidth: 50,
+                fullHeight: 50,
+                aspectRatio: undefined
+              }}
             />
           </div>
         </AntdPopover>
@@ -515,11 +529,12 @@ function PlasmicTopPage__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "modal", "button2", "button3", "popover"],
+  root: ["root", "modal", "button2", "button3", "popover", "img"],
   modal: ["modal", "button2", "button3"],
   button2: ["button2"],
   button3: ["button3"],
-  popover: ["popover"]
+  popover: ["popover", "img"],
+  img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -530,6 +545,7 @@ type NodeDefaultElementType = {
   button2: typeof Button;
   button3: typeof Button;
   popover: typeof AntdPopover;
+  img: typeof PlasmicImg__;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -598,6 +614,7 @@ export const PlasmicTopPage = Object.assign(
     button2: makeNodeComponent("button2"),
     button3: makeNodeComponent("button3"),
     popover: makeNodeComponent("popover"),
+    img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicTopPage
     internalVariantProps: PlasmicTopPage__VariantProps,

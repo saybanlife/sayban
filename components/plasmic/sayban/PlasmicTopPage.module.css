@@ -180,18 +180,22 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  background: var(--token-ee2TuxDknsJj);
+  background: #6f8a3a;
   border-radius: 100px;
-  padding: var(--token-RuQNZpYm0Yds);
+  padding: var(--token-I0Xtb9z7Q0X3);
   border: 1px solid var(--token-ee2TuxDknsJj);
 }
-.svg__nPyev {
+.img {
   object-fit: cover;
   max-width: 100%;
-  width: var(--token-CVjaMVgIQl_G);
-  height: var(--token-CVjaMVgIQl_G);
-  color: var(--token-W0eejbtvb0xw);
+  filter: hue-rotate(347deg);
+  width: 45px;
+  height: 45px;
   flex-shrink: 0;
+  border-radius: 50px;
+}
+.img > picture > img {
+  object-fit: cover;
 }
 .freeBox__zGv7U {
   display: flex;

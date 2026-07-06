@@ -188,7 +188,13 @@ function PlasmicToolsItem__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
-        { [sty.rootback]: hasVariant($state, "back", "back") }
+        {
+          [sty.rootback]: hasVariant($state, "back", "back"),
+          [sty.rootback_top]:
+            hasVariant($state, "top", "top") &&
+            hasVariant($state, "back", "back"),
+          [sty.roottop]: hasVariant($state, "top", "top")
+        }
       )}
       onClick={args.onClick}
     >

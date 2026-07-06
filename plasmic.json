@@ -29471,6 +29471,32 @@
           "cssFilePath": "plasmic/sayban/PlasmicAddTags.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "Ok_TcZHaeDSE",
+          "name": "Dashbord",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicDashbord.tsx",
+          "importSpec": {
+            "modulePath": "Dashbord.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicDashbord.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "5PWgrzdAEryq",
+          "name": "UpDown",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicUpDown.tsx",
+          "importSpec": {
+            "modulePath": "UpDown.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicUpDown.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -30780,6 +30806,11 @@
           "id": "wLfYL_SXI6H4",
           "name": "Gemini_Generated_Image_yumi5oyumi5oyumi-removebg-preview.png",
           "filePath": "../public/plasmic/sayban/images/geminiGeneratedImageYumi5Oyumi5OyumiRemovebgPreviewPng.png"
+        },
+        {
+          "id": "6chJDj32vQ6Q",
+          "name": "ad5af234b2811ebaa92e22c8c6d993b9.png",
+          "filePath": "../public/plasmic/sayban/images/ad5Af234B2811Ebaa92E22C8C6D993B9Png.png"
         }
       ],
       "indirect": false,
