@@ -29497,6 +29497,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicUpDown.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "mdgKYN8y8UQf",
+          "name": "CenterOffers",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicCenterOffers.tsx",
+          "importSpec": {
+            "modulePath": "CenterOffers.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicCenterOffers.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

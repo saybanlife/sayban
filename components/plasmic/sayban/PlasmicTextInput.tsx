@@ -77,6 +77,7 @@ export type PlasmicTextInput__VariantMembers = {
   size: "langh";
   style2: "rounded";
   error: "error";
+  shadow: "shadow";
 };
 export type PlasmicTextInput__VariantsArgs = {
   type?: SingleChoiceArg<"soft" | "plain" | "line" | "lineBox" | "lineBoxDark">;
@@ -85,6 +86,7 @@ export type PlasmicTextInput__VariantsArgs = {
   size?: SingleChoiceArg<"langh">;
   style2?: SingleChoiceArg<"rounded">;
   error?: SingleBooleanChoiceArg<"error">;
+  shadow?: SingleBooleanChoiceArg<"shadow">;
 };
 type VariantPropType = keyof PlasmicTextInput__VariantsArgs;
 export const PlasmicTextInput__VariantProps = new Array<VariantPropType>(
@@ -93,7 +95,8 @@ export const PlasmicTextInput__VariantProps = new Array<VariantPropType>(
   "padded",
   "size",
   "style2",
-  "error"
+  "error",
+  "shadow"
 );
 
 export type PlasmicTextInput__ArgsType = {
@@ -292,6 +295,7 @@ export interface DefaultTextInputProps {
   size?: SingleChoiceArg<"langh">;
   style2?: SingleChoiceArg<"rounded">;
   error?: SingleBooleanChoiceArg<"error">;
+  shadow?: SingleBooleanChoiceArg<"shadow">;
   className?: string;
 }
 
@@ -381,6 +385,12 @@ function PlasmicTextInput__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.error
+      },
+      {
+        path: "shadow",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.shadow
       }
     ],
     [$props, $ctx, $refs]
@@ -439,6 +449,7 @@ function PlasmicTextInput__RenderFunc(props: {
             hasVariant($state, "padded", "left") &&
             hasVariant($state, "padded", "right"),
           [sty.ariaInputpadded_right]: hasVariant($state, "padded", "right"),
+          [sty.ariaInputshadow]: hasVariant($state, "shadow", "shadow"),
           [sty.ariaInputsize_langh]: hasVariant($state, "size", "langh"),
           [sty.ariaInputstyle2_rounded]: hasVariant(
             $state,

@@ -94,3 +94,6 @@
   outline-style: solid;
   outline-width: 1.75px;
 }
+.ariaInputshadow:global(.__wab_instance) {
+  box-shadow: 0px 2px 5px 0px var(--token-fr7DwvJwRjZb);
+}

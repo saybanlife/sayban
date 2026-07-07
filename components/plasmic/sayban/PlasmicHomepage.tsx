@@ -2032,6 +2032,7 @@ function PlasmicHomepage__RenderFunc(props: {
                       placeholder={
                         "\u0646\u0627\u0645 \u0645\u0631\u06a9\u0632\u060c \u062e\u062f\u0645\u062a ..."
                       }
+                      shadow={true}
                       size={"langh"}
                       style2={"rounded"}
                       value={generateStateValueProp($state, [
@@ -2933,7 +2934,7 @@ function PlasmicHomepage__RenderFunc(props: {
                             )}
                           >
                             {
-                              "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645\r"
+                              "\u0627\u0639\u0632\u0627\u0645 \u0647\u0648\u0634\u0645\u0646\u062f \u067e\u0631\u0633\u062a\u0627\u0631"
                             }
                           </div>
                           <div
@@ -2944,7 +2945,7 @@ function PlasmicHomepage__RenderFunc(props: {
                             )}
                           >
                             {
-                              "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645 \u0645\u062a\u0646 \u0633\u0627\u062e\u062a\u06af\u06cc \u0628\u0627 \u062a\u0648\u0644\u06cc\u062f \u0633\u0627\u062f\u06af\u06cc \u0646\u0627\u0645\u0641\u0647\u0648\u0645 \r\n"
+                              "\u0645\u0631\u0627\u0642\u0628\u062a \u0648 \u062f\u0631\u0645\u0627\u0646 \u062f\u0631 \u0645\u0646\u0632\u0644\u060c \u0628\u0627 \u06a9\u0627\u062f\u0631 \u062a\u0627\u06cc\u06cc\u062f\u0634\u062f\u0647 \u0648 \u062a\u0636\u0645\u06cc\u0646 \u0627\u0645\u0646\u06cc\u062a \u0627\u0632 \u0633\u0648\u06cc \u0633\u0627\u06cc\u0628\u0627\u0646"
                             }
                           </div>
                           <Button
@@ -2964,7 +2965,7 @@ function PlasmicHomepage__RenderFunc(props: {
                                 )}
                               >
                                 {
-                                  "\u0645\u0634\u0627\u0647\u062f\u0647 \u0628\u06cc\u0634\u062a\u0631"
+                                  "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u067e\u0631\u0633\u062a\u0627\u0631"
                                 }
                               </div>
                             }

@@ -177,7 +177,23 @@ function PlasmicUser__RenderFunc(props: {
         path: "_switch.isSelected",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            const checkNotificationStatus = () => {
+              if (typeof window !== "undefined" && "Notification" in window) {
+                const permission = window.Notification.permission;
+                if (permission === "granted") {
+                  return true;
+                } else if (permission === "denied") {
+                  return false;
+                } else {
+                  return false;
+                }
+              }
+              return false;
+            };
+            return checkNotificationStatus();
+          })()
       },
       {
         path: "switch2.isSelected",
@@ -212,6 +228,8 @@ function PlasmicUser__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
 
   const $state = useDollarState(stateSpecs, {
     $props,
@@ -503,7 +521,65 @@ function PlasmicUser__RenderFunc(props: {
           </div>
         </div>
         <div className={classNames("all", sty.freeBox___4PsTr)}>
-          <div className={classNames("all", sty.freeBox__er2Gs)}>
+          <div
+            className={classNames("all", sty.freeBox__er2Gs)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          if (
+                            typeof window !== "undefined" &&
+                            "Notification" in window
+                          ) {
+                            const permission = window.Notification.permission;
+                            if (permission === "granted") {
+                              return "active";
+                            } else if (permission === "denied") {
+                              return "blocked";
+                            } else {
+                              return "not_asked";
+                            }
+                          }
+                          return "not_supported";
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["invokeGlobalAction"] =
+                $steps.runCode == "not_asked"
+                  ? (() => {
+                      const actionArgs = { args: [] };
+                      return $globalActions[
+                        "Fragment.openNotificationModal"
+                      ]?.apply(null, [...actionArgs.args]);
+                    })()
+                  : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+            }}
+          >
             <Icon85Icon
               className={classNames("all", sty.svg__aL28T)}
               role={"img"}
@@ -514,30 +590,68 @@ function PlasmicUser__RenderFunc(props: {
                 "\u0648\u0636\u0639\u06cc\u062a \u0627\u0637\u0644\u0627\u0639\u200c\u0631\u0633\u0627\u0646\u06cc"
               }
             </div>
-            <Switch
-              data-plasmic-name={"_switch"}
-              data-plasmic-override={overrides._switch}
-              className={classNames("__wab_instance", sty._switch)}
-              isSelected={generateStateValueProp($state, [
-                "_switch",
-                "isSelected"
-              ])}
-              onChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
+            {(() => {
+              const child$Props = {
+                className: classNames("__wab_instance", sty._switch),
+                disabled: true,
+                isSelected: generateStateValueProp($state, [
                   "_switch",
                   "isSelected"
-                ]).apply(null, eventArgs);
+                ]),
+                onChange: async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "_switch",
+                    "isSelected"
+                  ]).apply(null, eventArgs);
 
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              showLabel={false}
-            />
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                },
+                showLabel: false
+              };
+
+              initializePlasmicStates(
+                $state,
+                [
+                  {
+                    name: "_switch.isSelected",
+                    initFunc: ({ $props, $state, $queries, $q }) =>
+                      (() => {
+                        const checkNotificationStatus = () => {
+                          if (
+                            typeof window !== "undefined" &&
+                            "Notification" in window
+                          ) {
+                            const permission = window.Notification.permission;
+                            if (permission === "granted") {
+                              return true;
+                            } else if (permission === "denied") {
+                              return false;
+                            } else {
+                              return false;
+                            }
+                          }
+                          return false;
+                        };
+                        return checkNotificationStatus();
+                      })()
+                  }
+                ],
+                []
+              );
+              return (
+                <Switch
+                  data-plasmic-name={"_switch"}
+                  data-plasmic-override={overrides._switch}
+                  {...child$Props}
+                />
+              );
+            })()}
           </div>
           <Line
             className={classNames("__wab_instance", sty.line___7QHjk)}
