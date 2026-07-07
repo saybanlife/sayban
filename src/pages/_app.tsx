@@ -6,12 +6,15 @@ import { useEffect, useState } from "react";
 import { PlasmicRootProvider } from "@plasmicapp/react-web";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { useRouter } from "next/router"; // <--- ۱. اضافه کردن راوتر نکست‌جی‌اس
 
 // Import توابع از فایل fcm.ts
-import { initFcm, requestNotificationPermission } from "@/lib/fcm"; // اطمینان حاصل کنید مسیر درست است
+import { initFcm, requestNotificationPermission } from "@/lib/fcm"; 
 import NotificationModal from "../../components/NotificationModal";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter(); // <--- ۲. ساختن نمونه از راوتر
+  
   // State برای کنترل نمایش مودال
   const [showNotificationPrompt, setShowNotificationPrompt] = useState(false);
   // State برای اینکه آیا کاربر قبلا اجازه داده است یا نه
@@ -28,21 +31,21 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         const permission = Notification.permission;
         setHasNotificationPermission(permission === 'granted');
 
-        if (permission === 'default' && shouldShowModal) {
+        if (permission === 'granted') {
+          // اگر کاربر قبلاً اجازه داده، فرقی نمی‌کند در کدام صفحه است؛ FCM فعال شود.
+          initFcm();
+        } else if (permission === 'default' && shouldShowModal && router.pathname === "/home") {
           setTimeout(() => {
             setShowNotificationPrompt(true);
           }, 2000);
-        } else if (permission === 'granted') {
-          await initFcm();
         } else {
-          // اصلاح خطای setHasNotificationPrompt به setShowNotificationPrompt
           setShowNotificationPrompt(false);
           setHasNotificationPermission(false);
         }
       };
       checkPermissionsAndShowPrompt();
     }
-  }, []);
+  }, [router.pathname]); // <--- ۴. اضافه کردن مسیر به آرایه وابستگی‌ها (Dependency Array)
 
   const handleEnableNotifications = async () => {
     const permissionGranted = await requestNotificationPermission();
@@ -75,6 +78,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
       </Head>
 
+      {/* مودال فقط در صورتی رندر می‌شود که شرط مسیر در useEffect تایید شده باشد */}
       {showNotificationPrompt && !hasNotificationPermission && (
         <NotificationModal
           handleEnableNotifications={handleEnableNotifications}
