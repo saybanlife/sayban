@@ -45,7 +45,7 @@
   box-shadow: none;
   row-gap: var(--token-kD77h-2NGSqI);
   min-width: 0;
-  padding: 0px 0px var(--token-gzhQ56cI3Art);
+  padding: 0px 0px var(--token-TONjX_YbO9_T);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__lHkfy {
@@ -171,28 +171,6 @@
 }
 .freeBoxsearch__zzjpZBrJu {
   display: flex;
-}
-.freeBox__m7Yl {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  width: auto;
-  height: 20px;
-  max-width: 100%;
-  justify-content: flex-start;
-  align-items: center;
-  left: 0;
-  top: auto;
-  background: var(--token-KPGXdu9o7llP);
-  border-top-right-radius: var(--token-zOTmRNiLzxBx);
-  border-top-left-radius: var(--token-zOTmRNiLzxBx);
-  bottom: 0;
-  right: 0;
-  flex-shrink: 0;
-  padding: 8px;
-}
-.freeBoxsoft__m7YlFgJuq {
-  display: none;
 }
 .text {
   animation: none;

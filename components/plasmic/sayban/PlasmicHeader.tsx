@@ -215,14 +215,19 @@ function PlasmicHeader__RenderFunc(props: {
       )}
     >
       <div
-        className={classNames("all", sty.freeBox__lHkfy, "fixed-box", {
-          [sty.freeBoxsearch__lHkfyBrJu]: hasVariant(
-            $state,
-            "search",
-            "search"
-          ),
-          [sty.freeBoxsoft__lHkfyFgJuq]: hasVariant($state, "soft", "soft")
-        })}
+        className={classNames(
+          "all",
+          sty.freeBox__lHkfy,
+          "fixed-box green-banner",
+          {
+            [sty.freeBoxsearch__lHkfyBrJu]: hasVariant(
+              $state,
+              "search",
+              "search"
+            ),
+            [sty.freeBoxsoft__lHkfyFgJuq]: hasVariant($state, "soft", "soft")
+          }
+        )}
       >
         <div
           className={classNames("all", sty.freeBox___3BRFj, {
@@ -326,11 +331,6 @@ function PlasmicHeader__RenderFunc(props: {
             value: args.slot2
           })}
         </div>
-        <div
-          className={classNames("all", sty.freeBox__m7Yl, {
-            [sty.freeBoxsoft__m7YlFgJuq]: hasVariant($state, "soft", "soft")
-          })}
-        />
       </div>
       <div
         data-plasmic-name={"text"}
