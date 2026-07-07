@@ -7,8 +7,6 @@ import {
   GlobalContextMeta,
 } from "@plasmicapp/host";
 import axios from "axios";
-
-// ایمپورت کامپوننت مودال (مسیر را بر اساس پروژه خود چک کنید)
 import NotificationModal from "../../components/NotificationModal";
 
 const BASE_URL = "https://sayban.darkube.ir/webhook/";
@@ -27,9 +25,6 @@ export const Fragment = ({
   rtl,
   primaryColor,
 }: FragmentProps) => {
-  // استیت برای کنترل نمایش دستی مودال از طریق اکشن
-  const [forceShowModal, setForceShowModal] = React.useState(false);
-
   useEffect(() => {
     changeTheme(primaryColor);
   }, [primaryColor]);
@@ -51,12 +46,9 @@ export const Fragment = ({
           position: placement,
         });
       },
-
-      // اکشن جدید برای باز کردن دستی مودال از هر جای پروژه یا پلاس‌میک
       openNotificationModal: () => {
         setForceShowModal(true);
       },
-
       apiRequest: async (
         method: "GET" | "POST" | "DELETE" | "PUT" | "PATCH" = "GET",
         url: string,
@@ -100,7 +92,7 @@ export const Fragment = ({
       },
 
       // -----------------------------
-      //        COOKIE: SET & GET
+      //       COOKIE: SET & GET
       // -----------------------------
       setCookie: (name: string, value: string, days: number = 7) => {
         const expires = new Date(Date.now() + days * 864e5).toUTCString();
@@ -114,11 +106,11 @@ export const Fragment = ({
           document.cookie
             .split("; ")
             .find((row) => row.startsWith(name + "="))
-            .split("=")[1] || null
+            ?.split("=")[1] || null
         );
       },
     }),
-    [apiConfig, previewApiConfig]
+    []
   );
 
   return (
@@ -130,14 +122,11 @@ export const Fragment = ({
           previewApiConfig: previewApiConfig ?? {},
           rtl,
           primaryColor,
-          forceShowModal,
         }}
         hidden
       >
         {children}
         <Toaster />
-
-        {/* اجرای مودال و منطق اصلی FCM زمان فراخوانی دستی اکشن */}
         {forceShowModal && (
           <NotificationModal
             handleEnableNotifications={async () => {
@@ -201,12 +190,10 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
   providesData: true,
 
   globalActions: {
-    // ثبت اکشن جدید در سیستم متا دیتای پلاس‌میک برای نمایش در کادر تعاملات (Interactions)
     openNotificationModal: {
       displayName: "Open Notification Modal",
       parameters: [],
     },
-
     showToast: {
       displayName: "Show Toast",
       parameters: [
@@ -302,6 +289,9 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
       ],
     },
 
+    // -----------------------------
+    //        COOKIE ACTIONS
+    // -----------------------------
     setCookie: {
       displayName: "Set Cookie",
       parameters: [
