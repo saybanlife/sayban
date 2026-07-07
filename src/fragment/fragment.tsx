@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import toast, { ToastPosition, Toaster } from "react-hot-toast";
 
 import {
@@ -8,7 +8,6 @@ import {
 } from "@plasmicapp/host";
 import axios from "axios";
 import NotificationModal from "../../components/NotificationModal";
-
 const BASE_URL = "https://sayban.darkube.ir/webhook/";
 
 type FragmentProps = React.PropsWithChildren<{
@@ -28,6 +27,7 @@ export const Fragment = ({
   useEffect(() => {
     changeTheme(primaryColor);
   }, [primaryColor]);
+const [forceShowModal, setForceShowModal] = useState<boolean>(false);
 
   const changeTheme = (color: string) => {
     document.documentElement.style.setProperty("--primary", color);
