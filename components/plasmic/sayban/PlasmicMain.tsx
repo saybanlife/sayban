@@ -2908,7 +2908,7 @@ function PlasmicMain__RenderFunc(props: {
           }
 
           $steps["runCode2"] =
-            $state.role == "center_admin"
+            $state.role != "center_admin"
               ? (() => {
                   const actionArgs = {
                     customFunction: async () => {
