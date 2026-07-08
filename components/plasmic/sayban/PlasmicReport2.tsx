@@ -253,6 +253,11 @@ function PlasmicReport2__RenderFunc(props: {
 
         valueProp: "selectchanels",
         onChangeProp: "onSelectchanelsChange"
+      },
+      {
+        path: "reportItem[].data",
+        type: "private",
+        variableType: "object"
       }
     ],
     [$props, $ctx, $refs]
@@ -391,155 +396,166 @@ function PlasmicReport2__RenderFunc(props: {
                     className={classNames("all", sty.freeBox__oWqpd)}
                     key={currentIndex}
                   >
-                    <ReportItem
-                      data-plasmic-name={"reportItem"}
-                      data-plasmic-override={overrides.reportItem}
-                      apiRequestData={$state.apiRequest.data?.results?.[0]}
-                      className={classNames("__wab_instance", sty.reportItem)}
-                      count={(() => {
-                        try {
-                          return $state.apiRequest.data.totalNotifications;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                      disable={(() => {
-                        try {
-                          return (
-                            master.value === "notification" &&
-                            $state.data2.hasDefaultDate
-                          );
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return [];
-                          }
-                          throw e;
-                        }
-                      })()}
-                      master={master}
-                      onClick={async event => {
-                        const $steps = {};
+                    {(() => {
+                      const child$Props = {
+                        apiRequestData: $state.apiRequest.data?.results?.[0],
 
-                        $steps["runCode"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                customFunction: async () => {
-                                  return (() => {
-                                    if (
-                                      master.value === "notification" &&
-                                      $state.data2.hasDefaultDate
-                                    ) {
-                                      return "aleart";
-                                    }
-                                    if (
-                                      $state.selectchanels.includes(
-                                        master.value
-                                      )
-                                    ) {
-                                      return ($state.selectchanels =
-                                        $state.selectchanels.filter(
-                                          item => item !== master.value
-                                        ));
-                                    } else {
-                                      return $state.selectchanels.push(
-                                        master.value
-                                      );
-                                    }
-                                  })();
-                                }
-                              };
-                              return (({ customFunction }) => {
-                                return customFunction();
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["runCode"] != null &&
-                          typeof $steps["runCode"] === "object" &&
-                          typeof $steps["runCode"].then === "function"
-                        ) {
-                          $steps["runCode"] = await $steps["runCode"];
-                        }
+                        className: classNames("__wab_instance", sty.reportItem),
+                        count: (() => {
+                          try {
+                            return $state.apiRequest.data.totalNotifications;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        data: generateStateValueProp($state, [
+                          "reportItem",
+                          __plasmic_idx_0,
+                          "data"
+                        ]),
+                        disable: (() => {
+                          try {
+                            return (
+                              master.value === "notification" &&
+                              $state.data2.hasDefaultDate
+                            );
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })(),
+                        master: master,
 
-                        $steps["invokeGlobalAction"] =
-                          $steps.runCode == "aleart"
+                        onClick: async event => {
+                          const $steps = {};
+
+                          $steps["runCode"] = true
                             ? (() => {
                                 const actionArgs = {
-                                  args: [
-                                    "error",
-                                    "\u0628\u0647 \u062f\u0644\u06cc\u0644 \u0627\u0647\u0645\u06cc\u062a \u0627\u06cc\u0646 \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc\u200c\u060c \u0641\u0639\u0627\u0644\u200c\u0633\u0627\u0632\u06cc \u0646\u0648\u062a\u06cc\u0641\u06cc\u06a9\u06cc\u0634\u0646 \u0627\u0645\u06a9\u0627\u0646\u200c\u067e\u0630\u06cc\u0631 \u0646\u06cc\u0633\u062a. \u0631\u0648\u0634 \u0647\u0627\u06cc \u062f\u06cc\u06af\u0631 \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f.",
-                                    "bottom-center",
-                                    5000
-                                  ]
+                                  customFunction: async () => {
+                                    return (() => {
+                                      if (
+                                        master.value === "notification" &&
+                                        $state.data2.hasDefaultDate
+                                      ) {
+                                        return "aleart";
+                                      }
+                                      if (
+                                        $state.selectchanels.includes(
+                                          master.value
+                                        )
+                                      ) {
+                                        return ($state.selectchanels =
+                                          $state.selectchanels.filter(
+                                            item => item !== master.value
+                                          ));
+                                      } else {
+                                        return $state.selectchanels.push(
+                                          master.value
+                                        );
+                                      }
+                                    })();
+                                  }
                                 };
-                                return $globalActions[
-                                  "Fragment.showToast"
-                                ]?.apply(null, [...actionArgs.args]);
+                                return (({ customFunction }) => {
+                                  return customFunction();
+                                })?.apply(null, [actionArgs]);
                               })()
                             : undefined;
-                        if (
-                          $steps["invokeGlobalAction"] != null &&
-                          typeof $steps["invokeGlobalAction"] === "object" &&
-                          typeof $steps["invokeGlobalAction"].then ===
-                            "function"
-                        ) {
-                          $steps["invokeGlobalAction"] =
-                            await $steps["invokeGlobalAction"];
-                        }
-                      }}
-                      select={(() => {
-                        try {
-                          return $state.selectchanels.includes(master.value);
-                        } catch (e) {
                           if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
+                            $steps["runCode"] != null &&
+                            typeof $steps["runCode"] === "object" &&
+                            typeof $steps["runCode"].then === "function"
                           ) {
-                            return [];
+                            $steps["runCode"] = await $steps["runCode"];
                           }
-                          throw e;
-                        }
-                      })()}
-                      send={true}
-                    >
-                      <div
-                        className={classNames(
-                          "all",
-                          "__wab_text",
-                          sty.text__hVxI
-                        )}
-                      >
-                        <div
-                          className={"__wab_expr_html_text"}
-                          dangerouslySetInnerHTML={{
-                            __html: (() => {
-                              try {
-                                return $state.data2.schedule_type == "everyYear"
-                                  ? "قیمت‌ها به‌صورت یک دوره <span style=' font-weight:bold;'>سالانه</span> محاسبه شده‌اند."
-                                  : "قیمت‌ها به‌صورت <span style='font-weight:bold;'>ماهانه</span> محاسبه شده‌اند.";
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "\u0642\u06cc\u0645\u062a\u200c\u0647\u0627 \u0628\u0647\u200c\u0635\u0648\u0631\u062a \u0645\u0627\u0647\u0627\u0646\u0647 \u0645\u062d\u0627\u0633\u0628\u0647 \u0634\u062f\u0647\u200c\u0627\u0646\u062f.";
-                                }
-                                throw e;
-                              }
-                            })()
-                          }}
+
+                          $steps["invokeGlobalAction"] =
+                            $steps.runCode == "aleart"
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "error",
+                                      "\u0628\u0647 \u062f\u0644\u06cc\u0644 \u0627\u0647\u0645\u06cc\u062a \u0627\u06cc\u0646 \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc\u200c\u060c \u0641\u0639\u0627\u0644\u200c\u0633\u0627\u0632\u06cc \u0646\u0648\u062a\u06cc\u0641\u06cc\u06a9\u06cc\u0634\u0646 \u0627\u0645\u06a9\u0627\u0646\u200c\u067e\u0630\u06cc\u0631 \u0646\u06cc\u0633\u062a. \u0631\u0648\u0634 \u0647\u0627\u06cc \u062f\u06cc\u06af\u0631 \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f.",
+                                      "bottom-center",
+                                      5000
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.showToast"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["invokeGlobalAction"] != null &&
+                            typeof $steps["invokeGlobalAction"] === "object" &&
+                            typeof $steps["invokeGlobalAction"].then ===
+                              "function"
+                          ) {
+                            $steps["invokeGlobalAction"] =
+                              await $steps["invokeGlobalAction"];
+                          }
+                        },
+                        onDataChange: async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "reportItem",
+                            __plasmic_idx_0,
+                            "data"
+                          ]).apply(null, eventArgs);
+
+                          if (
+                            eventArgs.length > 1 &&
+                            eventArgs[1] &&
+                            eventArgs[1]._plasmic_state_init_
+                          ) {
+                            return;
+                          }
+                        },
+                        select: (() => {
+                          try {
+                            return $state.selectchanels.includes(master.value);
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })(),
+                        send: true
+                      };
+
+                      initializePlasmicStates(
+                        $state,
+                        [
+                          {
+                            name: "reportItem[].data",
+                            initFunc: ({ $props, $state, $queries, $q }) => ({})
+                          }
+                        ],
+                        [__plasmic_idx_0]
+                      );
+                      return (
+                        <ReportItem
+                          data-plasmic-name={"reportItem"}
+                          data-plasmic-override={overrides.reportItem}
+                          {...child$Props}
                         />
-                      </div>
-                    </ReportItem>
+                      );
+                    })()}
                   </div>
                 );
               })}

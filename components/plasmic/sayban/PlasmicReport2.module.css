@@ -178,15 +178,6 @@
   min-width: 0;
   padding: 0px;
 }
-.text__hVxI {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  text-align: right;
-  color: var(--token-KjATzAYJ5IB7);
-  font-size: var(--token-R7X4jvpZsbD-);
-  font-weight: 400;
-}
 .line:global(.__wab_instance) {
   max-width: 100%;
   flex-shrink: 0;

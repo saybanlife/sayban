@@ -68,6 +68,7 @@ import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import AddServise from "../../AddServise"; // plasmic-import: GoiLccUqO4vp/component
+import AddServiseStaff from "../../AddServiseStaff"; // plasmic-import: gTdd7aISGeNO/component
 import MainPageCategories from "../../MainPageCategories"; // plasmic-import: fn1vTVaTFnJQ/component
 import MainPageReservation from "../../MainPageReservation"; // plasmic-import: HqZV6_TZqqbI/component
 import MainPageServise from "../../MainPageServise"; // plasmic-import: k99WG1yHSNAb/component
@@ -137,6 +138,7 @@ export type PlasmicMain__ArgsType = {
   state?: string;
   userId?: string;
   serviceId?: string;
+  category?: string;
 };
 type ArgPropType = keyof PlasmicMain__ArgsType;
 export const PlasmicMain__ArgProps = new Array<ArgPropType>(
@@ -146,7 +148,8 @@ export const PlasmicMain__ArgProps = new Array<ArgPropType>(
   "token",
   "state",
   "userId",
-  "serviceId"
+  "serviceId",
+  "category"
 );
 
 export type PlasmicMain__OverridesType = {
@@ -157,10 +160,14 @@ export type PlasmicMain__OverridesType = {
   centerPage?: Flex__<typeof CenterPage>;
   addService?: Flex__<typeof Modal>;
   select?: Flex__<typeof Select>;
-  menuItem?: Flex__<typeof MenuItem>;
   addServise2?: Flex__<typeof AddServise>;
   submit2?: Flex__<typeof Button>;
   button6?: Flex__<typeof Button>;
+  addService2?: Flex__<typeof Modal>;
+  select2?: Flex__<typeof Select>;
+  addServiseStaff?: Flex__<typeof AddServiseStaff>;
+  submit3?: Flex__<typeof Button>;
+  button7?: Flex__<typeof Button>;
   mainPageCategories?: Flex__<typeof MainPageCategories>;
   mainPageReservation?: Flex__<typeof MainPageReservation>;
   mainPageServise?: Flex__<typeof MainPageServise>;
@@ -169,6 +176,9 @@ export type PlasmicMain__OverridesType = {
   deleteSnakbar?: Flex__<typeof Snackbar>;
   buttonDelete?: Flex__<typeof Button>;
   buttonClose?: Flex__<typeof Button>;
+  deleteService?: Flex__<typeof Snackbar>;
+  buttonDelete4?: Flex__<typeof Button>;
+  buttonClose4?: Flex__<typeof Button>;
   deleteUser?: Flex__<typeof Snackbar>;
   buttonDelete3?: Flex__<typeof Button>;
   buttonClose3?: Flex__<typeof Button>;
@@ -200,6 +210,7 @@ export interface DefaultMainProps {
   state?: string;
   userId?: string;
   serviceId?: string;
+  category?: string;
   page?: SingleChoiceArg<
     | "centers"
     | "center"
@@ -745,7 +756,20 @@ function PlasmicMain__RenderFunc(props: {
         path: "mainPageServise.categpty",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $props.category;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "mainPageServise.center",
@@ -958,6 +982,85 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "mainPageServise.selected",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "deleteService.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "deleteService.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "deleteService.index",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "buttonDelete4.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "buttonClose4.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "addService2.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          hasVariant($state, "page", "centers") ? false : false
+      },
+      {
+        path: "select2.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "select2.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "submit3.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button7.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "addServiseStaff.servises",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       }
     ],
     [$props, $ctx, $refs]
@@ -1642,8 +1745,6 @@ function PlasmicMain__RenderFunc(props: {
                     const currentIndex = __plasmic_idx_0;
                     return (
                       <MenuItem
-                        data-plasmic-name={"menuItem"}
-                        data-plasmic-override={overrides.menuItem}
                         key={currentIndex}
                         label={(() => {
                           try {
@@ -2103,6 +2204,457 @@ function PlasmicMain__RenderFunc(props: {
         showHeader={false}
       />
 
+      <Modal
+        data-plasmic-name={"addService2"}
+        data-plasmic-override={overrides.addService2}
+        className={classNames("__wab_instance", sty.addService2, {
+          [sty.addService2page_center]: hasVariant($state, "page", "center"),
+          [sty.addService2page_centers]: hasVariant($state, "page", "centers"),
+          [sty.addService2page_reservations]: hasVariant(
+            $state,
+            "page",
+            "reservations"
+          )
+        })}
+        closeOnBackdropClick={false}
+        content={
+          <div className={classNames("all", sty.freeBox__ilpov)}>
+            {(() => {
+              try {
+                return $state.role == "super_admin";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <div className={classNames("all", sty.freeBox__zUwIp)}>
+                <Select
+                  data-plasmic-name={"select2"}
+                  data-plasmic-override={overrides.select2}
+                  className={classNames("__wab_instance", sty.select2)}
+                  isOpen={generateStateValueProp($state, ["select2", "isOpen"])}
+                  items={(_par =>
+                    !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                    (() => {
+                      try {
+                        return $state.mainPageCenter.center;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()
+                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                    const currentItem = __plasmic_item_0;
+                    const currentIndex = __plasmic_idx_0;
+                    return (
+                      <MenuItem
+                        key={currentIndex}
+                        label={(() => {
+                          try {
+                            return currentItem.نام;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}
+                        value={(() => {
+                          try {
+                            return currentItem.شناسه;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}
+                      />
+                    );
+                  })}
+                  onChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "select2",
+                      "value"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onOpenChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "select2",
+                      "isOpen"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  placeholder={
+                    "\u0645\u0631\u06a9\u0632 \u0645\u0648\u0631\u062f \u0646\u0638\u0631 \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
+                  }
+                  showLabel={false}
+                  type={"lineBox"}
+                  value={generateStateValueProp($state, ["select2", "value"])}
+                />
+              </div>
+            ) : null}
+            <AddServiseStaff
+              data-plasmic-name={"addServiseStaff"}
+              data-plasmic-override={overrides.addServiseStaff}
+              className={classNames("__wab_instance", sty.addServiseStaff)}
+              onServisesChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "addServiseStaff",
+                  "servises"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              servises={generateStateValueProp($state, [
+                "addServiseStaff",
+                "servises"
+              ])}
+            />
+          </div>
+        }
+        footer={
+          <div className={classNames("all", sty.freeBox__r1TrW)}>
+            <Button
+              data-plasmic-name={"submit3"}
+              data-plasmic-override={overrides.submit3}
+              className={classNames("__wab_instance", sty.submit3)}
+              color={"success"}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text__mdXa)}
+                >
+                  {"\u0630\u062e\u06cc\u0631\u0647"}
+                </div>
+              }
+              loading={generateStateValueProp($state, ["submit3", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateSubmitLoading"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["submit3", "loading"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateSubmitLoading"] != null &&
+                  typeof $steps["updateSubmitLoading"] === "object" &&
+                  typeof $steps["updateSubmitLoading"].then === "function"
+                ) {
+                  $steps["updateSubmitLoading"] =
+                    await $steps["updateSubmitLoading"];
+                }
+
+                $steps["invokeGlobalAction"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "POST",
+                          "/add/service",
+                          undefined,
+                          (() => {
+                            try {
+                              return {
+                                service: $state.addServiseStaff.servises
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] =
+                    await $steps["invokeGlobalAction"];
+                }
+
+                $steps["invokeGlobalAction3"] = $steps.invokeGlobalAction?.data
+                  ?.success
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "success",
+                          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f.",
+                          "top-left"
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction3"] != null &&
+                  typeof $steps["invokeGlobalAction3"] === "object" &&
+                  typeof $steps["invokeGlobalAction3"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction3"] =
+                    await $steps["invokeGlobalAction3"];
+                }
+
+                $steps["invokeGlobalAction4"] = !$steps.invokeGlobalAction?.data
+                  ?.success
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "error",
+                          "\u0645\u0634\u06a9\u0644\u06cc \u0631\u062e \u062f\u0627\u062f\u0647 \u0627\u0633\u062a \u0645\u062c\u062f\u062f\u0627 \u062a\u0644\u0627\u0634 \u06a9\u0646\u06cc\u062f.",
+                          "top-left"
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction4"] != null &&
+                  typeof $steps["invokeGlobalAction4"] === "object" &&
+                  typeof $steps["invokeGlobalAction4"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction4"] =
+                    await $steps["invokeGlobalAction4"];
+                }
+
+                $steps["updateSubmitLoading2"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["submit3", "loading"]
+                        },
+                        operation: 0,
+                        value: false
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateSubmitLoading2"] != null &&
+                  typeof $steps["updateSubmitLoading2"] === "object" &&
+                  typeof $steps["updateSubmitLoading2"].then === "function"
+                ) {
+                  $steps["updateSubmitLoading2"] =
+                    await $steps["updateSubmitLoading2"];
+                }
+
+                $steps["runCode2"] = $steps.invokeGlobalAction?.data?.success
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            $state.select2.value = null;
+                            $state.mainPageServise.restart += 1;
+                            $state.addServiseStaff.servises = [];
+                            return ($state.addService2.isOpen = false);
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode2"] != null &&
+                  typeof $steps["runCode2"] === "object" &&
+                  typeof $steps["runCode2"].then === "function"
+                ) {
+                  $steps["runCode2"] = await $steps["runCode2"];
+                }
+              }}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["submit3", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+            />
+
+            <Button
+              data-plasmic-name={"button7"}
+              data-plasmic-override={overrides.button7}
+              className={classNames("__wab_instance", sty.button7)}
+              color={"warning"}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text__y4ZjY)}
+                >
+                  {"\u0644\u063a\u0648"}
+                </div>
+              }
+              loading={generateStateValueProp($state, ["button7", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateAddCenterIsOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["addService2", "isOpen"]
+                        },
+                        operation: 4
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateAddCenterIsOpen"] != null &&
+                  typeof $steps["updateAddCenterIsOpen"] === "object" &&
+                  typeof $steps["updateAddCenterIsOpen"].then === "function"
+                ) {
+                  $steps["updateAddCenterIsOpen"] =
+                    await $steps["updateAddCenterIsOpen"];
+                }
+              }}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["button7", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              type={"soft"}
+            />
+          </div>
+        }
+        heading={null}
+        isOpen={generateStateValueProp($state, ["addService2", "isOpen"])}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["addService2", "isOpen"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        showFooter={false}
+        showHeader={false}
+      />
+
       <MainPageCategories
         data-plasmic-name={"mainPageCategories"}
         data-plasmic-override={overrides.mainPageCategories}
@@ -2334,11 +2886,64 @@ function PlasmicMain__RenderFunc(props: {
         addService={async event => {
           const $steps = {};
 
+          $steps["runCode"] =
+            $state.role == "center_admin"
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return ($state.addService.isOpen = true);
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+          if (
+            $steps["runCode"] != null &&
+            typeof $steps["runCode"] === "object" &&
+            typeof $steps["runCode"].then === "function"
+          ) {
+            $steps["runCode"] = await $steps["runCode"];
+          }
+
+          $steps["runCode2"] =
+            $state.role == "center_admin"
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return ($state.addService2.isOpen = true);
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+          if (
+            $steps["runCode2"] != null &&
+            typeof $steps["runCode2"] === "object" &&
+            typeof $steps["runCode2"].then === "function"
+          ) {
+            $steps["runCode2"] = await $steps["runCode2"];
+          }
+        }}
+        categpty={generateStateValueProp($state, [
+          "mainPageServise",
+          "categpty"
+        ])}
+        centerDelete={async () => {
+          const $steps = {};
+
           $steps["runCode"] = true
             ? (() => {
                 const actionArgs = {
                   customFunction: async () => {
-                    return ($state.addService.isOpen = true);
+                    return (() => {
+                      $state.deleteService.data =
+                        $state.mainPageServise.selected;
+                      return ($state.deleteService.opendialog = true);
+                    })();
                   }
                 };
                 return (({ customFunction }) => {
@@ -2354,10 +2959,6 @@ function PlasmicMain__RenderFunc(props: {
             $steps["runCode"] = await $steps["runCode"];
           }
         }}
-        categpty={generateStateValueProp($state, [
-          "mainPageServise",
-          "categpty"
-        ])}
         centerId={(() => {
           try {
             return $props.centerId;
@@ -2372,6 +2973,11 @@ function PlasmicMain__RenderFunc(props: {
           }
         })()}
         className={classNames("__wab_instance", sty.mainPageServise, {
+          [sty.mainPageServisepage_center]: hasVariant(
+            $state,
+            "page",
+            "center"
+          ),
           [sty.mainPageServisepage_reservations]: hasVariant(
             $state,
             "page",
@@ -2440,6 +3046,20 @@ function PlasmicMain__RenderFunc(props: {
             return;
           }
         }}
+        onSelectedChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageServise",
+            "selected"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
         onSelectedRowChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "mainPageServise",
@@ -2455,6 +3075,10 @@ function PlasmicMain__RenderFunc(props: {
           }
         }}
         restart={generateStateValueProp($state, ["mainPageServise", "restart"])}
+        selected={generateStateValueProp($state, [
+          "mainPageServise",
+          "selected"
+        ])}
         selectedRow={generateStateValueProp($state, [
           "mainPageServise",
           "selectedRow"
@@ -2817,6 +3441,315 @@ function PlasmicMain__RenderFunc(props: {
             onLoadingChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "buttonClose",
+                "loading"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </Snackbar>
+      <Snackbar
+        data-plasmic-name={"deleteService"}
+        data-plasmic-override={overrides.deleteService}
+        className={classNames("__wab_instance", sty.deleteService)}
+        data={generateStateValueProp($state, ["deleteService", "data"])}
+        index={generateStateValueProp($state, ["deleteService", "index"])}
+        onDataChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["deleteService", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onIndexChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["deleteService", "index"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "deleteService",
+            "opendialog"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, [
+          "deleteService",
+          "opendialog"
+        ])}
+        slot={
+          <div className={classNames("all", "__wab_text", sty.text__gi6Vs)}>
+            <React.Fragment>
+              {(() => {
+                try {
+                  return `حذف خدمت (${$state.deleteService.data.name})`;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "\u062d\u0630\u0641 \u0645\u0631\u06a9\u0632";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+        }
+        slot2={
+          <div className={classNames("all", "__wab_text", sty.text__dqBpc)}>
+            {
+              "\u0622\u06cc\u0627 \u0627\u0632 \u062d\u0630\u0641 \u0645\u0637\u0645\u0626\u0646 \u0647\u0633\u062a\u06cc\u062f\u061f"
+            }
+          </div>
+        }
+        type={"error"}
+      >
+        <div className={classNames("all", sty.freeBox__wIvRp)}>
+          <Button
+            data-plasmic-name={"buttonDelete4"}
+            data-plasmic-override={overrides.buttonDelete4}
+            className={classNames("__wab_instance", sty.buttonDelete4)}
+            color={"errorDestructive"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__jmt52)}>
+                {"\u062d\u0630\u0641"}
+              </div>
+            }
+            loading={generateStateValueProp($state, [
+              "buttonDelete4",
+              "loading"
+            ])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateButtonDeleteLoading"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["buttonDelete4", "loading"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateButtonDeleteLoading"] != null &&
+                typeof $steps["updateButtonDeleteLoading"] === "object" &&
+                typeof $steps["updateButtonDeleteLoading"].then === "function"
+              ) {
+                $steps["updateButtonDeleteLoading"] =
+                  await $steps["updateButtonDeleteLoading"];
+              }
+
+              $steps["centerDelete"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "/delete/service",
+                        undefined,
+                        {
+                          id: $state.deleteService.data.id
+                        }
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["centerDelete"] != null &&
+                typeof $steps["centerDelete"] === "object" &&
+                typeof $steps["centerDelete"].then === "function"
+              ) {
+                $steps["centerDelete"] = await $steps["centerDelete"];
+              }
+
+              $steps["invokeGlobalAction"] = $steps.centerDelete.data.success
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "success",
+                        "\u062d\u0630\u0641 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0646\u062c\u0627\u0645 \u0634\u062f",
+                        "top-center"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["runCode"] = $steps.centerDelete.data.success
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.deleteService.opendialog = false;
+                          return ($state.mainPageServise.restart += "1");
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["updateButtonDeleteLoading2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["buttonDelete4", "loading"]
+                      },
+                      operation: 0,
+                      value: false
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateButtonDeleteLoading2"] != null &&
+                typeof $steps["updateButtonDeleteLoading2"] === "object" &&
+                typeof $steps["updateButtonDeleteLoading2"].then === "function"
+              ) {
+                $steps["updateButtonDeleteLoading2"] =
+                  await $steps["updateButtonDeleteLoading2"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "buttonDelete4",
+                "loading"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+
+          <Button
+            data-plasmic-name={"buttonClose4"}
+            data-plasmic-override={overrides.buttonClose4}
+            className={classNames("__wab_instance", sty.buttonClose4)}
+            color={"clear"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__tqwYu)}>
+                {"\u0644\u063a\u0648"}
+              </div>
+            }
+            loading={generateStateValueProp($state, [
+              "buttonClose4",
+              "loading"
+            ])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateSnackbarOpendialog"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["deleteService", "opendialog"]
+                      },
+                      operation: 0,
+                      value: false
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSnackbarOpendialog"] != null &&
+                typeof $steps["updateSnackbarOpendialog"] === "object" &&
+                typeof $steps["updateSnackbarOpendialog"].then === "function"
+              ) {
+                $steps["updateSnackbarOpendialog"] =
+                  await $steps["updateSnackbarOpendialog"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "buttonClose4",
                 "loading"
               ]).apply(null, eventArgs);
 
@@ -4953,10 +5886,14 @@ const PlasmicDescendants = {
     "centerPage",
     "addService",
     "select",
-    "menuItem",
     "addServise2",
     "submit2",
     "button6",
+    "addService2",
+    "select2",
+    "addServiseStaff",
+    "submit3",
+    "button7",
     "mainPageCategories",
     "mainPageReservation",
     "mainPageServise",
@@ -4965,6 +5902,9 @@ const PlasmicDescendants = {
     "deleteSnakbar",
     "buttonDelete",
     "buttonClose",
+    "deleteService",
+    "buttonDelete4",
+    "buttonClose4",
     "deleteUser",
     "buttonDelete3",
     "buttonClose3",
@@ -4991,19 +5931,22 @@ const PlasmicDescendants = {
   mainPageCenter: ["mainPageCenter"],
   mainPageUser: ["mainPageUser"],
   centerPage: ["centerPage"],
-  addService: [
-    "addService",
-    "select",
-    "menuItem",
-    "addServise2",
-    "submit2",
-    "button6"
-  ],
-  select: ["select", "menuItem"],
-  menuItem: ["menuItem"],
+  addService: ["addService", "select", "addServise2", "submit2", "button6"],
+  select: ["select"],
   addServise2: ["addServise2"],
   submit2: ["submit2"],
   button6: ["button6"],
+  addService2: [
+    "addService2",
+    "select2",
+    "addServiseStaff",
+    "submit3",
+    "button7"
+  ],
+  select2: ["select2"],
+  addServiseStaff: ["addServiseStaff"],
+  submit3: ["submit3"],
+  button7: ["button7"],
   mainPageCategories: ["mainPageCategories"],
   mainPageReservation: ["mainPageReservation"],
   mainPageServise: ["mainPageServise"],
@@ -5012,6 +5955,9 @@ const PlasmicDescendants = {
   deleteSnakbar: ["deleteSnakbar", "buttonDelete", "buttonClose"],
   buttonDelete: ["buttonDelete"],
   buttonClose: ["buttonClose"],
+  deleteService: ["deleteService", "buttonDelete4", "buttonClose4"],
+  buttonDelete4: ["buttonDelete4"],
+  buttonClose4: ["buttonClose4"],
   deleteUser: ["deleteUser", "buttonDelete3", "buttonClose3"],
   buttonDelete3: ["buttonDelete3"],
   buttonClose3: ["buttonClose3"],
@@ -5065,10 +6011,14 @@ type NodeDefaultElementType = {
   centerPage: typeof CenterPage;
   addService: typeof Modal;
   select: typeof Select;
-  menuItem: typeof MenuItem;
   addServise2: typeof AddServise;
   submit2: typeof Button;
   button6: typeof Button;
+  addService2: typeof Modal;
+  select2: typeof Select;
+  addServiseStaff: typeof AddServiseStaff;
+  submit3: typeof Button;
+  button7: typeof Button;
   mainPageCategories: typeof MainPageCategories;
   mainPageReservation: typeof MainPageReservation;
   mainPageServise: typeof MainPageServise;
@@ -5077,6 +6027,9 @@ type NodeDefaultElementType = {
   deleteSnakbar: typeof Snackbar;
   buttonDelete: typeof Button;
   buttonClose: typeof Button;
+  deleteService: typeof Snackbar;
+  buttonDelete4: typeof Button;
+  buttonClose4: typeof Button;
   deleteUser: typeof Snackbar;
   buttonDelete3: typeof Button;
   buttonClose3: typeof Button;
@@ -5168,10 +6121,14 @@ export const PlasmicMain = Object.assign(
     centerPage: makeNodeComponent("centerPage"),
     addService: makeNodeComponent("addService"),
     select: makeNodeComponent("select"),
-    menuItem: makeNodeComponent("menuItem"),
     addServise2: makeNodeComponent("addServise2"),
     submit2: makeNodeComponent("submit2"),
     button6: makeNodeComponent("button6"),
+    addService2: makeNodeComponent("addService2"),
+    select2: makeNodeComponent("select2"),
+    addServiseStaff: makeNodeComponent("addServiseStaff"),
+    submit3: makeNodeComponent("submit3"),
+    button7: makeNodeComponent("button7"),
     mainPageCategories: makeNodeComponent("mainPageCategories"),
     mainPageReservation: makeNodeComponent("mainPageReservation"),
     mainPageServise: makeNodeComponent("mainPageServise"),
@@ -5180,6 +6137,9 @@ export const PlasmicMain = Object.assign(
     deleteSnakbar: makeNodeComponent("deleteSnakbar"),
     buttonDelete: makeNodeComponent("buttonDelete"),
     buttonClose: makeNodeComponent("buttonClose"),
+    deleteService: makeNodeComponent("deleteService"),
+    buttonDelete4: makeNodeComponent("buttonDelete4"),
+    buttonClose4: makeNodeComponent("buttonClose4"),
     deleteUser: makeNodeComponent("deleteUser"),
     buttonDelete3: makeNodeComponent("buttonDelete3"),
     buttonClose3: makeNodeComponent("buttonClose3"),

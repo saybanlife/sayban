@@ -29510,6 +29510,45 @@
           "cssFilePath": "plasmic/sayban/PlasmicCenterOffers.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "zThgrit_iV83",
+          "name": "ServiseItem",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicServiseItem.tsx",
+          "importSpec": {
+            "modulePath": "ServiseItem.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicServiseItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "-NbJeF3zWGFs",
+          "name": "MainPageServise3",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicMainPageServise3.tsx",
+          "importSpec": {
+            "modulePath": "MainPageServise3.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicMainPageServise3.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "gTdd7aISGeNO",
+          "name": "AddServiseStaff",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicAddServiseStaff.tsx",
+          "importSpec": {
+            "modulePath": "AddServiseStaff.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicAddServiseStaff.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -30824,6 +30863,11 @@
           "id": "6chJDj32vQ6Q",
           "name": "ad5af234b2811ebaa92e22c8c6d993b9.png",
           "filePath": "../public/plasmic/sayban/images/ad5Af234B2811Ebaa92E22C8C6D993B9Png.png"
+        },
+        {
+          "id": "2uoHajxR_yVL",
+          "name": "2026-07-06-0e84ddab-4905-4287-bb45-0050910d90af.png",
+          "filePath": "../public/plasmic/sayban/images/_202607060E84Ddab49054287Bb450050910D90AfPng.png"
         }
       ],
       "indirect": false,

@@ -220,13 +220,6 @@ function PlasmicPanel__RenderFunc(props: {
           },
           {
             label:
-              "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062e\u062f\u0645\u0627\u062a",
-            value: "services",
-            icon: "service",
-            permissions: ["center_admin"]
-          },
-          {
-            label:
               "\u0645\u062f\u06cc\u0631\u06cc\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
             value: "users",
             icon: "users",
@@ -254,6 +247,13 @@ function PlasmicPanel__RenderFunc(props: {
                 permissions: ["super_admin"]
               }
             ]
+          },
+          {
+            label:
+              "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062e\u062f\u0645\u0627\u062a",
+            value: "services",
+            icon: "service",
+            permissions: ["center_admin", "super_admin"]
           },
           {
             label:
@@ -902,6 +902,19 @@ function PlasmicPanel__RenderFunc(props: {
               <Main
                 data-plasmic-name={"main"}
                 data-plasmic-override={overrides.main}
+                category={(() => {
+                  try {
+                    return $state.userInfo.role == "super_admin" ? "all" : null;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
                 centerId={(() => {
                   try {
                     return $state.userInfo.center_id
