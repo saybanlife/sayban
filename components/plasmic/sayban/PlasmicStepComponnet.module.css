@@ -1,0 +1,122 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-cfon0PHiXQoL);
+  position: relative;
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__kdSrS {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: var(--token-cfon0PHiXQoL);
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__bz71V {
+  display: flex;
+  width: var(--token-ekJK2BNXfyOR);
+  height: var(--token-ekJK2BNXfyOR);
+  max-width: 100%;
+  background: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50px;
+  padding: 0px;
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  position: relative;
+  left: auto;
+  top: auto;
+  width: 100%;
+  height: 100%;
+  color: var(--token-C6B6ZAuqICKE);
+  min-width: 0;
+  min-height: 0;
+}
+.svgselected {
+  color: var(--token-ee2TuxDknsJj);
+}
+.freeBox__ojfpv {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+  min-width: 0;
+}
+.slotTargetSlot {
+  font-size: var(--token-hbNq_Oz393_j);
+  color: var(--token-C6B6ZAuqICKE);
+  text-align: right;
+  line-height: 1;
+}
+.slotTargetSlotselected {
+  font-weight: 700;
+  color: var(--token-KjATzAYJ5IB7);
+}
+.freeBox__wPgUt {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__bL0Oi {
+  display: flex;
+  width: var(--token-ekJK2BNXfyOR);
+  height: 100%;
+  max-width: 100%;
+  background: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-height: 0;
+  border-radius: 50px;
+  padding: 0px;
+}
+.freeBox__jj8Au {
+  display: block;
+  position: relative;
+  width: 1px;
+  height: 100%;
+  max-width: 100%;
+  min-height: 0;
+  padding: 0px;
+  border-left: 1px solid var(--token-C6B6ZAuqICKE);
+}
+.freeBox__uylB3 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: var(--token-LBC0X5IbL9bo) var(--token-RuQNZpYm0Yds)
+    var(--token-LBC0X5IbL9bo) var(--token-LBC0X5IbL9bo);
+}

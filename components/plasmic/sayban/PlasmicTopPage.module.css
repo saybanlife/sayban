@@ -159,6 +159,14 @@
   color: var(--token-ccqYe7dhXoNZ);
   flex-shrink: 0;
 }
+.svg__nGhGh {
+  object-fit: cover;
+  max-width: 100%;
+  width: var(--token-CVjaMVgIQl_G);
+  height: var(--token-CVjaMVgIQl_G);
+  color: var(--token-ccqYe7dhXoNZ);
+  flex-shrink: 0;
+}
 .svg__kgj09 {
   object-fit: cover;
   max-width: 100%;

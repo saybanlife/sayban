@@ -57,6 +57,15 @@
   padding: var(--token-rfsFxiclAtek);
   border-color: var(--token-pyhDq7s0RTkz);
 }
+.ariaTextAreatype_darkOutline:global(.__wab_instance) {
+  background: none;
+  border-right-style: solid;
+  border-left-style: solid;
+  border-top-style: solid;
+  border-radius: var(--token-cfon0PHiXQoL);
+  border-width: 1px;
+  border-color: var(--token-KjATzAYJ5IB7);
+}
 .ariaTextAreaflat_top:global(.__wab_instance) {
   border-top-left-radius: 0rem;
   border-top-right-radius: 0rem;

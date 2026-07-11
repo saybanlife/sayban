@@ -29549,6 +29549,84 @@
           "cssFilePath": "plasmic/sayban/PlasmicAddServiseStaff.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "3ry-LHKvAn5X",
+          "name": "SendNotif",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicSendNotif.tsx",
+          "importSpec": {
+            "modulePath": "SendNotif.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicSendNotif.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "i7L2_LngvY7F",
+          "name": "StepComponnet",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicStepComponnet.tsx",
+          "importSpec": {
+            "modulePath": "StepComponnet.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicStepComponnet.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "gJ_VOn2U5Tvp",
+          "name": "MainPageQuestion",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicMainPageQuestion.tsx",
+          "importSpec": {
+            "modulePath": "MainPageQuestion.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicMainPageQuestion.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "DpKNaMrne39U",
+          "name": "QuestionItem",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicQuestionItem.tsx",
+          "importSpec": {
+            "modulePath": "QuestionItem.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicQuestionItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "3LWfoc10rUWe",
+          "name": "QuestionItem2",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicQuestionItem2.tsx",
+          "importSpec": {
+            "modulePath": "QuestionItem2.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicQuestionItem2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "A0O5IJQKxt_v",
+          "name": "QuestionItemModal",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicQuestionItemModal.tsx",
+          "importSpec": {
+            "modulePath": "QuestionItemModal.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicQuestionItemModal.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

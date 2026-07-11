@@ -1,0 +1,43 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-rfsFxiclAtek);
+  position: relative;
+  min-width: 0;
+  padding: var(--token-0tl2H1TRPHhV) var(--token-LBC0X5IbL9bo);
+  border-bottom: 1px solid var(--token-Xzi5OT07e2_1);
+}
+.rootselected {
+  border-bottom-width: 1px;
+  background: var(--token-Z6v6ZWB9vpGX);
+  border-right: var(--token-RuQNZpYm0Yds) solid var(--token-ee2TuxDknsJj);
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  width: var(--token-73iLa06AE6f4);
+  height: var(--token-73iLa06AE6f4);
+  color: var(--token-9M5jRUPt8Msb);
+  flex-shrink: 0;
+}
+.freeBox {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+  min-width: 0;
+}
+.slotTargetChildren {
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  font-weight: 700;
+  color: var(--token-9M5jRUPt8Msb);
+  text-align: right;
+}
