@@ -10,10 +10,20 @@
   column-gap: 0px;
   background: none;
   position: relative;
-  row-gap: var(--token--_xqF59Qmd-S);
+  row-gap: var(--token-CVjaMVgIQl_G);
   min-width: 0;
   min-height: 0;
   padding: 0px;
+}
+.text__q0Vts {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: right;
+  font-weight: 700;
+  font-size: var(--token-Tca_MqWoqq_b);
+  min-width: 0;
 }
 .freeBox__hdU4M {
   display: flex;
@@ -31,44 +41,66 @@
 .textInput:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
-.check:global(.__wab_instance):global(.__wab_instance) {
+.radioGroup:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
-.text__u4Snl {
+.text__gEjlI {
+  color: var(--token-9M5jRUPt8Msb);
+  padding-bottom: var(--token-RuQNZpYm0Yds);
   font-size: var(--token-N8Pb0ZuDQAeF);
+}
+.freeBox__zXQmd {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow: auto;
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__uDl {
+  display: flex;
+  flex-direction: row;
+  column-gap: var(--token-rfsFxiclAtek);
+  overflow: auto;
+  width: 800px;
+  height: auto;
+}
+.radio:global(.__wab_instance):global(.__wab_instance) {
+  position: relative;
   width: auto;
 }
-.check2:global(.__wab_instance):global(.__wab_instance) {
+.freeBox__olJf6 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
   max-width: 100%;
-}
-.text__jeT2S {
-  font-size: var(--token-N8Pb0ZuDQAeF);
-}
-.check4:global(.__wab_instance):global(.__wab_instance) {
-  max-width: 100%;
-}
-.text__rs2VV {
-  font-size: var(--token-N8Pb0ZuDQAeF);
-}
-.check3:global(.__wab_instance):global(.__wab_instance) {
-  max-width: 100%;
-}
-.text__bkLGq {
-  font-size: var(--token-N8Pb0ZuDQAeF);
+  justify-content: flex-start;
+  align-items: flex-start;
+  background: var(--token-80wG4y4sryg5);
+  row-gap: var(--token-73iLa06AE6f4);
+  min-width: 0;
+  border-radius: var(--token-cfon0PHiXQoL);
+  padding: var(--token-rfsFxiclAtek);
 }
 .freeBox__ehMXe {
   display: grid;
-  position: relative;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   width: 100%;
   height: auto;
   max-width: 100%;
   grid-row-gap: var(--token-cfon0PHiXQoL);
   grid-column-gap: var(--token-cfon0PHiXQoL);
+  background: none;
   min-width: 0;
   border-radius: var(--token-cfon0PHiXQoL);
-  padding: 8px;
-  border: 1px solid var(--token-KjATzAYJ5IB7);
+  padding: 0px;
 }
 .itemShow:global(.__wab_instance) {
   max-width: 100%;
@@ -77,26 +109,57 @@
 }
 .text__hrWN {
   position: relative;
-  width: auto;
+  width: 100%;
   height: auto;
   max-width: 100%;
   text-align: right;
   white-space: pre;
   user-select: none;
+  min-width: 0;
 }
 .svg__twaIy {
   animation: none;
   object-fit: cover;
   max-width: 100%;
-  width: var(--token-xsiin-peP6fP);
-  height: var(--token-xsiin-peP6fP);
+  width: var(--token-ekJK2BNXfyOR);
+  height: var(--token-73iLa06AE6f4);
   color: var(--token-fr7DwvJwRjZb);
+}
+.freeBox__z0Nzn {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-rfsFxiclAtek);
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__fMZa4 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  background: #f0e9d4;
+  min-width: 0;
+  border-radius: 8px;
+  padding: 0px;
 }
 .textInput2:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
 .button3:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
+  width: 120px;
+  height: 35px;
+  flex-shrink: 0;
 }
 .svg__qws2H {
   position: relative;
@@ -107,15 +170,16 @@
   white-space: pre;
   color: var(--token-k-47TemksE2v);
 }
-.svg__bFlKc {
+.svg___3Apf3 {
   position: relative;
   height: 1em;
 }
-.check5:global(.__wab_instance):global(.__wab_instance) {
+.check:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
-.text__aaVyn {
+.text__u4Snl {
   font-size: var(--token-N8Pb0ZuDQAeF);
+  width: auto;
 }
 .freeBox__zmcFx {
   display: flex;

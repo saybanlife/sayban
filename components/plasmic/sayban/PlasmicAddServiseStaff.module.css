@@ -142,7 +142,6 @@
   max-width: 100%;
 }
 .freeBox__thDqn {
-  display: flex;
   flex-direction: row;
   position: relative;
   width: 100%;
@@ -152,6 +151,7 @@
   align-items: stretch;
   column-gap: var(--token-rfsFxiclAtek);
   min-width: 0;
+  display: none;
   padding: 0px;
 }
 .freeBox__daGdO {

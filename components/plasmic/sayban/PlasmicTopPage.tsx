@@ -72,7 +72,6 @@ import sty from "./PlasmicTopPage.module.css"; // plasmic-import: g_3hTxUM0f5d/c
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import Icon342Icon from "./icons/PlasmicIcon__Icon342"; // plasmic-import: 3cI93FpEy9Rj/icon
-import HelpIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Help"; // plasmic-import: VAn1OYh4IBQK/icon
 import Icon53Icon from "./icons/PlasmicIcon__Icon53"; // plasmic-import: TLGayeiIYfbW/icon
 import Icon270Icon from "./icons/PlasmicIcon__Icon270"; // plasmic-import: xtBcS_RDta6A/icon
 import UserEditIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__UserEdit"; // plasmic-import: ml0No70rMVNC/icon
@@ -385,12 +384,6 @@ function PlasmicTopPage__RenderFunc(props: {
       />
 
       <div className={classNames("all", sty.freeBox__xzCvt)}>
-        <HelpIcon
-          className={classNames("all", sty.svg__l4HHx)}
-          onClick={args.question}
-          role={"img"}
-        />
-
         <Icon53Icon
           className={classNames("all", sty.svg__nGhGh)}
           role={"img"}

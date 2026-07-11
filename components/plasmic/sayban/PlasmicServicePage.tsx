@@ -65,6 +65,8 @@ import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import MenuSection from "../../MenuSection"; // plasmic-import: PvgERH0q4dKA/component
 import AddServisePage from "../../AddServisePage"; // plasmic-import: qeMB46LjWCSW/component
 import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
+import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo/component
+import Check from "../../Check"; // plasmic-import: jHhGioxaI9lI/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
 import CenterInfo from "../../CenterInfo"; // plasmic-import: 5fhUfrSk0s6y/component
@@ -141,7 +143,10 @@ export type PlasmicServicePage__OverridesType = {
   active?: Flex__<typeof Select>;
   addServisePage?: Flex__<typeof AddServisePage>;
   timeWeek?: Flex__<typeof TimeWeek>;
+  checkboxGroup?: Flex__<typeof CheckboxGroup>;
+  check?: Flex__<typeof Check>;
   center?: Flex__<typeof ApiRequest>;
+  center2?: Flex__<typeof ApiRequest>;
   modal?: Flex__<typeof AntdModal>;
   centerInfo?: Flex__<typeof CenterInfo>;
   saveInfo?: Flex__<typeof Button>;
@@ -672,6 +677,36 @@ function PlasmicServicePage__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "center2.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "center2.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "center2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "checkboxGroup.value",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          JSON.parse($state.center?.data?.result?.question_ids || "[]")
+      },
+      {
+        path: "check[].isSelected",
+        type: "private",
+        variableType: "boolean"
       }
     ],
     [$props, $ctx, $refs]
@@ -983,11 +1018,16 @@ function PlasmicServicePage__RenderFunc(props: {
                         "POST",
                         "panel/update/servicePage",
                         undefined,
-                        {
-                          info: $state.addServisePage.servises,
-                          times: $state.timeWeek.week,
-                          service_id: $props.id
-                        }
+                        (() => {
+                          $state.addServisePage.servises[0].question_ids =
+                            JSON.stringify($state.checkboxGroup.value || []);
+                          $state.addServisePage.servises[0].id = $props.id;
+                          return {
+                            info: $state.addServisePage.servises,
+                            times: $state.timeWeek.week,
+                            service_id: $props.id
+                          };
+                        })()
                       ]
                     };
                     return $globalActions["Fragment.apiRequest"]?.apply(null, [
@@ -1347,42 +1387,261 @@ function PlasmicServicePage__RenderFunc(props: {
                   "addServisePage",
                   "servises"
                 ])}
-              />
-            </div>
-            <div className={classNames("all", sty.freeBox__fJqy2)}>
-              <div className={classNames("all", sty.freeBox__zznIk)}>
-                <Icon67Icon
-                  className={classNames("all", sty.svg__dkXoQ)}
-                  role={"img"}
-                />
-
-                <div
-                  className={classNames("all", "__wab_text", sty.text__yzU5)}
-                >
-                  {"\u0633\u0627\u0639\u062a \u06a9\u0627\u0631"}
-                </div>
-              </div>
-              <TimeWeek
-                data-plasmic-name={"timeWeek"}
-                data-plasmic-override={overrides.timeWeek}
-                className={classNames("__wab_instance", sty.timeWeek)}
-                onWeekChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, ["timeWeek", "week"]).apply(
-                    null,
-                    eventArgs
-                  );
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
+                staffs={(() => {
+                  try {
+                    return $state.centerData.center_id == null;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "staffs";
+                    }
+                    throw e;
                   }
-                }}
-                week={generateStateValueProp($state, ["timeWeek", "week"])}
+                })()}
               />
             </div>
+            {(() => {
+              try {
+                return $state.centerData.center_id != null;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <div className={classNames("all", sty.freeBox__fJqy2)}>
+                <div className={classNames("all", sty.freeBox__zznIk)}>
+                  <Icon67Icon
+                    className={classNames("all", sty.svg__dkXoQ)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__yzU5)}
+                  >
+                    {"\u0633\u0627\u0639\u062a \u06a9\u0627\u0631"}
+                  </div>
+                </div>
+                <TimeWeek
+                  data-plasmic-name={"timeWeek"}
+                  data-plasmic-override={overrides.timeWeek}
+                  className={classNames("__wab_instance", sty.timeWeek)}
+                  onWeekChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "timeWeek",
+                      "week"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  week={generateStateValueProp($state, ["timeWeek", "week"])}
+                />
+              </div>
+            ) : null}
+            {(() => {
+              try {
+                return $state.centerData.center_id == null;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <div className={classNames("all", sty.freeBox__i2VAs)}>
+                <div className={classNames("all", sty.freeBox__jePqv)}>
+                  <Icon67Icon
+                    className={classNames("all", sty.svg__j315A)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames(
+                      "all",
+                      "__wab_text",
+                      sty.text___84Kwo
+                    )}
+                  >
+                    {
+                      "\u0633\u0648\u0627\u0644\u0627\u062a \u0641\u0631\u0645 \u062e\u062f\u0645\u062a"
+                    }
+                  </div>
+                </div>
+                {(() => {
+                  const child$Props = {
+                    className: classNames("__wab_instance", sty.checkboxGroup),
+                    label: null,
+                    onChange: async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "checkboxGroup",
+                        "value"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    },
+                    options: (
+                      <div className={classNames("all", sty.freeBox__jB7Pt)}>
+                        {(_par =>
+                          !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                          (() => {
+                            try {
+                              return $state.center2.data.result;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return [];
+                              }
+                              throw e;
+                            }
+                          })()
+                        ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                          const currentItem = __plasmic_item_0;
+                          const currentIndex = __plasmic_idx_0;
+                          return (
+                            <div
+                              className={classNames("all", sty.freeBox__i5CD)}
+                              key={currentIndex}
+                            >
+                              {(() => {
+                                const child$Props = {
+                                  className: classNames(
+                                    "__wab_instance",
+                                    sty.check
+                                  ),
+                                  isSelected: generateStateValueProp($state, [
+                                    "check",
+                                    __plasmic_idx_0,
+                                    "isSelected"
+                                  ]),
+                                  label: (
+                                    <React.Fragment>
+                                      {(() => {
+                                        try {
+                                          return currentItem.question_text;
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return "Option";
+                                          }
+                                          throw e;
+                                        }
+                                      })()}
+                                    </React.Fragment>
+                                  ),
+                                  onChange: async (...eventArgs: any) => {
+                                    generateStateOnChangeProp($state, [
+                                      "check",
+                                      __plasmic_idx_0,
+                                      "isSelected"
+                                    ]).apply(null, eventArgs);
+
+                                    if (
+                                      eventArgs.length > 1 &&
+                                      eventArgs[1] &&
+                                      eventArgs[1]._plasmic_state_init_
+                                    ) {
+                                      return;
+                                    }
+                                  },
+                                  value: (() => {
+                                    try {
+                                      return currentItem.id;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                };
+
+                                initializePlasmicStates(
+                                  $state,
+                                  [
+                                    {
+                                      name: "check[].isSelected",
+                                      initFunc: ({
+                                        $props,
+                                        $state,
+                                        $queries,
+                                        $q
+                                      }) => false
+                                    }
+                                  ],
+                                  [__plasmic_idx_0]
+                                );
+                                return (
+                                  <Check
+                                    data-plasmic-name={"check"}
+                                    data-plasmic-override={overrides.check}
+                                    {...child$Props}
+                                  />
+                                );
+                              })()}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ),
+                    value: generateStateValueProp($state, [
+                      "checkboxGroup",
+                      "value"
+                    ])
+                  };
+
+                  initializePlasmicStates(
+                    $state,
+                    [
+                      {
+                        name: "checkboxGroup.value",
+                        initFunc: ({ $props, $state, $queries, $q }) =>
+                          JSON.parse(
+                            $state.center?.data?.result?.question_ids || "[]"
+                          )
+                      }
+                    ],
+                    []
+                  );
+                  return (
+                    <CheckboxGroup
+                      data-plasmic-name={"checkboxGroup"}
+                      data-plasmic-override={overrides.checkboxGroup}
+                      {...child$Props}
+                    />
+                  );
+                })()}
+              </div>
+            ) : null}
           </div>
         </div>
       ) : null}
@@ -1564,6 +1823,91 @@ function PlasmicServicePage__RenderFunc(props: {
           }
         })()}
         url={"/panel/service/page"}
+      />
+
+      <ApiRequest
+        data-plasmic-name={"center2"}
+        data-plasmic-override={overrides.center2}
+        children={null}
+        className={classNames("__wab_instance", sty.center2, {
+          [sty.center2role_centerAdmin]: hasVariant(
+            $state,
+            "role",
+            "centerAdmin"
+          )
+        })}
+        config={(() => {
+          try {
+            return {
+              headers: {
+                Authorization: `Bearer ${$props.token}`
+              }
+            };
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+        errorDisplay={null}
+        loadingDisplay={null}
+        method={"GET"}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["center2", "error"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["center2", "loading"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["center2", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          (async data => {
+            const $steps = {};
+          }).apply(null, eventArgs);
+        }}
+        params={(() => {
+          try {
+            return {
+              id: $props.id,
+              restart: $state.restart
+            };
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+        shouldFetch={(() => {
+          try {
+            return $props.id != "";
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })()}
+        url={"panel/question"}
       />
 
       <AntdModal
@@ -3430,7 +3774,10 @@ const PlasmicDescendants = {
     "active",
     "addServisePage",
     "timeWeek",
+    "checkboxGroup",
+    "check",
     "center",
+    "center2",
     "modal",
     "centerInfo",
     "saveInfo",
@@ -3459,7 +3806,10 @@ const PlasmicDescendants = {
   active: ["active"],
   addServisePage: ["addServisePage"],
   timeWeek: ["timeWeek"],
+  checkboxGroup: ["checkboxGroup", "check"],
+  check: ["check"],
   center: ["center"],
+  center2: ["center2"],
   modal: ["modal", "centerInfo", "saveInfo", "button5"],
   centerInfo: ["centerInfo"],
   saveInfo: ["saveInfo"],
@@ -3493,7 +3843,10 @@ type NodeDefaultElementType = {
   active: typeof Select;
   addServisePage: typeof AddServisePage;
   timeWeek: typeof TimeWeek;
+  checkboxGroup: typeof CheckboxGroup;
+  check: typeof Check;
   center: typeof ApiRequest;
+  center2: typeof ApiRequest;
   modal: typeof AntdModal;
   centerInfo: typeof CenterInfo;
   saveInfo: typeof Button;
@@ -3585,7 +3938,10 @@ export const PlasmicServicePage = Object.assign(
     active: makeNodeComponent("active"),
     addServisePage: makeNodeComponent("addServisePage"),
     timeWeek: makeNodeComponent("timeWeek"),
+    checkboxGroup: makeNodeComponent("checkboxGroup"),
+    check: makeNodeComponent("check"),
     center: makeNodeComponent("center"),
+    center2: makeNodeComponent("center2"),
     modal: makeNodeComponent("modal"),
     centerInfo: makeNodeComponent("centerInfo"),
     saveInfo: makeNodeComponent("saveInfo"),

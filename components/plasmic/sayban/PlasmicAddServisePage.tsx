@@ -76,10 +76,16 @@ import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-impor
 
 createPlasmicElementProxy;
 
-export type PlasmicAddServisePage__VariantMembers = {};
-export type PlasmicAddServisePage__VariantsArgs = {};
+export type PlasmicAddServisePage__VariantMembers = {
+  staffs: "staffs";
+};
+export type PlasmicAddServisePage__VariantsArgs = {
+  staffs?: SingleBooleanChoiceArg<"staffs">;
+};
 type VariantPropType = keyof PlasmicAddServisePage__VariantsArgs;
-export const PlasmicAddServisePage__VariantProps = new Array<VariantPropType>();
+export const PlasmicAddServisePage__VariantProps = new Array<VariantPropType>(
+  "staffs"
+);
 
 export type PlasmicAddServisePage__ArgsType = {
   servises?: any;
@@ -115,6 +121,7 @@ export interface DefaultAddServisePageProps {
   onServisesChange?: (val: string) => void;
   restart?: string;
   onRestartChange?: (val: string) => void;
+  staffs?: SingleBooleanChoiceArg<"staffs">;
   className?: string;
 }
 
@@ -244,6 +251,12 @@ function PlasmicAddServisePage__RenderFunc(props: {
 
         valueProp: "restart",
         onChangeProp: "onRestartChange"
+      },
+      {
+        path: "staffs",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.staffs
       }
     ],
     [$props, $ctx, $refs]
@@ -273,7 +286,8 @@ function PlasmicAddServisePage__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        { [sty.rootstaffs]: hasVariant($state, "staffs", "staffs") }
       )}
     >
       {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -476,16 +490,32 @@ function PlasmicAddServisePage__RenderFunc(props: {
                 );
               })()}
             </div>
-            <div className={classNames("all", sty.freeBox__yKk28)}>
+            <div
+              className={classNames("all", sty.freeBox__yKk28, {
+                [sty.freeBoxstaffs__yKk28Nkua1]: hasVariant(
+                  $state,
+                  "staffs",
+                  "staffs"
+                )
+              })}
+            >
               <div className={classNames("all", sty.freeBox___9W3Or)}>
                 <div
-                  className={classNames("all", "__wab_text", sty.text__rXdHo)}
+                  className={classNames("all", "__wab_text", sty.text__rXdHo, {
+                    [sty.textstaffs__rXdHoNkua1]: hasVariant(
+                      $state,
+                      "staffs",
+                      "staffs"
+                    )
+                  })}
                 >
                   {"\u0645\u062f\u062a \u0632\u0645\u0627\u0646"}
                 </div>
                 {(() => {
                   const child$Props = {
-                    className: classNames("__wab_instance", sty.time),
+                    className: classNames("__wab_instance", sty.time, {
+                      [sty.timestaffs]: hasVariant($state, "staffs", "staffs")
+                    }),
                     inputMode: "numeric",
                     inputType: "text",
                     onChange: async (...eventArgs: any) => {
@@ -666,7 +696,15 @@ function PlasmicAddServisePage__RenderFunc(props: {
                 })()}
               </div>
             </div>
-            <div className={classNames("all", sty.freeBox__vgnP5)}>
+            <div
+              className={classNames("all", sty.freeBox__vgnP5, {
+                [sty.freeBoxstaffs__vgnP5Nkua1]: hasVariant(
+                  $state,
+                  "staffs",
+                  "staffs"
+                )
+              })}
+            >
               <div className={classNames("all", sty.freeBox__hjGfb)}>
                 <div
                   className={classNames("all", "__wab_text", sty.text__hsVyw)}
@@ -866,15 +904,31 @@ function PlasmicAddServisePage__RenderFunc(props: {
                 })()}
               </div>
             </div>
-            <div className={classNames("all", sty.freeBox__m7SeV)}>
+            <div
+              className={classNames("all", sty.freeBox__m7SeV, {
+                [sty.freeBoxstaffs__m7SeVNkua1]: hasVariant(
+                  $state,
+                  "staffs",
+                  "staffs"
+                )
+              })}
+            >
               <div
-                className={classNames("all", "__wab_text", sty.text___80Md6)}
+                className={classNames("all", "__wab_text", sty.text___80Md6, {
+                  [sty.textstaffs___80Md6Nkua1]: hasVariant(
+                    $state,
+                    "staffs",
+                    "staffs"
+                  )
+                })}
               >
                 {"\u0631\u0648\u0634 \u067e\u0631\u062f\u0627\u062e\u062a"}
               </div>
               {(() => {
                 const child$Props = {
-                  className: classNames("__wab_instance", sty.select),
+                  className: classNames("__wab_instance", sty.select, {
+                    [sty.selectstaffs]: hasVariant($state, "staffs", "staffs")
+                  }),
                   isOpen: generateStateValueProp($state, [
                     "select",
                     __plasmic_idx_0,

@@ -71,12 +71,17 @@ createPlasmicElementProxy;
 
 export type PlasmicRadio__VariantMembers = {
   right: "right";
+  backgrond: "backgrond";
 };
 export type PlasmicRadio__VariantsArgs = {
   right?: SingleBooleanChoiceArg<"right">;
+  backgrond?: SingleBooleanChoiceArg<"backgrond">;
 };
 type VariantPropType = keyof PlasmicRadio__VariantsArgs;
-export const PlasmicRadio__VariantProps = new Array<VariantPropType>("right");
+export const PlasmicRadio__VariantProps = new Array<VariantPropType>(
+  "right",
+  "backgrond"
+);
 
 export type PlasmicRadio__ArgsType = {
   value?: string;
@@ -108,6 +113,7 @@ export interface DefaultRadioProps {
   children?: React.ReactNode;
   label?: React.ReactNode;
   right?: SingleBooleanChoiceArg<"right">;
+  backgrond?: SingleBooleanChoiceArg<"backgrond">;
   className?: string;
 }
 
@@ -157,6 +163,12 @@ function PlasmicRadio__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.right
+      },
+      {
+        path: "backgrond",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.backgrond
       }
     ],
     [$props, $ctx, $refs]
@@ -210,7 +222,14 @@ function PlasmicRadio__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.ariaRadio,
-        { [sty.ariaRadioright]: hasVariant($state, "right", "right") }
+        {
+          [sty.ariaRadiobackgrond]: hasVariant(
+            $state,
+            "backgrond",
+            "backgrond"
+          ),
+          [sty.ariaRadioright]: hasVariant($state, "right", "right")
+        }
       )}
       isDisabled={args.disabled}
       plasmicUpdateVariant={updateVariant}

@@ -13,3 +13,6 @@
 .rootsize_small {
   border-bottom-width: 1px;
 }
+.rootcolor_soft {
+  border-bottom-color: var(--token-pyhDq7s0RTkz);
+}

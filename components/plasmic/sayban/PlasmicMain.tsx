@@ -88,6 +88,7 @@ import MainPagePayment from "../../MainPagePayment"; // plasmic-import: mfeVOEZj
 import UserMain from "../../UserMain"; // plasmic-import: cBSVDnOcnP2x/component
 import ServicePage from "../../ServicePage"; // plasmic-import: DKFJiURVeYup/component
 import MainPageQuestion from "../../MainPageQuestion"; // plasmic-import: gJ_VOn2U5Tvp/component
+import MainPageStaffs from "../../MainPageStaffs"; // plasmic-import: ApT4JJ-9bBRO/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -113,7 +114,8 @@ export type PlasmicMain__VariantMembers = {
     | "payments"
     | "user"
     | "service"
-    | "question";
+    | "question"
+    | "staffs";
 };
 export type PlasmicMain__VariantsArgs = {
   page?: SingleChoiceArg<
@@ -128,6 +130,7 @@ export type PlasmicMain__VariantsArgs = {
     | "user"
     | "service"
     | "question"
+    | "staffs"
   >;
 };
 type VariantPropType = keyof PlasmicMain__VariantsArgs;
@@ -215,6 +218,7 @@ export type PlasmicMain__OverridesType = {
   userMain?: Flex__<typeof UserMain>;
   servicePage?: Flex__<typeof ServicePage>;
   mainPageQuestion?: Flex__<typeof MainPageQuestion>;
+  mainPageStaffs?: Flex__<typeof MainPageStaffs>;
 };
 
 export interface DefaultMainProps {
@@ -238,6 +242,7 @@ export interface DefaultMainProps {
     | "user"
     | "service"
     | "question"
+    | "staffs"
   >;
   className?: string;
 }
@@ -263,7 +268,6 @@ function PlasmicMain__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          centerId: "a87ff679a2f3e71d9181a67b7542122c",
           userId: "2"
         },
         Object.fromEntries(
@@ -1318,6 +1322,49 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "mainPageStaffs.categpty",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "mainPageStaffs.center",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "mainPageStaffs.restart",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "mainPageStaffs.list",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.page == "staffs";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "mainPageStaffs.selected",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -1358,7 +1405,8 @@ function PlasmicMain__RenderFunc(props: {
             "reservations"
           ),
           [sty.rootpage_service]: hasVariant($state, "page", "service"),
-          [sty.rootpage_services]: hasVariant($state, "page", "services")
+          [sty.rootpage_services]: hasVariant($state, "page", "services"),
+          [sty.rootpage_staffs]: hasVariant($state, "page", "staffs")
         }
       )}
     >
@@ -1369,6 +1417,7 @@ function PlasmicMain__RenderFunc(props: {
           [sty.topPagepage_center]: hasVariant($state, "page", "center"),
           [sty.topPagepage_centers]: hasVariant($state, "page", "centers"),
           [sty.topPagepage_question]: hasVariant($state, "page", "question"),
+          [sty.topPagepage_staffs]: hasVariant($state, "page", "staffs"),
           [sty.topPagepage_users]: hasVariant($state, "page", "users")
         })}
         question={async event => {
@@ -1990,7 +2039,8 @@ function PlasmicMain__RenderFunc(props: {
             "page",
             "reservations"
           ),
-          [sty.addServicepage_service]: hasVariant($state, "page", "service")
+          [sty.addServicepage_service]: hasVariant($state, "page", "service"),
+          [sty.addServicepage_staffs]: hasVariant($state, "page", "staffs")
         })}
         closeOnBackdropClick={false}
         content={
@@ -2104,7 +2154,13 @@ function PlasmicMain__RenderFunc(props: {
             <AddServise
               data-plasmic-name={"addServise2"}
               data-plasmic-override={overrides.addServise2}
-              className={classNames("__wab_instance", sty.addServise2)}
+              className={classNames("__wab_instance", sty.addServise2, {
+                [sty.addServise2page_staffs]: hasVariant(
+                  $state,
+                  "page",
+                  "staffs"
+                )
+              })}
               onServisesChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "addServise2",
@@ -2503,117 +2559,104 @@ function PlasmicMain__RenderFunc(props: {
             $state,
             "page",
             "reservations"
-          )
+          ),
+          [sty.addService2page_staffs]: hasVariant($state, "page", "staffs")
         })}
         closeOnBackdropClick={false}
         content={
           <div className={classNames("all", sty.freeBox__ilpov)}>
-            {(() => {
-              try {
-                return $state.role == "super_admin";
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
-                }
-                throw e;
-              }
-            })() ? (
-              <div className={classNames("all", sty.freeBox__zUwIp)}>
-                <Select
-                  data-plasmic-name={"select2"}
-                  data-plasmic-override={overrides.select2}
-                  className={classNames("__wab_instance", sty.select2)}
-                  isOpen={generateStateValueProp($state, ["select2", "isOpen"])}
-                  items={(_par =>
-                    !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                    (() => {
-                      try {
-                        return $state.mainPageCenter.center;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
-                        }
-                        throw e;
+            <div className={classNames("all", sty.freeBox__zUwIp)}>
+              <Select
+                data-plasmic-name={"select2"}
+                data-plasmic-override={overrides.select2}
+                className={classNames("__wab_instance", sty.select2)}
+                isOpen={generateStateValueProp($state, ["select2", "isOpen"])}
+                items={(_par =>
+                  !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                  (() => {
+                    try {
+                      return $state.mainPageCenter.center;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
                       }
-                    })()
-                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                    const currentItem = __plasmic_item_0;
-                    const currentIndex = __plasmic_idx_0;
-                    return (
-                      <MenuItem
-                        key={currentIndex}
-                        label={(() => {
-                          try {
-                            return currentItem.نام;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}
-                        value={(() => {
-                          try {
-                            return currentItem.شناسه;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}
-                      />
-                    );
-                  })}
-                  onChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "select2",
-                      "value"
-                    ]).apply(null, eventArgs);
-
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
+                      throw e;
                     }
-                  }}
-                  onOpenChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "select2",
-                      "isOpen"
-                    ]).apply(null, eventArgs);
+                  })()
+                ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                  const currentItem = __plasmic_item_0;
+                  const currentIndex = __plasmic_idx_0;
+                  return (
+                    <MenuItem
+                      key={currentIndex}
+                      label={(() => {
+                        try {
+                          return currentItem.نام;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
+                      value={(() => {
+                        try {
+                          return currentItem.شناسه;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
+                    />
+                  );
+                })}
+                onChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["select2", "value"]).apply(
+                    null,
+                    eventArgs
+                  );
 
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
-                    }
-                  }}
-                  placeholder={
-                    "\u0645\u0631\u06a9\u0632 \u0645\u0648\u0631\u062f \u0646\u0638\u0631 \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
                   }
-                  showLabel={false}
-                  type={"lineBox"}
-                  value={generateStateValueProp($state, ["select2", "value"])}
-                />
-              </div>
-            ) : null}
+                }}
+                onOpenChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "select2",
+                    "isOpen"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                placeholder={
+                  "\u0645\u0631\u06a9\u0632 \u0645\u0648\u0631\u062f \u0646\u0638\u0631 \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
+                }
+                showLabel={false}
+                type={"lineBox"}
+                value={generateStateValueProp($state, ["select2", "value"])}
+              />
+            </div>
             <AddServiseStaff
               data-plasmic-name={"addServiseStaff"}
               data-plasmic-override={overrides.addServiseStaff}
@@ -3277,6 +3320,11 @@ function PlasmicMain__RenderFunc(props: {
             "page",
             "center"
           ),
+          [sty.mainPageServisepage_question]: hasVariant(
+            $state,
+            "page",
+            "question"
+          ),
           [sty.mainPageServisepage_reservations]: hasVariant(
             $state,
             "page",
@@ -3358,7 +3406,7 @@ function PlasmicMain__RenderFunc(props: {
                 const actionArgs = {
                   destination: `/panel/${(() => {
                     try {
-                      return "service-" + $state.mainPageServise.selectedRow.id;
+                      return "service-" + $state.mainPageServise.selected?.id;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -6868,6 +6916,11 @@ function PlasmicMain__RenderFunc(props: {
             "payments"
           ),
           [sty.profilePagepage_profile]: hasVariant($state, "page", "profile"),
+          [sty.profilePagepage_question]: hasVariant(
+            $state,
+            "page",
+            "question"
+          ),
           [sty.profilePagepage_reservations]: hasVariant(
             $state,
             "page",
@@ -7207,7 +7260,8 @@ function PlasmicMain__RenderFunc(props: {
         ])}
         categpty={generateStateValueProp($state, ["servicePage", "categpty"])}
         className={classNames("__wab_instance", sty.servicePage, {
-          [sty.servicePagepage_service]: hasVariant($state, "page", "service")
+          [sty.servicePagepage_service]: hasVariant($state, "page", "service"),
+          [sty.servicePagepage_staffs]: hasVariant($state, "page", "staffs")
         })}
         data={generateStateValueProp($state, ["servicePage", "data"])}
         id={(() => {
@@ -7310,7 +7364,7 @@ function PlasmicMain__RenderFunc(props: {
             return;
           }
         }}
-        onListChange2={async (...eventArgs: any) => {
+        onListChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["mainPageQuestion", "list"]).apply(
             null,
             eventArgs
@@ -7358,6 +7412,94 @@ function PlasmicMain__RenderFunc(props: {
         ])}
         selected={generateStateValueProp($state, [
           "mainPageQuestion",
+          "selected"
+        ])}
+      />
+
+      <MainPageStaffs
+        data-plasmic-name={"mainPageStaffs"}
+        data-plasmic-override={overrides.mainPageStaffs}
+        categpty={generateStateValueProp($state, [
+          "mainPageStaffs",
+          "categpty"
+        ])}
+        className={classNames("__wab_instance", sty.mainPageStaffs, {
+          [sty.mainPageStaffspage_staffs]: hasVariant($state, "page", "staffs")
+        })}
+        list={generateStateValueProp($state, ["mainPageStaffs", "list"])}
+        onCategptyChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageStaffs",
+            "categpty"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onCenterChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainPageStaffs", "center"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onListChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["mainPageStaffs", "list"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onRestartChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageStaffs",
+            "restart"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onSelectedChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "mainPageStaffs",
+            "selected"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        restart={generateStateValueProp($state, ["mainPageStaffs", "restart"])}
+        selected={generateStateValueProp($state, [
+          "mainPageStaffs",
           "selected"
         ])}
       />
@@ -7425,7 +7567,8 @@ const PlasmicDescendants = {
     "mainPagePayment",
     "userMain",
     "servicePage",
-    "mainPageQuestion"
+    "mainPageQuestion",
+    "mainPageStaffs"
   ],
   topPage: ["topPage"],
   mainPageCenter: ["mainPageCenter"],
@@ -7530,7 +7673,8 @@ const PlasmicDescendants = {
   mainPagePayment: ["mainPagePayment"],
   userMain: ["userMain"],
   servicePage: ["servicePage"],
-  mainPageQuestion: ["mainPageQuestion"]
+  mainPageQuestion: ["mainPageQuestion"],
+  mainPageStaffs: ["mainPageStaffs"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -7595,6 +7739,7 @@ type NodeDefaultElementType = {
   userMain: typeof UserMain;
   servicePage: typeof ServicePage;
   mainPageQuestion: typeof MainPageQuestion;
+  mainPageStaffs: typeof MainPageStaffs;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -7717,6 +7862,7 @@ export const PlasmicMain = Object.assign(
     userMain: makeNodeComponent("userMain"),
     servicePage: makeNodeComponent("servicePage"),
     mainPageQuestion: makeNodeComponent("mainPageQuestion"),
+    mainPageStaffs: makeNodeComponent("mainPageStaffs"),
 
     // Metadata about props expected for PlasmicMain
     internalVariantProps: PlasmicMain__VariantProps,

@@ -75,26 +75,35 @@ import HelpSquareRoundedFilledIcon from "../library_tabler_3_2_icons/icons/Plasm
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import Icon58Icon from "./icons/PlasmicIcon__Icon58"; // plasmic-import: ZZecBkDFVPaA/icon
+import Icon70Icon from "./icons/PlasmicIcon__Icon70"; // plasmic-import: PWsALiD1VW02/icon
 import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
 import PlusIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Plus"; // plasmic-import: _pdhShvRj8aO/icon
 
 createPlasmicElementProxy;
 
-export type PlasmicQuestionItem2__VariantMembers = {};
-export type PlasmicQuestionItem2__VariantsArgs = {};
+export type PlasmicQuestionItem2__VariantMembers = {
+  show: "show";
+};
+export type PlasmicQuestionItem2__VariantsArgs = {
+  show?: SingleBooleanChoiceArg<"show">;
+};
 type VariantPropType = keyof PlasmicQuestionItem2__VariantsArgs;
-export const PlasmicQuestionItem2__VariantProps = new Array<VariantPropType>();
+export const PlasmicQuestionItem2__VariantProps = new Array<VariantPropType>(
+  "show"
+);
 
 export type PlasmicQuestionItem2__ArgsType = {
   currentItem?: any;
   currentIndex?: any;
   onDelet?: (event: any) => void;
+  onEdit?: (event: any) => void;
 };
 type ArgPropType = keyof PlasmicQuestionItem2__ArgsType;
 export const PlasmicQuestionItem2__ArgProps = new Array<ArgPropType>(
   "currentItem",
   "currentIndex",
-  "onDelet"
+  "onDelet",
+  "onEdit"
 );
 
 export type PlasmicQuestionItem2__OverridesType = {
@@ -115,6 +124,8 @@ export interface DefaultQuestionItem2Props {
   currentItem?: any;
   currentIndex?: any;
   onDelet?: (event: any) => void;
+  onEdit?: (event: any) => void;
+  show?: SingleBooleanChoiceArg<"show">;
   className?: string;
 }
 
@@ -254,6 +265,12 @@ function PlasmicQuestionItem2__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "show",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.show
       }
     ],
     [$props, $ctx, $refs]
@@ -283,37 +300,132 @@ function PlasmicQuestionItem2__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        { [sty.rootshow]: hasVariant($state, "show", "show") }
       )}
     >
       <div className={classNames("all", sty.freeBox__usyly)}>
-        <div className={classNames("all", sty.freeBox__hb0RY)}>
+        <div
+          className={classNames("all", sty.freeBox__hb0RY, {
+            [sty.freeBoxshow__hb0RYLx4Am]: hasVariant($state, "show", "show")
+          })}
+        >
           <HelpSquareRoundedFilledIcon
-            className={classNames("all", sty.svg__ptzY)}
+            className={classNames("all", sty.svg__ptzY, {
+              [sty.svgshow__ptzYLx4Am]: hasVariant($state, "show", "show")
+            })}
             role={"img"}
           />
 
-          <div className={classNames("all", "__wab_text", sty.text__byub4)}>
-            <React.Fragment>
+          <div className={classNames("all", sty.freeBox__iBzj)}>
+            <div className={classNames("all", sty.freeBox__bg9AL)}>
+              <div
+                className={classNames("all", "__wab_text", sty.text__byub4, {
+                  [sty.textshow__byub4Lx4Am]: hasVariant($state, "show", "show")
+                })}
+              >
+                {hasVariant($state, "show", "show") ? (
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $props.currentItem.question_text;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u0633\u0648\u0627\u0644\u0627\u062a";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return "سوال " + ($props.currentIndex + 1);
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u0633\u0648\u0627\u0644\u0627\u062a";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                )}
+              </div>
               {(() => {
                 try {
-                  return "سوال " + ($props.currentIndex + 1);
+                  return $props.currentItem.is_required;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
                     e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    return "\u0633\u0648\u0627\u0644\u0627\u062a";
+                    return true;
                   }
                   throw e;
                 }
-              })()}
-            </React.Fragment>
+              })() ? (
+                <div className={classNames("all", sty.freeBox__hXZm)}>
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__lvpnh)}
+                  >
+                    {"\u0627\u062c\u0628\u0627\u0631\u06cc"}
+                  </div>
+                </div>
+              ) : null}
+            </div>
+            <div
+              className={classNames("all", "__wab_text", sty.text__a8R53, {
+                [sty.textshow__a8R53Lx4Am]: hasVariant($state, "show", "show")
+              })}
+            >
+              {hasVariant($state, "show", "show") ? (
+                <React.Fragment>
+                  {(() => {
+                    try {
+                      return $props.currentItem.question_text;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "\u0633\u0648\u0627\u0644\u0627\u062a";
+                      }
+                      throw e;
+                    }
+                  })()}
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  {(() => {
+                    try {
+                      return "سوال " + ($props.currentIndex + 1);
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "\u0633\u0648\u0627\u0644\u0627\u062a";
+                      }
+                      throw e;
+                    }
+                  })()}
+                </React.Fragment>
+              )}
+            </div>
           </div>
           <Button
             data-plasmic-name={"button"}
             data-plasmic-override={overrides.button}
-            className={classNames("__wab_instance", sty.button)}
+            className={classNames("__wab_instance", sty.button, {
+              [sty.buttonshow]: hasVariant($state, "show", "show")
+            })}
             color={"neutral"}
             label={
               <div className={classNames("all", "__wab_text", sty.text__ihrYg)}>
@@ -472,16 +584,44 @@ function PlasmicQuestionItem2__RenderFunc(props: {
           />
 
           <div
-            className={classNames("all", sty.freeBox__herd8)}
-            onClick={args.onDelet}
+            className={classNames("all", sty.freeBox__herd8, {
+              [sty.freeBoxshow__herd8Lx4Am]: hasVariant($state, "show", "show")
+            })}
+            onClick={args.onEdit}
           >
-            <Icon58Icon
-              className={classNames("all", sty.svg__axwUm)}
+            <PlasmicIcon__
+              PlasmicIconType={
+                hasVariant($state, "show", "show") ? Icon70Icon : Icon58Icon
+              }
+              className={classNames("all", sty.svg__axwUm, {
+                [sty.svgshow__axwUmLx4Am]: hasVariant($state, "show", "show")
+              })}
               role={"img"}
             />
           </div>
+          {(hasVariant($state, "show", "show") ? true : false) ? (
+            <div
+              className={classNames("all", sty.freeBox__cQgcT, {
+                [sty.freeBoxshow__cQgcTLx4Am]: hasVariant(
+                  $state,
+                  "show",
+                  "show"
+                )
+              })}
+              onClick={args.onDelet}
+            >
+              <Icon58Icon
+                className={classNames("all", sty.svg__zo7H3)}
+                role={"img"}
+              />
+            </div>
+          ) : null}
         </div>
-        <div className={classNames("all", sty.freeBox__b4WW, "dark")}>
+        <div
+          className={classNames("all", sty.freeBox__b4WW, "dark", {
+            [sty.freeBoxshow__b4WWLx4Am]: hasVariant($state, "show", "show")
+          })}
+        >
           <TextInput
             data-plasmic-name={"textInput"}
             data-plasmic-override={overrides.textInput}
@@ -584,7 +724,9 @@ function PlasmicQuestionItem2__RenderFunc(props: {
           <Check
             data-plasmic-name={"check4"}
             data-plasmic-override={overrides.check4}
-            className={classNames("__wab_instance", sty.check4)}
+            className={classNames("__wab_instance", sty.check4, {
+              [sty.check4show]: hasVariant($state, "show", "show")
+            })}
             isSelected={generateStateValueProp($state, [
               "check4",
               "isSelected"

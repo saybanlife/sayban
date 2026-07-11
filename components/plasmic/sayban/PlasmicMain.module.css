@@ -190,7 +190,6 @@
   padding: var(--token-73iLa06AE6f4) 0px 0px;
 }
 .freeBox__zUwIp {
-  display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
@@ -199,6 +198,7 @@
   justify-content: flex-start;
   align-items: center;
   min-width: 0;
+  display: none;
   padding: 0px;
 }
 .select2:global(.__wab_instance):global(.__wab_instance) {
@@ -1012,5 +1012,16 @@
   display: none;
 }
 .mainPageQuestionpage_question:global(.__wab_instance) {
+  display: flex;
+}
+.mainPageStaffs:global(.__wab_instance) {
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  display: none;
+}
+.mainPageStaffspage_staffs:global(.__wab_instance) {
   display: flex;
 }

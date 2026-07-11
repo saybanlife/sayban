@@ -19,6 +19,15 @@
   opacity: 0.5;
   pointer-events: none;
 }
+.ariaRadiobackgrond:global(.__wab_instance) {
+  background: var(--token-80wG4y4sryg5);
+  border-radius: var(--token-cfon0PHiXQoL);
+  padding: var(--token-cfon0PHiXQoL) var(--token-rfsFxiclAtek);
+}
+.ariaRadiobackgrond[data-selected][data-selected]:global(.__wab_instance) {
+  background: var(--token-dJWU7lgZ103l);
+  border: 1px solid var(--token-ee2TuxDknsJj);
+}
 .freeBox__u3E6I {
   width: 100%;
   height: auto;

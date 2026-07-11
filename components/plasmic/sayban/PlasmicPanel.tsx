@@ -250,10 +250,24 @@ function PlasmicPanel__RenderFunc(props: {
           },
           {
             label:
+              "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062e\u062f\u0645\u0627\u062a \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646",
+            value: "services",
+            icon: "service",
+            permissions: ["super_admin"]
+          },
+          {
+            label:
               "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062e\u062f\u0645\u0627\u062a",
             value: "services",
             icon: "service",
-            permissions: ["center_admin", "super_admin"]
+            permissions: ["center_admin"]
+          },
+          {
+            label:
+              "\u0645\u062f\u06cc\u0631\u06cc\u062a \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646",
+            value: "staffs",
+            icon: "service",
+            permissions: ["super_admin"]
           },
           {
             label:
@@ -319,6 +333,13 @@ function PlasmicPanel__RenderFunc(props: {
                 permissions: ["super_admin"]
               }
             ]
+          },
+          {
+            label:
+              "\u0633\u0648\u0627\u0644\u0627\u062a \u0641\u0631\u0645 \u062e\u062f\u0645\u0627\u062a",
+            value: "question",
+            icon: "layers",
+            permissions: ["super_admin"]
           }
         ]
       },

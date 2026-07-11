@@ -70,12 +70,17 @@ createPlasmicElementProxy;
 
 export type PlasmicLine__VariantMembers = {
   size: "small";
+  color: "soft";
 };
 export type PlasmicLine__VariantsArgs = {
   size?: SingleChoiceArg<"small">;
+  color?: SingleChoiceArg<"soft">;
 };
 type VariantPropType = keyof PlasmicLine__VariantsArgs;
-export const PlasmicLine__VariantProps = new Array<VariantPropType>("size");
+export const PlasmicLine__VariantProps = new Array<VariantPropType>(
+  "size",
+  "color"
+);
 
 export type PlasmicLine__ArgsType = {};
 type ArgPropType = keyof PlasmicLine__ArgsType;
@@ -87,6 +92,7 @@ export type PlasmicLine__OverridesType = {
 
 export interface DefaultLineProps {
   size?: SingleChoiceArg<"small">;
+  color?: SingleChoiceArg<"soft">;
   className?: string;
 }
 
@@ -136,6 +142,12 @@ function PlasmicLine__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.size
+      },
+      {
+        path: "color",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.color
       }
     ],
     [$props, $ctx, $refs]
@@ -165,7 +177,10 @@ function PlasmicLine__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
-        { [sty.rootsize_small]: hasVariant($state, "size", "small") }
+        {
+          [sty.rootcolor_soft]: hasVariant($state, "color", "soft"),
+          [sty.rootsize_small]: hasVariant($state, "size", "small")
+        }
       )}
     >
       {""}

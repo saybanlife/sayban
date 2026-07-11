@@ -29590,19 +29590,6 @@
           "componentType": "component"
         },
         {
-          "id": "DpKNaMrne39U",
-          "name": "QuestionItem",
-          "type": "managed",
-          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
-          "renderModuleFilePath": "plasmic/sayban/PlasmicQuestionItem.tsx",
-          "importSpec": {
-            "modulePath": "QuestionItem.tsx"
-          },
-          "cssFilePath": "plasmic/sayban/PlasmicQuestionItem.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "3LWfoc10rUWe",
           "name": "QuestionItem2",
           "type": "managed",
@@ -29625,6 +29612,58 @@
             "modulePath": "QuestionItemModal.tsx"
           },
           "cssFilePath": "plasmic/sayban/PlasmicQuestionItemModal.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "DpKNaMrne39U",
+          "name": "StaffsItem",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicStaffsItem.tsx",
+          "importSpec": {
+            "modulePath": "StaffsItem.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicStaffsItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "ApT4JJ-9bBRO",
+          "name": "MainPageStaffs",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicMainPageStaffs.tsx",
+          "importSpec": {
+            "modulePath": "MainPageStaffs.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicMainPageStaffs.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "Cy4ds_NfANEm",
+          "name": "EditStaffs",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicEditStaffs.tsx",
+          "importSpec": {
+            "modulePath": "EditStaffs.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicEditStaffs.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "-IidggTAwdg1",
+          "name": "MainPageServiseStaffs",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicMainPageServiseStaffs.tsx",
+          "importSpec": {
+            "modulePath": "MainPageServiseStaffs.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicMainPageServiseStaffs.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
@@ -30639,6 +30678,11 @@
           "id": "iluA5ycukFcK",
           "name": "Icon122Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon122.tsx"
+        },
+        {
+          "id": "JgCwdfwb6pDv",
+          "name": "Icon123Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon123.tsx"
         }
       ],
       "images": [
@@ -30946,6 +30990,11 @@
           "id": "2uoHajxR_yVL",
           "name": "2026-07-06-0e84ddab-4905-4287-bb45-0050910d90af.png",
           "filePath": "../public/plasmic/sayban/images/_202607060E84Ddab49054287Bb450050910D90AfPng.png"
+        },
+        {
+          "id": "wc_RlQ8tqtsp",
+          "name": "image 38",
+          "filePath": "../public/plasmic/sayban/images/image38.png"
         }
       ],
       "indirect": false,
