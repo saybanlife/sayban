@@ -80,11 +80,16 @@ import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFb
 
 createPlasmicElementProxy;
 
-export type PlasmicAddServiseStaff__VariantMembers = {};
-export type PlasmicAddServiseStaff__VariantsArgs = {};
+export type PlasmicAddServiseStaff__VariantMembers = {
+  staff: "staff";
+};
+export type PlasmicAddServiseStaff__VariantsArgs = {
+  staff?: SingleBooleanChoiceArg<"staff">;
+};
 type VariantPropType = keyof PlasmicAddServiseStaff__VariantsArgs;
-export const PlasmicAddServiseStaff__VariantProps =
-  new Array<VariantPropType>();
+export const PlasmicAddServiseStaff__VariantProps = new Array<VariantPropType>(
+  "staff"
+);
 
 export type PlasmicAddServiseStaff__ArgsType = {
   servises?: any;
@@ -118,6 +123,7 @@ export interface DefaultAddServiseStaffProps {
   servises?: any;
   onServisesChange?: (val: string) => void;
   centerId?: string;
+  staff?: SingleBooleanChoiceArg<"staff">;
   className?: string;
 }
 
@@ -227,6 +233,12 @@ function PlasmicAddServiseStaff__RenderFunc(props: {
         path: "radioGroup[].value",
         type: "private",
         variableType: "array"
+      },
+      {
+        path: "staff",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.staff
       }
     ],
     [$props, $ctx, $refs]
@@ -255,7 +267,8 @@ function PlasmicAddServiseStaff__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
-        "dark"
+        "dark",
+        { [sty.rootstaff]: hasVariant($state, "staff", "staff") }
       )}
     >
       {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -278,11 +291,19 @@ function PlasmicAddServiseStaff__RenderFunc(props: {
         return (() => {
           const child$Props = {
             bordered: false,
-            className: classNames("__wab_instance", sty.collapse),
-            defaultOpen: false,
+            className: classNames("__wab_instance", sty.collapse, {
+              [sty.collapsestaff]: hasVariant($state, "staff", "staff")
+            }),
+            defaultOpen: hasVariant($state, "staff", "staff") ? true : false,
             expandIcon: (
               <ChevronLeftIcon
-                className={classNames("all", sty.svg__hrEQs)}
+                className={classNames("all", sty.svg__hrEQs, {
+                  [sty.svgstaff__hrEQsnTldJ]: hasVariant(
+                    $state,
+                    "staff",
+                    "staff"
+                  )
+                })}
                 role={"img"}
               />
             ),
@@ -290,7 +311,15 @@ function PlasmicAddServiseStaff__RenderFunc(props: {
             expandIconPosition: "end",
             key: currentIndex,
             label2: (
-              <div className={classNames("all", "__wab_text", sty.text__yabPc)}>
+              <div
+                className={classNames("all", "__wab_text", sty.text__yabPc, {
+                  [sty.textstaff__yabPcnTldJ]: hasVariant(
+                    $state,
+                    "staff",
+                    "staff"
+                  )
+                })}
+              >
                 <React.Fragment>
                   {(() => {
                     try {
@@ -370,7 +399,8 @@ function PlasmicAddServiseStaff__RenderFunc(props: {
             [
               {
                 name: "collapse[].open",
-                initFunc: ({ $props, $state, $queries, $q }) => false
+                initFunc: ({ $props, $state, $queries, $q }) =>
+                  hasVariant($state, "staff", "staff") ? true : false
               }
             ],
             [__plasmic_idx_0]
@@ -381,7 +411,15 @@ function PlasmicAddServiseStaff__RenderFunc(props: {
               data-plasmic-override={overrides.collapse}
               {...child$Props}
             >
-              <div className={classNames("all", sty.freeBox__jVRnt)}>
+              <div
+                className={classNames("all", sty.freeBox__jVRnt, {
+                  [sty.freeBoxstaff__jVRntnTldJ]: hasVariant(
+                    $state,
+                    "staff",
+                    "staff"
+                  )
+                })}
+              >
                 <div className={classNames("all", sty.freeBox__lHa2X)}>
                   <div
                     className={classNames("all", "__wab_text", sty.text__smzBq)}
@@ -933,7 +971,13 @@ function PlasmicAddServiseStaff__RenderFunc(props: {
                 </div>
                 {(() => {
                   const child$Props = {
-                    className: classNames("__wab_instance", sty.radioGroup),
+                    className: classNames("__wab_instance", sty.radioGroup, {
+                      [sty.radioGroupstaff]: hasVariant(
+                        $state,
+                        "staff",
+                        "staff"
+                      )
+                    }),
                     label: (
                       <div
                         className={classNames(
@@ -1271,7 +1315,9 @@ function PlasmicAddServiseStaff__RenderFunc(props: {
       <Button
         data-plasmic-name={"button5"}
         data-plasmic-override={overrides.button5}
-        className={classNames("__wab_instance", sty.button5)}
+        className={classNames("__wab_instance", sty.button5, {
+          [sty.button5staff]: hasVariant($state, "staff", "staff")
+        })}
         color={"second"}
         end={
           <Icon56Icon

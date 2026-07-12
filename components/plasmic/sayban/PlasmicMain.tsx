@@ -1080,7 +1080,7 @@ function PlasmicMain__RenderFunc(props: {
         path: "addServiseStaff.servises",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [1]
       },
       {
         path: "modal2.open",
@@ -2679,6 +2679,7 @@ function PlasmicMain__RenderFunc(props: {
                 "addServiseStaff",
                 "servises"
               ])}
+              staff={true}
             />
           </div>
         }

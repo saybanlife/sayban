@@ -157,7 +157,6 @@
   max-width: 100%;
   width: 100%;
   min-width: 0;
-  display: none;
 }
 .addService2page_centers:global(.__wab_instance):global(.__wab_instance) {
   display: none;

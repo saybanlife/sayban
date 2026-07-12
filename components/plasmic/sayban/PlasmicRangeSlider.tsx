@@ -242,7 +242,7 @@ function PlasmicRangeSlider__RenderFunc(props: {
         styleTokensClassNames,
         sty.ariaRangeSlider
       )}
-      defaultValue={[20, 50]}
+      defaultValue={[800000, 2000000]}
       isDisabled={args.disabled}
       maxValue={args.maxValue}
       minValue={args.minValue}
@@ -290,10 +290,11 @@ function PlasmicRangeSlider__RenderFunc(props: {
               <React.Fragment>
                 {(() => {
                   try {
-                    return (
-                      $props.outputText ??
-                      $state.ariaRangeSlider.value?.join(",")
-                    );
+                    return $props.outputText
+                      ? Number($props.outputText).toLocaleString("en-US")
+                      : $state.ariaRangeSlider.value
+                        ? `کمترین قیمت ${Number($state.ariaRangeSlider.value[0]).toLocaleString("en-US")} تومان\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0بیشترین قیمت ${Number($state.ariaRangeSlider.value[1]).toLocaleString("en-US")} تومان`
+                        : "";
                   } catch (e) {
                     if (
                       e instanceof TypeError ||

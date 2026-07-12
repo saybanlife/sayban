@@ -984,7 +984,8 @@ function PlasmicMainPageServise__RenderFunc(props: {
                           label: null,
                           children: null,
                           onClick: null
-                        }
+                        },
+                        { type: "item", label: null, onClick: null }
                       ];
                       __composite["0"]["type"] = "item";
                       __composite["0"]["label"] = "\u274c";
@@ -1052,6 +1053,73 @@ function PlasmicMainPageServise__RenderFunc(props: {
                         ) {
                           $steps["runCenterDelete"] =
                             await $steps["runCenterDelete"];
+                        }
+                      };
+                      __composite["1"]["label"] = "\u270f\ufe0f";
+                      __composite["1"]["onClick"] = async (rowKey, row) => {
+                        const $steps = {};
+
+                        $steps["runCode"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return (() => {
+                                    $state.selected.id = row["id"];
+                                    return ($state.selected.name =
+                                      row["نام سرویس"]);
+                                  })();
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["runCode"] != null &&
+                          typeof $steps["runCode"] === "object" &&
+                          typeof $steps["runCode"].then === "function"
+                        ) {
+                          $steps["runCode"] = await $steps["runCode"];
+                        }
+
+                        $steps["updateSelectIsOpen2"] = true
+                          ? (() => {
+                              const actionArgs = { args: [200] };
+                              return $globalActions["Fragment.wait"]?.apply(
+                                null,
+                                [...actionArgs.args]
+                              );
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateSelectIsOpen2"] != null &&
+                          typeof $steps["updateSelectIsOpen2"] === "object" &&
+                          typeof $steps["updateSelectIsOpen2"].then ===
+                            "function"
+                        ) {
+                          $steps["updateSelectIsOpen2"] =
+                            await $steps["updateSelectIsOpen2"];
+                        }
+
+                        $steps["runInteractionProp"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                eventRef: $props["onRowClicked"]
+                              };
+                              return (({ eventRef, args }) => {
+                                return eventRef?.(...(args ?? []));
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["runInteractionProp"] != null &&
+                          typeof $steps["runInteractionProp"] === "object" &&
+                          typeof $steps["runInteractionProp"].then ===
+                            "function"
+                        ) {
+                          $steps["runInteractionProp"] =
+                            await $steps["runInteractionProp"];
                         }
                       };
                       return __composite;

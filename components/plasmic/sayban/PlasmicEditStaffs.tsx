@@ -63,12 +63,15 @@ import ImageProfile from "../../ImageProfile"; // plasmic-import: NCgtBMbIwpli/c
 import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
 import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
+import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
 import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
 import City from "../../City"; // plasmic-import: dRrvldGFbNOC/component
 import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo/component
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import Check from "../../Check"; // plasmic-import: jHhGioxaI9lI/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import RangeSlider from "../../RangeSlider"; // plasmic-import: n3Rhj-X09u8R/component
+import SliderThumb from "../../SliderThumb"; // plasmic-import: kkj3dxAdFRmu/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -142,15 +145,17 @@ export type PlasmicEditStaffs__OverridesType = {
   code?: Flex__<typeof TextInput>;
   selectGender?: Flex__<typeof Select>;
   selectMarital?: Flex__<typeof Select>;
+  textAreaInput?: Flex__<typeof TextAreaInput>;
   modal?: Flex__<typeof AntdModal>;
   city?: Flex__<typeof City>;
   svg?: Flex__<"svg">;
   experienceYears?: Flex__<typeof TextInput>;
   checkboxGroup?: Flex__<typeof CheckboxGroup>;
-  line?: Flex__<typeof Line>;
   check?: Flex__<typeof Check>;
+  check2?: Flex__<typeof Check>;
   section?: Flex__<"section">;
   codeSubmit2?: Flex__<typeof Button>;
+  rangeSlider?: Flex__<typeof RangeSlider>;
 };
 
 export interface DefaultEditStaffsProps {
@@ -379,6 +384,44 @@ function PlasmicEditStaffs__RenderFunc(props: {
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           $props.data.avatar ? [$props.data.avatar] : []
+      },
+      {
+        path: "check2[].isSelected",
+        type: "private",
+        variableType: "boolean"
+      },
+      {
+        path: "rangeSlider.value",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          hasVariant($state, "edit", "edit")
+            ? [
+                $props.data?.price_min || 800000,
+                $props.data?.price_max || 1200000
+              ]
+            : [800000, 2000000]
+      },
+      {
+        path: "textAreaInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          hasVariant($state, "edit", "edit")
+            ? (() => {
+                try {
+                  return $props.data.center_description;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()
+            : undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -418,271 +461,114 @@ function PlasmicEditStaffs__RenderFunc(props: {
           "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0647\u0648\u06cc\u062a\u06cc"
         }
       </div>
-      <div className={classNames("all", sty.freeBox__raahX)}>
-        <div className={classNames("all", sty.freeBox__owRbf)}>
-          {(
-            hasVariant($state, "edit", "edit")
-              ? true
-              : (() => {
-                  try {
-                    return !$props.data?.avatar;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
+      <div className={classNames("all", sty.freeBox__oz7Df)}>
+        <div className={classNames("all", sty.freeBox__raahX)}>
+          <div className={classNames("all", sty.freeBox__owRbf)}>
+            {(
+              hasVariant($state, "edit", "edit")
+                ? true
+                : (() => {
+                    try {
+                      return !$props.data?.avatar;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()
-          ) ? (
-            <PlasmicImg__
-              data-plasmic-name={"img"}
-              data-plasmic-override={overrides.img}
-              alt={""}
-              className={classNames(sty.img, {
-                [sty.imgedit]: hasVariant($state, "edit", "edit")
-              })}
-              displayHeight={"100px"}
-              displayMaxHeight={"none"}
-              displayMaxWidth={"100%"}
-              displayMinHeight={"0"}
-              displayMinWidth={"0"}
-              displayWidth={"100px"}
-              loading={"lazy"}
-              src={{
-                src: "/plasmic/sayban/images/image38.png",
-                fullWidth: 500,
-                fullHeight: 400,
-                aspectRatio: undefined
-              }}
-            />
-          ) : null}
-          {(
-            hasVariant($state, "edit", "edit")
-              ? true
-              : (() => {
-                  try {
-                    return $props.data?.avatar;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
+                  })()
+            ) ? (
+              <PlasmicImg__
+                data-plasmic-name={"img"}
+                data-plasmic-override={overrides.img}
+                alt={""}
+                className={classNames(sty.img, {
+                  [sty.imgedit]: hasVariant($state, "edit", "edit")
+                })}
+                displayHeight={"100px"}
+                displayMaxHeight={"none"}
+                displayMaxWidth={"100%"}
+                displayMinHeight={"0"}
+                displayMinWidth={"0"}
+                displayWidth={"100px"}
+                loading={"lazy"}
+                src={{
+                  src: "/plasmic/sayban/images/image38.png",
+                  fullWidth: 500,
+                  fullHeight: 400,
+                  aspectRatio: undefined
+                }}
+              />
+            ) : null}
+            {(
+              hasVariant($state, "edit", "edit")
+                ? true
+                : (() => {
+                    try {
+                      return $props.data?.avatar;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
                     }
-                    throw e;
+                  })()
+            ) ? (
+              <ImageProfile
+                data-plasmic-name={"imageProfile"}
+                data-plasmic-override={overrides.imageProfile}
+                className={classNames("__wab_instance", sty.imageProfile, {
+                  [sty.imageProfileedit]: hasVariant($state, "edit", "edit")
+                })}
+                onUploadFilesChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "imageProfile",
+                    "uploadFiles"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
                   }
-                })()
-          ) ? (
-            <ImageProfile
-              data-plasmic-name={"imageProfile"}
-              data-plasmic-override={overrides.imageProfile}
-              className={classNames("__wab_instance", sty.imageProfile, {
-                [sty.imageProfileedit]: hasVariant($state, "edit", "edit")
-              })}
-              onUploadFilesChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
+                }}
+                uploadFiles={generateStateValueProp($state, [
                   "imageProfile",
                   "uploadFiles"
-                ]).apply(null, eventArgs);
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              uploadFiles={generateStateValueProp($state, [
-                "imageProfile",
-                "uploadFiles"
-              ])}
-            />
-          ) : null}
-        </div>
-        <div
-          className={classNames("all", sty.freeBox__v1Wmk, "dark", {
-            [sty.freeBoxedit__v1WmkEfL9K]: hasVariant($state, "edit", "edit")
-          })}
-        >
-          <TextInput
-            data-plasmic-name={"name"}
-            data-plasmic-override={overrides.name}
-            ariaLabel={``}
-            autoComplete={[]}
-            autoFocus={false}
-            className={classNames("__wab_instance", sty.name, {
-              [sty.nameedit]: hasVariant($state, "edit", "edit")
+                ])}
+              />
+            ) : null}
+          </div>
+          <div
+            className={classNames("all", sty.freeBox__v1Wmk, "dark", {
+              [sty.freeBoxedit__v1WmkEfL9K]: hasVariant($state, "edit", "edit")
             })}
-            disabled={false}
-            inputType={"text"}
-            maxLength={50}
-            onChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["name", "value"]).apply(
-                null,
-                eventArgs
-              );
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-
-              (async val => {
-                const $steps = {};
-              }).apply(null, eventArgs);
-            }}
-            placeholder={
-              "\u0646\u0627\u0645 \u0648 \u0646\u0627\u0645 \u062e\u0627\u0646\u0648\u0627\u062f\u06af\u06cc"
-            }
-            readOnly={false}
-            size={"langh"}
-            type={hasVariant($state, "edit", "edit") ? "soft" : "line"}
-            value={generateStateValueProp($state, ["name", "value"])}
-          />
-
-          <TextInput
-            data-plasmic-name={"code"}
-            data-plasmic-override={overrides.code}
-            ariaLabel={``}
-            autoComplete={[]}
-            autoFocus={false}
-            className={classNames("__wab_instance", sty.code, {
-              [sty.codeedit]: hasVariant($state, "edit", "edit")
-            })}
-            disabled={false}
-            inputType={"text"}
-            maxLength={10}
-            onChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["code", "value"]).apply(
-                null,
-                eventArgs
-              );
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-
-              (async val => {
-                const $steps = {};
-
-                $steps["runCode"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        customFunction: async () => {
-                          return (() => {
-                            const regex = /^[0-9]*$/;
-                            if (!regex.test($state.code.value)) {
-                              return ($state.code.value =
-                                $state.code.value.replace(/\D/g, ""));
-                            }
-                          })();
-                        }
-                      };
-                      return (({ customFunction }) => {
-                        return customFunction();
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["runCode"] != null &&
-                  typeof $steps["runCode"] === "object" &&
-                  typeof $steps["runCode"].then === "function"
-                ) {
-                  $steps["runCode"] = await $steps["runCode"];
-                }
-              }).apply(null, eventArgs);
-            }}
-            placeholder={
-              "\u06a9\u062f \u0645\u0644\u06cc (\u0627\u062e\u062a\u06cc\u0627\u0631\u06cc)"
-            }
-            readOnly={false}
-            size={"langh"}
-            type={"line"}
-            value={generateStateValueProp($state, ["code", "value"])}
-          />
-
-          <div className={classNames("all", sty.freeBox__pEer2)}>
-            <Select
-              data-plasmic-name={"selectGender"}
-              data-plasmic-override={overrides.selectGender}
-              className={classNames("__wab_instance", sty.selectGender, {
-                [sty.selectGenderedit]: hasVariant($state, "edit", "edit")
+          >
+            <TextInput
+              data-plasmic-name={"name"}
+              data-plasmic-override={overrides.name}
+              ariaLabel={``}
+              autoComplete={[]}
+              autoFocus={false}
+              className={classNames("__wab_instance", sty.name, {
+                [sty.nameedit]: hasVariant($state, "edit", "edit")
               })}
-              description={null}
-              isOpen={generateStateValueProp($state, [
-                "selectGender",
-                "isOpen"
-              ])}
-              items={(_par =>
-                !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                (() => {
-                  try {
-                    return [
-                      { value: "male", label: "مرد" },
-                      { value: "female", label: "زن" }
-                    ];
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return [];
-                    }
-                    throw e;
-                  }
-                })()
-              ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                const currentItem = __plasmic_item_0;
-                const currentIndex = __plasmic_idx_0;
-                return (
-                  <MenuItem
-                    key={currentIndex}
-                    label={(() => {
-                      try {
-                        return currentItem.label;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()}
-                    value={(() => {
-                      try {
-                        return currentItem.value;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()}
-                  />
-                );
-              })}
-              label={null}
+              disabled={false}
+              inputType={"text"}
+              maxLength={50}
               onChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "selectGender",
-                  "value"
-                ]).apply(null, eventArgs);
+                generateStateOnChangeProp($state, ["name", "value"]).apply(
+                  null,
+                  eventArgs
+                );
 
                 if (
                   eventArgs.length > 1 &&
@@ -691,133 +577,324 @@ function PlasmicEditStaffs__RenderFunc(props: {
                 ) {
                   return;
                 }
+
+                (async val => {
+                  const $steps = {};
+                }).apply(null, eventArgs);
               }}
-              onOpenChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
+              placeholder={
+                "\u0646\u0627\u0645 \u0648 \u0646\u0627\u0645 \u062e\u0627\u0646\u0648\u0627\u062f\u06af\u06cc"
+              }
+              readOnly={false}
+              size={"langh"}
+              type={hasVariant($state, "edit", "edit") ? "soft" : "line"}
+              value={generateStateValueProp($state, ["name", "value"])}
+            />
+
+            <TextInput
+              data-plasmic-name={"code"}
+              data-plasmic-override={overrides.code}
+              ariaLabel={``}
+              autoComplete={[]}
+              autoFocus={false}
+              className={classNames("__wab_instance", sty.code, {
+                [sty.codeedit]: hasVariant($state, "edit", "edit")
+              })}
+              disabled={false}
+              inputType={"text"}
+              maxLength={10}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["code", "value"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+
+                (async val => {
+                  const $steps = {};
+
+                  $steps["runCode"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return (() => {
+                              const regex = /^[0-9]*$/;
+                              if (!regex.test($state.code.value)) {
+                                return ($state.code.value =
+                                  $state.code.value.replace(/\D/g, ""));
+                              }
+                            })();
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode"] != null &&
+                    typeof $steps["runCode"] === "object" &&
+                    typeof $steps["runCode"].then === "function"
+                  ) {
+                    $steps["runCode"] = await $steps["runCode"];
+                  }
+                }).apply(null, eventArgs);
+              }}
+              placeholder={
+                "\u06a9\u062f \u0645\u0644\u06cc (\u0627\u062e\u062a\u06cc\u0627\u0631\u06cc)"
+              }
+              readOnly={false}
+              size={"langh"}
+              type={"line"}
+              value={generateStateValueProp($state, ["code", "value"])}
+            />
+
+            <div className={classNames("all", sty.freeBox__pEer2)}>
+              <Select
+                data-plasmic-name={"selectGender"}
+                data-plasmic-override={overrides.selectGender}
+                className={classNames("__wab_instance", sty.selectGender, {
+                  [sty.selectGenderedit]: hasVariant($state, "edit", "edit")
+                })}
+                description={null}
+                isOpen={generateStateValueProp($state, [
                   "selectGender",
                   "isOpen"
-                ]).apply(null, eventArgs);
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              placeholder={"\u062c\u0646\u0633\u06cc\u062a"}
-              showLabel={false}
-              type={hasVariant($state, "edit", "edit") ? "soft" : "line"}
-              value={generateStateValueProp($state, ["selectGender", "value"])}
-            />
-
-            <Select
-              data-plasmic-name={"selectMarital"}
-              data-plasmic-override={overrides.selectMarital}
-              className={classNames("__wab_instance", sty.selectMarital, {
-                [sty.selectMaritaledit]: hasVariant($state, "edit", "edit")
-              })}
-              description={null}
-              isOpen={generateStateValueProp($state, [
-                "selectMarital",
-                "isOpen"
-              ])}
-              items={(_par =>
-                !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                (() => {
-                  try {
-                    return [
-                      {
-                        value: "single",
-                        label: "مجرد"
-                      },
-                      {
-                        value: "married",
-                        label: "متأهل"
+                ])}
+                items={(_par =>
+                  !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                  (() => {
+                    try {
+                      return [
+                        { value: "male", label: "مرد" },
+                        { value: "female", label: "زن" }
+                      ];
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
                       }
-                    ];
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return [];
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()
-              ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                const currentItem = __plasmic_item_0;
-                const currentIndex = __plasmic_idx_0;
-                return (
-                  <MenuItem
-                    key={currentIndex}
-                    label={(() => {
-                      try {
-                        return currentItem.label;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                  })()
+                ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                  const currentItem = __plasmic_item_0;
+                  const currentIndex = __plasmic_idx_0;
+                  return (
+                    <MenuItem
+                      key={currentIndex}
+                      label={(() => {
+                        try {
+                          return currentItem.label;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}
-                    value={(() => {
-                      try {
-                        return currentItem.value;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                      })()}
+                      value={(() => {
+                        try {
+                          return currentItem.value;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}
-                  />
-                );
-              })}
-              label={null}
-              onChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "selectMarital",
-                  "value"
-                ]).apply(null, eventArgs);
+                      })()}
+                    />
+                  );
+                })}
+                label={null}
+                onChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "selectGender",
+                    "value"
+                  ]).apply(null, eventArgs);
 
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              onOpenChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                onOpenChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "selectGender",
+                    "isOpen"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                placeholder={"\u062c\u0646\u0633\u06cc\u062a"}
+                showLabel={false}
+                type={hasVariant($state, "edit", "edit") ? "soft" : "line"}
+                value={generateStateValueProp($state, [
+                  "selectGender",
+                  "value"
+                ])}
+              />
+
+              <Select
+                data-plasmic-name={"selectMarital"}
+                data-plasmic-override={overrides.selectMarital}
+                className={classNames("__wab_instance", sty.selectMarital, {
+                  [sty.selectMaritaledit]: hasVariant($state, "edit", "edit")
+                })}
+                description={null}
+                isOpen={generateStateValueProp($state, [
                   "selectMarital",
                   "isOpen"
-                ]).apply(null, eventArgs);
+                ])}
+                items={(_par =>
+                  !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                  (() => {
+                    try {
+                      return [
+                        {
+                          value: "single",
+                          label: "مجرد"
+                        },
+                        {
+                          value: "married",
+                          label: "متأهل"
+                        }
+                      ];
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()
+                ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                  const currentItem = __plasmic_item_0;
+                  const currentIndex = __plasmic_idx_0;
+                  return (
+                    <MenuItem
+                      key={currentIndex}
+                      label={(() => {
+                        try {
+                          return currentItem.label;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
+                      value={(() => {
+                        try {
+                          return currentItem.value;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
+                    />
+                  );
+                })}
+                label={null}
+                onChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "selectMarital",
+                    "value"
+                  ]).apply(null, eventArgs);
 
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              placeholder={"\u062a\u0627\u0647\u0644"}
-              showLabel={false}
-              type={hasVariant($state, "edit", "edit") ? "soft" : "line"}
-              value={generateStateValueProp($state, ["selectMarital", "value"])}
-            />
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                onOpenChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "selectMarital",
+                    "isOpen"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                placeholder={"\u062a\u0627\u0647\u0644"}
+                showLabel={false}
+                type={hasVariant($state, "edit", "edit") ? "soft" : "line"}
+                value={generateStateValueProp($state, [
+                  "selectMarital",
+                  "value"
+                ])}
+              />
+            </div>
           </div>
         </div>
+        <TextAreaInput
+          data-plasmic-name={"textAreaInput"}
+          data-plasmic-override={overrides.textAreaInput}
+          className={classNames("__wab_instance", sty.textAreaInput, {
+            [sty.textAreaInputedit]: hasVariant($state, "edit", "edit")
+          })}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["textAreaInput", "value"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          placeholder={
+            "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u0645\u0631\u06a9\u0632"
+          }
+          type={hasVariant($state, "edit", "edit") ? "outline" : "line"}
+          value={generateStateValueProp($state, ["textAreaInput", "value"])}
+        />
       </div>
       <AntdModal
         data-plasmic-name={"modal"}
@@ -943,38 +1020,7 @@ function PlasmicEditStaffs__RenderFunc(props: {
             className: classNames("__wab_instance", sty.checkboxGroup, {
               [sty.checkboxGroupedit]: hasVariant($state, "edit", "edit")
             }),
-            label: (
-              <div
-                className={classNames("all", sty.freeBox__x7Unf, {
-                  [sty.freeBoxedit__x7UnfEfL9K]: hasVariant(
-                    $state,
-                    "edit",
-                    "edit"
-                  )
-                })}
-              >
-                <div
-                  className={classNames("all", "__wab_text", sty.text__fqeq7, {
-                    [sty.textedit__fqeq7EfL9K]: hasVariant(
-                      $state,
-                      "edit",
-                      "edit"
-                    )
-                  })}
-                >
-                  {
-                    "\u062e\u062f\u0645\u0627\u062a \u067e\u0631\u0633\u062a\u0627\u0631"
-                  }
-                </div>
-                <Line
-                  data-plasmic-name={"line"}
-                  data-plasmic-override={overrides.line}
-                  className={classNames("__wab_instance", sty.line)}
-                  color={"soft"}
-                  size={"small"}
-                />
-              </div>
-            ),
+            label: null,
             onChange: async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "checkboxGroup",
@@ -990,108 +1036,307 @@ function PlasmicEditStaffs__RenderFunc(props: {
               }
             },
             options: (
-              <div className={classNames("all", sty.freeBox__lURi)}>
-                {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                  (() => {
-                    try {
-                      return $state.servise;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return [];
+              <React.Fragment>
+                <div
+                  className={classNames("all", sty.freeBox__x7Unf, {
+                    [sty.freeBoxedit__x7UnfEfL9K]: hasVariant(
+                      $state,
+                      "edit",
+                      "edit"
+                    )
+                  })}
+                >
+                  <div
+                    className={classNames(
+                      "all",
+                      "__wab_text",
+                      sty.text__fqeq7,
+                      {
+                        [sty.textedit__fqeq7EfL9K]: hasVariant(
+                          $state,
+                          "edit",
+                          "edit"
+                        )
                       }
-                      throw e;
+                    )}
+                  >
+                    {
+                      "\u062e\u062f\u0645\u0627\u062a \u0639\u0645\u0648\u0645\u06cc"
                     }
-                  })()
-                ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                  const currentItem = __plasmic_item_0;
-                  const currentIndex = __plasmic_idx_0;
-                  return (() => {
-                    const child$Props = {
-                      className: classNames("__wab_instance", sty.check),
-                      isSelected: generateStateValueProp($state, [
-                        "check",
-                        __plasmic_idx_0,
-                        "isSelected"
-                      ]),
-                      key: currentIndex,
-                      label: (
-                        <div
-                          className={classNames(
-                            "all",
-                            "__wab_text",
-                            sty.text__o2A03
-                          )}
-                        >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return currentItem["نام سرویس"];
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "Option";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
-                        </div>
-                      ),
-                      onChange: async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
+                  </div>
+                  <Line
+                    className={classNames("__wab_instance", sty.line__lFyE0)}
+                    color={"soft"}
+                    size={"small"}
+                  />
+                </div>
+                <div className={classNames("all", sty.freeBox__lURi)}>
+                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                    (() => {
+                      try {
+                        return $state.servise.filter(
+                          i => i["نوع سرویس"] == "general"
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()
+                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                    const currentItem = __plasmic_item_0;
+                    const currentIndex = __plasmic_idx_0;
+                    return (() => {
+                      const child$Props = {
+                        className: classNames("__wab_instance", sty.check),
+                        isSelected: generateStateValueProp($state, [
                           "check",
                           __plasmic_idx_0,
                           "isSelected"
-                        ]).apply(null, eventArgs);
+                        ]),
+                        key: currentIndex,
+                        label: (
+                          <div
+                            className={classNames(
+                              "all",
+                              "__wab_text",
+                              sty.text__o2A03
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return currentItem["نام سرویس"];
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "Option";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                        ),
+                        onChange: async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "check",
+                            __plasmic_idx_0,
+                            "isSelected"
+                          ]).apply(null, eventArgs);
 
-                        if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
-                        ) {
-                          return;
-                        }
-                      },
-                      value: (() => {
-                        try {
-                          return currentItem.id;
-                        } catch (e) {
                           if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
+                            eventArgs.length > 1 &&
+                            eventArgs[1] &&
+                            eventArgs[1]._plasmic_state_init_
                           ) {
-                            return undefined;
+                            return;
                           }
-                          throw e;
-                        }
-                      })()
-                    };
+                        },
+                        value: (() => {
+                          try {
+                            return currentItem.id;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      };
 
-                    initializePlasmicStates(
+                      initializePlasmicStates(
+                        $state,
+                        [
+                          {
+                            name: "check[].isSelected",
+                            initFunc: ({ $props, $state, $queries, $q }) =>
+                              false
+                          }
+                        ],
+                        [__plasmic_idx_0]
+                      );
+                      return (
+                        <Check
+                          data-plasmic-name={"check"}
+                          data-plasmic-override={overrides.check}
+                          {...child$Props}
+                        />
+                      );
+                    })();
+                  })}
+                </div>
+                <div
+                  className={classNames("all", sty.freeBox___22Tk8, {
+                    [sty.freeBoxedit___22Tk8EfL9K]: hasVariant(
                       $state,
-                      [
+                      "edit",
+                      "edit"
+                    )
+                  })}
+                >
+                  <div className={classNames("all", sty.freeBox__mQp6F)}>
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text__j34Gm,
                         {
-                          name: "check[].isSelected",
-                          initFunc: ({ $props, $state, $queries, $q }) => false
+                          [sty.textedit__j34GmEfL9K]: hasVariant(
+                            $state,
+                            "edit",
+                            "edit"
+                          )
                         }
-                      ],
-                      [__plasmic_idx_0]
-                    );
-                    return (
-                      <Check
-                        data-plasmic-name={"check"}
-                        data-plasmic-override={overrides.check}
-                        {...child$Props}
-                      />
-                    );
-                  })();
-                })}
-              </div>
+                      )}
+                    >
+                      {
+                        "\u062e\u062f\u0645\u0627\u062a \u062a\u062e\u0635\u0635\u06cc"
+                      }
+                    </div>
+                    <div
+                      className={classNames("all", sty.freeBox__zxRg, {
+                        [sty.freeBoxedit__zxRgEfL9K]: hasVariant(
+                          $state,
+                          "edit",
+                          "edit"
+                        ),
+                        [sty.freeBoxmodal2__zxRgZfjqG]: hasVariant(
+                          $state,
+                          "modal2",
+                          "modal2"
+                        ),
+                        [sty.freeBoxunnamedVariant__zxRgEp0He]: hasVariant(
+                          $state,
+                          "unnamedVariant",
+                          "unnamedVariant"
+                        )
+                      })}
+                    />
+                  </div>
+                  <Line
+                    className={classNames("__wab_instance", sty.line__eTq4Q)}
+                    color={"soft"}
+                    size={"small"}
+                  />
+                </div>
+                <div className={classNames("all", sty.freeBox__ao7C1)}>
+                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                    (() => {
+                      try {
+                        return $state.servise.filter(
+                          i => i["نوع سرویس"] == "specialized"
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()
+                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                    const currentItem = __plasmic_item_0;
+                    const currentIndex = __plasmic_idx_0;
+                    return (() => {
+                      const child$Props = {
+                        className: classNames("__wab_instance", sty.check2),
+                        isSelected: generateStateValueProp($state, [
+                          "check2",
+                          __plasmic_idx_0,
+                          "isSelected"
+                        ]),
+                        key: currentIndex,
+                        label: (
+                          <div
+                            className={classNames(
+                              "all",
+                              "__wab_text",
+                              sty.text__r6ExB
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return currentItem["نام سرویس"];
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "Option";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                        ),
+                        onChange: async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "check2",
+                            __plasmic_idx_0,
+                            "isSelected"
+                          ]).apply(null, eventArgs);
+
+                          if (
+                            eventArgs.length > 1 &&
+                            eventArgs[1] &&
+                            eventArgs[1]._plasmic_state_init_
+                          ) {
+                            return;
+                          }
+                        },
+                        value: (() => {
+                          try {
+                            return currentItem.id;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      };
+
+                      initializePlasmicStates(
+                        $state,
+                        [
+                          {
+                            name: "check2[].isSelected",
+                            initFunc: ({ $props, $state, $queries, $q }) =>
+                              false
+                          }
+                        ],
+                        [__plasmic_idx_0]
+                      );
+                      return (
+                        <Check
+                          data-plasmic-name={"check2"}
+                          data-plasmic-override={overrides.check2}
+                          {...child$Props}
+                        />
+                      );
+                    })();
+                  })}
+                </div>
+              </React.Fragment>
             ),
             value: generateStateValueProp($state, ["checkboxGroup", "value"])
           };
@@ -1121,22 +1366,6 @@ function PlasmicEditStaffs__RenderFunc(props: {
           "\u0645\u0633\u062a\u0646\u062f\u0627\u062a \u0648 \u0645\u062f\u0627\u0631\u06a9"
         }
       </div>
-      <div
-        className={classNames("all", sty.freeBox__zxRg, {
-          [sty.freeBoxedit__zxRgEfL9K]: hasVariant($state, "edit", "edit"),
-          [sty.freeBoxmodal2__zxRgZfjqG]: hasVariant(
-            $state,
-            "modal2",
-            "modal2"
-          ),
-          [sty.freeBoxunnamedVariant__zxRgEp0He]: hasVariant(
-            $state,
-            "unnamedVariant",
-            "unnamedVariant"
-          )
-        })}
-      />
-
       <section
         data-plasmic-name={"section"}
         data-plasmic-override={overrides.section}
@@ -1241,7 +1470,10 @@ function PlasmicEditStaffs__RenderFunc(props: {
                               experience_years: $state.experienceYears.value,
                               skills: JSON.stringify(
                                 $state.checkboxGroup?.value || []
-                              )
+                              ),
+                              price_min: $state.rangeSlider.value[0],
+                              price_max: $state.rangeSlider.value[1],
+                              center_description: $state.textAreaInput.value
                             };
                           } catch (e) {
                             if (
@@ -1423,6 +1655,70 @@ function PlasmicEditStaffs__RenderFunc(props: {
           />
         </div>
       </section>
+      <div
+        className={classNames("all", sty.freeBox__oLkxl, {
+          [sty.freeBoxedit__oLkxlEfL9K]: hasVariant($state, "edit", "edit")
+        })}
+      >
+        <div className={classNames("all", sty.freeBox___20YvL)}>
+          <div
+            className={classNames("all", "__wab_text", sty.text__rpOqt, {
+              [sty.textedit__rpOqtEfL9K]: hasVariant($state, "edit", "edit")
+            })}
+          >
+            {"\u0628\u0627\u0632\u0647 \u0642\u06cc\u0645\u062a"}
+          </div>
+          <div
+            className={classNames("all", sty.freeBox__fbH1A, {
+              [sty.freeBoxedit__fbH1AEfL9K]: hasVariant($state, "edit", "edit"),
+              [sty.freeBoxmodal2__fbH1AZfjqG]: hasVariant(
+                $state,
+                "modal2",
+                "modal2"
+              ),
+              [sty.freeBoxunnamedVariant__fbH1Aep0He]: hasVariant(
+                $state,
+                "unnamedVariant",
+                "unnamedVariant"
+              )
+            })}
+          />
+        </div>
+        <Line
+          className={classNames("__wab_instance", sty.line___0Rjft)}
+          color={"soft"}
+          size={"small"}
+        />
+
+        <RangeSlider
+          data-plasmic-name={"rangeSlider"}
+          data-plasmic-override={overrides.rangeSlider}
+          className={classNames("__wab_instance", sty.rangeSlider, {
+            [sty.rangeSlideredit]: hasVariant($state, "edit", "edit")
+          })}
+          disabled={false}
+          filled={true}
+          maxValue={10000000}
+          minValue={500000}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["rangeSlider", "value"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          showLabel={false}
+          showOutputText={true}
+          value={generateStateValueProp($state, ["rangeSlider", "value"])}
+        />
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
@@ -1436,15 +1732,17 @@ const PlasmicDescendants = {
     "code",
     "selectGender",
     "selectMarital",
+    "textAreaInput",
     "modal",
     "city",
     "svg",
     "experienceYears",
     "checkboxGroup",
-    "line",
     "check",
+    "check2",
     "section",
-    "codeSubmit2"
+    "codeSubmit2",
+    "rangeSlider"
   ],
   img: ["img"],
   imageProfile: ["imageProfile"],
@@ -1452,15 +1750,17 @@ const PlasmicDescendants = {
   code: ["code"],
   selectGender: ["selectGender"],
   selectMarital: ["selectMarital"],
+  textAreaInput: ["textAreaInput"],
   modal: ["modal", "city", "svg"],
   city: ["city"],
   svg: ["svg"],
   experienceYears: ["experienceYears"],
-  checkboxGroup: ["checkboxGroup", "line", "check"],
-  line: ["line"],
+  checkboxGroup: ["checkboxGroup", "check", "check2"],
   check: ["check"],
+  check2: ["check2"],
   section: ["section", "codeSubmit2"],
-  codeSubmit2: ["codeSubmit2"]
+  codeSubmit2: ["codeSubmit2"],
+  rangeSlider: ["rangeSlider"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1473,15 +1773,17 @@ type NodeDefaultElementType = {
   code: typeof TextInput;
   selectGender: typeof Select;
   selectMarital: typeof Select;
+  textAreaInput: typeof TextAreaInput;
   modal: typeof AntdModal;
   city: typeof City;
   svg: "svg";
   experienceYears: typeof TextInput;
   checkboxGroup: typeof CheckboxGroup;
-  line: typeof Line;
   check: typeof Check;
+  check2: typeof Check;
   section: "section";
   codeSubmit2: typeof Button;
+  rangeSlider: typeof RangeSlider;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1552,15 +1854,17 @@ export const PlasmicEditStaffs = Object.assign(
     code: makeNodeComponent("code"),
     selectGender: makeNodeComponent("selectGender"),
     selectMarital: makeNodeComponent("selectMarital"),
+    textAreaInput: makeNodeComponent("textAreaInput"),
     modal: makeNodeComponent("modal"),
     city: makeNodeComponent("city"),
     svg: makeNodeComponent("svg"),
     experienceYears: makeNodeComponent("experienceYears"),
     checkboxGroup: makeNodeComponent("checkboxGroup"),
-    line: makeNodeComponent("line"),
     check: makeNodeComponent("check"),
+    check2: makeNodeComponent("check2"),
     section: makeNodeComponent("section"),
     codeSubmit2: makeNodeComponent("codeSubmit2"),
+    rangeSlider: makeNodeComponent("rangeSlider"),
 
     // Metadata about props expected for PlasmicEditStaffs
     internalVariantProps: PlasmicEditStaffs__VariantProps,
