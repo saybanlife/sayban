@@ -69,9 +69,9 @@ import City from "../../City"; // plasmic-import: dRrvldGFbNOC/component
 import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo/component
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import Check from "../../Check"; // plasmic-import: jHhGioxaI9lI/component
-import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import RangeSlider from "../../RangeSlider"; // plasmic-import: n3Rhj-X09u8R/component
 import SliderThumb from "../../SliderThumb"; // plasmic-import: kkj3dxAdFRmu/component
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -153,9 +153,9 @@ export type PlasmicEditStaffs__OverridesType = {
   checkboxGroup?: Flex__<typeof CheckboxGroup>;
   check?: Flex__<typeof Check>;
   check2?: Flex__<typeof Check>;
+  rangeSlider?: Flex__<typeof RangeSlider>;
   section?: Flex__<"section">;
   codeSubmit2?: Flex__<typeof Button>;
-  rangeSlider?: Flex__<typeof RangeSlider>;
 };
 
 export interface DefaultEditStaffsProps {
@@ -1204,25 +1204,6 @@ function PlasmicEditStaffs__RenderFunc(props: {
                         "\u062e\u062f\u0645\u0627\u062a \u062a\u062e\u0635\u0635\u06cc"
                       }
                     </div>
-                    <div
-                      className={classNames("all", sty.freeBox__zxRg, {
-                        [sty.freeBoxedit__zxRgEfL9K]: hasVariant(
-                          $state,
-                          "edit",
-                          "edit"
-                        ),
-                        [sty.freeBoxmodal2__zxRgZfjqG]: hasVariant(
-                          $state,
-                          "modal2",
-                          "modal2"
-                        ),
-                        [sty.freeBoxunnamedVariant__zxRgEp0He]: hasVariant(
-                          $state,
-                          "unnamedVariant",
-                          "unnamedVariant"
-                        )
-                      })}
-                    />
                   </div>
                   <Line
                     className={classNames("__wab_instance", sty.line__eTq4Q)}
@@ -1360,6 +1341,55 @@ function PlasmicEditStaffs__RenderFunc(props: {
             />
           );
         })()}
+      </div>
+      <div
+        className={classNames("all", sty.freeBox__oLkxl, {
+          [sty.freeBoxedit__oLkxlEfL9K]: hasVariant($state, "edit", "edit")
+        })}
+      >
+        <div className={classNames("all", sty.freeBox___20YvL)}>
+          <div
+            className={classNames("all", "__wab_text", sty.text__rpOqt, {
+              [sty.textedit__rpOqtEfL9K]: hasVariant($state, "edit", "edit")
+            })}
+          >
+            {"\u0628\u0627\u0632\u0647 \u0642\u06cc\u0645\u062a"}
+          </div>
+        </div>
+        <Line
+          className={classNames("__wab_instance", sty.line___0Rjft)}
+          color={"soft"}
+          size={"small"}
+        />
+
+        <RangeSlider
+          data-plasmic-name={"rangeSlider"}
+          data-plasmic-override={overrides.rangeSlider}
+          className={classNames("__wab_instance", sty.rangeSlider, {
+            [sty.rangeSlideredit]: hasVariant($state, "edit", "edit")
+          })}
+          disabled={false}
+          filled={true}
+          maxValue={10000000}
+          minValue={500000}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["rangeSlider", "value"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          showLabel={false}
+          showOutputText={true}
+          value={generateStateValueProp($state, ["rangeSlider", "value"])}
+        />
       </div>
       <div className={classNames("all", "__wab_text", sty.text__eVh7U)}>
         {
@@ -1656,69 +1686,10 @@ function PlasmicEditStaffs__RenderFunc(props: {
         </div>
       </section>
       <div
-        className={classNames("all", sty.freeBox__oLkxl, {
-          [sty.freeBoxedit__oLkxlEfL9K]: hasVariant($state, "edit", "edit")
+        className={classNames("all", sty.freeBox__jHiUa, {
+          [sty.freeBoxedit__jHiUaEfL9K]: hasVariant($state, "edit", "edit")
         })}
-      >
-        <div className={classNames("all", sty.freeBox___20YvL)}>
-          <div
-            className={classNames("all", "__wab_text", sty.text__rpOqt, {
-              [sty.textedit__rpOqtEfL9K]: hasVariant($state, "edit", "edit")
-            })}
-          >
-            {"\u0628\u0627\u0632\u0647 \u0642\u06cc\u0645\u062a"}
-          </div>
-          <div
-            className={classNames("all", sty.freeBox__fbH1A, {
-              [sty.freeBoxedit__fbH1AEfL9K]: hasVariant($state, "edit", "edit"),
-              [sty.freeBoxmodal2__fbH1AZfjqG]: hasVariant(
-                $state,
-                "modal2",
-                "modal2"
-              ),
-              [sty.freeBoxunnamedVariant__fbH1Aep0He]: hasVariant(
-                $state,
-                "unnamedVariant",
-                "unnamedVariant"
-              )
-            })}
-          />
-        </div>
-        <Line
-          className={classNames("__wab_instance", sty.line___0Rjft)}
-          color={"soft"}
-          size={"small"}
-        />
-
-        <RangeSlider
-          data-plasmic-name={"rangeSlider"}
-          data-plasmic-override={overrides.rangeSlider}
-          className={classNames("__wab_instance", sty.rangeSlider, {
-            [sty.rangeSlideredit]: hasVariant($state, "edit", "edit")
-          })}
-          disabled={false}
-          filled={true}
-          maxValue={10000000}
-          minValue={500000}
-          onChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["rangeSlider", "value"]).apply(
-              null,
-              eventArgs
-            );
-
-            if (
-              eventArgs.length > 1 &&
-              eventArgs[1] &&
-              eventArgs[1]._plasmic_state_init_
-            ) {
-              return;
-            }
-          }}
-          showLabel={false}
-          showOutputText={true}
-          value={generateStateValueProp($state, ["rangeSlider", "value"])}
-        />
-      </div>
+      />
     </div>
   ) as React.ReactElement | null;
 }
@@ -1740,9 +1711,9 @@ const PlasmicDescendants = {
     "checkboxGroup",
     "check",
     "check2",
+    "rangeSlider",
     "section",
-    "codeSubmit2",
-    "rangeSlider"
+    "codeSubmit2"
   ],
   img: ["img"],
   imageProfile: ["imageProfile"],
@@ -1758,9 +1729,9 @@ const PlasmicDescendants = {
   checkboxGroup: ["checkboxGroup", "check", "check2"],
   check: ["check"],
   check2: ["check2"],
+  rangeSlider: ["rangeSlider"],
   section: ["section", "codeSubmit2"],
-  codeSubmit2: ["codeSubmit2"],
-  rangeSlider: ["rangeSlider"]
+  codeSubmit2: ["codeSubmit2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1781,9 +1752,9 @@ type NodeDefaultElementType = {
   checkboxGroup: typeof CheckboxGroup;
   check: typeof Check;
   check2: typeof Check;
+  rangeSlider: typeof RangeSlider;
   section: "section";
   codeSubmit2: typeof Button;
-  rangeSlider: typeof RangeSlider;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1862,9 +1833,9 @@ export const PlasmicEditStaffs = Object.assign(
     checkboxGroup: makeNodeComponent("checkboxGroup"),
     check: makeNodeComponent("check"),
     check2: makeNodeComponent("check2"),
+    rangeSlider: makeNodeComponent("rangeSlider"),
     section: makeNodeComponent("section"),
     codeSubmit2: makeNodeComponent("codeSubmit2"),
-    rangeSlider: makeNodeComponent("rangeSlider"),
 
     // Metadata about props expected for PlasmicEditStaffs
     internalVariantProps: PlasmicEditStaffs__VariantProps,
