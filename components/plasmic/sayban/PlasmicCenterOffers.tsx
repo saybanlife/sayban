@@ -122,6 +122,7 @@ export type PlasmicCenterOffers__ArgsType = {
   userSelectOpendialog?: boolean;
   onUserSelectOpendialogChange?: (val: boolean) => void;
   userNew?: () => void;
+  steps2?: () => void;
 };
 type ArgPropType = keyof PlasmicCenterOffers__ArgsType;
 export const PlasmicCenterOffers__ArgProps = new Array<ArgPropType>(
@@ -137,7 +138,8 @@ export const PlasmicCenterOffers__ArgProps = new Array<ArgPropType>(
   "onId2Change",
   "userSelectOpendialog",
   "onUserSelectOpendialogChange",
-  "userNew"
+  "userNew",
+  "steps2"
 );
 
 export type PlasmicCenterOffers__OverridesType = {
@@ -189,6 +191,7 @@ export interface DefaultCenterOffersProps {
   userSelectOpendialog?: boolean;
   onUserSelectOpendialogChange?: (val: boolean) => void;
   userNew?: () => void;
+  steps2?: () => void;
   top?: SingleBooleanChoiceArg<"top">;
   steps?: SingleChoiceArg<"answerSheet" | "selectService">;
   className?: string;
@@ -2053,29 +2056,20 @@ function PlasmicCenterOffers__RenderFunc(props: {
                   $steps["runCode"] = await $steps["runCode"];
                 }
 
-                $steps["updateSteps"] = $steps.invokeGlobalAction?.data?.success
+                $steps["runSteps2"] = $steps.invokeGlobalAction?.data?.success
                   ? (() => {
-                      const actionArgs = {
-                        vgroup: "steps",
-                        operation: 0,
-                        value: "answerSheet"
-                      };
-                      return (({ vgroup, value }) => {
-                        if (typeof value === "string") {
-                          value = [value];
-                        }
-
-                        $stateSet($state, vgroup, value);
-                        return value;
+                      const actionArgs = { eventRef: $props["steps2"] };
+                      return (({ eventRef, args }) => {
+                        return eventRef?.(...(args ?? []));
                       })?.apply(null, [actionArgs]);
                     })()
                   : undefined;
                 if (
-                  $steps["updateSteps"] != null &&
-                  typeof $steps["updateSteps"] === "object" &&
-                  typeof $steps["updateSteps"].then === "function"
+                  $steps["runSteps2"] != null &&
+                  typeof $steps["runSteps2"] === "object" &&
+                  typeof $steps["runSteps2"].then === "function"
                 ) {
-                  $steps["updateSteps"] = await $steps["updateSteps"];
+                  $steps["runSteps2"] = await $steps["runSteps2"];
                 }
 
                 $steps["updateReservationAddLoading"] = true

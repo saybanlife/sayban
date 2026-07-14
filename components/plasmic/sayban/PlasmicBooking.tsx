@@ -103,6 +103,7 @@ export type PlasmicBooking__ArgsType = {
   goToDetails?: (event: any) => void;
   goToReservation?: (event: any) => void;
   goToCenter?: (id: string) => void;
+  goToOffers?: () => void;
 };
 type ArgPropType = keyof PlasmicBooking__ArgsType;
 export const PlasmicBooking__ArgProps = new Array<ArgPropType>(
@@ -111,7 +112,8 @@ export const PlasmicBooking__ArgProps = new Array<ArgPropType>(
   "onSelectCenterChange",
   "goToDetails",
   "goToReservation",
-  "goToCenter"
+  "goToCenter",
+  "goToOffers"
 );
 
 export type PlasmicBooking__OverridesType = {
@@ -137,6 +139,7 @@ export interface DefaultBookingProps {
   goToDetails?: (event: any) => void;
   goToReservation?: (event: any) => void;
   goToCenter?: (id: string) => void;
+  goToOffers?: () => void;
   className?: string;
 }
 
@@ -543,6 +546,48 @@ function PlasmicBooking__RenderFunc(props: {
                       $steps["runCode"] = await $steps["runCode"];
                     }
                   }}
+                  goToOffers={async () => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return window.sessionStorage.setItem(
+                                "id",
+                                currentItem.id
+                              );
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+
+                    $steps["runGoToOffers"] = true
+                      ? (() => {
+                          const actionArgs = { eventRef: $props["goToOffers"] };
+                          return (({ eventRef, args }) => {
+                            return eventRef?.(...(args ?? []));
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runGoToOffers"] != null &&
+                      typeof $steps["runGoToOffers"] === "object" &&
+                      typeof $steps["runGoToOffers"].then === "function"
+                    ) {
+                      $steps["runGoToOffers"] = await $steps["runGoToOffers"];
+                    }
+                  }}
                   home={(() => {
                     try {
                       return currentItem?.service_location == "home";
@@ -558,6 +603,19 @@ function PlasmicBooking__RenderFunc(props: {
                   })()}
                   item={currentItem}
                   key={currentIndex}
+                  status={(() => {
+                    try {
+                      return currentItem.status;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()}
                 />
               );
             })}

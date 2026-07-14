@@ -85,6 +85,7 @@ import Address from "../../Address"; // plasmic-import: O3mS57D3HQdC/component
 import AddAddress from "../../AddAddress"; // plasmic-import: KL79QbMT1Ux3/component
 import PayResult from "../../PayResult"; // plasmic-import: _Vn_IJAgvRM-/component
 import CenterOffers from "../../CenterOffers"; // plasmic-import: mdgKYN8y8UQf/component
+import Staffs from "../../Staffs"; // plasmic-import: 1DOsDXz78UnH/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -150,7 +151,8 @@ export type PlasmicHomepage__VariantMembers = {
     | "reminderSetting"
     | "address"
     | "addAddress"
-    | "bookNurse";
+    | "bookNurse"
+    | "offers";
   search2: "search2";
   homePage2: "home" | "reminder" | "user" | "booking";
 };
@@ -172,6 +174,7 @@ export type PlasmicHomepage__VariantsArgs = {
     | "address"
     | "addAddress"
     | "bookNurse"
+    | "offers"
   >;
   search2?: SingleBooleanChoiceArg<"search2">;
   homePage2?: SingleChoiceArg<"home" | "reminder" | "user" | "booking">;
@@ -218,6 +221,7 @@ export type PlasmicHomepage__OverridesType = {
   addAddress?: Flex__<typeof AddAddress>;
   payResult?: Flex__<typeof PayResult>;
   centerOffers?: Flex__<typeof CenterOffers>;
+  staffs?: Flex__<typeof Staffs>;
 };
 
 export interface DefaultHomepageProps {}
@@ -309,7 +313,8 @@ function PlasmicHomepage__RenderFunc(props: {
                   return "addAddress";
                 if ($ctx.params?.slug?.find(i => i.includes("pay_")))
                   return "payment";
-                if ($ctx.params?.slug?.includes("center")) return "center";
+                if ($ctx.params?.slug?.includes("center")) return "offers";
+                if ($ctx.params?.slug?.includes("offer")) return "center";
                 if ($ctx.params?.slug?.includes("editProfile"))
                   return "editUser";
                 if ($ctx.params?.slug?.includes("booking")) return "booking";
@@ -1298,6 +1303,12 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "staffs.center",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -1398,6 +1409,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 hasVariant($state, "page", "categories"),
               [sty.rootpage_center]: hasVariant($state, "page", "center"),
               [sty.rootpage_notif]: hasVariant($state, "page", "notif"),
+              [sty.rootpage_offers]: hasVariant($state, "page", "offers"),
               [sty.rootpage_payment]: hasVariant($state, "page", "payment"),
               [sty.rootpage_payment_homePage2_home]:
                 hasVariant($state, "homePage2", "home") &&
@@ -3141,9 +3153,7 @@ function PlasmicHomepage__RenderFunc(props: {
                             })()}/${(() => {
                               try {
                                 return (() => {
-                                  if ($state.home.selectedCenderid) {
-                                    $state.slug.push("bookNurse");
-                                  }
+                                  $state.slug.push("bookNurse");
                                   return $state.slug.join("/");
                                 })();
                               } catch (e) {
@@ -3839,6 +3849,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 hasVariant($state, "homePage2", "user") &&
                 hasVariant($state, "page", "center"),
               [sty.centerpage_center]: hasVariant($state, "page", "center"),
+              [sty.centerpage_offers]: hasVariant($state, "page", "offers"),
               [sty.centerpage_payment]: hasVariant($state, "page", "payment"),
               [sty.centerpage_subcategories]: hasVariant(
                 $state,
@@ -4187,6 +4198,100 @@ function PlasmicHomepage__RenderFunc(props: {
                 typeof $steps["goToHomepage"].then === "function"
               ) {
                 $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+            goToOffers={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            if (window.sessionStorage.getItem("id")) {
+                              $state.slug.push("offer");
+                              $state.slug.push(
+                                window.sessionStorage.getItem("id")
+                              );
+                            }
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+            goToReservation={async event => {
+              const $steps = {};
+
+              $steps["updateTextInputValue"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["textInput", "value"]
+                      },
+                      operation: 0
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateTextInputValue"] != null &&
+                typeof $steps["updateTextInputValue"] === "object" &&
+                typeof $steps["updateTextInputValue"].then === "function"
+              ) {
+                $steps["updateTextInputValue"] =
+                  await $steps["updateTextInputValue"];
               }
             }}
             onSelectCenterChange={async (...eventArgs: any) => {
@@ -4995,6 +5100,11 @@ function PlasmicHomepage__RenderFunc(props: {
               [sty.reminderSettinghomePage2_reminder_page_reminderSetting]:
                 hasVariant($state, "page", "reminderSetting") &&
                 hasVariant($state, "homePage2", "reminder"),
+              [sty.reminderSettingpage_offers]: hasVariant(
+                $state,
+                "page",
+                "offers"
+              ),
               [sty.reminderSettingpage_reminderSetting]: hasVariant(
                 $state,
                 "page",
@@ -5637,7 +5747,9 @@ function PlasmicHomepage__RenderFunc(props: {
                   $steps["goToHomepage"] = await $steps["goToHomepage"];
                 }
               },
-              className: classNames("__wab_instance", sty.payResult),
+              className: classNames("__wab_instance", sty.payResult, {
+                [sty.payResultpage_offers]: hasVariant($state, "page", "offers")
+              }),
               dialogOpendialog: generateStateValueProp($state, [
                 "payResult",
                 "dialogOpendialog"
@@ -5874,6 +5986,63 @@ function PlasmicHomepage__RenderFunc(props: {
                 throw e;
               }
             })()}
+            steps2={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            $state.slug.push("answerSheet");
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
             token={(() => {
               try {
                 return $state.token;
@@ -5891,6 +6060,58 @@ function PlasmicHomepage__RenderFunc(props: {
               "centerOffers",
               "userSelectOpendialog"
             ])}
+          />
+
+          <Staffs
+            data-plasmic-name={"staffs"}
+            data-plasmic-override={overrides.staffs}
+            center={generateStateValueProp($state, ["staffs", "center"])}
+            className={classNames("__wab_instance", sty.staffs, {
+              [sty.staffspage_offers]: hasVariant($state, "page", "offers")
+            })}
+            offer={(() => {
+              try {
+                return (() => {
+                  const index = $state.slug.findIndex(i => i === "offer");
+                  return index === -1 ? "" : $state.slug[index + 1];
+                })();
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            onCenterChange2={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["staffs", "center"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            token={(() => {
+              try {
+                return $state.token;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
           />
         </div>
       </div>
@@ -5929,7 +6150,8 @@ const PlasmicDescendants = {
     "address",
     "addAddress",
     "payResult",
-    "centerOffers"
+    "centerOffers",
+    "staffs"
   ],
   sideEffect: ["sideEffect"],
   homePage: ["homePage", "menu2", "textInput", "user", "mainLiad"],
@@ -5959,7 +6181,8 @@ const PlasmicDescendants = {
   address: ["address"],
   addAddress: ["addAddress"],
   payResult: ["payResult"],
-  centerOffers: ["centerOffers"]
+  centerOffers: ["centerOffers"],
+  staffs: ["staffs"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -5995,6 +6218,7 @@ type NodeDefaultElementType = {
   addAddress: typeof AddAddress;
   payResult: typeof PayResult;
   centerOffers: typeof CenterOffers;
+  staffs: typeof Staffs;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -6088,6 +6312,7 @@ export const PlasmicHomepage = Object.assign(
     addAddress: makeNodeComponent("addAddress"),
     payResult: makeNodeComponent("payResult"),
     centerOffers: makeNodeComponent("centerOffers"),
+    staffs: makeNodeComponent("staffs"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

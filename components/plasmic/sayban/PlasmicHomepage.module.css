@@ -90,6 +90,9 @@
 .rootpage_bookNurse > * {
   grid-column: 4;
 }
+.rootpage_offers > * {
+  grid-column: 4;
+}
 .rootsearch2 > * {
   grid-column: 4;
 }
@@ -1029,5 +1032,12 @@
   display: none;
 }
 .centerOfferspage_bookNurse:global(.__wab_instance) {
+  display: grid;
+}
+.staffs:global(.__wab_instance) {
+  max-width: 100%;
+  display: none;
+}
+.staffspage_offers:global(.__wab_instance) {
   display: grid;
 }
