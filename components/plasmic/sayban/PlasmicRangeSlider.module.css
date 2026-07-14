@@ -22,8 +22,31 @@
 .text__rLZkj {
   position: relative;
 }
-.text {
+.ariaSliderOutput:global(.__wab_instance) {
+  width: 100%;
+  min-width: 0;
+}
+.freeBox__tT5VL {
+  display: flex;
+  flex-direction: row;
   position: relative;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 0px;
+}
+.text__w2Awn {
+  width: auto;
+  color: var(--token-s6JDWwNdkMmO);
+}
+.text__vWkJe {
+  width: auto;
+  color: var(--token-s6JDWwNdkMmO);
+  text-align: right;
 }
 .freeBox__saQiC {
   display: flex;

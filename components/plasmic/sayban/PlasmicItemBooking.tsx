@@ -80,13 +80,16 @@ createPlasmicElementProxy;
 
 export type PlasmicItemBooking__VariantMembers = {
   booking: "booking";
+  home: "home";
 };
 export type PlasmicItemBooking__VariantsArgs = {
   booking?: SingleBooleanChoiceArg<"booking">;
+  home?: SingleBooleanChoiceArg<"home">;
 };
 type VariantPropType = keyof PlasmicItemBooking__VariantsArgs;
 export const PlasmicItemBooking__VariantProps = new Array<VariantPropType>(
-  "booking"
+  "booking",
+  "home"
 );
 
 export type PlasmicItemBooking__ArgsType = {
@@ -119,6 +122,7 @@ export interface DefaultItemBookingProps {
   goToCenter?: (event: any) => void;
   goToDetails?: (event: any) => void;
   booking?: SingleBooleanChoiceArg<"booking">;
+  home?: SingleBooleanChoiceArg<"home">;
   className?: string;
 }
 
@@ -180,6 +184,12 @@ function PlasmicItemBooking__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "home",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.home
       }
     ],
     [$props, $ctx, $refs]
@@ -208,7 +218,10 @@ function PlasmicItemBooking__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
-        { [sty.rootbooking]: hasVariant($state, "booking", "booking") }
+        {
+          [sty.rootbooking]: hasVariant($state, "booking", "booking"),
+          [sty.roothome]: hasVariant($state, "home", "home")
+        }
       )}
       onClick={args.onClick}
     >
@@ -238,7 +251,9 @@ function PlasmicItemBooking__RenderFunc(props: {
           data-plasmic-name={"img"}
           data-plasmic-override={overrides.img}
           alt={""}
-          className={classNames(sty.img)}
+          className={classNames(sty.img, {
+            [sty.imghome]: hasVariant($state, "home", "home")
+          })}
           displayHeight={"4rem"}
           displayMaxHeight={"none"}
           displayMaxWidth={"100%"}
@@ -247,46 +262,108 @@ function PlasmicItemBooking__RenderFunc(props: {
           displayWidth={"4rem"}
           height={"100%"}
           loading={"lazy"}
-          src={(() => {
-            try {
-              return $props.item.main_image;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return {
-                  src: "/plasmic/sayban/images/image6.png",
-                  fullWidth: 224,
-                  fullHeight: 224,
-                  aspectRatio: undefined
-                };
-              }
-              throw e;
-            }
-          })()}
+          src={
+            hasVariant($state, "home", "home")
+              ? (() => {
+                  try {
+                    return (
+                      $props.item.main_image ||
+                      "https://teh-3.s3.poshtiban.com/lioms3/2026-07/panel/sayban/2026-07-06-0e84ddab-4905-4287-bb45-0050910d90af.png"
+                    );
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return {
+                        src: "/plasmic/sayban/images/image6.png",
+                        fullWidth: 224,
+                        fullHeight: 224,
+                        aspectRatio: undefined
+                      };
+                    }
+                    throw e;
+                  }
+                })()
+              : (() => {
+                  try {
+                    return $props.item.main_image;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return {
+                        src: "/plasmic/sayban/images/image6.png",
+                        fullWidth: 224,
+                        fullHeight: 224,
+                        aspectRatio: undefined
+                      };
+                    }
+                    throw e;
+                  }
+                })()
+          }
           width={"100%"}
         />
 
-        <div className={classNames("all", sty.freeBox__ixgvG)}>
-          <div className={classNames("all", sty.freeBox___9OgB)}>
-            <div className={classNames("all", sty.freeBox__uEKkU)}>
-              <div className={classNames("all", "__wab_text", sty.text__aypW6)}>
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return $props.item.name;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "\u06a9\u0644\u06cc\u0646\u06cc\u06a9";
+        <div
+          className={classNames("all", sty.freeBox__ixgvG, {
+            [sty.freeBoxhome__ixgvGujth5]: hasVariant($state, "home", "home")
+          })}
+        >
+          <div
+            className={classNames("all", sty.freeBox___9OgB, {
+              [sty.freeBoxhome___9OgBujth5]: hasVariant($state, "home", "home")
+            })}
+          >
+            <div
+              className={classNames("all", sty.freeBox__uEKkU, {
+                [sty.freeBoxhome__uEKkUujth5]: hasVariant(
+                  $state,
+                  "home",
+                  "home"
+                )
+              })}
+            >
+              <div
+                className={classNames("all", "__wab_text", sty.text__aypW6, {
+                  [sty.texthome__aypW6Ujth5]: hasVariant($state, "home", "home")
+                })}
+              >
+                {hasVariant($state, "home", "home") ? (
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return "درخواست پرستار";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u06a9\u0644\u06cc\u0646\u06cc\u06a9";
+                        }
+                        throw e;
                       }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
+                    })()}
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $props.item.name;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u06a9\u0644\u06cc\u0646\u06cc\u06a9";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                )}
               </div>
               <div
                 className={classNames("all", sty.freeBox__vzfyx, {
@@ -324,7 +401,11 @@ function PlasmicItemBooking__RenderFunc(props: {
               </div>
             </div>
           </div>
-          <div className={classNames("all", sty.freeBox__navQt)}>
+          <div
+            className={classNames("all", sty.freeBox__navQt, {
+              [sty.freeBoxhome__navQtujth5]: hasVariant($state, "home", "home")
+            })}
+          >
             <TextCollapse
               data-plasmic-name={"textCollapse"}
               data-plasmic-override={overrides.textCollapse}
@@ -371,7 +452,9 @@ function PlasmicItemBooking__RenderFunc(props: {
           <UploudeTime
             data-plasmic-name={"uploudeTime"}
             data-plasmic-override={overrides.uploudeTime}
-            className={classNames("__wab_instance", sty.uploudeTime)}
+            className={classNames("__wab_instance", sty.uploudeTime, {
+              [sty.uploudeTimehome]: hasVariant($state, "home", "home")
+            })}
             posttime={(() => {
               function addTime(dateString, addHours = 0, addMinutes = 0) {
                 if (!dateString) return null;
@@ -460,7 +543,8 @@ function PlasmicItemBooking__RenderFunc(props: {
           data-plasmic-name={"status"}
           data-plasmic-override={overrides.status}
           className={classNames("__wab_instance", sty.status, {
-            [sty.statusbooking]: hasVariant($state, "booking", "booking")
+            [sty.statusbooking]: hasVariant($state, "booking", "booking"),
+            [sty.statushome]: hasVariant($state, "home", "home")
           })}
           status={(() => {
             try {
@@ -481,7 +565,9 @@ function PlasmicItemBooking__RenderFunc(props: {
         <Button
           data-plasmic-name={"button"}
           data-plasmic-override={overrides.button}
-          className={classNames("__wab_instance", sty.button)}
+          className={classNames("__wab_instance", sty.button, {
+            [sty.buttonhome]: hasVariant($state, "home", "home")
+          })}
           color={"line"}
           label={
             <div className={classNames("all", "__wab_text", sty.text__aZkE)}>
@@ -509,7 +595,9 @@ function PlasmicItemBooking__RenderFunc(props: {
         <Button
           data-plasmic-name={"button2"}
           data-plasmic-override={overrides.button2}
-          className={classNames("__wab_instance", sty.button2)}
+          className={classNames("__wab_instance", sty.button2, {
+            [sty.button2home]: hasVariant($state, "home", "home")
+          })}
           color={"line"}
           label={
             <div className={classNames("all", "__wab_text", sty.text__niVag)}>

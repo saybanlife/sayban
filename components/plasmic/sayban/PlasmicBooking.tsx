@@ -469,23 +469,52 @@ function PlasmicBooking__RenderFunc(props: {
                       $steps["runCode"] = await $steps["runCode"];
                     }
 
-                    $steps["runGoToCenter"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            eventRef: $props["goToCenter"],
-                            args: [currentItem.center_id]
-                          };
-                          return (({ eventRef, args }) => {
-                            return eventRef?.(...(args ?? []));
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
+                    $steps["runGoToCenter"] =
+                      currentItem.service_location != "home"
+                        ? (() => {
+                            const actionArgs = {
+                              eventRef: $props["goToCenter"],
+                              args: [currentItem.center_id]
+                            };
+                            return (({ eventRef, args }) => {
+                              return eventRef?.(...(args ?? []));
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
                     if (
                       $steps["runGoToCenter"] != null &&
                       typeof $steps["runGoToCenter"] === "object" &&
                       typeof $steps["runGoToCenter"].then === "function"
                     ) {
                       $steps["runGoToCenter"] = await $steps["runGoToCenter"];
+                    }
+
+                    $steps["goToHomepage"] =
+                      currentItem.service_location == "home"
+                        ? (() => {
+                            const actionArgs = {
+                              destination: `/${"home"}/${"bookNurse"}`
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["goToHomepage"] != null &&
+                      typeof $steps["goToHomepage"] === "object" &&
+                      typeof $steps["goToHomepage"].then === "function"
+                    ) {
+                      $steps["goToHomepage"] = await $steps["goToHomepage"];
                     }
                   }}
                   goToDetails={async event => {
@@ -514,6 +543,19 @@ function PlasmicBooking__RenderFunc(props: {
                       $steps["runCode"] = await $steps["runCode"];
                     }
                   }}
+                  home={(() => {
+                    try {
+                      return currentItem?.service_location == "home";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()}
                   item={currentItem}
                   key={currentIndex}
                 />

@@ -67,7 +67,7 @@
   flex-direction: row;
   column-gap: var(--token-rfsFxiclAtek);
   overflow: auto;
-  width: 800px;
+  width: 900px;
   height: auto;
 }
 .radio:global(.__wab_instance):global(.__wab_instance) {

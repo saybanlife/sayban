@@ -163,13 +163,12 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   min-width: 0;
   padding: 0px;
 }
 .freeBox__klPHd {
-  display: flex;
   flex-direction: row;
   width: auto;
   height: auto;
@@ -181,10 +180,10 @@
   text-align: right;
   white-space: pre;
   column-gap: var(--token-LBC0X5IbL9bo);
+  display: none;
   padding: 0px;
 }
 .freeBoxselect__klPHd7GgNj {
-  display: flex;
   flex-direction: row;
   column-gap: var(--token-LBC0X5IbL9bo);
   row-gap: 0px;

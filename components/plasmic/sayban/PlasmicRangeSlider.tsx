@@ -117,7 +117,6 @@ export type PlasmicRangeSlider__OverridesType = {
   ariaRangeSlider?: Flex__<typeof BaseSlider>;
   label?: Flex__<typeof Label>;
   ariaSliderOutput?: Flex__<typeof BaseSliderOutput>;
-  text?: Flex__<"div">;
   background?: Flex__<"div">;
   ariaSliderTrack?: Flex__<typeof BaseSliderTrack>;
   foreground?: Flex__<"div">;
@@ -282,30 +281,89 @@ function PlasmicRangeSlider__RenderFunc(props: {
             data-plasmic-override={overrides.ariaSliderOutput}
             className={classNames("__wab_instance", sty.ariaSliderOutput)}
           >
-            <div
-              data-plasmic-name={"text"}
-              data-plasmic-override={overrides.text}
-              className={classNames("all", "__wab_text", sty.text)}
-            >
-              <React.Fragment>
-                {(() => {
-                  try {
-                    return $props.outputText
-                      ? Number($props.outputText).toLocaleString("en-US")
-                      : $state.ariaRangeSlider.value
-                        ? `کمترین قیمت ${Number($state.ariaRangeSlider.value[0]).toLocaleString("en-US")} تومان\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0بیشترین قیمت ${Number($state.ariaRangeSlider.value[1]).toLocaleString("en-US")} تومان`
-                        : "";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "";
-                    }
-                    throw e;
-                  }
-                })()}
-              </React.Fragment>
+            <div className={classNames("all", sty.freeBox__tT5VL)}>
+              <div className={classNames("all", "__wab_text", sty.text__w2Awn)}>
+                <div
+                  className={"__wab_expr_html_text"}
+                  dangerouslySetInnerHTML={{
+                    __html: (() => {
+                      try {
+                        return $props.outputText
+                          ? `
+    <span>
+      <strong style="font-size: 16px; font-weight: bold;">
+        ${Number($props.outputText).toLocaleString("en-US")}
+      </strong>
+      <span style="font-size: 11px; opacity: 0.8; font-weight: normal; margin-right: 4px;">تومان</span>
+    </span>
+  `
+                          : $state.ariaRangeSlider.value
+                            ? `
+    <span style="display: inline-flex; align-items: center;">
+      <span>
+        <span style="font-size: 11px; opacity: 0.8; font-weight: normal; margin-left: 4px;">تا</span>
+        <strong style="font-size: 16px; font-weight: bold;">
+          ${Number($state.ariaRangeSlider.value[1]).toLocaleString("en-US")}
+        </strong>
+        <span style="font-size: 11px; opacity: 0.8; font-weight: normal; margin-right: 4px;">تومان</span>
+      </span>
+    </span>
+  `
+                            : "";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()
+                  }}
+                />
+              </div>
+              <div className={classNames("all", "__wab_text", sty.text__vWkJe)}>
+                <div
+                  className={"__wab_expr_html_text"}
+                  dangerouslySetInnerHTML={{
+                    __html: (() => {
+                      try {
+                        return $props.outputText
+                          ? `
+    <span>
+      <strong style="font-size: 16px; font-weight: bold;">
+        ${Number($props.outputText).toLocaleString("en-US")}
+      </strong>
+      <span style="font-size: 11px; opacity: 0.8; font-weight: normal; margin-right: 4px;">تومان</span>
+    </span>
+  `
+                          : $state.ariaRangeSlider.value
+                            ? `
+    <span style="display: inline-flex; align-items: center;">
+      <span>
+        <span style="font-size: 11px; opacity: 0.8; font-weight: normal; margin-left: 4px;">از</span>
+        <strong style="font-size: 16px; font-weight: bold;">
+          ${Number($state.ariaRangeSlider.value[0]).toLocaleString("en-US")}
+        </strong>
+        <span style="font-size: 11px; opacity: 0.8; font-weight: normal; margin-right: 4px;">تومان</span>
+      </span>      
+    </span>
+  `
+                            : "";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()
+                  }}
+                />
+              </div>
             </div>
           </BaseSliderOutput>
         ) : null}
@@ -361,15 +419,13 @@ const PlasmicDescendants = {
     "ariaRangeSlider",
     "label",
     "ariaSliderOutput",
-    "text",
     "background",
     "ariaSliderTrack",
     "foreground",
     "description"
   ],
   label: ["label"],
-  ariaSliderOutput: ["ariaSliderOutput", "text"],
-  text: ["text"],
+  ariaSliderOutput: ["ariaSliderOutput"],
   background: ["background", "ariaSliderTrack", "foreground"],
   ariaSliderTrack: ["ariaSliderTrack", "foreground"],
   foreground: ["foreground"],
@@ -382,7 +438,6 @@ type NodeDefaultElementType = {
   ariaRangeSlider: typeof BaseSlider;
   label: typeof Label;
   ariaSliderOutput: typeof BaseSliderOutput;
-  text: "div";
   background: "div";
   ariaSliderTrack: typeof BaseSliderTrack;
   foreground: "div";
@@ -453,7 +508,6 @@ export const PlasmicRangeSlider = Object.assign(
     // Helper components rendering sub-elements
     label: makeNodeComponent("label"),
     ariaSliderOutput: makeNodeComponent("ariaSliderOutput"),
-    text: makeNodeComponent("text"),
     background: makeNodeComponent("background"),
     ariaSliderTrack: makeNodeComponent("ariaSliderTrack"),
     foreground: makeNodeComponent("foreground"),

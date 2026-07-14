@@ -14,6 +14,7 @@
 @import "../lottie_react/plasmic.css"; /* plasmic-import: 5dGW8Awro3qq8Hh5MveXLP/projectcss */
 @import "../antd/plasmic.css"; /* plasmic-import: 28Ba3BDvRe7EiWdfFNnLB6/projectcss */
 @import "../copy_to_clipboard/plasmic.css"; /* plasmic-import: aEHVN5v6mfM4eovDsL8Z7d/projectcss */
+@import "../plasmic_tabs/plasmic.css"; /* plasmic-import: gLnoj82AzKVVT7qXiqAbHD/projectcss */
 @import url("https://fonts.googleapis.com/css2?family=Inter%3Aital%2Cwght%400%2C100%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C900&family=Inconsolata%3Aital%2Cwght%400%2C200%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C900&family=Roboto%3Aital%2Cwght%400%2C100%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C700%3B0%2C900&display=swap");
 
 .plasmic_tokens_qARqpE4p5tZmJuNxFbTaPz {
@@ -257,6 +258,8 @@
   --plasmic-token-page-bg: var(--token-TEBQONgFn2ky);
   --token-u4K3HGUHLazG: rgb(48, 48, 48);
   --plasmic-token-border-gray-light-dark: var(--token-u4K3HGUHLazG);
+  --token-hL7sJLrHMO-Y: 1px;
+  --plasmic-token-unnamed-style-token-8: var(--token-hL7sJLrHMO-Y);
 }
 
 @media (min-width: 0px) and (max-width: 768px) {

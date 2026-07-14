@@ -98,7 +98,7 @@ export type PlasmicMainPageReservations__ArgsType = {
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
-  onListChange?: (val: string) => void;
+  onListChange2?: (val: string) => void;
   state?: string;
 };
 type ArgPropType = keyof PlasmicMainPageReservations__ArgsType;
@@ -113,7 +113,7 @@ export const PlasmicMainPageReservations__ArgProps = new Array<ArgPropType>(
   "restart",
   "onRestartChange",
   "list",
-  "onListChange",
+  "onListChange2",
   "state"
 );
 
@@ -141,7 +141,7 @@ export interface DefaultMainPageReservationsProps {
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
-  onListChange?: (val: string) => void;
+  onListChange2?: (val: string) => void;
   state?: string;
   className?: string;
 }
@@ -303,7 +303,7 @@ function PlasmicMainPageReservations__RenderFunc(props: {
         variableType: "boolean",
 
         valueProp: "list",
-        onChangeProp: "onListChange"
+        onChangeProp: "onListChange2"
       }
     ],
     [$props, $ctx, $refs]

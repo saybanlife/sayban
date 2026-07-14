@@ -28,6 +28,9 @@
   background: var(--token-dJWU7lgZ103l);
   border: 1px solid var(--token-ee2TuxDknsJj);
 }
+.ariaRadioborder:global(.__wab_instance) {
+  border: 1px solid var(--token-C6B6ZAuqICKE);
+}
 .freeBox__u3E6I {
   width: 100%;
   height: auto;

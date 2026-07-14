@@ -97,6 +97,7 @@ export type PlasmicHome__ArgsType = {
   selectedCenderid?: string;
   onSelectedCenderidChange?: (val: string) => void;
   openCenter?: () => void;
+  bookNurse?: (event: any) => void;
 };
 type ArgPropType = keyof PlasmicHome__ArgsType;
 export const PlasmicHome__ArgProps = new Array<ArgPropType>(
@@ -108,7 +109,8 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>(
   "searchItems",
   "selectedCenderid",
   "onSelectedCenderidChange",
-  "openCenter"
+  "openCenter",
+  "bookNurse"
 );
 
 export type PlasmicHome__OverridesType = {
@@ -130,6 +132,7 @@ export interface DefaultHomeProps {
   selectedCenderid?: string;
   onSelectedCenderidChange?: (val: string) => void;
   openCenter?: () => void;
+  bookNurse?: (event: any) => void;
   search?: SingleBooleanChoiceArg<"search">;
   className?: string;
 }
@@ -403,6 +406,7 @@ function PlasmicHome__RenderFunc(props: {
                   </div>
                 }
                 loading={generateStateValueProp($state, ["button2", "loading"])}
+                onClick={args.bookNurse}
                 onLoadingChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
                     "button2",

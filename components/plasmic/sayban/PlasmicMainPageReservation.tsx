@@ -783,9 +783,35 @@ function PlasmicMainPageReservation__RenderFunc(props: {
               const currentIndex = __plasmic_idx_0;
               return (() => {
                 const child$Props = {
+                  centerId: (() => {
+                    try {
+                      return $props.centerId;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })(),
                   className: classNames("__wab_instance", sty.reservationItem),
                   currentItem: currentItem,
 
+                  home: (() => {
+                    try {
+                      return currentItem.service_location == "home";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })(),
                   key: currentIndex,
                   onOpenChange: async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [

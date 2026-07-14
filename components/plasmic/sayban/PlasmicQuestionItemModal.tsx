@@ -399,6 +399,10 @@ function PlasmicQuestionItemModal__RenderFunc(props: {
                         {
                           label: "متنی طولانی",
                           value: "textarea"
+                        },
+                        {
+                          label: "انتخابی",
+                          value: "checkbox"
                         }
                       ];
                     } catch (e) {
