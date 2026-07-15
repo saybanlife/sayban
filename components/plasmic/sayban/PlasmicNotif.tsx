@@ -554,19 +554,20 @@ function PlasmicNotif__RenderFunc(props: {
                     try {
                       return (() => {
                         function addTime(original, addHours, addMinutes) {
-                          let date;
-                          if (typeof original === "string") {
-                            date = new Date(original.replace(" ", "T"));
-                          } else {
-                            date = new Date(
-                              original.year,
-                              original.month - 1,
-                              original.day,
-                              original.hour,
-                              original.minute,
-                              original.second
-                            );
-                          }
+                          let date = original
+                            ? new Date(
+                                typeof original === "string"
+                                  ? original.replace(" ", "T")
+                                  : new Date(
+                                      original.year,
+                                      original.month - 1,
+                                      original.day,
+                                      original.hour,
+                                      original.minute,
+                                      original.second
+                                    )
+                              )
+                            : new Date();
                           date.setHours(date.getHours() + addHours);
                           date.setMinutes(date.getMinutes() + addMinutes);
                           return {
@@ -576,13 +577,10 @@ function PlasmicNotif__RenderFunc(props: {
                             hour: date.getHours(),
                             minute: date.getMinutes(),
                             second: date.getSeconds(),
-                            formatted: date
-                              .toISOString()
-                              .replace("T", " ")
-                              .split(".")[0]
+                            formatted: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")} ${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}:${String(date.getSeconds()).padStart(2, "0")}`
                           };
                         }
-                        const result = addTime(currentItem.created_at, 3, 30);
+                        const result = addTime(currentItem?.created_at, 3, 30);
                         return result;
                       })();
                     } catch (e) {
