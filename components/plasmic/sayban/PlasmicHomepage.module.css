@@ -250,6 +250,12 @@
 .homePagepage_addAddress {
   display: none;
 }
+.homePagepage_bookNurse {
+  display: none;
+}
+.homePagepage_offers {
+  display: none;
+}
 .homePagehomePage2_reminder {
   display: flex;
 }
@@ -662,6 +668,12 @@
   display: none;
 }
 .freeBoxpage_addAddress__yWuCabBlZ {
+  display: none;
+}
+.freeBoxpage_bookNurse__yWuCa5GQTv {
+  display: none;
+}
+.freeBoxpage_offers__yWuCavaWiE {
   display: none;
 }
 .freeBoxhomePage2_reminder__yWuCaWvbFy {

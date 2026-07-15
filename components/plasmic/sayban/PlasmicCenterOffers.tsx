@@ -1037,34 +1037,7 @@ function PlasmicCenterOffers__RenderFunc(props: {
             eventArgs
           );
         }}
-        params={(() => {
-          try {
-            return {
-              id: $props.id
-            };
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-        shouldFetch={(() => {
-          try {
-            return $props.id != undefined && $props.id != "";
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return true;
-            }
-            throw e;
-          }
-        })()}
+        shouldFetch={true}
         url={"/staffServices"}
       >
         <div
@@ -1434,19 +1407,7 @@ function PlasmicCenterOffers__RenderFunc(props: {
               throw e;
             }
           })()}
-          shouldFetch={(() => {
-            try {
-              return $props.id != undefined && $props.id != "";
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return true;
-              }
-              throw e;
-            }
-          })()}
+          shouldFetch={true}
           url={"/panel/question"}
         >
           <div
