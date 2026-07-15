@@ -28,7 +28,8 @@
   background: var(--token-h2xt7bB598yU);
 }
 .rootcolor_muted:global(.__wab_instance) {
-  background: var(--token-m-R84nL6Jb9a);
+  background: var(--token-Es3BYpS8XP38);
+  color: var(--token-Es3BYpS8XP38);
 }
 .rootcolor_success:global(.__wab_instance) {
   background: var(--token-ee2TuxDknsJj);
