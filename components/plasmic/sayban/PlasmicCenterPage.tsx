@@ -2025,8 +2025,10 @@ function PlasmicCenterPage__RenderFunc(props: {
                                     $state.center.data.result.name;
                                   $state.centerInfo.description =
                                     $state.center.data.result.description;
-                                  return ($state.centerInfo.categorie =
-                                    $state.center.data.result.category_id);
+                                  $state.centerInfo.categorie =
+                                    $state.center.data.result.category_id;
+                                  return ($state.centerInfo.subcategory2 =
+                                    $state.center.data.result.subcategory_id);
                                 })();
                               }
                             };
@@ -2230,8 +2232,10 @@ function PlasmicCenterPage__RenderFunc(props: {
                                   $state.center.data.result.name;
                                 $state.centerInfo.description =
                                   $state.center.data.result.description;
-                                return ($state.centerInfo.categorie =
-                                  $state.center.data.result.category_id);
+                                $state.centerInfo.categorie =
+                                  $state.center.data.result.category_id;
+                                return ($state.centerInfo.subcategory2 =
+                                  $state.center.data.result.subcategory_id);
                               })();
                             }
                           };
