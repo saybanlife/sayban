@@ -374,30 +374,10 @@ function PlasmicDateInput__RenderFunc(props: {
             data-plasmic-override={overrides.datePickers}
             SelectedDay={10}
             SelectedMonth={10}
-            SelectedYear={1379}
+            SelectedYear={1403}
             className={classNames("__wab_instance", sty.datePickers)}
-            customYears={(() => {
-              try {
-                return (() => {
-                  const currentYearNum = parseInt(
-                    new Intl.DateTimeFormat("fa-IR-u-nu-latn", {
-                      year: "numeric"
-                    }).format(new Date())
-                  );
-                  const yearsStringArray = [currentYearNum, currentYearNum + 1];
-
-                  return yearsStringArray;
-                })();
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return [];
-                }
-                throw e;
-              }
-            })()}
+            customYears={[]}
+            disablePastDates={true}
             hideYear={false}
             onChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["datePickers", "value"]).apply(

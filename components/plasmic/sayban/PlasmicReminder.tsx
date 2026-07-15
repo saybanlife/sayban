@@ -1572,9 +1572,10 @@ function PlasmicReminder__RenderFunc(props: {
               data-plasmic-override={overrides.datePickers}
               SelectedDay={10}
               SelectedMonth={10}
-              SelectedYear={1379}
+              SelectedYear={1403}
               className={classNames("__wab_instance", sty.datePickers)}
               customYears={[]}
+              disablePastDates={false}
               hideYear={false}
               onChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [

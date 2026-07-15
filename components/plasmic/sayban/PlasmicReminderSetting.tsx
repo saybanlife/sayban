@@ -5760,6 +5760,7 @@ function PlasmicReminderSetting__RenderFunc(props: {
                   throw e;
                 }
               })()}
+              disablePastDates={false}
               hideYear={(() => {
                 try {
                   return $state.select2.schedule_type == "everyYear";
