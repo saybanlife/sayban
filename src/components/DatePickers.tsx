@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Picker from 'rmc-picker';
 import Jalaali from 'jalaali-js';
 import { CodeComponentMeta } from '@plasmicapp/host';
@@ -17,7 +17,8 @@ type DatePickersProps = {
   selectedValues?: { day: number; month: number; year: number };
   customYears?: { value: number; label: string }[];
   className?: string;
-  hideYear?: boolean; // ✅ اضافه شد
+  hideYear?: boolean;
+  disablePastDates?: boolean; // ✅ پراپ جدید برای فعال/غیرفعال کردن این ویژگی
 };
 
 export const DatePickers = (props: DatePickersProps) => {
@@ -26,11 +27,16 @@ export const DatePickers = (props: DatePickersProps) => {
     SelectedDay = 5,
     SelectedMonth = 10,
     SelectedYear = 1403,
-    selectedValues = {},
     customYears = [],
     className,
-    hideYear = false, // ✅ مقدار پیش‌فرض false
+    hideYear = false,
+    disablePastDates = false, // ✅ مقدار پیش‌فرض غیرفعال است تا رفتار قبلی حفظ شود
   } = props;
+
+  // محاسبه تاریخ امروز به جلالی
+  const todayJalaali = useMemo(() => {
+    return Jalaali.toJalaali(new Date());
+  }, []);
 
   const [selectedDay, setSelectedDay] = useState<number>(SelectedDay);
   const [selectedMonth, setSelectedMonth] = useState<number>(SelectedMonth);
@@ -41,38 +47,111 @@ export const DatePickers = (props: DatePickersProps) => {
     return num.toString().replace(/\d/g, (digit) => persianDigits[parseInt(digit, 10)]);
   };
 
+  // فیلتر کردن روزهای ماه
   const getDaysOfMonth = (month: number, year: number) => {
     const daysInMonth = Jalaali.jalaaliMonthLength(year, month);
-    return Array.from({ length: daysInMonth }, (_, i) => ({
-      value: i + 1,
-      label: toPersianDigits(i + 1),
-    }));
+    let startDay = 1;
+
+    // اعمال محدودیت فقط در صورت فعال بودن پراپ
+    if (disablePastDates && year === todayJalaali.jy && month === todayJalaali.jm) {
+      startDay = todayJalaali.jd;
+    }
+
+    return Array.from({ length: daysInMonth - startDay + 1 }, (_, i) => {
+      const dayValue = startDay + i;
+      return {
+        value: dayValue,
+        label: toPersianDigits(dayValue),
+      };
+    });
   };
 
-  const currentYear = Jalaali.toJalaali(new Date()).jy;
+  const currentYear = todayJalaali.jy;
 
-  const months = [
-    { value: 1, label: 'فروردین' },
-    { value: 2, label: 'اردیبهشت' },
-    { value: 3, label: 'خرداد' },
-    { value: 4, label: 'تیر' },
-    { value: 5, label: 'مرداد' },
-    { value: 6, label: 'شهریور' },
-    { value: 7, label: 'مهر' },
-    { value: 8, label: 'آبان' },
-    { value: 9, label: 'آذر' },
-    { value: 10, label: 'دی' },
-    { value: 11, label: 'بهمن' },
-    { value: 12, label: 'اسفند' },
-  ].map((month) => ({ ...month, label: month.label }));
+  // فیلتر کردن ماه‌ها
+  const months = useMemo(() => {
+    const allMonths = [
+      { value: 1, label: 'فروردین' },
+      { value: 2, label: 'اردیبهشت' },
+      { value: 3, label: 'خرداد' },
+      { value: 4, label: 'تیر' },
+      { value: 5, label: 'مرداد' },
+      { value: 6, label: 'شهریور' },
+      { value: 7, label: 'مهر' },
+      { value: 8, label: 'آبان' },
+      { value: 9, label: 'آذر' },
+      { value: 10, label: 'دی' },
+      { value: 11, label: 'بهمن' },
+      { value: 12, label: 'اسفند' },
+    ];
 
-  const years =
-    customYears.length > 0
-      ? customYears
-      : Array.from({ length: currentYear - 1300 + 1 }, (_, i) => {
-          const year = 1300 + i;
-          return { value: year, label: toPersianDigits(year) };
-        });
+    // اعمال محدودیت فقط در صورت فعال بودن پراپ
+    if (disablePastDates && selectedYear === todayJalaali.jy) {
+      return allMonths.filter((m) => m.value >= todayJalaali.jm);
+    }
+    return allMonths;
+  }, [selectedYear, todayJalaali, disablePastDates]);
+
+  // فیلتر کردن سال‌ها
+  const years = useMemo(() => {
+    if (customYears.length > 0) {
+      if (disablePastDates) {
+        return customYears.filter((y) => y.value >= todayJalaali.jy);
+      }
+      return customYears;
+    }
+    
+    if (disablePastDates) {
+      // اگر محدودیت فعال باشد: از امسال تا ۲۰ سال آینده
+      const futureRange = 20; 
+      return Array.from({ length: futureRange }, (_, i) => {
+        const year = todayJalaali.jy + i;
+        return { value: year, label: toPersianDigits(year) };
+      });
+    } else {
+      // حالت قبلی: از ۱۳۰۰ تا سال جاری
+      return Array.from({ length: currentYear - 1300 + 1 }, (_, i) => {
+        const year = 1300 + i;
+        return { value: year, label: toPersianDigits(year) };
+      });
+    }
+  }, [customYears, todayJalaali, disablePastDates, currentYear]);
+
+  // ناظر بر اصلاح خودکار مقادیر غیرمجاز
+  useEffect(() => {
+    if (!disablePastDates) return; // اگر محدودیت غیرفعال است، نیازی به اعتبارسنجی نیست
+
+    let correctedYear = selectedYear;
+    let correctedMonth = selectedMonth;
+    let correctedDay = selectedDay;
+
+    if (selectedYear < todayJalaali.jy) {
+      correctedYear = todayJalaali.jy;
+    }
+
+    if (correctedYear === todayJalaali.jy && selectedMonth < todayJalaali.jm) {
+      correctedMonth = todayJalaali.jm;
+    }
+
+    if (correctedYear === todayJalaali.jy && correctedMonth === todayJalaali.jm && selectedDay < todayJalaali.jd) {
+      correctedDay = todayJalaali.jd;
+    }
+
+    const maxDays = Jalaali.jalaaliMonthLength(correctedYear, correctedMonth);
+    if (correctedDay > maxDays) {
+      correctedDay = maxDays;
+    }
+
+    if (
+      correctedYear !== selectedYear ||
+      correctedMonth !== selectedMonth ||
+      correctedDay !== selectedDay
+    ) {
+      setSelectedYear(correctedYear);
+      setSelectedMonth(correctedMonth);
+      setSelectedDay(correctedDay);
+    }
+  }, [selectedYear, selectedMonth, selectedDay, todayJalaali, disablePastDates]);
 
   const onChangeRef = useRef(onChange);
 
@@ -97,11 +176,26 @@ export const DatePickers = (props: DatePickersProps) => {
     }
   }, [selectedDay, selectedMonth, selectedYear]);
 
+  // مقداردهی اولیه با توجه به وضعیت پراپ محدودیت
   useEffect(() => {
-    setSelectedDay(SelectedDay);
-    setSelectedMonth(SelectedMonth);
-    setSelectedYear(SelectedYear);
-  }, [SelectedDay, SelectedMonth, SelectedYear]);
+    let initialYear = SelectedYear;
+    let initialMonth = SelectedMonth;
+    let initialDay = SelectedDay;
+
+    if (disablePastDates) {
+      initialYear = Math.max(SelectedYear, todayJalaali.jy);
+      if (initialYear === todayJalaali.jy) {
+        initialMonth = Math.max(SelectedMonth, todayJalaali.jm);
+      }
+      if (initialYear === todayJalaali.jy && initialMonth === todayJalaali.jm) {
+        initialDay = Math.max(SelectedDay, todayJalaali.jd);
+      }
+    }
+
+    setSelectedDay(initialDay);
+    setSelectedMonth(initialMonth);
+    setSelectedYear(initialYear);
+  }, [SelectedDay, SelectedMonth, SelectedYear, todayJalaali, disablePastDates]);
 
   const handleChangeDay = useCallback(
     (value: string | number) => {
@@ -150,7 +244,7 @@ export const DatePickers = (props: DatePickersProps) => {
         ))}
       </Picker>
 
-      {/* 👇 فقط اگر hideYear=false باشد نمایش داده می‌شود */}
+      {/* 👇 انتخاب سال */}
       {!hideYear && (
         <Picker selectedValue={selectedYear} onValueChange={handleChangeYear}>
           {years.map((year) => (
@@ -188,7 +282,7 @@ export const DatePickersMeta: CodeComponentMeta<DatePickersProps> = {
     },
     SelectedYear: {
       type: 'number',
-      defaultValue: 1379,
+      defaultValue: 1403,
     },
     selectedValues: {
       type: 'object',
@@ -202,7 +296,12 @@ export const DatePickersMeta: CodeComponentMeta<DatePickersProps> = {
     hideYear: {
       type: 'boolean',
       defaultValue: false,
-      description: 'اگر true باشد، انتخابگر سال نمایش داده نمی‌شود.', // ✅ اضافه شد
+      description: 'اگر true باشد، انتخابگر سال نمایش داده نمی‌شود.',
+    },
+    disablePastDates: {
+      type: 'boolean',
+      defaultValue: false,
+      description: 'اگر true باشد، تاریخ‌های قبل از امروز غیرقابل انتخاب می‌شوند.', // ✅ اضافه شد به تنظیمات Plasmic
     },
   },
   states: {
