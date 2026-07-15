@@ -1,4 +1,4 @@
-import "../../components/plasmic/sayban/plasmic.css"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectcss
+import "../../components/plasmic/sayban/plasmic.css";
 import "@/styles/globals.css";
 import "@/styles/date-picker.css";
 
@@ -6,21 +6,21 @@ import { useEffect, useState } from "react";
 import { PlasmicRootProvider } from "@plasmicapp/react-web";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { useRouter } from "next/router"; // <--- ۱. اضافه کردن راوتر نکست‌جی‌اس
+import { useRouter } from "next/router";
 
-// Import توابع از فایل fcm.ts
 import { initFcm, requestNotificationPermission } from "@/lib/fcm"; 
 import NotificationModal from "../../components/NotificationModal";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter(); // <--- ۲. ساختن نمونه از راوتر
+  const router = useRouter();
   
-  // State برای کنترل نمایش مودال
   const [showNotificationPrompt, setShowNotificationPrompt] = useState(false);
-  // State برای اینکه آیا کاربر قبلا اجازه داده است یا نه
   const [hasNotificationPermission, setHasNotificationPermission] = useState(false);
 
   useEffect(() => {
+    // ۱. حتماً منتظر بمانیم تا راوتر نکست‌جی‌اس کاملاً آماده شود
+    if (!router.isReady) return;
+
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator && 'Notification' in window) {
 
       const reminderSetTime = localStorage.getItem('notificationReminderLater');
@@ -31,21 +31,34 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         const permission = Notification.permission;
         setHasNotificationPermission(permission === 'granted');
 
+        // 👇 لاگ برای عیب‌یابی (این مقادیر را در کنسول مرورگر بررسی کنید)
+        console.log("--- بررسی شرایط نمایش مودال نوتیفیکیشن ---");
+        console.log("آدرس فعلی صفحه (pathname):", router.pathname);
+        console.log("آدرس دقیق‌تر (asPath):", router.asPath);
+        console.log("وضعیت دسترسی مرورگر (permission):", permission);
+        console.log("زمان یادآوری رد شده است؟ (shouldShowModal):", shouldShowModal);
+        console.log("تاریخ انقضای لکال‌استوریج:", reminderSetTime ? new Date(Number(reminderSetTime)).toLocaleString() : "تنظیم نشده");
+
         if (permission === 'granted') {
-          // اگر کاربر قبلاً اجازه داده، فرقی نمی‌کند در کدام صفحه است؛ FCM فعال شود.
+          console.log("نتیجه: دسترسی از قبل داده شده است. FCM فعال می‌شود.");
           initFcm();
-        } else if (permission === 'default' && shouldShowModal && router.pathname === "/home") {
+        } else if (permission === 'default' && shouldShowModal && (router.pathname === "/home" || router.asPath === "/home")) {
+          console.log("نتیجه: شرایط برقرار است! مودال تا ۲ ثانیه دیگر نمایش داده می‌شود.");
           setTimeout(() => {
             setShowNotificationPrompt(true);
           }, 2000);
         } else {
+          console.log("نتیجه: شرایط برقرار نبود. مودال نشان داده نمی‌شود.");
           setShowNotificationPrompt(false);
           setHasNotificationPermission(false);
         }
       };
+      
       checkPermissionsAndShowPrompt();
+    } else {
+      console.log("نوتیفیکیشن یا سرویس‌ورکر در این مرورگر/محیط پشتیبانی نمی‌شود.");
     }
-  }, [router.pathname]); // <--- ۴. اضافه کردن مسیر به آرایه وابستگی‌ها (Dependency Array)
+  }, [router.isReady, router.pathname, router.asPath]); // 👈 اضافه شدن متغیرهای کنترلی راوتر
 
   const handleEnableNotifications = async () => {
     const permissionGranted = await requestNotificationPermission();
@@ -78,7 +91,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
       </Head>
 
-      {/* مودال فقط در صورتی رندر می‌شود که شرط مسیر در useEffect تایید شده باشد */}
       {showNotificationPrompt && !hasNotificationPermission && (
         <NotificationModal
           handleEnableNotifications={handleEnableNotifications}
