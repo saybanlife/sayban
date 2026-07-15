@@ -6022,7 +6022,7 @@ function PlasmicHomepage__RenderFunc(props: {
             }}
             steps={(() => {
               try {
-                return $state.slug[2];
+                return $state.slug[1];
               } catch (e) {
                 if (
                   e instanceof TypeError ||
