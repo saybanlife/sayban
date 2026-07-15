@@ -376,3 +376,12 @@
   position: relative;
   height: 1em;
 }
+.load:global(.__wab_instance) {
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  right: 0;
+  min-height: 0;
+}

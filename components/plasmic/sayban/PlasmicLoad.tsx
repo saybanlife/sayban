@@ -70,10 +70,14 @@ import Icon115Icon from "./icons/PlasmicIcon__Icon115"; // plasmic-import: K82Eq
 
 createPlasmicElementProxy;
 
-export type PlasmicLoad__VariantMembers = {};
-export type PlasmicLoad__VariantsArgs = {};
+export type PlasmicLoad__VariantMembers = {
+  box: "box";
+};
+export type PlasmicLoad__VariantsArgs = {
+  box?: SingleBooleanChoiceArg<"box">;
+};
 type VariantPropType = keyof PlasmicLoad__VariantsArgs;
-export const PlasmicLoad__VariantProps = new Array<VariantPropType>();
+export const PlasmicLoad__VariantProps = new Array<VariantPropType>("box");
 
 export type PlasmicLoad__ArgsType = {
   loading?: boolean;
@@ -93,6 +97,7 @@ export type PlasmicLoad__OverridesType = {
 export interface DefaultLoadProps {
   loading?: boolean;
   onLoadingChange?: (val: string) => void;
+  box?: SingleBooleanChoiceArg<"box">;
   className?: string;
 }
 
@@ -144,6 +149,12 @@ function PlasmicLoad__RenderFunc(props: {
 
         valueProp: "loading",
         onChangeProp: "onLoadingChange"
+      },
+      {
+        path: "box",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.box
       }
     ],
     [$props, $ctx, $refs]
@@ -184,7 +195,8 @@ function PlasmicLoad__RenderFunc(props: {
           "plasmic_default_styles",
           "plasmic_mixins",
           styleTokensClassNames,
-          sty.root
+          sty.root,
+          { [sty.rootbox]: hasVariant($state, "box", "box") }
         )}
       >
         <Icon115Icon

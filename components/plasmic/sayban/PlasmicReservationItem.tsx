@@ -842,7 +842,7 @@ function PlasmicReservationItem__RenderFunc(props: {
           hasVariant($state, "home", "home")
             ? (() => {
                 try {
-                  return $props.currentItem.status == "pending";
+                  return $props.currentItem.status == "awaitingOffers";
                 } catch (e) {
                   if (
                     e instanceof TypeError ||

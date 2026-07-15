@@ -146,7 +146,9 @@ function PlasmicStaffs__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
+        {
+          offer: "84"
+        },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -257,10 +259,23 @@ function PlasmicStaffs__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "itemStaffs[].loading",
+        type: "private",
+        variableType: "boolean"
+      },
+      {
+        path: "reservation",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
 
   const $state = useDollarState(stateSpecs, {
     $props,
@@ -653,16 +668,174 @@ function PlasmicStaffs__RenderFunc(props: {
           ).map((__plasmic_item_0, __plasmic_idx_0) => {
             const currentItem = __plasmic_item_0;
             const currentIndex = __plasmic_idx_0;
-            return (
-              <ItemStaffs
-                data-plasmic-name={"itemStaffs"}
-                data-plasmic-override={overrides.itemStaffs}
-                className={classNames("__wab_instance", sty.itemStaffs)}
-                item={currentItem}
-                key={currentIndex}
-                offer={$state.centers.data.result}
-              />
-            );
+            return (() => {
+              const child$Props = {
+                className: classNames("__wab_instance", sty.itemStaffs),
+                goToDetails: async event => {
+                  const $steps = {};
+
+                  $steps["runCode"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return ($state.itemStaffs[currentIndex].loading =
+                              true);
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode"] != null &&
+                    typeof $steps["runCode"] === "object" &&
+                    typeof $steps["runCode"].then === "function"
+                  ) {
+                    $steps["runCode"] = await $steps["runCode"];
+                  }
+
+                  $steps["invokeGlobalAction"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "POST",
+                            "reservations/steff/update",
+                            undefined,
+                            {
+                              id: $state.centers.data.result.reservation_id,
+                              staff_id: currentItem.id,
+                              center_id: currentItem.center_id
+                            },
+
+                            {
+                              headers: {
+                                Authorization: `Bearer ${$props.token}`
+                              }
+                            }
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction"] != null &&
+                    typeof $steps["invokeGlobalAction"] === "object" &&
+                    typeof $steps["invokeGlobalAction"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction"] =
+                      await $steps["invokeGlobalAction"];
+                  }
+
+                  $steps["goToHomepage"] = $steps.invokeGlobalAction?.data
+                    ?.success
+                    ? (() => {
+                        const actionArgs = {
+                          destination: `/${"home"}/${(() => {
+                            try {
+                              return `pay_${$steps.invokeGlobalAction?.data?.result}`;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToHomepage"] != null &&
+                    typeof $steps["goToHomepage"] === "object" &&
+                    typeof $steps["goToHomepage"].then === "function"
+                  ) {
+                    $steps["goToHomepage"] = await $steps["goToHomepage"];
+                  }
+
+                  $steps["runCode2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return ($state.itemStaffs[currentIndex].loading =
+                              false);
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode2"] != null &&
+                    typeof $steps["runCode2"] === "object" &&
+                    typeof $steps["runCode2"].then === "function"
+                  ) {
+                    $steps["runCode2"] = await $steps["runCode2"];
+                  }
+                },
+                item: currentItem,
+
+                key: currentIndex,
+                loading: generateStateValueProp($state, [
+                  "itemStaffs",
+                  __plasmic_idx_0,
+                  "loading"
+                ]),
+                offer: $state.centers.data.result,
+
+                onLoadingChange: async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "itemStaffs",
+                    __plasmic_idx_0,
+                    "loading"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }
+              };
+
+              initializePlasmicStates(
+                $state,
+                [
+                  {
+                    name: "itemStaffs[].loading",
+                    initFunc: ({ $props, $state, $queries, $q }) => false
+                  }
+                ],
+                [__plasmic_idx_0]
+              );
+              return (
+                <ItemStaffs
+                  data-plasmic-name={"itemStaffs"}
+                  data-plasmic-override={overrides.itemStaffs}
+                  {...child$Props}
+                />
+              );
+            })();
           })}
         </ApiRequest>
       </div>

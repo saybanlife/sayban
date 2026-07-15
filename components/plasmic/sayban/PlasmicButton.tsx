@@ -82,7 +82,8 @@ export type PlasmicButton__VariantMembers = {
     | "errorDestructive"
     | "second"
     | "clear"
-    | "line";
+    | "line"
+    | "dark";
   type: "soft" | "bordered";
   size: "extraSmall" | "small" | "large" | "extraLarge";
   iconStart: "iconStart";
@@ -101,6 +102,7 @@ export type PlasmicButton__VariantsArgs = {
     | "second"
     | "clear"
     | "line"
+    | "dark"
   >;
   type?: SingleChoiceArg<"soft" | "bordered">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -179,6 +181,7 @@ export interface DefaultButtonProps {
     | "second"
     | "clear"
     | "line"
+    | "dark"
   >;
   type?: SingleChoiceArg<"soft" | "bordered">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -335,6 +338,7 @@ function PlasmicButton__RenderFunc(props: {
         sty.root,
         {
           [sty.rootcolor_clear]: hasVariant($state, "color", "clear"),
+          [sty.rootcolor_dark]: hasVariant($state, "color", "dark"),
           [sty.rootcolor_errorDestructive]: hasVariant(
             $state,
             "color",
@@ -579,6 +583,11 @@ function PlasmicButton__RenderFunc(props: {
 
       <div
         className={classNames("all", sty.freeBox__vNlPw, {
+          [sty.freeBoxcolor_dark__vNlPwTdvCb]: hasVariant(
+            $state,
+            "color",
+            "dark"
+          ),
           [sty.freeBoxcolor_neutral__vNlPWafpkQ]: hasVariant(
             $state,
             "color",

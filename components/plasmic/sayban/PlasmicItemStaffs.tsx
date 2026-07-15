@@ -61,6 +61,7 @@ import {
 
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import Load from "../../Load"; // plasmic-import: giI5l8wTGhHv/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -98,6 +99,8 @@ export type PlasmicItemStaffs__ArgsType = {
   goToCenter?: (event: any) => void;
   goToDetails?: (event: any) => void;
   offer?: any;
+  loading?: boolean;
+  onLoadingChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicItemStaffs__ArgsType;
 export const PlasmicItemStaffs__ArgProps = new Array<ArgPropType>(
@@ -105,7 +108,9 @@ export const PlasmicItemStaffs__ArgProps = new Array<ArgPropType>(
   "onClick",
   "goToCenter",
   "goToDetails",
-  "offer"
+  "offer",
+  "loading",
+  "onLoadingChange"
 );
 
 export type PlasmicItemStaffs__OverridesType = {
@@ -115,6 +120,7 @@ export type PlasmicItemStaffs__OverridesType = {
   svg?: Flex__<"svg">;
   button3?: Flex__<typeof Button>;
   button?: Flex__<typeof Button>;
+  load?: Flex__<typeof Load>;
 };
 
 export interface DefaultItemStaffsProps {
@@ -123,6 +129,8 @@ export interface DefaultItemStaffsProps {
   goToCenter?: (event: any) => void;
   goToDetails?: (event: any) => void;
   offer?: any;
+  loading?: boolean;
+  onLoadingChange?: (val: string) => void;
   booking?: SingleBooleanChoiceArg<"booking">;
   home?: SingleBooleanChoiceArg<"home">;
   status?: SingleChoiceArg<"offersReceived">;
@@ -199,6 +207,33 @@ function PlasmicItemStaffs__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.status
+      },
+      {
+        path: "loading",
+        type: "writable",
+        variableType: "boolean",
+
+        valueProp: "loading",
+        onChangeProp: "onLoadingChange"
+      },
+      {
+        path: "load.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.loading;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -742,17 +777,39 @@ function PlasmicItemStaffs__RenderFunc(props: {
           }}
         />
       </div>
+      <Load
+        data-plasmic-name={"load"}
+        data-plasmic-override={overrides.load}
+        box={true}
+        className={classNames("__wab_instance", sty.load)}
+        loading={generateStateValueProp($state, ["load", "loading"])}
+        onLoadingChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["load", "loading"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+      />
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "img", "textCollapse", "svg", "button3", "button"],
+  root: ["root", "img", "textCollapse", "svg", "button3", "button", "load"],
   img: ["img"],
   textCollapse: ["textCollapse"],
   svg: ["svg"],
   button3: ["button3"],
-  button: ["button"]
+  button: ["button"],
+  load: ["load"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -764,6 +821,7 @@ type NodeDefaultElementType = {
   svg: "svg";
   button3: typeof Button;
   button: typeof Button;
+  load: typeof Load;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -833,6 +891,7 @@ export const PlasmicItemStaffs = Object.assign(
     svg: makeNodeComponent("svg"),
     button3: makeNodeComponent("button3"),
     button: makeNodeComponent("button"),
+    load: makeNodeComponent("load"),
 
     // Metadata about props expected for PlasmicItemStaffs
     internalVariantProps: PlasmicItemStaffs__VariantProps,
