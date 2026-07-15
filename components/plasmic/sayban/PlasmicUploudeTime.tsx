@@ -190,11 +190,22 @@ function PlasmicUploudeTime__RenderFunc(props: {
               try {
                 return (() => {
                   const updatedAt = $state.time;
+                  if (
+                    !updatedAt ||
+                    updatedAt.year === undefined ||
+                    updatedAt.month === undefined ||
+                    updatedAt.day === undefined
+                  ) {
+                    return "";
+                  }
                   const date = new Date(
                     updatedAt.year,
                     updatedAt.month - 1,
                     updatedAt.day
                   );
+                  if (isNaN(date.getTime())) {
+                    return "";
+                  }
                   const formatter = new Intl.DateTimeFormat("fa-IR", {
                     weekday: "long",
                     day: "numeric",
@@ -227,9 +238,15 @@ function PlasmicUploudeTime__RenderFunc(props: {
               try {
                 return (() => {
                   function pad(n) {
+                    if (n === undefined || n === null) return "00";
                     return n.toString().padStart(2, "0");
                   }
-                  return `${pad($props.posttime.hour)}:${pad($props.posttime.minute)}`;
+                  if (!$props.posttime) {
+                    return "--:--";
+                  }
+                  const hour = $props.posttime.hour;
+                  const minute = $props.posttime.minute;
+                  return `${pad(hour)}:${pad(minute)}`;
                 })();
               } catch (e) {
                 if (
