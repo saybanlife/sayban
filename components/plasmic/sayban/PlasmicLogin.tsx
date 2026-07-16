@@ -398,6 +398,7 @@ function PlasmicLogin__RenderFunc(props: {
             "plasmic_mixins",
             styleTokensClassNames,
             sty.root,
+            "page",
             {
               [sty.rootpage_code]: hasVariant($state, "page", "code"),
               [sty.rootpage_loading]: hasVariant($state, "page", "loading"),
@@ -413,11 +414,11 @@ function PlasmicLogin__RenderFunc(props: {
               "all",
               sty.loading,
               hasVariant($state, "page", "name")
-                ? "headerBox"
+                ? "headerBox page "
                 : hasVariant($state, "page", "code")
-                  ? "headerBox"
+                  ? "headerBox page  "
                   : hasVariant($state, "page", "mobile")
-                    ? "headerBox"
+                    ? "headerBox page "
                     : ``,
               {
                 [sty.loadingpage_code]: hasVariant($state, "page", "code"),

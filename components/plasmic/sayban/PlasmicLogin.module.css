@@ -256,6 +256,11 @@
   -webkit-transition-duration: 0.5s;
   padding: 8px;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__zBIaQ {
+    display: flex;
+  }
+}
 .freeBoxpage_mobile__zBIaQmKfXs {
   position: relative;
   left: auto;
@@ -267,6 +272,12 @@
   height: 50px;
   min-width: 0;
   flex-shrink: 0;
+  display: flex;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBoxpage_mobile__zBIaQmKfXs {
+    display: flex;
+  }
 }
 .freeBoxpage_code__zBIaQohvpc {
   position: relative;
@@ -279,6 +290,7 @@
   height: 50px;
   min-width: 0;
   flex-shrink: 0;
+  display: flex;
 }
 .freeBoxpage_name__zBIaQaq9MH {
   position: relative;
@@ -291,6 +303,7 @@
   height: 50px;
   min-width: 0;
   flex-shrink: 0;
+  display: none;
 }
 .freeBox___9GXgZ {
   display: flex;
