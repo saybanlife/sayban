@@ -377,7 +377,28 @@ function PlasmicHome__RenderFunc(props: {
         })}
       >
         <div className={classNames("all", sty.freeBox__cWlS)}>
-          <div className={classNames("all", sty.freeBox___219Hk)}>
+          <div
+            className={classNames("all", sty.freeBox___219Hk)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runBookNurse"] = true
+                ? (() => {
+                    const actionArgs = { eventRef: $props["bookNurse"] };
+                    return (({ eventRef, args }) => {
+                      return eventRef?.(...(args ?? []));
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runBookNurse"] != null &&
+                typeof $steps["runBookNurse"] === "object" &&
+                typeof $steps["runBookNurse"].then === "function"
+              ) {
+                $steps["runBookNurse"] = await $steps["runBookNurse"];
+              }
+            }}
+          >
             <div className={classNames("all", sty.freeBox__yaEfQ)}>
               <div
                 className={classNames("all", "__wab_text", sty.text___55UG7)}

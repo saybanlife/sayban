@@ -39,6 +39,9 @@
 .rootsteps_answerSheet > * {
   grid-column: 4;
 }
+.rootsteps_selectService > * {
+  grid-column: 4;
+}
 .embedHtml:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
@@ -704,9 +707,20 @@
   padding: 5rem 0px 4rem;
 }
 .freeBoxsteps_answerSheet__at3XeJqMzb {
-  padding-right: var(--token-LBC0X5IbL9bo);
-  padding-left: var(--token-LBC0X5IbL9bo);
-  padding-top: var(--token-ckp0_SexMOmY);
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-top: 4rem;
+}
+.text__os98I {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: right;
+  color: var(--token-9M5jRUPt8Msb);
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  font-weight: 600;
+  min-width: 0;
 }
 .answersUser:global(.__wab_instance) {
   position: relative;

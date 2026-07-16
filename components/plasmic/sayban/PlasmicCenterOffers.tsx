@@ -866,6 +866,11 @@ function PlasmicCenterOffers__RenderFunc(props: {
             "steps",
             "answerSheet"
           ),
+          [sty.rootsteps_selectService]: hasVariant(
+            $state,
+            "steps",
+            "selectService"
+          ),
           [sty.roottop]: hasVariant($state, "top", "top")
         }
       )}
@@ -1382,6 +1387,19 @@ function PlasmicCenterOffers__RenderFunc(props: {
                 }
               )}
             >
+              <div
+                className={classNames("all", "__wab_text", sty.text__os98I, {
+                  [sty.textsteps_answerSheet__os98IJqMzb]: hasVariant(
+                    $state,
+                    "steps",
+                    "answerSheet"
+                  )
+                })}
+              >
+                {
+                  "\u062c\u0647\u062a \u062a\u06a9\u0645\u06cc\u0644 \u0641\u0631\u0622\u06cc\u0646\u062f \u062f\u0631\u062e\u0648\u0627\u0633\u062a \u067e\u0631\u0633\u062a\u0627\u0631\u060c \u062e\u0648\u0627\u0647\u0634\u0645\u0646\u062f \u0627\u0633\u062a \u0628\u0647 \u067e\u0631\u0633\u0634\u200c\u0647\u0627\u06cc \u0632\u06cc\u0631 \u067e\u0627\u0633\u062e \u062f\u0647\u06cc\u062f."
+                }
+              </div>
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {
                   try {
