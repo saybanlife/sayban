@@ -110,6 +110,8 @@ export type PlasmicMainPageStaffs__ArgsType = {
   rule?: string;
   selected?: any;
   onSelectedChange?: (val: string) => void;
+  centerId?: string;
+  centers3?: any;
 };
 type ArgPropType = keyof PlasmicMainPageStaffs__ArgsType;
 export const PlasmicMainPageStaffs__ArgProps = new Array<ArgPropType>(
@@ -127,7 +129,9 @@ export const PlasmicMainPageStaffs__ArgProps = new Array<ArgPropType>(
   "addService",
   "rule",
   "selected",
-  "onSelectedChange"
+  "onSelectedChange",
+  "centerId",
+  "centers3"
 );
 
 export type PlasmicMainPageStaffs__OverridesType = {
@@ -168,6 +172,8 @@ export interface DefaultMainPageStaffsProps {
   rule?: string;
   selected?: any;
   onSelectedChange?: (val: string) => void;
+  centerId?: string;
+  centers3?: any;
   className?: string;
 }
 
@@ -516,7 +522,9 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
     >
       <div className={classNames("all", sty.freeBox___9WWoI)}>
         <div className={classNames("all", "__wab_text", sty.text__yYuan)}>
-          {"\u0633\u0648\u0627\u0644\u0627\u062a \u0641\u0631\u0645"}
+          {
+            "\u0644\u06cc\u0633\u062a \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646"
+          }
         </div>
         <div className={classNames("all", sty.freeBox__mNooB)}>
           <Button
@@ -534,7 +542,7 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
             label={
               <div className={classNames("all", "__wab_text", sty.text__kebC)}>
                 {
-                  "\u0627\u0641\u0632\u0648\u062f\u0646 \u06a9\u0627\u0631\u06a9\u0646\u0627\u0646 \u062c\u062f\u06cc\u062f"
+                  "\u0627\u0641\u0632\u0648\u062f\u0646 \u067e\u0631\u0633\u062a\u0627\u0631 \u062c\u062f\u06cc\u062f"
                 }
               </div>
             }
@@ -2019,6 +2027,20 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
                 $steps["runCode"] = await $steps["runCode"];
               }
             }}
+            centerId={(() => {
+              try {
+                return $props.centerId;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            centers={$props.centers3}
             className={classNames("__wab_instance", sty.editStaffs2)}
             data={{}}
             edit={generateStateValueProp($state, ["editStaffs2", "edit"])}
@@ -2113,6 +2135,19 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
               "openCity"
             ])}
             refresh={generateStateValueProp($state, ["editStaffs2", "refresh"])}
+            role={(() => {
+              try {
+                return $props.rule;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
             servise={generateStateValueProp($state, ["editStaffs2", "servise"])}
             token={generateStateValueProp($state, ["editStaffs2", "token"])}
           />

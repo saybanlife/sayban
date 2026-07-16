@@ -59,10 +59,10 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import ImageProfile from "../../ImageProfile"; // plasmic-import: NCgtBMbIwpli/component
-import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
 import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
+import ImageProfile from "../../ImageProfile"; // plasmic-import: NCgtBMbIwpli/component
+import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
 import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
 import City from "../../City"; // plasmic-import: dRrvldGFbNOC/component
@@ -117,6 +117,9 @@ export type PlasmicEditStaffs__ArgsType = {
   servise?: any;
   onServiseChange?: (val: string) => void;
   add?: () => void;
+  centers?: any;
+  role?: string;
+  centerId?: string;
 };
 type ArgPropType = keyof PlasmicEditStaffs__ArgsType;
 export const PlasmicEditStaffs__ArgProps = new Array<ArgPropType>(
@@ -134,11 +137,15 @@ export const PlasmicEditStaffs__ArgProps = new Array<ArgPropType>(
   "onEditChange",
   "servise",
   "onServiseChange",
-  "add"
+  "add",
+  "centers",
+  "role",
+  "centerId"
 );
 
 export type PlasmicEditStaffs__OverridesType = {
   root?: Flex__<"div">;
+  select?: Flex__<typeof Select>;
   img?: Flex__<typeof PlasmicImg__>;
   imageProfile?: Flex__<typeof ImageProfile>;
   name?: Flex__<typeof TextInput>;
@@ -174,6 +181,9 @@ export interface DefaultEditStaffsProps {
   servise?: any;
   onServiseChange?: (val: string) => void;
   add?: () => void;
+  centers?: any;
+  role?: string;
+  centerId?: string;
   edit?: SingleBooleanChoiceArg<"edit">;
   unnamedVariant?: SingleBooleanChoiceArg<"unnamedVariant">;
   modal2?: SingleBooleanChoiceArg<"modal2">;
@@ -422,6 +432,18 @@ function PlasmicEditStaffs__RenderFunc(props: {
                 }
               })()
             : undefined
+      },
+      {
+        path: "select.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "select.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -462,6 +484,112 @@ function PlasmicEditStaffs__RenderFunc(props: {
         }
       </div>
       <div className={classNames("all", sty.freeBox__oz7Df)}>
+        {(() => {
+          try {
+            return $props.role == "super_admin";
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })() ? (
+          <div className={classNames("all", sty.freeBox__fDfeC)}>
+            <Select
+              data-plasmic-name={"select"}
+              data-plasmic-override={overrides.select}
+              className={classNames("__wab_instance", sty.select)}
+              isOpen={generateStateValueProp($state, ["select", "isOpen"])}
+              items={(_par =>
+                !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                (() => {
+                  try {
+                    return $props.centers;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()
+              ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                const currentItem = __plasmic_item_0;
+                const currentIndex = __plasmic_idx_0;
+                return (
+                  <MenuItem
+                    key={currentIndex}
+                    label={(() => {
+                      try {
+                        return currentItem.نام;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    value={(() => {
+                      try {
+                        return currentItem.شناسه;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                  />
+                );
+              })}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["select", "value"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              onOpenChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["select", "isOpen"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              placeholder={
+                "\u0645\u0631\u06a9\u0632 \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
+              }
+              showLabel={false}
+              type={"soft"}
+              value={generateStateValueProp($state, ["select", "value"])}
+            />
+          </div>
+        ) : null}
         <div className={classNames("all", sty.freeBox__raahX)}>
           <div className={classNames("all", sty.freeBox__owRbf)}>
             {(
@@ -1489,6 +1617,10 @@ function PlasmicEditStaffs__RenderFunc(props: {
                               ...($props.data?.id
                                 ? { id: $props.data.id }
                                 : {}),
+                              center_id:
+                                $props.data.center_id ||
+                                $props.centerId ||
+                                $state.select.value,
                               name: $state.name.value,
                               image: $state.imageProfile.uploadFiles?.some(
                                 f => f.type
@@ -1697,6 +1829,7 @@ function PlasmicEditStaffs__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "select",
     "img",
     "imageProfile",
     "name",
@@ -1715,6 +1848,7 @@ const PlasmicDescendants = {
     "section",
     "codeSubmit2"
   ],
+  select: ["select"],
   img: ["img"],
   imageProfile: ["imageProfile"],
   name: ["name"],
@@ -1738,6 +1872,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  select: typeof Select;
   img: typeof PlasmicImg__;
   imageProfile: typeof ImageProfile;
   name: typeof TextInput;
@@ -1819,6 +1954,7 @@ export const PlasmicEditStaffs = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    select: makeNodeComponent("select"),
     img: makeNodeComponent("img"),
     imageProfile: makeNodeComponent("imageProfile"),
     _name: makeNodeComponent("name"),

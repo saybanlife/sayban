@@ -272,7 +272,9 @@ function PlasmicLogin2__RenderFunc(props: {
             return;
           }
         }}
-        placeholder={"\u0646\u0627\u0645 \u06a9\u0627\u0631\u0628\u0631\u06cc"}
+        placeholder={
+          "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u06cc\u0627 \u0627\u06cc\u0645\u06cc\u0644 \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"
+        }
         size={"langh"}
         type={"soft"}
         value={generateStateValueProp($state, ["userName", "value"])}
@@ -310,7 +312,9 @@ function PlasmicLogin2__RenderFunc(props: {
               return;
             }
           }}
-          placeholder={"\u0631\u0645\u0632 \u0639\u0628\u0648\u0631"}
+          placeholder={
+            "\u0631\u0645\u0632 \u0639\u0628\u0648\u0631 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"
+          }
           size={"langh"}
           type={"soft"}
           value={generateStateValueProp($state, ["password", "value"])}
@@ -646,6 +650,39 @@ function PlasmicLogin2__RenderFunc(props: {
             typeof $steps["updateUserinfo"].then === "function"
           ) {
             $steps["updateUserinfo"] = await $steps["updateUserinfo"];
+          }
+
+          $steps["invokeGlobalAction2"] = $steps.loginApi?.data?.message
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    $steps.loginApi?.data?.success ? "success" : "error",
+                    (() => {
+                      try {
+                        return $steps.loginApi?.data?.message;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  ]
+                };
+                return $globalActions["Fragment.showToast"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["invokeGlobalAction2"] != null &&
+            typeof $steps["invokeGlobalAction2"] === "object" &&
+            typeof $steps["invokeGlobalAction2"].then === "function"
+          ) {
+            $steps["invokeGlobalAction2"] = await $steps["invokeGlobalAction2"];
           }
 
           $steps["loading2"] = true

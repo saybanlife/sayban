@@ -203,9 +203,6 @@ function PlasmicUploudeTime__RenderFunc(props: {
                     updatedAt.month - 1,
                     updatedAt.day
                   );
-                  if (isNaN(date.getTime())) {
-                    return "";
-                  }
                   const formatter = new Intl.DateTimeFormat("fa-IR", {
                     weekday: "long",
                     day: "numeric",

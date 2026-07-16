@@ -334,7 +334,7 @@ function PlasmicImag__RenderFunc(props: {
                 [sty.textadd__xnxNhX59Cn]: hasVariant($state, "add", "add")
               })}
             >
-              {"\u0645\u06a9\u0627\u0646"}
+              {"\u062a\u0631\u062a\u06cc\u0628 \u0646\u0645\u0627\u06cc\u0634"}
             </div>
             <div
               className={classNames("all", "__wab_text", sty.text__yz6Rk, {

@@ -252,8 +252,11 @@ function PlasmicTopPage__RenderFunc(props: {
                   ? (() => {
                       const actionArgs = {
                         customFunction: async () => {
-                          return (window.document.cookie =
-                            "panelToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.sayban.app; secure; SameSite=Lax");
+                          return (() => {
+                            window.document.cookie =
+                              "panelToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.sayban.app; secure; SameSite=Lax";
+                            return ($state.modal.isOpen = false);
+                          })();
                         }
                       };
                       return (({ customFunction }) => {

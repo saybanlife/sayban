@@ -25,6 +25,8 @@
 .svg__zaRex {
   object-fit: cover;
   max-width: 100%;
+  width: 12px;
+  flex-shrink: 0;
   height: 1em;
 }
 .text__fxGzQ {
@@ -50,6 +52,8 @@
 .svg___8A7Gj {
   object-fit: cover;
   max-width: 100%;
+  width: 12px;
+  flex-shrink: 0;
   height: 1em;
 }
 .text__zajVb {

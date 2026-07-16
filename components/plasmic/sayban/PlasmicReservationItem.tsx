@@ -81,6 +81,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicReservationItem.module.css"; // plasmic-import: 4UaemkVPEyQ4/css
 
+import Icon15Icon from "./icons/PlasmicIcon__Icon15"; // plasmic-import: uAXK4fWyRv8m/icon
 import Icon11Icon from "./icons/PlasmicIcon__Icon11"; // plasmic-import: TLjQehPXSyaR/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import CheckIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Check"; // plasmic-import: DtxnCWLfceEB/icon
@@ -382,6 +383,7 @@ function PlasmicReservationItem__RenderFunc(props: {
     >
       <div
         className={classNames("all", sty.freeBox__xiDa9, {
+          [sty.freeBoxhome__xiDa9QqzeO]: hasVariant($state, "home", "home"),
           [sty.freeBoxuser2__xiDa9IZq9P]: hasVariant($state, "user2", "user2")
         })}
         onClick={async event => {
@@ -448,35 +450,119 @@ function PlasmicReservationItem__RenderFunc(props: {
               <React.Fragment>{`${$props.currentItem.name} (${$props.currentItem.service_name})`}</React.Fragment>
             )}
           </div>
-          <UploudeTime
-            data-plasmic-name={"uploudeTime"}
-            data-plasmic-override={overrides.uploudeTime}
-            className={classNames("__wab_instance", sty.uploudeTime)}
-            posttime={(() => {
-              function addTime(dateString, addHours = 0, addMinutes = 0) {
-                if (!dateString) return null;
-                const date = new Date(dateString.replace(" ", "T"));
-                if (!date) return null;
-                date.setMinutes(
-                  date.getMinutes() + (addHours * 60 + addMinutes)
-                );
-                return {
-                  year: date.getFullYear(),
-                  month: date.getMonth() + 1,
-                  day: date.getDate(),
-                  hour: date.getHours(),
-                  minute: date.getMinutes(),
-                  second: date.getSeconds()
-                };
+          <div
+            className={classNames("all", sty.freeBox__pJ6T1, {
+              [sty.freeBoxhome__pJ6T1QqzeO]: hasVariant($state, "home", "home")
+            })}
+          >
+            <div
+              className={classNames("all", "__wab_text", sty.text__brkZ, {
+                [sty.texthome__brkZQqzeO]: hasVariant($state, "home", "home")
+              })}
+            >
+              <React.Fragment>{$props.currentItem.user.name}</React.Fragment>
+            </div>
+            <div
+              className={classNames("all", sty.freeBox__d5Jnb, {
+                [sty.freeBoxhome__d5JnbQqzeO]: hasVariant(
+                  $state,
+                  "home",
+                  "home"
+                )
+              })}
+            >
+              <Icon15Icon
+                className={classNames("all", sty.svg___2RoWs, {
+                  [sty.svghome___2RoWsQqzeO]: hasVariant($state, "home", "home")
+                })}
+                role={"img"}
+              />
+
+              {(hasVariant($state, "home", "home") ? true : false) ? (
+                <div
+                  className={classNames("all", "__wab_text", sty.text__bLH7, {
+                    [sty.texthome__bLH7QqzeO]: hasVariant(
+                      $state,
+                      "home",
+                      "home"
+                    )
+                  })}
+                >
+                  <React.Fragment>
+                    {$props.currentItem.user.gender == "female"
+                      ? "خانم"
+                      : "آقا"}
+                  </React.Fragment>
+                </div>
+              ) : null}
+            </div>
+            <UploudeTime
+              data-plasmic-name={"uploudeTime"}
+              data-plasmic-override={overrides.uploudeTime}
+              className={classNames("__wab_instance", sty.uploudeTime, {
+                [sty.uploudeTimehome]: hasVariant($state, "home", "home")
+              })}
+              posttime={
+                hasVariant($state, "home", "home")
+                  ? (() => {
+                      function addTime(
+                        dateString,
+                        addHours = 0,
+                        addMinutes = 0
+                      ) {
+                        if (!dateString) return null;
+                        const date = new Date(dateString.replace(" ", "T"));
+                        if (!date) return null;
+                        date.setMinutes(
+                          date.getMinutes() + (addHours * 60 + addMinutes)
+                        );
+                        return {
+                          year: date.getFullYear(),
+                          month: date.getMonth() + 1,
+                          day: date.getDate(),
+                          hour: date.getHours(),
+                          minute: date.getMinutes(),
+                          second: date.getSeconds()
+                        };
+                      }
+                      const newCreatedAt = addTime(
+                        $props?.currentItem?.created_at,
+                        3,
+                        30
+                      );
+                      return newCreatedAt;
+                    })()
+                  : (() => {
+                      function addTime(
+                        dateString,
+                        addHours = 0,
+                        addMinutes = 0
+                      ) {
+                        if (!dateString) return null;
+                        const date = new Date(dateString.replace(" ", "T"));
+                        if (!date) return null;
+                        date.setMinutes(
+                          date.getMinutes() + (addHours * 60 + addMinutes)
+                        );
+                        return {
+                          year: date.getFullYear(),
+                          month: date.getMonth() + 1,
+                          day: date.getDate(),
+                          hour: date.getHours(),
+                          minute: date.getMinutes(),
+                          second: date.getSeconds()
+                        };
+                      }
+                      const newCreatedAt = addTime(
+                        $props?.currentItem?.start_time,
+                        3,
+                        30
+                      );
+                      return newCreatedAt;
+                    })()
               }
-              const newCreatedAt = addTime(
-                $props?.currentItem?.start_time,
-                3,
-                30
-              );
-              return newCreatedAt;
-            })()}
-          />
+            />
+          </div>
         </div>
         {(
           hasVariant($state, "home", "home")
@@ -955,7 +1041,9 @@ function PlasmicReservationItem__RenderFunc(props: {
             animateTabBar={true}
             animateTabContent={false}
             animated={true}
-            className={classNames("__wab_instance", sty.tabs)}
+            className={classNames("__wab_instance", sty.tabs, {
+              [sty.tabshome]: hasVariant($state, "home", "home")
+            })}
             items={
               <React.Fragment>
                 <AntdTabItem
@@ -1069,7 +1157,14 @@ function PlasmicReservationItem__RenderFunc(props: {
                               "span",
                               "span__qARqp",
                               "__wab_text",
-                              sty.span__qBuCr
+                              sty.span__qBuCr,
+                              {
+                                [sty.spanhome__qBuCrQqzeO]: hasVariant(
+                                  $state,
+                                  "home",
+                                  "home"
+                                )
+                              }
                             )}
                           >
                             <React.Fragment>

@@ -5513,7 +5513,8 @@ function PlasmicMain__RenderFunc(props: {
                               },
                               {
                                 value: $state.loaction.call2,
-                                message: "شماره تماس را وارد کنید."
+                                message:
+                                  "شماره تماس مرکز را در بخش آدرس وارد کنید."
                               },
                               {
                                 value: $state.imag.uploadFiles,
@@ -7424,6 +7425,20 @@ function PlasmicMain__RenderFunc(props: {
           "mainPageStaffs",
           "categpty"
         ])}
+        centerId={(() => {
+          try {
+            return $props.centerId;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+        centers3={$state.mainPageCenter.center}
         className={classNames("__wab_instance", sty.mainPageStaffs, {
           [sty.mainPageStaffspage_staffs]: hasVariant($state, "page", "staffs")
         })}
@@ -7499,6 +7514,19 @@ function PlasmicMain__RenderFunc(props: {
           }
         }}
         restart={generateStateValueProp($state, ["mainPageStaffs", "restart"])}
+        rule={(() => {
+          try {
+            return $state.role;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
         selected={generateStateValueProp($state, [
           "mainPageStaffs",
           "selected"
