@@ -412,7 +412,7 @@
   align-items: center;
   row-gap: var(--token-73iLa06AE6f4);
   min-width: 0;
-  padding: 0px 0px 10rem;
+  padding: 2rem 0px 10rem;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__t5Uc {
@@ -439,7 +439,7 @@
   overflow: hidden;
   min-width: 0;
   border-radius: 0px;
-  padding: 5rem 0px 4rem;
+  padding: 0rem 0px 4rem;
 }
 .freeBox__rSRpp {
   display: flex;
@@ -508,7 +508,7 @@
   align-items: center;
   row-gap: var(--token-6F5DR5OsTPi0);
   min-width: 0;
-  padding: var(--token-kD77h-2NGSqI);
+  padding: var(--token-kD77h-2NGSqI) 0px;
 }
 .freeBox__onBoC {
   display: flex;

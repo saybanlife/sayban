@@ -5792,6 +5792,9 @@ function PlasmicHomepage__RenderFunc(props: {
                 }
               },
               className: classNames("__wab_instance", sty.payResult, {
+                [sty.payResultpage_bookNurse_homePage2_home]:
+                  hasVariant($state, "homePage2", "home") &&
+                  hasVariant($state, "page", "bookNurse"),
                 [sty.payResultpage_offers]: hasVariant($state, "page", "offers")
               }),
               dialogOpendialog: generateStateValueProp($state, [
@@ -5971,7 +5974,12 @@ function PlasmicHomepage__RenderFunc(props: {
               ),
               [sty.centerOfferspage_bookNurse_homePage2_home]:
                 hasVariant($state, "homePage2", "home") &&
-                hasVariant($state, "page", "bookNurse")
+                hasVariant($state, "page", "bookNurse"),
+              [sty.centerOfferspage_offers]: hasVariant(
+                $state,
+                "page",
+                "offers"
+              )
             })}
             entryOpendialog={generateStateValueProp($state, [
               "centerOffers",
