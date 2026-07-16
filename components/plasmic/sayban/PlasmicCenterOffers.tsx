@@ -949,27 +949,7 @@ function PlasmicCenterOffers__RenderFunc(props: {
         errorDisplay={null}
         loadingDisplay={
           <div className={classNames("all", sty.freeBox__v163V)}>
-            <div className={classNames("all", sty.freeBox__ehiaO, "shimmer")} />
-
-            {(
-              hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
-            ) ? (
-              <div className={classNames("all", sty.freeBox__fqcic, ``)} />
-            ) : null}
-            <div className={classNames("all", sty.freeBox__nTebu, "shimmer")} />
-
-            <div className={classNames("all", sty.freeBox__vNprk, "shimmer")} />
-
             <div className={classNames("all", sty.freeBox___4HGEq)}>
-              <div className={classNames("all", sty.freeBox__puHro)}>
-                <div
-                  className={classNames("all", sty.freeBox__crHyQ, "shimmer")}
-                />
-
-                <div
-                  className={classNames("all", sty.freeBox__cyR7X, "shimmer")}
-                />
-              </div>
               <div className={classNames("all", sty.freeBox___9Tbq1)}>
                 <div
                   className={classNames("all", sty.freeBox__c7E1, "shimmer")}
@@ -983,38 +963,6 @@ function PlasmicCenterOffers__RenderFunc(props: {
                   className={classNames("all", sty.freeBox__ja3R1, "shimmer")}
                 />
               </div>
-              <div className={classNames("all", sty.freeBox___47FcO)}>
-                <div
-                  className={classNames("all", sty.freeBox__a5Dks, "shimmer")}
-                />
-
-                <div
-                  className={classNames("all", sty.freeBox__yniNq, "shimmer")}
-                />
-
-                <div
-                  className={classNames("all", sty.freeBox__dj3, "shimmer")}
-                />
-              </div>
-              {(
-                hasVariant(globalVariants, "screen", "mobileOnly")
-                  ? true
-                  : false
-              ) ? (
-                <div className={classNames("all", sty.freeBox___4NJqe)}>
-                  <div
-                    className={classNames("all", sty.freeBox__aNw8B, "shimmer")}
-                  />
-
-                  <div
-                    className={classNames("all", sty.freeBox__xmIvD, "shimmer")}
-                  />
-
-                  <div
-                    className={classNames("all", sty.freeBox__lqCco, "shimmer")}
-                  />
-                </div>
-              ) : null}
             </div>
           </div>
         }

@@ -311,8 +311,8 @@ function PlasmicHomepage__RenderFunc(props: {
                   return "addAddress";
                 if ($ctx.params?.slug?.find(i => i.includes("pay_")))
                   return "payment";
-                if ($ctx.params?.slug?.includes("center")) return "offers";
-                if ($ctx.params?.slug?.includes("offer")) return "center";
+                if ($ctx.params?.slug?.includes("center")) return "center";
+                if ($ctx.params?.slug?.includes("offer")) return "offers";
                 if ($ctx.params?.slug?.includes("editProfile"))
                   return "editUser";
                 if ($ctx.params?.slug?.includes("booking")) return "booking";
@@ -3494,6 +3494,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 "categories"
               ),
               [sty.profilepage_center]: hasVariant($state, "page", "center"),
+              [sty.profilepage_offers]: hasVariant($state, "page", "offers"),
               [sty.profilepage_payment]: hasVariant($state, "page", "payment"),
               [sty.profilepage_subcategories]: hasVariant(
                 $state,
@@ -3606,6 +3607,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 hasVariant($state, "homePage2", "home") &&
                 hasVariant($state, "page", "categories"),
               [sty.categoriespage_center]: hasVariant($state, "page", "center"),
+              [sty.categoriespage_offers]: hasVariant($state, "page", "offers"),
               [sty.categoriespage_payment]: hasVariant(
                 $state,
                 "page",
@@ -3722,6 +3724,11 @@ function PlasmicHomepage__RenderFunc(props: {
                 $state,
                 "page",
                 "center"
+              ),
+              [sty.subcategoriespage_offers]: hasVariant(
+                $state,
+                "page",
+                "offers"
               ),
               [sty.subcategoriespage_subcategories]: hasVariant(
                 $state,
@@ -4175,6 +4182,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 "page",
                 "editUser"
               ),
+              [sty.bookingpage_offers]: hasVariant($state, "page", "offers"),
               [sty.bookingpage_payment]: hasVariant($state, "page", "payment"),
               [sty.bookingpage_subcategories]: hasVariant(
                 $state,
@@ -4265,11 +4273,9 @@ function PlasmicHomepage__RenderFunc(props: {
                       })()}/${(() => {
                         try {
                           return (() => {
-                            if (window.sessionStorage.getItem("id")) {
-                              $state.slug.push("offer");
-                              $state.slug.push(
-                                window.sessionStorage.getItem("id")
-                              );
+                            const id = window.sessionStorage.getItem("id");
+                            if (id) {
+                              $state.slug.push(`offer_${id}`);
                             }
                             return $state.slug.join("/");
                           })();
