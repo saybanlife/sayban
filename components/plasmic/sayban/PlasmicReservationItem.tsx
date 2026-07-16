@@ -130,12 +130,14 @@ export type PlasmicReservationItem__OverridesType = {
   add?: Flex__<typeof Button>;
   add2?: Flex__<typeof Button>;
   add3?: Flex__<typeof Button>;
+  add6?: Flex__<typeof Button>;
   tabs?: Flex__<typeof AntdTabs>;
   apiRequest?: Flex__<typeof ApiRequest>;
   modal?: Flex__<typeof AntdModal>;
   apiRequest3?: Flex__<typeof ApiRequest>;
   load?: Flex__<typeof Load>;
   itemShow?: Flex__<typeof ItemShow>;
+  img?: Flex__<typeof PlasmicImg__>;
   select?: Flex__<typeof Select>;
   menuItem?: Flex__<typeof MenuItem>;
   button?: Flex__<typeof Button>;
@@ -178,7 +180,8 @@ function PlasmicReservationItem__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          user: {}
+          user: {},
+          centerId: "4"
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
@@ -296,7 +299,22 @@ function PlasmicReservationItem__RenderFunc(props: {
         path: "staffs",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return JSON.parse(
+                $state.apiRequest3?.data?.offer_details?.staff_id || "[]"
+              );
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "button.loading",
@@ -308,19 +326,65 @@ function PlasmicReservationItem__RenderFunc(props: {
         path: "rangeSlider.value",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [100000, 5000000]
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return [
+                parseInt(
+                  $state.apiRequest3.data.offer_details.min_price || 100000
+                ),
+                parseInt(
+                  $state.apiRequest3.data.offer_details.max_price || 5000000
+                )
+              ];
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [100000, 5000000];
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "dateInput.date",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.apiRequest3.data.offer_details.proposed_date;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return {};
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "timeInput.time",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.apiRequest3.data.offer_details.proposed_time;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return {};
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "add4.loading",
@@ -338,13 +402,19 @@ function PlasmicReservationItem__RenderFunc(props: {
         path: "load.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
       },
       {
         path: "modal.open",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "add6.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -436,19 +506,25 @@ function PlasmicReservationItem__RenderFunc(props: {
         />
 
         <div className={classNames("all", sty.freeBox__vCUW)}>
-          <div
-            className={classNames("all", "__wab_text", sty.text__wnq7Y, {
-              [sty.texthome__wnq7YQqzeO]: hasVariant($state, "home", "home"),
-              [sty.textuser2__wnq7YiZq9P]: hasVariant($state, "user2", "user2")
-            })}
-          >
-            {hasVariant($state, "home", "home") ? (
-              <React.Fragment>{"درخواست پرستار"}</React.Fragment>
-            ) : hasVariant($state, "user2", "user2") ? (
-              <React.Fragment>{`${$props.currentItem.center_name} (${$props.currentItem.service_name})`}</React.Fragment>
-            ) : (
-              <React.Fragment>{`${$props.currentItem.name} (${$props.currentItem.service_name})`}</React.Fragment>
-            )}
+          <div className={classNames("all", sty.freeBox__k2QlL)}>
+            <div
+              className={classNames("all", "__wab_text", sty.text__wnq7Y, {
+                [sty.texthome__wnq7YQqzeO]: hasVariant($state, "home", "home"),
+                [sty.textuser2__wnq7YiZq9P]: hasVariant(
+                  $state,
+                  "user2",
+                  "user2"
+                )
+              })}
+            >
+              {hasVariant($state, "home", "home") ? (
+                <React.Fragment>{"درخواست پرستار"}</React.Fragment>
+              ) : hasVariant($state, "user2", "user2") ? (
+                <React.Fragment>{`${$props.currentItem.center_name} (${$props.currentItem.service_name})`}</React.Fragment>
+              ) : (
+                <React.Fragment>{`${$props.currentItem.name} (${$props.currentItem.service_name})`}</React.Fragment>
+              )}
+            </div>
           </div>
           <div
             className={classNames("all", sty.freeBox__pJ6T1, {
@@ -1004,6 +1080,83 @@ function PlasmicReservationItem__RenderFunc(props: {
             }
           />
         ) : null}
+        {(
+          hasVariant($state, "home", "home")
+            ? (() => {
+                try {
+                  return $props.currentItem.status == "offersReceived";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })()
+            : false
+        ) ? (
+          <Button
+            data-plasmic-name={"add6"}
+            data-plasmic-override={overrides.add6}
+            className={classNames("__wab_instance", sty.add6, {
+              [sty.add6home]: hasVariant($state, "home", "home")
+            })}
+            color={"success"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__kQVpa)}>
+                {
+                  "\u0645\u0634\u0627\u0647\u062f\u0647 \u067e\u06cc\u0634\u0646\u0647\u0627\u062f"
+                }
+              </div>
+            }
+            loading={generateStateValueProp($state, ["add6", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.modal.open = true);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["add6", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            start={
+              <PlusIcon
+                className={classNames("all", sty.svg__ziznK)}
+                role={"img"}
+              />
+            }
+          />
+        ) : null}
         <ChevronDownIcon
           className={classNames("all", sty.svg__dwid7, {
             [sty.svgopen__dwid7Lb9Mw]: hasVariant($state, "open", "open"),
@@ -1501,6 +1654,7 @@ function PlasmicReservationItem__RenderFunc(props: {
             <Load
               data-plasmic-name={"load"}
               data-plasmic-override={overrides.load}
+              box={true}
               className={classNames("__wab_instance", sty.load)}
               loading={generateStateValueProp($state, ["load", "loading"])}
               onLoadingChange={async (...eventArgs: any) => {
@@ -1539,18 +1693,24 @@ function PlasmicReservationItem__RenderFunc(props: {
             );
           }}
           params={{
-            center_id: $props.center_id
+            center_id: $props.centerId,
+            reservation_id: $props.currentItem?.id
           }}
           shouldFetch={true}
-          url={"/panel/staffs"}
+          url={"panel/offers"}
         >
           <div className={classNames("all", sty.freeBox___2IaNm)}>
+            <div className={classNames("all", "__wab_text", sty.text__tw8Si)}>
+              {
+                "\u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646 \u067e\u06cc\u0634\u0646\u0647\u0627\u062f\u06cc \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f."
+              }
+            </div>
             <div className={classNames("all", sty.freeBox__j4W8)}>
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {
                   try {
-                    return $state.apiRequest3.data.result.filter(i =>
-                      $state.staffs.includes(i.id.toString())
+                    return $state.apiRequest3.data.staffs.filter(i =>
+                      $state.staffs.includes(i.id)
                     );
                   } catch (e) {
                     if (
@@ -1569,7 +1729,6 @@ function PlasmicReservationItem__RenderFunc(props: {
                   <ItemShow
                     data-plasmic-name={"itemShow"}
                     data-plasmic-override={overrides.itemShow}
-                    children={null}
                     className={classNames("__wab_instance", sty.itemShow)}
                     currentItem={currentItem.name}
                     key={currentIndex}
@@ -1607,7 +1766,39 @@ function PlasmicReservationItem__RenderFunc(props: {
                         role={"img"}
                       />
                     }
-                  />
+                  >
+                    <PlasmicImg__
+                      data-plasmic-name={"img"}
+                      data-plasmic-override={overrides.img}
+                      alt={""}
+                      className={classNames(sty.img)}
+                      displayHeight={"30px"}
+                      displayMaxHeight={"none"}
+                      displayMaxWidth={"100%"}
+                      displayMinHeight={"0"}
+                      displayMinWidth={"0"}
+                      displayWidth={"30px"}
+                      loading={"lazy"}
+                      src={(() => {
+                        try {
+                          return currentItem.avatar;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return {
+                              src: "/plasmic/sayban/images/untitledPicturePng.png",
+                              fullWidth: 3629,
+                              fullHeight: 2887,
+                              aspectRatio: undefined
+                            };
+                          }
+                          throw e;
+                        }
+                      })()}
+                    />
+                  </ItemShow>
                 );
               })}
             </div>
@@ -1621,7 +1812,7 @@ function PlasmicReservationItem__RenderFunc(props: {
                   !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                   (() => {
                     try {
-                      return $state.apiRequest3?.data?.result;
+                      return $state.apiRequest3?.data?.staffs;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -1711,6 +1902,19 @@ function PlasmicReservationItem__RenderFunc(props: {
                 data-plasmic-override={overrides.button}
                 className={classNames("__wab_instance", sty.button)}
                 color={"success"}
+                disabel={(() => {
+                  try {
+                    return $state.select.value == null;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
                 label={
                   <div
                     className={classNames("all", "__wab_text", sty.text__deZam)}
@@ -1796,48 +2000,55 @@ function PlasmicReservationItem__RenderFunc(props: {
                 value={generateStateValueProp($state, ["rangeSlider", "value"])}
               />
             </div>
-            <div className={classNames("all", sty.freeBox___2EhA0)}>
-              <DateInput
-                data-plasmic-name={"dateInput"}
-                data-plasmic-override={overrides.dateInput}
-                className={classNames("__wab_instance", sty.dateInput)}
-                date={generateStateValueProp($state, ["dateInput", "date"])}
-                onDateChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "dateInput",
-                    "date"
-                  ]).apply(null, eventArgs);
+            <div className={classNames("all", sty.freeBox__mYoyK)}>
+              <div className={classNames("all", "__wab_text", sty.text__yjSjk)}>
+                {
+                  "\u0632\u0645\u0627\u0646 \u0648 \u062a\u0627\u0631\u06cc\u062e \u0627\u0631\u0633\u0627\u0644"
+                }
+              </div>
+              <div className={classNames("all", sty.freeBox___2EhA0)}>
+                <DateInput
+                  data-plasmic-name={"dateInput"}
+                  data-plasmic-override={overrides.dateInput}
+                  className={classNames("__wab_instance", sty.dateInput)}
+                  date={generateStateValueProp($state, ["dateInput", "date"])}
+                  onDateChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "dateInput",
+                      "date"
+                    ]).apply(null, eventArgs);
 
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-              />
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                />
 
-              <TimeInput
-                data-plasmic-name={"timeInput"}
-                data-plasmic-override={overrides.timeInput}
-                className={classNames("__wab_instance", sty.timeInput)}
-                onTimeChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "timeInput",
-                    "time"
-                  ]).apply(null, eventArgs);
+                <TimeInput
+                  data-plasmic-name={"timeInput"}
+                  data-plasmic-override={overrides.timeInput}
+                  className={classNames("__wab_instance", sty.timeInput)}
+                  onTimeChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "timeInput",
+                      "time"
+                    ]).apply(null, eventArgs);
 
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                time={generateStateValueProp($state, ["timeInput", "time"])}
-              />
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  time={generateStateValueProp($state, ["timeInput", "time"])}
+                />
+              </div>
             </div>
             <div
               className={classNames("all", sty.freeBox__fx17T, {
@@ -1855,13 +2066,40 @@ function PlasmicReservationItem__RenderFunc(props: {
                   [sty.add4home]: hasVariant($state, "home", "home")
                 })}
                 color={"success"}
+                disabel={(() => {
+                  try {
+                    return $state.staffs.length == 0;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
                 label={
                   <div
                     className={classNames("all", "__wab_text", sty.text__aqAcg)}
                   >
-                    {
-                      "\u062a\u0627\u06cc\u06cc\u062f \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646"
-                    }
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return $state.apiRequest3.data.has_previous_offer
+                            ? "تایید و دخیره"
+                            : "تایید پیشنهاد";
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "\u062a\u0627\u06cc\u06cc\u062f \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
                   </div>
                 }
                 loading={generateStateValueProp($state, ["add4", "loading"])}
@@ -2108,12 +2346,14 @@ const PlasmicDescendants = {
     "add",
     "add2",
     "add3",
+    "add6",
     "tabs",
     "apiRequest",
     "modal",
     "apiRequest3",
     "load",
     "itemShow",
+    "img",
     "select",
     "menuItem",
     "button",
@@ -2128,6 +2368,7 @@ const PlasmicDescendants = {
   add: ["add"],
   add2: ["add2"],
   add3: ["add3"],
+  add6: ["add6"],
   tabs: ["tabs", "apiRequest"],
   apiRequest: ["apiRequest"],
   modal: [
@@ -2135,6 +2376,7 @@ const PlasmicDescendants = {
     "apiRequest3",
     "load",
     "itemShow",
+    "img",
     "select",
     "menuItem",
     "button",
@@ -2148,6 +2390,7 @@ const PlasmicDescendants = {
     "apiRequest3",
     "load",
     "itemShow",
+    "img",
     "select",
     "menuItem",
     "button",
@@ -2158,7 +2401,8 @@ const PlasmicDescendants = {
     "add5"
   ],
   load: ["load"],
-  itemShow: ["itemShow"],
+  itemShow: ["itemShow", "img"],
+  img: ["img"],
   select: ["select", "menuItem"],
   menuItem: ["menuItem"],
   button: ["button"],
@@ -2178,12 +2422,14 @@ type NodeDefaultElementType = {
   add: typeof Button;
   add2: typeof Button;
   add3: typeof Button;
+  add6: typeof Button;
   tabs: typeof AntdTabs;
   apiRequest: typeof ApiRequest;
   modal: typeof AntdModal;
   apiRequest3: typeof ApiRequest;
   load: typeof Load;
   itemShow: typeof ItemShow;
+  img: typeof PlasmicImg__;
   select: typeof Select;
   menuItem: typeof MenuItem;
   button: typeof Button;
@@ -2261,12 +2507,14 @@ export const PlasmicReservationItem = Object.assign(
     add: makeNodeComponent("add"),
     add2: makeNodeComponent("add2"),
     add3: makeNodeComponent("add3"),
+    add6: makeNodeComponent("add6"),
     tabs: makeNodeComponent("tabs"),
     apiRequest: makeNodeComponent("apiRequest"),
     modal: makeNodeComponent("modal"),
     apiRequest3: makeNodeComponent("apiRequest3"),
     load: makeNodeComponent("load"),
     itemShow: makeNodeComponent("itemShow"),
+    img: makeNodeComponent("img"),
     select: makeNodeComponent("select"),
     menuItem: makeNodeComponent("menuItem"),
     button: makeNodeComponent("button"),

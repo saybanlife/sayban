@@ -44,8 +44,19 @@
   min-width: 0;
   padding: 0px;
 }
-.text__wnq7Y {
+.freeBox__k2QlL {
+  display: flex;
+  flex-direction: row;
   position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0px;
+}
+.text__wnq7Y {
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -193,6 +204,27 @@
   color: var(--token-k-47TemksE2v);
 }
 .svg__pi7GJ {
+  position: relative;
+  height: 1em;
+}
+.add6:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  width: 150px;
+  flex-shrink: 0;
+}
+.add6home:global(.__wab_instance):global(.__wab_instance) {
+  display: flex;
+}
+.svg__ziznK {
+  position: relative;
+  color: var(--token-k-47TemksE2v);
+  height: 1em;
+}
+.text__kQVpa {
+  white-space: pre;
+  color: var(--token-k-47TemksE2v);
+}
+.svg__fFo3 {
   position: relative;
   height: 1em;
 }
@@ -400,6 +432,8 @@
 .load:global(.__wab_instance) {
   max-width: 100%;
   height: 400px;
+  width: 100%;
+  min-width: 0;
 }
 .freeBox___2IaNm {
   display: flex;
@@ -412,6 +446,16 @@
   row-gap: var(--token-73iLa06AE6f4);
   min-width: 0;
   padding: var(--token-cfon0PHiXQoL);
+}
+.text__tw8Si {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: right;
+  color: var(--token-KjATzAYJ5IB7);
+  padding-bottom: var(--token-cfon0PHiXQoL);
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  min-width: 0;
 }
 .freeBox__j4W8 {
   display: grid;
@@ -429,6 +473,16 @@
   max-width: 100%;
   width: 100%;
   min-width: 0;
+}
+.img {
+  object-fit: cover;
+  max-width: 100%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+}
+.img > picture > img {
+  object-fit: cover;
 }
 .svg__tNNik {
   animation: none;
@@ -502,10 +556,30 @@
   position: relative;
   margin-top: var(--token-D_3fp_JIDs1G);
 }
+.freeBox__mYoyK {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 0px;
+}
+.text__yjSjk {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: right;
+  color: var(--token-KjATzAYJ5IB7);
+  padding-bottom: var(--token-cfon0PHiXQoL);
+  min-width: 0;
+}
 .freeBox___2EhA0 {
   display: flex;
   flex-direction: row;
-  position: relative;
   align-items: stretch;
   justify-content: flex-start;
   width: 100%;

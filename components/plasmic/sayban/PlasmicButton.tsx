@@ -91,6 +91,7 @@ export type PlasmicButton__VariantMembers = {
   roundedFull: "roundedFull";
   flatSide: "top" | "right" | "bottom" | "left";
   loading: "loading";
+  disabel: "disabel";
 };
 export type PlasmicButton__VariantsArgs = {
   color?: SingleChoiceArg<
@@ -111,6 +112,7 @@ export type PlasmicButton__VariantsArgs = {
   roundedFull?: SingleBooleanChoiceArg<"roundedFull">;
   flatSide?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   loading?: SingleBooleanChoiceArg<"loading">;
+  disabel?: SingleBooleanChoiceArg<"disabel">;
 };
 type VariantPropType = keyof PlasmicButton__VariantsArgs;
 export const PlasmicButton__VariantProps = new Array<VariantPropType>(
@@ -121,7 +123,8 @@ export const PlasmicButton__VariantProps = new Array<VariantPropType>(
   "iconEnd",
   "roundedFull",
   "flatSide",
-  "loading"
+  "loading",
+  "disabel"
 );
 
 export type PlasmicButton__ArgsType = {
@@ -190,6 +193,7 @@ export interface DefaultButtonProps {
   roundedFull?: SingleBooleanChoiceArg<"roundedFull">;
   flatSide?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   loading?: SingleBooleanChoiceArg<"loading">;
+  disabel?: SingleBooleanChoiceArg<"disabel">;
   className?: string;
 }
 
@@ -286,6 +290,12 @@ function PlasmicButton__RenderFunc(props: {
 
         valueProp: "loading",
         onChangeProp: "onLoadingChange"
+      },
+      {
+        path: "disabel",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.disabel
       }
     ],
     [$props, $ctx, $refs]
@@ -350,6 +360,7 @@ function PlasmicButton__RenderFunc(props: {
           [sty.rootcolor_second]: hasVariant($state, "color", "second"),
           [sty.rootcolor_success]: hasVariant($state, "color", "success"),
           [sty.rootcolor_warning]: hasVariant($state, "color", "warning"),
+          [sty.rootdisabel]: hasVariant($state, "disabel", "disabel"),
           [sty.rootflatSide_bottom]: hasVariant($state, "flatSide", "bottom"),
           [sty.rootflatSide_left]: hasVariant($state, "flatSide", "left"),
           [sty.rootflatSide_right]: hasVariant($state, "flatSide", "right"),
@@ -401,7 +412,13 @@ function PlasmicButton__RenderFunc(props: {
         }
       )}
       href={args.linkTo}
-      isDisabled={hasVariant($state, "loading", "loading") ? true : undefined}
+      isDisabled={
+        hasVariant($state, "disabel", "disabel")
+          ? true
+          : hasVariant($state, "loading", "loading")
+            ? true
+            : undefined
+      }
       onPress={args.onClick}
       plasmicUpdateVariant={updateVariant}
       resetsForm={args.resetsForm}
