@@ -88,6 +88,7 @@
 .itemShow__qWjf4:global(.__wab_instance) {
   max-width: 100%;
   width: auto;
+  display: none;
 }
 .svg__dRss {
   animation: none;
@@ -163,7 +164,7 @@
 .itemStaffs:global(.__wab_instance) {
   max-width: 100%;
 }
-.filter:global(.__wab_instance):global(.__wab_instance) {
+.filterSteff:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
 .sort:global(.__wab_instance):global(.__wab_instance) {

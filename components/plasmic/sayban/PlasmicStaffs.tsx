@@ -64,7 +64,7 @@ import Search from "../../Search"; // plasmic-import: kFfVHLyoRXeP/component
 import ItemShow from "../../ItemShow"; // plasmic-import: hegjECXSYJcF/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import ItemStaffs from "../../ItemStaffs"; // plasmic-import: tJMe57F6lZ5-/component
-import Filter from "../../Filter"; // plasmic-import: TmisqS8piGSB/component
+import FilterSteff from "../../FilterSteff"; // plasmic-import: CRsyNfi2SPuL/component
 import Sort from "../../Sort"; // plasmic-import: V2In34aoYVht/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -115,7 +115,7 @@ export type PlasmicStaffs__OverridesType = {
   search?: Flex__<typeof Search>;
   centers?: Flex__<typeof ApiRequest>;
   itemStaffs?: Flex__<typeof ItemStaffs>;
-  filter?: Flex__<typeof Filter>;
+  filterSteff?: Flex__<typeof FilterSteff>;
   sort?: Flex__<typeof Sort>;
 };
 
@@ -202,12 +202,6 @@ function PlasmicStaffs__RenderFunc(props: {
         onChangeProp: "onCenterChange2"
       },
       {
-        path: "filter.opendialog",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
-      {
         path: "sort.opendialog",
         type: "private",
         variableType: "boolean",
@@ -232,21 +226,20 @@ function PlasmicStaffs__RenderFunc(props: {
           },
           {
             label:
+              "\u0628\u06cc\u0634\u062a\u0631\u06cc\u0646 \u0633\u0627\u0628\u0642\u0647 \u06a9\u0627\u0631\u06cc",
+            value: "highest_experience"
+          },
+          {
+            label:
               "\u06a9\u0645\u200c\u0647\u0632\u06cc\u0646\u0647\u200c\u062a\u0631\u06cc\u0646",
             value: "lowest_price"
           },
           {
             label:
-              "\u0645\u062d\u0628\u0648\u0628\u200c\u062a\u0631\u06cc\u0646",
-            value: "most_popular"
+              "\u0646\u0632\u062f\u06cc\u06a9\u200c\u062a\u0631\u06cc\u0646 \u0632\u0645\u0627\u0646 \u0627\u0639\u0632\u0627\u0645",
+            value: "soonest_dispatch"
           }
         ]
-      },
-      {
-        path: "filter.filtes",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "search.textInputValue",
@@ -284,6 +277,18 @@ function PlasmicStaffs__RenderFunc(props: {
 
         valueProp: "staff",
         onChangeProp: "onStaffChange"
+      },
+      {
+        path: "filterSteff.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "filterSteff.filtes",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -448,12 +453,12 @@ function PlasmicStaffs__RenderFunc(props: {
                   onClick={async event => {
                     const $steps = {};
 
-                    $steps["updateFilterOpendialog"] = true
+                    $steps["updateFilterSteffOpendialog"] = true
                       ? (() => {
                           const actionArgs = {
                             variable: {
                               objRoot: $state,
-                              variablePath: ["filter", "opendialog"]
+                              variablePath: ["filterSteff", "opendialog"]
                             },
                             operation: 0,
                             value: true
@@ -475,13 +480,14 @@ function PlasmicStaffs__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["updateFilterOpendialog"] != null &&
-                      typeof $steps["updateFilterOpendialog"] === "object" &&
-                      typeof $steps["updateFilterOpendialog"].then ===
+                      $steps["updateFilterSteffOpendialog"] != null &&
+                      typeof $steps["updateFilterSteffOpendialog"] ===
+                        "object" &&
+                      typeof $steps["updateFilterSteffOpendialog"].then ===
                         "function"
                     ) {
-                      $steps["updateFilterOpendialog"] =
-                        await $steps["updateFilterOpendialog"];
+                      $steps["updateFilterSteffOpendialog"] =
+                        await $steps["updateFilterSteffOpendialog"];
                     }
                   }}
                   slot={null}
@@ -494,7 +500,7 @@ function PlasmicStaffs__RenderFunc(props: {
               </div>
               {(() => {
                 try {
-                  return Object.keys($state.filter.filtes).length > 0;
+                  return Object.keys($state.filterSteff.filtes).length > 0;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -515,7 +521,7 @@ function PlasmicStaffs__RenderFunc(props: {
                   {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                     (() => {
                       try {
-                        return Object.keys($state.filter.filtes);
+                        return Object.keys($state.filterSteff.filtes);
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -538,7 +544,7 @@ function PlasmicStaffs__RenderFunc(props: {
                         )}
                         currentItem={(() => {
                           try {
-                            return $state.filter.filtes[currentItem].label;
+                            return $state.filterSteff.filtes[currentItem].label;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -557,7 +563,7 @@ function PlasmicStaffs__RenderFunc(props: {
                             ? (() => {
                                 const actionArgs = {
                                   customFunction: async () => {
-                                    return delete $state.filter.filtes[
+                                    return delete $state.filterSteff.filtes[
                                       currentItem
                                     ];
                                   }
@@ -650,7 +656,8 @@ function PlasmicStaffs__RenderFunc(props: {
           params={(() => {
             try {
               return {
-                id: $props.offer
+                id: $props.offer,
+                sort: $state.sort.radioGroupValue
               };
             } catch (e) {
               if (
@@ -917,13 +924,13 @@ function PlasmicStaffs__RenderFunc(props: {
           })}
         </ApiRequest>
       </div>
-      <Filter
-        data-plasmic-name={"filter"}
-        data-plasmic-override={overrides.filter}
-        className={classNames("__wab_instance", sty.filter)}
-        filtes={generateStateValueProp($state, ["filter", "filtes"])}
+      <FilterSteff
+        data-plasmic-name={"filterSteff"}
+        data-plasmic-override={overrides.filterSteff}
+        className={classNames("__wab_instance", sty.filterSteff)}
+        filtes={generateStateValueProp($state, ["filterSteff", "filtes"])}
         onFiltesChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["filter", "filtes"]).apply(
+          generateStateOnChangeProp($state, ["filterSteff", "filtes"]).apply(
             null,
             eventArgs
           );
@@ -937,10 +944,10 @@ function PlasmicStaffs__RenderFunc(props: {
           }
         }}
         onOpendialogChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["filter", "opendialog"]).apply(
-            null,
-            eventArgs
-          );
+          generateStateOnChangeProp($state, [
+            "filterSteff",
+            "opendialog"
+          ]).apply(null, eventArgs);
 
           if (
             eventArgs.length > 1 &&
@@ -950,7 +957,10 @@ function PlasmicStaffs__RenderFunc(props: {
             return;
           }
         }}
-        opendialog={generateStateValueProp($state, ["filter", "opendialog"])}
+        opendialog={generateStateValueProp($state, [
+          "filterSteff",
+          "opendialog"
+        ])}
       />
 
       <Sort
@@ -1011,12 +1021,20 @@ function PlasmicStaffs__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "search", "centers", "itemStaffs", "filter", "sort"],
+  root: [
+    "root",
+    "header",
+    "search",
+    "centers",
+    "itemStaffs",
+    "filterSteff",
+    "sort"
+  ],
   header: ["header", "search"],
   search: ["search"],
   centers: ["centers", "itemStaffs"],
   itemStaffs: ["itemStaffs"],
-  filter: ["filter"],
+  filterSteff: ["filterSteff"],
   sort: ["sort"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -1028,7 +1046,7 @@ type NodeDefaultElementType = {
   search: typeof Search;
   centers: typeof ApiRequest;
   itemStaffs: typeof ItemStaffs;
-  filter: typeof Filter;
+  filterSteff: typeof FilterSteff;
   sort: typeof Sort;
 };
 
@@ -1098,7 +1116,7 @@ export const PlasmicStaffs = Object.assign(
     search: makeNodeComponent("search"),
     centers: makeNodeComponent("centers"),
     itemStaffs: makeNodeComponent("itemStaffs"),
-    filter: makeNodeComponent("filter"),
+    filterSteff: makeNodeComponent("filterSteff"),
     sort: makeNodeComponent("sort"),
 
     // Metadata about props expected for PlasmicStaffs

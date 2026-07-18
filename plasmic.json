@@ -29783,6 +29783,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicItemStaffs2.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "CRsyNfi2SPuL",
+          "name": "FilterSteff",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicFilterSteff.tsx",
+          "importSpec": {
+            "modulePath": "FilterSteff.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicFilterSteff.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

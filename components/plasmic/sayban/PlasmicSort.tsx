@@ -496,24 +496,7 @@ function PlasmicSort__RenderFunc(props: {
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {
                   try {
-                    return [
-                      {
-                        label: "پیش‌فرض",
-                        value: null
-                      },
-                      {
-                        label: "بیشترین امتیاز",
-                        value: "highest_rate"
-                      },
-                      {
-                        label: "کم‌هزینه‌ترین",
-                        value: "lowest_price"
-                      },
-                      {
-                        label: "محبوب‌ترین",
-                        value: "most_popular"
-                      }
-                    ];
+                    return $state.item;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
