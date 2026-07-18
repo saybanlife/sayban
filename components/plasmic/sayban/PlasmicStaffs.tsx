@@ -147,7 +147,7 @@ function PlasmicStaffs__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          offer: "84"
+          offer: "96"
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
@@ -654,7 +654,7 @@ function PlasmicStaffs__RenderFunc(props: {
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {
               try {
-                return $state.centers.data.result.staff_details;
+                return $state.centers.data.result;
               } catch (e) {
                 if (
                   e instanceof TypeError ||

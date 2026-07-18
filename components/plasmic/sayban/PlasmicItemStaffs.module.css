@@ -92,7 +92,7 @@
   max-width: 100%;
   justify-content: flex-start;
   align-items: flex-start;
-  row-gap: var(--token-rfsFxiclAtek);
+  row-gap: var(--token-RuQNZpYm0Yds);
   padding: 0px;
 }
 .text__ohck6 {
@@ -348,15 +348,8 @@
   text-align: right;
   line-height: 1;
 }
-.text__nmSBx {
-  width: auto;
-  height: auto;
+.uploudeTime:global(.__wab_instance) {
   max-width: 100%;
-  color: var(--token-KjATzAYJ5IB7);
-  font-weight: 400;
-  font-size: 0.7rem;
-  text-align: right;
-  line-height: 1;
 }
 .button:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;

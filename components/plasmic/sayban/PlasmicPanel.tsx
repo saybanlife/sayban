@@ -205,143 +205,280 @@ function PlasmicPanel__RenderFunc(props: {
         path: "menu",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
-          {
-            label: "\u062f\u0627\u0634\u0628\u0648\u0631\u062f",
-            value: "dashboard",
-            icon: "dashboard",
-            permissions: ["super_admin", "center_admin", "staff"]
-          },
-          {
-            label: "\u0645\u0631\u06a9\u0632 \u0645\u0646",
-            value: "center",
-            icon: "building",
-            permissions: ["center_admin"]
-          },
-          {
-            label:
-              "\u0645\u062f\u06cc\u0631\u06cc\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
-            value: "users",
-            icon: "users",
-            permissions: ["super_admin"]
-          },
-          {
-            label:
-              "\u0645\u062f\u06cc\u0631\u06cc\u062a \u0645\u0631\u0627\u06a9\u0632",
-            value: "centers",
-            icon: "building-2",
-            permissions: ["super_admin"],
-            children: [
-              {
-                label:
-                  "\u0644\u06cc\u0633\u062a \u0645\u0631\u0627\u06a9\u0632",
-                value: "list",
-                icon: "list",
-                permissions: ["super_admin"]
-              },
-              {
-                label:
-                  "\u0645\u0631\u0627\u06a9\u0632 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644",
-                value: "inactive",
-                icon: "ban",
-                permissions: ["super_admin"]
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return [
+                {
+                  label: "داشبورد",
+                  value: "dashboard",
+                  icon: "dashboard",
+                  permissions: ["super_admin", "center_admin", "staff"]
+                },
+                {
+                  label: "مرکز من",
+                  value: "center",
+                  icon: "building",
+                  permissions: ["center_admin"]
+                },
+                {
+                  label: "مدیریت کاربران",
+                  value: "users",
+                  icon: "users",
+                  permissions: ["super_admin"]
+                },
+                {
+                  label: "مدیریت مراکز",
+                  value: "centers",
+                  icon: "building-2",
+                  permissions: ["super_admin"],
+                  children: [
+                    {
+                      label: "لیست مراکز",
+                      value: "list",
+                      icon: "list",
+                      permissions: ["super_admin"]
+                    },
+                    {
+                      label: "مراکز غیرفعال",
+                      value: "inactive",
+                      icon: "ban",
+                      permissions: ["super_admin"]
+                    }
+                  ]
+                },
+                {
+                  label: "مدیریت خدمات پرستاران",
+                  value: "services",
+                  icon: "service",
+                  permissions: ["super_admin"]
+                },
+                {
+                  label: "مدیریت خدمات",
+                  value: "services",
+                  icon: "service",
+                  permissions: ["center_admin"]
+                },
+                {
+                  label: "مدیریت پرستاران",
+                  value: "staffs",
+                  icon: "service",
+                  permissions: ["super_admin", "center_admin"]
+                },
+                {
+                  label: "دسته‌بندی‌ها",
+                  value: "categories",
+                  icon: "layers",
+                  permissions: ["super_admin"]
+                },
+                {
+                  label: "رزروها",
+                  value: "reservations",
+                  icon: "calendar",
+                  permissions: ["super_admin", "center_admin", "staff"],
+
+                  children: [
+                    {
+                      label: "همه رزروها",
+                      value: "reservations_all",
+                      icon: "list",
+                      permissions: ["super_admin", "center_admin"]
+                    },
+                    {
+                      label: "رزروهای امروز",
+                      value: "reservations_today",
+                      icon: "calendar",
+                      permissions: ["super_admin", "center_admin", "staff"]
+                    },
+                    {
+                      label: "لغو شده‌ها",
+                      value: "reservations_canceled",
+                      icon: "calendar-x",
+                      permissions: ["super_admin", "center_admin"]
+                    }
+                  ]
+                },
+                {
+                  label: "پرداخت‌ها",
+                  value: "payments",
+                  icon: "pey",
+                  permissions: ["super_admin", "center_admin"],
+
+                  children: [
+                    {
+                      label: "همه پرداخت‌ها",
+                      value: "all",
+                      icon: "pey",
+                      permissions: ["super_admin", "center_admin"]
+                    },
+                    {
+                      label: "پرداخت‌های موفق",
+                      value: "success",
+                      icon: "check-circle",
+                      permissions: ["super_admin", "center_admin"]
+                    },
+                    {
+                      label: "پرداخت‌های ناموفق",
+                      value: "failed",
+                      icon: "x-circle",
+                      permissions: ["super_admin"]
+                    }
+                  ]
+                },
+                {
+                  label: "سوالات فرم خدمات",
+                  value: "question",
+                  icon: "layers",
+                  permissions: ["super_admin"]
+                }
+              ];
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [
+                  {
+                    label: "\u062f\u0627\u0634\u0628\u0648\u0631\u062f",
+                    value: "dashboard",
+                    icon: "dashboard",
+                    permissions: ["super_admin", "center_admin", "staff"]
+                  },
+                  {
+                    label: "\u0645\u0631\u06a9\u0632 \u0645\u0646",
+                    value: "center",
+                    icon: "building",
+                    permissions: ["center_admin"]
+                  },
+                  {
+                    label:
+                      "\u0645\u062f\u06cc\u0631\u06cc\u062a \u06a9\u0627\u0631\u0628\u0631\u0627\u0646",
+                    value: "users",
+                    icon: "users",
+                    permissions: ["super_admin"]
+                  },
+                  {
+                    label:
+                      "\u0645\u062f\u06cc\u0631\u06cc\u062a \u0645\u0631\u0627\u06a9\u0632",
+                    value: "centers",
+                    icon: "building-2",
+                    permissions: ["super_admin"],
+                    children: [
+                      {
+                        label:
+                          "\u0644\u06cc\u0633\u062a \u0645\u0631\u0627\u06a9\u0632",
+                        value: "list",
+                        icon: "list",
+                        permissions: ["super_admin"]
+                      },
+                      {
+                        label:
+                          "\u0645\u0631\u0627\u06a9\u0632 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644",
+                        value: "inactive",
+                        icon: "ban",
+                        permissions: ["super_admin"]
+                      }
+                    ]
+                  },
+                  {
+                    label:
+                      "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062e\u062f\u0645\u0627\u062a \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646",
+                    value: "services",
+                    icon: "service",
+                    permissions: ["super_admin"]
+                  },
+                  {
+                    label:
+                      "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062e\u062f\u0645\u0627\u062a",
+                    value: "services",
+                    icon: "service",
+                    permissions: ["center_admin"]
+                  },
+                  {
+                    label:
+                      "\u0645\u062f\u06cc\u0631\u06cc\u062a \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646",
+                    value: "staffs",
+                    icon: "service",
+                    permissions: ["super_admin"]
+                  },
+                  {
+                    label:
+                      "\u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc\u200c\u0647\u0627",
+                    value: "categories",
+                    icon: "layers",
+                    permissions: ["super_admin"]
+                  },
+                  {
+                    label: "\u0631\u0632\u0631\u0648\u0647\u0627",
+                    value: "reservations",
+                    icon: "calendar",
+                    permissions: ["super_admin", "center_admin", "staff"],
+                    children: [
+                      {
+                        label:
+                          "\u0647\u0645\u0647 \u0631\u0632\u0631\u0648\u0647\u0627",
+                        value: "reservations_all",
+                        icon: "list",
+                        permissions: ["super_admin", "center_admin"]
+                      },
+                      {
+                        label:
+                          "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632",
+                        value: "reservations_today",
+                        icon: "calendar",
+                        permissions: ["super_admin", "center_admin", "staff"]
+                      },
+                      {
+                        label:
+                          "\u0644\u063a\u0648 \u0634\u062f\u0647\u200c\u0647\u0627",
+                        value: "reservations_canceled",
+                        icon: "calendar-x",
+                        permissions: ["super_admin", "center_admin"]
+                      }
+                    ]
+                  },
+                  {
+                    label:
+                      "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627",
+                    value: "payments",
+                    icon: "pey",
+                    permissions: ["super_admin", "center_admin"],
+                    children: [
+                      {
+                        label:
+                          "\u0647\u0645\u0647 \u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627",
+                        value: "all",
+                        icon: "pey",
+                        permissions: ["super_admin", "center_admin"]
+                      },
+                      {
+                        label:
+                          "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0645\u0648\u0641\u0642",
+                        value: "success",
+                        icon: "check-circle",
+                        permissions: ["super_admin", "center_admin"]
+                      },
+                      {
+                        label:
+                          "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0646\u0627\u0645\u0648\u0641\u0642",
+                        value: "failed",
+                        icon: "x-circle",
+                        permissions: ["super_admin"]
+                      }
+                    ]
+                  },
+                  {
+                    label:
+                      "\u0633\u0648\u0627\u0644\u0627\u062a \u0641\u0631\u0645 \u062e\u062f\u0645\u0627\u062a",
+                    value: "question",
+                    icon: "layers",
+                    permissions: ["super_admin"]
+                  }
+                ];
               }
-            ]
-          },
-          {
-            label:
-              "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062e\u062f\u0645\u0627\u062a \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646",
-            value: "services",
-            icon: "service",
-            permissions: ["super_admin"]
-          },
-          {
-            label:
-              "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062e\u062f\u0645\u0627\u062a",
-            value: "services",
-            icon: "service",
-            permissions: ["center_admin"]
-          },
-          {
-            label:
-              "\u0645\u062f\u06cc\u0631\u06cc\u062a \u067e\u0631\u0633\u062a\u0627\u0631\u0627\u0646",
-            value: "staffs",
-            icon: "service",
-            permissions: ["super_admin"]
-          },
-          {
-            label:
-              "\u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc\u200c\u0647\u0627",
-            value: "categories",
-            icon: "layers",
-            permissions: ["super_admin"]
-          },
-          {
-            label: "\u0631\u0632\u0631\u0648\u0647\u0627",
-            value: "reservations",
-            icon: "calendar",
-            permissions: ["super_admin", "center_admin", "staff"],
-            children: [
-              {
-                label:
-                  "\u0647\u0645\u0647 \u0631\u0632\u0631\u0648\u0647\u0627",
-                value: "reservations_all",
-                icon: "list",
-                permissions: ["super_admin", "center_admin"]
-              },
-              {
-                label:
-                  "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632",
-                value: "reservations_today",
-                icon: "calendar",
-                permissions: ["super_admin", "center_admin", "staff"]
-              },
-              {
-                label:
-                  "\u0644\u063a\u0648 \u0634\u062f\u0647\u200c\u0647\u0627",
-                value: "reservations_canceled",
-                icon: "calendar-x",
-                permissions: ["super_admin", "center_admin"]
-              }
-            ]
-          },
-          {
-            label: "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627",
-            value: "payments",
-            icon: "pey",
-            permissions: ["super_admin", "center_admin"],
-            children: [
-              {
-                label:
-                  "\u0647\u0645\u0647 \u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627",
-                value: "all",
-                icon: "pey",
-                permissions: ["super_admin", "center_admin"]
-              },
-              {
-                label:
-                  "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0645\u0648\u0641\u0642",
-                value: "success",
-                icon: "check-circle",
-                permissions: ["super_admin", "center_admin"]
-              },
-              {
-                label:
-                  "\u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u06cc \u0646\u0627\u0645\u0648\u0641\u0642",
-                value: "failed",
-                icon: "x-circle",
-                permissions: ["super_admin"]
-              }
-            ]
-          },
-          {
-            label:
-              "\u0633\u0648\u0627\u0644\u0627\u062a \u0641\u0631\u0645 \u062e\u062f\u0645\u0627\u062a",
-            value: "question",
-            icon: "layers",
-            permissions: ["super_admin"]
-          }
-        ]
+              throw e;
+            }
+          })()
       },
       {
         path: "main.role",

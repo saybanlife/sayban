@@ -61,6 +61,7 @@ import {
 
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import UploudeTime from "../../UploudeTime"; // plasmic-import: IxvwO5AMD5ex/component
 import Load from "../../Load"; // plasmic-import: giI5l8wTGhHv/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
@@ -119,6 +120,7 @@ export type PlasmicItemStaffs__OverridesType = {
   textCollapse?: Flex__<typeof TextCollapse>;
   svg?: Flex__<"svg">;
   button3?: Flex__<typeof Button>;
+  uploudeTime?: Flex__<typeof UploudeTime>;
   button?: Flex__<typeof Button>;
   load?: Flex__<typeof Load>;
 };
@@ -445,7 +447,7 @@ function PlasmicItemStaffs__RenderFunc(props: {
                     <React.Fragment>
                       {(() => {
                         try {
-                          return $props.item.center_info.name;
+                          return $props.item.center_name;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -603,7 +605,7 @@ function PlasmicItemStaffs__RenderFunc(props: {
   <span>
     <span style="font-size: 11px; opacity: 0.8; font-weight: normal; margin-left: 4px;">از</span>
     <strong style="font-size: 16px; font-weight: bold;">
-      ${Number($props.offer.min_price).toLocaleString("fa-IR")}
+      ${Number($props.item.min_price).toLocaleString("fa-IR")}
     </strong>
   </span>
   
@@ -612,7 +614,7 @@ function PlasmicItemStaffs__RenderFunc(props: {
   <span>
     <span style="font-size: 11px; opacity: 0.8; font-weight: normal; margin-left: 4px;">تا</span>
     <strong style="font-size: 16px; font-weight: bold;">
-      ${Number($props.offer.max_price).toLocaleString("fa-IR")}
+      ${Number($props.item.max_price).toLocaleString("fa-IR")}
     </strong>
     <span style="font-size: 11px; opacity: 0.8; font-weight: normal; margin-right: 4px;">تومان</span>
   </span>
@@ -704,45 +706,40 @@ function PlasmicItemStaffs__RenderFunc(props: {
                 "\u062a\u0627\u0631\u06cc\u062e \u0648 \u0632\u0645\u0627\u0646 \u0634\u0631\u0648\u0639"
               }
             </div>
-            <div className={classNames("all", "__wab_text", sty.text__nmSBx)}>
-              <div
-                className={"__wab_expr_html_text"}
-                dangerouslySetInnerHTML={{
-                  __html: (() => {
-                    try {
-                      return `
-<span style="display: inline-flex; align-items: center; font-family: inherit; direction: rtl;">
-  <span>
-    <span style="font-size: 11px; opacity: 0.8; font-weight: normal; margin-left: 4px;">از</span>
-    <strong style="font-size: 16px; font-weight: bold;">
-      ${Number($props.offer.min_price).toLocaleString("fa-IR")}
-    </strong>
-  </span>
-  
-  <span style="margin: 0 6px;"></span> 
-  
-  <span>
-    <span style="font-size: 11px; opacity: 0.8; font-weight: normal; margin-left: 4px;">تا</span>
-    <strong style="font-size: 16px; font-weight: bold;">
-      ${Number($props.offer.max_price).toLocaleString("fa-IR")}
-    </strong>
-    <span style="font-size: 11px; opacity: 0.8; font-weight: normal; margin-right: 4px;">تومان</span>
-  </span>
-</span>
-`;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "\u0633\u0627\u0628\u0642\u0647 \u06a9\u0627\u0631\u06cc";
-                      }
-                      throw e;
-                    }
-                  })()
-                }}
-              />
-            </div>
+            <UploudeTime
+              data-plasmic-name={"uploudeTime"}
+              data-plasmic-override={overrides.uploudeTime}
+              className={classNames("__wab_instance", sty.uploudeTime)}
+              posttime={(() => {
+                function addTime(
+                  dateString,
+                  timeString = "00:00",
+                  addHours = 0,
+                  addMinutes = 0
+                ) {
+                  if (!dateString) return null;
+                  const fullDateTimeString = `${dateString.trim()}T${timeString.trim()}`;
+                  const date = new Date(fullDateTimeString);
+                  if (date.toString() === "Invalid Date") return null;
+                  date.setMinutes(
+                    date.getMinutes() + (addHours * 60 + addMinutes)
+                  );
+                  return {
+                    year: date.getFullYear(),
+                    month: date.getMonth() + 1,
+                    day: date.getDate(),
+                    hour: date.getHours(),
+                    minute: date.getMinutes(),
+                    second: date.getSeconds()
+                  };
+                }
+                const result = addTime(
+                  $props?.item?.proposed_date,
+                  $props?.item?.proposed_time || "00:00"
+                );
+                return result;
+              })()}
+            />
           </div>
         </div>
         <Button
@@ -803,11 +800,21 @@ function PlasmicItemStaffs__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "img", "textCollapse", "svg", "button3", "button", "load"],
+  root: [
+    "root",
+    "img",
+    "textCollapse",
+    "svg",
+    "button3",
+    "uploudeTime",
+    "button",
+    "load"
+  ],
   img: ["img"],
   textCollapse: ["textCollapse"],
   svg: ["svg"],
   button3: ["button3"],
+  uploudeTime: ["uploudeTime"],
   button: ["button"],
   load: ["load"]
 } as const;
@@ -820,6 +827,7 @@ type NodeDefaultElementType = {
   textCollapse: typeof TextCollapse;
   svg: "svg";
   button3: typeof Button;
+  uploudeTime: typeof UploudeTime;
   button: typeof Button;
   load: typeof Load;
 };
@@ -890,6 +898,7 @@ export const PlasmicItemStaffs = Object.assign(
     textCollapse: makeNodeComponent("textCollapse"),
     svg: makeNodeComponent("svg"),
     button3: makeNodeComponent("button3"),
+    uploudeTime: makeNodeComponent("uploudeTime"),
     button: makeNodeComponent("button"),
     load: makeNodeComponent("load"),
 
