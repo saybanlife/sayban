@@ -153,7 +153,7 @@ function PlasmicStaffs__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          offer: "96"
+          offer: "106"
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
@@ -785,7 +785,7 @@ function PlasmicStaffs__RenderFunc(props: {
                               const average = (min + max) / 2;
                               const twentyPercentOfAverage = average * 0.2;
                               return {
-                                id: $state.centers.data.result.reservation_id,
+                                id: currentItem.reservation_id,
                                 staff_id: currentItem.id,
                                 center_id: currentItem.center_id,
                                 final_price: twentyPercentOfAverage,
