@@ -772,11 +772,19 @@ function PlasmicStaffs__RenderFunc(props: {
                             "POST",
                             "reservations/steff/update",
                             undefined,
-                            {
-                              id: $state.centers.data.result.reservation_id,
-                              staff_id: currentItem.id,
-                              center_id: currentItem.center_id
-                            },
+                            (() => {
+                              const min = parseInt(currentItem.min_price);
+                              const max = parseInt(currentItem.max_price);
+                              const average = (min + max) / 2;
+                              const twentyPercentOfAverage = average * 0.2;
+                              return {
+                                id: $state.centers.data.result.reservation_id,
+                                staff_id: currentItem.id,
+                                center_id: currentItem.center_id,
+                                final_price: twentyPercentOfAverage,
+                                status: "pending"
+                              };
+                            })(),
 
                             {
                               headers: {
