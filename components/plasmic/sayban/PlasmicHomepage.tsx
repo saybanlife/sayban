@@ -1571,73 +1571,79 @@ function PlasmicHomepage__RenderFunc(props: {
               ? true
               : hasVariant($state, "homePage2", "reminder")
                 ? true
-                : hasVariant($state, "page", "offers")
+                : hasVariant($state, "page", "staff")
                   ? true
-                  : hasVariant($state, "page", "bookNurse")
+                  : hasVariant($state, "page", "offers")
                     ? true
-                    : hasVariant($state, "page", "addAddress")
+                    : hasVariant($state, "page", "bookNurse")
                       ? true
-                      : hasVariant($state, "page", "address")
+                      : hasVariant($state, "page", "addAddress")
                         ? true
-                        : hasVariant($state, "page", "reminderSetting")
+                        : hasVariant($state, "page", "address")
                           ? true
-                          : hasVariant($state, "page", "patient")
+                          : hasVariant($state, "page", "reminderSetting")
                             ? true
-                            : hasVariant($state, "page", "addPatient")
+                            : hasVariant($state, "page", "patient")
                               ? true
-                              : hasVariant($state, "page", "notif")
+                              : hasVariant($state, "page", "addPatient")
                                 ? true
-                                : hasVariant($state, "page", "rules")
+                                : hasVariant($state, "page", "notif")
                                   ? true
-                                  : hasVariant($state, "page", "faq")
+                                  : hasVariant($state, "page", "rules")
                                     ? true
-                                    : hasVariant($state, "page", "about")
+                                    : hasVariant($state, "page", "faq")
                                       ? true
-                                      : hasVariant($state, "page", "booking")
+                                      : hasVariant($state, "page", "about")
                                         ? true
-                                        : hasVariant($state, "page", "editUser")
+                                        : hasVariant($state, "page", "booking")
                                           ? true
                                           : hasVariant(
                                                 $state,
                                                 "page",
-                                                "payment"
+                                                "editUser"
                                               )
                                             ? true
                                             : hasVariant(
                                                   $state,
                                                   "page",
-                                                  "center"
+                                                  "payment"
                                                 )
                                               ? true
                                               : hasVariant(
                                                     $state,
                                                     "page",
-                                                    "subcategories"
+                                                    "center"
                                                   )
                                                 ? true
                                                 : hasVariant(
                                                       $state,
                                                       "page",
-                                                      "categories"
+                                                      "subcategories"
                                                     )
                                                   ? true
-                                                  : (() => {
-                                                      try {
-                                                        return (
-                                                          $state.token != ""
-                                                        );
-                                                      } catch (e) {
-                                                        if (
-                                                          e instanceof
-                                                            TypeError ||
-                                                          e?.plasmicType ===
-                                                            "PlasmicUndefinedDataError"
-                                                        ) {
-                                                          return true;
+                                                  : hasVariant(
+                                                        $state,
+                                                        "page",
+                                                        "categories"
+                                                      )
+                                                    ? true
+                                                    : (() => {
+                                                        try {
+                                                          return (
+                                                            $state.token != ""
+                                                          );
+                                                        } catch (e) {
+                                                          if (
+                                                            e instanceof
+                                                              TypeError ||
+                                                            e?.plasmicType ===
+                                                              "PlasmicUndefinedDataError"
+                                                          ) {
+                                                            return true;
+                                                          }
+                                                          throw e;
                                                         }
-                                                        throw e;
-                                                      }
-                                                    })()
+                                                      })()
           ) ? (
             <div
               data-plasmic-name={"homePage"}
@@ -1713,6 +1719,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   "reminderSetting"
                 ),
                 [sty.homePagepage_rules]: hasVariant($state, "page", "rules"),
+                [sty.homePagepage_staff]: hasVariant($state, "page", "staff"),
                 [sty.homePagepage_subcategories]: hasVariant(
                   $state,
                   "page",
@@ -2851,44 +2858,46 @@ function PlasmicHomepage__RenderFunc(props: {
           {(
             hasVariant($state, "homePage2", "reminder")
               ? true
-              : hasVariant($state, "page", "offers")
+              : hasVariant($state, "page", "staff")
                 ? true
-                : hasVariant($state, "page", "bookNurse")
+                : hasVariant($state, "page", "offers")
                   ? true
-                  : hasVariant($state, "page", "addAddress")
+                  : hasVariant($state, "page", "bookNurse")
                     ? true
-                    : hasVariant($state, "page", "address")
+                    : hasVariant($state, "page", "addAddress")
                       ? true
-                      : hasVariant($state, "page", "reminderSetting")
+                      : hasVariant($state, "page", "address")
                         ? true
-                        : hasVariant($state, "page", "patient")
+                        : hasVariant($state, "page", "reminderSetting")
                           ? true
-                          : hasVariant($state, "page", "addPatient")
+                          : hasVariant($state, "page", "patient")
                             ? true
-                            : hasVariant($state, "page", "notif")
+                            : hasVariant($state, "page", "addPatient")
                               ? true
-                              : hasVariant($state, "page", "rules")
+                              : hasVariant($state, "page", "notif")
                                 ? true
-                                : hasVariant($state, "page", "faq")
+                                : hasVariant($state, "page", "rules")
                                   ? true
-                                  : hasVariant($state, "page", "about")
+                                  : hasVariant($state, "page", "faq")
                                     ? true
-                                    : hasVariant($state, "page", "booking")
+                                    : hasVariant($state, "page", "about")
                                       ? true
-                                      : (() => {
-                                          try {
-                                            return $state.token != "";
-                                          } catch (e) {
-                                            if (
-                                              e instanceof TypeError ||
-                                              e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                            ) {
-                                              return true;
+                                      : hasVariant($state, "page", "booking")
+                                        ? true
+                                        : (() => {
+                                            try {
+                                              return $state.token != "";
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return true;
+                                              }
+                                              throw e;
                                             }
-                                            throw e;
-                                          }
-                                        })()
+                                          })()
           ) ? (
             <div
               className={classNames("all", sty.freeBox__yWuCa, {
@@ -2966,6 +2975,11 @@ function PlasmicHomepage__RenderFunc(props: {
                   $state,
                   "page",
                   "rules"
+                ),
+                [sty.freeBoxpage_staff__yWuCaHlNL]: hasVariant(
+                  $state,
+                  "page",
+                  "staff"
                 )
               })}
             >
@@ -6185,7 +6199,8 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-override={overrides.staffs}
             center={generateStateValueProp($state, ["staffs", "center"])}
             className={classNames("__wab_instance", sty.staffs, {
-              [sty.staffspage_offers]: hasVariant($state, "page", "offers")
+              [sty.staffspage_offers]: hasVariant($state, "page", "offers"),
+              [sty.staffspage_staff]: hasVariant($state, "page", "staff")
             })}
             offer={(() => {
               try {
@@ -6312,6 +6327,7 @@ function PlasmicHomepage__RenderFunc(props: {
               [sty.staffhomePage2_home_page_offers]:
                 hasVariant($state, "page", "offers") &&
                 hasVariant($state, "homePage2", "home"),
+              [sty.staffpage_center]: hasVariant($state, "page", "center"),
               [sty.staffpage_offers]: hasVariant($state, "page", "offers"),
               [sty.staffpage_staff]: hasVariant($state, "page", "staff")
             })}
