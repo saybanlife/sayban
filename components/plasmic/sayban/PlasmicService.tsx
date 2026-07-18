@@ -72,13 +72,16 @@ createPlasmicElementProxy;
 
 export type PlasmicService__VariantMembers = {
   select: "select";
+  notSelect: "notSelect";
 };
 export type PlasmicService__VariantsArgs = {
   select?: SingleBooleanChoiceArg<"select">;
+  notSelect?: SingleBooleanChoiceArg<"notSelect">;
 };
 type VariantPropType = keyof PlasmicService__VariantsArgs;
 export const PlasmicService__VariantProps = new Array<VariantPropType>(
-  "select"
+  "select",
+  "notSelect"
 );
 
 export type PlasmicService__ArgsType = {
@@ -100,6 +103,7 @@ export interface DefaultServiceProps {
   currentItem?: any;
   onClick?: (event: any) => void;
   select?: SingleBooleanChoiceArg<"select">;
+  notSelect?: SingleBooleanChoiceArg<"notSelect">;
   className?: string;
 }
 
@@ -149,6 +153,12 @@ function PlasmicService__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.select
+      },
+      {
+        path: "notSelect",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.notSelect
       }
     ],
     [$props, $ctx, $refs]
@@ -177,7 +187,10 @@ function PlasmicService__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
-        { [sty.rootselect]: hasVariant($state, "select", "select") }
+        {
+          [sty.rootnotSelect]: hasVariant($state, "notSelect", "notSelect"),
+          [sty.rootselect]: hasVariant($state, "select", "select")
+        }
       )}
       onClick={args.onClick}
     >
@@ -186,26 +199,81 @@ function PlasmicService__RenderFunc(props: {
           [sty.textselect__lb1NOBdwMm]: hasVariant($state, "select", "select")
         })}
       >
-        <React.Fragment>{$props.currentItem.name}</React.Fragment>
+        <React.Fragment>{$props.currentItem?.name}</React.Fragment>
       </div>
       <div className={classNames("all", "__wab_text", sty.text___0HVdD)}>
-        <React.Fragment>{$props.currentItem.description}</React.Fragment>
+        <React.Fragment>{$props.currentItem?.description}</React.Fragment>
       </div>
-      <div className={classNames("all", "__wab_text", sty.text__mXtnd)}>
+      <div
+        className={classNames("all", "__wab_text", sty.text__mXtnd, {
+          [sty.textnotSelect__mXtnddb2Kt]: hasVariant(
+            $state,
+            "notSelect",
+            "notSelect"
+          )
+        })}
+      >
         {""}
       </div>
-      <div className={classNames("all", sty.freeBox__lqglh)}>
-        <div className={classNames("all", "__wab_text", sty.text___1Jg8Y)}>
-          <div
-            className={"__wab_expr_html_text"}
-            dangerouslySetInnerHTML={{
-              __html: `${$props.currentItem.final_price.toLocaleString()} تومان 
- <span style="font-size: 12px; opacity: 0.8;">— ${$props.currentItem.duration_minutes} دقیقه</span>`
-            }}
-          />
+      <div
+        className={classNames("all", sty.freeBox__lqglh, {
+          [sty.freeBoxnotSelect__lqglHdb2Kt]: hasVariant(
+            $state,
+            "notSelect",
+            "notSelect"
+          )
+        })}
+      >
+        <div
+          className={classNames("all", "__wab_text", sty.text___1Jg8Y, {
+            [sty.textnotSelect___1Jg8Ydb2Kt]: hasVariant(
+              $state,
+              "notSelect",
+              "notSelect"
+            ),
+            [sty.textselect___1Jg8YBdwMm]: hasVariant(
+              $state,
+              "select",
+              "select"
+            ),
+            [sty.textselect_notSelect___1Jg8YBdwMmDb2Kt]:
+              hasVariant($state, "notSelect", "notSelect") &&
+              hasVariant($state, "select", "select")
+          })}
+        >
+          {hasVariant($state, "notSelect", "notSelect") ? (
+            <div
+              className={"__wab_expr_html_text"}
+              dangerouslySetInnerHTML={{ __html: "" }}
+            />
+          ) : (
+            <div
+              className={"__wab_expr_html_text"}
+              dangerouslySetInnerHTML={{
+                __html: `${$props.currentItem?.final_price.toLocaleString()} تومان 
+ <span style="font-size: 12px; opacity: 0.8;">— ${$props.currentItem?.duration_minutes} دقیقه</span>`
+              }}
+            />
+          )}
         </div>
-        <div className={classNames("all", sty.freeBox__jBZol)}>
-          <div className={classNames("all", "__wab_text", sty.text__mDkHr)}>
+        <div
+          className={classNames("all", sty.freeBox__jBZol, {
+            [sty.freeBoxnotSelect__jBZoldb2Kt]: hasVariant(
+              $state,
+              "notSelect",
+              "notSelect"
+            )
+          })}
+        >
+          <div
+            className={classNames("all", "__wab_text", sty.text__mDkHr, {
+              [sty.textselect__mDkHrBdwMm]: hasVariant(
+                $state,
+                "select",
+                "select"
+              )
+            })}
+          >
             {"\u0631\u0632\u0648 \u0646\u0648\u0628\u062a"}
           </div>
           <Icon34Icon

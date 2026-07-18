@@ -29757,6 +29757,32 @@
           "cssFilePath": "plasmic/sayban/PlasmicItemStaffs.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "-tivlNol30TA",
+          "name": "Staff",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicStaff.tsx",
+          "importSpec": {
+            "modulePath": "Staff.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicStaff.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "Ok7oDnvmXicS",
+          "name": "ItemStaffs2",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicItemStaffs2.tsx",
+          "importSpec": {
+            "modulePath": "ItemStaffs2.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicItemStaffs2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

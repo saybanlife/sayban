@@ -13,10 +13,10 @@
   align-items: center;
   justify-self: flex-start;
   background: #ffffff00;
-  row-gap: 10px;
+  row-gap: 0px;
   min-width: 0;
   border-radius: 50px;
-  padding: var(--token-73iLa06AE6f4);
+  padding: var(--token-rfsFxiclAtek);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__wfph4 {
@@ -56,7 +56,7 @@
   object-fit: cover;
   max-width: 100%;
   width: 100%;
-  height: 200px;
+  height: 150px;
   color: var(--token-sdHWFpeV8MAu);
   min-width: 0;
   flex-shrink: 0;
@@ -97,7 +97,7 @@
   max-width: 100%;
   text-align: center;
   font-weight: 700;
-  font-size: var(--token-EBGyLHrpfttb);
+  font-size: var(--token-Tca_MqWoqq_b);
   color: var(--token-sdHWFpeV8MAu);
   font-family: "Roboto", sans-serif;
   font-style: normal;
@@ -122,7 +122,7 @@
   max-width: 100%;
   text-align: justify;
   font-weight: 400;
-  font-size: var(--token-B10hUni6jzpI);
+  font-size: var(--token-N8Pb0ZuDQAeF);
   color: var(--token-u4K3HGUHLazG);
   font-family: "Roboto", sans-serif;
   font-style: normal;
@@ -214,7 +214,7 @@
 }
 .text__gvoux {
   animation: none;
-  font-size: var(--token-B10hUni6jzpI);
+  font-size: var(--token-N8Pb0ZuDQAeF);
   font-weight: 700;
   font-family: "Roboto", sans-serif;
   font-style: normal;
@@ -263,7 +263,7 @@
 }
 .text__eandC {
   animation: none;
-  font-size: var(--token-B10hUni6jzpI);
+  font-size: var(--token-N8Pb0ZuDQAeF);
   font-weight: 700;
   padding-right: 0px;
   font-family: "Roboto", sans-serif;
@@ -306,10 +306,10 @@
   align-items: center;
   justify-self: flex-start;
   background: #ffffff00;
-  row-gap: 10px;
+  row-gap: 0px;
   min-width: 0;
   border-radius: 50px;
-  padding: var(--token-73iLa06AE6f4);
+  padding: var(--token-rfsFxiclAtek);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__ssxAa {
@@ -326,7 +326,7 @@
   object-fit: cover;
   max-width: 100%;
   width: 100%;
-  height: 200px;
+  height: 150px;
   color: var(--token-8IZ3P-rlJFBA);
   min-width: 0;
   flex-shrink: 0;
@@ -422,7 +422,7 @@
   max-width: 100%;
   text-align: center;
   font-weight: 700;
-  font-size: var(--token-EBGyLHrpfttb);
+  font-size: var(--token-Tca_MqWoqq_b);
   color: var(--token--ieHgGbFH1Fa);
   font-family: "Roboto", sans-serif;
   font-style: normal;
@@ -446,7 +446,7 @@
   max-width: 100%;
   text-align: justify;
   font-weight: 400;
-  font-size: var(--token-B10hUni6jzpI);
+  font-size: var(--token-N8Pb0ZuDQAeF);
   color: var(--token-u4K3HGUHLazG);
   font-family: "Roboto", sans-serif;
   font-style: normal;
@@ -537,7 +537,7 @@
 }
 .text___09M7R {
   animation: none;
-  font-size: var(--token-B10hUni6jzpI);
+  font-size: var(--token-N8Pb0ZuDQAeF);
   font-weight: 700;
   font-family: "Roboto", sans-serif;
   font-style: normal;

@@ -86,6 +86,7 @@ import AddAddress from "../../AddAddress"; // plasmic-import: KL79QbMT1Ux3/compo
 import PayResult from "../../PayResult"; // plasmic-import: _Vn_IJAgvRM-/component
 import CenterOffers from "../../CenterOffers"; // plasmic-import: mdgKYN8y8UQf/component
 import Staffs from "../../Staffs"; // plasmic-import: 1DOsDXz78UnH/component
+import Staff from "../../Staff"; // plasmic-import: -tivlNol30TA/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -152,7 +153,8 @@ export type PlasmicHomepage__VariantMembers = {
     | "address"
     | "addAddress"
     | "bookNurse"
-    | "offers";
+    | "offers"
+    | "staff";
   search2: "search2";
   homePage2: "home" | "reminder" | "user" | "booking";
 };
@@ -175,6 +177,7 @@ export type PlasmicHomepage__VariantsArgs = {
     | "addAddress"
     | "bookNurse"
     | "offers"
+    | "staff"
   >;
   search2?: SingleBooleanChoiceArg<"search2">;
   homePage2?: SingleChoiceArg<"home" | "reminder" | "user" | "booking">;
@@ -222,6 +225,7 @@ export type PlasmicHomepage__OverridesType = {
   payResult?: Flex__<typeof PayResult>;
   centerOffers?: Flex__<typeof CenterOffers>;
   staffs?: Flex__<typeof Staffs>;
+  staff?: Flex__<typeof Staff>;
 };
 
 export interface DefaultHomepageProps {}
@@ -312,6 +316,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 if ($ctx.params?.slug?.find(i => i.includes("pay_")))
                   return "payment";
                 if ($ctx.params?.slug?.includes("center")) return "center";
+                if ($ctx.params?.slug?.includes("staff")) return "staff";
                 if ($ctx.params?.slug?.includes("offer")) return "offers";
                 if ($ctx.params?.slug?.includes("editProfile"))
                   return "editUser";
@@ -1271,10 +1276,22 @@ function PlasmicHomepage__RenderFunc(props: {
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
-            {
-              {
-                return ["true", "false"].includes($ctx.query.status);
+            try {
+              return (() => {
+                {
+                  {
+                    return ["true", "false"].includes($ctx.query.status);
+                  }
+                }
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
               }
+              throw e;
             }
           })()
       },
@@ -1307,6 +1324,30 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "staff.entryOpendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "staff.id2",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "staff.userSelectOpendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "staffs.staff",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -5951,10 +5992,24 @@ function PlasmicHomepage__RenderFunc(props: {
                   name: "payResult.dialogOpendialog",
                   initFunc: ({ $props, $state, $queries, $q }) =>
                     (() => {
-                      {
-                        {
-                          return ["true", "false"].includes($ctx.query.status);
+                      try {
+                        return (() => {
+                          {
+                            {
+                              return ["true", "false"].includes(
+                                $ctx.query.status
+                              );
+                            }
+                          }
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
                         }
+                        throw e;
                       }
                     })()
                 }
@@ -6132,10 +6187,9 @@ function PlasmicHomepage__RenderFunc(props: {
             })}
             offer={(() => {
               try {
-                return (() => {
-                  const index = $state.slug.findIndex(i => i === "offer");
-                  return index === -1 ? "" : $state.slug[index + 1];
-                })();
+                return $ctx.params.slug
+                  .find(i => i.includes("offer"))
+                  .split("offer_")[1];
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -6146,11 +6200,172 @@ function PlasmicHomepage__RenderFunc(props: {
                 throw e;
               }
             })()}
+            onCenter={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            if ($state.staffs.staff) {
+                              $state.slug.push(`staff_${$state.staffs.staff}`);
+                            }
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
             onCenterChange2={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["staffs", "center"]).apply(
                 null,
                 eventArgs
               );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onStaffChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["staffs", "staff"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            staff={generateStateValueProp($state, ["staffs", "staff"])}
+            token={(() => {
+              try {
+                return $state.token;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          />
+
+          <Staff
+            data-plasmic-name={"staff"}
+            data-plasmic-override={overrides.staff}
+            className={classNames("__wab_instance", sty.staff, {
+              [sty.staffhomePage2_home_page_offers]:
+                hasVariant($state, "page", "offers") &&
+                hasVariant($state, "homePage2", "home"),
+              [sty.staffpage_offers]: hasVariant($state, "page", "offers"),
+              [sty.staffpage_staff]: hasVariant($state, "page", "staff")
+            })}
+            entryOpendialog={generateStateValueProp($state, [
+              "staff",
+              "entryOpendialog"
+            ])}
+            id={(() => {
+              try {
+                return $ctx.params.slug
+                  .find(i => i.includes("staff_"))
+                  .split("staff_")[1];
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            id2={generateStateValueProp($state, ["staff", "id2"])}
+            onEntryOpendialogChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "staff",
+                "entryOpendialog"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onId2Change={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["staff", "id2"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onUserSelectOpendialogChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "staff",
+                "userSelectOpendialog"
+              ]).apply(null, eventArgs);
 
               if (
                 eventArgs.length > 1 &&
@@ -6173,6 +6388,10 @@ function PlasmicHomepage__RenderFunc(props: {
                 throw e;
               }
             })()}
+            userSelectOpendialog={generateStateValueProp($state, [
+              "staff",
+              "userSelectOpendialog"
+            ])}
           />
         </div>
       </div>
@@ -6212,7 +6431,8 @@ const PlasmicDescendants = {
     "addAddress",
     "payResult",
     "centerOffers",
-    "staffs"
+    "staffs",
+    "staff"
   ],
   sideEffect: ["sideEffect"],
   homePage: ["homePage", "menu2", "textInput", "user", "mainLiad"],
@@ -6243,7 +6463,8 @@ const PlasmicDescendants = {
   addAddress: ["addAddress"],
   payResult: ["payResult"],
   centerOffers: ["centerOffers"],
-  staffs: ["staffs"]
+  staffs: ["staffs"],
+  staff: ["staff"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -6280,6 +6501,7 @@ type NodeDefaultElementType = {
   payResult: typeof PayResult;
   centerOffers: typeof CenterOffers;
   staffs: typeof Staffs;
+  staff: typeof Staff;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -6374,6 +6596,7 @@ export const PlasmicHomepage = Object.assign(
     payResult: makeNodeComponent("payResult"),
     centerOffers: makeNodeComponent("centerOffers"),
     staffs: makeNodeComponent("staffs"),
+    staff: makeNodeComponent("staff"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

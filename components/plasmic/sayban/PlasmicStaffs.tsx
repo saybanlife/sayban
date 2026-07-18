@@ -93,6 +93,8 @@ export type PlasmicStaffs__ArgsType = {
   onCenter?: () => void;
   token?: string;
   offer?: string;
+  staff?: string;
+  onStaffChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicStaffs__ArgsType;
 export const PlasmicStaffs__ArgProps = new Array<ArgPropType>(
@@ -102,7 +104,9 @@ export const PlasmicStaffs__ArgProps = new Array<ArgPropType>(
   "slug",
   "onCenter",
   "token",
-  "offer"
+  "offer",
+  "staff",
+  "onStaffChange"
 );
 
 export type PlasmicStaffs__OverridesType = {
@@ -123,6 +127,8 @@ export interface DefaultStaffsProps {
   onCenter?: () => void;
   token?: string;
   offer?: string;
+  staff?: string;
+  onStaffChange?: (val: string) => void;
   className?: string;
 }
 
@@ -270,6 +276,14 @@ function PlasmicStaffs__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "staff",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "staff",
+        onChangeProp: "onStaffChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -671,6 +685,62 @@ function PlasmicStaffs__RenderFunc(props: {
             return (() => {
               const child$Props = {
                 className: classNames("__wab_instance", sty.itemStaffs),
+                goToCenter: async event => {
+                  const $steps = {};
+
+                  $steps["runCode"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return ($state.staff = currentItem.staff_id);
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode"] != null &&
+                    typeof $steps["runCode"] === "object" &&
+                    typeof $steps["runCode"].then === "function"
+                  ) {
+                    $steps["runCode"] = await $steps["runCode"];
+                  }
+
+                  $steps["invokeGlobalAction"] = true
+                    ? (() => {
+                        const actionArgs = { args: [200] };
+                        return $globalActions["Fragment.wait"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction"] != null &&
+                    typeof $steps["invokeGlobalAction"] === "object" &&
+                    typeof $steps["invokeGlobalAction"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction"] =
+                      await $steps["invokeGlobalAction"];
+                  }
+
+                  $steps["runOnCenter"] = true
+                    ? (() => {
+                        const actionArgs = { eventRef: $props["onCenter"] };
+                        return (({ eventRef, args }) => {
+                          return eventRef?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runOnCenter"] != null &&
+                    typeof $steps["runOnCenter"] === "object" &&
+                    typeof $steps["runOnCenter"].then === "function"
+                  ) {
+                    $steps["runOnCenter"] = await $steps["runOnCenter"];
+                  }
+                },
                 goToDetails: async event => {
                   const $steps = {};
 

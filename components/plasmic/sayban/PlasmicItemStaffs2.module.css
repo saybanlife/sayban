@@ -1,0 +1,281 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-rfsFxiclAtek);
+  position: relative;
+  background: none;
+  box-shadow: none;
+  min-width: 0;
+  padding: var(--token-LBC0X5IbL9bo);
+}
+.freeBox__kSAb {
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  column-gap: var(--token-LBC0X5IbL9bo);
+  justify-content: space-between;
+  min-width: 0;
+}
+.freeBox___8W66F {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: var(--token-ckp0_SexMOmY);
+  height: var(--token-ckp0_SexMOmY);
+  max-width: 100%;
+  background: var(--token-ee2TuxDknsJj);
+  align-self: center;
+  position: relative;
+  flex-shrink: 0;
+  border-radius: 100px;
+  padding: var(--token-IUVIp1DHBSFd);
+}
+.img {
+  object-fit: cover;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  object-position: 100% 100%;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 50%;
+  border-width: 0px;
+}
+.img > picture > img {
+  object-fit: cover;
+  object-position: 100% 100%;
+}
+.freeBox__jPmwO {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  row-gap: var(--token-RuQNZpYm0Yds);
+  min-width: 0;
+  padding: 0px;
+}
+.freeBoxhome__jPmwOvEsIk {
+  align-items: center;
+  justify-content: center;
+}
+.freeBox__awJcc {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-rfsFxiclAtek);
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__toSzM {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: var(--token-73iLa06AE6f4);
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__m4Hui {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-RuQNZpYm0Yds);
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__nTxl3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-D_3fp_JIDs1G);
+  background: var(--token-WR9Tzpyxuj4A);
+  min-width: 0;
+  border-radius: var(--token-cfon0PHiXQoL);
+  padding: var(--token-c8-rjzKYORFj) var(--token-0tl2H1TRPHhV);
+}
+.freeBoxbooking__nTxl3QdUax {
+  display: none;
+}
+.text__ldZxJ {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  color: var(--token--ieHgGbFH1Fa);
+  font-weight: 700;
+  font-size: var(--token-R7X4jvpZsbD-);
+  text-align: right;
+  line-height: 1;
+}
+.text__xXfpk {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  font-size: var(--token-U1UvBDD-VoLt);
+  color: var(--token-KjATzAYJ5IB7);
+}
+.freeBox__mdZKp {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-RuQNZpYm0Yds);
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__m9MLz {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-D_3fp_JIDs1G);
+  background: var(--token-Yo4gdKCgyuAu);
+  min-width: 0;
+  border-radius: var(--token-cfon0PHiXQoL);
+  padding: var(--token-c8-rjzKYORFj) var(--token-0tl2H1TRPHhV);
+}
+.freeBoxbooking__m9MLzqdUax {
+  display: none;
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-NH1ZLrkO-KHD);
+  width: 15px;
+  height: 15px;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+.text___51NZr {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-NH1ZLrkO-KHD);
+  font-weight: 700;
+  font-size: var(--token-R7X4jvpZsbD-);
+  text-align: right;
+  line-height: 1;
+}
+.text__nIrqE {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  font-size: var(--token-U1UvBDD-VoLt);
+  color: var(--token-KjATzAYJ5IB7);
+}
+.freeBox__b5MwM {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-RuQNZpYm0Yds);
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__ly94B {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-D_3fp_JIDs1G);
+  background: var(--token-LN1YkB123lXQ);
+  min-width: 0;
+  border-radius: var(--token-cfon0PHiXQoL);
+  padding: var(--token-c8-rjzKYORFj) var(--token-0tl2H1TRPHhV);
+}
+.freeBoxbooking__ly94BqdUax {
+  display: none;
+}
+.text__uwJg {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-C6B6ZAuqICKE);
+  font-weight: 700;
+  font-size: var(--token-R7X4jvpZsbD-);
+  text-align: right;
+  line-height: 1;
+}
+.text__rrwPv {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  font-size: var(--token-U1UvBDD-VoLt);
+  color: var(--token-KjATzAYJ5IB7);
+}
+.freeBox___4FoUk {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  row-gap: var(--token-RuQNZpYm0Yds);
+  align-self: flex-start;
+  padding: 0px;
+}
+.text__ft7K9 {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-9M5jRUPt8Msb);
+  font-weight: 700;
+  font-size: var(--token-Tca_MqWoqq_b);
+  text-align: right;
+}
+.text___6GhB {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-KjATzAYJ5IB7);
+  font-weight: 400;
+  font-size: var(--token-R7X4jvpZsbD-);
+  text-align: right;
+}
