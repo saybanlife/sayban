@@ -316,8 +316,10 @@ function PlasmicHomepage__RenderFunc(props: {
                 if ($ctx.params?.slug?.find(i => i.includes("pay_")))
                   return "payment";
                 if ($ctx.params?.slug?.includes("center")) return "center";
-                if ($ctx.params?.slug?.includes("staff")) return "staff";
-                if ($ctx.params?.slug?.includes("offer")) return "offers";
+                if ($ctx.params?.slug?.find(i => i.includes("staff_")))
+                  return "staff";
+                if ($ctx.params?.slug?.find(i => i.includes("offer_")))
+                  return "offers";
                 if ($ctx.params?.slug?.includes("editProfile"))
                   return "editUser";
                 if ($ctx.params?.slug?.includes("booking")) return "booking";
