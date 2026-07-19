@@ -115,7 +115,6 @@ export const PlasmicUser__ArgProps = new Array<ArgPropType>(
 export type PlasmicUser__OverridesType = {
   root?: Flex__<"section">;
   section?: Flex__<"section">;
-  img?: Flex__<typeof PlasmicImg__>;
   _switch?: Flex__<typeof Switch>;
   switch2?: Flex__<typeof Switch>;
   modal?: Flex__<typeof Modal>;
@@ -262,26 +261,6 @@ function PlasmicUser__RenderFunc(props: {
         className={classNames("all", sty.section)}
       >
         <div className={classNames("all", sty.freeBox__wxYE, "page ")}>
-          <PlasmicImg__
-            data-plasmic-name={"img"}
-            data-plasmic-override={overrides.img}
-            alt={""}
-            className={classNames(sty.img)}
-            displayHeight={"auto"}
-            displayMaxHeight={"none"}
-            displayMaxWidth={"100%"}
-            displayMinHeight={"0"}
-            displayMinWidth={"0"}
-            displayWidth={"auto"}
-            loading={"lazy"}
-            src={{
-              src: "/plasmic/sayban/images/image24.svg",
-              fullWidth: 200,
-              fullHeight: 200,
-              aspectRatio: undefined
-            }}
-          />
-
           <div
             className={classNames("all", sty.freeBox__apRfu)}
             onClick={async event => {
@@ -1076,6 +1055,8 @@ function PlasmicUser__RenderFunc(props: {
         showFooter={false}
         showHeader={false}
       />
+
+      <div className={classNames("all", sty.freeBox__xnhpN, "page ")} />
     </section>
   ) as React.ReactElement | null;
 }
@@ -1084,15 +1065,13 @@ const PlasmicDescendants = {
   root: [
     "root",
     "section",
-    "img",
     "_switch",
     "switch2",
     "modal",
     "button2",
     "button3"
   ],
-  section: ["section", "img"],
-  img: ["img"],
+  section: ["section"],
   _switch: ["_switch"],
   switch2: ["switch2"],
   modal: ["modal", "button2", "button3"],
@@ -1105,7 +1084,6 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "section";
   section: "section";
-  img: typeof PlasmicImg__;
   _switch: typeof Switch;
   switch2: typeof Switch;
   modal: typeof Modal;
@@ -1176,7 +1154,6 @@ export const PlasmicUser = Object.assign(
   {
     // Helper components rendering sub-elements
     section: makeNodeComponent("section"),
-    img: makeNodeComponent("img"),
     _switch: makeNodeComponent("_switch"),
     switch2: makeNodeComponent("switch2"),
     modal: makeNodeComponent("modal"),
