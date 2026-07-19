@@ -99,14 +99,14 @@ export const PlasmicFilterSteff__VariantProps = new Array<VariantPropType>(
 
 export type PlasmicFilterSteff__ArgsType = {
   opendialog?: boolean;
-  onOpendialogChange?: (val: string) => void;
+  onOpendialogChange2?: (val: string) => void;
   filtes?: any;
   onFiltesChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicFilterSteff__ArgsType;
 export const PlasmicFilterSteff__ArgProps = new Array<ArgPropType>(
   "opendialog",
-  "onOpendialogChange",
+  "onOpendialogChange2",
   "filtes",
   "onFiltesChange"
 );
@@ -126,7 +126,7 @@ export type PlasmicFilterSteff__OverridesType = {
 
 export interface DefaultFilterSteffProps {
   opendialog?: boolean;
-  onOpendialogChange?: (val: string) => void;
+  onOpendialogChange2?: (val: string) => void;
   filtes?: any;
   onFiltesChange?: (val: string) => void;
   fullpage?: SingleBooleanChoiceArg<"fullpage">;
@@ -200,7 +200,7 @@ function PlasmicFilterSteff__RenderFunc(props: {
         variableType: "boolean",
 
         valueProp: "opendialog",
-        onChangeProp: "onOpendialogChange"
+        onChangeProp: "onOpendialogChange2"
       },
       {
         path: "button3.color",
@@ -622,7 +622,7 @@ function PlasmicFilterSteff__RenderFunc(props: {
             >
               {hasVariant($state, "fullpage", "fullpage")
                 ? "\u062c\u0646\u0633\u06cc\u062a \u067e\u0631\u0633\u062a\u0627\u0631"
-                : "\u0648\u0636\u0639\u06cc\u062a \u062f\u0633\u062a\u0631\u0633\u06cc "}
+                : "\u062c\u0646\u0633\u06cc\u062a \u067e\u0631\u0633\u062a\u0627\u0631"}
             </div>
             <SelectedComponnent
               data-plasmic-name={"availability"}
@@ -689,12 +689,12 @@ function PlasmicFilterSteff__RenderFunc(props: {
                             value: "any"
                           },
                           {
-                            label: "در حال حاضر باز",
-                            value: "open_now"
+                            label: "پرستار آقا",
+                            value: "male"
                           },
                           {
-                            label: "قابل نوبت‌دهی",
-                            value: "bookable"
+                            label: "پرستار خانم",
+                            value: "female"
                           }
                         ];
                       } catch (e) {
@@ -738,22 +738,14 @@ function PlasmicFilterSteff__RenderFunc(props: {
                       const actionArgs = {
                         customFunction: async () => {
                           return (() => {
-                            if ($state.selectStars.rate > 0) {
-                              $state.filtes.rate = {
-                                value: $state.selectStars.rate,
-                                label: `امتیاز ${$state.selectStars.rate} به بالا`
-                              };
-                            } else {
-                              delete $state.filtes.rate;
-                            }
                             if (
                               $state.availability.selected &&
                               $state.availability.selected !== ""
                             ) {
-                              return ($state.filtes.availability =
+                              return ($state.filtes.gender =
                                 $state.availability.selected);
                             } else {
-                              return delete $state.filtes.availability;
+                              return delete $state.filtes.gender;
                             }
                           })();
                         }
@@ -842,9 +834,8 @@ function PlasmicFilterSteff__RenderFunc(props: {
                       const actionArgs = {
                         customFunction: async () => {
                           return (() => {
-                            $state.filtes = {};
-                            $state.selectStars.rate = 0;
-                            return ($state.availability.selected = "");
+                            $state.availability.selected = "";
+                            return delete $state.filtes.gender;
                           })();
                         }
                       };

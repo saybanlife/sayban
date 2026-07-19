@@ -486,12 +486,48 @@ function PlasmicSort__RenderFunc(props: {
             ) {
               return;
             }
+
+            (async val => {
+              const $steps = {};
+
+              $steps["updateOpendialog"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["opendialog"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateOpendialog"] != null &&
+                typeof $steps["updateOpendialog"] === "object" &&
+                typeof $steps["updateOpendialog"].then === "function"
+              ) {
+                $steps["updateOpendialog"] = await $steps["updateOpendialog"];
+              }
+            }).apply(null, eventArgs);
           }}
           options={
             <div
               data-plasmic-name={"freeBox"}
               data-plasmic-override={overrides.freeBox}
               className={classNames("all", sty.freeBox)}
+              onClick={async event => {
+                const $steps = {};
+              }}
             >
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {

@@ -144,7 +144,6 @@
 }
 .freeBox__sZh4Z {
   animation: none;
-  display: flex;
   flex-direction: row;
   width: 100%;
   height: auto;
@@ -154,6 +153,7 @@
   position: relative;
   column-gap: var(--token-rfsFxiclAtek);
   min-width: 0;
+  display: none;
   padding: 0px;
 }
 .freeBoxfullpage__sZh4Z7IXtr {
@@ -177,6 +177,7 @@
   animation: none;
   max-width: 100%;
   flex-shrink: 0;
+  display: none;
 }
 .linefullpage__eIvQs7IXtr:global(.__wab_instance) {
   flex-shrink: 0;

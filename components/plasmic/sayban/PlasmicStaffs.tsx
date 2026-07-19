@@ -657,7 +657,8 @@ function PlasmicStaffs__RenderFunc(props: {
             try {
               return {
                 id: $props.offer,
-                sort: $state.sort.radioGroupValue
+                sort: $state.sort.radioGroupValue,
+                gender: $state.filterSteff.filtes.gender
               };
             } catch (e) {
               if (
@@ -947,7 +948,7 @@ function PlasmicStaffs__RenderFunc(props: {
             return;
           }
         }}
-        onOpendialogChange={async (...eventArgs: any) => {
+        onOpendialogChange2={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "filterSteff",
             "opendialog"
