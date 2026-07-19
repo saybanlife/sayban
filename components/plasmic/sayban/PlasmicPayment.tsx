@@ -62,6 +62,7 @@ import {
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+import Load from "../../Load"; // plasmic-import: giI5l8wTGhHv/component
 import ItemStaffs from "../../ItemStaffs"; // plasmic-import: tJMe57F6lZ5-/component
 import Service2 from "../../Service2"; // plasmic-import: -12Fp4g9XO2-/component
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
@@ -115,6 +116,7 @@ export type PlasmicPayment__OverridesType = {
   embedHtml?: Flex__<typeof Embed>;
   header?: Flex__<typeof Header>;
   basic?: Flex__<typeof ApiRequest>;
+  load?: Flex__<typeof Load>;
   itemStaffs?: Flex__<typeof ItemStaffs>;
   service2?: Flex__<typeof Service2>;
   img?: Flex__<typeof PlasmicImg__>;
@@ -389,6 +391,12 @@ function PlasmicPayment__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "load.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
       }
     ],
     [$props, $ctx, $refs]
@@ -484,7 +492,30 @@ function PlasmicPayment__RenderFunc(props: {
             }
           })()}
           errorDisplay={null}
-          loadingDisplay={null}
+          loadingDisplay={
+            <Load
+              data-plasmic-name={"load"}
+              data-plasmic-override={overrides.load}
+              className={classNames("__wab_instance", sty.load, {
+                [sty.loadhome]: hasVariant($state, "home", "home")
+              })}
+              loading={generateStateValueProp($state, ["load", "loading"])}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["load", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+            />
+          }
           method={"GET"}
           onError={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["basic", "error"]).apply(
@@ -2166,6 +2197,7 @@ const PlasmicDescendants = {
     "embedHtml",
     "header",
     "basic",
+    "load",
     "itemStaffs",
     "service2",
     "img",
@@ -2187,6 +2219,7 @@ const PlasmicDescendants = {
   header: ["header"],
   basic: [
     "basic",
+    "load",
     "itemStaffs",
     "service2",
     "img",
@@ -2204,6 +2237,7 @@ const PlasmicDescendants = {
     "inPerson",
     "button3"
   ],
+  load: ["load"],
   itemStaffs: ["itemStaffs"],
   service2: ["service2", "img", "textCollapse"],
   img: ["img"],
@@ -2229,6 +2263,7 @@ type NodeDefaultElementType = {
   embedHtml: typeof Embed;
   header: typeof Header;
   basic: typeof ApiRequest;
+  load: typeof Load;
   itemStaffs: typeof ItemStaffs;
   service2: typeof Service2;
   img: typeof PlasmicImg__;
@@ -2312,6 +2347,7 @@ export const PlasmicPayment = Object.assign(
     embedHtml: makeNodeComponent("embedHtml"),
     header: makeNodeComponent("header"),
     basic: makeNodeComponent("basic"),
+    load: makeNodeComponent("load"),
     itemStaffs: makeNodeComponent("itemStaffs"),
     service2: makeNodeComponent("service2"),
     img: makeNodeComponent("img"),

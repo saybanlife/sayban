@@ -2884,20 +2884,22 @@ function PlasmicHomepage__RenderFunc(props: {
                                       ? true
                                       : hasVariant($state, "page", "booking")
                                         ? true
-                                        : (() => {
-                                            try {
-                                              return $state.token != "";
-                                            } catch (e) {
-                                              if (
-                                                e instanceof TypeError ||
-                                                e?.plasmicType ===
-                                                  "PlasmicUndefinedDataError"
-                                              ) {
-                                                return true;
+                                        : hasVariant($state, "page", "payment")
+                                          ? true
+                                          : (() => {
+                                              try {
+                                                return $state.token != "";
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return true;
+                                                }
+                                                throw e;
                                               }
-                                              throw e;
-                                            }
-                                          })()
+                                            })()
           ) ? (
             <div
               className={classNames("all", sty.freeBox__yWuCa, {
@@ -2966,6 +2968,14 @@ function PlasmicHomepage__RenderFunc(props: {
                   "page",
                   "patient"
                 ),
+                [sty.freeBoxpage_payment__yWuCao4602]: hasVariant(
+                  $state,
+                  "page",
+                  "payment"
+                ),
+                [sty.freeBoxpage_payment_homePage2_home__yWuCao4602Rvb1B]:
+                  hasVariant($state, "homePage2", "home") &&
+                  hasVariant($state, "page", "payment"),
                 [sty.freeBoxpage_reminderSetting__yWuCAyw7Ta]: hasVariant(
                   $state,
                   "page",
@@ -4432,7 +4442,10 @@ function PlasmicHomepage__RenderFunc(props: {
                 "home"
               ),
               [sty.paymentpage_center]: hasVariant($state, "page", "center"),
-              [sty.paymentpage_payment]: hasVariant($state, "page", "payment")
+              [sty.paymentpage_payment]: hasVariant($state, "page", "payment"),
+              [sty.paymentpage_payment_homePage2_home]:
+                hasVariant($state, "page", "payment") &&
+                hasVariant($state, "homePage2", "home")
             })}
             id={
               hasVariant($state, "page", "payment")
