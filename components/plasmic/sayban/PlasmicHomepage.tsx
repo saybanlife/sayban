@@ -309,10 +309,10 @@ function PlasmicHomepage__RenderFunc(props: {
           (() => {
             try {
               return (() => {
-                if ($ctx.params?.slug?.includes("bookNurse"))
-                  return "bookNurse";
                 if ($ctx.params?.slug?.includes("addAddress"))
                   return "addAddress";
+                if ($ctx.params?.slug?.includes("bookNurse"))
+                  return "bookNurse";
                 if ($ctx.params?.slug?.find(i => i.includes("pay_")))
                   return "payment";
                 if ($ctx.params?.slug?.includes("center")) return "center";
@@ -6056,6 +6056,63 @@ function PlasmicHomepage__RenderFunc(props: {
           <CenterOffers
             data-plasmic-name={"centerOffers"}
             data-plasmic-override={overrides.centerOffers}
+            addAddress={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            $state.slug.push("addAddress");
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
             className={classNames("__wab_instance", sty.centerOffers, {
               [sty.centerOfferspage_bookNurse]: hasVariant(
                 $state,
@@ -6201,6 +6258,38 @@ function PlasmicHomepage__RenderFunc(props: {
                 throw e;
               }
             })()}
+            userNew={async () => {
+              const $steps = {};
+
+              $steps["updateTextInputValue"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["textInput", "value"]
+                      },
+                      operation: 0
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateTextInputValue"] != null &&
+                typeof $steps["updateTextInputValue"] === "object" &&
+                typeof $steps["updateTextInputValue"].then === "function"
+              ) {
+                $steps["updateTextInputValue"] =
+                  await $steps["updateTextInputValue"];
+              }
+            }}
             userSelectOpendialog={generateStateValueProp($state, [
               "centerOffers",
               "userSelectOpendialog"

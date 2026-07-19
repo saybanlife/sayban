@@ -123,6 +123,7 @@ export type PlasmicCenterOffers__ArgsType = {
   onUserSelectOpendialogChange?: (val: boolean) => void;
   userNew?: () => void;
   steps2?: () => void;
+  addAddress?: () => void;
 };
 type ArgPropType = keyof PlasmicCenterOffers__ArgsType;
 export const PlasmicCenterOffers__ArgProps = new Array<ArgPropType>(
@@ -139,7 +140,8 @@ export const PlasmicCenterOffers__ArgProps = new Array<ArgPropType>(
   "userSelectOpendialog",
   "onUserSelectOpendialogChange",
   "userNew",
-  "steps2"
+  "steps2",
+  "addAddress"
 );
 
 export type PlasmicCenterOffers__OverridesType = {
@@ -192,6 +194,7 @@ export interface DefaultCenterOffersProps {
   onUserSelectOpendialogChange?: (val: boolean) => void;
   userNew?: () => void;
   steps2?: () => void;
+  addAddress?: () => void;
   top?: SingleBooleanChoiceArg<"top">;
   steps?: SingleChoiceArg<"answerSheet" | "selectService">;
   className?: string;
@@ -1419,6 +1422,7 @@ function PlasmicCenterOffers__RenderFunc(props: {
                 const currentIndex = __plasmic_idx_0;
                 return (() => {
                   const child$Props = {
+                    addressDialogAddUser: args.addAddress,
                     answers: generateStateValueProp($state, [
                       "answersUser",
                       __plasmic_idx_0,

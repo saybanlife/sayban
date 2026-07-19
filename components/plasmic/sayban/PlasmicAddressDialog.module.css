@@ -58,8 +58,19 @@
 .dialog:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
-.text___9SHb {
+.freeBox__mo68Z {
+  display: flex;
+  flex-direction: row;
   position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0px 0px var(--token-P3I_D0uxQRnt);
+}
+.text___9SHb {
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -67,7 +78,24 @@
   font-size: var(--token-Tca_MqWoqq_b);
   font-weight: 700;
   min-width: 0;
-  padding: 0px 0px var(--token-P3I_D0uxQRnt);
+  padding: 0px;
+}
+.button2:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.svg__p261R {
+  position: relative;
+  width: var(--token-fEaUg40ICnXp);
+  height: var(--token-fEaUg40ICnXp);
+  color: var(--token--ieHgGbFH1Fa);
+}
+.text___1Rh3V {
+  white-space: pre;
+  color: var(--token--ieHgGbFH1Fa);
+}
+.svg__lnU2Y {
+  position: relative;
+  height: 1em;
 }
 .freeBox__qavhh {
   display: flex;

@@ -37,6 +37,9 @@
   font-size: var(--token-R7X4jvpZsbD-);
   font-weight: 400;
 }
+.textcolor_green_select {
+  color: var(--token-ee2TuxDknsJj);
+}
 .freeBox {
   display: flex;
   flex-direction: column;
@@ -68,4 +71,7 @@
   border-bottom-width: var(--token-D_3fp_JIDs1G);
   flex-shrink: 0;
   padding: 0px;
+}
+.freeBoxcolor_green_select {
+  border-bottom-color: var(--token--ieHgGbFH1Fa);
 }

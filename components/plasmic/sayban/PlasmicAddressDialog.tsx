@@ -60,8 +60,8 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
-import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
 import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
@@ -113,6 +113,7 @@ export const PlasmicAddressDialog__ArgProps = new Array<ArgPropType>(
 export type PlasmicAddressDialog__OverridesType = {
   root?: Flex__<"div">;
   dialog?: Flex__<typeof Dialog>;
+  button2?: Flex__<typeof Button>;
   apiRequest?: Flex__<typeof ApiRequest>;
   img?: Flex__<typeof PlasmicImg__>;
   button?: Flex__<typeof Button>;
@@ -241,6 +242,12 @@ function PlasmicAddressDialog__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "button2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -381,8 +388,96 @@ function PlasmicAddressDialog__RenderFunc(props: {
         }}
         opendialog={generateStateValueProp($state, ["dialog", "opendialog"])}
       >
-        <div className={classNames("all", "__wab_text", sty.text___9SHb)}>
-          {"\u0627\u0646\u062a\u062e\u0627\u0628 \u0622\u062f\u0631\u0633"}
+        <div className={classNames("all", sty.freeBox__mo68Z)}>
+          <div className={classNames("all", "__wab_text", sty.text___9SHb)}>
+            {"\u0627\u0646\u062a\u062e\u0627\u0628 \u0622\u062f\u0631\u0633"}
+          </div>
+          <Button
+            data-plasmic-name={"button2"}
+            data-plasmic-override={overrides.button2}
+            className={classNames("__wab_instance", sty.button2)}
+            color={"clear"}
+            iconStart={true}
+            label={
+              <div
+                className={classNames("all", "__wab_text", sty.text___1Rh3V)}
+              >
+                {
+                  "\u0627\u0641\u0632\u0648\u062f\u0646 \u0622\u062f\u0631\u0633"
+                }
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button2", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateDialogOpendialog"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["dialog", "opendialog"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateDialogOpendialog"] != null &&
+                typeof $steps["updateDialogOpendialog"] === "object" &&
+                typeof $steps["updateDialogOpendialog"].then === "function"
+              ) {
+                $steps["updateDialogOpendialog"] =
+                  await $steps["updateDialogOpendialog"];
+              }
+
+              $steps["runAddUser"] = true
+                ? (() => {
+                    const actionArgs = { eventRef: $props["addUser"] };
+                    return (({ eventRef, args }) => {
+                      return eventRef?.(...(args ?? []));
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runAddUser"] != null &&
+                typeof $steps["runAddUser"] === "object" &&
+                typeof $steps["runAddUser"].then === "function"
+              ) {
+                $steps["runAddUser"] = await $steps["runAddUser"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button2", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            start={
+              <Icon56Icon
+                className={classNames("all", sty.svg__p261R)}
+                role={"img"}
+              />
+            }
+          />
         </div>
         <div className={classNames("all", sty.freeBox__qavhh)}>
           <ApiRequest
@@ -529,6 +624,42 @@ function PlasmicAddressDialog__RenderFunc(props: {
                   ])}
                   onClick={async event => {
                     const $steps = {};
+
+                    $steps["updateDialogOpendialog"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["dialog", "opendialog"]
+                            },
+                            operation: 4
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            const oldValue = $stateGet(objRoot, variablePath);
+                            $stateSet(objRoot, variablePath, !oldValue);
+                            return !oldValue;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateDialogOpendialog"] != null &&
+                      typeof $steps["updateDialogOpendialog"] === "object" &&
+                      typeof $steps["updateDialogOpendialog"].then ===
+                        "function"
+                    ) {
+                      $steps["updateDialogOpendialog"] =
+                        await $steps["updateDialogOpendialog"];
+                    }
 
                     $steps["runAddUser"] = true
                       ? (() => {
@@ -785,6 +916,7 @@ const PlasmicDescendants = {
   root: [
     "root",
     "dialog",
+    "button2",
     "apiRequest",
     "img",
     "button",
@@ -794,6 +926,7 @@ const PlasmicDescendants = {
   ],
   dialog: [
     "dialog",
+    "button2",
     "apiRequest",
     "img",
     "button",
@@ -801,6 +934,7 @@ const PlasmicDescendants = {
     "radio",
     "textCollapse"
   ],
+  button2: ["button2"],
   apiRequest: [
     "apiRequest",
     "img",
@@ -821,6 +955,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   dialog: typeof Dialog;
+  button2: typeof Button;
   apiRequest: typeof ApiRequest;
   img: typeof PlasmicImg__;
   button: typeof Button;
@@ -892,6 +1027,7 @@ export const PlasmicAddressDialog = Object.assign(
   {
     // Helper components rendering sub-elements
     dialog: makeNodeComponent("dialog"),
+    button2: makeNodeComponent("button2"),
     apiRequest: makeNodeComponent("apiRequest"),
     img: makeNodeComponent("img"),
     button: makeNodeComponent("button"),

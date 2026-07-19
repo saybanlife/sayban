@@ -87,6 +87,7 @@ export type PlasmicAnswersUser__ArgsType = {
   onAnswersChange?: (val: string) => void;
   data?: any;
   onDataChange?: (val: string) => void;
+  addressDialogAddUser?: () => void;
 };
 type ArgPropType = keyof PlasmicAnswersUser__ArgsType;
 export const PlasmicAnswersUser__ArgProps = new Array<ArgPropType>(
@@ -95,7 +96,8 @@ export const PlasmicAnswersUser__ArgProps = new Array<ArgPropType>(
   "answers",
   "onAnswersChange",
   "data",
-  "onDataChange"
+  "onDataChange",
+  "addressDialogAddUser"
 );
 
 export type PlasmicAnswersUser__OverridesType = {
@@ -116,6 +118,7 @@ export interface DefaultAnswersUserProps {
   onAnswersChange?: (val: string) => void;
   data?: any;
   onDataChange?: (val: string) => void;
+  addressDialogAddUser?: () => void;
   className?: string;
 }
 
@@ -664,6 +667,7 @@ function PlasmicAnswersUser__RenderFunc(props: {
         <AddressDialog
           data-plasmic-name={"addressDialog"}
           data-plasmic-override={overrides.addressDialog}
+          addUser={args.addressDialogAddUser}
           className={classNames("__wab_instance", sty.addressDialog)}
           onRefreshChange={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, [
