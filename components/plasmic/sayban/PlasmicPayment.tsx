@@ -62,12 +62,15 @@ import {
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+import ItemStaffs from "../../ItemStaffs"; // plasmic-import: tJMe57F6lZ5-/component
 import Service2 from "../../Service2"; // plasmic-import: -12Fp4g9XO2-/component
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
+import Service from "../../Service"; // plasmic-import: 0JNfyGRvC0FA/component
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
 import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
 import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
 import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
+import UploudeTime from "../../UploudeTime"; // plasmic-import: IxvwO5AMD5ex/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -76,15 +79,20 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicPayment.module.css"; // plasmic-import: BVIyToFh1miy/css
 
+import Icon120Icon from "./icons/PlasmicIcon__Icon120"; // plasmic-import: Lz-rWZjdwsmA/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 
 createPlasmicElementProxy;
 
-export type PlasmicPayment__VariantMembers = {};
-export type PlasmicPayment__VariantsArgs = {};
+export type PlasmicPayment__VariantMembers = {
+  home: "home";
+};
+export type PlasmicPayment__VariantsArgs = {
+  home?: SingleBooleanChoiceArg<"home">;
+};
 type VariantPropType = keyof PlasmicPayment__VariantsArgs;
-export const PlasmicPayment__VariantProps = new Array<VariantPropType>();
+export const PlasmicPayment__VariantProps = new Array<VariantPropType>("home");
 
 export type PlasmicPayment__ArgsType = {
   subcatgori?: any;
@@ -107,13 +115,17 @@ export type PlasmicPayment__OverridesType = {
   embedHtml?: Flex__<typeof Embed>;
   header?: Flex__<typeof Header>;
   basic?: Flex__<typeof ApiRequest>;
+  itemStaffs?: Flex__<typeof ItemStaffs>;
   service2?: Flex__<typeof Service2>;
   img?: Flex__<typeof PlasmicImg__>;
   textCollapse?: Flex__<typeof TextCollapse>;
+  service?: Flex__<typeof Service>;
   description?: Flex__<typeof TextAreaInput>;
   radioGroup?: Flex__<typeof RadioGroup>;
   radio?: Flex__<typeof Radio>;
   menuIcon?: Flex__<typeof MenuIcon>;
+  uploudeTime?: Flex__<typeof UploudeTime>;
+  svg?: Flex__<"svg">;
   section?: Flex__<"section">;
   online?: Flex__<"div">;
   button?: Flex__<typeof Button>;
@@ -127,6 +139,7 @@ export interface DefaultPaymentProps {
   id?: string;
   jalali?: any;
   token?: string;
+  home?: SingleBooleanChoiceArg<"home">;
   className?: string;
 }
 
@@ -151,6 +164,7 @@ function PlasmicPayment__RenderFunc(props: {
     () =>
       Object.assign(
         {
+          id: "f0935e4cd5920aa6c7c996a5ee53a70f",
           token:
             "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwaXJlIjoxNzY0NTA2MjczfQ.A6wRqW0jMYVg_rZ4OMZ5oXrcOVwKq3BG4i_wmvKf_8A"
         },
@@ -312,34 +326,69 @@ function PlasmicPayment__RenderFunc(props: {
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          (() => {
-            const paymentOptions = [
-              {
-                value: "online",
-                label: "پرداخت آنلاین",
-                description: "پرداخت فقط به صورت آنلاین امکان‌پذیر است."
-              },
-              {
-                value: "in_person",
-                label: "پرداخت حضوری",
-                description: "پرداخت فقط به صورت حضوری امکان‌پذیر است."
-              }
-            ];
+          hasVariant($state, "home", "home")
+            ? (() => {
+                const paymentOptions = [
+                  {
+                    value: "online",
+                    label: "پرداخت آنلاین",
+                    description: "پرداخت فقط به صورت آنلاین امکان‌پذیر است."
+                  },
+                  {
+                    value: "in_person",
+                    label: "پرداخت حضوری",
+                    description: "پرداخت فقط به صورت حضوری امکان‌پذیر است."
+                  }
+                ];
 
-            function getPayments(method) {
-              if (method === "both") return paymentOptions;
-              return paymentOptions.filter(item => item.value === method);
-            }
-            return getPayments(
-              $state.basic?.data?.result?.service?.payment_method
-            )[0]?.value;
-          })()
+                function getPayments(method) {
+                  if (method === "both") return paymentOptions;
+                  return paymentOptions.filter(item => item.value === method);
+                }
+                return getPayments(
+                  $state.basic?.data?.result?.payment_method
+                )[0]?.value;
+              })()
+            : (() => {
+                const paymentOptions = [
+                  {
+                    value: "online",
+                    label: "پرداخت آنلاین",
+                    description: "پرداخت فقط به صورت آنلاین امکان‌پذیر است."
+                  },
+                  {
+                    value: "in_person",
+                    label: "پرداخت حضوری",
+                    description: "پرداخت فقط به صورت حضوری امکان‌پذیر است."
+                  }
+                ];
+
+                function getPayments(method) {
+                  if (method === "both") return paymentOptions;
+                  return paymentOptions.filter(item => item.value === method);
+                }
+                return getPayments(
+                  $state.basic?.data?.result?.service?.payment_method
+                )[0]?.value;
+              })()
       },
       {
         path: "button3.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "home",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.home
+      },
+      {
+        path: "itemStaffs.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -369,7 +418,8 @@ function PlasmicPayment__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        { [sty.roothome]: hasVariant($state, "home", "home") }
       )}
     >
       <Embed
@@ -413,7 +463,9 @@ function PlasmicPayment__RenderFunc(props: {
         <ApiRequest
           data-plasmic-name={"basic"}
           data-plasmic-override={overrides.basic}
-          className={classNames("__wab_instance", sty.basic)}
+          className={classNames("__wab_instance", sty.basic, {
+            [sty.basichome]: hasVariant($state, "home", "home")
+          })}
           config={(() => {
             try {
               return {
@@ -451,6 +503,36 @@ function PlasmicPayment__RenderFunc(props: {
               null,
               eventArgs
             );
+
+            (async data => {
+              const $steps = {};
+
+              $steps["updateHome"] =
+                $state.basic.data.result.payment.service_location == "home"
+                  ? (() => {
+                      const actionArgs = {
+                        vgroup: "home",
+                        operation: 4,
+                        value: "home"
+                      };
+                      return (({ vgroup, value }) => {
+                        if (typeof value === "string") {
+                          value = [value];
+                        }
+
+                        $stateSet($state, vgroup, true);
+                        return true;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+              if (
+                $steps["updateHome"] != null &&
+                typeof $steps["updateHome"] === "object" &&
+                typeof $steps["updateHome"].then === "function"
+              ) {
+                $steps["updateHome"] = await $steps["updateHome"];
+              }
+            }).apply(null, eventArgs);
           }}
           params={(() => {
             try {
@@ -486,10 +568,46 @@ function PlasmicPayment__RenderFunc(props: {
             <div className={classNames("all", sty.freeBox__r7Ep)}>
               <div className={classNames("all", sty.freeBox__tkgDg)}>
                 <div className={classNames("all", sty.freeBox__yyc5C)}>
+                  <ItemStaffs
+                    data-plasmic-name={"itemStaffs"}
+                    data-plasmic-override={overrides.itemStaffs}
+                    className={classNames("__wab_instance", sty.itemStaffs, {
+                      [sty.itemStaffshome]: hasVariant($state, "home", "home")
+                    })}
+                    item={(() => {
+                      if ($state.basic.data?.result?.staff) {
+                        $state.basic.data.result.staff.center_name =
+                          $state.basic.data.result.center?.name;
+                        return $state.basic.data?.result?.staff;
+                      }
+                    })()}
+                    loading={generateStateValueProp($state, [
+                      "itemStaffs",
+                      "loading"
+                    ])}
+                    onLoadingChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "itemStaffs",
+                        "loading"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    status={"pay"}
+                  />
+
                   <Service2
                     data-plasmic-name={"service2"}
                     data-plasmic-override={overrides.service2}
-                    className={classNames("__wab_instance", sty.service2)}
+                    className={classNames("__wab_instance", sty.service2, {
+                      [sty.service2home]: hasVariant($state, "home", "home")
+                    })}
                   >
                     <div className={classNames("all", sty.freeBox__pwWnA)}>
                       <PlasmicImg__
@@ -638,6 +756,88 @@ function PlasmicPayment__RenderFunc(props: {
                   {""}
                 </div>
                 <div className={classNames("all", sty.freeBox__pnxjD)}>
+                  {(hasVariant($state, "home", "home") ? true : false) ? (
+                    <div
+                      className={classNames("all", sty.freeBox__hulR9, {
+                        [sty.freeBoxhome__hulR9DHitg]: hasVariant(
+                          $state,
+                          "home",
+                          "home"
+                        )
+                      })}
+                    >
+                      <div className={classNames("all", sty.freeBox__f3NfR)}>
+                        <div
+                          className={classNames(
+                            "all",
+                            "__wab_text",
+                            sty.text__p1KPl
+                          )}
+                        >
+                          {
+                            "\u062e\u062f\u0645\u0627\u062a \u0627\u0646\u062a\u062e\u0627\u0628\u06cc"
+                          }
+                        </div>
+                      </div>
+                      {(_par =>
+                        !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                        (() => {
+                          try {
+                            return $state.basic?.data?.result?.services;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()
+                      ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                        const currentItem = __plasmic_item_0;
+                        const currentIndex = __plasmic_idx_0;
+                        return (
+                          <Service
+                            data-plasmic-name={"service"}
+                            data-plasmic-override={overrides.service}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.service,
+                              {
+                                [sty.servicehome]: hasVariant(
+                                  $state,
+                                  "home",
+                                  "home"
+                                )
+                              }
+                            )}
+                            currentItem={currentItem}
+                            key={currentIndex}
+                            notSelect={true}
+                          />
+                        );
+                      })}
+                    </div>
+                  ) : null}
+                  {(hasVariant($state, "home", "home") ? true : false) ? (
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text__knXl4,
+                        {
+                          [sty.texthome__knXl4DHitg]: hasVariant(
+                            $state,
+                            "home",
+                            "home"
+                          )
+                        }
+                      )}
+                    >
+                      {""}
+                    </div>
+                  ) : null}
                   <div
                     className={classNames("all", sty.freeBox__aSrxN, "dark")}
                   >
@@ -691,13 +891,28 @@ function PlasmicPayment__RenderFunc(props: {
                   >
                     {""}
                   </div>
-                  <div className={classNames("all", sty.freeBox__bC6ZC)}>
+                  <div
+                    className={classNames("all", sty.freeBox__bC6ZC, {
+                      [sty.freeBoxhome__bC6ZCdHitg]: hasVariant(
+                        $state,
+                        "home",
+                        "home"
+                      )
+                    })}
+                  >
                     <div className={classNames("all", sty.freeBox__kt5M7)}>
                       <div
                         className={classNames(
                           "all",
                           "__wab_text",
-                          sty.text__kOkUb
+                          sty.text__kOkUb,
+                          {
+                            [sty.texthome__kOkUbdHitg]: hasVariant(
+                              $state,
+                              "home",
+                              "home"
+                            )
+                          }
                         )}
                       >
                         {
@@ -708,7 +923,9 @@ function PlasmicPayment__RenderFunc(props: {
                     <RadioGroup
                       data-plasmic-name={"radioGroup"}
                       data-plasmic-override={overrides.radioGroup}
-                      className={classNames("__wab_instance", sty.radioGroup)}
+                      className={classNames("__wab_instance", sty.radioGroup, {
+                        [sty.radioGrouphome]: hasVariant($state, "home", "home")
+                      })}
                       onChange={async (...eventArgs: any) => {
                         generateStateOnChangeProp($state, [
                           "radioGroup",
@@ -724,7 +941,15 @@ function PlasmicPayment__RenderFunc(props: {
                         }
                       }}
                       options={
-                        <div className={classNames("all", sty.freeBox__azMmh)}>
+                        <div
+                          className={classNames("all", sty.freeBox__azMmh, {
+                            [sty.freeBoxhome__azMmhdHitg]: hasVariant(
+                              $state,
+                              "home",
+                              "home"
+                            )
+                          })}
+                        >
                           {(_par =>
                             !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                             (() => {
@@ -753,8 +978,7 @@ function PlasmicPayment__RenderFunc(props: {
                                     );
                                   }
                                   return getPayments(
-                                    $state.basic.data.result.service
-                                      .payment_method
+                                    $state.basic.data.result.payment_method
                                   );
                                 })();
                               } catch (e) {
@@ -774,7 +998,14 @@ function PlasmicPayment__RenderFunc(props: {
                               <div
                                 className={classNames(
                                   "all",
-                                  sty.freeBox__hlKky
+                                  sty.freeBox__hlKky,
+                                  {
+                                    [sty.freeBoxhome__hlKkydHitg]: hasVariant(
+                                      $state,
+                                      "home",
+                                      "home"
+                                    )
+                                  }
                                 )}
                                 key={currentIndex}
                               >
@@ -783,7 +1014,14 @@ function PlasmicPayment__RenderFunc(props: {
                                   data-plasmic-override={overrides.radio}
                                   className={classNames(
                                     "__wab_instance",
-                                    sty.radio
+                                    sty.radio,
+                                    {
+                                      [sty.radiohome]: hasVariant(
+                                        $state,
+                                        "home",
+                                        "home"
+                                      )
+                                    }
                                   )}
                                   disabled={false}
                                   label={null}
@@ -892,8 +1130,157 @@ function PlasmicPayment__RenderFunc(props: {
                       ])}
                     />
                   </div>
+                  {(hasVariant($state, "home", "home") ? true : false) ? (
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text___6G6SC,
+                        {
+                          [sty.texthome___6G6SCdHitg]: hasVariant(
+                            $state,
+                            "home",
+                            "home"
+                          )
+                        }
+                      )}
+                    >
+                      {""}
+                    </div>
+                  ) : null}
+                  {(hasVariant($state, "home", "home") ? true : false) ? (
+                    <div
+                      className={classNames("all", sty.freeBox__sAf6K, {
+                        [sty.freeBoxhome__sAf6KdHitg]: hasVariant(
+                          $state,
+                          "home",
+                          "home"
+                        )
+                      })}
+                    >
+                      <div className={classNames("all", sty.freeBox__mJo2G)}>
+                        <div
+                          className={classNames(
+                            "all",
+                            "__wab_text",
+                            sty.text__uEvJd
+                          )}
+                        >
+                          {
+                            "\u0632\u0645\u0627\u0646 \u0648 \u0645\u06a9\u0627\u0646"
+                          }
+                        </div>
+                      </div>
+                      <UploudeTime
+                        data-plasmic-name={"uploudeTime"}
+                        data-plasmic-override={overrides.uploudeTime}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.uploudeTime,
+                          {
+                            [sty.uploudeTimehome]: hasVariant(
+                              $state,
+                              "home",
+                              "home"
+                            )
+                          }
+                        )}
+                        posttime={(() => {
+                          function addTime(
+                            dateString,
+                            addHours = 0,
+                            addMinutes = 0
+                          ) {
+                            if (!dateString) return null;
+                            const date = new Date(dateString.replace(" ", "T"));
+                            if (!date) return null;
+                            date.setMinutes(
+                              date.getMinutes() + (addHours * 60 + addMinutes)
+                            );
+                            return {
+                              year: date.getFullYear(),
+                              month: date.getMonth() + 1,
+                              day: date.getDate(),
+                              hour: date.getHours(),
+                              minute: date.getMinutes(),
+                              second: date.getSeconds()
+                            };
+                          }
+                          if ($state.basic.data?.result?.start_time)
+                            return addTime(
+                              $state.basic.data?.result?.start_time,
+                              3,
+                              30
+                            );
+                          else return null;
+                        })()}
+                      />
+
+                      <div
+                        className={classNames("all", sty.freeBox__wai80, {
+                          [sty.freeBoxhome__wai80DHitg]: hasVariant(
+                            $state,
+                            "home",
+                            "home"
+                          )
+                        })}
+                      >
+                        <Icon120Icon
+                          data-plasmic-name={"svg"}
+                          data-plasmic-override={overrides.svg}
+                          className={classNames("all", sty.svg, {
+                            [sty.svghome]: hasVariant($state, "home", "home")
+                          })}
+                          role={"img"}
+                        />
+
+                        <div
+                          className={classNames(
+                            "all",
+                            "__wab_text",
+                            sty.text__sVnXu,
+                            {
+                              [sty.texthome__sVnXudHitg]: hasVariant(
+                                $state,
+                                "home",
+                                "home"
+                              )
+                            }
+                          )}
+                        >
+                          <div
+                            className={"__wab_expr_html_text"}
+                            dangerouslySetInnerHTML={{
+                              __html: (() => {
+                                const city = $state?.basic?.data?.result?.city;
+                                const address =
+                                  $state?.basic?.data?.result?.user_address;
+                                const details =
+                                  $state?.basic?.data?.result?.address_details;
+                                const boldCity = city ? `<b>${city}</b>` : "";
+                                return [boldCity, address, details]
+                                  .filter(field => field)
+                                  .join("\u060C ");
+                              })()
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ) : null}
                   <div
-                    className={classNames("all", "__wab_text", sty.text__mPoub)}
+                    className={classNames(
+                      "all",
+                      "__wab_text",
+                      sty.text__mPoub,
+                      {
+                        [sty.texthome__mPoubdHitg]: hasVariant(
+                          $state,
+                          "home",
+                          "home"
+                        )
+                      }
+                    )}
                   >
                     {""}
                   </div>
@@ -916,43 +1303,183 @@ function PlasmicPayment__RenderFunc(props: {
                           className={classNames(
                             "all",
                             "__wab_text",
-                            sty.text__iSeVj
+                            sty.text__iSeVj,
+                            {
+                              [sty.texthome__iSeVjdHitg]: hasVariant(
+                                $state,
+                                "home",
+                                "home"
+                              )
+                            }
                           )}
                         >
                           {"\u0635\u0648\u0631\u062a \u062d\u0633\u0627\u0628"}
                         </div>
                       </div>
-                      <div className={classNames("all", sty.freeBox___20XYm)}>
-                        <div className={classNames("all", sty.freeBox__hkMkW)}>
+                      <div
+                        className={classNames("all", sty.freeBox___20XYm, {
+                          [sty.freeBoxhome___20XYMdHitg]: hasVariant(
+                            $state,
+                            "home",
+                            "home"
+                          )
+                        })}
+                      >
+                        <div
+                          className={classNames("all", sty.freeBox__hkMkW, {
+                            [sty.freeBoxhome__hkMkWdHitg]: hasVariant(
+                              $state,
+                              "home",
+                              "home"
+                            )
+                          })}
+                        >
                           <div
                             className={classNames(
                               "all",
                               "__wab_text",
-                              sty.text__k5I6Q
+                              sty.text__k5I6Q,
+                              {
+                                [sty.texthome__k5I6QdHitg]: hasVariant(
+                                  $state,
+                                  "home",
+                                  "home"
+                                )
+                              }
                             )}
                           >
-                            {
-                              "\u062c\u0645\u0639 \u0627\u0642\u0644\u0627\u0645"
-                            }
+                            {hasVariant($state, "home", "home")
+                              ? "\u0628\u0627\u0632\u0647 \u0642\u06cc\u0645\u062a"
+                              : "\u062c\u0645\u0639 \u0627\u0642\u0644\u0627\u0645"}
                           </div>
                           <div
                             className={classNames(
                               "all",
                               "__wab_text",
-                              sty.text__rFkVw
+                              sty.text__rFkVw,
+                              {
+                                [sty.texthome__rFkVwdHitg]: hasVariant(
+                                  $state,
+                                  "home",
+                                  "home"
+                                )
+                              }
                             )}
                           >
-                            <React.Fragment>
-                              {$state.basic.data.result.service?.final_price?.toLocaleString() +
-                                " تومان"}
-                            </React.Fragment>
+                            {hasVariant($state, "home", "home") ? (
+                              <div
+                                className={"__wab_expr_html_text"}
+                                dangerouslySetInnerHTML={{
+                                  __html: `
+<span style="display: inline-flex; align-items: center; font-family: inherit; direction: rtl; white-space: nowrap; width: 100%; justify-content: center;">
+  <span style="display: inline-flex; align-items: center; margin-left: 12px;">
+    <span style="font-size: 11px; opacity: 0.8; font-weight: normal; margin-left: 6px;">از</span>
+    <strong style="font-size: 16px; font-weight: bold; font-family: inherit;">
+      ${Number($state.basic.data.result.min_price).toLocaleString("fa-IR")}
+    </strong>
+  </span>
+  
+  <span style="display: inline-flex; align-items: center;">
+    <span style="font-size: 11px; opacity: 0.8; font-weight: normal; margin-left: 6px;">تا</span>
+    <strong style="font-size: 16px; font-weight: bold; font-family: inherit;">
+      ${Number($state.basic.data.result.max_price).toLocaleString("fa-IR")}
+    </strong>
+    <span style="font-size: 11px; opacity: 0.8; font-weight: normal; margin-right: 6px;">تومان</span>
+  </span>
+</span>
+`
+                                }}
+                              />
+                            ) : (
+                              <React.Fragment>
+                                {$state.basic.data.result.service?.final_price?.toLocaleString() +
+                                  " تومان"}
+                              </React.Fragment>
+                            )}
                           </div>
                         </div>
                         <div
                           className={classNames(
                             "all",
                             "__wab_text",
-                            sty.text___7IhOz
+                            sty.text__pck5I,
+                            {
+                              [sty.texthome__pck5IdHitg]: hasVariant(
+                                $state,
+                                "home",
+                                "home"
+                              )
+                            }
+                          )}
+                        >
+                          {""}
+                        </div>
+                        <div
+                          className={classNames("all", sty.freeBox__nV7SC, {
+                            [sty.freeBoxhome__nV7SCdHitg]: hasVariant(
+                              $state,
+                              "home",
+                              "home"
+                            )
+                          })}
+                        >
+                          <div
+                            className={classNames(
+                              "all",
+                              "__wab_text",
+                              sty.text__fi4Lq,
+                              {
+                                [sty.texthome__fi4LQdHitg]: hasVariant(
+                                  $state,
+                                  "home",
+                                  "home"
+                                )
+                              }
+                            )}
+                          >
+                            {hasVariant($state, "home", "home")
+                              ? "\u0647\u0632\u06cc\u0646\u0647 \u0631\u0632\u0631\u0648 "
+                              : "\u062c\u0645\u0639 \u0627\u0642\u0644\u0627\u0645"}
+                          </div>
+                          <div
+                            className={classNames(
+                              "all",
+                              "__wab_text",
+                              sty.text__rkYp2,
+                              {
+                                [sty.texthome__rkYp2DHitg]: hasVariant(
+                                  $state,
+                                  "home",
+                                  "home"
+                                )
+                              }
+                            )}
+                          >
+                            {hasVariant($state, "home", "home") ? (
+                              <React.Fragment>
+                                {$state.basic.data.result?.final_price?.toLocaleString() +
+                                  " تومان"}
+                              </React.Fragment>
+                            ) : (
+                              <React.Fragment>
+                                {$state.basic.data.result.service?.final_price?.toLocaleString() +
+                                  " تومان"}
+                              </React.Fragment>
+                            )}
+                          </div>
+                        </div>
+                        <div
+                          className={classNames(
+                            "all",
+                            "__wab_text",
+                            sty.text___7IhOz,
+                            {
+                              [sty.texthome___7IhOzdHitg]: hasVariant(
+                                $state,
+                                "home",
+                                "home"
+                              )
+                            }
                           )}
                         >
                           {""}
@@ -962,7 +1489,14 @@ function PlasmicPayment__RenderFunc(props: {
                             className={classNames(
                               "all",
                               "__wab_text",
-                              sty.text__iGbfx
+                              sty.text__iGbfx,
+                              {
+                                [sty.texthome__iGbfxdHitg]: hasVariant(
+                                  $state,
+                                  "home",
+                                  "home"
+                                )
+                              }
                             )}
                           >
                             {
@@ -973,13 +1507,27 @@ function PlasmicPayment__RenderFunc(props: {
                             className={classNames(
                               "all",
                               "__wab_text",
-                              sty.text__lpbty
+                              sty.text__lpbty,
+                              {
+                                [sty.texthome__lpbtydHitg]: hasVariant(
+                                  $state,
+                                  "home",
+                                  "home"
+                                )
+                              }
                             )}
                           >
-                            <React.Fragment>
-                              {$state.basic.data.result.service?.final_price?.toLocaleString() +
-                                " تومان"}
-                            </React.Fragment>
+                            {hasVariant($state, "home", "home") ? (
+                              <React.Fragment>
+                                {$state.basic.data.result?.final_price?.toLocaleString() +
+                                  " تومان"}
+                              </React.Fragment>
+                            ) : (
+                              <React.Fragment>
+                                {$state.basic.data.result.service?.final_price?.toLocaleString() +
+                                  " تومان"}
+                              </React.Fragment>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -997,10 +1545,48 @@ function PlasmicPayment__RenderFunc(props: {
           <section
             data-plasmic-name={"section"}
             data-plasmic-override={overrides.section}
-            className={classNames("all", sty.section, "page")}
+            className={classNames("all", sty.section, "page", {
+              [sty.sectionhome]: hasVariant($state, "home", "home")
+            })}
           >
-            <div className={classNames("all", "__wab_text", sty.text__aGBz1)}>
+            <div
+              className={classNames("all", "__wab_text", sty.text__aGBz1, {
+                [sty.texthome__aGBz1DHitg]: hasVariant($state, "home", "home")
+              })}
+            >
               {""}
+            </div>
+            <div
+              className={classNames("all", "__wab_text", sty.text__jpWvs, {
+                [sty.texthome__jpWvSdHitg]: hasVariant($state, "home", "home")
+              })}
+            >
+              <React.Fragment>
+                <React.Fragment>
+                  {
+                    "\u0628\u0627 \u062a\u0627\u06cc\u06cc\u062f \u0648 \u067e\u0631\u062f\u0627\u062e\u062a \u0645\u0628\u0644\u063a\u060c "
+                  }
+                </React.Fragment>
+                <span
+                  className={
+                    "plasmic_default__all plasmic_default__span plasmic_default__span__qARqp"
+                  }
+                  style={{
+                    color: "var(--token--ieHgGbFH1Fa)",
+                    textDecorationLine: "underline",
+                    fontWeight: 700
+                  }}
+                >
+                  {
+                    "\u0642\u0648\u0627\u0646\u06cc\u0646 \u0648 \u0634\u0631\u0627\u06cc\u0637 \u062e\u062f\u0645\u0627\u062a"
+                  }
+                </span>
+                <React.Fragment>
+                  {
+                    " \u0631\u0627 \u0645\u06cc\u200c\u067e\u0630\u06cc\u0631\u06cc\u062f."
+                  }
+                </React.Fragment>
+              </React.Fragment>
             </div>
             {(() => {
               try {
@@ -1021,7 +1607,9 @@ function PlasmicPayment__RenderFunc(props: {
               <div
                 data-plasmic-name={"online"}
                 data-plasmic-override={overrides.online}
-                className={classNames("all", sty.online)}
+                className={classNames("all", sty.online, {
+                  [sty.onlinehome]: hasVariant($state, "home", "home")
+                })}
               >
                 <div className={classNames("all", sty.freeBox__hilZ)}>
                   {(() => {
@@ -1047,15 +1635,34 @@ function PlasmicPayment__RenderFunc(props: {
                         className={classNames(
                           "all",
                           "__wab_text",
-                          sty.text__l1Hht
+                          sty.text__l1Hht,
+                          {
+                            [sty.texthome__l1HhTdHitg]: hasVariant(
+                              $state,
+                              "home",
+                              "home"
+                            )
+                          }
                         )}
                       >
-                        <React.Fragment>
-                          {$state.basic?.data?.result?.service.price?.toLocaleString() +
-                            " تومان"}
-                        </React.Fragment>
+                        {hasVariant($state, "home", "home") ? (
+                          <React.Fragment>{"هزینه رزرو"}</React.Fragment>
+                        ) : (
+                          <React.Fragment>
+                            {$state.basic?.data?.result?.service.price?.toLocaleString() +
+                              " تومان"}
+                          </React.Fragment>
+                        )}
                       </div>
-                      <div className={classNames("all", sty.freeBox___6ZQ8K)}>
+                      <div
+                        className={classNames("all", sty.freeBox___6ZQ8K, {
+                          [sty.freeBoxhome___6ZQ8KdHitg]: hasVariant(
+                            $state,
+                            "home",
+                            "home"
+                          )
+                        })}
+                      >
                         <div
                           className={classNames(
                             "all",
@@ -1086,18 +1693,38 @@ function PlasmicPayment__RenderFunc(props: {
                     </div>
                   ) : null}
                   <div
-                    className={classNames("all", "__wab_text", sty.text__e1XGo)}
+                    className={classNames(
+                      "all",
+                      "__wab_text",
+                      sty.text__e1XGo,
+                      {
+                        [sty.texthome__e1XGodHitg]: hasVariant(
+                          $state,
+                          "home",
+                          "home"
+                        )
+                      }
+                    )}
                   >
-                    <React.Fragment>
-                      {$state.basic?.data?.result?.service?.final_price?.toLocaleString() +
-                        " تومان"}
-                    </React.Fragment>
+                    {hasVariant($state, "home", "home") ? (
+                      <React.Fragment>
+                        {$state.basic?.data?.result?.final_price?.toLocaleString() +
+                          " تومان"}
+                      </React.Fragment>
+                    ) : (
+                      <React.Fragment>
+                        {$state.basic?.data?.result?.service?.final_price?.toLocaleString() +
+                          " تومان"}
+                      </React.Fragment>
+                    )}
                   </div>
                 </div>
                 <Button
                   data-plasmic-name={"button"}
                   data-plasmic-override={overrides.button}
-                  className={classNames("__wab_instance", sty.button)}
+                  className={classNames("__wab_instance", sty.button, {
+                    [sty.buttonhome]: hasVariant($state, "home", "home")
+                  })}
                   label={
                     <div
                       className={classNames(
@@ -1148,7 +1775,6 @@ function PlasmicPayment__RenderFunc(props: {
                                   return {
                                     id: $props.id,
                                     payment_status: "paid",
-                                    type: $state.basic.data.result.name,
                                     type: $state.basic.data.result.name,
                                     amount:
                                       $state.basic.data.result.payment
@@ -1540,13 +2166,17 @@ const PlasmicDescendants = {
     "embedHtml",
     "header",
     "basic",
+    "itemStaffs",
     "service2",
     "img",
     "textCollapse",
+    "service",
     "description",
     "radioGroup",
     "radio",
     "menuIcon",
+    "uploudeTime",
+    "svg",
     "section",
     "online",
     "button",
@@ -1557,26 +2187,34 @@ const PlasmicDescendants = {
   header: ["header"],
   basic: [
     "basic",
+    "itemStaffs",
     "service2",
     "img",
     "textCollapse",
+    "service",
     "description",
     "radioGroup",
     "radio",
     "menuIcon",
+    "uploudeTime",
+    "svg",
     "section",
     "online",
     "button",
     "inPerson",
     "button3"
   ],
+  itemStaffs: ["itemStaffs"],
   service2: ["service2", "img", "textCollapse"],
   img: ["img"],
   textCollapse: ["textCollapse"],
+  service: ["service"],
   description: ["description"],
   radioGroup: ["radioGroup", "radio", "menuIcon"],
   radio: ["radio", "menuIcon"],
   menuIcon: ["menuIcon"],
+  uploudeTime: ["uploudeTime"],
+  svg: ["svg"],
   section: ["section", "online", "button", "inPerson", "button3"],
   online: ["online", "button"],
   button: ["button"],
@@ -1591,13 +2229,17 @@ type NodeDefaultElementType = {
   embedHtml: typeof Embed;
   header: typeof Header;
   basic: typeof ApiRequest;
+  itemStaffs: typeof ItemStaffs;
   service2: typeof Service2;
   img: typeof PlasmicImg__;
   textCollapse: typeof TextCollapse;
+  service: typeof Service;
   description: typeof TextAreaInput;
   radioGroup: typeof RadioGroup;
   radio: typeof Radio;
   menuIcon: typeof MenuIcon;
+  uploudeTime: typeof UploudeTime;
+  svg: "svg";
   section: "section";
   online: "div";
   button: typeof Button;
@@ -1670,13 +2312,17 @@ export const PlasmicPayment = Object.assign(
     embedHtml: makeNodeComponent("embedHtml"),
     header: makeNodeComponent("header"),
     basic: makeNodeComponent("basic"),
+    itemStaffs: makeNodeComponent("itemStaffs"),
     service2: makeNodeComponent("service2"),
     img: makeNodeComponent("img"),
     textCollapse: makeNodeComponent("textCollapse"),
+    service: makeNodeComponent("service"),
     description: makeNodeComponent("description"),
     radioGroup: makeNodeComponent("radioGroup"),
     radio: makeNodeComponent("radio"),
     menuIcon: makeNodeComponent("menuIcon"),
+    uploudeTime: makeNodeComponent("uploudeTime"),
+    svg: makeNodeComponent("svg"),
     section: makeNodeComponent("section"),
     online: makeNodeComponent("online"),
     button: makeNodeComponent("button"),

@@ -80,12 +80,12 @@ createPlasmicElementProxy;
 export type PlasmicItemStaffs__VariantMembers = {
   booking: "booking";
   home: "home";
-  status: "offersReceived";
+  status: "offersReceived" | "pay";
 };
 export type PlasmicItemStaffs__VariantsArgs = {
   booking?: SingleBooleanChoiceArg<"booking">;
   home?: SingleBooleanChoiceArg<"home">;
-  status?: SingleChoiceArg<"offersReceived">;
+  status?: SingleChoiceArg<"offersReceived" | "pay">;
 };
 type VariantPropType = keyof PlasmicItemStaffs__VariantsArgs;
 export const PlasmicItemStaffs__VariantProps = new Array<VariantPropType>(
@@ -135,7 +135,7 @@ export interface DefaultItemStaffsProps {
   onLoadingChange?: (val: string) => void;
   booking?: SingleBooleanChoiceArg<"booking">;
   home?: SingleBooleanChoiceArg<"home">;
-  status?: SingleChoiceArg<"offersReceived">;
+  status?: SingleChoiceArg<"offersReceived" | "pay">;
   className?: string;
 }
 
@@ -271,7 +271,8 @@ function PlasmicItemStaffs__RenderFunc(props: {
             $state,
             "status",
             "offersReceived"
-          )
+          ),
+          [sty.rootstatus_pay]: hasVariant($state, "status", "pay")
         }
       )}
       onClick={args.onClick}
@@ -579,7 +580,15 @@ function PlasmicItemStaffs__RenderFunc(props: {
           </div>
         </div>
       </div>
-      <div className={classNames("all", sty.freeBox__spwiv)}>
+      <div
+        className={classNames("all", sty.freeBox__spwiv, {
+          [sty.freeBoxstatus_pay__spwivYxWfk]: hasVariant(
+            $state,
+            "status",
+            "pay"
+          )
+        })}
+      >
         <div
           className={classNames("all", sty.freeBox__ezO6O, {
             [sty.freeBoxbooking__ezO6OxTbAv]: hasVariant(
@@ -594,7 +603,15 @@ function PlasmicItemStaffs__RenderFunc(props: {
               "\u0645\u0628\u0644\u063a \u067e\u06cc\u0634\u0646\u0647\u0627\u062f\u06cc"
             }
           </div>
-          <div className={classNames("all", "__wab_text", sty.text__iwHIw)}>
+          <div
+            className={classNames("all", "__wab_text", sty.text__iwHIw, {
+              [sty.textstatus_pay__iwHIwYxWfk]: hasVariant(
+                $state,
+                "status",
+                "pay"
+              )
+            })}
+          >
             <div
               className={"__wab_expr_html_text"}
               dangerouslySetInnerHTML={{
@@ -635,7 +652,15 @@ function PlasmicItemStaffs__RenderFunc(props: {
           </div>
         </div>
       </div>
-      <div className={classNames("all", sty.freeBox___9NPu)}>
+      <div
+        className={classNames("all", sty.freeBox___9NPu, {
+          [sty.freeBoxstatus_pay___9NPuYxWfk]: hasVariant(
+            $state,
+            "status",
+            "pay"
+          )
+        })}
+      >
         <Button
           data-plasmic-name={"button3"}
           data-plasmic-override={overrides.button3}
@@ -691,7 +716,15 @@ function PlasmicItemStaffs__RenderFunc(props: {
           }}
         />
 
-        <div className={classNames("all", sty.freeBox__cwdaq)}>
+        <div
+          className={classNames("all", sty.freeBox__cwdaq, {
+            [sty.freeBoxstatus_pay__cwdaqYxWfk]: hasVariant(
+              $state,
+              "status",
+              "pay"
+            )
+          })}
+        >
           <div
             className={classNames("all", sty.freeBox__rKew7, {
               [sty.freeBoxbooking__rKew7XTbAv]: hasVariant(
@@ -746,14 +779,13 @@ function PlasmicItemStaffs__RenderFunc(props: {
           data-plasmic-name={"button"}
           data-plasmic-override={overrides.button}
           className={classNames("__wab_instance", sty.button, {
-            [sty.buttonhome]: hasVariant($state, "home", "home")
+            [sty.buttonhome]: hasVariant($state, "home", "home"),
+            [sty.buttonstatus_pay]: hasVariant($state, "status", "pay")
           })}
-          color={"neutral"}
+          color={"success"}
           label={
             <div className={classNames("all", "__wab_text", sty.text__b7Zhy)}>
-              {
-                "\u062b\u0628\u062a \u062f\u0631\u062e\u0648\u0627\u0633\u062a >"
-              }
+              {"\u062b\u0628\u062a \u062f\u0631\u062e\u0648\u0627\u0633\u062a"}
             </div>
           }
           loading={generateStateValueProp($state, ["button", "loading"])}
@@ -773,6 +805,48 @@ function PlasmicItemStaffs__RenderFunc(props: {
             }
           }}
         />
+
+        <div
+          className={classNames("all", "__wab_text", sty.text___9W7E, {
+            [sty.textstatus_pay___9W7EYxWfk]: hasVariant(
+              $state,
+              "status",
+              "pay"
+            )
+          })}
+        >
+          <React.Fragment>
+            <React.Fragment>
+              {
+                "\u0633\u0644\u0627\u0645\u060c \u062f\u0631\u062e\u0648\u0627\u0633\u062a"
+              }
+            </React.Fragment>
+            <span
+              className={
+                "plasmic_default__all plasmic_default__span plasmic_default__span__qARqp"
+              }
+              style={{ color: "var(--token-ccqYe7dhXoNZ)" }}
+            >
+              {" "}
+            </span>
+            <React.Fragment>{""}</React.Fragment>
+            <span
+              className={
+                "plasmic_default__all plasmic_default__span plasmic_default__span__qARqp"
+              }
+              style={{ color: "var(--token--ieHgGbFH1Fa)", fontWeight: 700 }}
+            >
+              {
+                "\u0631\u0632\u0631\u0648 \u067e\u0631\u0633\u062a\u0627\u0631  "
+              }
+            </span>
+            <React.Fragment>
+              {
+                "\u0634\u0645\u0627 \u062f\u0631\u06cc\u0627\u0641\u062a \u0634\u062f. \u0644\u0637\u0641\u0627\u064b \u067e\u0633 \u0627\u0632 \u062a\u06a9\u0645\u06cc\u0644 \u0641\u0631\u0622\u06cc\u0646\u062f \u067e\u0631\u062f\u0627\u062e\u062a\u060c \u0645\u0646\u062a\u0638\u0631 \u062a\u0645\u0627\u0633 \u0645\u0627 \u0628\u0627\u0634\u06cc\u062f. \u067e\u0633 \u0627\u0632 \u062a\u0645\u0627\u0633\u060c \u062a\u0645\u0627\u0645\u06cc \u0647\u0645\u0627\u0647\u0646\u06af\u06cc\u200c\u0647\u0627\u06cc \u0644\u0627\u0632\u0645 \u062c\u0647\u062a \u0627\u0639\u0632\u0627\u0645 \u067e\u0631\u0633\u062a\u0627\u0631 \u0628\u0647 \u0645\u062d\u0644 \u0627\u0646\u062c\u0627\u0645 \u062e\u0648\u0627\u0647\u062f \u0634\u062f."
+              }
+            </React.Fragment>
+          </React.Fragment>
+        </div>
       </div>
       <Load
         data-plasmic-name={"load"}

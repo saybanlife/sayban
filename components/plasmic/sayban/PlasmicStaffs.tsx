@@ -789,7 +789,11 @@ function PlasmicStaffs__RenderFunc(props: {
                                 staff_id: currentItem.id,
                                 center_id: currentItem.center_id,
                                 final_price: twentyPercentOfAverage,
-                                status: "pending"
+                                start_time: `${currentItem?.proposed_date} ${currentItem?.proposed_time}`,
+                                preferred_staff_gender: currentItem.gender,
+                                payment_method: "online",
+                                min_price: currentItem.min_price,
+                                max_price: currentItem.max_price
                               };
                             })(),
 
