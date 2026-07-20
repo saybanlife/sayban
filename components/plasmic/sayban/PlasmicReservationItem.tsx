@@ -63,13 +63,13 @@ import StatusIcon from "../../StatusIcon"; // plasmic-import: zJ2RueI-cLbg/compo
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
 import UploudeTime from "../../UploudeTime"; // plasmic-import: IxvwO5AMD5ex/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
+import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import Topics from "../../Topics"; // plasmic-import: K08M_vX52xMI/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import ItemShow from "../../ItemShow"; // plasmic-import: hegjECXSYJcF/component
 import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
 import Load from "../../Load"; // plasmic-import: giI5l8wTGhHv/component
-import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
-import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import RangeSlider from "../../RangeSlider"; // plasmic-import: n3Rhj-X09u8R/component
 import SliderThumb from "../../SliderThumb"; // plasmic-import: kkj3dxAdFRmu/component
 import DateInput from "../../DateInput"; // plasmic-import: 8LUOC3uVttVT/component
@@ -82,11 +82,10 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import sty from "./PlasmicReservationItem.module.css"; // plasmic-import: 4UaemkVPEyQ4/css
 
 import Icon15Icon from "./icons/PlasmicIcon__Icon15"; // plasmic-import: uAXK4fWyRv8m/icon
-import Icon11Icon from "./icons/PlasmicIcon__Icon11"; // plasmic-import: TLjQehPXSyaR/icon
-import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
-import CheckIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Check"; // plasmic-import: DtxnCWLfceEB/icon
 import PlusIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Plus"; // plasmic-import: _pdhShvRj8aO/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import UserIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__User"; // plasmic-import: d1LJS78vGoJH/icon
+import CheckIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Check"; // plasmic-import: DtxnCWLfceEB/icon
 import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
 
 createPlasmicElementProxy;
@@ -127,10 +126,9 @@ export type PlasmicReservationItem__OverridesType = {
   statusIcon?: Flex__<typeof StatusIcon>;
   textCollapse?: Flex__<typeof TextCollapse>;
   uploudeTime?: Flex__<typeof UploudeTime>;
-  add?: Flex__<typeof Button>;
-  add2?: Flex__<typeof Button>;
   add3?: Flex__<typeof Button>;
   add6?: Flex__<typeof Button>;
+  select2?: Flex__<typeof Select>;
   topics?: Flex__<typeof Topics>;
   apiRequest?: Flex__<typeof ApiRequest>;
   apiRequest2?: Flex__<typeof ApiRequest>;
@@ -142,7 +140,6 @@ export type PlasmicReservationItem__OverridesType = {
   apiRequest3?: Flex__<typeof ApiRequest>;
   load?: Flex__<typeof Load>;
   select?: Flex__<typeof Select>;
-  menuItem?: Flex__<typeof MenuItem>;
   rangeSlider?: Flex__<typeof RangeSlider>;
   dateInput?: Flex__<typeof DateInput>;
   timeInput?: Flex__<typeof TimeInput>;
@@ -212,18 +209,6 @@ function PlasmicReservationItem__RenderFunc(props: {
 
         valueProp: "open",
         onChangeProp: "onOpenChange"
-      },
-      {
-        path: "add.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "add2.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "user2",
@@ -477,6 +462,19 @@ function PlasmicReservationItem__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => "1"
+      },
+      {
+        path: "select2.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "select2.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $props.currentItem.status
       }
     ],
     [$props, $ctx, $refs]
@@ -735,367 +733,6 @@ function PlasmicReservationItem__RenderFunc(props: {
         </div>
         {(
           hasVariant($state, "home", "home")
-            ? true
-            : (() => {
-                try {
-                  return $props.currentItem.status == "pending";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })()
-        ) ? (
-          <Button
-            data-plasmic-name={"add"}
-            data-plasmic-override={overrides.add}
-            className={classNames("__wab_instance", sty.add, {
-              [sty.addhome]: hasVariant($state, "home", "home")
-            })}
-            color={"errorDestructive"}
-            iconStart={true}
-            label={
-              <div className={classNames("all", "__wab_text", sty.text__pPgHu)}>
-                {"\u0644\u063a\u0648 \u0631\u0632\u0631\u0648"}
-              </div>
-            }
-            loading={generateStateValueProp($state, ["add", "loading"])}
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["runCode"] = true
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return ($state.add.loading = true);
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runCode"] != null &&
-                typeof $steps["runCode"] === "object" &&
-                typeof $steps["runCode"].then === "function"
-              ) {
-                $steps["runCode"] = await $steps["runCode"];
-              }
-
-              $steps["invokeGlobalAction"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "POST",
-                        "panel/reservations/canceled",
-                        undefined,
-                        {
-                          code: $props.currentItem.reservation_code
-                        }
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
-              ) {
-                $steps["invokeGlobalAction"] =
-                  await $steps["invokeGlobalAction"];
-              }
-
-              $steps["invokeGlobalAction2"] = $steps.invokeGlobalAction?.data
-                ?.message
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        $steps.invokeGlobalAction.data.success
-                          ? "success"
-                          : "error",
-                        (() => {
-                          try {
-                            return $steps.invokeGlobalAction.data.message;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })(),
-                        "top-left"
-                      ]
-                    };
-                    return $globalActions["Fragment.showToast"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["invokeGlobalAction2"] != null &&
-                typeof $steps["invokeGlobalAction2"] === "object" &&
-                typeof $steps["invokeGlobalAction2"].then === "function"
-              ) {
-                $steps["invokeGlobalAction2"] =
-                  await $steps["invokeGlobalAction2"];
-              }
-
-              $steps["runCode3"] = $steps.invokeGlobalAction?.data?.success
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return ($props.currentItem.status = "confirmed");
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runCode3"] != null &&
-                typeof $steps["runCode3"] === "object" &&
-                typeof $steps["runCode3"].then === "function"
-              ) {
-                $steps["runCode3"] = await $steps["runCode3"];
-              }
-
-              $steps["runCode2"] = true
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return ($state.add.loading = false);
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runCode2"] != null &&
-                typeof $steps["runCode2"] === "object" &&
-                typeof $steps["runCode2"].then === "function"
-              ) {
-                $steps["runCode2"] = await $steps["runCode2"];
-              }
-            }}
-            onLoadingChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["add", "loading"]).apply(
-                null,
-                eventArgs
-              );
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            start={
-              <Icon11Icon
-                className={classNames("all", sty.svg__irS4T)}
-                role={"img"}
-              />
-            }
-          />
-        ) : null}
-        {(
-          hasVariant($state, "home", "home")
-            ? true
-            : (() => {
-                try {
-                  return $props.currentItem.status == "pending";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })()
-        ) ? (
-          <Button
-            data-plasmic-name={"add2"}
-            data-plasmic-override={overrides.add2}
-            className={classNames("__wab_instance", sty.add2, {
-              [sty.add2home]: hasVariant($state, "home", "home"),
-              [sty.add2open]: hasVariant($state, "open", "open")
-            })}
-            color={"success"}
-            iconStart={true}
-            label={
-              <div className={classNames("all", "__wab_text", sty.text__qFzGk)}>
-                {"\u062a\u0627\u06cc\u06cc\u062f \u0631\u0632\u0631\u0648"}
-              </div>
-            }
-            loading={generateStateValueProp($state, ["add2", "loading"])}
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["runCode"] = true
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return ($state.add2.loading = true);
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runCode"] != null &&
-                typeof $steps["runCode"] === "object" &&
-                typeof $steps["runCode"].then === "function"
-              ) {
-                $steps["runCode"] = await $steps["runCode"];
-              }
-
-              $steps["invokeGlobalAction"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "POST",
-                        "panel/reservations/confirm",
-                        undefined,
-                        {
-                          code: $props.currentItem.reservation_code
-                        }
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
-              ) {
-                $steps["invokeGlobalAction"] =
-                  await $steps["invokeGlobalAction"];
-              }
-
-              $steps["invokeGlobalAction2"] = $steps.invokeGlobalAction?.data
-                ?.message
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        $steps.invokeGlobalAction.data.success
-                          ? "success"
-                          : "error",
-                        (() => {
-                          try {
-                            return $steps.invokeGlobalAction.data.message;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })(),
-                        "top-left"
-                      ]
-                    };
-                    return $globalActions["Fragment.showToast"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["invokeGlobalAction2"] != null &&
-                typeof $steps["invokeGlobalAction2"] === "object" &&
-                typeof $steps["invokeGlobalAction2"].then === "function"
-              ) {
-                $steps["invokeGlobalAction2"] =
-                  await $steps["invokeGlobalAction2"];
-              }
-
-              $steps["runCode3"] = $steps.invokeGlobalAction?.data?.success
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return ($props.currentItem.status = "confirmed");
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runCode3"] != null &&
-                typeof $steps["runCode3"] === "object" &&
-                typeof $steps["runCode3"].then === "function"
-              ) {
-                $steps["runCode3"] = await $steps["runCode3"];
-              }
-
-              $steps["runCode2"] = true
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return ($state.add2.loading = false);
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runCode2"] != null &&
-                typeof $steps["runCode2"] === "object" &&
-                typeof $steps["runCode2"].then === "function"
-              ) {
-                $steps["runCode2"] = await $steps["runCode2"];
-              }
-            }}
-            onLoadingChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["add2", "loading"]).apply(
-                null,
-                eventArgs
-              );
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            start={
-              <CheckIcon
-                className={classNames("all", sty.svg__rcpZa)}
-                role={"img"}
-              />
-            }
-          />
-        ) : null}
-        {(
-          hasVariant($state, "home", "home")
             ? (() => {
                 try {
                   return (
@@ -1261,6 +898,222 @@ function PlasmicReservationItem__RenderFunc(props: {
             }
           />
         ) : null}
+        <div className={classNames("all", sty.freeBox__r7GrC)}>
+          <Select
+            data-plasmic-name={"select2"}
+            data-plasmic-override={overrides.select2}
+            className={classNames("__wab_instance", sty.select2)}
+            isOpen={generateStateValueProp($state, ["select2", "isOpen"])}
+            items={(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+              (() => {
+                try {
+                  return [
+                    {
+                      value: "draft",
+                      label: "\u26AA پیش‌نویس"
+                    },
+                    {
+                      value: "registered",
+                      label: "\uD83D\uDD35 درخواست ثبت شد"
+                    },
+                    {
+                      value: "awaitingConsultation",
+                      label: "\uD83D\uDFE1 نیازمند تماس مشاوره"
+                    },
+                    {
+                      value: "sentToCenters",
+                      label: "\uD83D\uDFE3 ارسال شده برای مراکز"
+                    },
+                    {
+                      value: "awaitingOffers",
+                      label: "\uD83D\uDFE0 در انتظار پیشنهاد"
+                    },
+                    {
+                      value: "offersReceived",
+                      label: "\uD83D\uDD35 پیشنهادها دریافت شد"
+                    },
+                    {
+                      value: "nurseSelected",
+                      label: "\uD83D\uDFE2 پرستار انتخاب شد"
+                    },
+                    {
+                      value: "awaitingPayment",
+                      label: "\uD83D\uDFE1 در انتظار پرداخت رزرو"
+                    },
+                    {
+                      value: "paymentCompleted",
+                      label: "\uD83D\uDFE2 هزینه رزرو پرداخت شد"
+                    },
+                    {
+                      value: "awaitingCenterContact",
+                      label: "\uD83D\uDFE0 در انتظار تماس مرکز"
+                    },
+                    {
+                      value: "userNoResponse",
+                      label: "\u26AA کاربر پاسخ نداد"
+                    },
+                    {
+                      value: "underFinalReview",
+                      label: "\uD83D\uDFE3 در حال بررسی نهایی"
+                    },
+                    {
+                      value: "pending",
+                      label: "\uD83D\uDFE1 در انتظار تأیید"
+                    },
+                    {
+                      value: "finalConfirmed",
+                      label: "\uD83D\uDFE2 تأیید نهایی شد"
+                    },
+                    {
+                      value: "confirmed",
+                      label: "\uD83D\uDFE2 تأیید شده"
+                    },
+                    {
+                      value: "readyForDispatch",
+                      label: "\uD83D\uDD35 آماده اعزام"
+                    },
+                    {
+                      value: "inProgress",
+                      label: "\uD83D\uDD35 خدمت در حال انجام"
+                    },
+                    {
+                      value: "serviceFinished",
+                      label: "\uD83D\uDFE2 خدمت پایان یافت"
+                    },
+                    {
+                      value: "completed",
+                      label: "\u2705 تکمیل شده"
+                    },
+                    {
+                      value: "rejected",
+                      label: "\uD83D\uDD34 رد شده"
+                    },
+                    {
+                      value: "canceled",
+                      label: "\u26AB لغو شده"
+                    },
+                    {
+                      value: "refunded",
+                      label: "\uD83D\uDD35 بازپرداخت شده"
+                    },
+                    {
+                      value: "awaitingSupport",
+                      label: "\uD83D\uDFE0 نیازمند رسیدگی پشتیبانی"
+                    }
+                  ];
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()
+            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+              const currentItem = __plasmic_item_0;
+              const currentIndex = __plasmic_idx_0;
+              return (
+                <MenuItem
+                  key={currentIndex}
+                  label={(() => {
+                    try {
+                      return currentItem.label;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                  value={(() => {
+                    try {
+                      return currentItem.value;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                />
+              );
+            })}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["select2", "value"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+
+              (async val => {
+                const $steps = {};
+
+                $steps["invokeGlobalAction"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "POST",
+                          "panel/reservations/status",
+                          undefined,
+                          {
+                            code: $props.currentItem.reservation_code,
+                            status: $state.select2.value
+                          }
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] =
+                    await $steps["invokeGlobalAction"];
+                }
+              }).apply(null, eventArgs);
+            }}
+            onOpenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["select2", "isOpen"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            placeholder={
+              "\u0648\u0636\u0639\u06cc\u062a \u0631\u0632\u0631\u0648"
+            }
+            showLabel={false}
+            type={"soft"}
+            value={generateStateValueProp($state, ["select2", "value"])}
+          />
+        </div>
         <ChevronDownIcon
           className={classNames("all", sty.svg__dwid7, {
             [sty.svgopen__dwid7Lb9Mw]: hasVariant($state, "open", "open"),
@@ -1936,50 +1789,6 @@ function PlasmicReservationItem__RenderFunc(props: {
                               label: (
                                 <Icon10Icon
                                   className={classNames("all", sty.svg__vRpa9)}
-                                  onClick={async event => {
-                                    const $steps = {};
-
-                                    $steps["updateAddLoading"] = true
-                                      ? (() => {
-                                          const actionArgs = {
-                                            variable: {
-                                              objRoot: $state,
-                                              variablePath: ["add", "loading"]
-                                            },
-                                            operation: 0
-                                          };
-                                          return (({
-                                            variable,
-                                            value,
-                                            startIndex,
-                                            deleteCount
-                                          }) => {
-                                            if (!variable) {
-                                              return;
-                                            }
-                                            const { objRoot, variablePath } =
-                                              variable;
-
-                                            $stateSet(
-                                              objRoot,
-                                              variablePath,
-                                              value
-                                            );
-                                            return value;
-                                          })?.apply(null, [actionArgs]);
-                                        })()
-                                      : undefined;
-                                    if (
-                                      $steps["updateAddLoading"] != null &&
-                                      typeof $steps["updateAddLoading"] ===
-                                        "object" &&
-                                      typeof $steps["updateAddLoading"].then ===
-                                        "function"
-                                    ) {
-                                      $steps["updateAddLoading"] =
-                                        await $steps["updateAddLoading"];
-                                    }
-                                  }}
                                   role={"img"}
                                 />
                               ),
@@ -2456,8 +2265,6 @@ function PlasmicReservationItem__RenderFunc(props: {
                   const currentIndex = __plasmic_idx_0;
                   return (
                     <MenuItem
-                      data-plasmic-name={"menuItem"}
-                      data-plasmic-override={overrides.menuItem}
                       key={currentIndex}
                       label={(() => {
                         try {
@@ -2905,10 +2712,9 @@ const PlasmicDescendants = {
     "statusIcon",
     "textCollapse",
     "uploudeTime",
-    "add",
-    "add2",
     "add3",
     "add6",
+    "select2",
     "topics",
     "apiRequest",
     "apiRequest2",
@@ -2920,7 +2726,6 @@ const PlasmicDescendants = {
     "apiRequest3",
     "load",
     "select",
-    "menuItem",
     "rangeSlider",
     "dateInput",
     "timeInput",
@@ -2930,10 +2735,9 @@ const PlasmicDescendants = {
   statusIcon: ["statusIcon"],
   textCollapse: ["textCollapse"],
   uploudeTime: ["uploudeTime"],
-  add: ["add"],
-  add2: ["add2"],
   add3: ["add3"],
   add6: ["add6"],
+  select2: ["select2"],
   topics: ["topics"],
   apiRequest: ["apiRequest"],
   apiRequest2: ["apiRequest2", "itemShow", "img", "add7", "add8"],
@@ -2946,7 +2750,6 @@ const PlasmicDescendants = {
     "apiRequest3",
     "load",
     "select",
-    "menuItem",
     "rangeSlider",
     "dateInput",
     "timeInput",
@@ -2957,7 +2760,6 @@ const PlasmicDescendants = {
     "apiRequest3",
     "load",
     "select",
-    "menuItem",
     "rangeSlider",
     "dateInput",
     "timeInput",
@@ -2965,8 +2767,7 @@ const PlasmicDescendants = {
     "add5"
   ],
   load: ["load"],
-  select: ["select", "menuItem"],
-  menuItem: ["menuItem"],
+  select: ["select"],
   rangeSlider: ["rangeSlider"],
   dateInput: ["dateInput"],
   timeInput: ["timeInput"],
@@ -2981,10 +2782,9 @@ type NodeDefaultElementType = {
   statusIcon: typeof StatusIcon;
   textCollapse: typeof TextCollapse;
   uploudeTime: typeof UploudeTime;
-  add: typeof Button;
-  add2: typeof Button;
   add3: typeof Button;
   add6: typeof Button;
+  select2: typeof Select;
   topics: typeof Topics;
   apiRequest: typeof ApiRequest;
   apiRequest2: typeof ApiRequest;
@@ -2996,7 +2796,6 @@ type NodeDefaultElementType = {
   apiRequest3: typeof ApiRequest;
   load: typeof Load;
   select: typeof Select;
-  menuItem: typeof MenuItem;
   rangeSlider: typeof RangeSlider;
   dateInput: typeof DateInput;
   timeInput: typeof TimeInput;
@@ -3069,10 +2868,9 @@ export const PlasmicReservationItem = Object.assign(
     statusIcon: makeNodeComponent("statusIcon"),
     textCollapse: makeNodeComponent("textCollapse"),
     uploudeTime: makeNodeComponent("uploudeTime"),
-    add: makeNodeComponent("add"),
-    add2: makeNodeComponent("add2"),
     add3: makeNodeComponent("add3"),
     add6: makeNodeComponent("add6"),
+    select2: makeNodeComponent("select2"),
     topics: makeNodeComponent("topics"),
     apiRequest: makeNodeComponent("apiRequest"),
     apiRequest2: makeNodeComponent("apiRequest2"),
@@ -3084,7 +2882,6 @@ export const PlasmicReservationItem = Object.assign(
     apiRequest3: makeNodeComponent("apiRequest3"),
     load: makeNodeComponent("load"),
     select: makeNodeComponent("select"),
-    menuItem: makeNodeComponent("menuItem"),
     rangeSlider: makeNodeComponent("rangeSlider"),
     dateInput: makeNodeComponent("dateInput"),
     timeInput: makeNodeComponent("timeInput"),
