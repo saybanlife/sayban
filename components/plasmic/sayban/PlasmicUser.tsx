@@ -115,6 +115,7 @@ export const PlasmicUser__ArgProps = new Array<ArgPropType>(
 export type PlasmicUser__OverridesType = {
   root?: Flex__<"section">;
   section?: Flex__<"section">;
+  img?: Flex__<typeof PlasmicImg__>;
   _switch?: Flex__<typeof Switch>;
   switch2?: Flex__<typeof Switch>;
   modal?: Flex__<typeof Modal>;
@@ -297,6 +298,25 @@ function PlasmicUser__RenderFunc(props: {
                 role={"img"}
               />
             </div>
+            <PlasmicImg__
+              data-plasmic-name={"img"}
+              data-plasmic-override={overrides.img}
+              alt={""}
+              className={classNames(sty.img)}
+              displayHeight={"6rem"}
+              displayMaxHeight={"none"}
+              displayMaxWidth={"100%"}
+              displayMinHeight={"0"}
+              displayMinWidth={"0"}
+              displayWidth={"6rem"}
+              loading={"lazy"}
+              src={{
+                src: "/plasmic/sayban/images/geminiGeneratedImageVeesxkveesxkveesRemovebgPreviewPng.png",
+                fullWidth: 500,
+                fullHeight: 500,
+                aspectRatio: undefined
+              }}
+            />
           </div>
           <div className={classNames("all", "__wab_text", sty.text__bMlg7)}>
             <React.Fragment>
@@ -1065,13 +1085,15 @@ const PlasmicDescendants = {
   root: [
     "root",
     "section",
+    "img",
     "_switch",
     "switch2",
     "modal",
     "button2",
     "button3"
   ],
-  section: ["section"],
+  section: ["section", "img"],
+  img: ["img"],
   _switch: ["_switch"],
   switch2: ["switch2"],
   modal: ["modal", "button2", "button3"],
@@ -1084,6 +1106,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "section";
   section: "section";
+  img: typeof PlasmicImg__;
   _switch: typeof Switch;
   switch2: typeof Switch;
   modal: typeof Modal;
@@ -1154,6 +1177,7 @@ export const PlasmicUser = Object.assign(
   {
     // Helper components rendering sub-elements
     section: makeNodeComponent("section"),
+    img: makeNodeComponent("img"),
     _switch: makeNodeComponent("_switch"),
     switch2: makeNodeComponent("switch2"),
     modal: makeNodeComponent("modal"),

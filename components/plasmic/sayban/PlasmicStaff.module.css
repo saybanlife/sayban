@@ -602,6 +602,10 @@
   color: var(--token-ee2TuxDknsJj);
   outline: none;
 }
+.videoPlayer:global(.__wab_instance) {
+  max-width: 100%;
+  width: auto;
+}
 .line:global(.__wab_instance) {
   position: relative;
   top: auto;

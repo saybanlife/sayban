@@ -65,6 +65,7 @@ import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-impor
 import ItemStaffs2 from "../../ItemStaffs2"; // plasmic-import: Ok7oDnvmXicS/component
 import Topics from "../../Topics"; // plasmic-import: K08M_vX52xMI/component
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
+import VideoPlayer from "../../VideoPlayer"; // plasmic-import: LkXMROEA_Kd_/component
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import Service from "../../Service"; // plasmic-import: 0JNfyGRvC0FA/component
 import { AntdProgress } from "@plasmicpkgs/antd5/skinny/registerProgress";
@@ -146,6 +147,7 @@ export type PlasmicStaff__OverridesType = {
   itemStaffs4?: Flex__<typeof ItemStaffs2>;
   topics?: Flex__<typeof Topics>;
   textCollapse?: Flex__<typeof TextCollapse>;
+  videoPlayer?: Flex__<typeof VideoPlayer>;
   line?: Flex__<typeof Line>;
   service?: Flex__<typeof Service>;
   progress?: Flex__<typeof AntdProgress>;
@@ -763,6 +765,25 @@ function PlasmicStaff__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "videoPlayer.link",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.full?.data?.result?.staff?.intro_video;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -1296,6 +1317,47 @@ function PlasmicStaff__RenderFunc(props: {
                         }
                       })()}
                     />
+
+                    {(() => {
+                      try {
+                        return $state.full?.data?.result?.staff?.intro_video;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
+                      <VideoPlayer
+                        data-plasmic-name={"videoPlayer"}
+                        data-plasmic-override={overrides.videoPlayer}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.videoPlayer
+                        )}
+                        link={generateStateValueProp($state, [
+                          "videoPlayer",
+                          "link"
+                        ])}
+                        onLinkChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "videoPlayer",
+                            "link"
+                          ]).apply(null, eventArgs);
+
+                          if (
+                            eventArgs.length > 1 &&
+                            eventArgs[1] &&
+                            eventArgs[1]._plasmic_state_init_
+                          ) {
+                            return;
+                          }
+                        }}
+                      />
+                    ) : null}
                   </div>
                   <Line
                     data-plasmic-name={"line"}
@@ -4323,6 +4385,7 @@ const PlasmicDescendants = {
     "itemStaffs4",
     "topics",
     "textCollapse",
+    "videoPlayer",
     "line",
     "service",
     "progress",
@@ -4354,6 +4417,7 @@ const PlasmicDescendants = {
     "itemStaffs4",
     "topics",
     "textCollapse",
+    "videoPlayer",
     "line",
     "service",
     "progress",
@@ -4362,6 +4426,7 @@ const PlasmicDescendants = {
   itemStaffs4: ["itemStaffs4"],
   topics: ["topics"],
   textCollapse: ["textCollapse"],
+  videoPlayer: ["videoPlayer"],
   line: ["line"],
   service: ["service"],
   progress: ["progress"],
@@ -4423,6 +4488,7 @@ type NodeDefaultElementType = {
   itemStaffs4: typeof ItemStaffs2;
   topics: typeof Topics;
   textCollapse: typeof TextCollapse;
+  videoPlayer: typeof VideoPlayer;
   line: typeof Line;
   service: typeof Service;
   progress: typeof AntdProgress;
@@ -4516,6 +4582,7 @@ export const PlasmicStaff = Object.assign(
     itemStaffs4: makeNodeComponent("itemStaffs4"),
     topics: makeNodeComponent("topics"),
     textCollapse: makeNodeComponent("textCollapse"),
+    videoPlayer: makeNodeComponent("videoPlayer"),
     line: makeNodeComponent("line"),
     service: makeNodeComponent("service"),
     progress: makeNodeComponent("progress"),

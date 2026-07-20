@@ -69,8 +69,8 @@ import City from "../../City"; // plasmic-import: dRrvldGFbNOC/component
 import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo/component
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import Check from "../../Check"; // plasmic-import: jHhGioxaI9lI/component
-import RangeSlider from "../../RangeSlider"; // plasmic-import: n3Rhj-X09u8R/component
-import SliderThumb from "../../SliderThumb"; // plasmic-import: kkj3dxAdFRmu/component
+import VideoUpload from "../../VideoUpload"; // plasmic-import: QYkEb5BnvMqr/component
+import VideoPlayer from "../../VideoPlayer"; // plasmic-import: LkXMROEA_Kd_/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -160,7 +160,8 @@ export type PlasmicEditStaffs__OverridesType = {
   checkboxGroup?: Flex__<typeof CheckboxGroup>;
   check?: Flex__<typeof Check>;
   check2?: Flex__<typeof Check>;
-  rangeSlider?: Flex__<typeof RangeSlider>;
+  videoUpload?: Flex__<typeof VideoUpload>;
+  videoPlayer?: Flex__<typeof VideoPlayer>;
   section?: Flex__<"section">;
   codeSubmit2?: Flex__<typeof Button>;
 };
@@ -401,18 +402,6 @@ function PlasmicEditStaffs__RenderFunc(props: {
         variableType: "boolean"
       },
       {
-        path: "rangeSlider.value",
-        type: "private",
-        variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          hasVariant($state, "edit", "edit")
-            ? [
-                $props.data?.price_min || 800000,
-                $props.data?.price_max || 1200000
-              ]
-            : [800000, 2000000]
-      },
-      {
         path: "textAreaInput.value",
         type: "private",
         variableType: "text",
@@ -444,6 +433,31 @@ function PlasmicEditStaffs__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "videoUpload.uploadFiles",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "videoPlayer.link",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $props.data.intro_video;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -1470,41 +1484,38 @@ function PlasmicEditStaffs__RenderFunc(props: {
           );
         })()}
       </div>
-      <div
-        className={classNames("all", sty.freeBox__oLkxl, {
-          [sty.freeBoxedit__oLkxlEfL9K]: hasVariant($state, "edit", "edit")
-        })}
-      >
-        <div className={classNames("all", sty.freeBox___20YvL)}>
+      <div className={classNames("all", sty.freeBox__xHszf)}>
+        <div
+          className={classNames("all", sty.freeBox__oJcp7, {
+            [sty.freeBoxedit__oJcp7EfL9K]: hasVariant($state, "edit", "edit")
+          })}
+        >
           <div
-            className={classNames("all", "__wab_text", sty.text__rpOqt, {
-              [sty.textedit__rpOqtEfL9K]: hasVariant($state, "edit", "edit")
+            className={classNames("all", "__wab_text", sty.text__wjx3E, {
+              [sty.textedit__wjx3EEfL9K]: hasVariant($state, "edit", "edit")
             })}
           >
-            {"\u0628\u0627\u0632\u0647 \u0642\u06cc\u0645\u062a"}
+            {
+              "\u0648\u06cc\u062f\u0626\u0648 \u0645\u0639\u0631\u0641\u06cc \u067e\u0631\u0633\u062a\u0627\u0631"
+            }
           </div>
+          <Line
+            className={classNames("__wab_instance", sty.line__prvKv)}
+            color={"soft"}
+            size={"small"}
+          />
         </div>
-        <Line
-          className={classNames("__wab_instance", sty.line___0Rjft)}
-          color={"soft"}
-          size={"small"}
-        />
-
-        <RangeSlider
-          data-plasmic-name={"rangeSlider"}
-          data-plasmic-override={overrides.rangeSlider}
-          className={classNames("__wab_instance", sty.rangeSlider, {
-            [sty.rangeSlideredit]: hasVariant($state, "edit", "edit")
+        <VideoUpload
+          data-plasmic-name={"videoUpload"}
+          data-plasmic-override={overrides.videoUpload}
+          className={classNames("__wab_instance", sty.videoUpload, {
+            [sty.videoUploadedit]: hasVariant($state, "edit", "edit")
           })}
-          disabled={false}
-          filled={true}
-          maxValue={10000000}
-          minValue={500000}
-          onChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["rangeSlider", "value"]).apply(
-              null,
-              eventArgs
-            );
+          onUploadFilesChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "videoUpload",
+              "uploadFiles"
+            ]).apply(null, eventArgs);
 
             if (
               eventArgs.length > 1 &&
@@ -1514,11 +1525,59 @@ function PlasmicEditStaffs__RenderFunc(props: {
               return;
             }
           }}
-          showLabel={false}
-          showOutputText={true}
-          value={generateStateValueProp($state, ["rangeSlider", "value"])}
+          uploadFiles={generateStateValueProp($state, [
+            "videoUpload",
+            "uploadFiles"
+          ])}
         />
+
+        {(
+          hasVariant($state, "edit", "edit")
+            ? true
+            : (() => {
+                try {
+                  return $props.data?.intro_video;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })()
+        ) ? (
+          <VideoPlayer
+            data-plasmic-name={"videoPlayer"}
+            data-plasmic-override={overrides.videoPlayer}
+            className={classNames("__wab_instance", sty.videoPlayer, {
+              [sty.videoPlayeredit]: hasVariant($state, "edit", "edit")
+            })}
+            link={generateStateValueProp($state, ["videoPlayer", "link"])}
+            onLinkChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["videoPlayer", "link"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        ) : null}
       </div>
+      <div
+        className={classNames("all", sty.freeBox__oLkxl, {
+          [sty.freeBoxedit__oLkxlEfL9K]: hasVariant($state, "edit", "edit")
+        })}
+      />
+
       <div className={classNames("all", "__wab_text", sty.text__eVh7U)}>
         {
           "\u0645\u0633\u062a\u0646\u062f\u0627\u062a \u0648 \u0645\u062f\u0627\u0631\u06a9"
@@ -1622,6 +1681,11 @@ function PlasmicEditStaffs__RenderFunc(props: {
                                 $props.centerId ||
                                 $state.select.value,
                               name: $state.name.value,
+                              video: $state.videoUpload.uploadFiles?.some(
+                                f => f.type
+                              )
+                                ? $state.videoUpload.uploadFiles
+                                : null,
                               image: $state.imageProfile.uploadFiles?.some(
                                 f => f.type
                               )
@@ -1633,8 +1697,6 @@ function PlasmicEditStaffs__RenderFunc(props: {
                               skills: JSON.stringify(
                                 $state.checkboxGroup?.value || []
                               ),
-                              price_min: $state.rangeSlider.value[0],
-                              price_max: $state.rangeSlider.value[1],
                               center_description: $state.textAreaInput.value
                             };
                           } catch (e) {
@@ -1844,7 +1906,8 @@ const PlasmicDescendants = {
     "checkboxGroup",
     "check",
     "check2",
-    "rangeSlider",
+    "videoUpload",
+    "videoPlayer",
     "section",
     "codeSubmit2"
   ],
@@ -1863,7 +1926,8 @@ const PlasmicDescendants = {
   checkboxGroup: ["checkboxGroup", "check", "check2"],
   check: ["check"],
   check2: ["check2"],
-  rangeSlider: ["rangeSlider"],
+  videoUpload: ["videoUpload"],
+  videoPlayer: ["videoPlayer"],
   section: ["section", "codeSubmit2"],
   codeSubmit2: ["codeSubmit2"]
 } as const;
@@ -1887,7 +1951,8 @@ type NodeDefaultElementType = {
   checkboxGroup: typeof CheckboxGroup;
   check: typeof Check;
   check2: typeof Check;
-  rangeSlider: typeof RangeSlider;
+  videoUpload: typeof VideoUpload;
+  videoPlayer: typeof VideoPlayer;
   section: "section";
   codeSubmit2: typeof Button;
 };
@@ -1969,7 +2034,8 @@ export const PlasmicEditStaffs = Object.assign(
     checkboxGroup: makeNodeComponent("checkboxGroup"),
     check: makeNodeComponent("check"),
     check2: makeNodeComponent("check2"),
-    rangeSlider: makeNodeComponent("rangeSlider"),
+    videoUpload: makeNodeComponent("videoUpload"),
+    videoPlayer: makeNodeComponent("videoPlayer"),
     section: makeNodeComponent("section"),
     codeSubmit2: makeNodeComponent("codeSubmit2"),
 

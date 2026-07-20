@@ -240,6 +240,7 @@ function PlasmicToolsItem__RenderFunc(props: {
           data-plasmic-override={overrides.img}
           alt={""}
           className={classNames(sty.img, {
+            [sty.imgback]: hasVariant($state, "back", "back"),
             [sty.imgback_top]:
               hasVariant($state, "top", "top") &&
               hasVariant($state, "back", "back")

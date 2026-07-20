@@ -29796,6 +29796,32 @@
           "cssFilePath": "plasmic/sayban/PlasmicFilterSteff.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "QYkEb5BnvMqr",
+          "name": "VideoUpload",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicVideoUpload.tsx",
+          "importSpec": {
+            "modulePath": "VideoUpload.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicVideoUpload.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "LkXMROEA_Kd_",
+          "name": "VideoPlayer",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicVideoPlayer.tsx",
+          "importSpec": {
+            "modulePath": "VideoPlayer.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicVideoPlayer.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -30813,6 +30839,16 @@
           "id": "JgCwdfwb6pDv",
           "name": "Icon123Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon123.tsx"
+        },
+        {
+          "id": "hrvYAT8Qm5NG",
+          "name": "Icon124Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon124.tsx"
+        },
+        {
+          "id": "yTjThEv4nXW1",
+          "name": "Icon125Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon125.tsx"
         }
       ],
       "images": [
@@ -31125,6 +31161,11 @@
           "id": "wc_RlQ8tqtsp",
           "name": "image 38",
           "filePath": "../public/plasmic/sayban/images/image38.png"
+        },
+        {
+          "id": "HISnzt6MhjO8",
+          "name": "Gemini_Generated_Image_veesxkveesxkvees-removebg-preview.png",
+          "filePath": "../public/plasmic/sayban/images/geminiGeneratedImageVeesxkveesxkveesRemovebgPreviewPng.png"
         }
       ],
       "indirect": false,

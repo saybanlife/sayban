@@ -76,7 +76,10 @@ export type PlasmicStatus__VariantMembers = {
     | "rejected"
     | "completed"
     | "awaitingOffers"
-    | "offersReceived";
+    | "offersReceived"
+    | "draft"
+    | "awaitingCenterContact"
+    | "awaitingPayment";
   textcolor: "textcolor";
 };
 export type PlasmicStatus__VariantsArgs = {
@@ -88,6 +91,9 @@ export type PlasmicStatus__VariantsArgs = {
     | "completed"
     | "awaitingOffers"
     | "offersReceived"
+    | "draft"
+    | "awaitingCenterContact"
+    | "awaitingPayment"
   >;
   textcolor?: SingleBooleanChoiceArg<"textcolor">;
 };
@@ -115,6 +121,9 @@ export interface DefaultStatusProps {
     | "completed"
     | "awaitingOffers"
     | "offersReceived"
+    | "draft"
+    | "awaitingCenterContact"
+    | "awaitingPayment"
   >;
   textcolor?: SingleBooleanChoiceArg<"textcolor">;
   className?: string;
@@ -215,14 +224,25 @@ function PlasmicStatus__RenderFunc(props: {
         styleTokensClassNames,
         sty.root,
         {
+          [sty.rootstatus_awaitingCenterContact]: hasVariant(
+            $state,
+            "status",
+            "awaitingCenterContact"
+          ),
           [sty.rootstatus_awaitingOffers]: hasVariant(
             $state,
             "status",
             "awaitingOffers"
           ),
+          [sty.rootstatus_awaitingPayment]: hasVariant(
+            $state,
+            "status",
+            "awaitingPayment"
+          ),
           [sty.rootstatus_canceled]: hasVariant($state, "status", "canceled"),
           [sty.rootstatus_completed]: hasVariant($state, "status", "completed"),
           [sty.rootstatus_confirmed]: hasVariant($state, "status", "confirmed"),
+          [sty.rootstatus_draft]: hasVariant($state, "status", "draft"),
           [sty.rootstatus_offersReceived]: hasVariant(
             $state,
             "status",
@@ -252,14 +272,25 @@ function PlasmicStatus__RenderFunc(props: {
         data-plasmic-name={"text"}
         data-plasmic-override={overrides.text}
         className={classNames("all", "__wab_text", sty.text, {
+          [sty.textstatus_awaitingCenterContact]: hasVariant(
+            $state,
+            "status",
+            "awaitingCenterContact"
+          ),
           [sty.textstatus_awaitingOffers]: hasVariant(
             $state,
             "status",
             "awaitingOffers"
           ),
+          [sty.textstatus_awaitingPayment]: hasVariant(
+            $state,
+            "status",
+            "awaitingPayment"
+          ),
           [sty.textstatus_canceled]: hasVariant($state, "status", "canceled"),
           [sty.textstatus_completed]: hasVariant($state, "status", "completed"),
           [sty.textstatus_confirmed]: hasVariant($state, "status", "confirmed"),
+          [sty.textstatus_draft]: hasVariant($state, "status", "draft"),
           [sty.textstatus_offersReceived]: hasVariant(
             $state,
             "status",
@@ -284,19 +315,25 @@ function PlasmicStatus__RenderFunc(props: {
             hasVariant($state, "status", "pending")
         })}
       >
-        {hasVariant($state, "status", "offersReceived")
-          ? "\u062f\u0631\u06cc\u0627\u0641\u062a \u067e\u06cc\u0634\u0646\u0647\u0627\u062f\u0647\u0627"
-          : hasVariant($state, "status", "awaitingOffers")
-            ? "\u062f\u0631 \u062d\u0627\u0644 \u062c\u0633\u062a\u062c\u0648 \u067e\u0631\u0633\u062a\u0627\u0631"
-            : hasVariant($state, "status", "completed")
-              ? "\u0627\u0646\u062c\u0627\u0645 \u0634\u062f\u0647"
-              : hasVariant($state, "status", "rejected")
-                ? "\u0631\u062f \u0634\u062f\u0647"
-                : hasVariant($state, "status", "canceled")
-                  ? "\u0644\u063a\u0648 \u0634\u062f\u0647"
-                  : hasVariant($state, "status", "confirmed")
-                    ? "\u062a\u0623\u06cc\u06cc\u062f \u0634\u062f\u0647"
-                    : "\u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0627\u06cc\u06cc\u062f"}
+        {hasVariant($state, "status", "awaitingPayment")
+          ? "\u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u067e\u0631\u062f\u0627\u062e\u062a"
+          : hasVariant($state, "status", "awaitingCenterContact")
+            ? "\u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0645\u0627\u0633 \u0645\u0631\u06a9\u0632"
+            : hasVariant($state, "status", "draft")
+              ? "\u067e\u06cc\u0634\u200c\u0646\u0648\u06cc\u0633"
+              : hasVariant($state, "status", "offersReceived")
+                ? "\u067e\u06cc\u0634\u0646\u0647\u0627\u062f \u062f\u0631\u06cc\u0627\u0641\u062a \u0634\u062f"
+                : hasVariant($state, "status", "awaitingOffers")
+                  ? "\u062f\u0631 \u062d\u0627\u0644 \u062c\u0633\u062a\u062c\u0648 \u067e\u0631\u0633\u062a\u0627\u0631"
+                  : hasVariant($state, "status", "completed")
+                    ? "\u062a\u06a9\u0645\u06cc\u0644 \u0634\u062f\u0647"
+                    : hasVariant($state, "status", "rejected")
+                      ? "\u0631\u062f \u0634\u062f\u0647"
+                      : hasVariant($state, "status", "canceled")
+                        ? "\u0644\u063a\u0648 \u0634\u062f\u0647"
+                        : hasVariant($state, "status", "confirmed")
+                          ? "\u062a\u0623\u06cc\u06cc\u062f \u0634\u062f\u0647"
+                          : "\u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0627\u06cc\u06cc\u062f"}
       </div>
     </div>
   ) as React.ReactElement | null;
