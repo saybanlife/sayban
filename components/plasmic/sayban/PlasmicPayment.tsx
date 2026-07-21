@@ -73,6 +73,7 @@ import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
 import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
 import UploudeTime from "../../UploudeTime"; // plasmic-import: IxvwO5AMD5ex/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -119,7 +120,6 @@ export type PlasmicPayment__OverridesType = {
   load?: Flex__<typeof Load>;
   itemStaffs?: Flex__<typeof ItemStaffs>;
   service2?: Flex__<typeof Service2>;
-  img?: Flex__<typeof PlasmicImg__>;
   textCollapse?: Flex__<typeof TextCollapse>;
   service?: Flex__<typeof Service>;
   description?: Flex__<typeof TextAreaInput>;
@@ -133,6 +133,10 @@ export type PlasmicPayment__OverridesType = {
   button?: Flex__<typeof Button>;
   inPerson?: Flex__<"div">;
   button3?: Flex__<typeof Button>;
+  dialog?: Flex__<typeof Dialog>;
+  button2?: Flex__<typeof Button>;
+  dialog2?: Flex__<typeof Dialog>;
+  button4?: Flex__<typeof Button>;
 };
 
 export interface DefaultPaymentProps {
@@ -397,6 +401,30 @@ function PlasmicPayment__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
+      },
+      {
+        path: "dialog.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "button2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "dialog2.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "button4.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -642,10 +670,8 @@ function PlasmicPayment__RenderFunc(props: {
                   >
                     <div className={classNames("all", sty.freeBox__pwWnA)}>
                       <PlasmicImg__
-                        data-plasmic-name={"img"}
-                        data-plasmic-override={overrides.img}
                         alt={""}
-                        className={classNames(sty.img)}
+                        className={classNames(sty.img___5KvF)}
                         displayHeight={"4rem"}
                         displayMaxHeight={"none"}
                         displayMaxWidth={"100%"}
@@ -1160,6 +1186,68 @@ function PlasmicPayment__RenderFunc(props: {
                         "value"
                       ])}
                     />
+
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text__wMmGq,
+                        {
+                          [sty.texthome__wMmGQdHitg]: hasVariant(
+                            $state,
+                            "home",
+                            "home"
+                          )
+                        }
+                      )}
+                      onClick={async event => {
+                        const $steps = {};
+
+                        $steps["updateDialogOpendialog"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["dialog", "opendialog"]
+                                },
+                                operation: 4
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                const oldValue = $stateGet(
+                                  objRoot,
+                                  variablePath
+                                );
+                                $stateSet(objRoot, variablePath, !oldValue);
+                                return !oldValue;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateDialogOpendialog"] != null &&
+                          typeof $steps["updateDialogOpendialog"] ===
+                            "object" &&
+                          typeof $steps["updateDialogOpendialog"].then ===
+                            "function"
+                        ) {
+                          $steps["updateDialogOpendialog"] =
+                            await $steps["updateDialogOpendialog"];
+                        }
+                      }}
+                    >
+                      {
+                        "\u0646\u062d\u0648\u0647 \u0645\u062d\u0627\u0633\u0628\u0647 \u0647\u0632\u06cc\u0646\u0647 \u0631\u0632\u0631\u0648 \u0648 \u0634\u0631\u0627\u06cc\u0637 \u067e\u0631\u062f\u0627\u062e\u062a"
+                      }
+                    </div>
                   </div>
                   {(hasVariant($state, "home", "home") ? true : false) ? (
                     <div
@@ -1591,6 +1679,44 @@ function PlasmicPayment__RenderFunc(props: {
               className={classNames("all", "__wab_text", sty.text__jpWvs, {
                 [sty.texthome__jpWvSdHitg]: hasVariant($state, "home", "home")
               })}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateDialog2Opendialog"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["dialog2", "opendialog"]
+                        },
+                        operation: 4
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateDialog2Opendialog"] != null &&
+                  typeof $steps["updateDialog2Opendialog"] === "object" &&
+                  typeof $steps["updateDialog2Opendialog"].then === "function"
+                ) {
+                  $steps["updateDialog2Opendialog"] =
+                    await $steps["updateDialog2Opendialog"];
+                }
+              }}
             >
               <React.Fragment>
                 <React.Fragment>
@@ -2187,6 +2313,336 @@ function PlasmicPayment__RenderFunc(props: {
           </section>
         </ApiRequest>
       </div>
+      <Dialog
+        data-plasmic-name={"dialog"}
+        data-plasmic-override={overrides.dialog}
+        className={classNames("__wab_instance", sty.dialog)}
+        colorback={"w"}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["dialog", "opendialog"])}
+      >
+        <div className={classNames("all", sty.freeBox__zGvVo)}>
+          <div className={classNames("all", "__wab_text", sty.text__nOXsa)}>
+            <div
+              className={"__wab_expr_html_text"}
+              dangerouslySetInnerHTML={{
+                __html: (() => {
+                  try {
+                    return "جزئیات رزرو و پرداخت";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "";
+                    }
+                    throw e;
+                  }
+                })()
+              }}
+            />
+          </div>
+          <PlasmicImg__
+            alt={""}
+            className={classNames(sty.img__qab6K)}
+            displayHeight={"auto"}
+            displayMaxHeight={"none"}
+            displayMaxWidth={"100%"}
+            displayMinHeight={"0"}
+            displayMinWidth={"0"}
+            displayWidth={"150px"}
+            loading={"lazy"}
+            src={{
+              src: "/plasmic/sayban/images/image39.png",
+              fullWidth: 471,
+              fullHeight: 450,
+              aspectRatio: undefined
+            }}
+          />
+
+          <div className={classNames("all", "__wab_text", sty.text__c7IDv)}>
+            <div
+              className={"__wab_expr_html_text"}
+              dangerouslySetInnerHTML={{
+                __html: (() => {
+                  try {
+                    return `<div class="reservation-details" dir="rtl">
+
+
+  <p><strong>نحوه محاسبه هزینه رزرو</strong></p>
+
+  <p>
+    هزینه رزرو به‌صورت درصدی از <strong>میانگین بازه قیمت خدمت</strong>
+    محاسبه می‌شود.
+  </p>
+
+  <p><strong>مثال:</strong></p>
+
+  <ul>
+    <li>بازه قیمت خدمت: ۱.۵ تا ۲ میلیون تومان</li>
+    <li>میانگین بازه: ۱.۷۵ میلیون تومان</li>
+    <li>
+      با نرخ ۲۰٪، هزینه رزرو:
+      <strong>۳۵۰ هزار تومان</strong>
+    </li>
+  </ul>
+
+  <p><strong>شرایط بازگشت وجه</strong></p>
+
+  <p>
+    در صورت لغو رزرو، مبلغ پرداختی مطابق قوانین و شرایط لغو رزرو بررسی
+    و در صورت احراز شرایط، به همان روش پرداختی مسترد خواهد شد.
+  </p>
+
+  <p><strong>روش پرداخت</strong></p>
+
+  <p>
+    پرداخت از طریق درگاه پرداخت امن انجام می‌شود و اطلاعات بانکی شما
+    نزد سامانه ذخیره نخواهد شد.
+  </p>
+
+  <p><strong>رسید و کد پیگیری</strong></p>
+
+  <p>
+    پس از تکمیل پرداخت، رسید پرداخت و کد پیگیری برای شما نمایش داده می‌شود
+    و می‌توانید آن را برای مراجعات بعدی نگهداری کنید.
+  </p>
+
+</div>`;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "";
+                    }
+                    throw e;
+                  }
+                })()
+              }}
+            />
+          </div>
+          <Button
+            data-plasmic-name={"button2"}
+            data-plasmic-override={overrides.button2}
+            className={classNames("__wab_instance", sty.button2)}
+            color={"second"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__qXfp2)}>
+                {"\u0645\u062a\u0648\u062c\u0647 \u0634\u062f\u0645"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button2", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateDialogOpendialog"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["dialog", "opendialog"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateDialogOpendialog"] != null &&
+                typeof $steps["updateDialogOpendialog"] === "object" &&
+                typeof $steps["updateDialogOpendialog"].then === "function"
+              ) {
+                $steps["updateDialogOpendialog"] =
+                  await $steps["updateDialogOpendialog"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button2", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </Dialog>
+      <Dialog
+        data-plasmic-name={"dialog2"}
+        data-plasmic-override={overrides.dialog2}
+        className={classNames("__wab_instance", sty.dialog2)}
+        colorback={"w"}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog2", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["dialog2", "opendialog"])}
+      >
+        <div className={classNames("all", sty.freeBox___6G57)}>
+          <div className={classNames("all", "__wab_text", sty.text__emVy3)}>
+            <div
+              className={"__wab_expr_html_text"}
+              dangerouslySetInnerHTML={{
+                __html: (() => {
+                  try {
+                    return "راهنمای رزرو\u060C پرداخت و بازگشت وجه";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "";
+                    }
+                    throw e;
+                  }
+                })()
+              }}
+            />
+          </div>
+          <PlasmicImg__
+            alt={""}
+            className={classNames(sty.img___5KiB0)}
+            displayHeight={"auto"}
+            displayMaxHeight={"none"}
+            displayMaxWidth={"100%"}
+            displayMinHeight={"0"}
+            displayMinWidth={"0"}
+            displayWidth={"150px"}
+            loading={"lazy"}
+            src={{
+              src: "/plasmic/sayban/images/image40.png",
+              fullWidth: 511,
+              fullHeight: 488,
+              aspectRatio: undefined
+            }}
+          />
+
+          <div className={classNames("all", "__wab_text", sty.text__cInzq)}>
+            <div
+              className={"__wab_expr_html_text"}
+              dangerouslySetInnerHTML={{
+                __html: (() => {
+                  try {
+                    return `<p>
+<b>توضیح نحوه کسر رزرو از مبلغ نهایی:</b> مبلغی که به عنوان بیعانه یا پیش‌پرداخت برای ثبت رزرو اولیه پرداخت کرده‌اید، در مرحله تسویه حساب نهایی به صورت خودکار از کل مبلغ فاکتور کسر می‌گردد و شما تنها موظف به پرداخت مابقی مانده حساب خواهید بود.
+<br><br>
+<b>شرایط بازگشت وجه:</b> در صورت لغو رزرو، وجه پرداختی بر اساس زمان باقی‌مانده تا تاریخ شروع خدمت و قوانین کنسلی بررسی می‌شود و پس از کسر جریمه‌های احتمالی، طی ۲۴ الی ۷۲ ساعت کاری به حساب بانکی شما بازگردانده خواهد شد.
+<br><br>
+<b>روش پرداخت امن:</b> تمامی تراکنش‌های مالی از طریق درگاه‌های پرداخت معتبر بانکی و مجهز به پروتکل‌های امنیتی استاندارد انجام می‌شود تا امنیت اطلاعات و رمزهای عبور شما به طور کامل حفظ گردد.
+</p>`;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "";
+                    }
+                    throw e;
+                  }
+                })()
+              }}
+            />
+          </div>
+          <Button
+            data-plasmic-name={"button4"}
+            data-plasmic-override={overrides.button4}
+            className={classNames("__wab_instance", sty.button4)}
+            color={"second"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__qSta6)}>
+                {"\u0645\u062a\u0648\u062c\u0647 \u0634\u062f\u0645"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button4", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateDialogOpendialog"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["dialog2", "opendialog"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateDialogOpendialog"] != null &&
+                typeof $steps["updateDialogOpendialog"] === "object" &&
+                typeof $steps["updateDialogOpendialog"].then === "function"
+              ) {
+                $steps["updateDialogOpendialog"] =
+                  await $steps["updateDialogOpendialog"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button4", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </Dialog>
     </div>
   ) as React.ReactElement | null;
 }
@@ -2200,7 +2656,6 @@ const PlasmicDescendants = {
     "load",
     "itemStaffs",
     "service2",
-    "img",
     "textCollapse",
     "service",
     "description",
@@ -2213,7 +2668,11 @@ const PlasmicDescendants = {
     "online",
     "button",
     "inPerson",
-    "button3"
+    "button3",
+    "dialog",
+    "button2",
+    "dialog2",
+    "button4"
   ],
   embedHtml: ["embedHtml"],
   header: ["header"],
@@ -2222,7 +2681,6 @@ const PlasmicDescendants = {
     "load",
     "itemStaffs",
     "service2",
-    "img",
     "textCollapse",
     "service",
     "description",
@@ -2239,8 +2697,7 @@ const PlasmicDescendants = {
   ],
   load: ["load"],
   itemStaffs: ["itemStaffs"],
-  service2: ["service2", "img", "textCollapse"],
-  img: ["img"],
+  service2: ["service2", "textCollapse"],
   textCollapse: ["textCollapse"],
   service: ["service"],
   description: ["description"],
@@ -2253,7 +2710,11 @@ const PlasmicDescendants = {
   online: ["online", "button"],
   button: ["button"],
   inPerson: ["inPerson", "button3"],
-  button3: ["button3"]
+  button3: ["button3"],
+  dialog: ["dialog", "button2"],
+  button2: ["button2"],
+  dialog2: ["dialog2", "button4"],
+  button4: ["button4"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -2266,7 +2727,6 @@ type NodeDefaultElementType = {
   load: typeof Load;
   itemStaffs: typeof ItemStaffs;
   service2: typeof Service2;
-  img: typeof PlasmicImg__;
   textCollapse: typeof TextCollapse;
   service: typeof Service;
   description: typeof TextAreaInput;
@@ -2280,6 +2740,10 @@ type NodeDefaultElementType = {
   button: typeof Button;
   inPerson: "div";
   button3: typeof Button;
+  dialog: typeof Dialog;
+  button2: typeof Button;
+  dialog2: typeof Dialog;
+  button4: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -2350,7 +2814,6 @@ export const PlasmicPayment = Object.assign(
     load: makeNodeComponent("load"),
     itemStaffs: makeNodeComponent("itemStaffs"),
     service2: makeNodeComponent("service2"),
-    img: makeNodeComponent("img"),
     textCollapse: makeNodeComponent("textCollapse"),
     service: makeNodeComponent("service"),
     description: makeNodeComponent("description"),
@@ -2364,6 +2827,10 @@ export const PlasmicPayment = Object.assign(
     button: makeNodeComponent("button"),
     inPerson: makeNodeComponent("inPerson"),
     button3: makeNodeComponent("button3"),
+    dialog: makeNodeComponent("dialog"),
+    button2: makeNodeComponent("button2"),
+    dialog2: makeNodeComponent("dialog2"),
+    button4: makeNodeComponent("button4"),
 
     // Metadata about props expected for PlasmicPayment
     internalVariantProps: PlasmicPayment__VariantProps,

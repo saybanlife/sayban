@@ -65,6 +65,7 @@ import UploudeTime from "../../UploudeTime"; // plasmic-import: IxvwO5AMD5ex/com
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
+import Status from "../../Status"; // plasmic-import: UhSHXabmHrQP/component
 import Topics from "../../Topics"; // plasmic-import: K08M_vX52xMI/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import ItemShow from "../../ItemShow"; // plasmic-import: hegjECXSYJcF/component
@@ -129,6 +130,7 @@ export type PlasmicReservationItem__OverridesType = {
   add3?: Flex__<typeof Button>;
   add6?: Flex__<typeof Button>;
   select2?: Flex__<typeof Select>;
+  status?: Flex__<typeof Status>;
   topics?: Flex__<typeof Topics>;
   apiRequest?: Flex__<typeof ApiRequest>;
   apiRequest2?: Flex__<typeof ApiRequest>;
@@ -1112,6 +1114,12 @@ function PlasmicReservationItem__RenderFunc(props: {
             showLabel={false}
             type={"soft"}
             value={generateStateValueProp($state, ["select2", "value"])}
+          />
+
+          <Status
+            data-plasmic-name={"status"}
+            data-plasmic-override={overrides.status}
+            className={classNames("__wab_instance", sty.status)}
           />
         </div>
         <ChevronDownIcon
@@ -2715,6 +2723,7 @@ const PlasmicDescendants = {
     "add3",
     "add6",
     "select2",
+    "status",
     "topics",
     "apiRequest",
     "apiRequest2",
@@ -2738,6 +2747,7 @@ const PlasmicDescendants = {
   add3: ["add3"],
   add6: ["add6"],
   select2: ["select2"],
+  status: ["status"],
   topics: ["topics"],
   apiRequest: ["apiRequest"],
   apiRequest2: ["apiRequest2", "itemShow", "img", "add7", "add8"],
@@ -2785,6 +2795,7 @@ type NodeDefaultElementType = {
   add3: typeof Button;
   add6: typeof Button;
   select2: typeof Select;
+  status: typeof Status;
   topics: typeof Topics;
   apiRequest: typeof ApiRequest;
   apiRequest2: typeof ApiRequest;
@@ -2871,6 +2882,7 @@ export const PlasmicReservationItem = Object.assign(
     add3: makeNodeComponent("add3"),
     add6: makeNodeComponent("add6"),
     select2: makeNodeComponent("select2"),
+    status: makeNodeComponent("status"),
     topics: makeNodeComponent("topics"),
     apiRequest: makeNodeComponent("apiRequest"),
     apiRequest2: makeNodeComponent("apiRequest2"),
