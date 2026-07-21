@@ -1071,7 +1071,7 @@ function PlasmicReservationItem__RenderFunc(props: {
                           "panel/reservations/status",
                           undefined,
                           {
-                            code: $props.currentItem.reservation_code,
+                            code: $props.currentItem.id,
                             status: $state.select2.value
                           }
                         ]
