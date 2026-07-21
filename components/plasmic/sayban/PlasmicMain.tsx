@@ -1086,7 +1086,7 @@ function PlasmicMain__RenderFunc(props: {
         path: "modal2.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
       },
       {
         path: "tabs2.activeKey",

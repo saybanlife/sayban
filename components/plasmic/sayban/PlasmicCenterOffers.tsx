@@ -62,20 +62,21 @@ import {
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
-import Topics from "../../Topics"; // plasmic-import: K08M_vX52xMI/component
+import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
+import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
 import ReportItem from "../../ReportItem"; // plasmic-import: kRuf7d9ACGjr/component
 import AnswersUser from "../../AnswersUser"; // plasmic-import: k7RSAEFr4xx-/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
 import Next from "../../Next"; // plasmic-import: gLmxuN6lLlgW/component
+import Topics from "../../Topics"; // plasmic-import: K08M_vX52xMI/component
 import Calendar from "../../Calendar"; // plasmic-import: Ne_OAR5Gww2F/component
 import SelectTime from "../../SelectTime"; // plasmic-import: gjWWc9BL-2Ke/component
 import Switch from "../../Switch"; // plasmic-import: gmLkAM4DXGYW/component
-import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
-import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
 import SelectStars from "../../SelectStars"; // plasmic-import: rIv-AfQad6sO/component
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
 import { TimePickerCustom } from "@/components/TimePickerCustom"; // plasmic-import: 4tsOFSHTfvZu/codeComponent
+import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -83,7 +84,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicCenterOffers.module.css"; // plasmic-import: mdgKYN8y8UQf/css
 
-import Icon35Icon from "./icons/PlasmicIcon__Icon35"; // plasmic-import: gD26CTYCiCfq/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import CalendarTimeIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CalendarTime"; // plasmic-import: 6AQWb52cQDRN/icon
@@ -149,7 +149,7 @@ export type PlasmicCenterOffers__OverridesType = {
   embedHtml?: Flex__<typeof Embed>;
   header?: Flex__<typeof Header>;
   full?: Flex__<typeof ApiRequest>;
-  topics?: Flex__<typeof Topics>;
+  radioGroup2?: Flex__<typeof RadioGroup>;
   reportItem?: Flex__<typeof ReportItem>;
   full2?: Flex__<typeof ApiRequest>;
   answersUser?: Flex__<typeof AnswersUser>;
@@ -167,7 +167,6 @@ export type PlasmicCenterOffers__OverridesType = {
   selectuser?: Flex__<typeof Dialog>;
   patient?: Flex__<typeof ApiRequest>;
   radioGroup?: Flex__<typeof RadioGroup>;
-  radio?: Flex__<typeof Radio>;
   img?: Flex__<typeof PlasmicImg__>;
   button4?: Flex__<typeof Button>;
   comment?: Flex__<typeof Dialog>;
@@ -244,59 +243,6 @@ function PlasmicCenterOffers__RenderFunc(props: {
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
-      {
-        path: "topics.data",
-        type: "private",
-        variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          (() => {
-            try {
-              return [
-                {
-                  label: "عمومی",
-                  value: "general"
-                },
-                {
-                  label: "تخصصی",
-                  value: "specialized"
-                }
-              ];
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return [
-                  {
-                    label: "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a",
-                    value: "Description"
-                  },
-                  { label: "\u0646\u0638\u0631\u0627\u062a", value: "Comments" }
-                ];
-              }
-              throw e;
-            }
-          })()
-      },
-      {
-        path: "topics.selected",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          (() => {
-            try {
-              return $state.topics.data[0].value;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()
-      },
       {
         path: "top",
         type: "private",
@@ -827,6 +773,12 @@ function PlasmicCenterOffers__RenderFunc(props: {
         path: "answersUser[].data",
         type: "private",
         variableType: "object"
+      },
+      {
+        path: "radioGroup2.value",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "general"
       }
     ],
     [$props, $ctx, $refs]
@@ -1008,31 +960,23 @@ function PlasmicCenterOffers__RenderFunc(props: {
                 [sty.freeBoxtop__rSRppo24Q6]: hasVariant($state, "top", "top")
               })}
             >
-              <Topics
-                data-plasmic-name={"topics"}
-                data-plasmic-override={overrides.topics}
-                className={classNames("__wab_instance", sty.topics, {
-                  [sty.topicstop]: hasVariant($state, "top", "top")
-                })}
-                data={generateStateValueProp($state, ["topics", "data"])}
-                onDataChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, ["topics", "data"]).apply(
-                    null,
-                    eventArgs
-                  );
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                onSelectedChange={async (...eventArgs: any) => {
+              <RadioGroup
+                data-plasmic-name={"radioGroup2"}
+                data-plasmic-override={overrides.radioGroup2}
+                className={classNames("__wab_instance", sty.radioGroup2)}
+                label={
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__oGpSi)}
+                  >
+                    {
+                      "\u0646\u0648\u0639 \u062e\u062f\u0645\u0627\u062a \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
+                    }
+                  </div>
+                }
+                onChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
-                    "topics",
-                    "selected"
+                    "radioGroup2",
+                    "value"
                   ]).apply(null, eventArgs);
 
                   if (
@@ -1042,26 +986,114 @@ function PlasmicCenterOffers__RenderFunc(props: {
                   ) {
                     return;
                   }
+
+                  (async val => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return ($state.service = []);
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+                  }).apply(null, eventArgs);
                 }}
-                selected={generateStateValueProp($state, [
-                  "topics",
-                  "selected"
-                ])}
+                options={
+                  <div className={classNames("all", sty.freeBox__mmKto)}>
+                    {(_par =>
+                      !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                      (() => {
+                        try {
+                          return [
+                            {
+                              label: "عمومی",
+                              value: "general"
+                            },
+                            {
+                              label: "تخصصی",
+                              value: "specialized"
+                            }
+                          ];
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()
+                    ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                      const currentItem = __plasmic_item_0;
+                      const currentIndex = __plasmic_idx_0;
+                      return (
+                        <Radio
+                          className={classNames(
+                            "__wab_instance",
+                            sty.radio__kzM
+                          )}
+                          key={currentIndex}
+                          label={
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return currentItem.label;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "Option 1";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          }
+                          value={(() => {
+                            try {
+                              return currentItem.value;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                        />
+                      );
+                    })}
+                  </div>
+                }
+                value={generateStateValueProp($state, ["radioGroup2", "value"])}
               />
             </div>
             <div className={classNames("all", sty.freeBox___4Sm0L)}>
               <div className={classNames("all", sty.freeBox__ymqnS)}>
                 <div className={classNames("all", sty.freeBox__onBoC)}>
-                  <Icon35Icon
-                    className={classNames("all", sty.svg__f2Q8J)}
-                    role={"img"}
-                  />
-
                   <div
                     className={classNames("all", "__wab_text", sty.text__stcxv)}
                   >
                     {
-                      "\u0646\u0648\u0639 \u062e\u062f\u0645\u0627\u062a \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
+                      "\u0627\u0632 \u0628\u06cc\u0646 \u062e\u062f\u0645\u0627\u062a \u0632\u06cc\u0631 \u06cc\u06a9 \u06cc\u0627 \u0686\u0646\u062f \u0645\u0648\u0631\u062f \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
                     }
                   </div>
                 </div>
@@ -1071,8 +1103,8 @@ function PlasmicCenterOffers__RenderFunc(props: {
                       try {
                         return $state.full.data.result.services.filter(
                           i =>
-                            $state.topics.selected === "all" ||
-                            i.category === $state.topics.selected
+                            $state.radioGroup2.value === "all" ||
+                            i.category === $state.radioGroup2.value
                         );
                       } catch (e) {
                         if (
@@ -3766,9 +3798,10 @@ function PlasmicCenterOffers__RenderFunc(props: {
                         const currentIndex = __plasmic_idx_0;
                         return (
                           <Radio
-                            data-plasmic-name={"radio"}
-                            data-plasmic-override={overrides.radio}
-                            className={classNames("__wab_instance", sty.radio)}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.radio___8Y3Gg
+                            )}
                             key={currentIndex}
                             label={
                               <div
@@ -4418,7 +4451,7 @@ const PlasmicDescendants = {
     "embedHtml",
     "header",
     "full",
-    "topics",
+    "radioGroup2",
     "reportItem",
     "full2",
     "answersUser",
@@ -4436,7 +4469,6 @@ const PlasmicDescendants = {
     "selectuser",
     "patient",
     "radioGroup",
-    "radio",
     "img",
     "button4",
     "comment",
@@ -4449,8 +4481,8 @@ const PlasmicDescendants = {
   ],
   embedHtml: ["embedHtml"],
   header: ["header"],
-  full: ["full", "topics", "reportItem"],
-  topics: ["topics"],
+  full: ["full", "radioGroup2", "reportItem"],
+  radioGroup2: ["radioGroup2"],
   reportItem: ["reportItem"],
   full2: ["full2", "answersUser"],
   answersUser: ["answersUser"],
@@ -4484,17 +4516,9 @@ const PlasmicDescendants = {
   selectTime: ["selectTime"],
   _switch: ["_switch"],
   button2: ["button2"],
-  selectuser: [
-    "selectuser",
-    "patient",
-    "radioGroup",
-    "radio",
-    "img",
-    "button4"
-  ],
-  patient: ["patient", "radioGroup", "radio", "img", "button4"],
-  radioGroup: ["radioGroup", "radio"],
-  radio: ["radio"],
+  selectuser: ["selectuser", "patient", "radioGroup", "img", "button4"],
+  patient: ["patient", "radioGroup", "img", "button4"],
+  radioGroup: ["radioGroup"],
   img: ["img"],
   button4: ["button4"],
   comment: ["comment", "selectStars", "commentArea", "commentEntry"],
@@ -4513,7 +4537,7 @@ type NodeDefaultElementType = {
   embedHtml: typeof Embed;
   header: typeof Header;
   full: typeof ApiRequest;
-  topics: typeof Topics;
+  radioGroup2: typeof RadioGroup;
   reportItem: typeof ReportItem;
   full2: typeof ApiRequest;
   answersUser: typeof AnswersUser;
@@ -4531,7 +4555,6 @@ type NodeDefaultElementType = {
   selectuser: typeof Dialog;
   patient: typeof ApiRequest;
   radioGroup: typeof RadioGroup;
-  radio: typeof Radio;
   img: typeof PlasmicImg__;
   button4: typeof Button;
   comment: typeof Dialog;
@@ -4608,7 +4631,7 @@ export const PlasmicCenterOffers = Object.assign(
     embedHtml: makeNodeComponent("embedHtml"),
     header: makeNodeComponent("header"),
     full: makeNodeComponent("full"),
-    topics: makeNodeComponent("topics"),
+    radioGroup2: makeNodeComponent("radioGroup2"),
     reportItem: makeNodeComponent("reportItem"),
     full2: makeNodeComponent("full2"),
     answersUser: makeNodeComponent("answersUser"),
@@ -4626,7 +4649,6 @@ export const PlasmicCenterOffers = Object.assign(
     selectuser: makeNodeComponent("selectuser"),
     patient: makeNodeComponent("patient"),
     radioGroup: makeNodeComponent("radioGroup"),
-    radio: makeNodeComponent("radio"),
     img: makeNodeComponent("img"),
     button4: makeNodeComponent("button4"),
     comment: makeNodeComponent("comment"),
