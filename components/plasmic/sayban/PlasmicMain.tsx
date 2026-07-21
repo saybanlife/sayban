@@ -1086,7 +1086,7 @@ function PlasmicMain__RenderFunc(props: {
         path: "modal2.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "tabs2.activeKey",
@@ -6544,7 +6544,12 @@ function PlasmicMain__RenderFunc(props: {
                                 message: "توضیحات را وارد کنید."
                               },
                               {
-                                value: $state.centerInfo2.subcategory2,
+                                value:
+                                  $state.centerInfo2.subcategory2 !== null &&
+                                  $state.centerInfo2.subcategory2 !==
+                                    undefined &&
+                                  $state.centerInfo2.subcategory2 !== "" &&
+                                  $state.centerInfo2.subcategory2 !== "1",
                                 message: "زیر دسته را انتخاب کنید."
                               },
                               {
