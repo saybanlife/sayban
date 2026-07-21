@@ -1034,24 +1034,74 @@ function PlasmicBooking__RenderFunc(props: {
               />
             </div>
           </div>
-          <div className={classNames("all", sty.freeBox__oSmTy)}>
-            <div className={classNames("all", sty.freeBox__uJiIm)}>
-              <CurrentLocationIcon
-                className={classNames("all", sty.svg__jVHhV)}
-                role={"img"}
-              />
-            </div>
-            <div className={classNames("all", sty.freeBox__n5WMi)}>
-              <div className={classNames("all", "__wab_text", sty.text__qigzY)}>
-                {"\u0645\u06a9\u0627\u0646"}
+          {(() => {
+            try {
+              return $state.datalist.service_location != "home";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })() ? (
+            <div className={classNames("all", sty.freeBox__oSmTy)}>
+              <div className={classNames("all", sty.freeBox__uJiIm)}>
+                <CurrentLocationIcon
+                  className={classNames("all", sty.svg__jVHhV)}
+                  role={"img"}
+                />
               </div>
-              <div
-                className={classNames("all", "__wab_text", sty.text___8Df7U)}
-              >
-                <React.Fragment>{$state.datalist?.name}</React.Fragment>
+              <div className={classNames("all", sty.freeBox__n5WMi)}>
+                <div
+                  className={classNames("all", "__wab_text", sty.text__qigzY)}
+                >
+                  {"\u0645\u06a9\u0627\u0646"}
+                </div>
+                <div
+                  className={classNames("all", "__wab_text", sty.text___8Df7U)}
+                >
+                  <React.Fragment>{$state.datalist?.name}</React.Fragment>
+                </div>
               </div>
             </div>
-          </div>
+          ) : null}
+          {(() => {
+            try {
+              return $state.datalist.service_location == "home";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })() ? (
+            <div className={classNames("all", sty.freeBox__idKkJ)}>
+              <div className={classNames("all", sty.freeBox__s2ZvG)}>
+                <CurrentLocationIcon
+                  className={classNames("all", sty.svg___61ZT8)}
+                  role={"img"}
+                />
+              </div>
+              <div className={classNames("all", sty.freeBox__hKgga)}>
+                <div
+                  className={classNames("all", "__wab_text", sty.text__gkk4D)}
+                >
+                  {"\u0645\u06a9\u0627\u0646"}
+                </div>
+                <div
+                  className={classNames("all", "__wab_text", sty.text__iOm7W)}
+                >
+                  <React.Fragment>{`${$state.datalist?.user_addressTitle ? $state.datalist.user_addressTitle + " - " : ""}${$state.datalist?.user_addressCity || ""} ${$state.datalist?.user_address || "آدرسی ثبت نشده است"}`}</React.Fragment>
+                </div>
+              </div>
+            </div>
+          ) : null}
           <div className={classNames("all", sty.freeBox__wkU6L)}>
             <div className={classNames("all", sty.freeBox__hRnlo)}>
               <CreditCardPayIcon
@@ -1066,9 +1116,23 @@ function PlasmicBooking__RenderFunc(props: {
                 }
               </div>
               <div className={classNames("all", "__wab_text", sty.text__e0Ot6)}>
-                <React.Fragment>
-                  {$state.datalist?.payment_status}
-                </React.Fragment>
+                <div
+                  className={"__wab_expr_html_text"}
+                  dangerouslySetInnerHTML={{
+                    __html: `<span style="
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 20px;
+  font-family: Tahoma, sans-serif;
+  background-color: ${$state.datalist?.payment_status === "paid" ? "#d1fae5" : $state.datalist?.payment_status === "unpaid" ? "#fef3c7" : "#f3f4f6"};
+  color: ${$state.datalist?.payment_status === "paid" ? "#065f46" : $state.datalist?.payment_status === "unpaid" ? "#92400e" : "#374151"};
+">
+  ${$state.datalist?.payment_status === "paid" ? "پرداخت شده" : $state.datalist?.payment_status === "unpaid" ? "پرداخت نشده" : $state.datalist?.payment_status === "refunded" ? "مسترد شده" : "نامشخص"}
+</span>`
+                  }}
+                />
               </div>
             </div>
           </div>
