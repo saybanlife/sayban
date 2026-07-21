@@ -26,6 +26,10 @@
   border-width: 1px;
   border-color: var(--token-C6B6ZAuqICKE);
 }
+.rootselect_ligtht {
+  background: var(--token-oMej9DCdGzNU);
+  border-color: var(--token-ee2TuxDknsJj);
+}
 .svg__i8N6S {
   animation: none;
   object-fit: cover;

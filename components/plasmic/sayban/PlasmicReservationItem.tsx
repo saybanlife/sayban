@@ -63,14 +63,15 @@ import StatusIcon from "../../StatusIcon"; // plasmic-import: zJ2RueI-cLbg/compo
 import { TextCollapse } from "@/components/TextCollapse"; // plasmic-import: 4siMWQuiaqGI/codeComponent
 import UploudeTime from "../../UploudeTime"; // plasmic-import: IxvwO5AMD5ex/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
-import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
-import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import Status from "../../Status"; // plasmic-import: UhSHXabmHrQP/component
 import Topics from "../../Topics"; // plasmic-import: K08M_vX52xMI/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+import ItemStaffs3 from "../../ItemStaffs3"; // plasmic-import: 7MqfSX9QcXnp/component
 import ItemShow from "../../ItemShow"; // plasmic-import: hegjECXSYJcF/component
 import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
 import Load from "../../Load"; // plasmic-import: giI5l8wTGhHv/component
+import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
+import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import RangeSlider from "../../RangeSlider"; // plasmic-import: n3Rhj-X09u8R/component
 import SliderThumb from "../../SliderThumb"; // plasmic-import: kkj3dxAdFRmu/component
 import DateInput from "../../DateInput"; // plasmic-import: 8LUOC3uVttVT/component
@@ -86,8 +87,10 @@ import Icon15Icon from "./icons/PlasmicIcon__Icon15"; // plasmic-import: uAXK4fW
 import PlusIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Plus"; // plasmic-import: _pdhShvRj8aO/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import UserIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__User"; // plasmic-import: d1LJS78vGoJH/icon
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import CheckIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Check"; // plasmic-import: DtxnCWLfceEB/icon
 import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
+import Icon55Icon from "./icons/PlasmicIcon__Icon55"; // plasmic-import: tieG-UlI4-f2/icon
 
 createPlasmicElementProxy;
 
@@ -129,12 +132,13 @@ export type PlasmicReservationItem__OverridesType = {
   uploudeTime?: Flex__<typeof UploudeTime>;
   add3?: Flex__<typeof Button>;
   add6?: Flex__<typeof Button>;
-  select2?: Flex__<typeof Select>;
   status?: Flex__<typeof Status>;
   topics?: Flex__<typeof Topics>;
   apiRequest?: Flex__<typeof ApiRequest>;
+  apiRequest4?: Flex__<typeof ApiRequest>;
+  itemStaffs3?: Flex__<typeof ItemStaffs3>;
+  button?: Flex__<typeof Button>;
   apiRequest2?: Flex__<typeof ApiRequest>;
-  itemShow?: Flex__<typeof ItemShow>;
   img?: Flex__<typeof PlasmicImg__>;
   add7?: Flex__<typeof Button>;
   add8?: Flex__<typeof Button>;
@@ -147,6 +151,15 @@ export type PlasmicReservationItem__OverridesType = {
   timeInput?: Flex__<typeof TimeInput>;
   add4?: Flex__<typeof Button>;
   add5?: Flex__<typeof Button>;
+  modal3?: Flex__<typeof AntdModal>;
+  apiRequest5?: Flex__<typeof ApiRequest>;
+  load2?: Flex__<typeof Load>;
+  select2?: Flex__<typeof Select>;
+  add12?: Flex__<typeof Button>;
+  add13?: Flex__<typeof Button>;
+  modal2?: Flex__<typeof AntdModal>;
+  add9?: Flex__<typeof Button>;
+  add10?: Flex__<typeof Button>;
 };
 
 export interface DefaultReservationItemProps {
@@ -434,23 +447,59 @@ function PlasmicReservationItem__RenderFunc(props: {
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           hasVariant($state, "home", "home")
-            ? [
-                {
-                  label:
-                    "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u0628\u0631",
-                  value: 1
-                },
-                {
-                  label:
-                    "\u067e\u0627\u0633\u062e\u200c\u0647\u0627\u06cc \u067e\u0631\u0633\u0634\u0646\u0627\u0645\u0647",
-                  value: 2
-                },
-                {
-                  label:
-                    "\u0644\u06cc\u0633\u062a \u067e\u06cc\u0634\u0646\u0647\u0627\u062f\u0647\u0627",
-                  value: 3
+            ? (() => {
+                try {
+                  return $props.currentItem?.status == "nurseSelected"
+                    ? [
+                        {
+                          label: "اطلاعات کاربر",
+                          value: 1
+                        },
+                        {
+                          label: "مشاهده پرستار",
+                          value: 4
+                        }
+                      ]
+                    : [
+                        {
+                          label: "اطلاعات کاربر",
+                          value: 1
+                        },
+                        {
+                          label: "پاسخ‌های پرسشنامه",
+                          value: 2
+                        },
+                        {
+                          label: "لیست پیشنهادها",
+                          value: 3
+                        }
+                      ];
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [
+                      {
+                        label:
+                          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u0628\u0631",
+                        value: 1
+                      },
+                      {
+                        label:
+                          "\u067e\u0627\u0633\u062e\u200c\u0647\u0627\u06cc \u067e\u0631\u0633\u0634\u0646\u0627\u0645\u0647",
+                        value: 2
+                      },
+                      {
+                        label:
+                          "\u0644\u06cc\u0633\u062a \u067e\u06cc\u0634\u0646\u0647\u0627\u062f\u0647\u0627",
+                        value: 3
+                      }
+                    ];
+                  }
+                  throw e;
                 }
-              ]
+              })()
             : [
                 {
                   label:
@@ -466,6 +515,103 @@ function PlasmicReservationItem__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => "1"
       },
       {
+        path: "modal2.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "add9.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "add10.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "status",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $props.currentItem?.status;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "apiRequest4.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "apiRequest4.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "apiRequest4.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "itemStaffs3.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "button.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "modal3.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "apiRequest5.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "apiRequest5.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "apiRequest5.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "load2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
+      },
+      {
         path: "select2.isOpen",
         type: "private",
         variableType: "boolean",
@@ -476,7 +622,19 @@ function PlasmicReservationItem__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          $props.currentItem.status
+          $props.currentItem?.staff_id?.toString()
+      },
+      {
+        path: "add12.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "add13.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -900,226 +1058,58 @@ function PlasmicReservationItem__RenderFunc(props: {
             }
           />
         ) : null}
-        <div className={classNames("all", sty.freeBox__r7GrC)}>
-          <Select
-            data-plasmic-name={"select2"}
-            data-plasmic-override={overrides.select2}
-            className={classNames("__wab_instance", sty.select2)}
-            isOpen={generateStateValueProp($state, ["select2", "isOpen"])}
-            items={(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-              (() => {
-                try {
-                  return [
-                    {
-                      value: "draft",
-                      label: "\u26AA پیش‌نویس"
+        <div
+          className={classNames("all", sty.freeBox__hqSuj)}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["updateModal2Open"] = true
+              ? (() => {
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["modal2", "open"]
                     },
-                    {
-                      value: "registered",
-                      label: "\uD83D\uDD35 درخواست ثبت شد"
-                    },
-                    {
-                      value: "awaitingConsultation",
-                      label: "\uD83D\uDFE1 نیازمند تماس مشاوره"
-                    },
-                    {
-                      value: "sentToCenters",
-                      label: "\uD83D\uDFE3 ارسال شده برای مراکز"
-                    },
-                    {
-                      value: "awaitingOffers",
-                      label: "\uD83D\uDFE0 در انتظار پیشنهاد"
-                    },
-                    {
-                      value: "offersReceived",
-                      label: "\uD83D\uDD35 پیشنهادها دریافت شد"
-                    },
-                    {
-                      value: "nurseSelected",
-                      label: "\uD83D\uDFE2 پرستار انتخاب شد"
-                    },
-                    {
-                      value: "awaitingPayment",
-                      label: "\uD83D\uDFE1 در انتظار پرداخت رزرو"
-                    },
-                    {
-                      value: "paymentCompleted",
-                      label: "\uD83D\uDFE2 هزینه رزرو پرداخت شد"
-                    },
-                    {
-                      value: "awaitingCenterContact",
-                      label: "\uD83D\uDFE0 در انتظار تماس مرکز"
-                    },
-                    {
-                      value: "userNoResponse",
-                      label: "\u26AA کاربر پاسخ نداد"
-                    },
-                    {
-                      value: "underFinalReview",
-                      label: "\uD83D\uDFE3 در حال بررسی نهایی"
-                    },
-                    {
-                      value: "pending",
-                      label: "\uD83D\uDFE1 در انتظار تأیید"
-                    },
-                    {
-                      value: "finalConfirmed",
-                      label: "\uD83D\uDFE2 تأیید نهایی شد"
-                    },
-                    {
-                      value: "confirmed",
-                      label: "\uD83D\uDFE2 تأیید شده"
-                    },
-                    {
-                      value: "readyForDispatch",
-                      label: "\uD83D\uDD35 آماده اعزام"
-                    },
-                    {
-                      value: "inProgress",
-                      label: "\uD83D\uDD35 خدمت در حال انجام"
-                    },
-                    {
-                      value: "serviceFinished",
-                      label: "\uD83D\uDFE2 خدمت پایان یافت"
-                    },
-                    {
-                      value: "completed",
-                      label: "\u2705 تکمیل شده"
-                    },
-                    {
-                      value: "rejected",
-                      label: "\uD83D\uDD34 رد شده"
-                    },
-                    {
-                      value: "canceled",
-                      label: "\u26AB لغو شده"
-                    },
-                    {
-                      value: "refunded",
-                      label: "\uD83D\uDD35 بازپرداخت شده"
-                    },
-                    {
-                      value: "awaitingSupport",
-                      label: "\uD83D\uDFE0 نیازمند رسیدگی پشتیبانی"
+                    operation: 4
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
                     }
-                  ];
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return [];
-                  }
-                  throw e;
-                }
-              })()
-            ).map((__plasmic_item_0, __plasmic_idx_0) => {
-              const currentItem = __plasmic_item_0;
-              const currentIndex = __plasmic_idx_0;
-              return (
-                <MenuItem
-                  key={currentIndex}
-                  label={(() => {
-                    try {
-                      return currentItem.label;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
-                    }
-                  })()}
-                  value={(() => {
-                    try {
-                      return currentItem.value;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
-                    }
-                  })()}
-                />
-              );
-            })}
-            onChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["select2", "value"]).apply(
-                null,
-                eventArgs
-              );
+                    const { objRoot, variablePath } = variable;
 
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-
-              (async val => {
-                const $steps = {};
-
-                $steps["invokeGlobalAction"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "POST",
-                          "panel/reservations/status",
-                          undefined,
-                          {
-                            code: $props.currentItem.id,
-                            status: $state.select2.value
-                          }
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
-                if (
-                  $steps["invokeGlobalAction"] != null &&
-                  typeof $steps["invokeGlobalAction"] === "object" &&
-                  typeof $steps["invokeGlobalAction"].then === "function"
-                ) {
-                  $steps["invokeGlobalAction"] =
-                    await $steps["invokeGlobalAction"];
-                }
-              }).apply(null, eventArgs);
-            }}
-            onOpenChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["select2", "isOpen"]).apply(
-                null,
-                eventArgs
-              );
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            placeholder={
-              "\u0648\u0636\u0639\u06cc\u062a \u0631\u0632\u0631\u0648"
+                    const oldValue = $stateGet(objRoot, variablePath);
+                    $stateSet(objRoot, variablePath, !oldValue);
+                    return !oldValue;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["updateModal2Open"] != null &&
+              typeof $steps["updateModal2Open"] === "object" &&
+              typeof $steps["updateModal2Open"].then === "function"
+            ) {
+              $steps["updateModal2Open"] = await $steps["updateModal2Open"];
             }
-            showLabel={false}
-            type={"soft"}
-            value={generateStateValueProp($state, ["select2", "value"])}
-          />
-
+          }}
+        >
           <Status
             data-plasmic-name={"status"}
             data-plasmic-override={overrides.status}
             className={classNames("__wab_instance", sty.status)}
+            status={(() => {
+              try {
+                return $props?.currentItem?.status || null;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
+              }
+            })()}
           />
         </div>
         <ChevronDownIcon
@@ -1636,6 +1626,243 @@ function PlasmicReservationItem__RenderFunc(props: {
               </div>
             ) : null}
             {(
+              hasVariant($state, "home", "home")
+                ? (() => {
+                    try {
+                      return $state.topics.selected == "4";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })()
+                : hasVariant($state, "open", "open")
+                  ? (() => {
+                      try {
+                        return $state.topics.selected == "2";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })()
+                  : true
+            ) ? (
+              <div
+                className={classNames("all", sty.freeBox__j7SNf, {
+                  [sty.freeBoxhome__j7SNfQqzeO]: hasVariant(
+                    $state,
+                    "home",
+                    "home"
+                  ),
+                  [sty.freeBoxopen__j7SNfLb9Mw]: hasVariant(
+                    $state,
+                    "open",
+                    "open"
+                  )
+                })}
+              >
+                <ApiRequest
+                  data-plasmic-name={"apiRequest4"}
+                  data-plasmic-override={overrides.apiRequest4}
+                  className={classNames("__wab_instance", sty.apiRequest4, {
+                    [sty.apiRequest4home]: hasVariant($state, "home", "home"),
+                    [sty.apiRequest4open]: hasVariant($state, "open", "open")
+                  })}
+                  errorDisplay={null}
+                  loadingDisplay={
+                    <div
+                      className={classNames(
+                        "all",
+                        sty.freeBox__dYyrY,
+                        "shimmer"
+                      )}
+                    />
+                  }
+                  method={"GET"}
+                  onError={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "apiRequest4",
+                      "error"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onLoading={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "apiRequest4",
+                      "loading"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onSuccess={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "apiRequest4",
+                      "data"
+                    ]).apply(null, eventArgs);
+                  }}
+                  params={
+                    hasVariant($state, "home", "home")
+                      ? {
+                          id: $props.currentItem.staff_id
+                        }
+                      : {
+                          id: $props.currentItem.id,
+                          r: $state.r
+                        }
+                  }
+                  shouldFetch={true}
+                  url={
+                    hasVariant($state, "home", "home")
+                      ? "panel/staff"
+                      : "panel/questionnaires"
+                  }
+                >
+                  <ItemStaffs3
+                    data-plasmic-name={"itemStaffs3"}
+                    data-plasmic-override={overrides.itemStaffs3}
+                    className={classNames("__wab_instance", sty.itemStaffs3, {
+                      [sty.itemStaffs3home]: hasVariant($state, "home", "home")
+                    })}
+                    item={(() => {
+                      try {
+                        return $state.apiRequest4.data.result[0];
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return {
+                            id: 4,
+                            center_id: 4,
+                            name: "Maryam Mousavi",
+                            gender: "female",
+                            marital_status: "single",
+                            type: "specialized",
+                            price_min: null,
+                            price_max: null,
+                            center_description: null,
+                            experience_years: 12,
+                            skills: null,
+                            avatar: null,
+                            national_card_img: "nat4.jpg",
+                            nursing_card_img: "nurse4.jpg",
+                            education_img: "edu4.jpg",
+                            clearance_img: "clr4.jpg",
+                            intro_video: "video4.mp4",
+                            is_active: 1,
+                            rating: "0.00",
+                            created_at: "2026-07-11 10:30:33",
+                            updated_at: "2026-07-11 22:01:43"
+                          };
+                        }
+                        throw e;
+                      }
+                    })()}
+                    loading={generateStateValueProp($state, [
+                      "itemStaffs3",
+                      "loading"
+                    ])}
+                    onLoadingChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "itemStaffs3",
+                        "loading"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                  />
+
+                  <Button
+                    data-plasmic-name={"button"}
+                    data-plasmic-override={overrides.button}
+                    className={classNames("__wab_instance", sty.button)}
+                    color={"second"}
+                    label={
+                      <div
+                        className={classNames(
+                          "all",
+                          "__wab_text",
+                          sty.text__mWLy0
+                        )}
+                      >
+                        {
+                          "\u062a\u063a\u06cc\u06cc\u0631 \u067e\u0631\u0633\u062a\u0627\u0631"
+                        }
+                      </div>
+                    }
+                    loading={generateStateValueProp($state, [
+                      "button",
+                      "loading"
+                    ])}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["updateModal3Open"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["modal3", "open"]
+                              },
+                              operation: 4
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              const oldValue = $stateGet(objRoot, variablePath);
+                              $stateSet(objRoot, variablePath, !oldValue);
+                              return !oldValue;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateModal3Open"] != null &&
+                        typeof $steps["updateModal3Open"] === "object" &&
+                        typeof $steps["updateModal3Open"].then === "function"
+                      ) {
+                        $steps["updateModal3Open"] =
+                          await $steps["updateModal3Open"];
+                      }
+                    }}
+                    onLoadingChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "button",
+                        "loading"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                  />
+                </ApiRequest>
+              </div>
+            ) : null}
+            {(
               hasVariant($state, "open", "open")
                 ? (() => {
                     try {
@@ -1758,9 +1985,10 @@ function PlasmicReservationItem__RenderFunc(props: {
                       const currentIndex = __plasmic_idx_0;
                       return (
                         <ItemShow
-                          data-plasmic-name={"itemShow"}
-                          data-plasmic-override={overrides.itemShow}
-                          className={classNames("__wab_instance", sty.itemShow)}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.itemShow__bfK8W
+                          )}
                           currentItem={currentItem.staff_name}
                           key={currentIndex}
                           ligtht={true}
@@ -2184,7 +2412,13 @@ function PlasmicReservationItem__RenderFunc(props: {
           );
         }}
         open={generateStateValueProp($state, ["modal", "open"])}
-        title={null}
+        title={
+          <div className={classNames("all", "__wab_text", sty.text__uotd0)}>
+            {
+              "\u067e\u06cc\u0634\u0646\u0647\u0627\u062f \u067e\u0631\u0633\u062a\u0627\u0631"
+            }
+          </div>
+        }
         trigger={null}
       >
         <ApiRequest
@@ -2710,6 +2944,951 @@ function PlasmicReservationItem__RenderFunc(props: {
           </div>
         </ApiRequest>
       </AntdModal>
+      <AntdModal
+        data-plasmic-name={"modal3"}
+        data-plasmic-override={overrides.modal3}
+        className={classNames("__wab_instance", sty.modal3, {
+          [sty.modal3home]: hasVariant($state, "home", "home")
+        })}
+        defaultStylesClassName={classNames(
+          "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+          "plasmic_default_styles",
+          "plasmic_mixins",
+          styleTokensClassNames
+        )}
+        hideFooter={true}
+        modalScopeClassName={sty["modal3__modal"]}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["modal3", "open"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        open={generateStateValueProp($state, ["modal3", "open"])}
+        title={
+          <div className={classNames("all", "__wab_text", sty.text__eRtqf)}>
+            {
+              "\u062a\u063a\u06cc\u06cc\u0631 \u067e\u0631\u0633\u062a\u0627\u0631"
+            }
+          </div>
+        }
+        trigger={null}
+      >
+        <ApiRequest
+          data-plasmic-name={"apiRequest5"}
+          data-plasmic-override={overrides.apiRequest5}
+          className={classNames("__wab_instance", sty.apiRequest5)}
+          errorDisplay={null}
+          loadingDisplay={
+            <Load
+              data-plasmic-name={"load2"}
+              data-plasmic-override={overrides.load2}
+              box={true}
+              className={classNames("__wab_instance", sty.load2)}
+              loading={generateStateValueProp($state, ["load2", "loading"])}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["load2", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+            />
+          }
+          method={"GET"}
+          onError={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["apiRequest5", "error"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onLoading={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["apiRequest5", "loading"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onSuccess={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["apiRequest5", "data"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          params={{
+            center_id: $props.centerId,
+            reservation_id: $props.currentItem?.id
+          }}
+          shouldFetch={true}
+          url={"panel/staffs"}
+        >
+          <div className={classNames("all", sty.freeBox___6LdRn)}>
+            <div className={classNames("all", sty.freeBox___8IGht)}>
+              <Select
+                data-plasmic-name={"select2"}
+                data-plasmic-override={overrides.select2}
+                className={classNames("__wab_instance", sty.select2)}
+                isOpen={generateStateValueProp($state, ["select2", "isOpen"])}
+                items={(_par =>
+                  !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                  (() => {
+                    try {
+                      return $state.apiRequest5?.data?.result;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()
+                ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                  const currentItem = __plasmic_item_0;
+                  const currentIndex = __plasmic_idx_0;
+                  return (
+                    <MenuItem
+                      key={currentIndex}
+                      label={(() => {
+                        try {
+                          return currentItem.name;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
+                      value={(() => {
+                        try {
+                          return currentItem.id;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
+                    />
+                  );
+                })}
+                label={""}
+                onChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["select2", "value"]).apply(
+                    null,
+                    eventArgs
+                  );
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                onOpenChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "select2",
+                    "isOpen"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                placeholder={
+                  "\u067e\u0631\u0633\u062a\u0627\u0631 \u067e\u06cc\u0634\u0646\u0647\u0627\u062f\u06cc \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f..."
+                }
+                showLabel={false}
+                type={"lineBoxDark"}
+                value={generateStateValueProp($state, ["select2", "value"])}
+              />
+            </div>
+            <div
+              className={classNames("all", sty.freeBox__isMlw, {
+                [sty.freeBoxhome__isMlwQqzeO]: hasVariant(
+                  $state,
+                  "home",
+                  "home"
+                )
+              })}
+            >
+              <Button
+                data-plasmic-name={"add12"}
+                data-plasmic-override={overrides.add12}
+                className={classNames("__wab_instance", sty.add12, {
+                  [sty.add12home]: hasVariant($state, "home", "home")
+                })}
+                color={"success"}
+                disabel={(() => {
+                  try {
+                    return $state.select2.value;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
+                label={
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__snoyk)}
+                  >
+                    {"\u062a\u063a\u06cc\u06cc\u0631"}
+                  </div>
+                }
+                loading={generateStateValueProp($state, ["add12", "loading"])}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["runCode"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return ($state.add12.loading = true);
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode"] != null &&
+                    typeof $steps["runCode"] === "object" &&
+                    typeof $steps["runCode"].then === "function"
+                  ) {
+                    $steps["runCode"] = await $steps["runCode"];
+                  }
+
+                  $steps["invokeGlobalAction"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "POST",
+                            "panel/centersOffers",
+                            undefined,
+                            {
+                              reservation_id: $props.currentItem?.id,
+                              center_id: $props.centerId,
+                              staff_id: $state.select2.value
+                            }
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction"] != null &&
+                    typeof $steps["invokeGlobalAction"] === "object" &&
+                    typeof $steps["invokeGlobalAction"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction"] =
+                      await $steps["invokeGlobalAction"];
+                  }
+
+                  $steps["invokeGlobalAction2"] = $steps.invokeGlobalAction
+                    ?.data?.message
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            $steps.invokeGlobalAction.data.success
+                              ? "success"
+                              : "error",
+                            (() => {
+                              try {
+                                return $steps.invokeGlobalAction.data.message;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            "top-left"
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction2"] != null &&
+                    typeof $steps["invokeGlobalAction2"] === "object" &&
+                    typeof $steps["invokeGlobalAction2"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction2"] =
+                      await $steps["invokeGlobalAction2"];
+                  }
+
+                  $steps["runCode3"] = $steps.invokeGlobalAction?.data?.success
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return (() => {
+                              $props.currentItem.status = "offersReceived";
+                              return ($state.r += 1);
+                            })();
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode3"] != null &&
+                    typeof $steps["runCode3"] === "object" &&
+                    typeof $steps["runCode3"].then === "function"
+                  ) {
+                    $steps["runCode3"] = await $steps["runCode3"];
+                  }
+
+                  $steps["runCode2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return (() => {
+                              $state.add12.loading = false;
+                              return ($state.modal3.open = false);
+                            })();
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode2"] != null &&
+                    typeof $steps["runCode2"] === "object" &&
+                    typeof $steps["runCode2"].then === "function"
+                  ) {
+                    $steps["runCode2"] = await $steps["runCode2"];
+                  }
+                }}
+                onLoadingChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["add12", "loading"]).apply(
+                    null,
+                    eventArgs
+                  );
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                start={
+                  <CheckIcon
+                    className={classNames("all", sty.svg___2J9XG)}
+                    role={"img"}
+                  />
+                }
+              />
+
+              <Button
+                data-plasmic-name={"add13"}
+                data-plasmic-override={overrides.add13}
+                className={classNames("__wab_instance", sty.add13, {
+                  [sty.add13home]: hasVariant($state, "home", "home")
+                })}
+                color={"neutral"}
+                label={
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__qv9Mr)}
+                  >
+                    {"\u0644\u063a\u0648"}
+                  </div>
+                }
+                loading={generateStateValueProp($state, ["add13", "loading"])}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["runCode"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return ($state.modal3.open = false);
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode"] != null &&
+                    typeof $steps["runCode"] === "object" &&
+                    typeof $steps["runCode"].then === "function"
+                  ) {
+                    $steps["runCode"] = await $steps["runCode"];
+                  }
+                }}
+                onLoadingChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["add13", "loading"]).apply(
+                    null,
+                    eventArgs
+                  );
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                start={
+                  <CheckIcon
+                    className={classNames("all", sty.svg__swlfT)}
+                    role={"img"}
+                  />
+                }
+              />
+            </div>
+          </div>
+        </ApiRequest>
+      </AntdModal>
+      <AntdModal
+        data-plasmic-name={"modal2"}
+        data-plasmic-override={overrides.modal2}
+        className={classNames("__wab_instance", sty.modal2, {
+          [sty.modal2home]: hasVariant($state, "home", "home")
+        })}
+        defaultStylesClassName={classNames(
+          "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+          "plasmic_default_styles",
+          "plasmic_mixins",
+          styleTokensClassNames
+        )}
+        hideFooter={true}
+        modalScopeClassName={sty["modal2__modal"]}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["modal2", "open"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        open={generateStateValueProp($state, ["modal2", "open"])}
+        title={
+          <div className={classNames("all", "__wab_text", sty.text___8Ztz5)}>
+            {
+              "\u062a\u063a\u06cc\u06cc\u0631 \u0648\u0636\u0639\u06cc\u062a \u0631\u0632\u0631\u0648"
+            }
+          </div>
+        }
+        trigger={null}
+      >
+        <div className={classNames("all", sty.freeBox___9VciN)}>
+          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+            (() => {
+              try {
+                return [
+                  {
+                    group: "تأیید و هماهنگی اولیه",
+                    items: [
+                      {
+                        value: "draft",
+                        label: "پیش‌نویس"
+                      },
+                      {
+                        value: "registered",
+                        label: "درخواست ثبت شد"
+                      },
+                      {
+                        value: "awaitingConsultation",
+                        label: "نیازمند تماس مشاوره"
+                      },
+                      {
+                        value: "rejected",
+                        label: "رد شده"
+                      },
+                      {
+                        value: "userNoResponse",
+                        label: "کاربر پاسخ نداد"
+                      }
+                    ]
+                  },
+                  {
+                    group: "پردازش و اجرا",
+                    items: [
+                      {
+                        value: "sentToCenters",
+                        label: "ارسال شده برای مراکز"
+                      },
+                      {
+                        value: "awaitingOffers",
+                        label: "در انتظار پیشنهاد"
+                      },
+                      {
+                        value: "offersReceived",
+                        label: "پیشنهادها دریافت شد"
+                      },
+                      {
+                        value: "nurseSelected",
+                        label: "پرستار انتخاب شد"
+                      },
+                      {
+                        value: "readyForDispatch",
+                        label: "آماده اعزام"
+                      },
+                      {
+                        value: "inProgress",
+                        label: "خدمت در حال انجام"
+                      },
+                      {
+                        value: "serviceFinished",
+                        label: "خدمت پایان یافت"
+                      }
+                    ]
+                  },
+                  {
+                    group: "مالی\u060C تکمیل و استثناها",
+                    items: [
+                      {
+                        value: "pending",
+                        label: "در انتظار تأیید"
+                      },
+                      {
+                        value: "finalConfirmed",
+                        label: "تأیید نهایی شد"
+                      },
+                      {
+                        value: "confirmed",
+                        label: "تأیید شده"
+                      },
+                      {
+                        value: "awaitingPayment",
+                        label: "در انتظار پرداخت رزرو"
+                      },
+                      {
+                        value: "paymentCompleted",
+                        label: "هزینه رزرو پرداخت شد"
+                      },
+                      {
+                        value: "awaitingCenterContact",
+                        label: "در انتظار تماس مرکز"
+                      },
+                      {
+                        value: "underFinalReview",
+                        label: "در حال بررسی نهایی"
+                      },
+                      {
+                        value: "completed",
+                        label: "تکمیل شده"
+                      },
+                      {
+                        value: "canceled",
+                        label: "لغو شده"
+                      },
+                      {
+                        value: "refunded",
+                        label: "بازپرداخت شده"
+                      },
+                      {
+                        value: "awaitingSupport",
+                        label: "نیازمند رسیدگی پشتیبانی"
+                      }
+                    ]
+                  }
+                ];
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
+              }
+            })()
+          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+            const currentItem = __plasmic_item_0;
+            const currentIndex = __plasmic_idx_0;
+            return (
+              <div
+                className={classNames("all", sty.freeBox__uByIm)}
+                key={currentIndex}
+              >
+                <div
+                  className={classNames("all", "__wab_text", sty.text__cxlmV)}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return currentItem.group;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u062a\u063a\u06cc\u06cc\u0631 \u0648\u0636\u0639\u06cc\u062a \u0631\u0632\u0631\u0648";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+                <div className={classNames("all", sty.freeBox__l7Zit)}>
+                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                    (() => {
+                      try {
+                        return currentItem.items;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()
+                  ).map((__plasmic_item_1, __plasmic_idx_1) => {
+                    const currentItem = __plasmic_item_1;
+                    const currentIndex = __plasmic_idx_1;
+                    return (
+                      <ItemShow
+                        className={classNames(
+                          "__wab_instance",
+                          sty.itemShow__efkKw
+                        )}
+                        currentItem={currentItem.label}
+                        key={currentIndex}
+                        ligtht={true}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["updateStatus"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["status"]
+                                  },
+                                  operation: 0,
+                                  value: currentItem.value
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateStatus"] != null &&
+                            typeof $steps["updateStatus"] === "object" &&
+                            typeof $steps["updateStatus"].then === "function"
+                          ) {
+                            $steps["updateStatus"] =
+                              await $steps["updateStatus"];
+                          }
+                        }}
+                        select={(() => {
+                          try {
+                            return currentItem.value == $state.status;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()}
+                      >
+                        <Icon55Icon
+                          className={classNames("all", sty.svg__a0Pq)}
+                          role={"img"}
+                        />
+                      </ItemShow>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+          <div
+            className={classNames("all", sty.freeBox__jhacj, {
+              [sty.freeBoxhome__jhacjQqzeO]: hasVariant($state, "home", "home")
+            })}
+          >
+            <Button
+              data-plasmic-name={"add9"}
+              data-plasmic-override={overrides.add9}
+              className={classNames("__wab_instance", sty.add9, {
+                [sty.add9home]: hasVariant($state, "home", "home")
+              })}
+              color={"success"}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text___8NrQ)}
+                >
+                  {
+                    "\u062a\u063a\u06cc\u06cc\u0631 \u0648\u0636\u0639\u06cc\u062a"
+                  }
+                </div>
+              }
+              loading={generateStateValueProp($state, ["add9", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return ($state.add9.loading = true);
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+
+                $steps["invokeGlobalAction"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "POST",
+                          "panel/reservations/status",
+                          undefined,
+                          {
+                            code: $props.currentItem.id,
+                            status: $state.status
+                          }
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] =
+                    await $steps["invokeGlobalAction"];
+                }
+
+                $steps["invokeGlobalAction2"] = $steps.invokeGlobalAction?.data
+                  ?.message
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          $steps.invokeGlobalAction.data.success
+                            ? "success"
+                            : "error",
+                          (() => {
+                            try {
+                              return $steps.invokeGlobalAction.data.message;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          "top-left"
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction2"] != null &&
+                  typeof $steps["invokeGlobalAction2"] === "object" &&
+                  typeof $steps["invokeGlobalAction2"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction2"] =
+                    await $steps["invokeGlobalAction2"];
+                }
+
+                $steps["runCode3"] = $steps.invokeGlobalAction?.data?.success
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return ($props.currentItem.status = $state.status);
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode3"] != null &&
+                  typeof $steps["runCode3"] === "object" &&
+                  typeof $steps["runCode3"].then === "function"
+                ) {
+                  $steps["runCode3"] = await $steps["runCode3"];
+                }
+
+                $steps["runCode2"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            $state.add9.loading = false;
+                            return ($state.modal2.open = false);
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode2"] != null &&
+                  typeof $steps["runCode2"] === "object" &&
+                  typeof $steps["runCode2"].then === "function"
+                ) {
+                  $steps["runCode2"] = await $steps["runCode2"];
+                }
+              }}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["add9", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              start={
+                <CheckIcon
+                  className={classNames("all", sty.svg__loQfj)}
+                  role={"img"}
+                />
+              }
+            />
+
+            <Button
+              data-plasmic-name={"add10"}
+              data-plasmic-override={overrides.add10}
+              className={classNames("__wab_instance", sty.add10, {
+                [sty.add10home]: hasVariant($state, "home", "home")
+              })}
+              color={"neutral"}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text__aqxWw)}
+                >
+                  {"\u0644\u063a\u0648"}
+                </div>
+              }
+              loading={generateStateValueProp($state, ["add10", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return ($state.modal2.open = false);
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+              }}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["add10", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              start={
+                <CheckIcon
+                  className={classNames("all", sty.svg___3Gmwa)}
+                  role={"img"}
+                />
+              }
+            />
+          </div>
+        </div>
+      </AntdModal>
     </div>
   ) as React.ReactElement | null;
 }
@@ -2722,12 +3901,13 @@ const PlasmicDescendants = {
     "uploudeTime",
     "add3",
     "add6",
-    "select2",
     "status",
     "topics",
     "apiRequest",
+    "apiRequest4",
+    "itemStaffs3",
+    "button",
     "apiRequest2",
-    "itemShow",
     "img",
     "add7",
     "add8",
@@ -2739,19 +3919,29 @@ const PlasmicDescendants = {
     "dateInput",
     "timeInput",
     "add4",
-    "add5"
+    "add5",
+    "modal3",
+    "apiRequest5",
+    "load2",
+    "select2",
+    "add12",
+    "add13",
+    "modal2",
+    "add9",
+    "add10"
   ],
   statusIcon: ["statusIcon"],
   textCollapse: ["textCollapse"],
   uploudeTime: ["uploudeTime"],
   add3: ["add3"],
   add6: ["add6"],
-  select2: ["select2"],
   status: ["status"],
   topics: ["topics"],
   apiRequest: ["apiRequest"],
-  apiRequest2: ["apiRequest2", "itemShow", "img", "add7", "add8"],
-  itemShow: ["itemShow", "img", "add7"],
+  apiRequest4: ["apiRequest4", "itemStaffs3", "button"],
+  itemStaffs3: ["itemStaffs3"],
+  button: ["button"],
+  apiRequest2: ["apiRequest2", "img", "add7", "add8"],
   img: ["img"],
   add7: ["add7"],
   add8: ["add8"],
@@ -2782,7 +3972,16 @@ const PlasmicDescendants = {
   dateInput: ["dateInput"],
   timeInput: ["timeInput"],
   add4: ["add4"],
-  add5: ["add5"]
+  add5: ["add5"],
+  modal3: ["modal3", "apiRequest5", "load2", "select2", "add12", "add13"],
+  apiRequest5: ["apiRequest5", "load2", "select2", "add12", "add13"],
+  load2: ["load2"],
+  select2: ["select2"],
+  add12: ["add12"],
+  add13: ["add13"],
+  modal2: ["modal2", "add9", "add10"],
+  add9: ["add9"],
+  add10: ["add10"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -2794,12 +3993,13 @@ type NodeDefaultElementType = {
   uploudeTime: typeof UploudeTime;
   add3: typeof Button;
   add6: typeof Button;
-  select2: typeof Select;
   status: typeof Status;
   topics: typeof Topics;
   apiRequest: typeof ApiRequest;
+  apiRequest4: typeof ApiRequest;
+  itemStaffs3: typeof ItemStaffs3;
+  button: typeof Button;
   apiRequest2: typeof ApiRequest;
-  itemShow: typeof ItemShow;
   img: typeof PlasmicImg__;
   add7: typeof Button;
   add8: typeof Button;
@@ -2812,6 +4012,15 @@ type NodeDefaultElementType = {
   timeInput: typeof TimeInput;
   add4: typeof Button;
   add5: typeof Button;
+  modal3: typeof AntdModal;
+  apiRequest5: typeof ApiRequest;
+  load2: typeof Load;
+  select2: typeof Select;
+  add12: typeof Button;
+  add13: typeof Button;
+  modal2: typeof AntdModal;
+  add9: typeof Button;
+  add10: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -2881,12 +4090,13 @@ export const PlasmicReservationItem = Object.assign(
     uploudeTime: makeNodeComponent("uploudeTime"),
     add3: makeNodeComponent("add3"),
     add6: makeNodeComponent("add6"),
-    select2: makeNodeComponent("select2"),
     status: makeNodeComponent("status"),
     topics: makeNodeComponent("topics"),
     apiRequest: makeNodeComponent("apiRequest"),
+    apiRequest4: makeNodeComponent("apiRequest4"),
+    itemStaffs3: makeNodeComponent("itemStaffs3"),
+    button: makeNodeComponent("button"),
     apiRequest2: makeNodeComponent("apiRequest2"),
-    itemShow: makeNodeComponent("itemShow"),
     img: makeNodeComponent("img"),
     add7: makeNodeComponent("add7"),
     add8: makeNodeComponent("add8"),
@@ -2899,6 +4109,15 @@ export const PlasmicReservationItem = Object.assign(
     timeInput: makeNodeComponent("timeInput"),
     add4: makeNodeComponent("add4"),
     add5: makeNodeComponent("add5"),
+    modal3: makeNodeComponent("modal3"),
+    apiRequest5: makeNodeComponent("apiRequest5"),
+    load2: makeNodeComponent("load2"),
+    select2: makeNodeComponent("select2"),
+    add12: makeNodeComponent("add12"),
+    add13: makeNodeComponent("add13"),
+    modal2: makeNodeComponent("modal2"),
+    add9: makeNodeComponent("add9"),
+    add10: makeNodeComponent("add10"),
 
     // Metadata about props expected for PlasmicReservationItem
     internalVariantProps: PlasmicReservationItem__VariantProps,

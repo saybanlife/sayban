@@ -41,6 +41,21 @@
 .rootstatus_awaitingPayment {
   background: var(--token-qsHKKmoi9Z2N);
 }
+.rootstatus_nurseSelected {
+  background: var(--token-OUJCxKopjw6j);
+}
+.rootstatus_paymentCompleted {
+  background: var(--token-qsHKKmoi9Z2N);
+}
+.rootstatus_underFinalReview {
+  background: var(--token-5OotjbPjC70I);
+}
+.rootstatus_readyForDispatch {
+  background: var(--token-qsHKKmoi9Z2N);
+}
+.rootstatus_inProgress {
+  background: var(--token-qsHKKmoi9Z2N);
+}
 .roottextcolor_status_pending {
   background: none;
 }
@@ -54,6 +69,9 @@
   background: none;
 }
 .roottextcolor_status_awaitingOffers {
+  background: none;
+}
+.roottextcolor_status_underFinalReview {
   background: none;
 }
 .text {
@@ -98,6 +116,21 @@
 .textstatus_awaitingPayment {
   color: var(--token-Fh8yz2VaZHlR);
 }
+.textstatus_nurseSelected {
+  color: var(--token-9vpEFuaelD5X);
+}
+.textstatus_paymentCompleted {
+  color: var(--token-Fh8yz2VaZHlR);
+}
+.textstatus_underFinalReview {
+  color: var(--token-5YN5O6yOLC9n);
+}
+.textstatus_readyForDispatch {
+  color: var(--token-Fh8yz2VaZHlR);
+}
+.textstatus_inProgress {
+  color: var(--token-Fh8yz2VaZHlR);
+}
 .texttextcolor_status_pending {
   color: var(--token-Yo4gdKCgyuAu);
   font-size: var(--token-Tca_MqWoqq_b);
@@ -119,6 +152,11 @@
   color: var(--token-FCYaeT_sNnHr);
 }
 .texttextcolor_status_awaitingOffers {
+  color: var(--token-Yo4gdKCgyuAu);
+  font-size: var(--token-Tca_MqWoqq_b);
+  font-weight: 700;
+}
+.texttextcolor_status_underFinalReview {
   color: var(--token-Yo4gdKCgyuAu);
   font-size: var(--token-Tca_MqWoqq_b);
   font-weight: 700;

@@ -29822,6 +29822,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicVideoPlayer.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "7MqfSX9QcXnp",
+          "name": "ItemStaffs3",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicItemStaffs3.tsx",
+          "importSpec": {
+            "modulePath": "ItemStaffs3.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicItemStaffs3.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

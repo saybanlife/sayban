@@ -220,6 +220,9 @@ function PlasmicItemShow__RenderFunc(props: {
         {
           [sty.rootligtht]: hasVariant($state, "ligtht", "ligtht"),
           [sty.rootselect]: hasVariant($state, "select", "select"),
+          [sty.rootselect_ligtht]:
+            hasVariant($state, "ligtht", "ligtht") &&
+            hasVariant($state, "select", "select"),
           [sty.rootshowMore]: hasVariant($state, "showMore", "showMore"),
           [sty.rootunnamedVariant]: hasVariant(
             $state,

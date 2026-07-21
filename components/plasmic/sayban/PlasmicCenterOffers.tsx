@@ -253,10 +253,6 @@ function PlasmicCenterOffers__RenderFunc(props: {
             try {
               return [
                 {
-                  label: "همه",
-                  value: "all"
-                },
-                {
                   label: "عمومی",
                   value: "general"
                 },
