@@ -45,16 +45,17 @@
 .freeBoxselected__f7R0GBjPe {
   background: var(--token-ccqYe7dhXoNZ);
 }
-.svg {
+.img {
   object-fit: cover;
   max-width: 100%;
-  width: var(--token-OJSN3W0Myvht);
-  height: var(--token-P3I_D0uxQRnt);
-  color: var(--token-ccqYe7dhXoNZ);
-  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 50px;
 }
-.svgselected {
-  color: var(--token-k-47TemksE2v);
+.img > picture > img {
+  object-fit: cover;
 }
 .freeBox__gSwIf {
   position: relative;

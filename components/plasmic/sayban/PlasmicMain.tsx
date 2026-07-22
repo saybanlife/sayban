@@ -1365,6 +1365,18 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "timeWeek.edit2",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "timeWeek2.edit2",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -3158,7 +3170,7 @@ function PlasmicMain__RenderFunc(props: {
             return;
           }
         }}
-        onListChange2={async (...eventArgs: any) => {
+        onListChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "mainPageReservation",
             "list"
@@ -5301,6 +5313,21 @@ function PlasmicMain__RenderFunc(props: {
                   data-plasmic-name={"timeWeek"}
                   data-plasmic-override={overrides.timeWeek}
                   className={classNames("__wab_instance", sty.timeWeek)}
+                  edit2={generateStateValueProp($state, ["timeWeek", "edit2"])}
+                  onEdit2Change={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "timeWeek",
+                      "edit2"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
                   onWeekChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "timeWeek",
@@ -6349,6 +6376,21 @@ function PlasmicMain__RenderFunc(props: {
                   data-plasmic-name={"timeWeek2"}
                   data-plasmic-override={overrides.timeWeek2}
                   className={classNames("__wab_instance", sty.timeWeek2)}
+                  edit2={generateStateValueProp($state, ["timeWeek2", "edit2"])}
+                  onEdit2Change={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "timeWeek2",
+                      "edit2"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
                   onWeekChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "timeWeek2",
@@ -6534,6 +6576,12 @@ function PlasmicMain__RenderFunc(props: {
                               {
                                 value: $state.userPanelInfo2.password1,
                                 message: "رمز عبور را وارد کنید."
+                              },
+                              {
+                                value:
+                                  $state.timeWeek.week.filter(i => i.start)
+                                    .length == 0,
+                                message: "لطفا ساعت های کاری را وارد کنید."
                               },
                               {
                                 value: $state.centerInfo2.title,
@@ -6804,7 +6852,44 @@ function PlasmicMain__RenderFunc(props: {
                             $state.loaction2.lon = "";
                             $state.loaction2.call2 = "";
                             $state.imag2.uploadFiles = [];
-                            $state.timeWeek2.week = [];
+                            $state.timeWeek2.week = [
+                              {
+                                label: "شنبه",
+                                value: "sat",
+                                isHoliday: false
+                              },
+                              {
+                                label: "یکشنبه",
+                                value: "sun",
+                                isHoliday: false
+                              },
+                              {
+                                label: "دوشنبه",
+                                value: "mon",
+                                isHoliday: false
+                              },
+                              {
+                                label: "سه‌شنبه",
+                                value: "tue",
+                                isHoliday: false
+                              },
+                              {
+                                label: "چهارشنبه",
+                                value: "wed",
+                                isHoliday: false
+                              },
+                              {
+                                label: "پنج‌شنبه",
+                                value: "thu",
+                                isHoliday: false
+                              },
+                              {
+                                label: "جمعه",
+                                value: "fri",
+                                isHoliday: false
+                              }
+                            ];
+
                             $state.addServise3.servises = [];
                             $state.modal2.open = false;
                             return ($state.mainPageCenter.restart += "1");

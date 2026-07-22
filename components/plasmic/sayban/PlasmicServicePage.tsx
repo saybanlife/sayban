@@ -707,6 +707,12 @@ function PlasmicServicePage__RenderFunc(props: {
         path: "check[].isSelected",
         type: "private",
         variableType: "boolean"
+      },
+      {
+        path: "timeWeek.edit2",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -1432,6 +1438,21 @@ function PlasmicServicePage__RenderFunc(props: {
                   data-plasmic-name={"timeWeek"}
                   data-plasmic-override={overrides.timeWeek}
                   className={classNames("__wab_instance", sty.timeWeek)}
+                  edit2={generateStateValueProp($state, ["timeWeek", "edit2"])}
+                  onEdit2Change={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "timeWeek",
+                      "edit2"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
                   onWeekChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "timeWeek",

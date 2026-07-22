@@ -244,11 +244,13 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  left: auto;
-  top: 10px;
-  right: 123px;
-  bottom: auto;
+  left: 0;
+  top: auto;
+  right: 0;
+  bottom: -25px;
   color: var(--token-KjATzAYJ5IB7);
+  font-size: var(--token-R7X4jvpZsbD-);
+  text-align: right;
 }
 .freeBox__zeC6Y {
   display: flex;
@@ -539,7 +541,7 @@
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 50;
+  z-index: 1000;
   padding: 8px;
 }
 .freeBoxedit__jHiUaEfL9K {

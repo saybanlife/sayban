@@ -1086,7 +1086,7 @@ function PlasmicAddServise__RenderFunc(props: {
                         {
                           name: "select[].value",
                           initFunc: ({ $props, $state, $queries, $q }) =>
-                            undefined
+                            "online"
                         }
                       ],
                       [__plasmic_idx_0]

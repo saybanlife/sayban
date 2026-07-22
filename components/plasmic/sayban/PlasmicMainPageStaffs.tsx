@@ -137,7 +137,6 @@ export const PlasmicMainPageStaffs__ArgProps = new Array<ArgPropType>(
 export type PlasmicMainPageStaffs__OverridesType = {
   root?: Flex__<"div">;
   button?: Flex__<typeof Button>;
-  button2?: Flex__<typeof Button>;
   select?: Flex__<typeof Select>;
   centers?: Flex__<typeof ApiRequest>;
   errorpage?: Flex__<typeof Errorpage>;
@@ -145,6 +144,7 @@ export type PlasmicMainPageStaffs__OverridesType = {
   staffsItem?: Flex__<typeof StaffsItem>;
   img?: Flex__<typeof PlasmicImg__>;
   button3?: Flex__<typeof Button>;
+  button5?: Flex__<typeof Button>;
   button4?: Flex__<typeof Button>;
   editStaffs?: Flex__<typeof EditStaffs>;
   centers2?: Flex__<typeof ApiRequest>;
@@ -291,12 +291,6 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
 
         valueProp: "list",
         onChangeProp: "onListChange"
-      },
-      {
-        path: "button2.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "selected",
@@ -475,6 +469,17 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "staffsItem[].avatar",
+        type: "private",
+        variableType: "text"
+      },
+      {
+        path: "button5.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -595,56 +600,6 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
             }}
           />
 
-          {(() => {
-            try {
-              return $props.rule == "super_admin";
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return true;
-              }
-              throw e;
-            }
-          })() ? (
-            <Button
-              data-plasmic-name={"button2"}
-              data-plasmic-override={overrides.button2}
-              className={classNames("__wab_instance", sty.button2)}
-              color={"warning"}
-              end={
-                <Icon56Icon
-                  className={classNames("all", sty.svg___51I4C)}
-                  role={"img"}
-                />
-              }
-              iconEnd={true}
-              label={
-                <div
-                  className={classNames("all", "__wab_text", sty.text___62TDb)}
-                >
-                  {"\u062e\u062f\u0645\u062a \u062c\u062f\u06cc\u062f"}
-                </div>
-              }
-              loading={generateStateValueProp($state, ["button2", "loading"])}
-              onClick={args.addService}
-              onLoadingChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["button2", "loading"]).apply(
-                  null,
-                  eventArgs
-                );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-            />
-          ) : null}
           <div className={classNames("all", sty.freeBox__egEDr)}>
             <Select
               data-plasmic-name={"select"}
@@ -943,16 +898,34 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
                     ).map((__plasmic_item_0, __plasmic_idx_0) => {
                       const currentItem = __plasmic_item_0;
                       const currentIndex = __plasmic_idx_0;
-                      return (
-                        <StaffsItem
-                          data-plasmic-name={"staffsItem"}
-                          data-plasmic-override={overrides.staffsItem}
-                          className={classNames(
+                      return (() => {
+                        const child$Props = {
+                          avatar: generateStateValueProp($state, [
+                            "staffsItem",
+                            __plasmic_idx_0,
+                            "avatar"
+                          ]),
+                          className: classNames(
                             "__wab_instance",
                             sty.staffsItem
-                          )}
-                          key={currentIndex}
-                          onClick={async event => {
+                          ),
+                          key: currentIndex,
+                          onAvatarChange: async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "staffsItem",
+                              __plasmic_idx_0,
+                              "avatar"
+                            ]).apply(null, eventArgs);
+
+                            if (
+                              eventArgs.length > 1 &&
+                              eventArgs[1] &&
+                              eventArgs[1]._plasmic_state_init_
+                            ) {
+                              return;
+                            }
+                          },
+                          onClick: async event => {
                             const $steps = {};
 
                             $steps["runCode"] = true
@@ -977,8 +950,8 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
                             ) {
                               $steps["runCode"] = await $steps["runCode"];
                             }
-                          }}
-                          selected={(() => {
+                          },
+                          selected: (() => {
                             try {
                               return $state.selected.id == currentItem.id;
                             } catch (e) {
@@ -990,8 +963,8 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
                               }
                               throw e;
                             }
-                          })()}
-                          slot={
+                          })(),
+                          slot: (
                             <div
                               className={classNames(
                                 "all",
@@ -1003,36 +976,68 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
                                 {currentItem.skills}
                               </React.Fragment>
                             </div>
-                          }
-                        >
-                          <div
-                            className={classNames("all", sty.freeBox__fY5Wr)}
+                          )
+                        };
+
+                        initializePlasmicStates(
+                          $state,
+                          [
+                            {
+                              name: "staffsItem[].avatar",
+                              initFunc: ({ $props, $state, $queries, $q }) =>
+                                (() => {
+                                  try {
+                                    return currentItem.avatar;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                            }
+                          ],
+                          [__plasmic_idx_0]
+                        );
+                        return (
+                          <StaffsItem
+                            data-plasmic-name={"staffsItem"}
+                            data-plasmic-override={overrides.staffsItem}
+                            {...child$Props}
                           >
                             <div
-                              className={classNames(
-                                "all",
-                                "__wab_text",
-                                sty.text___1JV89
-                              )}
+                              className={classNames("all", sty.freeBox__fY5Wr)}
                             >
-                              <React.Fragment>
-                                {currentItem.type}
-                              </React.Fragment>
+                              <div
+                                className={classNames(
+                                  "all",
+                                  "__wab_text",
+                                  sty.text___1JV89
+                                )}
+                              >
+                                <React.Fragment>
+                                  {currentItem.type}
+                                </React.Fragment>
+                              </div>
+                              <div
+                                className={classNames(
+                                  "all",
+                                  "__wab_text",
+                                  sty.text__slcfz
+                                )}
+                              >
+                                <React.Fragment>
+                                  {currentItem.name}
+                                </React.Fragment>
+                              </div>
                             </div>
-                            <div
-                              className={classNames(
-                                "all",
-                                "__wab_text",
-                                sty.text__slcfz
-                              )}
-                            >
-                              <React.Fragment>
-                                {currentItem.name}
-                              </React.Fragment>
-                            </div>
-                          </div>
-                        </StaffsItem>
-                      );
+                          </StaffsItem>
+                        );
+                      })();
                     })}
                   </div>
                 </div>
@@ -1050,12 +1055,24 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
                       displayMinWidth={"0"}
                       displayWidth={"45px"}
                       loading={"lazy"}
-                      src={{
-                        src: "/plasmic/sayban/images/photo20251103131956Jpg.jpg",
-                        fullWidth: 1080,
-                        fullHeight: 871,
-                        aspectRatio: undefined
-                      }}
+                      src={(() => {
+                        try {
+                          return $state.selected.avatar;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return {
+                              src: "/plasmic/sayban/images/photo20251103131956Jpg.jpg",
+                              fullWidth: 1080,
+                              fullHeight: 871,
+                              aspectRatio: undefined
+                            };
+                          }
+                          throw e;
+                        }
+                      })()}
                     />
 
                     <div className={classNames("all", sty.freeBox__fe9ST)}>
@@ -1108,7 +1125,7 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
                     </div>
                     {(() => {
                       try {
-                        return $state.editStaffs.edit != true;
+                        return $state.editStaffs.edit == true;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -1123,10 +1140,110 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
                         data-plasmic-name={"button3"}
                         data-plasmic-override={overrides.button3}
                         className={classNames("__wab_instance", sty.button3)}
-                        color={"neutral"}
+                        color={"success"}
                         end={
                           <Icon70Icon
                             className={classNames("all", sty.svg__cu1Z)}
+                            role={"img"}
+                          />
+                        }
+                        label={
+                          <div
+                            className={classNames(
+                              "all",
+                              "__wab_text",
+                              sty.text__mk2UQ
+                            )}
+                          >
+                            {
+                              "\u0630\u062e\u06cc\u0631\u0647 \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
+                            }
+                          </div>
+                        }
+                        loading={generateStateValueProp($state, [
+                          "button3",
+                          "loading"
+                        ])}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["runCode"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  customFunction: async () => {
+                                    return (() => {
+                                      const container =
+                                        document.getElementById("edit-confirm");
+                                      if (container) {
+                                        const buttonToClick =
+                                          container.querySelector("button");
+                                        if (buttonToClick) {
+                                          buttonToClick.click();
+                                          console.log("روی دکمه کلیک شد.");
+                                        } else {
+                                          console.error(
+                                            "دکمه‌ای داخل div پیدا نشد."
+                                          );
+                                        }
+                                      } else {
+                                        console.error(
+                                          "div با آیدی edit-confirm پیدا نشد."
+                                        );
+                                      }
+                                      return ($state.editStaffs.edit = false);
+                                    })();
+                                  }
+                                };
+                                return (({ customFunction }) => {
+                                  return customFunction();
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["runCode"] != null &&
+                            typeof $steps["runCode"] === "object" &&
+                            typeof $steps["runCode"].then === "function"
+                          ) {
+                            $steps["runCode"] = await $steps["runCode"];
+                          }
+                        }}
+                        onLoadingChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "button3",
+                            "loading"
+                          ]).apply(null, eventArgs);
+
+                          if (
+                            eventArgs.length > 1 &&
+                            eventArgs[1] &&
+                            eventArgs[1]._plasmic_state_init_
+                          ) {
+                            return;
+                          }
+                        }}
+                      />
+                    ) : null}
+                    {(() => {
+                      try {
+                        return $state.editStaffs.edit != true;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
+                      <Button
+                        data-plasmic-name={"button5"}
+                        data-plasmic-override={overrides.button5}
+                        className={classNames("__wab_instance", sty.button5)}
+                        color={"neutral"}
+                        end={
+                          <Icon70Icon
+                            className={classNames("all", sty.svg__gN3Up)}
                             role={"img"}
                           />
                         }
@@ -1136,14 +1253,14 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
                             className={classNames(
                               "all",
                               "__wab_text",
-                              sty.text__mk2UQ
+                              sty.text__omS4H
                             )}
                           >
                             {"\u0648\u06cc\u0631\u0627\u06cc\u0634"}
                           </div>
                         }
                         loading={generateStateValueProp($state, [
-                          "button3",
+                          "button5",
                           "loading"
                         ])}
                         onClick={async event => {
@@ -1171,7 +1288,7 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
                         }}
                         onLoadingChange={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
-                            "button3",
+                            "button5",
                             "loading"
                           ]).apply(null, eventArgs);
 
@@ -1690,7 +1807,7 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
             <React.Fragment>
               {(() => {
                 try {
-                  return `آیا از حذف  (${$state.snackbar3.data.name}) مطمعن هستید؟`;
+                  return `آیا از حذف  (${$state.snackbar3.data.name}) مطمئن هستید؟`;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -2161,7 +2278,6 @@ const PlasmicDescendants = {
   root: [
     "root",
     "button",
-    "button2",
     "select",
     "centers",
     "errorpage",
@@ -2169,6 +2285,7 @@ const PlasmicDescendants = {
     "staffsItem",
     "img",
     "button3",
+    "button5",
     "button4",
     "editStaffs",
     "centers2",
@@ -2180,7 +2297,6 @@ const PlasmicDescendants = {
     "editStaffs2"
   ],
   button: ["button"],
-  button2: ["button2"],
   select: ["select"],
   centers: [
     "centers",
@@ -2189,6 +2305,7 @@ const PlasmicDescendants = {
     "staffsItem",
     "img",
     "button3",
+    "button5",
     "button4",
     "editStaffs"
   ],
@@ -2197,6 +2314,7 @@ const PlasmicDescendants = {
   staffsItem: ["staffsItem"],
   img: ["img"],
   button3: ["button3"],
+  button5: ["button5"],
   button4: ["button4"],
   editStaffs: ["editStaffs"],
   centers2: ["centers2"],
@@ -2213,7 +2331,6 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   button: typeof Button;
-  button2: typeof Button;
   select: typeof Select;
   centers: typeof ApiRequest;
   errorpage: typeof Errorpage;
@@ -2221,6 +2338,7 @@ type NodeDefaultElementType = {
   staffsItem: typeof StaffsItem;
   img: typeof PlasmicImg__;
   button3: typeof Button;
+  button5: typeof Button;
   button4: typeof Button;
   editStaffs: typeof EditStaffs;
   centers2: typeof ApiRequest;
@@ -2295,7 +2413,6 @@ export const PlasmicMainPageStaffs = Object.assign(
   {
     // Helper components rendering sub-elements
     button: makeNodeComponent("button"),
-    button2: makeNodeComponent("button2"),
     select: makeNodeComponent("select"),
     centers: makeNodeComponent("centers"),
     errorpage: makeNodeComponent("errorpage"),
@@ -2303,6 +2420,7 @@ export const PlasmicMainPageStaffs = Object.assign(
     staffsItem: makeNodeComponent("staffsItem"),
     img: makeNodeComponent("img"),
     button3: makeNodeComponent("button3"),
+    button5: makeNodeComponent("button5"),
     button4: makeNodeComponent("button4"),
     editStaffs: makeNodeComponent("editStaffs"),
     centers2: makeNodeComponent("centers2"),

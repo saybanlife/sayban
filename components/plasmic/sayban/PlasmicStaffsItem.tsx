@@ -66,8 +66,6 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicStaffsItem.module.css"; // plasmic-import: DpKNaMrne39U/css
 
-import Icon123Icon from "./icons/PlasmicIcon__Icon123"; // plasmic-import: JgCwdfwb6pDv/icon
-
 createPlasmicElementProxy;
 
 export type PlasmicStaffsItem__VariantMembers = {
@@ -83,23 +81,29 @@ export const PlasmicStaffsItem__VariantProps = new Array<VariantPropType>(
 
 export type PlasmicStaffsItem__ArgsType = {
   onClick?: (event: any) => void;
+  avatar?: string;
+  onAvatarChange?: (val: string) => void;
   children?: React.ReactNode;
   slot?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicStaffsItem__ArgsType;
 export const PlasmicStaffsItem__ArgProps = new Array<ArgPropType>(
   "onClick",
+  "avatar",
+  "onAvatarChange",
   "children",
   "slot"
 );
 
 export type PlasmicStaffsItem__OverridesType = {
   root?: Flex__<"div">;
-  svg?: Flex__<"svg">;
+  img?: Flex__<typeof PlasmicImg__>;
 };
 
 export interface DefaultStaffsItemProps {
   onClick?: (event: any) => void;
+  avatar?: string;
+  onAvatarChange?: (val: string) => void;
   children?: React.ReactNode;
   slot?: React.ReactNode;
   selected?: SingleBooleanChoiceArg<"selected">;
@@ -152,6 +156,14 @@ function PlasmicStaffsItem__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.selected
+      },
+      {
+        path: "avatar",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "avatar",
+        onChangeProp: "onAvatarChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -202,18 +214,31 @@ function PlasmicStaffsItem__RenderFunc(props: {
             )
           })}
         >
-          <PlasmicIcon__
-            data-plasmic-name={"svg"}
-            data-plasmic-override={overrides.svg}
-            PlasmicIconType={
-              hasVariant($state, "selected", "selected")
-                ? Icon123Icon
-                : Icon123Icon
-            }
-            className={classNames("all", sty.svg, {
-              [sty.svgselected]: hasVariant($state, "selected", "selected")
-            })}
-            role={"img"}
+          <PlasmicImg__
+            data-plasmic-name={"img"}
+            data-plasmic-override={overrides.img}
+            alt={""}
+            className={classNames(sty.img)}
+            displayHeight={"100%"}
+            displayMaxHeight={"none"}
+            displayMaxWidth={"100%"}
+            displayMinHeight={"0"}
+            displayMinWidth={"0"}
+            displayWidth={"100%"}
+            loading={"lazy"}
+            src={(() => {
+              try {
+                return $state.avatar;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
           />
         </div>
         <div className={classNames("all", sty.freeBox__gSwIf)}>
@@ -236,15 +261,15 @@ function PlasmicStaffsItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "svg"],
-  svg: ["svg"]
+  root: ["root", "img"],
+  img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  svg: "svg";
+  img: typeof PlasmicImg__;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -309,7 +334,7 @@ export const PlasmicStaffsItem = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    svg: makeNodeComponent("svg"),
+    img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicStaffsItem
     internalVariantProps: PlasmicStaffsItem__VariantProps,

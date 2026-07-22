@@ -1135,6 +1135,27 @@ function PlasmicEditStaffs__RenderFunc(props: {
 
             (async val => {
               const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.experienceYears.value =
+                          $state.experienceYears.value.replace(/\D/g, ""));
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
             }).apply(null, eventArgs);
           }}
           placeholder={
@@ -1599,6 +1620,7 @@ function PlasmicEditStaffs__RenderFunc(props: {
               "modal2"
             )
           })}
+          id={"edit-confirm"}
         >
           <Button
             data-plasmic-name={"codeSubmit2"}

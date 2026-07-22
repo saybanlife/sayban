@@ -100,7 +100,7 @@ export type PlasmicMainPageReservation__ArgsType = {
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
-  onListChange2?: (val: string) => void;
+  onListChange?: (val: string) => void;
   state?: string;
   slected?: any;
   onSlectedChange?: (val: string) => void;
@@ -116,7 +116,7 @@ export const PlasmicMainPageReservation__ArgProps = new Array<ArgPropType>(
   "restart",
   "onRestartChange",
   "list",
-  "onListChange2",
+  "onListChange",
   "state",
   "slected",
   "onSlectedChange",
@@ -145,7 +145,7 @@ export interface DefaultMainPageReservationProps {
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
-  onListChange2?: (val: string) => void;
+  onListChange?: (val: string) => void;
   state?: string;
   slected?: any;
   onSlectedChange?: (val: string) => void;
@@ -266,7 +266,7 @@ function PlasmicMainPageReservation__RenderFunc(props: {
         variableType: "boolean",
 
         valueProp: "list",
-        onChangeProp: "onListChange2"
+        onChangeProp: "onListChange"
       },
       {
         path: "slected",
@@ -318,7 +318,7 @@ function PlasmicMainPageReservation__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
-              return $state.reservation?.data?.pagination?.page || 1;
+              return $state.pagination2?.page || 1;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -343,7 +343,7 @@ function PlasmicMainPageReservation__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
-              return $state.reservation?.data?.pagination?.totalPages;
+              return $state.pagination2?.totalPages;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -360,6 +360,12 @@ function PlasmicMainPageReservation__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "pagination2",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -675,6 +681,41 @@ function PlasmicMainPageReservation__RenderFunc(props: {
                   typeof $steps["runCode"].then === "function"
                 ) {
                   $steps["runCode"] = await $steps["runCode"];
+                }
+
+                $steps["updatePagination2"] = $state.reservation?.data?.success
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["pagination2"]
+                        },
+                        operation: 0,
+                        value: $state.reservation?.data?.pagination
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updatePagination2"] != null &&
+                  typeof $steps["updatePagination2"] === "object" &&
+                  typeof $steps["updatePagination2"].then === "function"
+                ) {
+                  $steps["updatePagination2"] =
+                    await $steps["updatePagination2"];
                 }
               }).apply(null, eventArgs);
             }}

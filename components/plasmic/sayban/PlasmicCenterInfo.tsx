@@ -460,6 +460,35 @@ function PlasmicCenterInfo__RenderFunc(props: {
               ) {
                 return;
               }
+
+              (async val => {
+                const $steps = {};
+
+                $steps["invokeGlobalAction"] =
+                  ($state.categories || []).length == 0
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc \u0627\u06cc \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f \u0648 \u0627\u0628\u062a\u062f\u0627 \u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u0647\u0627 \u0631\u0627 \u0627\u0636\u0627\u0641\u0647 \u06a9\u0646\u06cc\u062f",
+                            "top-left"
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] =
+                    await $steps["invokeGlobalAction"];
+                }
+              }).apply(null, eventArgs);
             }}
             placeholder={
               "\u0627\u0646\u062a\u062e\u0627\u0628 \u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc"
@@ -560,6 +589,39 @@ function PlasmicCenterInfo__RenderFunc(props: {
               ) {
                 return;
               }
+
+              (async val => {
+                const $steps = {};
+
+                $steps["invokeGlobalAction"] =
+                  (
+                    ($state?.categories || []).find(
+                      i => i.category_id == $state?.category?.value
+                    )?.subcategories || []
+                  ).length == 0
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u0632\u06cc\u0631\u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc \u0627\u06cc \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f \u0648 \u0627\u0628\u062a\u062f\u0627 \u0632\u06cc\u0631\u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u0647\u0627 \u0631\u0627 \u0627\u0636\u0627\u0641\u0647 \u06a9\u0646\u06cc\u062f",
+                            "top-left"
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] =
+                    await $steps["invokeGlobalAction"];
+                }
+              }).apply(null, eventArgs);
             }}
             placeholder={
               "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u06cc\u0631 \u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc"

@@ -82,10 +82,16 @@ import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-impor
 
 createPlasmicElementProxy;
 
-export type PlasmicAddServise2__VariantMembers = {};
-export type PlasmicAddServise2__VariantsArgs = {};
+export type PlasmicAddServise2__VariantMembers = {
+  edit: "edit";
+};
+export type PlasmicAddServise2__VariantsArgs = {
+  edit?: SingleBooleanChoiceArg<"edit">;
+};
 type VariantPropType = keyof PlasmicAddServise2__VariantsArgs;
-export const PlasmicAddServise2__VariantProps = new Array<VariantPropType>();
+export const PlasmicAddServise2__VariantProps = new Array<VariantPropType>(
+  "edit"
+);
 
 export type PlasmicAddServise2__ArgsType = {
   servises?: any;
@@ -93,6 +99,8 @@ export type PlasmicAddServise2__ArgsType = {
   restart?: string;
   onRestartChange?: (val: string) => void;
   centerId?: string;
+  edit2?: boolean;
+  onEditChange2?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicAddServise2__ArgsType;
 export const PlasmicAddServise2__ArgProps = new Array<ArgPropType>(
@@ -100,7 +108,9 @@ export const PlasmicAddServise2__ArgProps = new Array<ArgPropType>(
   "onServisesChange",
   "restart",
   "onRestartChange",
-  "centerId"
+  "centerId",
+  "edit2",
+  "onEditChange2"
 );
 
 export type PlasmicAddServise2__OverridesType = {
@@ -126,6 +136,9 @@ export interface DefaultAddServise2Props {
   restart?: string;
   onRestartChange?: (val: string) => void;
   centerId?: string;
+  edit2?: boolean;
+  onEditChange2?: (val: string) => void;
+  edit?: SingleBooleanChoiceArg<"edit">;
   className?: string;
 }
 
@@ -235,7 +248,8 @@ function PlasmicAddServise2__RenderFunc(props: {
         path: "snackbar.opendialog",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          hasVariant($state, "edit", "edit") ? false : false
       },
       {
         path: "snackbar.data",
@@ -268,6 +282,33 @@ function PlasmicAddServise2__RenderFunc(props: {
 
         valueProp: "restart",
         onChangeProp: "onRestartChange"
+      },
+      {
+        path: "edit",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.edit2;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })() ?? $props.edit
+      },
+      {
+        path: "edit2",
+        type: "writable",
+        variableType: "boolean",
+
+        valueProp: "edit2",
+        onChangeProp: "onEditChange2"
       }
     ],
     [$props, $ctx, $refs]
@@ -297,7 +338,8 @@ function PlasmicAddServise2__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        { [sty.rootedit]: hasVariant($state, "edit", "edit") }
       )}
     >
       {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -320,7 +362,9 @@ function PlasmicAddServise2__RenderFunc(props: {
         return (() => {
           const child$Props = {
             bordered: false,
-            className: classNames("__wab_instance", sty.collapse),
+            className: classNames("__wab_instance", sty.collapse, {
+              [sty.collapseedit]: hasVariant($state, "edit", "edit")
+            }),
             defaultOpen: false,
             expandIcon: (
               <ChevronLeftIcon
@@ -394,7 +438,13 @@ function PlasmicAddServise2__RenderFunc(props: {
                   />
                 ) : null}
                 <Icon58Icon
-                  className={classNames("all", sty.svg__xR0BL)}
+                  className={classNames("all", sty.svg__xR0BL, {
+                    [sty.svgedit__xR0BLAje0G]: hasVariant(
+                      $state,
+                      "edit",
+                      "edit"
+                    )
+                  })}
                   onClick={async event => {
                     const $steps = {};
 
@@ -447,7 +497,11 @@ function PlasmicAddServise2__RenderFunc(props: {
             ),
             key: currentIndex,
             label2: (
-              <div className={classNames("all", "__wab_text", sty.text__yGv7B)}>
+              <div
+                className={classNames("all", "__wab_text", sty.text__yGv7B, {
+                  [sty.textedit__yGv7BAje0G]: hasVariant($state, "edit", "edit")
+                })}
+              >
                 <React.Fragment>
                   {(() => {
                     try {
@@ -547,7 +601,12 @@ function PlasmicAddServise2__RenderFunc(props: {
                   </div>
                   {(() => {
                     const child$Props = {
-                      className: classNames("__wab_instance", sty.name),
+                      className: classNames("__wab_instance", sty.name, {
+                        [sty.nameedit]: hasVariant($state, "edit", "edit")
+                      }),
+                      disabled: hasVariant($state, "edit", "edit")
+                        ? false
+                        : true,
                       inputType: "text",
                       onChange: async (...eventArgs: any) => {
                         generateStateOnChangeProp($state, [
@@ -637,7 +696,16 @@ function PlasmicAddServise2__RenderFunc(props: {
                   </div>
                   {(() => {
                     const child$Props = {
-                      className: classNames("__wab_instance", sty.description),
+                      className: classNames("__wab_instance", sty.description, {
+                        [sty.descriptionedit]: hasVariant(
+                          $state,
+                          "edit",
+                          "edit"
+                        )
+                      }),
+                      disabled: hasVariant($state, "edit", "edit")
+                        ? false
+                        : true,
                       inputType: "text",
                       onChange: async (...eventArgs: any) => {
                         generateStateOnChangeProp($state, [
@@ -734,7 +802,12 @@ function PlasmicAddServise2__RenderFunc(props: {
                     </div>
                     {(() => {
                       const child$Props = {
-                        className: classNames("__wab_instance", sty.time),
+                        className: classNames("__wab_instance", sty.time, {
+                          [sty.timeedit]: hasVariant($state, "edit", "edit")
+                        }),
+                        disabled: hasVariant($state, "edit", "edit")
+                          ? false
+                          : true,
                         inputMode: "numeric",
                         inputType: "text",
                         onChange: async (...eventArgs: any) => {
@@ -842,7 +915,12 @@ function PlasmicAddServise2__RenderFunc(props: {
                     </div>
                     {(() => {
                       const child$Props = {
-                        className: classNames("__wab_instance", sty.time2),
+                        className: classNames("__wab_instance", sty.time2, {
+                          [sty.time2edit]: hasVariant($state, "edit", "edit")
+                        }),
+                        disabled: hasVariant($state, "edit", "edit")
+                          ? false
+                          : true,
                         inputMode: "numeric",
                         inputType: "text",
                         onChange: async (...eventArgs: any) => {
@@ -950,7 +1028,12 @@ function PlasmicAddServise2__RenderFunc(props: {
                     </div>
                     {(() => {
                       const child$Props = {
-                        className: classNames("__wab_instance", sty.prise),
+                        className: classNames("__wab_instance", sty.prise, {
+                          [sty.priseedit]: hasVariant($state, "edit", "edit")
+                        }),
+                        disabled: hasVariant($state, "edit", "edit")
+                          ? false
+                          : true,
                         inputMode: "numeric",
                         inputType: "text",
                         onChange: async (...eventArgs: any) => {
@@ -1070,7 +1153,12 @@ function PlasmicAddServise2__RenderFunc(props: {
                     </div>
                     {(() => {
                       const child$Props = {
-                        className: classNames("__wab_instance", sty.off),
+                        className: classNames("__wab_instance", sty.off, {
+                          [sty.offedit]: hasVariant($state, "edit", "edit")
+                        }),
+                        disabled: hasVariant($state, "edit", "edit")
+                          ? false
+                          : true,
                         inputMode: "numeric",
                         inputType: "text",
                         onChange: async (...eventArgs: any) => {
@@ -1165,7 +1253,15 @@ function PlasmicAddServise2__RenderFunc(props: {
                     })()}
                   </div>
                 </div>
-                <div className={classNames("all", sty.freeBox__tSG)}>
+                <div
+                  className={classNames("all", sty.freeBox__tSG, {
+                    [sty.freeBoxedit__tSGAje0G]: hasVariant(
+                      $state,
+                      "edit",
+                      "edit"
+                    )
+                  })}
+                >
                   <div
                     className={classNames(
                       "all",
@@ -1177,7 +1273,13 @@ function PlasmicAddServise2__RenderFunc(props: {
                   </div>
                   {(() => {
                     const child$Props = {
-                      className: classNames("__wab_instance", sty.select),
+                      className: classNames("__wab_instance", sty.select, {
+                        [sty.selectedit]: hasVariant($state, "edit", "edit")
+                      }),
+                      description: "Description...",
+                      disabled: hasVariant($state, "edit", "edit")
+                        ? false
+                        : true,
                       isOpen: generateStateValueProp($state, [
                         "select",
                         __plasmic_idx_0,
@@ -1252,6 +1354,7 @@ function PlasmicAddServise2__RenderFunc(props: {
                           />
                         );
                       }),
+                      label: "Label",
                       onChange: async (...eventArgs: any) => {
                         generateStateOnChangeProp($state, [
                           "select",
@@ -1331,7 +1434,7 @@ function PlasmicAddServise2__RenderFunc(props: {
                           initFunc: ({ $props, $state, $queries, $q }) =>
                             (() => {
                               try {
-                                return currentItem.payment_method;
+                                return currentItem.payment_method || "online";
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1363,7 +1466,9 @@ function PlasmicAddServise2__RenderFunc(props: {
       <Button
         data-plasmic-name={"button5"}
         data-plasmic-override={overrides.button5}
-        className={classNames("__wab_instance", sty.button5)}
+        className={classNames("__wab_instance", sty.button5, {
+          [sty.button5edit]: hasVariant($state, "edit", "edit")
+        })}
         color={"second"}
         end={
           <Icon56Icon
@@ -1449,7 +1554,9 @@ function PlasmicAddServise2__RenderFunc(props: {
       <Snackbar
         data-plasmic-name={"snackbar"}
         data-plasmic-override={overrides.snackbar}
-        className={classNames("__wab_instance", sty.snackbar)}
+        className={classNames("__wab_instance", sty.snackbar, {
+          [sty.snackbaredit]: hasVariant($state, "edit", "edit")
+        })}
         data={generateStateValueProp($state, ["snackbar", "data"])}
         index={generateStateValueProp($state, ["snackbar", "index"])}
         onDataChange={async (...eventArgs: any) => {
@@ -1513,7 +1620,9 @@ function PlasmicAddServise2__RenderFunc(props: {
           <Button
             data-plasmic-name={"_delete"}
             data-plasmic-override={overrides._delete}
-            className={classNames("__wab_instance", sty._delete)}
+            className={classNames("__wab_instance", sty._delete, {
+              [sty._deleteedit]: hasVariant($state, "edit", "edit")
+            })}
             color={"errorDestructive"}
             label={
               <div className={classNames("all", "__wab_text", sty.text__bKqMq)}>
@@ -1585,7 +1694,9 @@ function PlasmicAddServise2__RenderFunc(props: {
                       customFunction: async () => {
                         return (() => {
                           $state.snackbar.opendialog = false;
-                          return ($state.restart += "1");
+                          return ($state.servises = $state.servises.filter(
+                            item => item.id !== $state.snackbar.data.id
+                          ));
                         })();
                       }
                     };

@@ -76,19 +76,27 @@ import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-impor
 
 createPlasmicElementProxy;
 
-export type PlasmicTimeWeek__VariantMembers = {};
-export type PlasmicTimeWeek__VariantsArgs = {};
+export type PlasmicTimeWeek__VariantMembers = {
+  edit: "edit";
+};
+export type PlasmicTimeWeek__VariantsArgs = {
+  edit?: SingleBooleanChoiceArg<"edit">;
+};
 type VariantPropType = keyof PlasmicTimeWeek__VariantsArgs;
-export const PlasmicTimeWeek__VariantProps = new Array<VariantPropType>();
+export const PlasmicTimeWeek__VariantProps = new Array<VariantPropType>("edit");
 
 export type PlasmicTimeWeek__ArgsType = {
   week?: any;
   onWeekChange?: (val: string) => void;
+  edit2?: boolean;
+  onEdit2Change?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicTimeWeek__ArgsType;
 export const PlasmicTimeWeek__ArgProps = new Array<ArgPropType>(
   "week",
-  "onWeekChange"
+  "onWeekChange",
+  "edit2",
+  "onEdit2Change"
 );
 
 export type PlasmicTimeWeek__OverridesType = {
@@ -106,6 +114,9 @@ export type PlasmicTimeWeek__OverridesType = {
 export interface DefaultTimeWeekProps {
   week?: any;
   onWeekChange?: (val: string) => void;
+  edit2?: boolean;
+  onEdit2Change?: (val: string) => void;
+  edit?: SingleBooleanChoiceArg<"edit">;
   className?: string;
 }
 
@@ -198,6 +209,33 @@ function PlasmicTimeWeek__RenderFunc(props: {
         path: "button3[].loading",
         type: "private",
         variableType: "boolean"
+      },
+      {
+        path: "edit",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.edit2;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })() ?? $props.edit
+      },
+      {
+        path: "edit2",
+        type: "writable",
+        variableType: "boolean",
+
+        valueProp: "edit2",
+        onChangeProp: "onEdit2Change"
       }
     ],
     [$props, $ctx, $refs]
@@ -225,7 +263,8 @@ function PlasmicTimeWeek__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        { [sty.rootedit]: hasVariant($state, "edit", "edit") }
       )}
     >
       <div className={classNames("all", sty.freeBox___5TBp9)}>
@@ -242,7 +281,11 @@ function PlasmicTimeWeek__RenderFunc(props: {
           {"\u062a\u0639\u0637\u06cc\u0644"}
         </div>
       </div>
-      <div className={classNames("all", sty.freeBox__hLgqC)}>
+      <div
+        className={classNames("all", sty.freeBox__hLgqC, {
+          [sty.freeBoxedit__hLgqCowUxX]: hasVariant($state, "edit", "edit")
+        })}
+      >
         <CheckboxGroup
           data-plasmic-name={"checkboxGroup"}
           data-plasmic-override={overrides.checkboxGroup}
@@ -294,7 +337,15 @@ function PlasmicTimeWeek__RenderFunc(props: {
                     >
                       <React.Fragment>{currentItem.label}</React.Fragment>
                     </div>
-                    <div className={classNames("all", sty.freeBox___6EcYm)}>
+                    <div
+                      className={classNames("all", sty.freeBox___6EcYm, {
+                        [sty.freeBoxedit___6EcYmowUxX]: hasVariant(
+                          $state,
+                          "edit",
+                          "edit"
+                        )
+                      })}
+                    >
                       {(() => {
                         const child$Props = {
                           arrow: true,
@@ -1116,6 +1167,11 @@ function PlasmicTimeWeek__RenderFunc(props: {
           value={generateStateValueProp($state, ["checkboxGroup", "value"])}
         />
       </div>
+      <div
+        className={classNames("all", sty.freeBox__qHoxS, {
+          [sty.freeBoxedit__qHoxSowUxX]: hasVariant($state, "edit", "edit")
+        })}
+      />
     </div>
   ) as React.ReactElement | null;
 }

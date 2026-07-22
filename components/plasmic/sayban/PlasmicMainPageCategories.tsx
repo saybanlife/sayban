@@ -1680,7 +1680,7 @@ function PlasmicMainPageCategories__RenderFunc(props: {
                             return "نام دسته‌بندی را وارد کنید";
                           }
                           if (!$state.slugInput.value) {
-                            return "کلید را وارد کنید";
+                            return "نامک را وارد کنید";
                           }
                         })();
                       }
@@ -2154,7 +2154,7 @@ function PlasmicMainPageCategories__RenderFunc(props: {
                             return "نام دسته‌بندی را وارد کنید";
                           }
                           if (!$state.slugInput1.value) {
-                            return "کلید را وارد کنید";
+                            return "نامک را وارد کنید";
                           }
                         })();
                       }

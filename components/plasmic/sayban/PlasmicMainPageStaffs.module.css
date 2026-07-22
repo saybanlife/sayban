@@ -68,25 +68,6 @@
   height: var(--token-zOTmRNiLzxBx);
   color: var(--token-W0eejbtvb0xw);
 }
-.button2:global(.__wab_instance):global(.__wab_instance) {
-  max-width: 100%;
-  height: 100%;
-  min-height: 0;
-}
-.svg__urTwn {
-  position: relative;
-  height: 1em;
-}
-.text___62TDb {
-  white-space: pre;
-  color: var(--token-9M5jRUPt8Msb);
-}
-.svg___51I4C {
-  position: relative;
-  width: var(--token-zOTmRNiLzxBx);
-  height: var(--token-zOTmRNiLzxBx);
-  color: var(--token-9M5jRUPt8Msb);
-}
 .freeBox__egEDr {
   flex-direction: column;
   position: relative;
@@ -363,7 +344,7 @@
 }
 .button3:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
-  width: 100px;
+  width: 120px;
   flex-shrink: 0;
 }
 .svg___9LZsz {
@@ -372,9 +353,27 @@
 }
 .text__mk2UQ {
   white-space: pre;
-  color: var(--token-1aP3XjRZIKFV);
+  color: var(--token-k-47TemksE2v);
 }
 .svg__cu1Z {
+  position: relative;
+  color: var(--token-rMWrBJOD3gNa);
+  height: 1em;
+}
+.button5:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+  width: 100px;
+  flex-shrink: 0;
+}
+.svg__dTgGi {
+  position: relative;
+  height: 1em;
+}
+.text__omS4H {
+  white-space: pre;
+  color: var(--token-1aP3XjRZIKFV);
+}
+.svg__gN3Up {
   position: relative;
   color: var(--token-rMWrBJOD3gNa);
   height: 1em;

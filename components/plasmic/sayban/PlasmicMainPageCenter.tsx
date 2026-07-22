@@ -961,12 +961,24 @@ function PlasmicMainPageCenter__RenderFunc(props: {
                         { key: "آدرس", fieldId: "آدرس" },
                         { key: "شهر", fieldId: "شهر" },
                         { key: "استان", fieldId: "استان" },
-                        { key: "تلفن", fieldId: "تلفن" },
-                        { key: "ساعات کاری", fieldId: "ساعات کاری" }
+                        {
+                          key: "تلفن",
+                          fieldId: "تلفن",
+                          dataType: null,
+                          isHidden: null
+                        },
+                        {
+                          key: "ساعات کاری",
+                          fieldId: "ساعات کاری",
+                          isHidden: null
+                        }
                       ];
                       __composite["0"]["isHidden"] = false;
                       __composite["0"]["title"] = "  ";
                       __composite["1"]["isHidden"] = true;
+                      __composite["10"]["dataType"] = "string";
+                      __composite["10"]["isHidden"] = false;
+                      __composite["11"]["isHidden"] = true;
                       return __composite;
                     })(),
 

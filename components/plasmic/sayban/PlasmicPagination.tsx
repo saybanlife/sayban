@@ -253,14 +253,26 @@ function PlasmicPagination__RenderFunc(props: {
               const totalPages = $state.totalPages || 1;
               if (totalPages <= 1) return [1];
               const pages = [1];
-              for (
-                let page = currentPage + 1;
-                page <= Math.min(currentPage + 4, totalPages - 1);
-                page++
-              ) {
-                pages.push(page);
+              if (totalPages <= 3) {
+                for (let i = 2; i <= totalPages; i++) {
+                  pages.push(i);
+                }
+                return pages;
               }
-              if (totalPages > 6 && currentPage + 4 < totalPages) {
+              let start = Math.max(2, currentPage - 1);
+              let end = Math.min(totalPages - 1, currentPage + 1);
+              if (currentPage <= 2) {
+                end = 3;
+              } else if (currentPage >= totalPages - 1) {
+                start = totalPages - 2;
+              }
+              if (start > 2) {
+                pages.push("...");
+              }
+              for (let i = start; i <= end; i++) {
+                pages.push(i);
+              }
+              if (end < totalPages - 1) {
                 pages.push("...");
               }
               pages.push(totalPages);
