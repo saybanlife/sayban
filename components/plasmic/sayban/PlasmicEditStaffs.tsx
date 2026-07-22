@@ -553,7 +553,7 @@ function PlasmicEditStaffs__RenderFunc(props: {
                     })()}
                     value={(() => {
                       try {
-                        return currentItem.شناسه;
+                        return currentItem.id;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -894,7 +894,7 @@ function PlasmicEditStaffs__RenderFunc(props: {
                 }}
                 placeholder={"\u062c\u0646\u0633\u06cc\u062a"}
                 showLabel={false}
-                type={hasVariant($state, "edit", "edit") ? "soft" : "line"}
+                type={hasVariant($state, "edit", "edit") ? "soft" : "see"}
                 value={generateStateValueProp($state, [
                   "selectGender",
                   "value"
@@ -1002,7 +1002,7 @@ function PlasmicEditStaffs__RenderFunc(props: {
                 }}
                 placeholder={"\u062a\u0627\u0647\u0644"}
                 showLabel={false}
-                type={hasVariant($state, "edit", "edit") ? "soft" : "line"}
+                type={hasVariant($state, "edit", "edit") ? "soft" : "see"}
                 value={generateStateValueProp($state, [
                   "selectMarital",
                   "value"

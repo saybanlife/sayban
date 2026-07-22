@@ -79,10 +79,12 @@ import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-impor
 createPlasmicElementProxy;
 
 export type PlasmicSelect__VariantMembers = {
-  type: "soft" | "plain" | "line" | "lineBox" | "lineBoxDark";
+  type: "soft" | "plain" | "line" | "lineBox" | "lineBoxDark" | "see";
 };
 export type PlasmicSelect__VariantsArgs = {
-  type?: SingleChoiceArg<"soft" | "plain" | "line" | "lineBox" | "lineBoxDark">;
+  type?: SingleChoiceArg<
+    "soft" | "plain" | "line" | "lineBox" | "lineBoxDark" | "see"
+  >;
 };
 type VariantPropType = keyof PlasmicSelect__VariantsArgs;
 export const PlasmicSelect__VariantProps = new Array<VariantPropType>("type");
@@ -142,7 +144,9 @@ export interface DefaultSelectProps {
   label?: React.ReactNode;
   description?: React.ReactNode;
   items?: React.ReactNode;
-  type?: SingleChoiceArg<"soft" | "plain" | "line" | "lineBox" | "lineBoxDark">;
+  type?: SingleChoiceArg<
+    "soft" | "plain" | "line" | "lineBox" | "lineBoxDark" | "see"
+  >;
   className?: string;
 }
 
@@ -268,6 +272,7 @@ function PlasmicSelect__RenderFunc(props: {
           ),
           [sty.ariaSelecttype_lineBox]: hasVariant($state, "type", "lineBox"),
           [sty.ariaSelecttype_line]: hasVariant($state, "type", "line"),
+          [sty.ariaSelecttype_see]: hasVariant($state, "type", "see"),
           [sty.ariaSelecttype_soft]: hasVariant($state, "type", "soft")
         }
       )}
@@ -315,13 +320,16 @@ function PlasmicSelect__RenderFunc(props: {
           [sty.ariaButtontype_lineBox]: hasVariant($state, "type", "lineBox"),
           [sty.ariaButtontype_line]: hasVariant($state, "type", "line"),
           [sty.ariaButtontype_plain]: hasVariant($state, "type", "plain"),
+          [sty.ariaButtontype_see]: hasVariant($state, "type", "see"),
           [sty.ariaButtontype_soft]: hasVariant($state, "type", "soft")
         })}
       >
         <BaseSelectValue
           data-plasmic-name={"ariaSelectedValue"}
           data-plasmic-override={overrides.ariaSelectedValue}
-          className={classNames("__wab_instance", sty.ariaSelectedValue)}
+          className={classNames("__wab_instance", sty.ariaSelectedValue, {
+            [sty.ariaSelectedValuetype_see]: hasVariant($state, "type", "see")
+          })}
           customize={true}
         >
           <div
@@ -349,12 +357,17 @@ function PlasmicSelect__RenderFunc(props: {
         <div
           data-plasmic-name={"freeBox"}
           data-plasmic-override={overrides.freeBox}
-          className={classNames("all", sty.freeBox)}
+          className={classNames("all", sty.freeBox, {
+            [sty.freeBoxtype_see]: hasVariant($state, "type", "see"),
+            [sty.freeBoxtype_soft]: hasVariant($state, "type", "soft")
+          })}
         >
           <ChevronDownIcon
             data-plasmic-name={"svg"}
             data-plasmic-override={overrides.svg}
-            className={classNames("all", sty.svg)}
+            className={classNames("all", sty.svg, {
+              [sty.svgtype_soft]: hasVariant($state, "type", "soft")
+            })}
             role={"img"}
           />
         </div>
@@ -375,6 +388,7 @@ function PlasmicSelect__RenderFunc(props: {
               "lineBox"
             ),
             [sty.descriptiontype_line]: hasVariant($state, "type", "line"),
+            [sty.descriptiontype_see]: hasVariant($state, "type", "see"),
             [sty.descriptiontype_soft]: hasVariant($state, "type", "soft")
           })}
         >
@@ -395,18 +409,21 @@ function PlasmicSelect__RenderFunc(props: {
           ),
           [sty.menuPopovertype_lineBox]: hasVariant($state, "type", "lineBox"),
           [sty.menuPopovertype_line]: hasVariant($state, "type", "line"),
+          [sty.menuPopovertype_see]: hasVariant($state, "type", "see"),
           [sty.menuPopovertype_soft]: hasVariant($state, "type", "soft")
         })}
         color={
-          hasVariant($state, "type", "lineBoxDark")
+          hasVariant($state, "type", "see")
             ? "soft"
-            : hasVariant($state, "type", "lineBox")
+            : hasVariant($state, "type", "lineBoxDark")
               ? "soft"
-              : hasVariant($state, "type", "line")
+              : hasVariant($state, "type", "lineBox")
                 ? "soft"
-                : hasVariant($state, "type", "soft")
+                : hasVariant($state, "type", "line")
                   ? "soft"
-                  : undefined
+                  : hasVariant($state, "type", "soft")
+                    ? "soft"
+                    : undefined
         }
         menuItems={renderPlasmicSlot({
           defaultContents: (

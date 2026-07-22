@@ -70,6 +70,11 @@
   border-radius: var(--token-6F5DR5OsTPi0);
   border: 1px solid var(--token-KjATzAYJ5IB7);
 }
+.ariaButtontype_see:global(.__wab_instance) {
+  background: none;
+  border-radius: 0px;
+  border-bottom: 1px solid var(--token-DbGdjBpQ6R_X);
+}
 .ariaSelectedValue:global(.__wab_instance) {
   font-size: var(--token-ehIkf6s-dMLU);
   line-height: var(--token-tyha1eTxLLSq);
@@ -92,6 +97,9 @@
   height: var(--token-CVjaMVgIQl_G);
   justify-content: center;
   align-items: center;
+}
+.freeBoxtype_see {
+  display: none;
 }
 .svg {
   width: var(--token-kD77h-2NGSqI);
