@@ -317,6 +317,11 @@ function PlasmicCenterInfo__RenderFunc(props: {
       )}
     >
       <div className={classNames("all", sty.freeBox___2Znrw, "dark")}>
+        <div className={classNames("all", "__wab_text", sty.text__gBffe)}>
+          {
+            "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0645\u0631\u06a9\u0632"
+          }
+        </div>
         <div className={classNames("all", sty.freeBox__qbIrE)}>
           <div className={classNames("all", "__wab_text", sty.text__arxrP)}>
             {"\u0646\u0627\u0645 \u0645\u0631\u06a9\u0632"}

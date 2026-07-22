@@ -23,6 +23,19 @@
   min-width: 0;
   padding: 0px;
 }
+.text__gBffe {
+  animation: none;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: justify;
+  font-size: var(--token-Tca_MqWoqq_b);
+  font-weight: 700;
+  color: var(--token-9M5jRUPt8Msb);
+  min-width: 0;
+  padding: 0px;
+}
 .freeBox__qbIrE {
   display: flex;
   flex-direction: column;

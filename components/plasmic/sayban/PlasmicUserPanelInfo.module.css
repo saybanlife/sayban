@@ -11,6 +11,19 @@
   min-width: 0;
   padding: 0px;
 }
+.text__jAgVy {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: justify;
+  font-size: var(--token-Tca_MqWoqq_b);
+  font-weight: 700;
+  padding-top: 0px;
+  padding-bottom: var(--token-73iLa06AE6f4);
+  color: var(--token-9M5jRUPt8Msb);
+  min-width: 0;
+}
 .freeBox__kltJv {
   display: flex;
   flex-direction: row;
@@ -22,10 +35,10 @@
   align-items: center;
   background: var(--token-LN1YkB123lXQ);
   column-gap: var(--token-rfsFxiclAtek);
-  margin-bottom: var(--token-73iLa06AE6f4);
   min-width: 0;
   border-radius: var(--token-cfon0PHiXQoL);
   padding: var(--token-rfsFxiclAtek);
+  margin: 0px 0px var(--token-73iLa06AE6f4);
   border: 1px solid var(--token-pyhDq7s0RTkz);
 }
 .freeBoxedit__kltJv1N5Q {

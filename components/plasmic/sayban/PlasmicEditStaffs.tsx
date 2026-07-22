@@ -1105,6 +1105,40 @@ function PlasmicEditStaffs__RenderFunc(props: {
           "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u062a\u062e\u0635\u0635\u06cc"
         }
       </div>
+      <div
+        className={classNames("all", sty.freeBox__w4YJo, {
+          [sty.freeBoxedit__w4YJoEfL9K]: hasVariant($state, "edit", "edit")
+        })}
+      >
+        <div
+          className={classNames("all", "__wab_text", sty.text___60Toi, {
+            [sty.textedit___60ToiEfL9K]: hasVariant($state, "edit", "edit")
+          })}
+        >
+          {"\u0645\u062d\u0644 \u06a9\u0627\u0631 \u0641\u0639\u0644\u06cc"}
+        </div>
+        <div
+          className={classNames("all", "__wab_text", sty.text__laOVi, {
+            [sty.textedit__laOViEfL9K]: hasVariant($state, "edit", "edit")
+          })}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.data.center_name;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "\u0645\u0631\u06a9\u0632 \u0641\u0639\u0644\u06cc \u06a9\u0627\u0631\u06cc";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+      </div>
       <div className={classNames("all", sty.freeBox__kkMhy)}>
         <TextInput
           data-plasmic-name={"experienceYears"}

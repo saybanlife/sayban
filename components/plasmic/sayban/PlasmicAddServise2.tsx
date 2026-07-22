@@ -376,67 +376,53 @@ function PlasmicAddServise2__RenderFunc(props: {
             expandIconPosition: "end",
             extra: (
               <div className={classNames("all", sty.freeBox__rDf2)}>
-                {(() => {
-                  try {
-                    return currentItem.id;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <Icon270Icon
-                    className={classNames("all", sty.svg__an7Lw)}
-                    onClick={async event => {
-                      const $steps = {};
+                <Icon270Icon
+                  className={classNames("all", sty.svg__an7Lw)}
+                  onClick={async event => {
+                    const $steps = {};
 
-                      $steps["goToPanel"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              destination: `/panel/${(() => {
-                                try {
-                                  return `service-${currentItem.id}`;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
+                    $steps["goToPanel"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/panel/${(() => {
+                              try {
+                                return `service-${currentItem.id}`;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
                                 }
-                              })()}`
-                            };
-                            return (({ destination }) => {
-                              if (
-                                typeof destination === "string" &&
-                                destination.startsWith("#")
-                              ) {
-                                document
-                                  .getElementById(destination.substr(1))
-                                  .scrollIntoView({ behavior: "smooth" });
-                              } else {
-                                __nextRouter?.push(destination);
+                                throw e;
                               }
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["goToPanel"] != null &&
-                        typeof $steps["goToPanel"] === "object" &&
-                        typeof $steps["goToPanel"].then === "function"
-                      ) {
-                        $steps["goToPanel"] = await $steps["goToPanel"];
-                      }
-                    }}
-                    role={"img"}
-                  />
-                ) : null}
+                            })()}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToPanel"] != null &&
+                      typeof $steps["goToPanel"] === "object" &&
+                      typeof $steps["goToPanel"].then === "function"
+                    ) {
+                      $steps["goToPanel"] = await $steps["goToPanel"];
+                    }
+                  }}
+                  role={"img"}
+                />
+
                 <Icon58Icon
                   className={classNames("all", sty.svg__xR0BL, {
                     [sty.svgedit__xR0BLAje0G]: hasVariant(

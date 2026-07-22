@@ -4840,7 +4840,7 @@ function PlasmicMain__RenderFunc(props: {
         open={generateStateValueProp($state, ["modal", "open"])}
         title={null}
         trigger={null}
-        width={"600"}
+        width={"650"}
         wrapClassName={classNames({ [sty["pcls_qLH08TvZbmzO"]]: true })}
       >
         <AntdTabs
@@ -5261,6 +5261,11 @@ function PlasmicMain__RenderFunc(props: {
                   </div>
                 }
               >
+                <div
+                  className={classNames("all", "__wab_text", sty.text__wlmhg)}
+                >
+                  {"\u062e\u062f\u0645\u0627\u062a \u0645\u0631\u06a9\u0632"}
+                </div>
                 <AddServise
                   data-plasmic-name={"addServise"}
                   data-plasmic-override={overrides.addServise}
@@ -5309,6 +5314,13 @@ function PlasmicMain__RenderFunc(props: {
                   </div>
                 }
               >
+                <div
+                  className={classNames("all", "__wab_text", sty.text___7Bd5J)}
+                >
+                  {
+                    "\u0633\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u06cc \u0647\u0641\u062a\u0647"
+                  }
+                </div>
                 <TimeWeek
                   data-plasmic-name={"timeWeek"}
                   data-plasmic-override={overrides.timeWeek}
@@ -5523,7 +5535,9 @@ function PlasmicMain__RenderFunc(props: {
                                 message: "توضیحات را وارد کنید."
                               },
                               {
-                                value: $state.centerInfo.subcategory2,
+                                value:
+                                  $state.centerInfo.subcategory2 &&
+                                  $state.centerInfo.subcategory2 != "1",
                                 message: "زیر دسته را انتخاب کنید."
                               },
                               {
@@ -5548,7 +5562,9 @@ function PlasmicMain__RenderFunc(props: {
                                 message: "تصویر را آپلود کنید."
                               },
                               {
-                                value: $state.timeWeek.week,
+                                value: $state.timeWeek.week.filter(
+                                  i => i.start && i.end
+                                ).length,
                                 message: "ساعات کاری را مشخص کنید."
                               },
                               {
@@ -5779,7 +5795,44 @@ function PlasmicMain__RenderFunc(props: {
                             $state.loaction.lon = "";
                             $state.loaction.call2 = "";
                             $state.imag.uploadFiles = [];
-                            $state.timeWeek.week = [];
+                            $state.timeWeek.week = [
+                              {
+                                label: "شنبه",
+                                value: "sat",
+                                isHoliday: false
+                              },
+                              {
+                                label: "یکشنبه",
+                                value: "sun",
+                                isHoliday: false
+                              },
+                              {
+                                label: "دوشنبه",
+                                value: "mon",
+                                isHoliday: false
+                              },
+                              {
+                                label: "سه‌شنبه",
+                                value: "tue",
+                                isHoliday: false
+                              },
+                              {
+                                label: "چهارشنبه",
+                                value: "wed",
+                                isHoliday: false
+                              },
+                              {
+                                label: "پنج‌شنبه",
+                                value: "thu",
+                                isHoliday: false
+                              },
+                              {
+                                label: "جمعه",
+                                value: "fri",
+                                isHoliday: false
+                              }
+                            ];
+
                             $state.addServise.servises = [];
                             $state.modal.open = false;
                             return ($state.mainPageCenter.restart += "1");

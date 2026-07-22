@@ -311,6 +311,8 @@ function PlasmicHomepage__RenderFunc(props: {
               return (() => {
                 if ($ctx.params?.slug?.includes("addAddress"))
                   return "addAddress";
+                if ($ctx.params?.slug?.includes("addPatient"))
+                  return "addPatient";
                 if ($ctx.params?.slug?.includes("bookNurse"))
                   return "bookNurse";
                 if ($ctx.params?.slug?.find(i => i.includes("pay_")))

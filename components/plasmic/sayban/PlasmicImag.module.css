@@ -17,6 +17,7 @@
   background: none;
   width: 100%;
   min-width: 0;
+  border-radius: var(--token-73iLa06AE6f4);
 }
 .freeBox__ietEp {
   display: flex;

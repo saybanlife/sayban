@@ -30862,6 +30862,16 @@
           "id": "yTjThEv4nXW1",
           "name": "Icon125Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon125.tsx"
+        },
+        {
+          "id": "07ucV8m0kmBF",
+          "name": "Icon126Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon126.tsx"
+        },
+        {
+          "id": "9Xfm_lI0FWYZ",
+          "name": "Icon127Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon127.tsx"
         }
       ],
       "images": [

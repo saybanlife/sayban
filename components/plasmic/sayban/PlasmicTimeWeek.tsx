@@ -59,10 +59,10 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo/component
 import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
 import { TimePicker } from "@/fragment/components/time-picker"; // plasmic-import: fpe_CT2-ocZX/codeComponent
-import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import Checkbox from "../../Checkbox"; // plasmic-import: 7eMtZduHzknK/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -73,6 +73,7 @@ import sty from "./PlasmicTimeWeek.module.css"; // plasmic-import: cN1_ZVwWpEB8/
 
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+import Icon127Icon from "./icons/PlasmicIcon__Icon127"; // plasmic-import: 9Xfm_lI0FWYZ/icon
 
 createPlasmicElementProxy;
 
@@ -101,14 +102,14 @@ export const PlasmicTimeWeek__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicTimeWeek__OverridesType = {
   root?: Flex__<"div">;
+  button2?: Flex__<typeof Button>;
   checkboxGroup?: Flex__<typeof CheckboxGroup>;
   start?: Flex__<typeof AntdPopover>;
   timePickerStart?: Flex__<typeof TimePicker>;
-  button?: Flex__<typeof Button>;
   end?: Flex__<typeof AntdPopover>;
   timePickerEnd?: Flex__<typeof TimePicker>;
-  button3?: Flex__<typeof Button>;
   option1?: Flex__<typeof Checkbox>;
+  svg?: Flex__<"svg">;
 };
 
 export interface DefaultTimeWeekProps {
@@ -201,16 +202,6 @@ function PlasmicTimeWeek__RenderFunc(props: {
         onChangeProp: "onWeekChange"
       },
       {
-        path: "button[].loading",
-        type: "private",
-        variableType: "boolean"
-      },
-      {
-        path: "button3[].loading",
-        type: "private",
-        variableType: "boolean"
-      },
-      {
         path: "edit",
         type: "private",
         variableType: "variant",
@@ -236,6 +227,12 @@ function PlasmicTimeWeek__RenderFunc(props: {
 
         valueProp: "edit2",
         onChangeProp: "onEdit2Change"
+      },
+      {
+        path: "button2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -271,15 +268,104 @@ function PlasmicTimeWeek__RenderFunc(props: {
         <div className={classNames("all", "__wab_text", sty.text__eKrIb)}>
           {"\u0631\u0648\u0632 \u0647\u0641\u062a\u0647"}
         </div>
-        <div className={classNames("all", "__wab_text", sty.text__iEYlq)}>
-          {"\u0634\u0631\u0648\u0639"}
-        </div>
-        <div className={classNames("all", "__wab_text", sty.text__hVeV)}>
-          {"\u067e\u0627\u06cc\u0627\u0646"}
+        <div className={classNames("all", sty.freeBox__sqU3G)}>
+          <div className={classNames("all", "__wab_text", sty.text__iEYlq)}>
+            {"\u0634\u0631\u0648\u0639"}
+          </div>
+          <div className={classNames("all", "__wab_text", sty.text__hVeV)}>
+            {"\u067e\u0627\u06cc\u0627\u0646"}
+          </div>
         </div>
         <div className={classNames("all", "__wab_text", sty.text__cS6Iv)}>
           {"\u062a\u0639\u0637\u06cc\u0644"}
         </div>
+        <Button
+          data-plasmic-name={"button2"}
+          data-plasmic-override={overrides.button2}
+          className={classNames("__wab_instance", sty.button2, {
+            [sty.button2edit]: hasVariant($state, "edit", "edit")
+          })}
+          color={"success"}
+          label={
+            <div className={classNames("all", "__wab_text", sty.text__oV9Q)}>
+              {
+                "\u0627\u0639\u0645\u0627\u0644 \u0628\u0631\u0627\u06cc \n\u0647\u0645\u0647 \u0631\u0648\u0632\u0647\u0627"
+              }
+            </div>
+          }
+          loading={generateStateValueProp($state, ["button2", "loading"])}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["runCode"] = true
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return (() => {
+                        $state.timePickerStart.forEach(
+                          i => (i.value = $state.timePickerStart[0].value)
+                        );
+                        return $state.week.forEach(
+                          i => (i.start = $state.timePickerStart[0].value)
+                        );
+                      })();
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runCode"] != null &&
+              typeof $steps["runCode"] === "object" &&
+              typeof $steps["runCode"].then === "function"
+            ) {
+              $steps["runCode"] = await $steps["runCode"];
+            }
+
+            $steps["runCode2"] = true
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return (() => {
+                        $state.timePickerEnd.forEach(
+                          i => (i.value = $state.timePickerEnd[0].value)
+                        );
+                        return $state.week.forEach(
+                          i => (i.end = $state.timePickerEnd[0].value)
+                        );
+                      })();
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runCode2"] != null &&
+              typeof $steps["runCode2"] === "object" &&
+              typeof $steps["runCode2"].then === "function"
+            ) {
+              $steps["runCode2"] = await $steps["runCode2"];
+            }
+          }}
+          onLoadingChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["button2", "loading"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+        />
       </div>
       <div
         className={classNames("all", sty.freeBox__hLgqC, {
@@ -325,7 +411,13 @@ function PlasmicTimeWeek__RenderFunc(props: {
                 const currentIndex = __plasmic_idx_0;
                 return (
                   <div
-                    className={classNames("all", sty.freeBox__jgKsn)}
+                    className={classNames("all", sty.freeBox__jgKsn, {
+                      [sty.freeBoxedit__jgKsnowUxX]: hasVariant(
+                        $state,
+                        "edit",
+                        "edit"
+                      )
+                    })}
                     key={currentIndex}
                   >
                     <div
@@ -350,260 +442,129 @@ function PlasmicTimeWeek__RenderFunc(props: {
                         const child$Props = {
                           arrow: true,
                           className: classNames("__wab_instance", sty.start),
-                          content: (
-                            <React.Fragment>
-                              {(() => {
-                                const child$Props = {
-                                  className: classNames(
-                                    "__wab_instance",
-                                    sty.timePickerStart
-                                  ),
-                                  notShowExclude: false,
-                                  onChange: async (...eventArgs: any) => {
-                                    generateStateOnChangeProp($state, [
-                                      "timePickerStart",
-                                      __plasmic_idx_0,
-                                      "value"
-                                    ]).apply(null, eventArgs);
+                          content: (() => {
+                            const child$Props = {
+                              className: classNames(
+                                "__wab_instance",
+                                sty.timePickerStart
+                              ),
+                              notShowExclude: false,
+                              onChange: async (...eventArgs: any) => {
+                                generateStateOnChangeProp($state, [
+                                  "timePickerStart",
+                                  __plasmic_idx_0,
+                                  "value"
+                                ]).apply(null, eventArgs);
 
-                                    (async time => {
-                                      const $steps = {};
+                                (async time => {
+                                  const $steps = {};
 
-                                      $steps["runCode"] = false
-                                        ? (() => {
-                                            const actionArgs = {
-                                              customFunction: async () => {
-                                                return (() => {
-                                                  $state.timePickerStart.forEach(
-                                                    i =>
-                                                      (i.value =
-                                                        $state.timePickerStart[
-                                                          currentIndex
-                                                        ].value)
-                                                  );
-                                                  return $state.week.forEach(
-                                                    i =>
-                                                      (i.start =
-                                                        $state.timePickerStart[
-                                                          currentIndex
-                                                        ].value)
-                                                  );
-                                                })();
-                                              }
-                                            };
-                                            return (({ customFunction }) => {
-                                              return customFunction();
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                      if (
-                                        $steps["runCode"] != null &&
-                                        typeof $steps["runCode"] === "object" &&
-                                        typeof $steps["runCode"].then ===
-                                          "function"
-                                      ) {
-                                        $steps["runCode"] =
-                                          await $steps["runCode"];
-                                      }
-
-                                      $steps["runCode2"] = true
-                                        ? (() => {
-                                            const actionArgs = {
-                                              customFunction: async () => {
-                                                return ($state.week[
-                                                  currentIndex
-                                                ].start =
-                                                  $state.timePickerStart[
-                                                    currentIndex
-                                                  ].value);
-                                              }
-                                            };
-                                            return (({ customFunction }) => {
-                                              return customFunction();
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                      if (
-                                        $steps["runCode2"] != null &&
-                                        typeof $steps["runCode2"] ===
-                                          "object" &&
-                                        typeof $steps["runCode2"].then ===
-                                          "function"
-                                      ) {
-                                        $steps["runCode2"] =
-                                          await $steps["runCode2"];
-                                      }
-                                    }).apply(null, eventArgs);
-                                  },
-                                  value: generateStateValueProp($state, [
-                                    "timePickerStart",
-                                    __plasmic_idx_0,
-                                    "value"
-                                  ])
-                                };
-                                initializeCodeComponentStates(
-                                  $state,
-                                  [
-                                    {
-                                      name: "value",
-                                      plasmicStateName:
-                                        "timePickerStart[].value"
-                                    }
-                                  ],
-                                  [__plasmic_idx_0],
-                                  undefined ?? {},
-                                  child$Props
-                                );
-                                initializePlasmicStates(
-                                  $state,
-                                  [
-                                    {
-                                      name: "timePickerStart[].value",
-                                      initFunc: ({
-                                        $props,
-                                        $state,
-                                        $queries,
-                                        $q
-                                      }) => "00:00"
-                                    }
-                                  ],
-                                  [__plasmic_idx_0]
-                                );
-                                return (
-                                  <TimePicker
-                                    data-plasmic-name={"timePickerStart"}
-                                    data-plasmic-override={
-                                      overrides.timePickerStart
-                                    }
-                                    {...child$Props}
-                                  />
-                                );
-                              })()}
-                              {(() => {
-                                try {
-                                  return currentIndex == 0;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return true;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                                ? (() => {
-                                    const child$Props = {
-                                      className: classNames(
-                                        "__wab_instance",
-                                        sty.button
-                                      ),
-                                      color: "second",
-                                      label: (
-                                        <div
-                                          className={classNames(
-                                            "all",
-                                            "__wab_text",
-                                            sty.text__otKGo
-                                          )}
-                                        >
-                                          {
-                                            "\u0627\u0639\u0645\u0627\u0644 \u0628\u0647 \u0647\u0645\u0647"
+                                  $steps["runCode"] = false
+                                    ? (() => {
+                                        const actionArgs = {
+                                          customFunction: async () => {
+                                            return (() => {
+                                              $state.timePickerStart.forEach(
+                                                i =>
+                                                  (i.value =
+                                                    $state.timePickerStart[
+                                                      currentIndex
+                                                    ].value)
+                                              );
+                                              return $state.week.forEach(
+                                                i =>
+                                                  (i.start =
+                                                    $state.timePickerStart[
+                                                      currentIndex
+                                                    ].value)
+                                              );
+                                            })();
                                           }
-                                        </div>
-                                      ),
-                                      loading: generateStateValueProp($state, [
-                                        "button",
-                                        __plasmic_idx_0,
-                                        "loading"
-                                      ]),
-                                      onClick: async event => {
-                                        const $steps = {};
+                                        };
+                                        return (({ customFunction }) => {
+                                          return customFunction();
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["runCode"] != null &&
+                                    typeof $steps["runCode"] === "object" &&
+                                    typeof $steps["runCode"].then === "function"
+                                  ) {
+                                    $steps["runCode"] = await $steps["runCode"];
+                                  }
 
-                                        $steps["runCode"] = true
-                                          ? (() => {
-                                              const actionArgs = {
-                                                customFunction: async () => {
-                                                  return (() => {
-                                                    $state.timePickerStart.forEach(
-                                                      i =>
-                                                        (i.value =
-                                                          $state.timePickerStart[
-                                                            currentIndex
-                                                          ].value)
-                                                    );
-                                                    return $state.week.forEach(
-                                                      i =>
-                                                        (i.start =
-                                                          $state.timePickerStart[
-                                                            currentIndex
-                                                          ].value)
-                                                    );
-                                                  })();
-                                                }
-                                              };
-                                              return (({ customFunction }) => {
-                                                return customFunction();
-                                              })?.apply(null, [actionArgs]);
-                                            })()
-                                          : undefined;
-                                        if (
-                                          $steps["runCode"] != null &&
-                                          typeof $steps["runCode"] ===
-                                            "object" &&
-                                          typeof $steps["runCode"].then ===
-                                            "function"
-                                        ) {
-                                          $steps["runCode"] =
-                                            await $steps["runCode"];
-                                        }
-                                      },
-                                      onLoadingChange: async (
-                                        ...eventArgs: any
-                                      ) => {
-                                        generateStateOnChangeProp($state, [
-                                          "button",
-                                          __plasmic_idx_0,
-                                          "loading"
-                                        ]).apply(null, eventArgs);
-
-                                        if (
-                                          eventArgs.length > 1 &&
-                                          eventArgs[1] &&
-                                          eventArgs[1]._plasmic_state_init_
-                                        ) {
-                                          return;
-                                        }
-                                      }
-                                    };
-
-                                    initializePlasmicStates(
-                                      $state,
-                                      [
-                                        {
-                                          name: "button[].loading",
-                                          initFunc: ({
-                                            $props,
-                                            $state,
-                                            $queries,
-                                            $q
-                                          }) => undefined
-                                        }
-                                      ],
-                                      [__plasmic_idx_0]
-                                    );
-                                    return (
-                                      <Button
-                                        data-plasmic-name={"button"}
-                                        data-plasmic-override={overrides.button}
-                                        {...child$Props}
-                                      />
-                                    );
-                                  })()
-                                : null}
-                            </React.Fragment>
-                          ),
+                                  $steps["runCode2"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          customFunction: async () => {
+                                            return ($state.week[
+                                              currentIndex
+                                            ].start =
+                                              $state.timePickerStart[
+                                                currentIndex
+                                              ].value);
+                                          }
+                                        };
+                                        return (({ customFunction }) => {
+                                          return customFunction();
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["runCode2"] != null &&
+                                    typeof $steps["runCode2"] === "object" &&
+                                    typeof $steps["runCode2"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["runCode2"] =
+                                      await $steps["runCode2"];
+                                  }
+                                }).apply(null, eventArgs);
+                              },
+                              value: generateStateValueProp($state, [
+                                "timePickerStart",
+                                __plasmic_idx_0,
+                                "value"
+                              ])
+                            };
+                            initializeCodeComponentStates(
+                              $state,
+                              [
+                                {
+                                  name: "value",
+                                  plasmicStateName: "timePickerStart[].value"
+                                }
+                              ],
+                              [__plasmic_idx_0],
+                              undefined ?? {},
+                              child$Props
+                            );
+                            initializePlasmicStates(
+                              $state,
+                              [
+                                {
+                                  name: "timePickerStart[].value",
+                                  initFunc: ({
+                                    $props,
+                                    $state,
+                                    $queries,
+                                    $q
+                                  }) => "00:00"
+                                }
+                              ],
+                              [__plasmic_idx_0]
+                            );
+                            return (
+                              <TimePicker
+                                data-plasmic-name={"timePickerStart"}
+                                data-plasmic-override={
+                                  overrides.timePickerStart
+                                }
+                                {...child$Props}
+                              />
+                            );
+                          })(),
                           contentText: "Popover contents",
                           defaultOpen: false,
                           defaultStylesClassName: classNames(
@@ -626,6 +587,9 @@ function PlasmicTimeWeek__RenderFunc(props: {
                             __plasmic_idx_0,
                             "open"
                           ]),
+                          popoverContentClassName: classNames({
+                            [sty["pcls_qSWO8dwocfH2"]]: true
+                          }),
                           popoverScopeClassName: sty["start__popover"],
                           title: null,
                           trigger: "click"
@@ -698,260 +662,126 @@ function PlasmicTimeWeek__RenderFunc(props: {
                         const child$Props = {
                           arrow: true,
                           className: classNames("__wab_instance", sty.end),
-                          content: (
-                            <React.Fragment>
-                              {(() => {
-                                const child$Props = {
-                                  className: classNames(
-                                    "__wab_instance",
-                                    sty.timePickerEnd
-                                  ),
-                                  onChange: async (...eventArgs: any) => {
-                                    generateStateOnChangeProp($state, [
-                                      "timePickerEnd",
-                                      __plasmic_idx_0,
-                                      "value"
-                                    ]).apply(null, eventArgs);
+                          content: (() => {
+                            const child$Props = {
+                              className: classNames(
+                                "__wab_instance",
+                                sty.timePickerEnd
+                              ),
+                              onChange: async (...eventArgs: any) => {
+                                generateStateOnChangeProp($state, [
+                                  "timePickerEnd",
+                                  __plasmic_idx_0,
+                                  "value"
+                                ]).apply(null, eventArgs);
 
-                                    (async time => {
-                                      const $steps = {};
+                                (async time => {
+                                  const $steps = {};
 
-                                      $steps["runCode"] = false
-                                        ? (() => {
-                                            const actionArgs = {
-                                              customFunction: async () => {
-                                                return (() => {
-                                                  $state.timePickerEnd.forEach(
-                                                    i =>
-                                                      (i.value =
-                                                        $state.timePickerEnd[
-                                                          currentIndex
-                                                        ].value)
-                                                  );
-                                                  return $state.week.forEach(
-                                                    i =>
-                                                      (i.end =
-                                                        $state.timePickerEnd[
-                                                          currentIndex
-                                                        ].value)
-                                                  );
-                                                })();
-                                              }
-                                            };
-                                            return (({ customFunction }) => {
-                                              return customFunction();
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                      if (
-                                        $steps["runCode"] != null &&
-                                        typeof $steps["runCode"] === "object" &&
-                                        typeof $steps["runCode"].then ===
-                                          "function"
-                                      ) {
-                                        $steps["runCode"] =
-                                          await $steps["runCode"];
-                                      }
-
-                                      $steps["runCode2"] = true
-                                        ? (() => {
-                                            const actionArgs = {
-                                              customFunction: async () => {
-                                                return ($state.week[
-                                                  currentIndex
-                                                ].end =
-                                                  $state.timePickerEnd[
-                                                    currentIndex
-                                                  ].value);
-                                              }
-                                            };
-                                            return (({ customFunction }) => {
-                                              return customFunction();
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                      if (
-                                        $steps["runCode2"] != null &&
-                                        typeof $steps["runCode2"] ===
-                                          "object" &&
-                                        typeof $steps["runCode2"].then ===
-                                          "function"
-                                      ) {
-                                        $steps["runCode2"] =
-                                          await $steps["runCode2"];
-                                      }
-                                    }).apply(null, eventArgs);
-                                  },
-                                  value: generateStateValueProp($state, [
-                                    "timePickerEnd",
-                                    __plasmic_idx_0,
-                                    "value"
-                                  ])
-                                };
-                                initializeCodeComponentStates(
-                                  $state,
-                                  [
-                                    {
-                                      name: "value",
-                                      plasmicStateName: "timePickerEnd[].value"
-                                    }
-                                  ],
-                                  [__plasmic_idx_0],
-                                  undefined ?? {},
-                                  child$Props
-                                );
-                                initializePlasmicStates(
-                                  $state,
-                                  [
-                                    {
-                                      name: "timePickerEnd[].value",
-                                      initFunc: ({
-                                        $props,
-                                        $state,
-                                        $queries,
-                                        $q
-                                      }) => "00:00"
-                                    }
-                                  ],
-                                  [__plasmic_idx_0]
-                                );
-                                return (
-                                  <TimePicker
-                                    data-plasmic-name={"timePickerEnd"}
-                                    data-plasmic-override={
-                                      overrides.timePickerEnd
-                                    }
-                                    {...child$Props}
-                                  />
-                                );
-                              })()}
-                              {(() => {
-                                try {
-                                  return currentIndex == 0;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return true;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                                ? (() => {
-                                    const child$Props = {
-                                      className: classNames(
-                                        "__wab_instance",
-                                        sty.button3
-                                      ),
-                                      color: "second",
-                                      label: (
-                                        <div
-                                          className={classNames(
-                                            "all",
-                                            "__wab_text",
-                                            sty.text__xNycm
-                                          )}
-                                        >
-                                          {
-                                            "\u0627\u0639\u0645\u0627\u0644 \u0628\u0647 \u0647\u0645\u0647"
+                                  $steps["runCode"] = false
+                                    ? (() => {
+                                        const actionArgs = {
+                                          customFunction: async () => {
+                                            return (() => {
+                                              $state.timePickerEnd.forEach(
+                                                i =>
+                                                  (i.value =
+                                                    $state.timePickerEnd[
+                                                      currentIndex
+                                                    ].value)
+                                              );
+                                              return $state.week.forEach(
+                                                i =>
+                                                  (i.end =
+                                                    $state.timePickerEnd[
+                                                      currentIndex
+                                                    ].value)
+                                              );
+                                            })();
                                           }
-                                        </div>
-                                      ),
-                                      loading: generateStateValueProp($state, [
-                                        "button3",
-                                        __plasmic_idx_0,
-                                        "loading"
-                                      ]),
-                                      onClick: async event => {
-                                        const $steps = {};
+                                        };
+                                        return (({ customFunction }) => {
+                                          return customFunction();
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["runCode"] != null &&
+                                    typeof $steps["runCode"] === "object" &&
+                                    typeof $steps["runCode"].then === "function"
+                                  ) {
+                                    $steps["runCode"] = await $steps["runCode"];
+                                  }
 
-                                        $steps["runCode"] = true
-                                          ? (() => {
-                                              const actionArgs = {
-                                                customFunction: async () => {
-                                                  return (() => {
-                                                    $state.timePickerEnd.forEach(
-                                                      i =>
-                                                        (i.value =
-                                                          $state.timePickerEnd[
-                                                            currentIndex
-                                                          ].value)
-                                                    );
-                                                    return $state.week.forEach(
-                                                      i =>
-                                                        (i.end =
-                                                          $state.timePickerEnd[
-                                                            currentIndex
-                                                          ].value)
-                                                    );
-                                                  })();
-                                                }
-                                              };
-                                              return (({ customFunction }) => {
-                                                return customFunction();
-                                              })?.apply(null, [actionArgs]);
-                                            })()
-                                          : undefined;
-                                        if (
-                                          $steps["runCode"] != null &&
-                                          typeof $steps["runCode"] ===
-                                            "object" &&
-                                          typeof $steps["runCode"].then ===
-                                            "function"
-                                        ) {
-                                          $steps["runCode"] =
-                                            await $steps["runCode"];
-                                        }
-                                      },
-                                      onLoadingChange: async (
-                                        ...eventArgs: any
-                                      ) => {
-                                        generateStateOnChangeProp($state, [
-                                          "button3",
-                                          __plasmic_idx_0,
-                                          "loading"
-                                        ]).apply(null, eventArgs);
-
-                                        if (
-                                          eventArgs.length > 1 &&
-                                          eventArgs[1] &&
-                                          eventArgs[1]._plasmic_state_init_
-                                        ) {
-                                          return;
-                                        }
-                                      }
-                                    };
-
-                                    initializePlasmicStates(
-                                      $state,
-                                      [
-                                        {
-                                          name: "button3[].loading",
-                                          initFunc: ({
-                                            $props,
-                                            $state,
-                                            $queries,
-                                            $q
-                                          }) => undefined
-                                        }
-                                      ],
-                                      [__plasmic_idx_0]
-                                    );
-                                    return (
-                                      <Button
-                                        data-plasmic-name={"button3"}
-                                        data-plasmic-override={
-                                          overrides.button3
-                                        }
-                                        {...child$Props}
-                                      />
-                                    );
-                                  })()
-                                : null}
-                            </React.Fragment>
-                          ),
+                                  $steps["runCode2"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          customFunction: async () => {
+                                            return ($state.week[
+                                              currentIndex
+                                            ].end =
+                                              $state.timePickerEnd[
+                                                currentIndex
+                                              ].value);
+                                          }
+                                        };
+                                        return (({ customFunction }) => {
+                                          return customFunction();
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["runCode2"] != null &&
+                                    typeof $steps["runCode2"] === "object" &&
+                                    typeof $steps["runCode2"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["runCode2"] =
+                                      await $steps["runCode2"];
+                                  }
+                                }).apply(null, eventArgs);
+                              },
+                              value: generateStateValueProp($state, [
+                                "timePickerEnd",
+                                __plasmic_idx_0,
+                                "value"
+                              ])
+                            };
+                            initializeCodeComponentStates(
+                              $state,
+                              [
+                                {
+                                  name: "value",
+                                  plasmicStateName: "timePickerEnd[].value"
+                                }
+                              ],
+                              [__plasmic_idx_0],
+                              undefined ?? {},
+                              child$Props
+                            );
+                            initializePlasmicStates(
+                              $state,
+                              [
+                                {
+                                  name: "timePickerEnd[].value",
+                                  initFunc: ({
+                                    $props,
+                                    $state,
+                                    $queries,
+                                    $q
+                                  }) => "00:00"
+                                }
+                              ],
+                              [__plasmic_idx_0]
+                            );
+                            return (
+                              <TimePicker
+                                data-plasmic-name={"timePickerEnd"}
+                                data-plasmic-override={overrides.timePickerEnd}
+                                {...child$Props}
+                              />
+                            );
+                          })(),
                           contentText: "Popover contents",
                           defaultOpen: false,
                           defaultStylesClassName: classNames(
@@ -974,6 +804,9 @@ function PlasmicTimeWeek__RenderFunc(props: {
                             __plasmic_idx_0,
                             "open"
                           ]),
+                          popoverContentClassName: classNames({
+                            [sty["pcls_p83RdXOFGjej"]]: true
+                          }),
                           popoverScopeClassName: sty["end__popover"],
                           title: null,
                           trigger: "click"
@@ -1158,6 +991,66 @@ function PlasmicTimeWeek__RenderFunc(props: {
                         />
                       );
                     })()}
+                    <div
+                      className={classNames("all", sty.freeBox__kk6F2, {
+                        [sty.freeBoxedit__kk6F2OwUxX]: hasVariant(
+                          $state,
+                          "edit",
+                          "edit"
+                        )
+                      })}
+                    >
+                      {(() => {
+                        try {
+                          return currentIndex != 0;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return true;
+                          }
+                          throw e;
+                        }
+                      })() ? (
+                        <Icon127Icon
+                          data-plasmic-name={"svg"}
+                          data-plasmic-override={overrides.svg}
+                          className={classNames("all", sty.svg)}
+                          onClick={async event => {
+                            const $steps = {};
+
+                            $steps["runCode"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    customFunction: async () => {
+                                      return (() => {
+                                        $state.week[currentIndex].end =
+                                          $state.timePickerEnd[0].value;
+                                        return ($state.week[
+                                          currentIndex
+                                        ].start =
+                                          $state.timePickerStart[0].value);
+                                      })();
+                                    }
+                                  };
+                                  return (({ customFunction }) => {
+                                    return customFunction();
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["runCode"] != null &&
+                              typeof $steps["runCode"] === "object" &&
+                              typeof $steps["runCode"].then === "function"
+                            ) {
+                              $steps["runCode"] = await $steps["runCode"];
+                            }
+                          }}
+                          role={"img"}
+                        />
+                      ) : null}
+                    </div>
                   </div>
                 );
               })}
@@ -1179,46 +1072,45 @@ function PlasmicTimeWeek__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "button2",
     "checkboxGroup",
     "start",
     "timePickerStart",
-    "button",
     "end",
     "timePickerEnd",
-    "button3",
-    "option1"
+    "option1",
+    "svg"
   ],
+  button2: ["button2"],
   checkboxGroup: [
     "checkboxGroup",
     "start",
     "timePickerStart",
-    "button",
     "end",
     "timePickerEnd",
-    "button3",
-    "option1"
+    "option1",
+    "svg"
   ],
-  start: ["start", "timePickerStart", "button"],
+  start: ["start", "timePickerStart"],
   timePickerStart: ["timePickerStart"],
-  button: ["button"],
-  end: ["end", "timePickerEnd", "button3"],
+  end: ["end", "timePickerEnd"],
   timePickerEnd: ["timePickerEnd"],
-  button3: ["button3"],
-  option1: ["option1"]
+  option1: ["option1"],
+  svg: ["svg"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  button2: typeof Button;
   checkboxGroup: typeof CheckboxGroup;
   start: typeof AntdPopover;
   timePickerStart: typeof TimePicker;
-  button: typeof Button;
   end: typeof AntdPopover;
   timePickerEnd: typeof TimePicker;
-  button3: typeof Button;
   option1: typeof Checkbox;
+  svg: "svg";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1283,14 +1175,14 @@ export const PlasmicTimeWeek = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    button2: makeNodeComponent("button2"),
     checkboxGroup: makeNodeComponent("checkboxGroup"),
     start: makeNodeComponent("start"),
     timePickerStart: makeNodeComponent("timePickerStart"),
-    button: makeNodeComponent("button"),
     end: makeNodeComponent("end"),
     timePickerEnd: makeNodeComponent("timePickerEnd"),
-    button3: makeNodeComponent("button3"),
     option1: makeNodeComponent("option1"),
+    svg: makeNodeComponent("svg"),
 
     // Metadata about props expected for PlasmicTimeWeek
     internalVariantProps: PlasmicTimeWeek__VariantProps,

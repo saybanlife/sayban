@@ -251,6 +251,7 @@
   color: var(--token-C6B6ZAuqICKE);
   cursor: pointer;
   flex-shrink: 0;
+  display: none;
 }
 .svg__xR0BL {
   object-fit: cover;
