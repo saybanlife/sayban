@@ -1082,7 +1082,11 @@ function PlasmicCenter__RenderFunc(props: {
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {
                   try {
-                    return $state.full.data.result.image;
+                    return (
+                      $state.full.data?.result?.image || [
+                        { image_url: $state.full?.data?.result?.main_image }
+                      ]
+                    );
                   } catch (e) {
                     if (
                       e instanceof TypeError ||

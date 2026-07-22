@@ -218,7 +218,9 @@ function PlasmicHeader__RenderFunc(props: {
         className={classNames(
           "all",
           sty.freeBox__lHkfy,
-          "fixed-box green-banner",
+          hasVariant($state, "soft", "soft")
+            ? "fixed-box "
+            : "fixed-box green-banner",
           {
             [sty.freeBoxsearch__lHkfyBrJu]: hasVariant(
               $state,
