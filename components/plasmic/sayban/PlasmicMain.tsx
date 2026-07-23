@@ -1377,6 +1377,18 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "centerInfo.tags2",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "centerInfo2.tags2",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       }
     ],
     [$props, $ctx, $refs]
@@ -5074,6 +5086,20 @@ function PlasmicMain__RenderFunc(props: {
                       return;
                     }
                   }}
+                  onTagsChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "centerInfo",
+                      "tags2"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
                   onTitleChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "centerInfo",
@@ -5097,6 +5123,10 @@ function PlasmicMain__RenderFunc(props: {
                     "subcategory2"
                   ])}
                   tag={generateStateValueProp($state, ["centerInfo", "tag"])}
+                  tags2={generateStateValueProp($state, [
+                    "centerInfo",
+                    "tags2"
+                  ])}
                   tagsitem={$state.categories?.data?.tag}
                   title={generateStateValueProp($state, [
                     "centerInfo",
@@ -5626,7 +5656,7 @@ function PlasmicMain__RenderFunc(props: {
                                 phone: $state.loaction.call2,
                                 image: $state.imag.uploadFiles,
                                 week: $state.timeWeek.week,
-                                tag: $state.centerInfo.tag,
+                                tag: $state.centerInfo.tags2,
                                 service: $state.addServise.servises
                               };
                             } catch (e) {
@@ -5787,7 +5817,7 @@ function PlasmicMain__RenderFunc(props: {
                             $state.centerInfo.title = "";
                             $state.centerInfo.description = "";
                             $state.centerInfo.subcategory2 = "";
-                            $state.centerInfo.tag = "";
+                            $state.centerInfo.tags2 = [];
                             $state.loaction.address = "";
                             $state.loaction.city2 = "";
                             $state.loaction.state2 = "";
@@ -6186,6 +6216,20 @@ function PlasmicMain__RenderFunc(props: {
                       return;
                     }
                   }}
+                  onTagsChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "centerInfo2",
+                      "tags2"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
                   onTitleChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "centerInfo2",
@@ -6209,6 +6253,10 @@ function PlasmicMain__RenderFunc(props: {
                     "subcategory2"
                   ])}
                   tag={generateStateValueProp($state, ["centerInfo2", "tag"])}
+                  tags2={generateStateValueProp($state, [
+                    "centerInfo2",
+                    "tags2"
+                  ])}
                   tagsitem={$state.categories?.data?.tag}
                   title={generateStateValueProp($state, [
                     "centerInfo2",

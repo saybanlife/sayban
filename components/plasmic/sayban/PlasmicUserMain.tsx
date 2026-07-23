@@ -501,6 +501,12 @@ function PlasmicUserMain__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "centerInfo.tags2",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       }
     ],
     [$props, $ctx, $refs]
@@ -1662,6 +1668,20 @@ function PlasmicUserMain__RenderFunc(props: {
                   return;
                 }
               }}
+              onTagsChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "centerInfo",
+                  "tags2"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
               onTitleChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "centerInfo",
@@ -1685,6 +1705,7 @@ function PlasmicUserMain__RenderFunc(props: {
                 "subcategory2"
               ])}
               tag={generateStateValueProp($state, ["centerInfo", "tag"])}
+              tags2={generateStateValueProp($state, ["centerInfo", "tags2"])}
               tagsitem={args.tagsitem}
               title={generateStateValueProp($state, ["centerInfo", "title"])}
             />

@@ -823,6 +823,22 @@ function PlasmicCenterPage__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "tags.tags2",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          ($state.centerData?.tags || []).map(i => i.tag_id.toString())
+      },
+      {
+        path: "centerInfo.tags2",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          ($state.center?.data?.result?.tags || []).map(i =>
+            i.tag_id.toString()
+          )
       }
     ],
     [$props, $ctx, $refs]
@@ -2320,8 +2336,12 @@ function PlasmicCenterPage__RenderFunc(props: {
                                       $state.center.data.result.description;
                                     $state.centerInfo.categorie =
                                       $state.center.data.result.category_id;
-                                    return ($state.centerInfo.subcategory2 =
-                                      $state.center.data.result.subcategory_id);
+                                    $state.centerInfo.subcategory2 =
+                                      $state.center.data.result.subcategory_id;
+                                    return ($state.centerInfo.tags2 =
+                                      $state.center.data.result.tags.map(
+                                        i => i.tag_id
+                                      ));
                                   })();
                                 }
                               };
@@ -2529,10 +2549,25 @@ function PlasmicCenterPage__RenderFunc(props: {
                       return;
                     }
                   }}
+                  onTagsChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, ["tags", "tags2"]).apply(
+                      null,
+                      eventArgs
+                    );
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
                   select3Value={generateStateValueProp($state, [
                     "tags",
                     "select3Value"
                   ])}
+                  tags2={generateStateValueProp($state, ["tags", "tags2"])}
                   tagsitem={args.tagsitem}
                 />
               </div>
@@ -4172,7 +4207,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                                 name: $state.centerInfo.title,
                                 description: $state.centerInfo.description
                               },
-                              tags: $state.centerInfo.tag
+                              tags: $state.centerInfo.tags2
                             };
                             return data;
                           })()
@@ -4399,6 +4434,7 @@ function PlasmicCenterPage__RenderFunc(props: {
         open={generateStateValueProp($state, ["modal", "open"])}
         title={null}
         trigger={null}
+        width={"600"}
       >
         <div className={classNames("all", sty.freeBox__uBam)}>
           <CenterInfo
@@ -4501,6 +4537,20 @@ function PlasmicCenterPage__RenderFunc(props: {
                 return;
               }
             }}
+            onTagsChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["centerInfo", "tags2"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
             onTitleChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["centerInfo", "title"]).apply(
                 null,
@@ -4521,6 +4571,7 @@ function PlasmicCenterPage__RenderFunc(props: {
               "subcategory2"
             ])}
             tag={generateStateValueProp($state, ["centerInfo", "tag"])}
+            tags2={generateStateValueProp($state, ["centerInfo", "tags2"])}
             tagsitem={args.tagsitem}
             title={generateStateValueProp($state, ["centerInfo", "title"])}
           />

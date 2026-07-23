@@ -33,6 +33,14 @@
   border-style: solid;
   border-color: var(--token-as44I7WwR-rZ);
 }
+.ariaCheckboxtag:global(.__wab_instance) {
+  background: var(--token-Xzi5OT07e2_1);
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: var(--token-RuQNZpYm0Yds) var(--token-cfon0PHiXQoL);
+}
+.ariaCheckboxtag[data-selected][data-selected]:global(.__wab_instance) {
+  background: var(--token-ee2TuxDknsJj);
+}
 .freeBox___7QJd {
   position: relative;
   width: var(--token-xsiin-peP6fP);
@@ -69,6 +77,12 @@
     border-radius: 50%;
   }
 }
+.freeBoxtag___7QJdmEdEv {
+  border-width: 0px;
+}
+.ariaCheckboxtag[data-selected] .freeBoxtag___7QJdmEdEv {
+  background: none;
+}
 .svg__e63Gc {
   position: relative;
   color: #ffffff;
@@ -80,6 +94,9 @@
 .ariaCheckbox[data-selected] .svg__e63Gc {
   display: block;
 }
+.ariaCheckboxtag[data-selected] .svgtag__e63GCmEdEv {
+  color: #ffffff;
+}
 .svg__ouaS {
   position: relative;
   color: #ffffff;
@@ -88,6 +105,16 @@
 }
 .ariaCheckbox[data-indeterminate] .svg__ouaS {
   display: block;
+}
+.svgtag__ouaSmEdEv {
+  width: var(--token-LBC0X5IbL9bo);
+  height: var(--token-LBC0X5IbL9bo);
+  color: var(--token-rMWrBJOD3gNa);
+  flex-shrink: 0;
+  display: block;
+}
+.ariaCheckboxtag[data-selected] .svgtag__ouaSmEdEv {
+  display: none;
 }
 .freeBox___03OWs {
   display: flex;
@@ -147,4 +174,7 @@
 }
 .ariaCheckbox[data-selected] .slotTargetLabel {
   color: var(--token-KjATzAYJ5IB7);
+}
+.ariaCheckboxtag[data-selected] .slotTargetLabeltag {
+  color: var(--token-k-47TemksE2v);
 }

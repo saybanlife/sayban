@@ -100,6 +100,8 @@ export type PlasmicCenterInfo__ArgsType = {
   onCategoriesChange?: (val: string) => void;
   refresh?: string;
   onRefreshChange?: (val: string) => void;
+  tags2?: any;
+  onTagsChange?: (val: any) => void;
 };
 type ArgPropType = keyof PlasmicCenterInfo__ArgsType;
 export const PlasmicCenterInfo__ArgProps = new Array<ArgPropType>(
@@ -117,7 +119,9 @@ export const PlasmicCenterInfo__ArgProps = new Array<ArgPropType>(
   "categories",
   "onCategoriesChange",
   "refresh",
-  "onRefreshChange"
+  "onRefreshChange",
+  "tags2",
+  "onTagsChange"
 );
 
 export type PlasmicCenterInfo__OverridesType = {
@@ -149,6 +153,8 @@ export interface DefaultCenterInfoProps {
   onCategoriesChange?: (val: string) => void;
   refresh?: string;
   onRefreshChange?: (val: string) => void;
+  tags2?: any;
+  onTagsChange?: (val: any) => void;
   className?: string;
 }
 
@@ -284,6 +290,14 @@ function PlasmicCenterInfo__RenderFunc(props: {
 
         valueProp: "refresh",
         onChangeProp: "onRefreshChange"
+      },
+      {
+        path: "tags.tags2",
+        type: "writable",
+        variableType: "array",
+
+        valueProp: "tags2",
+        onChangeProp: "onTagsChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -655,10 +669,25 @@ function PlasmicCenterInfo__RenderFunc(props: {
                 return;
               }
             }}
+            onTagsChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["tags", "tags2"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
             select3Value={generateStateValueProp($state, [
               "tags",
               "select3Value"
             ])}
+            tags2={generateStateValueProp($state, ["tags", "tags2"])}
             tagsitem={args.tagsitem}
           />
 

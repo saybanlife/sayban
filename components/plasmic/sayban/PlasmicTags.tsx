@@ -60,6 +60,8 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
+import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo/component
+import Check from "../../Check"; // plasmic-import: jHhGioxaI9lI/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -87,24 +89,31 @@ export type PlasmicTags__ArgsType = {
   select3Value?: string;
   onSelect3ValueChange?: (val: string) => void;
   tagsitem?: any;
+  tags2?: any;
+  onTagsChange?: (val: any) => void;
 };
 type ArgPropType = keyof PlasmicTags__ArgsType;
 export const PlasmicTags__ArgProps = new Array<ArgPropType>(
   "select3Value",
   "onSelect3ValueChange",
-  "tagsitem"
+  "tagsitem",
+  "tags2",
+  "onTagsChange"
 );
 
 export type PlasmicTags__OverridesType = {
   root?: Flex__<"div">;
-  text?: Flex__<"div">;
   tags?: Flex__<typeof AntdSelect>;
+  checkboxGroup?: Flex__<typeof CheckboxGroup>;
+  check?: Flex__<typeof Check>;
 };
 
 export interface DefaultTagsProps {
   select3Value?: string;
   onSelect3ValueChange?: (val: string) => void;
   tagsitem?: any;
+  tags2?: any;
+  onTagsChange?: (val: any) => void;
   lable?: SingleBooleanChoiceArg<"lable">;
   disabel?: SingleBooleanChoiceArg<"disabel">;
   className?: string;
@@ -170,6 +179,19 @@ function PlasmicTags__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.disabel
+      },
+      {
+        path: "checkboxGroup.value",
+        type: "writable",
+        variableType: "array",
+
+        valueProp: "tags2",
+        onChangeProp: "onTagsChange"
+      },
+      {
+        path: "check[].isSelected",
+        type: "private",
+        variableType: "boolean"
       }
     ],
     [$props, $ctx, $refs]
@@ -202,10 +224,8 @@ function PlasmicTags__RenderFunc(props: {
       )}
     >
       <div
-        data-plasmic-name={"text"}
-        data-plasmic-override={overrides.text}
-        className={classNames("all", "__wab_text", sty.text, {
-          [sty.textlable]: hasVariant($state, "lable", "lable")
+        className={classNames("all", "__wab_text", sty.text__g8KuA, {
+          [sty.textlable__g8KuAoSbzw]: hasVariant($state, "lable", "lable")
         })}
       >
         {"\u062a\u06af \u0647\u0627"}
@@ -255,22 +275,168 @@ function PlasmicTags__RenderFunc(props: {
         size={"middle"}
         value={generateStateValueProp($state, ["tags", "value"])}
       />
+
+      <div className={classNames("all", sty.freeBox__dLwsm)}>
+        <div className={classNames("all", sty.freeBox___0W3Xu)}>
+          <div className={classNames("all", sty.freeBox___521Ja)}>
+            <CheckboxGroup
+              data-plasmic-name={"checkboxGroup"}
+              data-plasmic-override={overrides.checkboxGroup}
+              className={classNames("__wab_instance", sty.checkboxGroup)}
+              label={null}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "checkboxGroup",
+                  "value"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              options={
+                <div className={classNames("all", sty.freeBox__lir9U)}>
+                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                    (() => {
+                      try {
+                        return $props.tagsitem.map(i => ({
+                          label: i.name,
+                          value: i.id
+                        }));
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()
+                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                    const currentItem = __plasmic_item_0;
+                    const currentIndex = __plasmic_idx_0;
+                    return (() => {
+                      const child$Props = {
+                        className: classNames("__wab_instance", sty.check),
+                        isSelected: generateStateValueProp($state, [
+                          "check",
+                          __plasmic_idx_0,
+                          "isSelected"
+                        ]),
+                        key: currentIndex,
+                        label: (
+                          <div
+                            className={classNames(
+                              "all",
+                              "__wab_text",
+                              sty.text__tfHzb
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return currentItem.label;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "Option";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                        ),
+                        onChange: async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "check",
+                            __plasmic_idx_0,
+                            "isSelected"
+                          ]).apply(null, eventArgs);
+
+                          if (
+                            eventArgs.length > 1 &&
+                            eventArgs[1] &&
+                            eventArgs[1]._plasmic_state_init_
+                          ) {
+                            return;
+                          }
+                        },
+                        tag: true,
+                        value: (() => {
+                          try {
+                            return currentItem.value;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      };
+
+                      initializePlasmicStates(
+                        $state,
+                        [
+                          {
+                            name: "check[].isSelected",
+                            initFunc: ({ $props, $state, $queries, $q }) =>
+                              false
+                          }
+                        ],
+                        [__plasmic_idx_0]
+                      );
+                      return (
+                        <Check
+                          data-plasmic-name={"check"}
+                          data-plasmic-override={overrides.check}
+                          {...child$Props}
+                        />
+                      );
+                    })();
+                  })}
+                </div>
+              }
+              showLabel={false}
+              value={generateStateValueProp($state, ["checkboxGroup", "value"])}
+            />
+          </div>
+        </div>
+        <div className={classNames("all", sty.freeBox__td73F)}>
+          <div className={classNames("all", "__wab_text", sty.text__vlYiK)}>
+            <React.Fragment>{`${$state.checkboxGroup?.value?.length || 0} تگ انتخاب شده`}</React.Fragment>
+          </div>
+        </div>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "text", "tags"],
-  text: ["text"],
-  tags: ["tags"]
+  root: ["root", "tags", "checkboxGroup", "check"],
+  tags: ["tags"],
+  checkboxGroup: ["checkboxGroup", "check"],
+  check: ["check"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  text: "div";
   tags: typeof AntdSelect;
+  checkboxGroup: typeof CheckboxGroup;
+  check: typeof Check;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -335,8 +501,9 @@ export const PlasmicTags = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    text: makeNodeComponent("text"),
     tags: makeNodeComponent("tags"),
+    checkboxGroup: makeNodeComponent("checkboxGroup"),
+    check: makeNodeComponent("check"),
 
     // Metadata about props expected for PlasmicTags
     internalVariantProps: PlasmicTags__VariantProps,
