@@ -76,6 +76,8 @@ import Icon19Icon from "./icons/PlasmicIcon__Icon19"; // plasmic-import: gxz20sl
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 
+import __lib_md5 from "md5";
+
 createPlasmicElementProxy;
 
 export type PlasmicItemBooking__VariantMembers = {
@@ -147,7 +149,9 @@ export interface DefaultItemBookingProps {
   className?: string;
 }
 
-const $$ = {};
+const $$ = {
+  md5: __lib_md5
+};
 
 function useNextRouter() {
   try {
@@ -728,8 +732,13 @@ function PlasmicItemBooking__RenderFunc(props: {
                     const actionArgs = {
                       customFunction: async () => {
                         return (() => {
-                          var itemId = $props.item.id;
-                          return window.sessionStorage.setItem("payId", itemId);
+                          if ($props.item && $props.item.id) {
+                            var itemId = $$.md5(String($props.item.id));
+                            return window.sessionStorage.setItem(
+                              "payId",
+                              itemId
+                            );
+                          }
                         })();
                       }
                     };

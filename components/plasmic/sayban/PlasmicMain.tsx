@@ -5825,6 +5825,7 @@ function PlasmicMain__RenderFunc(props: {
                             $state.loaction.lon = "";
                             $state.loaction.call2 = "";
                             $state.imag.uploadFiles = [];
+                            $state.tabs.activeKey = "1";
                             $state.timeWeek.week = [
                               {
                                 label: "شنبه",
