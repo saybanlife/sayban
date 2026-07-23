@@ -537,33 +537,6 @@ function PlasmicLoaction__RenderFunc(props: {
             ) {
               return;
             }
-
-            (async val => {
-              const $steps = {};
-
-              $steps["runCode"] = true
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return ($state.call.value = $state.call.value.replace(
-                          /[^0-9-]/g,
-                          ""
-                        ));
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runCode"] != null &&
-                typeof $steps["runCode"] === "object" &&
-                typeof $steps["runCode"].then === "function"
-              ) {
-                $steps["runCode"] = await $steps["runCode"];
-              }
-            }).apply(null, eventArgs);
           }}
           placeholder={
             "\u0634\u0645\u0627\u0631\u0647 \u062a\u0645\u0627\u0633 (\u0645\u0648\u0628\u0627\u06cc\u0644 \u06cc\u0627 \u062b\u0627\u0628\u062a)"
