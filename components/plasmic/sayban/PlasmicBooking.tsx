@@ -104,6 +104,7 @@ export type PlasmicBooking__ArgsType = {
   goToReservation?: (event: any) => void;
   goToCenter?: (id: string) => void;
   goToOffers?: () => void;
+  pay?: () => void;
 };
 type ArgPropType = keyof PlasmicBooking__ArgsType;
 export const PlasmicBooking__ArgProps = new Array<ArgPropType>(
@@ -113,7 +114,8 @@ export const PlasmicBooking__ArgProps = new Array<ArgPropType>(
   "goToDetails",
   "goToReservation",
   "goToCenter",
-  "goToOffers"
+  "goToOffers",
+  "pay"
 );
 
 export type PlasmicBooking__OverridesType = {
@@ -140,6 +142,7 @@ export interface DefaultBookingProps {
   goToReservation?: (event: any) => void;
   goToCenter?: (id: string) => void;
   goToOffers?: () => void;
+  pay?: () => void;
   className?: string;
 }
 
@@ -603,6 +606,7 @@ function PlasmicBooking__RenderFunc(props: {
                   })()}
                   item={currentItem}
                   key={currentIndex}
+                  pay={args.pay}
                   status={(() => {
                     try {
                       return currentItem.status;

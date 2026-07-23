@@ -424,7 +424,7 @@ function PlasmicStatus__RenderFunc(props: {
                                     ? "\u0644\u063a\u0648 \u0634\u062f\u0647"
                                     : hasVariant($state, "status", "confirmed")
                                       ? "\u062a\u0623\u06cc\u06cc\u062f \u0634\u062f\u0647"
-                                      : "\u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u067e\u0631\u062f\u0627\u062e\u062a"}
+                                      : "\u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0627\u06cc\u06cc\u062f"}
       </div>
     </div>
   ) as React.ReactElement | null;

@@ -81,12 +81,12 @@ createPlasmicElementProxy;
 export type PlasmicItemBooking__VariantMembers = {
   booking: "booking";
   home: "home";
-  status: "offersReceived";
+  status: "offersReceived" | "awaitingPayment";
 };
 export type PlasmicItemBooking__VariantsArgs = {
   booking?: SingleBooleanChoiceArg<"booking">;
   home?: SingleBooleanChoiceArg<"home">;
-  status?: SingleChoiceArg<"offersReceived">;
+  status?: SingleChoiceArg<"offersReceived" | "awaitingPayment">;
 };
 type VariantPropType = keyof PlasmicItemBooking__VariantsArgs;
 export const PlasmicItemBooking__VariantProps = new Array<VariantPropType>(
@@ -101,6 +101,7 @@ export type PlasmicItemBooking__ArgsType = {
   goToCenter?: (event: any) => void;
   goToDetails?: (event: any) => void;
   goToOffers?: () => void;
+  pay?: () => void;
 };
 type ArgPropType = keyof PlasmicItemBooking__ArgsType;
 export const PlasmicItemBooking__ArgProps = new Array<ArgPropType>(
@@ -108,7 +109,8 @@ export const PlasmicItemBooking__ArgProps = new Array<ArgPropType>(
   "onClick",
   "goToCenter",
   "goToDetails",
-  "goToOffers"
+  "goToOffers",
+  "pay"
 );
 
 export type PlasmicItemBooking__OverridesType = {
@@ -118,6 +120,7 @@ export type PlasmicItemBooking__OverridesType = {
   uploudeTime?: Flex__<typeof UploudeTime>;
   status?: Flex__<typeof Status>;
   button3?: Flex__<typeof Button>;
+  button4?: Flex__<typeof Button>;
   button2?: Flex__<typeof Button>;
   button?: Flex__<typeof Button>;
 };
@@ -128,9 +131,10 @@ export interface DefaultItemBookingProps {
   goToCenter?: (event: any) => void;
   goToDetails?: (event: any) => void;
   goToOffers?: () => void;
+  pay?: () => void;
   booking?: SingleBooleanChoiceArg<"booking">;
   home?: SingleBooleanChoiceArg<"home">;
-  status?: SingleChoiceArg<"offersReceived">;
+  status?: SingleChoiceArg<"offersReceived" | "awaitingPayment">;
   className?: string;
 }
 
@@ -210,6 +214,12 @@ function PlasmicItemBooking__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.status
+      },
+      {
+        path: "button4.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -241,6 +251,11 @@ function PlasmicItemBooking__RenderFunc(props: {
         {
           [sty.rootbooking]: hasVariant($state, "booking", "booking"),
           [sty.roothome]: hasVariant($state, "home", "home"),
+          [sty.rootstatus_awaitingPayment]: hasVariant(
+            $state,
+            "status",
+            "awaitingPayment"
+          ),
           [sty.rootstatus_offersReceived]: hasVariant(
             $state,
             "status",
@@ -598,6 +613,11 @@ function PlasmicItemBooking__RenderFunc(props: {
           data-plasmic-override={overrides.button3}
           className={classNames("__wab_instance", sty.button3, {
             [sty.button3home]: hasVariant($state, "home", "home"),
+            [sty.button3status_awaitingPayment]: hasVariant(
+              $state,
+              "status",
+              "awaitingPayment"
+            ),
             [sty.button3status_offersReceived]: hasVariant(
               $state,
               "status",
@@ -648,11 +668,104 @@ function PlasmicItemBooking__RenderFunc(props: {
           }}
         />
 
+        {(
+          hasVariant($state, "status", "awaitingPayment")
+            ? true
+            : hasVariant($state, "status", "offersReceived")
+              ? true
+              : false
+        ) ? (
+          <Button
+            data-plasmic-name={"button4"}
+            data-plasmic-override={overrides.button4}
+            className={classNames("__wab_instance", sty.button4, {
+              [sty.button4home]: hasVariant($state, "home", "home"),
+              [sty.button4status_awaitingPayment]: hasVariant(
+                $state,
+                "status",
+                "awaitingPayment"
+              ),
+              [sty.button4status_offersReceived]: hasVariant(
+                $state,
+                "status",
+                "offersReceived"
+              )
+            })}
+            color={"success"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__m1ZI)}>
+                {"\u067e\u0631\u062f\u0627\u062e\u062a"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button4", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          var itemId = $props.item.id;
+                          return window.sessionStorage.setItem("payId", itemId);
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["runPay"] = true
+                ? (() => {
+                    const actionArgs = { eventRef: $props["pay"] };
+                    return (({ eventRef, args }) => {
+                      return eventRef?.(...(args ?? []));
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runPay"] != null &&
+                typeof $steps["runPay"] === "object" &&
+                typeof $steps["runPay"].then === "function"
+              ) {
+                $steps["runPay"] = await $steps["runPay"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button4", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        ) : null}
         <Button
           data-plasmic-name={"button2"}
           data-plasmic-override={overrides.button2}
           className={classNames("__wab_instance", sty.button2, {
             [sty.button2home]: hasVariant($state, "home", "home"),
+            [sty.button2status_awaitingPayment]: hasVariant(
+              $state,
+              "status",
+              "awaitingPayment"
+            ),
             [sty.button2status_offersReceived]: hasVariant(
               $state,
               "status",
@@ -745,6 +858,7 @@ const PlasmicDescendants = {
     "uploudeTime",
     "status",
     "button3",
+    "button4",
     "button2",
     "button"
   ],
@@ -753,6 +867,7 @@ const PlasmicDescendants = {
   uploudeTime: ["uploudeTime"],
   status: ["status"],
   button3: ["button3"],
+  button4: ["button4"],
   button2: ["button2"],
   button: ["button"]
 } as const;
@@ -766,6 +881,7 @@ type NodeDefaultElementType = {
   uploudeTime: typeof UploudeTime;
   status: typeof Status;
   button3: typeof Button;
+  button4: typeof Button;
   button2: typeof Button;
   button: typeof Button;
 };
@@ -837,6 +953,7 @@ export const PlasmicItemBooking = Object.assign(
     uploudeTime: makeNodeComponent("uploudeTime"),
     status: makeNodeComponent("status"),
     button3: makeNodeComponent("button3"),
+    button4: makeNodeComponent("button4"),
     button2: makeNodeComponent("button2"),
     button: makeNodeComponent("button"),
 
