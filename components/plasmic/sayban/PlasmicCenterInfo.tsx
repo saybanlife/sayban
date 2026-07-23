@@ -603,7 +603,7 @@ function PlasmicCenterInfo__RenderFunc(props: {
                     ($state?.categories || []).find(
                       i => i.category_id == $state?.category?.value
                     )?.subcategories || []
-                  ).length == 0
+                  ).length == 0 && $state.subcategory.isOpen
                     ? (() => {
                         const actionArgs = {
                           args: [

@@ -342,34 +342,6 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
               ) {
                 return;
               }
-
-              (async val => {
-                const $steps = {};
-
-                $steps["runCode"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        customFunction: async () => {
-                          return ($state.email.value =
-                            $state.email.value.replace(
-                              /[\s\u0600-\u06FF]/g,
-                              ""
-                            ));
-                        }
-                      };
-                      return (({ customFunction }) => {
-                        return customFunction();
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["runCode"] != null &&
-                  typeof $steps["runCode"] === "object" &&
-                  typeof $steps["runCode"].then === "function"
-                ) {
-                  $steps["runCode"] = await $steps["runCode"];
-                }
-              }).apply(null, eventArgs);
             }}
             placeholder={"example@email.com"}
             type={"line"}
@@ -398,32 +370,6 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
               ) {
                 return;
               }
-
-              (async val => {
-                const $steps = {};
-
-                $steps["runCode"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        customFunction: async () => {
-                          return ($state.mobile.value = $state.mobile.value
-                            .replace(/[^0-9]/g, "")
-                            .slice(0, 11));
-                        }
-                      };
-                      return (({ customFunction }) => {
-                        return customFunction();
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["runCode"] != null &&
-                  typeof $steps["runCode"] === "object" &&
-                  typeof $steps["runCode"].then === "function"
-                ) {
-                  $steps["runCode"] = await $steps["runCode"];
-                }
-              }).apply(null, eventArgs);
             }}
             placeholder={"09xxxxxxxxx"}
             type={"line"}
@@ -458,34 +404,6 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
               ) {
                 return;
               }
-
-              (async val => {
-                const $steps = {};
-
-                $steps["runCode"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        customFunction: async () => {
-                          return ($state.password.value =
-                            $state.password.value.replace(
-                              /[\s\u0600-\u06FF]/g,
-                              ""
-                            ));
-                        }
-                      };
-                      return (({ customFunction }) => {
-                        return customFunction();
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["runCode"] != null &&
-                  typeof $steps["runCode"] === "object" &&
-                  typeof $steps["runCode"].then === "function"
-                ) {
-                  $steps["runCode"] = await $steps["runCode"];
-                }
-              }).apply(null, eventArgs);
             }}
             placeholder={
               "\u062d\u062f\u0627\u0642\u0644 8 \u06a9\u0627\u0631\u0627\u06a9\u062a\u0631"
