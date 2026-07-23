@@ -3170,7 +3170,7 @@ function PlasmicMain__RenderFunc(props: {
             return;
           }
         }}
-        onListChange={async (...eventArgs: any) => {
+        onListChange2={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "mainPageReservation",
             "list"

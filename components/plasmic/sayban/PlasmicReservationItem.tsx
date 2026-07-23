@@ -979,8 +979,9 @@ function PlasmicReservationItem__RenderFunc(props: {
             ? (() => {
                 try {
                   return (
-                    ["offersReceived"].includes($props.currentItem.status) &&
-                    $props.currentItem.has_offer == 1
+                    ["offersReceived", "awaitingOffers"].includes(
+                      $props.currentItem.status
+                    ) && $props.currentItem.has_offer == 1
                   );
                 } catch (e) {
                   if (

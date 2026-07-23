@@ -82,6 +82,8 @@ import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHz
 import UserIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__User"; // plasmic-import: d1LJS78vGoJH/icon
 import CalendarStatsIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CalendarStats"; // plasmic-import: oUYWhxUGA-WS/icon
 import CurrentLocationIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CurrentLocation"; // plasmic-import: AblxVode3mz8/icon
+import BoxIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Box"; // plasmic-import: C9a21-BMXZ2Z/icon
+import UserShieldIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__UserShield"; // plasmic-import: g6lHE69zTTPc/icon
 import CreditCardPayIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CreditCardPay"; // plasmic-import: FOiZZ8XewN_M/icon
 import CopyIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Copy"; // plasmic-import: fXp0ttS7fed_/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
@@ -1067,7 +1069,61 @@ function PlasmicBooking__RenderFunc(props: {
                 <div
                   className={classNames("all", "__wab_text", sty.text___8Df7U)}
                 >
-                  <React.Fragment>{$state.datalist?.name}</React.Fragment>
+                  <React.Fragment>{$state.datalist.center_name}</React.Fragment>
+                </div>
+              </div>
+            </div>
+          ) : null}
+          <div className={classNames("all", sty.freeBox__oufWi)}>
+            <div className={classNames("all", sty.freeBox__xxy3R)}>
+              <BoxIcon
+                className={classNames("all", sty.svg__d59J1)}
+                role={"img"}
+              />
+            </div>
+            <div className={classNames("all", sty.freeBox__gMkeU)}>
+              <div className={classNames("all", "__wab_text", sty.text__lf0Q7)}>
+                {"\u062e\u062f\u0645\u062a"}
+              </div>
+              <div className={classNames("all", "__wab_text", sty.text__ikunt)}>
+                <React.Fragment>
+                  {$state.datalist.service_location == "home"
+                    ? "درخواست پرستار"
+                    : $state.datalist.service_name}
+                </React.Fragment>
+              </div>
+            </div>
+          </div>
+          {(() => {
+            try {
+              return $state.datalist.service_location == "home";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })() ? (
+            <div className={classNames("all", sty.freeBox__o8Ccf)}>
+              <div className={classNames("all", sty.freeBox__vGeuF)}>
+                <UserShieldIcon
+                  className={classNames("all", sty.svg__iF7Rx)}
+                  role={"img"}
+                />
+              </div>
+              <div className={classNames("all", sty.freeBox__utUfd)}>
+                <div
+                  className={classNames("all", "__wab_text", sty.text__xofoN)}
+                >
+                  {"\u067e\u0631\u0633\u062a\u0627\u0631"}
+                </div>
+                <div
+                  className={classNames("all", "__wab_text", sty.text__oae3W)}
+                >
+                  <React.Fragment>{$state.datalist.staff.name}</React.Fragment>
                 </div>
               </div>
             </div>

@@ -81,12 +81,19 @@ createPlasmicElementProxy;
 export type PlasmicItemBooking__VariantMembers = {
   booking: "booking";
   home: "home";
-  status: "offersReceived" | "awaitingPayment";
+  status:
+    | "offersReceived"
+    | "awaitingPayment"
+    | "completed"
+    | "rejected"
+    | "canceled";
 };
 export type PlasmicItemBooking__VariantsArgs = {
   booking?: SingleBooleanChoiceArg<"booking">;
   home?: SingleBooleanChoiceArg<"home">;
-  status?: SingleChoiceArg<"offersReceived" | "awaitingPayment">;
+  status?: SingleChoiceArg<
+    "offersReceived" | "awaitingPayment" | "completed" | "rejected" | "canceled"
+  >;
 };
 type VariantPropType = keyof PlasmicItemBooking__VariantsArgs;
 export const PlasmicItemBooking__VariantProps = new Array<VariantPropType>(
@@ -134,7 +141,9 @@ export interface DefaultItemBookingProps {
   pay?: () => void;
   booking?: SingleBooleanChoiceArg<"booking">;
   home?: SingleBooleanChoiceArg<"home">;
-  status?: SingleChoiceArg<"offersReceived" | "awaitingPayment">;
+  status?: SingleChoiceArg<
+    "offersReceived" | "awaitingPayment" | "completed" | "rejected" | "canceled"
+  >;
   className?: string;
 }
 
@@ -607,7 +616,20 @@ function PlasmicItemBooking__RenderFunc(props: {
           </div>
         ) : null}
       </div>
-      <div className={classNames("all", sty.freeBox__dSfz)}>
+      <div
+        className={classNames("all", sty.freeBox__dSfz, {
+          [sty.freeBoxstatus_completed__dSfzqevki]: hasVariant(
+            $state,
+            "status",
+            "completed"
+          ),
+          [sty.freeBoxstatus_offersReceived__dSfzeqgjD]: hasVariant(
+            $state,
+            "status",
+            "offersReceived"
+          )
+        })}
+      >
         <Button
           data-plasmic-name={"button3"}
           data-plasmic-override={overrides.button3}
@@ -766,13 +788,28 @@ function PlasmicItemBooking__RenderFunc(props: {
               "status",
               "awaitingPayment"
             ),
+            [sty.button2status_canceled]: hasVariant(
+              $state,
+              "status",
+              "canceled"
+            ),
+            [sty.button2status_completed]: hasVariant(
+              $state,
+              "status",
+              "completed"
+            ),
             [sty.button2status_offersReceived]: hasVariant(
               $state,
               "status",
               "offersReceived"
+            ),
+            [sty.button2status_rejected]: hasVariant(
+              $state,
+              "status",
+              "rejected"
             )
           })}
-          color={"line"}
+          color={"success"}
           label={
             <div className={classNames("all", "__wab_text", sty.text__niVag)}>
               {"\u0631\u0632\u0631\u0648 \u0645\u062c\u062f\u062f"}
@@ -818,9 +855,19 @@ function PlasmicItemBooking__RenderFunc(props: {
           data-plasmic-name={"button"}
           data-plasmic-override={overrides.button}
           className={classNames("__wab_instance", sty.button, {
-            [sty.buttonhome]: hasVariant($state, "home", "home")
+            [sty.buttonhome]: hasVariant($state, "home", "home"),
+            [sty.buttonstatus_completed]: hasVariant(
+              $state,
+              "status",
+              "completed"
+            ),
+            [sty.buttonstatus_offersReceived]: hasVariant(
+              $state,
+              "status",
+              "offersReceived"
+            )
           })}
-          color={"neutral"}
+          color={"line"}
           label={
             <div className={classNames("all", "__wab_text", sty.text__aZkE)}>
               {
