@@ -218,7 +218,9 @@ function PlasmicStaffsItem__RenderFunc(props: {
             data-plasmic-name={"img"}
             data-plasmic-override={overrides.img}
             alt={""}
-            className={classNames(sty.img)}
+            className={classNames(sty.img, {
+              [sty.imgselected]: hasVariant($state, "selected", "selected")
+            })}
             displayHeight={"100%"}
             displayMaxHeight={"none"}
             displayMaxWidth={"100%"}

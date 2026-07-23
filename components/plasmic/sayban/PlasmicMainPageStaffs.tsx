@@ -775,7 +775,10 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
             }}
             params={(() => {
               try {
-                return { r: $state.restart };
+                return {
+                  r: $state.restart,
+                  center_id: $props.centerId
+                };
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -2052,6 +2055,7 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
         open={generateStateValueProp($state, ["modal", "open"])}
         title={null}
         trigger={null}
+        width={"600"}
       >
         <div className={classNames("all", sty.freeBox__mxAym)}>
           <QuestionItemModal
@@ -2128,7 +2132,10 @@ function PlasmicMainPageStaffs__RenderFunc(props: {
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
-                        return ($state.restart += 1);
+                        return (() => {
+                          $state.restart += 1;
+                          return ($state.modal.open = false);
+                        })();
                       }
                     };
                     return (({ customFunction }) => {

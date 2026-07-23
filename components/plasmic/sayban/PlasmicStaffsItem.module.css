@@ -33,17 +33,19 @@
 .freeBox__f7R0 {
   display: flex;
   flex-direction: column;
-  width: auto;
-  height: auto;
+  width: 40px;
+  height: 40px;
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
   background: var(--token-80wG4y4sryg5);
+  flex-shrink: 0;
   border-radius: 30px;
   padding: 4px;
 }
 .freeBoxselected__f7R0GBjPe {
   background: var(--token-ccqYe7dhXoNZ);
+  padding: 2px;
 }
 .img {
   object-fit: cover;
