@@ -56,6 +56,15 @@
 .rootstatus_inProgress {
   background: var(--token-qsHKKmoi9Z2N);
 }
+.rootstatus_finalConfirmed {
+  background: #c7ed81;
+}
+.rootstatus_serviceFinished {
+  background: var(--token-b1G1HIaI7kwe);
+}
+.rootstatus_refunded {
+  background: var(--token-qsHKKmoi9Z2N);
+}
 .roottextcolor_status_pending {
   background: none;
 }
@@ -129,6 +138,15 @@
   color: var(--token-Fh8yz2VaZHlR);
 }
 .textstatus_inProgress {
+  color: var(--token-Fh8yz2VaZHlR);
+}
+.textstatus_finalConfirmed {
+  color: var(--token-KjATzAYJ5IB7);
+}
+.textstatus_serviceFinished {
+  color: var(--token-rMWrBJOD3gNa);
+}
+.textstatus_refunded {
   color: var(--token-Fh8yz2VaZHlR);
 }
 .texttextcolor_status_pending {

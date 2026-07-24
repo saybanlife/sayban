@@ -107,6 +107,7 @@ export type PlasmicBooking__ArgsType = {
   goToCenter?: (id: string) => void;
   goToOffers?: () => void;
   pay?: () => void;
+  api?: boolean;
 };
 type ArgPropType = keyof PlasmicBooking__ArgsType;
 export const PlasmicBooking__ArgProps = new Array<ArgPropType>(
@@ -117,7 +118,8 @@ export const PlasmicBooking__ArgProps = new Array<ArgPropType>(
   "goToReservation",
   "goToCenter",
   "goToOffers",
-  "pay"
+  "pay",
+  "api"
 );
 
 export type PlasmicBooking__OverridesType = {
@@ -145,6 +147,7 @@ export interface DefaultBookingProps {
   goToCenter?: (id: string) => void;
   goToOffers?: () => void;
   pay?: () => void;
+  api?: boolean;
   className?: string;
 }
 
@@ -170,7 +173,9 @@ function PlasmicBooking__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
+        {
+          api: false
+        },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -411,7 +416,19 @@ function PlasmicBooking__RenderFunc(props: {
             : "",
           filter: $state.selectFilter
         }}
-        shouldFetch={true}
+        shouldFetch={(() => {
+          try {
+            return $props.api;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })()}
         url={"Reservation"}
       >
         {(() => {

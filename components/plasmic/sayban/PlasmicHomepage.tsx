@@ -4230,6 +4230,19 @@ function PlasmicHomepage__RenderFunc(props: {
           <Booking
             data-plasmic-name={"booking"}
             data-plasmic-override={overrides.booking}
+            api={(() => {
+              try {
+                return $state.page == "booking";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })()}
             className={classNames("__wab_instance", sty.booking, {
               [sty.bookinghomePage2_booking]: hasVariant(
                 $state,
