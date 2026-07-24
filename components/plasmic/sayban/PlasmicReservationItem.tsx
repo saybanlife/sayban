@@ -2714,6 +2714,70 @@ function PlasmicReservationItem__RenderFunc(props: {
                 onClick={async event => {
                   const $steps = {};
 
+                  $steps["error"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return (() => {
+                              const validations = [
+                                {
+                                  value: $props.currentItem?.id,
+                                  message: "شناسه رزرو نامعتبر است."
+                                },
+                                {
+                                  value: $props.centerId,
+                                  message: "مرکز را انتخاب کنید."
+                                },
+                                {
+                                  value: $state.select?.value,
+                                  message: "پرسنل را انتخاب کنید."
+                                },
+                                {
+                                  value: $state.rangeSlider?.value,
+                                  message: "بازه قیمت را مشخص کنید."
+                                },
+                                {
+                                  value:
+                                    $state.dateInput?.date?.gregorian?.year &&
+                                    $state.dateInput?.date?.gregorian?.month &&
+                                    $state.dateInput?.date?.gregorian?.day,
+                                  message: "تاریخ پیشنهادی را وارد کنید."
+                                },
+                                {
+                                  value:
+                                    $state.timeInput?.time?.hour !==
+                                      undefined &&
+                                    $state.timeInput?.time?.minute !==
+                                      undefined,
+                                  message: "زمان پیشنهادی را وارد کنید."
+                                }
+                              ];
+
+                              const errors = [];
+                              for (const v of validations) {
+                                if (!v.value) {
+                                  errors.push(v.message);
+                                }
+                              }
+                              if (errors.length) {
+                                return errors.join("\n");
+                              }
+                            })();
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["error"] != null &&
+                    typeof $steps["error"] === "object" &&
+                    typeof $steps["error"].then === "function"
+                  ) {
+                    $steps["error"] = await $steps["error"];
+                  }
+
                   $steps["runCode"] = true
                     ? (() => {
                         const actionArgs = {
@@ -2734,7 +2798,7 @@ function PlasmicReservationItem__RenderFunc(props: {
                     $steps["runCode"] = await $steps["runCode"];
                   }
 
-                  $steps["invokeGlobalAction"] = true
+                  $steps["invokeGlobalAction"] = !$steps.error
                     ? (() => {
                         const actionArgs = {
                           args: [
@@ -2769,6 +2833,42 @@ function PlasmicReservationItem__RenderFunc(props: {
                   ) {
                     $steps["invokeGlobalAction"] =
                       await $steps["invokeGlobalAction"];
+                  }
+
+                  $steps["invokeGlobalAction3"] = $steps.error
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            (() => {
+                              try {
+                                return $steps.error;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            "top-left"
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction3"] != null &&
+                    typeof $steps["invokeGlobalAction3"] === "object" &&
+                    typeof $steps["invokeGlobalAction3"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction3"] =
+                      await $steps["invokeGlobalAction3"];
                   }
 
                   $steps["invokeGlobalAction2"] = $steps.invokeGlobalAction
