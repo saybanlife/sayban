@@ -95,6 +95,21 @@
 .text__tfHzb {
   font-size: var(--token-R7X4jvpZsbD-);
 }
+.freeBox___2DtNu {
+  position: absolute;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  padding: 8px;
+}
+.freeBoxnormal___2DtNUmeJm0 {
+  display: block;
+}
 .freeBox__td73F {
   display: flex;
   flex-direction: column;

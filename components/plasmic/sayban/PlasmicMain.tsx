@@ -1080,7 +1080,7 @@ function PlasmicMain__RenderFunc(props: {
         path: "addServiseStaff.servises",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [1]
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "modal2.open",
@@ -1382,13 +1382,13 @@ function PlasmicMain__RenderFunc(props: {
         path: "centerInfo.tags2",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ["8", "2"]
       },
       {
         path: "centerInfo2.tags2",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ["8", "2"]
       }
     ],
     [$props, $ctx, $refs]
@@ -2584,6 +2584,11 @@ function PlasmicMain__RenderFunc(props: {
             "page",
             "reservations"
           ),
+          [sty.addService2page_services]: hasVariant(
+            $state,
+            "page",
+            "services"
+          ),
           [sty.addService2page_staffs]: hasVariant($state, "page", "staffs")
         })}
         closeOnBackdropClick={false}
@@ -2684,7 +2689,13 @@ function PlasmicMain__RenderFunc(props: {
             <AddServiseStaff
               data-plasmic-name={"addServiseStaff"}
               data-plasmic-override={overrides.addServiseStaff}
-              className={classNames("__wab_instance", sty.addServiseStaff)}
+              className={classNames("__wab_instance", sty.addServiseStaff, {
+                [sty.addServiseStaffpage_services]: hasVariant(
+                  $state,
+                  "page",
+                  "services"
+                )
+              })}
               onServisesChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "addServiseStaff",
@@ -2708,11 +2719,25 @@ function PlasmicMain__RenderFunc(props: {
           </div>
         }
         footer={
-          <div className={classNames("all", sty.freeBox__r1TrW)}>
+          <div
+            className={classNames("all", sty.freeBox__r1TrW, {
+              [sty.freeBoxpage_services__r1TrWoQft5]: hasVariant(
+                $state,
+                "page",
+                "services"
+              )
+            })}
+          >
             <Button
               data-plasmic-name={"submit3"}
               data-plasmic-override={overrides.submit3}
-              className={classNames("__wab_instance", sty.submit3)}
+              className={classNames("__wab_instance", sty.submit3, {
+                [sty.submit3page_services]: hasVariant(
+                  $state,
+                  "page",
+                  "services"
+                )
+              })}
               color={"success"}
               label={
                 <div
@@ -2724,6 +2749,88 @@ function PlasmicMain__RenderFunc(props: {
               loading={generateStateValueProp($state, ["submit3", "loading"])}
               onClick={async event => {
                 const $steps = {};
+
+                $steps["error"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            const validations = [
+                              {
+                                value:
+                                  $state.addServiseStaff?.servises?.category,
+                                message: "نوع خدمت را وارد کنید."
+                              },
+                              {
+                                value: $state.addServiseStaff?.servises?.name,
+                                message: "نام خدمات را وارد کنید."
+                              },
+                              {
+                                value:
+                                  $state.addServiseStaff?.servises?.description,
+                                message: "توضیحات را وارد کنید."
+                              }
+                            ];
+
+                            const errors = [];
+                            for (const v of validations) {
+                              if (!v.value) {
+                                errors.push(v.message);
+                              }
+                            }
+                            if (errors.length) {
+                              return errors.join("\n");
+                            }
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["error"] != null &&
+                  typeof $steps["error"] === "object" &&
+                  typeof $steps["error"].then === "function"
+                ) {
+                  $steps["error"] = await $steps["error"];
+                }
+
+                $steps["invokeGlobalAction2"] = $steps.error
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "error",
+                          (() => {
+                            try {
+                              return $steps.error;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          "top-left"
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction2"] != null &&
+                  typeof $steps["invokeGlobalAction2"] === "object" &&
+                  typeof $steps["invokeGlobalAction2"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction2"] =
+                    await $steps["invokeGlobalAction2"];
+                }
 
                 $steps["updateSubmitLoading"] = true
                   ? (() => {
@@ -2760,7 +2867,7 @@ function PlasmicMain__RenderFunc(props: {
                     await $steps["updateSubmitLoading"];
                 }
 
-                $steps["invokeGlobalAction"] = true
+                $steps["invokeGlobalAction"] = !$steps.error
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -2770,7 +2877,7 @@ function PlasmicMain__RenderFunc(props: {
                           (() => {
                             try {
                               return {
-                                service: $state.addServiseStaff.servises
+                                service: [$state.addServiseStaff.servises]
                               };
                             } catch (e) {
                               if (
@@ -2823,21 +2930,22 @@ function PlasmicMain__RenderFunc(props: {
                     await $steps["invokeGlobalAction3"];
                 }
 
-                $steps["invokeGlobalAction4"] = !$steps.invokeGlobalAction?.data
-                  ?.success
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "error",
-                          "\u0645\u0634\u06a9\u0644\u06cc \u0631\u062e \u062f\u0627\u062f\u0647 \u0627\u0633\u062a \u0645\u062c\u062f\u062f\u0627 \u062a\u0644\u0627\u0634 \u06a9\u0646\u06cc\u062f.",
-                          "top-left"
-                        ]
-                      };
-                      return $globalActions["Fragment.showToast"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
+                $steps["invokeGlobalAction4"] =
+                  $steps.invokeGlobalAction?.data?.success == false
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u0645\u0634\u06a9\u0644\u06cc \u0631\u062e \u062f\u0627\u062f\u0647 \u0627\u0633\u062a \u0645\u062c\u062f\u062f\u0627 \u062a\u0644\u0627\u0634 \u06a9\u0646\u06cc\u062f.",
+                            "top-left"
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
                 if (
                   $steps["invokeGlobalAction4"] != null &&
                   typeof $steps["invokeGlobalAction4"] === "object" &&
@@ -2889,7 +2997,7 @@ function PlasmicMain__RenderFunc(props: {
                           return (() => {
                             $state.select2.value = null;
                             $state.mainPageServise.restart += 1;
-                            $state.addServiseStaff.servises = [];
+                            $state.addServiseStaff.servises = {};
                             return ($state.addService2.isOpen = false);
                           })();
                         }

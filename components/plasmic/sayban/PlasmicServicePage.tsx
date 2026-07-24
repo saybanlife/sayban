@@ -718,7 +718,7 @@ function PlasmicServicePage__RenderFunc(props: {
         path: "centerInfo.tags2",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ["8", "2"]
       }
     ],
     [$props, $ctx, $refs]

@@ -74,15 +74,18 @@ createPlasmicElementProxy;
 export type PlasmicTags__VariantMembers = {
   lable: "lable";
   disabel: "disabel";
+  normal: "normal";
 };
 export type PlasmicTags__VariantsArgs = {
   lable?: SingleBooleanChoiceArg<"lable">;
   disabel?: SingleBooleanChoiceArg<"disabel">;
+  normal?: SingleBooleanChoiceArg<"normal">;
 };
 type VariantPropType = keyof PlasmicTags__VariantsArgs;
 export const PlasmicTags__VariantProps = new Array<VariantPropType>(
   "lable",
-  "disabel"
+  "disabel",
+  "normal"
 );
 
 export type PlasmicTags__ArgsType = {
@@ -116,6 +119,7 @@ export interface DefaultTagsProps {
   onTagsChange?: (val: any) => void;
   lable?: SingleBooleanChoiceArg<"lable">;
   disabel?: SingleBooleanChoiceArg<"disabel">;
+  normal?: SingleBooleanChoiceArg<"normal">;
   className?: string;
 }
 
@@ -192,6 +196,12 @@ function PlasmicTags__RenderFunc(props: {
         path: "check[].isSelected",
         type: "private",
         variableType: "boolean"
+      },
+      {
+        path: "normal",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.normal
       }
     ],
     [$props, $ctx, $refs]
@@ -220,7 +230,10 @@ function PlasmicTags__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
-        { [sty.rootlable]: hasVariant($state, "lable", "lable") }
+        {
+          [sty.rootlable]: hasVariant($state, "lable", "lable"),
+          [sty.rootnormal]: hasVariant($state, "normal", "normal")
+        }
       )}
     >
       <div
@@ -406,6 +419,15 @@ function PlasmicTags__RenderFunc(props: {
                       );
                     })();
                   })}
+                  <div
+                    className={classNames("all", sty.freeBox___2DtNu, {
+                      [sty.freeBoxnormal___2DtNUmeJm0]: hasVariant(
+                        $state,
+                        "normal",
+                        "normal"
+                      )
+                    })}
+                  />
                 </div>
               }
               showLabel={false}

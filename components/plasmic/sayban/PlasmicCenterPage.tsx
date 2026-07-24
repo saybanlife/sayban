@@ -435,8 +435,7 @@ function PlasmicCenterPage__RenderFunc(props: {
         path: "tags.select3Value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          ($state.centerData?.tags || []).map(i => i.tag_id)
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "role",
@@ -454,7 +453,7 @@ function PlasmicCenterPage__RenderFunc(props: {
         path: "centerInfo.subcategory2",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "1"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "centerInfo.categorie",
@@ -2331,17 +2330,16 @@ function PlasmicCenterPage__RenderFunc(props: {
                                 customFunction: async () => {
                                   return (() => {
                                     $state.centerInfo.title =
-                                      $state.center.data.result.name;
+                                      $state.center?.data?.result?.name ?? "";
                                     $state.centerInfo.description =
-                                      $state.center.data.result.description;
+                                      $state.center?.data?.result
+                                        ?.description ?? "";
                                     $state.centerInfo.categorie =
-                                      $state.center.data.result.category_id;
-                                    $state.centerInfo.subcategory2 =
-                                      $state.center.data.result.subcategory_id;
-                                    return ($state.centerInfo.tags2 =
-                                      $state.center.data.result.tags.map(
-                                        i => i.tag_id
-                                      ));
+                                      $state.center?.data?.result?.category_id?.toString() ??
+                                      "";
+                                    return ($state.centerInfo.subcategory2 =
+                                      $state.center?.data?.result?.subcategory_id?.toString() ??
+                                      "");
                                   })();
                                 }
                               };
@@ -2531,10 +2529,16 @@ function PlasmicCenterPage__RenderFunc(props: {
                       $state,
                       "role",
                       "centerAdmin"
+                    ),
+                    [sty.tagsrole_superAdmin]: hasVariant(
+                      $state,
+                      "role",
+                      "superAdmin"
                     )
                   })}
                   disabel={true}
                   lable={true}
+                  normal={true}
                   onSelect3ValueChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "tags",
@@ -4157,6 +4161,53 @@ function PlasmicCenterPage__RenderFunc(props: {
               onClick={async event => {
                 const $steps = {};
 
+                $steps["error"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            const validations = [
+                              {
+                                value: $state.centerInfo.title,
+                                message: "نام مرکز را وارد کنید."
+                              },
+                              {
+                                value: $state.centerInfo.description,
+                                message: "توضیحات را وارد کنید."
+                              },
+                              {
+                                value:
+                                  $state.centerInfo.subcategory2 &&
+                                  $state.centerInfo.subcategory2 != "1",
+                                message: "زیر دسته را انتخاب کنید."
+                              }
+                            ];
+
+                            const errors = [];
+                            for (const v of validations) {
+                              if (!v.value) {
+                                errors.push(v.message);
+                              }
+                            }
+                            if (errors.length) {
+                              return errors.join("\n");
+                            }
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["error"] != null &&
+                  typeof $steps["error"] === "object" &&
+                  typeof $steps["error"].then === "function"
+                ) {
+                  $steps["error"] = await $steps["error"];
+                }
+
                 $steps["updateSaveInfoLoading"] = true
                   ? (() => {
                       const actionArgs = {
@@ -4192,7 +4243,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                     await $steps["updateSaveInfoLoading"];
                 }
 
-                $steps["update"] = true
+                $steps["update"] = !$steps.error
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -4225,6 +4276,41 @@ function PlasmicCenterPage__RenderFunc(props: {
                   typeof $steps["update"].then === "function"
                 ) {
                   $steps["update"] = await $steps["update"];
+                }
+
+                $steps["invokeGlobalAction2"] = $steps.error
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "error",
+                          (() => {
+                            try {
+                              return $steps.error;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          "top-left"
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction2"] != null &&
+                  typeof $steps["invokeGlobalAction2"] === "object" &&
+                  typeof $steps["invokeGlobalAction2"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction2"] =
+                    await $steps["invokeGlobalAction2"];
                 }
 
                 $steps["updateSaveInfoLoading2"] = true

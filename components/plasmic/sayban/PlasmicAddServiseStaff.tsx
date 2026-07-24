@@ -169,19 +169,22 @@ function PlasmicAddServiseStaff__RenderFunc(props: {
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "name[].value",
+        path: "name.value",
         type: "private",
-        variableType: "text"
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "time[].value",
+        path: "time.value",
         type: "private",
-        variableType: "text"
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "60"
       },
       {
-        path: "prise[].value",
+        path: "prise.value",
         type: "private",
-        variableType: "text"
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "300000"
       },
       {
         path: "button5.loading",
@@ -190,49 +193,57 @@ function PlasmicAddServiseStaff__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "collapse[].open",
+        path: "collapse.open",
         type: "private",
         variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          hasVariant($state, "staff", "staff") ? true : false,
 
         onMutate: generateOnMutateForSpec("open", AntdSingleCollapse_Helpers)
       },
       {
         path: "servises",
         type: "writable",
-        variableType: "array",
+        variableType: "object",
 
         valueProp: "servises",
         onChangeProp: "onServisesChange"
       },
       {
-        path: "time2[].value",
+        path: "time2.value",
         type: "private",
-        variableType: "text"
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "10"
       },
       {
-        path: "off[].value",
+        path: "off.value",
         type: "private",
-        variableType: "text"
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "0"
       },
       {
-        path: "description[].value",
+        path: "description.value",
         type: "private",
-        variableType: "text"
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "select[].isOpen",
+        path: "select.isOpen",
         type: "private",
-        variableType: "boolean"
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
-        path: "select[].value",
+        path: "select.value",
         type: "private",
-        variableType: "text"
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "radioGroup[].value",
+        path: "radioGroup.value",
         type: "private",
-        variableType: "array"
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "staff",
@@ -271,728 +282,242 @@ function PlasmicAddServiseStaff__RenderFunc(props: {
         { [sty.rootstaff]: hasVariant($state, "staff", "staff") }
       )}
     >
-      {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-        (() => {
-          try {
-            return $state.servises;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return [];
-            }
-            throw e;
-          }
-        })()
-      ).map((__plasmic_item_0, __plasmic_idx_0) => {
-        const currentItem = __plasmic_item_0;
-        const currentIndex = __plasmic_idx_0;
-        return (() => {
-          const child$Props = {
-            bordered: false,
-            className: classNames("__wab_instance", sty.collapse, {
-              [sty.collapsestaff]: hasVariant($state, "staff", "staff")
-            }),
-            defaultOpen: hasVariant($state, "staff", "staff") ? true : false,
-            expandIcon: (
-              <ChevronLeftIcon
-                className={classNames("all", sty.svg__hrEQs, {
-                  [sty.svgstaff__hrEQsnTldJ]: hasVariant(
-                    $state,
-                    "staff",
-                    "staff"
-                  )
-                })}
-                role={"img"}
-              />
-            ),
+      {(() => {
+        const child$Props = {
+          bordered: false,
+          className: classNames("__wab_instance", sty.collapse, {
+            [sty.collapsestaff]: hasVariant($state, "staff", "staff")
+          }),
+          defaultOpen: hasVariant($state, "staff", "staff") ? true : false,
+          expandIcon: (
+            <ChevronLeftIcon
+              className={classNames("all", sty.svg__hrEQs, {
+                [sty.svgstaff__hrEQsnTldJ]: hasVariant($state, "staff", "staff")
+              })}
+              role={"img"}
+            />
+          ),
 
-            expandIconPosition: "end",
-            key: currentIndex,
-            label2: (
-              <div
-                className={classNames("all", "__wab_text", sty.text__yabPc, {
-                  [sty.textstaff__yabPcnTldJ]: hasVariant(
-                    $state,
-                    "staff",
-                    "staff"
-                  )
-                })}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return currentItem.name ?? "نام خدمت";
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "Collapse Header";
-                      }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
-              </div>
-            ),
-            onChange: async (...eventArgs: any) => {
-              generateStateOnChangePropForCodeComponents(
-                $state,
-                "open",
-                ["collapse", __plasmic_idx_0, "open"],
-                AntdSingleCollapse_Helpers
-              ).apply(null, eventArgs);
-
-              (async activeIds => {
-                const $steps = {};
-
-                $steps["runCode"] =
-                  $state.collapse[currentIndex].open == true
-                    ? (() => {
-                        const actionArgs = {
-                          customFunction: async () => {
-                            return $state.collapse.forEach((i, index) => {
-                              if (index != currentIndex) {
-                                i.open = false;
-                              }
-                            });
-                          }
-                        };
-                        return (({ customFunction }) => {
-                          return customFunction();
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                if (
-                  $steps["runCode"] != null &&
-                  typeof $steps["runCode"] === "object" &&
-                  typeof $steps["runCode"].then === "function"
-                ) {
-                  $steps["runCode"] = await $steps["runCode"];
-                }
-              }).apply(null, eventArgs);
-            },
-            open: generateStateValueProp($state, [
-              "collapse",
-              __plasmic_idx_0,
-              "open"
-            ]),
-            rotationAngle: 90,
-            showArrow: true
-          };
-          initializeCodeComponentStates(
-            $state,
-            [
-              {
-                name: "open",
-                plasmicStateName: "collapse[].open"
-              }
-            ],
-            [__plasmic_idx_0],
-            AntdSingleCollapse_Helpers ?? {},
-            child$Props
-          );
-          initializePlasmicStates(
-            $state,
-            [
-              {
-                name: "collapse[].open",
-                initFunc: ({ $props, $state, $queries, $q }) =>
-                  hasVariant($state, "staff", "staff") ? true : false
-              }
-            ],
-            [__plasmic_idx_0]
-          );
-          return (
-            <AntdSingleCollapse
-              data-plasmic-name={"collapse"}
-              data-plasmic-override={overrides.collapse}
-              {...child$Props}
+          expandIconPosition: "end",
+          label2: (
+            <div
+              className={classNames("all", "__wab_text", sty.text__yabPc, {
+                [sty.textstaff__yabPcnTldJ]: hasVariant(
+                  $state,
+                  "staff",
+                  "staff"
+                )
+              })}
             >
-              <div
-                className={classNames("all", sty.freeBox__jVRnt, {
-                  [sty.freeBoxstaff__jVRntnTldJ]: hasVariant(
-                    $state,
-                    "staff",
-                    "staff"
-                  )
-                })}
-              >
-                <div className={classNames("all", sty.freeBox__lHa2X)}>
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__smzBq)}
-                  >
-                    {"\u0646\u0627\u0645 \u062e\u062f\u0645\u062a"}
-                  </div>
-                  {(() => {
-                    const child$Props = {
-                      className: classNames("__wab_instance", sty.name),
-                      inputType: "text",
-                      onChange: async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "name",
-                          __plasmic_idx_0,
-                          "value"
-                        ]).apply(null, eventArgs);
+              {""}
+            </div>
+          ),
+          onChange: async (...eventArgs: any) => {
+            generateStateOnChangePropForCodeComponents(
+              $state,
+              "open",
+              ["collapse", "open"],
+              AntdSingleCollapse_Helpers
+            ).apply(null, eventArgs);
 
-                        if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
-                        ) {
-                          return;
-                        }
+            (async activeIds => {
+              const $steps = {};
 
-                        (async val => {
-                          const $steps = {};
-
-                          $steps["runCode"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  customFunction: async () => {
-                                    return ($state.servises[currentIndex].name =
-                                      $state.name[currentIndex].value);
-                                  }
-                                };
-                                return (({ customFunction }) => {
-                                  return customFunction();
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["runCode"] != null &&
-                            typeof $steps["runCode"] === "object" &&
-                            typeof $steps["runCode"].then === "function"
-                          ) {
-                            $steps["runCode"] = await $steps["runCode"];
-                          }
-                        }).apply(null, eventArgs);
-                      },
-                      placeholder:
-                        "\u0645\u062b\u0627\u0644: \u0622\u0628 \u062f\u0631\u0645\u0627\u0646\u06cc",
-                      type: "line",
-                      value: generateStateValueProp($state, [
-                        "name",
-                        __plasmic_idx_0,
-                        "value"
-                      ])
-                    };
-
-                    initializePlasmicStates(
-                      $state,
-                      [
-                        {
-                          name: "name[].value",
-                          initFunc: ({ $props, $state, $queries, $q }) =>
-                            undefined
-                        }
-                      ],
-                      [__plasmic_idx_0]
-                    );
-                    return (
-                      <TextInput
-                        data-plasmic-name={"name"}
-                        data-plasmic-override={overrides.name}
-                        {...child$Props}
-                      />
-                    );
-                  })()}
-                </div>
-                <div className={classNames("all", sty.freeBox__petP2)}>
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__y1F6)}
-                  >
-                    {"\u062a\u0648\u0636\u06cc\u062d\u0627\u062a"}
-                  </div>
-                  {(() => {
-                    const child$Props = {
-                      className: classNames("__wab_instance", sty.description),
-                      inputType: "text",
-                      onChange: async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "description",
-                          __plasmic_idx_0,
-                          "value"
-                        ]).apply(null, eventArgs);
-
-                        if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
-                        ) {
-                          return;
-                        }
-
-                        (async val => {
-                          const $steps = {};
-
-                          $steps["runCode"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  customFunction: async () => {
-                                    return ($state.servises[
-                                      currentIndex
-                                    ].description =
-                                      $state.description[currentIndex].value);
-                                  }
-                                };
-                                return (({ customFunction }) => {
-                                  return customFunction();
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["runCode"] != null &&
-                            typeof $steps["runCode"] === "object" &&
-                            typeof $steps["runCode"].then === "function"
-                          ) {
-                            $steps["runCode"] = await $steps["runCode"];
-                          }
-                        }).apply(null, eventArgs);
-                      },
-                      placeholder:
-                        "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u062a\u06a9\u0645\u06cc\u0644\u06cc",
-                      type: "line",
-                      value: generateStateValueProp($state, [
-                        "description",
-                        __plasmic_idx_0,
-                        "value"
-                      ])
-                    };
-
-                    initializePlasmicStates(
-                      $state,
-                      [
-                        {
-                          name: "description[].value",
-                          initFunc: ({ $props, $state, $queries, $q }) =>
-                            undefined
-                        }
-                      ],
-                      [__plasmic_idx_0]
-                    );
-                    return (
-                      <TextInput
-                        data-plasmic-name={"description"}
-                        data-plasmic-override={overrides.description}
-                        {...child$Props}
-                      />
-                    );
-                  })()}
-                </div>
-                <div className={classNames("all", sty.freeBox__rQuxI)}>
-                  <div className={classNames("all", sty.freeBox__uJrxl)}>
-                    <div
-                      className={classNames(
-                        "all",
-                        "__wab_text",
-                        sty.text__mx40K
-                      )}
-                    >
-                      {"\u0645\u062f\u062a \u0632\u0645\u0627\u0646"}
-                    </div>
-                    {(() => {
-                      const child$Props = {
-                        className: classNames("__wab_instance", sty.time),
-                        inputMode: "numeric",
-                        inputType: "text",
-                        onChange: async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "time",
-                            __plasmic_idx_0,
-                            "value"
-                          ]).apply(null, eventArgs);
-
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-
-                          (async val => {
-                            const $steps = {};
-
-                            $steps["runCode"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    customFunction: async () => {
-                                      return (() => {
-                                        $state.time[currentIndex].value =
-                                          $state.time[
-                                            currentIndex
-                                          ].value.replace(/\D/g, "");
-                                        return ($state.servises[
-                                          currentIndex
-                                        ].duration_minutes =
-                                          $state.time[currentIndex].value);
-                                      })();
-                                    }
-                                  };
-                                  return (({ customFunction }) => {
-                                    return customFunction();
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["runCode"] != null &&
-                              typeof $steps["runCode"] === "object" &&
-                              typeof $steps["runCode"].then === "function"
-                            ) {
-                              $steps["runCode"] = await $steps["runCode"];
+              $steps["runCode"] =
+                $state.collapse[currentIndex].open == true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return $state.collapse.forEach((i, index) => {
+                            if (index != currentIndex) {
+                              i.open = false;
                             }
-                          }).apply(null, eventArgs);
-                        },
-                        placeholder:
-                          "\u0645\u062f\u062a \u0632\u0645\u0627\u0646 (\u0628\u0647 \u062f\u0642\u06cc\u0642\u0647) - \u0645\u062b\u0627\u0644: 20",
-                        type: "line",
-                        value: generateStateValueProp($state, [
-                          "time",
-                          __plasmic_idx_0,
-                          "value"
-                        ])
+                          });
+                        }
                       };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }).apply(null, eventArgs);
+          },
+          open: generateStateValueProp($state, ["collapse", "open"]),
+          rotationAngle: 90,
+          showArrow: true
+        };
+        initializeCodeComponentStates(
+          $state,
+          [
+            {
+              name: "open",
+              plasmicStateName: "collapse.open"
+            }
+          ],
+          [],
+          AntdSingleCollapse_Helpers ?? {},
+          child$Props
+        );
 
-                      initializePlasmicStates(
-                        $state,
-                        [
-                          {
-                            name: "time[].value",
-                            initFunc: ({ $props, $state, $queries, $q }) => "60"
-                          }
-                        ],
-                        [__plasmic_idx_0]
-                      );
-                      return (
-                        <TextInput
-                          data-plasmic-name={"time"}
-                          data-plasmic-override={overrides.time}
-                          {...child$Props}
-                        />
-                      );
-                    })()}
-                  </div>
-                  <div className={classNames("all", sty.freeBox__o623I)}>
-                    <div
-                      className={classNames(
-                        "all",
-                        "__wab_text",
-                        sty.text__mXltg
-                      )}
-                    >
-                      {
-                        "\u0641\u0627\u0635\u0644\u0647 \u0628\u06cc\u0646 \u0646\u0648\u0628\u062a\u200c\u0647\u0627"
+        return (
+          <AntdSingleCollapse
+            data-plasmic-name={"collapse"}
+            data-plasmic-override={overrides.collapse}
+            {...child$Props}
+          >
+            <div
+              className={classNames("all", sty.freeBox__jVRnt, {
+                [sty.freeBoxstaff__jVRntnTldJ]: hasVariant(
+                  $state,
+                  "staff",
+                  "staff"
+                )
+              })}
+            >
+              <div className={classNames("all", sty.freeBox__lHa2X)}>
+                <div
+                  className={classNames("all", "__wab_text", sty.text__smzBq)}
+                >
+                  {"\u0646\u0627\u0645 \u062e\u062f\u0645\u062a"}
+                </div>
+                <TextInput
+                  data-plasmic-name={"name"}
+                  data-plasmic-override={overrides.name}
+                  className={classNames("__wab_instance", sty.name, {
+                    [sty.namestaff]: hasVariant($state, "staff", "staff")
+                  })}
+                  inputType={"text"}
+                  onChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, ["name", "value"]).apply(
+                      null,
+                      eventArgs
+                    );
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+
+                    (async val => {
+                      const $steps = {};
+
+                      $steps["runCode"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return ($state.servises.name =
+                                  $state.name.value);
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runCode"] != null &&
+                        typeof $steps["runCode"] === "object" &&
+                        typeof $steps["runCode"].then === "function"
+                      ) {
+                        $steps["runCode"] = await $steps["runCode"];
                       }
-                    </div>
-                    {(() => {
-                      const child$Props = {
-                        className: classNames("__wab_instance", sty.time2),
-                        inputMode: "numeric",
-                        inputType: "text",
-                        onChange: async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "time2",
-                            __plasmic_idx_0,
-                            "value"
-                          ]).apply(null, eventArgs);
-
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-
-                          (async val => {
-                            const $steps = {};
-
-                            $steps["runCode"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    customFunction: async () => {
-                                      return (() => {
-                                        $state.time2[currentIndex].value =
-                                          $state.time2[
-                                            currentIndex
-                                          ].value.replace(/\D/g, "");
-                                        return ($state.servises[
-                                          currentIndex
-                                        ].buffer_minutes =
-                                          $state.time2[currentIndex].value);
-                                      })();
-                                    }
-                                  };
-                                  return (({ customFunction }) => {
-                                    return customFunction();
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["runCode"] != null &&
-                              typeof $steps["runCode"] === "object" &&
-                              typeof $steps["runCode"].then === "function"
-                            ) {
-                              $steps["runCode"] = await $steps["runCode"];
-                            }
-                          }).apply(null, eventArgs);
-                        },
-                        placeholder:
-                          "\u0641\u0627\u0635\u0644\u0647 \u0628\u06cc\u0646 \u0646\u0648\u0628\u062a\u200c\u0647\u0627 (\u0645\u062b\u0627\u0644: 10 \u062f\u0642\u06cc\u0642\u0647)",
-                        type: "line",
-                        value: generateStateValueProp($state, [
-                          "time2",
-                          __plasmic_idx_0,
-                          "value"
-                        ])
-                      };
-
-                      initializePlasmicStates(
-                        $state,
-                        [
-                          {
-                            name: "time2[].value",
-                            initFunc: ({ $props, $state, $queries, $q }) => "10"
-                          }
-                        ],
-                        [__plasmic_idx_0]
-                      );
-                      return (
-                        <TextInput
-                          data-plasmic-name={"time2"}
-                          data-plasmic-override={overrides.time2}
-                          {...child$Props}
-                        />
-                      );
-                    })()}
-                  </div>
+                    }).apply(null, eventArgs);
+                  }}
+                  placeholder={
+                    "\u0645\u062b\u0627\u0644: \u0622\u0628 \u062f\u0631\u0645\u0627\u0646\u06cc"
+                  }
+                  type={"line"}
+                  value={generateStateValueProp($state, ["name", "value"])}
+                />
+              </div>
+              <div className={classNames("all", sty.freeBox__petP2)}>
+                <div
+                  className={classNames("all", "__wab_text", sty.text__y1F6)}
+                >
+                  {"\u062a\u0648\u0636\u06cc\u062d\u0627\u062a"}
                 </div>
-                <div className={classNames("all", sty.freeBox__thDqn)}>
-                  <div className={classNames("all", sty.freeBox__daGdO)}>
-                    <div
-                      className={classNames(
-                        "all",
-                        "__wab_text",
-                        sty.text__rfI1I
-                      )}
-                    >
-                      {"\u0642\u06cc\u0645\u062a"}
-                    </div>
-                    {(() => {
-                      const child$Props = {
-                        className: classNames("__wab_instance", sty.prise),
-                        inputMode: "numeric",
-                        inputType: "text",
-                        onChange: async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "prise",
-                            __plasmic_idx_0,
-                            "value"
-                          ]).apply(null, eventArgs);
+                <TextInput
+                  data-plasmic-name={"description"}
+                  data-plasmic-override={overrides.description}
+                  className={classNames("__wab_instance", sty.description, {
+                    [sty.descriptionstaff]: hasVariant($state, "staff", "staff")
+                  })}
+                  inputType={"text"}
+                  onChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "description",
+                      "value"
+                    ]).apply(null, eventArgs);
 
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
 
-                          (async val => {
-                            const $steps = {};
+                    (async val => {
+                      const $steps = {};
 
-                            $steps["runCode"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    customFunction: async () => {
-                                      return (() => {
-                                        $state.prise[currentIndex].value =
-                                          $state.prise[
-                                            currentIndex
-                                          ].value.replace(/\D/g, "");
-                                        return ($state.servises[
-                                          currentIndex
-                                        ].prise =
-                                          $state.prise[currentIndex].value);
-                                      })();
-                                    }
-                                  };
-                                  return (({ customFunction }) => {
-                                    return customFunction();
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["runCode"] != null &&
-                              typeof $steps["runCode"] === "object" &&
-                              typeof $steps["runCode"].then === "function"
-                            ) {
-                              $steps["runCode"] = await $steps["runCode"];
-                            }
-                          }).apply(null, eventArgs);
-                        },
-                        placeholder:
-                          "\u0642\u06cc\u0645\u062a (\u062a\u0648\u0645\u0627\u0646)",
-                        type: "line",
-                        value: generateStateValueProp($state, [
-                          "prise",
-                          __plasmic_idx_0,
-                          "value"
-                        ])
-                      };
-
-                      initializePlasmicStates(
-                        $state,
-                        [
-                          {
-                            name: "prise[].value",
-                            initFunc: ({ $props, $state, $queries, $q }) =>
-                              "300000"
-                          }
-                        ],
-                        [__plasmic_idx_0]
-                      );
-                      return (
-                        <TextInput
-                          data-plasmic-name={"prise"}
-                          data-plasmic-override={overrides.prise}
-                          {...child$Props}
-                        />
-                      );
-                    })()}
+                      $steps["runCode"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return ($state.servises.description =
+                                  $state.description.value);
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runCode"] != null &&
+                        typeof $steps["runCode"] === "object" &&
+                        typeof $steps["runCode"].then === "function"
+                      ) {
+                        $steps["runCode"] = await $steps["runCode"];
+                      }
+                    }).apply(null, eventArgs);
+                  }}
+                  placeholder={
+                    "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u062a\u06a9\u0645\u06cc\u0644\u06cc"
+                  }
+                  type={"line"}
+                  value={generateStateValueProp($state, [
+                    "description",
+                    "value"
+                  ])}
+                />
+              </div>
+              <div className={classNames("all", sty.freeBox__rQuxI)}>
+                <div className={classNames("all", sty.freeBox__uJrxl)}>
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__mx40K)}
+                  >
+                    {"\u0645\u062f\u062a \u0632\u0645\u0627\u0646"}
                   </div>
-                  <div className={classNames("all", sty.freeBox__wfTwm)}>
-                    <div
-                      className={classNames(
-                        "all",
-                        "__wab_text",
-                        sty.text__z8Qsw
-                      )}
-                    >
-                      <React.Fragment>
-                        {(() => {
-                          try {
-                            return "درصد تخفیف";
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return "\u0642\u06cc\u0645\u062a";
-                            }
-                            throw e;
-                          }
-                        })()}
-                      </React.Fragment>
-                    </div>
-                    {(() => {
-                      const child$Props = {
-                        className: classNames("__wab_instance", sty.off),
-                        inputMode: "numeric",
-                        inputType: "text",
-                        onChange: async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "off",
-                            __plasmic_idx_0,
-                            "value"
-                          ]).apply(null, eventArgs);
-
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-
-                          (async val => {
-                            const $steps = {};
-
-                            $steps["runCode"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    customFunction: async () => {
-                                      return (() => {
-                                        $state.off[currentIndex].value =
-                                          $state.off[
-                                            currentIndex
-                                          ].value.replace(/\D/g, "");
-                                        return ($state.servises[
-                                          currentIndex
-                                        ].discount_percent =
-                                          $state.off[currentIndex].value);
-                                      })();
-                                    }
-                                  };
-                                  return (({ customFunction }) => {
-                                    return customFunction();
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["runCode"] != null &&
-                              typeof $steps["runCode"] === "object" &&
-                              typeof $steps["runCode"].then === "function"
-                            ) {
-                              $steps["runCode"] = await $steps["runCode"];
-                            }
-                          }).apply(null, eventArgs);
-                        },
-                        type: "line",
-                        value: generateStateValueProp($state, [
-                          "off",
-                          __plasmic_idx_0,
-                          "value"
-                        ])
-                      };
-
-                      initializePlasmicStates(
-                        $state,
-                        [
-                          {
-                            name: "off[].value",
-                            initFunc: ({ $props, $state, $queries, $q }) => "0"
-                          }
-                        ],
-                        [__plasmic_idx_0]
-                      );
-                      return (
-                        <TextInput
-                          data-plasmic-name={"off"}
-                          data-plasmic-override={overrides.off}
-                          {...child$Props}
-                        />
-                      );
-                    })()}
-                  </div>
-                </div>
-                {(() => {
-                  const child$Props = {
-                    className: classNames("__wab_instance", sty.radioGroup, {
-                      [sty.radioGroupstaff]: hasVariant(
-                        $state,
-                        "staff",
-                        "staff"
-                      )
-                    }),
-                    label: (
-                      <div
-                        className={classNames(
-                          "all",
-                          "__wab_text",
-                          sty.text___83OeF
-                        )}
-                      >
-                        {"\u0646\u0648\u0639 \u062e\u062f\u0645\u062a"}
-                      </div>
-                    ),
-                    onChange: async (...eventArgs: any) => {
+                  <TextInput
+                    data-plasmic-name={"time"}
+                    data-plasmic-override={overrides.time}
+                    className={classNames("__wab_instance", sty.time)}
+                    inputMode={"numeric"}
+                    inputType={"text"}
+                    onChange={async (...eventArgs: any) => {
                       generateStateOnChangeProp($state, [
-                        "radioGroup",
-                        __plasmic_idx_0,
+                        "time",
                         "value"
                       ]).apply(null, eventArgs);
 
@@ -1011,10 +536,17 @@ function PlasmicAddServiseStaff__RenderFunc(props: {
                           ? (() => {
                               const actionArgs = {
                                 customFunction: async () => {
-                                  return ($state.servises[
-                                    currentIndex
-                                  ].category =
-                                    $state.radioGroup[currentIndex].value);
+                                  return (() => {
+                                    $state.time[currentIndex].value =
+                                      $state.time[currentIndex].value.replace(
+                                        /\D/g,
+                                        ""
+                                      );
+                                    return ($state.servises[
+                                      currentIndex
+                                    ].duration_minutes =
+                                      $state.time[currentIndex].value);
+                                  })();
                                 }
                               };
                               return (({ customFunction }) => {
@@ -1030,288 +562,503 @@ function PlasmicAddServiseStaff__RenderFunc(props: {
                           $steps["runCode"] = await $steps["runCode"];
                         }
                       }).apply(null, eventArgs);
-                    },
-                    options: (
-                      <div className={classNames("all", sty.freeBox__iHtq)}>
-                        {(_par =>
-                          !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                          (() => {
-                            try {
-                              return [
-                                {
-                                  label: "عمومی",
-                                  value: "general"
-                                },
-                                {
-                                  label: "تخصصی",
-                                  value: "specialized"
+                    }}
+                    placeholder={
+                      "\u0645\u062f\u062a \u0632\u0645\u0627\u0646 (\u0628\u0647 \u062f\u0642\u06cc\u0642\u0647) - \u0645\u062b\u0627\u0644: 20"
+                    }
+                    type={"line"}
+                    value={generateStateValueProp($state, ["time", "value"])}
+                  />
+                </div>
+                <div className={classNames("all", sty.freeBox__o623I)}>
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__mXltg)}
+                  >
+                    {
+                      "\u0641\u0627\u0635\u0644\u0647 \u0628\u06cc\u0646 \u0646\u0648\u0628\u062a\u200c\u0647\u0627"
+                    }
+                  </div>
+                  <TextInput
+                    data-plasmic-name={"time2"}
+                    data-plasmic-override={overrides.time2}
+                    className={classNames("__wab_instance", sty.time2)}
+                    inputMode={"numeric"}
+                    inputType={"text"}
+                    onChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "time2",
+                        "value"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+
+                      (async val => {
+                        const $steps = {};
+
+                        $steps["runCode"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return (() => {
+                                    $state.time2[currentIndex].value =
+                                      $state.time2[currentIndex].value.replace(
+                                        /\D/g,
+                                        ""
+                                      );
+                                    return ($state.servises[
+                                      currentIndex
+                                    ].buffer_minutes =
+                                      $state.time2[currentIndex].value);
+                                  })();
                                 }
-                              ];
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return [];
-                              }
-                              throw e;
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["runCode"] != null &&
+                          typeof $steps["runCode"] === "object" &&
+                          typeof $steps["runCode"].then === "function"
+                        ) {
+                          $steps["runCode"] = await $steps["runCode"];
+                        }
+                      }).apply(null, eventArgs);
+                    }}
+                    placeholder={
+                      "\u0641\u0627\u0635\u0644\u0647 \u0628\u06cc\u0646 \u0646\u0648\u0628\u062a\u200c\u0647\u0627 (\u0645\u062b\u0627\u0644: 10 \u062f\u0642\u06cc\u0642\u0647)"
+                    }
+                    type={"line"}
+                    value={generateStateValueProp($state, ["time2", "value"])}
+                  />
+                </div>
+              </div>
+              <div className={classNames("all", sty.freeBox__thDqn)}>
+                <div className={classNames("all", sty.freeBox__daGdO)}>
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__rfI1I)}
+                  >
+                    {"\u0642\u06cc\u0645\u062a"}
+                  </div>
+                  <TextInput
+                    data-plasmic-name={"prise"}
+                    data-plasmic-override={overrides.prise}
+                    className={classNames("__wab_instance", sty.prise)}
+                    inputMode={"numeric"}
+                    inputType={"text"}
+                    onChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "prise",
+                        "value"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+
+                      (async val => {
+                        const $steps = {};
+
+                        $steps["runCode"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return (() => {
+                                    $state.prise[currentIndex].value =
+                                      $state.prise[currentIndex].value.replace(
+                                        /\D/g,
+                                        ""
+                                      );
+                                    return ($state.servises[
+                                      currentIndex
+                                    ].prise = $state.prise[currentIndex].value);
+                                  })();
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["runCode"] != null &&
+                          typeof $steps["runCode"] === "object" &&
+                          typeof $steps["runCode"].then === "function"
+                        ) {
+                          $steps["runCode"] = await $steps["runCode"];
+                        }
+                      }).apply(null, eventArgs);
+                    }}
+                    placeholder={
+                      "\u0642\u06cc\u0645\u062a (\u062a\u0648\u0645\u0627\u0646)"
+                    }
+                    type={"line"}
+                    value={generateStateValueProp($state, ["prise", "value"])}
+                  />
+                </div>
+                <div className={classNames("all", sty.freeBox__wfTwm)}>
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__z8Qsw)}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return "درصد تخفیف";
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "\u0642\u06cc\u0645\u062a";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
+                  <TextInput
+                    data-plasmic-name={"off"}
+                    data-plasmic-override={overrides.off}
+                    className={classNames("__wab_instance", sty.off)}
+                    inputMode={"numeric"}
+                    inputType={"text"}
+                    onChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, ["off", "value"]).apply(
+                        null,
+                        eventArgs
+                      );
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+
+                      (async val => {
+                        const $steps = {};
+
+                        $steps["runCode"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return (() => {
+                                    $state.off[currentIndex].value = $state.off[
+                                      currentIndex
+                                    ].value.replace(/\D/g, "");
+                                    return ($state.servises[
+                                      currentIndex
+                                    ].discount_percent =
+                                      $state.off[currentIndex].value);
+                                  })();
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["runCode"] != null &&
+                          typeof $steps["runCode"] === "object" &&
+                          typeof $steps["runCode"].then === "function"
+                        ) {
+                          $steps["runCode"] = await $steps["runCode"];
+                        }
+                      }).apply(null, eventArgs);
+                    }}
+                    type={"line"}
+                    value={generateStateValueProp($state, ["off", "value"])}
+                  />
+                </div>
+              </div>
+              <RadioGroup
+                data-plasmic-name={"radioGroup"}
+                data-plasmic-override={overrides.radioGroup}
+                className={classNames("__wab_instance", sty.radioGroup, {
+                  [sty.radioGroupstaff]: hasVariant($state, "staff", "staff")
+                })}
+                label={
+                  <div
+                    className={classNames(
+                      "all",
+                      "__wab_text",
+                      sty.text___83OeF
+                    )}
+                  >
+                    {"\u0646\u0648\u0639 \u062e\u062f\u0645\u062a"}
+                  </div>
+                }
+                onChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "radioGroup",
+                    "value"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+
+                  (async val => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return ($state.servises.category =
+                                $state.radioGroup.value);
                             }
-                          })()
-                        ).map((__plasmic_item_1, __plasmic_idx_1) => {
-                          const currentItem = __plasmic_item_1;
-                          const currentIndex = __plasmic_idx_1;
-                          return (
-                            <Radio
-                              data-plasmic-name={"radio"}
-                              data-plasmic-override={overrides.radio}
-                              className={classNames(
-                                "__wab_instance",
-                                sty.radio
-                              )}
-                              key={currentIndex}
-                              label={
-                                <React.Fragment>
-                                  {(() => {
-                                    try {
-                                      return currentItem.label;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return "Option 3";
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                </React.Fragment>
-                              }
-                              value={(() => {
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+                  }).apply(null, eventArgs);
+                }}
+                options={
+                  <div className={classNames("all", sty.freeBox__iHtq)}>
+                    {(_par =>
+                      !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                      (() => {
+                        try {
+                          return [
+                            {
+                              label: "عمومی",
+                              value: "general"
+                            },
+                            {
+                              label: "تخصصی",
+                              value: "specialized"
+                            }
+                          ];
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()
+                    ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                      const currentItem = __plasmic_item_0;
+                      const currentIndex = __plasmic_idx_0;
+                      return (
+                        <Radio
+                          data-plasmic-name={"radio"}
+                          data-plasmic-override={overrides.radio}
+                          className={classNames("__wab_instance", sty.radio)}
+                          key={currentIndex}
+                          label={
+                            <React.Fragment>
+                              {(() => {
                                 try {
-                                  return currentItem.value;
+                                  return currentItem.label;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
                                     e?.plasmicType ===
                                       "PlasmicUndefinedDataError"
                                   ) {
-                                    return undefined;
+                                    return "Option 3";
                                   }
                                   throw e;
                                 }
                               })()}
-                            />
-                          );
-                        })}
-                      </div>
-                    ),
-                    value: generateStateValueProp($state, [
-                      "radioGroup",
-                      __plasmic_idx_0,
-                      "value"
-                    ])
-                  };
-
-                  initializePlasmicStates(
-                    $state,
-                    [
-                      {
-                        name: "radioGroup[].value",
-                        initFunc: ({ $props, $state, $queries, $q }) =>
-                          "general"
-                      }
-                    ],
-                    [__plasmic_idx_0]
-                  );
-                  return (
-                    <RadioGroup
-                      data-plasmic-name={"radioGroup"}
-                      data-plasmic-override={overrides.radioGroup}
-                      {...child$Props}
-                    />
-                  );
-                })()}
-                <div className={classNames("all", sty.freeBox__whj2X)}>
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__nvXjD)}
-                  >
-                    {"\u0631\u0648\u0634 \u067e\u0631\u062f\u0627\u062e\u062a"}
-                  </div>
-                  {(() => {
-                    const child$Props = {
-                      className: classNames("__wab_instance", sty.select),
-                      isOpen: generateStateValueProp($state, [
-                        "select",
-                        __plasmic_idx_0,
-                        "isOpen"
-                      ]),
-                      items: (_par =>
-                        !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                        (() => {
-                          try {
-                            return [
-                              {
-                                label: "پرداخت آنلاین",
-                                value: "online"
-                              },
-                              {
-                                label: "پرداخت حضوری",
-                                value: "in_person"
-                              },
-                              {
-                                label: "رایگان",
-                                value: "in_person"
-                              },
-                              {
-                                label: "آنلاین و حضوری",
-                                value: "both"
+                            </React.Fragment>
+                          }
+                          value={(() => {
+                            try {
+                              return currentItem.value;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
                               }
-                            ];
+                              throw e;
+                            }
+                          })()}
+                        />
+                      );
+                    })}
+                  </div>
+                }
+                value={generateStateValueProp($state, ["radioGroup", "value"])}
+              />
+
+              <div className={classNames("all", sty.freeBox__whj2X)}>
+                <div
+                  className={classNames("all", "__wab_text", sty.text__nvXjD)}
+                >
+                  {"\u0631\u0648\u0634 \u067e\u0631\u062f\u0627\u062e\u062a"}
+                </div>
+                <Select
+                  data-plasmic-name={"select"}
+                  data-plasmic-override={overrides.select}
+                  className={classNames("__wab_instance", sty.select)}
+                  isOpen={generateStateValueProp($state, ["select", "isOpen"])}
+                  items={(_par =>
+                    !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                    (() => {
+                      try {
+                        return [
+                          {
+                            label: "پرداخت آنلاین",
+                            value: "online"
+                          },
+                          {
+                            label: "پرداخت حضوری",
+                            value: "in_person"
+                          },
+                          {
+                            label: "رایگان",
+                            value: "in_person"
+                          },
+                          {
+                            label: "آنلاین و حضوری",
+                            value: "both"
+                          }
+                        ];
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()
+                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                    const currentItem = __plasmic_item_0;
+                    const currentIndex = __plasmic_idx_0;
+                    return (
+                      <MenuItem
+                        data-plasmic-name={"menuItem"}
+                        data-plasmic-override={overrides.menuItem}
+                        key={currentIndex}
+                        label={(() => {
+                          try {
+                            return currentItem.label;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
                               e?.plasmicType === "PlasmicUndefinedDataError"
                             ) {
-                              return [];
+                              return undefined;
                             }
                             throw e;
                           }
-                        })()
-                      ).map((__plasmic_item_1, __plasmic_idx_1) => {
-                        const currentItem = __plasmic_item_1;
-                        const currentIndex = __plasmic_idx_1;
-                        return (
-                          <MenuItem
-                            data-plasmic-name={"menuItem"}
-                            data-plasmic-override={overrides.menuItem}
-                            key={currentIndex}
-                            label={(() => {
-                              try {
-                                return currentItem.label;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()}
-                            value={(() => {
-                              try {
-                                return currentItem.value;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()}
-                          />
-                        );
-                      }),
-                      onChange: async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "select",
-                          __plasmic_idx_0,
-                          "value"
-                        ]).apply(null, eventArgs);
-
-                        if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
-                        ) {
-                          return;
-                        }
-
-                        (async val => {
-                          const $steps = {};
-
-                          $steps["runCode"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  customFunction: async () => {
-                                    return ($state.servises[
-                                      currentIndex
-                                    ].method =
-                                      $state.select[currentIndex].value);
-                                  }
-                                };
-                                return (({ customFunction }) => {
-                                  return customFunction();
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["runCode"] != null &&
-                            typeof $steps["runCode"] === "object" &&
-                            typeof $steps["runCode"].then === "function"
-                          ) {
-                            $steps["runCode"] = await $steps["runCode"];
+                        })()}
+                        value={(() => {
+                          try {
+                            return currentItem.value;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
                           }
-                        }).apply(null, eventArgs);
-                      },
-                      onOpenChange: async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "select",
-                          __plasmic_idx_0,
-                          "isOpen"
-                        ]).apply(null, eventArgs);
-
-                        if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
-                        ) {
-                          return;
-                        }
-                      },
-                      placeholder:
-                        "\u0631\u0648\u0634 \u067e\u0631\u062f\u0627\u062e\u062a (\u0622\u0646\u0644\u0627\u06cc\u0646 / \u062d\u0636\u0648\u0631\u06cc)",
-                      showLabel: false,
-                      type: "line",
-                      value: generateStateValueProp($state, [
-                        "select",
-                        __plasmic_idx_0,
-                        "value"
-                      ])
-                    };
-
-                    initializePlasmicStates(
-                      $state,
-                      [
-                        {
-                          name: "select[].isOpen",
-                          initFunc: ({ $props, $state, $queries, $q }) => false
-                        },
-                        {
-                          name: "select[].value",
-                          initFunc: ({ $props, $state, $queries, $q }) =>
-                            undefined
-                        }
-                      ],
-                      [__plasmic_idx_0]
-                    );
-                    return (
-                      <Select
-                        data-plasmic-name={"select"}
-                        data-plasmic-override={overrides.select}
-                        {...child$Props}
+                        })()}
                       />
                     );
-                  })()}
-                </div>
+                  })}
+                  onChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "select",
+                      "value"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+
+                    (async val => {
+                      const $steps = {};
+
+                      $steps["runCode"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return ($state.servises[currentIndex].method =
+                                  $state.select[currentIndex].value);
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runCode"] != null &&
+                        typeof $steps["runCode"] === "object" &&
+                        typeof $steps["runCode"].then === "function"
+                      ) {
+                        $steps["runCode"] = await $steps["runCode"];
+                      }
+                    }).apply(null, eventArgs);
+                  }}
+                  onOpenChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "select",
+                      "isOpen"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  placeholder={
+                    "\u0631\u0648\u0634 \u067e\u0631\u062f\u0627\u062e\u062a (\u0622\u0646\u0644\u0627\u06cc\u0646 / \u062d\u0636\u0648\u0631\u06cc)"
+                  }
+                  showLabel={false}
+                  type={"line"}
+                  value={generateStateValueProp($state, ["select", "value"])}
+                />
               </div>
-            </AntdSingleCollapse>
-          );
-        })();
-      })}
+            </div>
+          </AntdSingleCollapse>
+        );
+      })()}
       <Button
         data-plasmic-name={"button5"}
         data-plasmic-override={overrides.button5}

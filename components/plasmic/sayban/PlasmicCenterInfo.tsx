@@ -655,6 +655,7 @@ function PlasmicCenterInfo__RenderFunc(props: {
             data-plasmic-name={"tags"}
             data-plasmic-override={overrides.tags}
             className={classNames("__wab_instance", sty.tags)}
+            disabel={true}
             onSelect3ValueChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["tags", "select3Value"]).apply(
                 null,

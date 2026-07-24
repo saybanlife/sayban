@@ -293,6 +293,7 @@
   flex-shrink: 0;
 }
 .freeBox__qHoxS {
+  display: block;
   position: absolute;
   width: auto;
   height: auto;
@@ -302,7 +303,6 @@
   right: 0;
   bottom: 0;
   z-index: 100;
-  display: none;
   padding: 8px;
 }
 .freeBoxedit__qHoxSowUxX {
