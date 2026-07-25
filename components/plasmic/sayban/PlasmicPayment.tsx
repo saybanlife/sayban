@@ -170,7 +170,6 @@ function PlasmicPayment__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          id: "65ded5353c5ee48d0b7d48c591b8f430",
           token:
             "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwaXJlIjoxNzY0NTA2MjczfQ.A6wRqW0jMYVg_rZ4OMZ5oXrcOVwKq3BG4i_wmvKf_8A"
         },
@@ -565,6 +564,32 @@ function PlasmicPayment__RenderFunc(props: {
 
             (async data => {
               const $steps = {};
+
+              $steps["updateHome2"] =
+                $state.basic?.data?.result?.payment?.service_location != "home"
+                  ? (() => {
+                      const actionArgs = {
+                        vgroup: "home",
+                        operation: 6,
+                        value: "home"
+                      };
+                      return (({ vgroup, value }) => {
+                        if (typeof value === "string") {
+                          value = [value];
+                        }
+
+                        $stateSet($state, vgroup, false);
+                        return false;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+              if (
+                $steps["updateHome2"] != null &&
+                typeof $steps["updateHome2"] === "object" &&
+                typeof $steps["updateHome2"].then === "function"
+              ) {
+                $steps["updateHome2"] = await $steps["updateHome2"];
+              }
 
               $steps["updateHome"] =
                 $state.basic?.data?.result?.payment?.service_location == "home"
