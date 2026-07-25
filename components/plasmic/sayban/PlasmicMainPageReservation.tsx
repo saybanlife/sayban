@@ -173,9 +173,7 @@ function PlasmicMainPageReservation__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {
-          centerId: "4"
-        },
+        {},
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )

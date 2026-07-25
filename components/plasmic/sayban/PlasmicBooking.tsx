@@ -1140,7 +1140,9 @@ function PlasmicBooking__RenderFunc(props: {
                 <div
                   className={classNames("all", "__wab_text", sty.text__oae3W)}
                 >
-                  <React.Fragment>{$state.datalist.staff.name}</React.Fragment>
+                  <React.Fragment>
+                    {$state.datalist?.staff?.name || ""}
+                  </React.Fragment>
                 </div>
               </div>
             </div>

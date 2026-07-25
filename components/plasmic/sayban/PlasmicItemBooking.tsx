@@ -278,28 +278,7 @@ function PlasmicItemBooking__RenderFunc(props: {
       )}
       onClick={args.onClick}
     >
-      <div
-        className={classNames("all", sty.freeBox__mviwM)}
-        onClick={async event => {
-          const $steps = {};
-
-          $steps["runGoToCenter"] = true
-            ? (() => {
-                const actionArgs = { eventRef: $props["goToCenter"] };
-                return (({ eventRef, args }) => {
-                  return eventRef?.(...(args ?? []));
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
-          if (
-            $steps["runGoToCenter"] != null &&
-            typeof $steps["runGoToCenter"] === "object" &&
-            typeof $steps["runGoToCenter"].then === "function"
-          ) {
-            $steps["runGoToCenter"] = await $steps["runGoToCenter"];
-          }
-        }}
-      >
+      <div className={classNames("all", sty.freeBox__mviwM)}>
         <div className={classNames("all", sty.freeBox__sFhHx)}>
           <PlasmicImg__
             data-plasmic-name={"img"}

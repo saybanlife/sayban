@@ -206,7 +206,8 @@ function PlasmicUploudeTime__RenderFunc(props: {
                   const formatter = new Intl.DateTimeFormat("fa-IR", {
                     weekday: "long",
                     day: "numeric",
-                    month: "long"
+                    month: "long",
+                    year: "numeric"
                   });
                   return formatter.format(date);
                 })();
