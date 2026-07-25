@@ -1035,7 +1035,8 @@ function PlasmicPayment__RenderFunc(props: {
                                     );
                                   }
                                   return getPayments(
-                                    $state.basic.data.result.payment_method
+                                    $state.basic.data.result.payment
+                                      .payment_method
                                   );
                                 })();
                               } catch (e) {

@@ -6257,7 +6257,7 @@ function PlasmicHomepage__RenderFunc(props: {
                   e instanceof TypeError ||
                   e?.plasmicType === "PlasmicUndefinedDataError"
                 ) {
-                  return "selectService";
+                  return [];
                 }
                 throw e;
               }

@@ -64,6 +64,8 @@ import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo
 import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
 import { TimePicker } from "@/fragment/components/time-picker"; // plasmic-import: fpe_CT2-ocZX/codeComponent
 import Checkbox from "../../Checkbox"; // plasmic-import: 7eMtZduHzknK/component
+import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
+import ItemShow from "../../ItemShow"; // plasmic-import: hegjECXSYJcF/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -74,6 +76,7 @@ import sty from "./PlasmicTimeWeek.module.css"; // plasmic-import: cN1_ZVwWpEB8/
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import Icon127Icon from "./icons/PlasmicIcon__Icon127"; // plasmic-import: 9Xfm_lI0FWYZ/icon
+import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
 
 createPlasmicElementProxy;
 
@@ -110,6 +113,8 @@ export type PlasmicTimeWeek__OverridesType = {
   timePickerEnd?: Flex__<typeof TimePicker>;
   option1?: Flex__<typeof Checkbox>;
   svg?: Flex__<"svg">;
+  modal?: Flex__<typeof AntdModal>;
+  itemShow?: Flex__<typeof ItemShow>;
 };
 
 export interface DefaultTimeWeekProps {
@@ -233,6 +238,12 @@ function PlasmicTimeWeek__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "modal.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -1065,6 +1076,102 @@ function PlasmicTimeWeek__RenderFunc(props: {
           [sty.freeBoxedit__qHoxSowUxX]: hasVariant($state, "edit", "edit")
         })}
       />
+
+      <AntdModal
+        data-plasmic-name={"modal"}
+        data-plasmic-override={overrides.modal}
+        className={classNames("__wab_instance", sty.modal)}
+        defaultStylesClassName={classNames(
+          "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+          "plasmic_default_styles",
+          "plasmic_mixins",
+          styleTokensClassNames
+        )}
+        hideFooter={true}
+        maskClosable={true}
+        modalScopeClassName={sty["modal__modal"]}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["modal", "open"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        open={generateStateValueProp($state, ["modal", "open"])}
+        title={
+          <div className={classNames("all", "__wab_text", sty.text__mhl4D)}>
+            {
+              "\u0627\u0646\u062a\u062e\u0627\u0628 \u0631\u0648\u0632 \u0648 \u0632\u0645\u0627\u0646"
+            }
+          </div>
+        }
+        trigger={null}
+      >
+        {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+          (() => {
+            try {
+              return (() => {
+                const weekDays = [
+                  {
+                    label: "ش",
+                    value: "sat"
+                  },
+                  {
+                    label: "ی",
+                    value: "sun"
+                  },
+                  {
+                    label: "د",
+                    value: "mon"
+                  },
+                  {
+                    label: "س",
+                    value: "tue"
+                  },
+                  {
+                    label: "چ",
+                    value: "wed"
+                  },
+                  {
+                    label: "پ",
+                    value: "thu"
+                  },
+                  {
+                    label: "ج",
+                    value: "fri"
+                  }
+                ];
+
+                return weekDays;
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
+        ).map((__plasmic_item_0, __plasmic_idx_0) => {
+          const currentItem = __plasmic_item_0;
+          const currentIndex = __plasmic_idx_0;
+          return (
+            <ItemShow
+              data-plasmic-name={"itemShow"}
+              data-plasmic-override={overrides.itemShow}
+              className={classNames("__wab_instance", sty.itemShow)}
+              currentItem={currentItem.label}
+              key={currentIndex}
+              ligtht={true}
+            >
+              <div className={classNames("all", "__wab_text", sty.text__lAoF)}>
+                {"Enter some text"}
+              </div>
+            </ItemShow>
+          );
+        })}
+      </AntdModal>
     </div>
   ) as React.ReactElement | null;
 }
@@ -1079,7 +1186,9 @@ const PlasmicDescendants = {
     "end",
     "timePickerEnd",
     "option1",
-    "svg"
+    "svg",
+    "modal",
+    "itemShow"
   ],
   button2: ["button2"],
   checkboxGroup: [
@@ -1096,7 +1205,9 @@ const PlasmicDescendants = {
   end: ["end", "timePickerEnd"],
   timePickerEnd: ["timePickerEnd"],
   option1: ["option1"],
-  svg: ["svg"]
+  svg: ["svg"],
+  modal: ["modal", "itemShow"],
+  itemShow: ["itemShow"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1111,6 +1222,8 @@ type NodeDefaultElementType = {
   timePickerEnd: typeof TimePicker;
   option1: typeof Checkbox;
   svg: "svg";
+  modal: typeof AntdModal;
+  itemShow: typeof ItemShow;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1183,6 +1296,8 @@ export const PlasmicTimeWeek = Object.assign(
     timePickerEnd: makeNodeComponent("timePickerEnd"),
     option1: makeNodeComponent("option1"),
     svg: makeNodeComponent("svg"),
+    modal: makeNodeComponent("modal"),
+    itemShow: makeNodeComponent("itemShow"),
 
     // Metadata about props expected for PlasmicTimeWeek
     internalVariantProps: PlasmicTimeWeek__VariantProps,

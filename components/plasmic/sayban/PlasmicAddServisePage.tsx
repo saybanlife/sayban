@@ -62,6 +62,8 @@ import {
 import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
 import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
+import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
+import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
 import Snackbar from "../../Snackbar"; // plasmic-import: CaodI8ra68z4/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
@@ -111,6 +113,8 @@ export type PlasmicAddServisePage__OverridesType = {
   off?: Flex__<typeof TextInput>;
   select?: Flex__<typeof Select>;
   menuItem?: Flex__<typeof MenuItem>;
+  radioGroup?: Flex__<typeof RadioGroup>;
+  radio?: Flex__<typeof Radio>;
   snackbar?: Flex__<typeof Snackbar>;
   _delete?: Flex__<typeof Button>;
   cansel?: Flex__<typeof Button>;
@@ -257,6 +261,11 @@ function PlasmicAddServisePage__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.staffs
+      },
+      {
+        path: "radioGroup[].value",
+        type: "private",
+        variableType: "array"
       }
     ],
     [$props, $ctx, $refs]
@@ -309,10 +318,24 @@ function PlasmicAddServisePage__RenderFunc(props: {
         const currentIndex = __plasmic_idx_0;
         return (
           <div
-            className={classNames("all", sty.freeBox___3WiGk)}
+            className={classNames("all", sty.freeBox___3WiGk, {
+              [sty.freeBoxstaffs___3WiGkNkua1]: hasVariant(
+                $state,
+                "staffs",
+                "staffs"
+              )
+            })}
             key={currentIndex}
           >
-            <div className={classNames("all", sty.freeBox__xlgv)}>
+            <div
+              className={classNames("all", sty.freeBox__xlgv, {
+                [sty.freeBoxstaffs__xlgvNkua1]: hasVariant(
+                  $state,
+                  "staffs",
+                  "staffs"
+                )
+              })}
+            >
               <div className={classNames("all", "__wab_text", sty.text__uyk4X)}>
                 {"\u0646\u0627\u0645 \u0633\u0631\u0648\u06cc\u0633"}
               </div>
@@ -400,7 +423,15 @@ function PlasmicAddServisePage__RenderFunc(props: {
                 );
               })()}
             </div>
-            <div className={classNames("all", sty.freeBox__xoiB)}>
+            <div
+              className={classNames("all", sty.freeBox__xoiB, {
+                [sty.freeBoxstaffs__xoiBNkua1]: hasVariant(
+                  $state,
+                  "staffs",
+                  "staffs"
+                )
+              })}
+            >
               <div className={classNames("all", "__wab_text", sty.text__yoMsY)}>
                 {"\u062a\u0648\u0636\u06cc\u062d\u0627\u062a"}
               </div>
@@ -1100,13 +1131,190 @@ function PlasmicAddServisePage__RenderFunc(props: {
                 );
               })()}
             </div>
+            <div
+              className={classNames("all", sty.freeBox__zdAgl, {
+                [sty.freeBoxstaffs__zdAglNkua1]: hasVariant(
+                  $state,
+                  "staffs",
+                  "staffs"
+                )
+              })}
+            >
+              <div
+                className={classNames("all", "__wab_text", sty.text__yHsqS, {
+                  [sty.textstaffs__yHsqSNkua1]: hasVariant(
+                    $state,
+                    "staffs",
+                    "staffs"
+                  )
+                })}
+              >
+                {"\u0646\u0648\u0639 \u062e\u062f\u0645\u062a"}
+              </div>
+              {(() => {
+                const child$Props = {
+                  className: classNames("__wab_instance", sty.radioGroup, {
+                    [sty.radioGroupstaffs]: hasVariant(
+                      $state,
+                      "staffs",
+                      "staffs"
+                    )
+                  }),
+                  label: null,
+                  onChange: async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "radioGroup",
+                      __plasmic_idx_0,
+                      "value"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+
+                    (async val => {
+                      const $steps = {};
+
+                      $steps["runCode"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return (currentItem.category =
+                                  $state.radioGroup[currentIndex].value);
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runCode"] != null &&
+                        typeof $steps["runCode"] === "object" &&
+                        typeof $steps["runCode"].then === "function"
+                      ) {
+                        $steps["runCode"] = await $steps["runCode"];
+                      }
+                    }).apply(null, eventArgs);
+                  },
+                  options: (
+                    <div className={classNames("all", sty.freeBox__n2WxW)}>
+                      <div
+                        className={classNames("all", sty.freeBox__dbLn, {
+                          [sty.freeBoxstaffs__dbLnNkua1]: hasVariant(
+                            $state,
+                            "staffs",
+                            "staffs"
+                          )
+                        })}
+                      >
+                        {(_par =>
+                          !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                          (() => {
+                            try {
+                              return [
+                                {
+                                  label: "عمومی",
+                                  value: "general"
+                                },
+                                {
+                                  label: "تخصصی",
+                                  value: "specialized"
+                                }
+                              ];
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return [];
+                              }
+                              throw e;
+                            }
+                          })()
+                        ).map((__plasmic_item_1, __plasmic_idx_1) => {
+                          const currentItem = __plasmic_item_1;
+                          const currentIndex = __plasmic_idx_1;
+                          return (
+                            <Radio
+                              data-plasmic-name={"radio"}
+                              data-plasmic-override={overrides.radio}
+                              key={currentIndex}
+                              label={
+                                hasVariant($state, "staffs", "staffs") ? (
+                                  <React.Fragment>
+                                    {currentItem.label}
+                                  </React.Fragment>
+                                ) : (
+                                  "Option 3"
+                                )
+                              }
+                              value={
+                                hasVariant($state, "staffs", "staffs")
+                                  ? (() => {
+                                      try {
+                                        return currentItem.value;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  : "option3"
+                              }
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ),
+                  value: generateStateValueProp($state, [
+                    "radioGroup",
+                    __plasmic_idx_0,
+                    "value"
+                  ])
+                };
+
+                initializePlasmicStates(
+                  $state,
+                  [
+                    {
+                      name: "radioGroup[].value",
+                      initFunc: ({ $props, $state, $queries, $q }) =>
+                        hasVariant($state, "staffs", "staffs")
+                          ? currentItem.category
+                          : undefined
+                    }
+                  ],
+                  [__plasmic_idx_0]
+                );
+                return (
+                  <RadioGroup
+                    data-plasmic-name={"radioGroup"}
+                    data-plasmic-override={overrides.radioGroup}
+                    {...child$Props}
+                  />
+                );
+              })()}
+            </div>
           </div>
         );
       })}
       <Snackbar
         data-plasmic-name={"snackbar"}
         data-plasmic-override={overrides.snackbar}
-        className={classNames("__wab_instance", sty.snackbar)}
+        className={classNames("__wab_instance", sty.snackbar, {
+          [sty.snackbarstaffs]: hasVariant($state, "staffs", "staffs")
+        })}
         data={generateStateValueProp($state, ["snackbar", "data"])}
         index={generateStateValueProp($state, ["snackbar", "index"])}
         onDataChange={async (...eventArgs: any) => {
@@ -1383,6 +1591,8 @@ const PlasmicDescendants = {
     "off",
     "select",
     "menuItem",
+    "radioGroup",
+    "radio",
     "snackbar",
     "_delete",
     "cansel"
@@ -1395,6 +1605,8 @@ const PlasmicDescendants = {
   off: ["off"],
   select: ["select", "menuItem"],
   menuItem: ["menuItem"],
+  radioGroup: ["radioGroup", "radio"],
+  radio: ["radio"],
   snackbar: ["snackbar", "_delete", "cansel"],
   _delete: ["_delete"],
   cansel: ["cansel"]
@@ -1412,6 +1624,8 @@ type NodeDefaultElementType = {
   off: typeof TextInput;
   select: typeof Select;
   menuItem: typeof MenuItem;
+  radioGroup: typeof RadioGroup;
+  radio: typeof Radio;
   snackbar: typeof Snackbar;
   _delete: typeof Button;
   cansel: typeof Button;
@@ -1487,6 +1701,8 @@ export const PlasmicAddServisePage = Object.assign(
     off: makeNodeComponent("off"),
     select: makeNodeComponent("select"),
     menuItem: makeNodeComponent("menuItem"),
+    radioGroup: makeNodeComponent("radioGroup"),
+    radio: makeNodeComponent("radio"),
     snackbar: makeNodeComponent("snackbar"),
     _delete: makeNodeComponent("_delete"),
     cansel: makeNodeComponent("cansel"),

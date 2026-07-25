@@ -64,7 +64,7 @@ import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-impor
 import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo/component
 import Check from "../../Check"; // plasmic-import: jHhGioxaI9lI/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
-import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
+import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
 import AddTags from "../../AddTags"; // plasmic-import: u73vHai14kpP/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -120,7 +120,7 @@ export type PlasmicTags__OverridesType = {
   check?: Flex__<typeof Check>;
   button?: Flex__<typeof Button>;
   svg?: Flex__<"svg">;
-  modal?: Flex__<typeof AntdModal>;
+  dialog?: Flex__<typeof Dialog>;
   addTags?: Flex__<typeof AddTags>;
   button3?: Flex__<typeof Button>;
   button2?: Flex__<typeof Button>;
@@ -225,12 +225,6 @@ function PlasmicTags__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "modal.open",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
-      },
-      {
         path: "addTags.servises",
         type: "private",
         variableType: "array",
@@ -271,6 +265,12 @@ function PlasmicTags__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "dialog.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -611,7 +611,7 @@ function PlasmicTags__RenderFunc(props: {
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
-                        return ($state.modal.open = true);
+                        return ($state.dialog.opendialog = true);
                       }
                     };
                     return (({ customFunction }) => {
@@ -652,28 +652,25 @@ function PlasmicTags__RenderFunc(props: {
           />
         </div>
       </div>
-      <AntdModal
-        data-plasmic-name={"modal"}
-        data-plasmic-override={overrides.modal}
-        className={classNames("__wab_instance", sty.modal)}
-        defaultStylesClassName={classNames(
-          "root_reset_qARqpE4p5tZmJuNxFbTaPz",
-          "plasmic_default_styles",
-          "plasmic_mixins",
-          styleTokensClassNames
-        )}
-        hideFooter={true}
-        modalContentClassName={classNames({ [sty["pcls_PHllOJe19_Ny"]]: true })}
-        modalScopeClassName={sty["modal__modal"]}
-        onOpenChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["modal", "open"]).apply(
+      <Dialog
+        data-plasmic-name={"dialog"}
+        data-plasmic-override={overrides.dialog}
+        className={classNames("__wab_instance", sty.dialog)}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog", "opendialog"]).apply(
             null,
             eventArgs
           );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
         }}
-        open={generateStateValueProp($state, ["modal", "open"])}
-        title={null}
-        trigger={null}
+        opendialog={generateStateValueProp($state, ["dialog", "opendialog"])}
       >
         <AddTags
           data-plasmic-name={"addTags"}
@@ -798,7 +795,7 @@ function PlasmicTags__RenderFunc(props: {
                       customFunction: async () => {
                         return (() => {
                           $state.button3.loading = false;
-                          $state.modal.open = false;
+                          $state.dialog.opendialog = false;
                           return ($state.refresh += "1");
                         })();
                       }
@@ -847,33 +844,24 @@ function PlasmicTags__RenderFunc(props: {
             onClick={async event => {
               const $steps = {};
 
-              $steps["updateModalOpen"] = true
+              $steps["runCode"] = true
                 ? (() => {
                     const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["modal", "open"]
-                      },
-                      operation: 4
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
+                      customFunction: async () => {
+                        return ($state.dialog.opendialog = false);
                       }
-                      const { objRoot, variablePath } = variable;
-
-                      const oldValue = $stateGet(objRoot, variablePath);
-                      $stateSet(objRoot, variablePath, !oldValue);
-                      return !oldValue;
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
                     })?.apply(null, [actionArgs]);
                   })()
                 : undefined;
               if (
-                $steps["updateModalOpen"] != null &&
-                typeof $steps["updateModalOpen"] === "object" &&
-                typeof $steps["updateModalOpen"].then === "function"
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
               ) {
-                $steps["updateModalOpen"] = await $steps["updateModalOpen"];
+                $steps["runCode"] = await $steps["runCode"];
               }
             }}
             onLoadingChange={async (...eventArgs: any) => {
@@ -892,7 +880,7 @@ function PlasmicTags__RenderFunc(props: {
             }}
           />
         </div>
-      </AntdModal>
+      </Dialog>
     </div>
   ) as React.ReactElement | null;
 }
@@ -906,7 +894,7 @@ const PlasmicDescendants = {
     "check",
     "button",
     "svg",
-    "modal",
+    "dialog",
     "addTags",
     "button3",
     "button2"
@@ -917,7 +905,7 @@ const PlasmicDescendants = {
   check: ["check"],
   button: ["button", "svg"],
   svg: ["svg"],
-  modal: ["modal", "addTags", "button3", "button2"],
+  dialog: ["dialog", "addTags", "button3", "button2"],
   addTags: ["addTags"],
   button3: ["button3"],
   button2: ["button2"]
@@ -933,7 +921,7 @@ type NodeDefaultElementType = {
   check: typeof Check;
   button: typeof Button;
   svg: "svg";
-  modal: typeof AntdModal;
+  dialog: typeof Dialog;
   addTags: typeof AddTags;
   button3: typeof Button;
   button2: typeof Button;
@@ -1007,7 +995,7 @@ export const PlasmicTags = Object.assign(
     check: makeNodeComponent("check"),
     button: makeNodeComponent("button"),
     svg: makeNodeComponent("svg"),
-    modal: makeNodeComponent("modal"),
+    dialog: makeNodeComponent("dialog"),
     addTags: makeNodeComponent("addTags"),
     button3: makeNodeComponent("button3"),
     button2: makeNodeComponent("button2"),

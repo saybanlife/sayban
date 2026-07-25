@@ -1028,6 +1028,11 @@ function PlasmicCenterOffers__RenderFunc(props: {
               "steps",
               "answerSheet"
             ),
+            [sty.freeBoxsteps_selectService__l105OnMhvo]: hasVariant(
+              $state,
+              "steps",
+              "selectService"
+            ),
             [sty.freeBoxtop__l105Oo24Q6]: hasVariant($state, "top", "top")
           })}
         >

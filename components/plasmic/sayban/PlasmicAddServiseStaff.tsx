@@ -841,7 +841,15 @@ function PlasmicAddServiseStaff__RenderFunc(props: {
                   }).apply(null, eventArgs);
                 }}
                 options={
-                  <div className={classNames("all", sty.freeBox__iHtq)}>
+                  <div
+                    className={classNames("all", sty.freeBox__iHtq, {
+                      [sty.freeBoxstaff__iHtqnTldJ]: hasVariant(
+                        $state,
+                        "staff",
+                        "staff"
+                      )
+                    })}
+                  >
                     {(_par =>
                       !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                       (() => {
@@ -873,7 +881,13 @@ function PlasmicAddServiseStaff__RenderFunc(props: {
                         <Radio
                           data-plasmic-name={"radio"}
                           data-plasmic-override={overrides.radio}
-                          className={classNames("__wab_instance", sty.radio)}
+                          className={classNames("__wab_instance", sty.radio, {
+                            [sty.radiostaff]: hasVariant(
+                              $state,
+                              "staff",
+                              "staff"
+                            )
+                          })}
                           key={currentIndex}
                           label={
                             <React.Fragment>

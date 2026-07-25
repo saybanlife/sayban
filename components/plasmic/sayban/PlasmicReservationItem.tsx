@@ -961,7 +961,8 @@ function PlasmicReservationItem__RenderFunc(props: {
                 try {
                   return (
                     ["awaitingOffers"].includes($props.currentItem.status) &&
-                    $props.currentItem.has_offer == 0
+                    $props.currentItem.has_offer == 0 &&
+                    $props.centerId != null
                   );
                 } catch (e) {
                   if (

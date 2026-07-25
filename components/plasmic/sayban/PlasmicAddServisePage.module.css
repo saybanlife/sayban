@@ -222,6 +222,53 @@
 .select:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
+.freeBox__zdAgl {
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  display: none;
+  padding: 0px;
+}
+.freeBoxstaffs__zdAglNkua1 {
+  display: flex;
+}
+.text__yHsqS {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: right;
+  font-size: var(--token-w-4Gcj0_UzPS);
+  color: var(--token-KjATzAYJ5IB7);
+  min-width: 0;
+}
+.radioGroup:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.freeBox__n2WxW {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--token-D_3fp_JIDs1G);
+}
+.freeBox__dbLn {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.freeBoxstaffs__dbLnNkua1 {
+  padding: 0px;
+}
 .snackbar:global(.__wab_instance):global(.__wab_instance) {
   animation: none;
   max-width: 100%;
