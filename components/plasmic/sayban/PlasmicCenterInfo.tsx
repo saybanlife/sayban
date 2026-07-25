@@ -881,8 +881,7 @@ function PlasmicCenterInfo__RenderFunc(props: {
                       customFunction: async () => {
                         return (() => {
                           $state.button.loading = false;
-                          $state.modal.open = false;
-                          return ($state.refresh += "1");
+                          return ($state.modal.open = false);
                         })();
                       }
                     };

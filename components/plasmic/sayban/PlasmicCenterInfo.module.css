@@ -166,6 +166,7 @@
   left: 0;
   top: 0;
   z-index: 2;
+  display: none;
 }
 .modal:global(.__wab_instance) {
   max-width: 100%;
