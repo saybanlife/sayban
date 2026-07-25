@@ -84,6 +84,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import sty from "./PlasmicReservationItem.module.css"; // plasmic-import: 4UaemkVPEyQ4/css
 
 import Icon15Icon from "./icons/PlasmicIcon__Icon15"; // plasmic-import: uAXK4fWyRv8m/icon
+import CalendarQuestionIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CalendarQuestion"; // plasmic-import: qoV5Jg4kSY8k/icon
 import PlusIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Plus"; // plasmic-import: _pdhShvRj8aO/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import UserIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__User"; // plasmic-import: d1LJS78vGoJH/icon
@@ -823,72 +824,135 @@ function PlasmicReservationItem__RenderFunc(props: {
                 </div>
               ) : null}
             </div>
-            <UploudeTime
-              data-plasmic-name={"uploudeTime"}
-              data-plasmic-override={overrides.uploudeTime}
-              className={classNames("__wab_instance", sty.uploudeTime, {
-                [sty.uploudeTimehome]: hasVariant($state, "home", "home")
-              })}
-              posttime={
-                hasVariant($state, "home", "home")
-                  ? (() => {
-                      function addTime(
-                        dateString,
-                        addHours = 0,
-                        addMinutes = 0
-                      ) {
-                        if (!dateString) return null;
-                        const date = new Date(dateString.replace(" ", "T"));
-                        if (!date) return null;
-                        date.setMinutes(
-                          date.getMinutes() + (addHours * 60 + addMinutes)
-                        );
-                        return {
-                          year: date.getFullYear(),
-                          month: date.getMonth() + 1,
-                          day: date.getDate(),
-                          hour: date.getHours(),
-                          minute: date.getMinutes(),
-                          second: date.getSeconds()
-                        };
-                      }
-                      const newCreatedAt = addTime(
-                        $props?.currentItem?.created_at,
-                        3,
-                        30
-                      );
-                      return newCreatedAt;
-                    })()
-                  : (() => {
-                      function addTime(
-                        dateString,
-                        addHours = 0,
-                        addMinutes = 0
-                      ) {
-                        if (!dateString) return null;
-                        const date = new Date(dateString.replace(" ", "T"));
-                        if (!date) return null;
-                        date.setMinutes(
-                          date.getMinutes() + (addHours * 60 + addMinutes)
-                        );
-                        return {
-                          year: date.getFullYear(),
-                          month: date.getMonth() + 1,
-                          day: date.getDate(),
-                          hour: date.getHours(),
-                          minute: date.getMinutes(),
-                          second: date.getSeconds()
-                        };
-                      }
-                      const newCreatedAt = addTime(
-                        $props?.currentItem?.start_time,
-                        3,
-                        30
-                      );
-                      return newCreatedAt;
-                    })()
+            {(() => {
+              try {
+                return !$props?.currentItem?.start_time;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
               }
-            />
+            })() ? (
+              <div
+                className={classNames("all", sty.freeBox__urbBu, {
+                  [sty.freeBoxhome__urbBuQqzeO]: hasVariant(
+                    $state,
+                    "home",
+                    "home"
+                  )
+                })}
+              >
+                <CalendarQuestionIcon
+                  className={classNames("all", sty.svg__e8VC, {
+                    [sty.svghome__e8VCQqzeO]: hasVariant($state, "home", "home")
+                  })}
+                  role={"img"}
+                />
+
+                {(hasVariant($state, "home", "home") ? true : false) ? (
+                  <div
+                    className={classNames(
+                      "all",
+                      "__wab_text",
+                      sty.text__dnmuu,
+                      {
+                        [sty.texthome__dnmuuQqzeO]: hasVariant(
+                          $state,
+                          "home",
+                          "home"
+                        )
+                      }
+                    )}
+                  >
+                    {
+                      "\u062a\u0627\u0631\u06cc\u062e \u0634\u0631\u0648\u0639 \u062e\u062f\u0645\u062a \u0647\u0646\u0648\u0632 \u0645\u0634\u062e\u0635 \u0646\u0634\u062f\u0647 \u0627\u0633\u062a"
+                    }
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
+            {(() => {
+              try {
+                return $props?.currentItem?.start_time;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <UploudeTime
+                data-plasmic-name={"uploudeTime"}
+                data-plasmic-override={overrides.uploudeTime}
+                className={classNames("__wab_instance", sty.uploudeTime, {
+                  [sty.uploudeTimehome]: hasVariant($state, "home", "home")
+                })}
+                posttime={
+                  hasVariant($state, "home", "home")
+                    ? (() => {
+                        function addTime(
+                          dateString,
+                          addHours = 0,
+                          addMinutes = 0
+                        ) {
+                          if (!dateString) return null;
+                          const date = new Date(dateString.replace(" ", "T"));
+                          if (!date) return null;
+                          date.setMinutes(
+                            date.getMinutes() + (addHours * 60 + addMinutes)
+                          );
+                          return {
+                            year: date.getFullYear(),
+                            month: date.getMonth() + 1,
+                            day: date.getDate(),
+                            hour: date.getHours(),
+                            minute: date.getMinutes(),
+                            second: date.getSeconds()
+                          };
+                        }
+                        const newCreatedAt = addTime(
+                          $props?.currentItem?.start_time
+                        );
+                        return newCreatedAt;
+                      })()
+                    : (() => {
+                        function addTime(
+                          dateString,
+                          addHours = 0,
+                          addMinutes = 0
+                        ) {
+                          if (!dateString) return null;
+                          const date = new Date(dateString.replace(" ", "T"));
+                          if (!date) return null;
+                          date.setMinutes(
+                            date.getMinutes() + (addHours * 60 + addMinutes)
+                          );
+                          return {
+                            year: date.getFullYear(),
+                            month: date.getMonth() + 1,
+                            day: date.getDate(),
+                            hour: date.getHours(),
+                            minute: date.getMinutes(),
+                            second: date.getSeconds()
+                          };
+                        }
+                        const newCreatedAt = addTime(
+                          $props?.currentItem?.start_time,
+                          3,
+                          30
+                        );
+                        return newCreatedAt;
+                      })()
+                }
+              />
+            ) : null}
           </div>
         </div>
         {(

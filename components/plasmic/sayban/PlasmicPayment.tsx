@@ -170,7 +170,7 @@ function PlasmicPayment__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          id: "202cb962ac59075b964b07152d234b70",
+          id: "65ded5353c5ee48d0b7d48c591b8f430",
           token:
             "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwaXJlIjoxNzY0NTA2MjczfQ.A6wRqW0jMYVg_rZ4OMZ5oXrcOVwKq3BG4i_wmvKf_8A"
         },
@@ -1327,9 +1327,7 @@ function PlasmicPayment__RenderFunc(props: {
                           }
                           if ($state.basic.data?.result?.start_time)
                             return addTime(
-                              $state.basic.data?.result?.start_time,
-                              3,
-                              30
+                              $state.basic.data?.result?.start_time
                             );
                           else return null;
                         })()}

@@ -1382,13 +1382,13 @@ function PlasmicMain__RenderFunc(props: {
         path: "centerInfo.tags2",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ["8", "2"]
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "centerInfo2.tags2",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ["8", "2"]
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       }
     ],
     [$props, $ctx, $refs]
@@ -5860,7 +5860,22 @@ function PlasmicMain__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "error",
-                            "\u0645\u0634\u06a9\u0644\u06cc \u0631\u062e \u062f\u0627\u062f\u0647 \u0627\u0633\u062a \u0644\u0637\u0641\u0627 \u0645\u062c\u062f\u062f\u0627 \u062a\u0644\u0627\u0634 \u06a9\u0646\u06cc\u062f.",
+                            (() => {
+                              try {
+                                return (
+                                  $steps.invokeGlobalAction?.data?.message ||
+                                  "مشکلی رخ داده است لطفا مجددا تلاش کنید."
+                                );
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
                             "top-left"
                           ]
                         };
