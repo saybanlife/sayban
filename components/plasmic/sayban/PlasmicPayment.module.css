@@ -914,6 +914,8 @@
   user-select: text;
   text-decoration-line: none;
   text-overflow: clip;
+  background: none;
+  padding: 0px;
 }
 .text__aygH9 {
   animation: none;

@@ -1604,10 +1604,26 @@ function PlasmicPayment__RenderFunc(props: {
                                   " تومان"}
                               </React.Fragment>
                             ) : (
-                              <React.Fragment>
-                                {$state.basic.data.result.service?.final_price?.toLocaleString() +
-                                  " تومان"}
-                              </React.Fragment>
+                              <div
+                                className={"__wab_expr_html_text"}
+                                dangerouslySetInnerHTML={{
+                                  __html: (() => {
+                                    const price =
+                                      $state.basic.data.result.service
+                                        ?.final_price;
+                                    const displayPrice =
+                                      price === 0
+                                        ? `<span style="
+      background-color: #D9F99D; 
+      padding: 4px 8px; 
+      border-radius: 8px; 
+      font-weight: bold; 
+    ">رایگان</span>`
+                                        : `${price?.toLocaleString()} تومان`;
+                                    return displayPrice;
+                                  })()
+                                }}
+                              />
                             )}
                           </div>
                         </div>
@@ -1666,10 +1682,26 @@ function PlasmicPayment__RenderFunc(props: {
                                   " تومان"}
                               </React.Fragment>
                             ) : (
-                              <React.Fragment>
-                                {$state.basic.data.result.service?.final_price?.toLocaleString() +
-                                  " تومان"}
-                              </React.Fragment>
+                              <div
+                                className={"__wab_expr_html_text"}
+                                dangerouslySetInnerHTML={{
+                                  __html: (() => {
+                                    const price =
+                                      $state.basic.data.result.service
+                                        ?.final_price;
+                                    const displayPrice =
+                                      price === 0
+                                        ? `<span style="
+      background-color: #D9F99D; 
+      padding: 4px 8px; 
+      border-radius: 8px; 
+      font-weight: bold; 
+    ">رایگان</span>`
+                                        : `${price?.toLocaleString()} تومان`;
+                                    return displayPrice;
+                                  })()
+                                }}
+                              />
                             )}
                           </div>
                         </div>

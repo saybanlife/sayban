@@ -1035,8 +1035,8 @@ function PlasmicBooking__RenderFunc(props: {
                 posttime={(() => {
                   function addTime(dateString, addHours = 0, addMinutes = 0) {
                     if (!dateString) return null;
-                    const date = new Date(dateString.replace(" ", "T"));
-                    if (!date) return null;
+                    const date = new Date(dateString);
+                    if (Number.isNaN(date.getTime())) return null;
                     date.setMinutes(
                       date.getMinutes() + (addHours * 60 + addMinutes)
                     );
@@ -1049,10 +1049,44 @@ function PlasmicBooking__RenderFunc(props: {
                       second: date.getSeconds()
                     };
                   }
-                  const newCreatedAt = addTime(
-                    $state.datalist?.start_time || 0
-                  );
-                  return newCreatedAt;
+                  let finalCreatedAt = null;
+                  if ($state.datalist?.start_time) {
+                    return (finalCreatedAt = addTime(
+                      $state.datalist.start_time
+                    ));
+                  } else {
+                    try {
+                      if ($state.datalist?.answers) {
+                        const answers = JSON.parse($state.datalist.answers);
+                        const dateObject = answers?.find(
+                          i => i.type === "date"
+                        );
+                        const timeObject = answers?.find(
+                          i => i.type === "time"
+                        );
+                        let dateValue = "";
+                        let timeValue = "";
+                        if (dateObject?.answer?.gregorian) {
+                          const g = dateObject.answer.gregorian;
+                          dateValue = `${g.year}-${String(g.month).padStart(2, "0")}-${String(g.day).padStart(2, "0")}`;
+                        }
+                        if (
+                          timeObject?.answer?.hour !== undefined &&
+                          timeObject?.answer?.minute !== undefined
+                        ) {
+                          const h = timeObject.answer.hour;
+                          const m = timeObject.answer.minute;
+                          timeValue = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+                        }
+                        if (dateValue && timeValue) {
+                          const isoString = `${dateValue}T${timeValue}:00`;
+                          return (finalCreatedAt = addTime(isoString));
+                        }
+                      }
+                    } catch (error) {
+                      return console.error("خطا در پردازش answers:", error);
+                    }
+                  }
                 })()}
               />
             </div>
@@ -1141,7 +1175,7 @@ function PlasmicBooking__RenderFunc(props: {
                   className={classNames("all", "__wab_text", sty.text__oae3W)}
                 >
                   <React.Fragment>
-                    {$state.datalist?.staff?.name || ""}
+                    {$state.datalist?.staff?.name || "پرستاری انتخاب نشده است"}
                   </React.Fragment>
                 </div>
               </div>

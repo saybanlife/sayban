@@ -298,6 +298,30 @@ function PlasmicCenterInfo__RenderFunc(props: {
 
         valueProp: "tags2",
         onChangeProp: "onTagsChange"
+      },
+      {
+        path: "addTags.nameValue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "addTags.textInputValue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "addTags.textInput2Value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "addTags.tag",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -760,6 +784,21 @@ function PlasmicCenterInfo__RenderFunc(props: {
           data-plasmic-name={"addTags"}
           data-plasmic-override={overrides.addTags}
           className={classNames("__wab_instance", sty.addTags)}
+          nameValue={generateStateValueProp($state, ["addTags", "nameValue"])}
+          onNameValueChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["addTags", "nameValue"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
           onServisesChange={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["addTags", "servises"]).apply(
               null,
@@ -774,7 +813,58 @@ function PlasmicCenterInfo__RenderFunc(props: {
               return;
             }
           }}
+          onTagChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["addTags", "tag"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onTextInput2ValueChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "addTags",
+              "textInput2Value"
+            ]).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onTextInputValueChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "addTags",
+              "textInputValue"
+            ]).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
           servises={generateStateValueProp($state, ["addTags", "servises"])}
+          tag={generateStateValueProp($state, ["addTags", "tag"])}
+          textInput2Value={generateStateValueProp($state, [
+            "addTags",
+            "textInput2Value"
+          ])}
+          textInputValue={generateStateValueProp($state, [
+            "addTags",
+            "textInputValue"
+          ])}
         />
 
         <div className={classNames("all", sty.freeBox___93Q5U)}>

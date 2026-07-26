@@ -76,19 +76,27 @@ import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-impor
 
 createPlasmicElementProxy;
 
-export type PlasmicTimeInput__VariantMembers = {};
-export type PlasmicTimeInput__VariantsArgs = {};
+export type PlasmicTimeInput__VariantMembers = {
+  label: "label";
+};
+export type PlasmicTimeInput__VariantsArgs = {
+  label?: SingleBooleanChoiceArg<"label">;
+};
 type VariantPropType = keyof PlasmicTimeInput__VariantsArgs;
-export const PlasmicTimeInput__VariantProps = new Array<VariantPropType>();
+export const PlasmicTimeInput__VariantProps = new Array<VariantPropType>(
+  "label"
+);
 
 export type PlasmicTimeInput__ArgsType = {
   time?: any;
   onTimeChange?: (val: string) => void;
+  children?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicTimeInput__ArgsType;
 export const PlasmicTimeInput__ArgProps = new Array<ArgPropType>(
   "time",
-  "onTimeChange"
+  "onTimeChange",
+  "children"
 );
 
 export type PlasmicTimeInput__OverridesType = {
@@ -101,6 +109,8 @@ export type PlasmicTimeInput__OverridesType = {
 export interface DefaultTimeInputProps {
   time?: any;
   onTimeChange?: (val: string) => void;
+  children?: React.ReactNode;
+  label?: SingleBooleanChoiceArg<"label">;
   className?: string;
 }
 
@@ -170,6 +180,12 @@ function PlasmicTimeInput__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "label",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.label
       }
     ],
     [$props, $ctx, $refs]
@@ -197,11 +213,17 @@ function PlasmicTimeInput__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        { [sty.rootlabel]: hasVariant($state, "label", "label") }
       )}
     >
       <div className={classNames("all", sty.freeBox__mnPp)}>
-        <ClockIcon className={classNames("all", sty.svg__nuSw2)} role={"img"} />
+        <ClockIcon
+          className={classNames("all", sty.svg__nuSw2, {
+            [sty.svglabel__nuSw2OaGyf]: hasVariant($state, "label", "label")
+          })}
+          role={"img"}
+        />
 
         <div
           className={classNames("all", sty.freeBox__eYvYb)}
@@ -270,6 +292,28 @@ function PlasmicTimeInput__RenderFunc(props: {
               </React.Fragment>
             </div>
           ) : null}
+          <div
+            className={classNames("all", sty.freeBox__j8YGs, {
+              [sty.freeBoxlabel__j8YGsOaGyf]: hasVariant(
+                $state,
+                "label",
+                "label"
+              )
+            })}
+          >
+            {renderPlasmicSlot({
+              defaultContents:
+                "\u0633\u0627\u0639\u062a \u0634\u0631\u0648\u0639 \u0628\u0647 \u06a9\u0627\u0631",
+              value: args.children,
+              className: classNames(sty.slotTargetChildren, {
+                [sty.slotTargetChildrenlabel]: hasVariant(
+                  $state,
+                  "label",
+                  "label"
+                )
+              })
+            })}
+          </div>
           {(() => {
             try {
               return $state.time.hour;
@@ -369,8 +413,32 @@ function PlasmicTimeInput__RenderFunc(props: {
           <TimePickerCustom
             data-plasmic-name={"timePickerCustom"}
             data-plasmic-override={overrides.timePickerCustom}
-            SelectedHour={9}
-            SelectedMinute={30}
+            SelectedHour={(() => {
+              try {
+                return $state.time.hour || 9;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return 9;
+                }
+                throw e;
+              }
+            })()}
+            SelectedMinute={(() => {
+              try {
+                return $state.time.minute || 30;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return 30;
+                }
+                throw e;
+              }
+            })()}
             className={classNames("__wab_instance", sty.timePickerCustom)}
             onChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [

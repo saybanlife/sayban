@@ -1,0 +1,93 @@
+.root {
+  background: var(--token-Es3BYpS8XP38);
+  display: inline-flex;
+  flex-direction: row;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  outline-width: 0px;
+  justify-self: flex-start;
+  column-gap: var(--token-cfon0PHiXQoL);
+  min-height: 0;
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: var(--token-RuQNZpYm0Yds) var(--token-cfon0PHiXQoL);
+  border: 2px solid var(--token-A-PNbaadkZKd);
+}
+.rootselect {
+  background: var(--token-ee2TuxDknsJj);
+  border-width: 2px;
+  border-color: var(--token--ieHgGbFH1Fa);
+}
+.rootligtht {
+  background: var(--token-DbGdjBpQ6R_X);
+  border-width: 1px;
+  border-color: var(--token-C6B6ZAuqICKE);
+}
+.rootligtht_select {
+  background: var(--token-oMej9DCdGzNU);
+  border-color: var(--token-ee2TuxDknsJj);
+}
+.freeBox___9Zcew {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 2px;
+  min-width: 0;
+  padding: 0px;
+}
+.freeBoxshowMore___9ZcewwOp4N {
+  padding: 0px;
+}
+.text {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: center;
+  color: var(--token-9M5jRUPt8Msb);
+  font-weight: 700;
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  line-height: 1;
+  white-space: pre;
+  min-width: 0;
+}
+.textselect {
+  color: var(--token-A-PNbaadkZKd);
+}
+.textligtht {
+  color: var(--token-9M5jRUPt8Msb);
+}
+.textshowMore {
+  font-size: var(--token-N8Pb0ZuDQAeF);
+}
+.freeBox__cE0T6 {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  margin-top: 2px;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+.slotTargetSlot2 {
+  font-size: var(--token-w-4Gcj0_UzPS);
+  font-weight: 400;
+  color: var(--token-9M5jRUPt8Msb);
+  text-align: center;
+  line-height: 1;
+  white-space: pre;
+}
+.slotTargetSlot2select {
+  color: var(--token-A-PNbaadkZKd);
+}
+.slotTargetSlot2ligtht {
+  color: var(--token-9M5jRUPt8Msb);
+}

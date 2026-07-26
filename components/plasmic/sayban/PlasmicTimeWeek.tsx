@@ -59,13 +59,13 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo/component
-import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
-import { TimePicker } from "@/fragment/components/time-picker"; // plasmic-import: fpe_CT2-ocZX/codeComponent
 import Checkbox from "../../Checkbox"; // plasmic-import: 7eMtZduHzknK/component
 import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
-import ItemShow from "../../ItemShow"; // plasmic-import: hegjECXSYJcF/component
+import Itemweek from "../../Itemweek"; // plasmic-import: KF6uX-aIk7Mr/component
+import Check from "../../Check"; // plasmic-import: jHhGioxaI9lI/component
+import TimeInput from "../../TimeInput"; // plasmic-import: DjbuB4u8rb_D/component
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -73,10 +73,9 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicTimeWeek.module.css"; // plasmic-import: cN1_ZVwWpEB8/css
 
+import EditIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Edit"; // plasmic-import: Q3Mz32feM0mm/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
-import Icon127Icon from "./icons/PlasmicIcon__Icon127"; // plasmic-import: 9Xfm_lI0FWYZ/icon
-import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
 
 createPlasmicElementProxy;
 
@@ -105,16 +104,20 @@ export const PlasmicTimeWeek__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicTimeWeek__OverridesType = {
   root?: Flex__<"div">;
-  button2?: Flex__<typeof Button>;
-  checkboxGroup?: Flex__<typeof CheckboxGroup>;
-  start?: Flex__<typeof AntdPopover>;
-  timePickerStart?: Flex__<typeof TimePicker>;
-  end?: Flex__<typeof AntdPopover>;
-  timePickerEnd?: Flex__<typeof TimePicker>;
-  option1?: Flex__<typeof Checkbox>;
+  checkboxGroup2?: Flex__<typeof CheckboxGroup>;
+  option2?: Flex__<typeof Checkbox>;
   svg?: Flex__<"svg">;
   modal?: Flex__<typeof AntdModal>;
-  itemShow?: Flex__<typeof ItemShow>;
+  itemweek?: Flex__<typeof Itemweek>;
+  close?: Flex__<typeof Check>;
+  open24?: Flex__<typeof Check>;
+  timeInput?: Flex__<typeof TimeInput>;
+  timeInput2?: Flex__<typeof TimeInput>;
+  button?: Flex__<typeof Button>;
+  button3?: Flex__<typeof Button>;
+  button4?: Flex__<typeof Button>;
+  button5?: Flex__<typeof Button>;
+  button6?: Flex__<typeof Button>;
 };
 
 export interface DefaultTimeWeekProps {
@@ -168,37 +171,6 @@ function PlasmicTimeWeek__RenderFunc(props: {
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "checkboxGroup.value",
-        type: "private",
-        variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
-      },
-      {
-        path: "option1[].isSelected",
-        type: "private",
-        variableType: "boolean"
-      },
-      {
-        path: "timePickerStart[].value",
-        type: "private",
-        variableType: "text"
-      },
-      {
-        path: "start[].open",
-        type: "private",
-        variableType: "boolean"
-      },
-      {
-        path: "end[].open",
-        type: "private",
-        variableType: "boolean"
-      },
-      {
-        path: "timePickerEnd[].value",
-        type: "private",
-        variableType: "text"
-      },
-      {
         path: "week",
         type: "writable",
         variableType: "array",
@@ -234,16 +206,171 @@ function PlasmicTimeWeek__RenderFunc(props: {
         onChangeProp: "onEdit2Change"
       },
       {
-        path: "button2.loading",
+        path: "modal.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          hasVariant($state, "edit", "edit") ? false : false
+      },
+      {
+        path: "close.isSelected",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            const selectedDays = $state.week.filter(i =>
+              $state.selectWeek.includes(i.value)
+            );
+            const isAllEqual =
+              selectedDays.length > 0 &&
+              selectedDays.every(
+                item => item.isHoliday === selectedDays[0].isHoliday
+              );
+            let result = false;
+            if (isAllEqual && selectedDays.length > 0) {
+              result = selectedDays[0].isHoliday;
+            }
+            return result;
+          })()
+      },
+      {
+        path: "open24.isSelected",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "timeInput.time",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                const selectedDays = $state.week.filter(i =>
+                  $state.selectWeek.includes(i.value)
+                );
+                const isAllEqual =
+                  selectedDays.length > 0 &&
+                  selectedDays.every(
+                    item => item.start === selectedDays[0].start
+                  );
+                let result = {};
+                if (isAllEqual) {
+                  const [startHour, startMinute] =
+                    selectedDays[0].start.split(":");
+                  result = {
+                    hour: startHour,
+                    minute: startMinute
+                  };
+                }
+                return result;
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return {};
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "timeInput2.time",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                const selectedDays = $state.week.filter(i =>
+                  $state.selectWeek.includes(i.value)
+                );
+                const isAllEqual =
+                  selectedDays.length > 0 &&
+                  selectedDays.every(item => item.end === selectedDays[0].end);
+                let result = {};
+                if (isAllEqual) {
+                  const [endHour, endMinute] = selectedDays[0].end.split(":");
+                  result = {
+                    hour: endHour,
+                    minute: endMinute
+                  };
+                }
+                return result;
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return {};
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "selectWeek",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "button.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
-        path: "modal.open",
+        path: "button3.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button4.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button5.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button6.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "checkboxGroup2.value",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.week.filter(i => i.isHoliday).map(i => i.value);
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "option2[].isSelected",
+        type: "private",
+        variableType: "boolean"
       }
     ],
     [$props, $ctx, $refs]
@@ -281,117 +408,38 @@ function PlasmicTimeWeek__RenderFunc(props: {
         </div>
         <div className={classNames("all", sty.freeBox__sqU3G)}>
           <div className={classNames("all", "__wab_text", sty.text__iEYlq)}>
-            {"\u0634\u0631\u0648\u0639"}
+            {"\u0634\u0631\u0648\u0639 \u06a9\u0627\u0631"}
           </div>
           <div className={classNames("all", "__wab_text", sty.text__hVeV)}>
-            {"\u067e\u0627\u06cc\u0627\u0646"}
+            {"\u067e\u0627\u06cc\u0627\u0646 \u06a9\u0627\u0631"}
           </div>
         </div>
-        <div className={classNames("all", "__wab_text", sty.text__cS6Iv)}>
+        <div
+          className={classNames("all", "__wab_text", sty.text__cS6Iv, {
+            [sty.textedit__cS6IvowUxX]: hasVariant($state, "edit", "edit")
+          })}
+        >
           {"\u062a\u0639\u0637\u06cc\u0644"}
         </div>
-        <Button
-          data-plasmic-name={"button2"}
-          data-plasmic-override={overrides.button2}
-          className={classNames("__wab_instance", sty.button2, {
-            [sty.button2edit]: hasVariant($state, "edit", "edit")
-          })}
-          color={"success"}
-          label={
-            <div className={classNames("all", "__wab_text", sty.text__oV9Q)}>
-              {
-                "\u0627\u0639\u0645\u0627\u0644 \u0628\u0631\u0627\u06cc \n\u0647\u0645\u0647 \u0631\u0648\u0632\u0647\u0627"
-              }
-            </div>
-          }
-          loading={generateStateValueProp($state, ["button2", "loading"])}
-          onClick={async event => {
-            const $steps = {};
-
-            $steps["runCode"] = true
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return (() => {
-                        $state.timePickerStart.forEach(
-                          i => (i.value = $state.timePickerStart[0].value)
-                        );
-                        return $state.week.forEach(
-                          i => (i.start = $state.timePickerStart[0].value)
-                        );
-                      })();
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode"] != null &&
-              typeof $steps["runCode"] === "object" &&
-              typeof $steps["runCode"].then === "function"
-            ) {
-              $steps["runCode"] = await $steps["runCode"];
-            }
-
-            $steps["runCode2"] = true
-              ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return (() => {
-                        $state.timePickerEnd.forEach(
-                          i => (i.value = $state.timePickerEnd[0].value)
-                        );
-                        return $state.week.forEach(
-                          i => (i.end = $state.timePickerEnd[0].value)
-                        );
-                      })();
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["runCode2"] != null &&
-              typeof $steps["runCode2"] === "object" &&
-              typeof $steps["runCode2"].then === "function"
-            ) {
-              $steps["runCode2"] = await $steps["runCode2"];
-            }
-          }}
-          onLoadingChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["button2", "loading"]).apply(
-              null,
-              eventArgs
-            );
-
-            if (
-              eventArgs.length > 1 &&
-              eventArgs[1] &&
-              eventArgs[1]._plasmic_state_init_
-            ) {
-              return;
-            }
-          }}
-        />
       </div>
       <div
-        className={classNames("all", sty.freeBox__hLgqC, {
-          [sty.freeBoxedit__hLgqCowUxX]: hasVariant($state, "edit", "edit")
+        className={classNames("all", sty.freeBox__bSi2Z, {
+          [sty.freeBoxedit__bSi2ZOwUxX]: hasVariant($state, "edit", "edit")
         })}
       >
         <CheckboxGroup
-          data-plasmic-name={"checkboxGroup"}
-          data-plasmic-override={overrides.checkboxGroup}
-          className={classNames("__wab_instance", sty.checkboxGroup)}
+          data-plasmic-name={"checkboxGroup2"}
+          data-plasmic-override={overrides.checkboxGroup2}
+          className={classNames("__wab_instance", sty.checkboxGroup2, {
+            [sty.checkboxGroup2edit]: hasVariant($state, "edit", "edit")
+          })}
+          description={"Description..."}
+          label={"Label"}
           onChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["checkboxGroup", "value"]).apply(
-              null,
-              eventArgs
-            );
+            generateStateOnChangeProp($state, [
+              "checkboxGroup2",
+              "value"
+            ]).apply(null, eventArgs);
 
             if (
               eventArgs.length > 1 &&
@@ -402,7 +450,15 @@ function PlasmicTimeWeek__RenderFunc(props: {
             }
           }}
           options={
-            <div className={classNames("all", sty.freeBox__vcghb)}>
+            <div
+              className={classNames("all", sty.freeBox__vN5FX, {
+                [sty.freeBoxedit__vN5FXowUxX]: hasVariant(
+                  $state,
+                  "edit",
+                  "edit"
+                )
+              })}
+            >
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {
                   try {
@@ -422,8 +478,8 @@ function PlasmicTimeWeek__RenderFunc(props: {
                 const currentIndex = __plasmic_idx_0;
                 return (
                   <div
-                    className={classNames("all", sty.freeBox__jgKsn, {
-                      [sty.freeBoxedit__jgKsnowUxX]: hasVariant(
+                    className={classNames("all", sty.freeBox___7TU, {
+                      [sty.freeBoxedit___7TUowUxX]: hasVariant(
                         $state,
                         "edit",
                         "edit"
@@ -435,464 +491,119 @@ function PlasmicTimeWeek__RenderFunc(props: {
                       className={classNames(
                         "all",
                         "__wab_text",
-                        sty.text__tzo1X
+                        sty.text___85P4K
                       )}
                     >
                       <React.Fragment>{currentItem.label}</React.Fragment>
                     </div>
                     <div
-                      className={classNames("all", sty.freeBox___6EcYm, {
-                        [sty.freeBoxedit___6EcYmowUxX]: hasVariant(
+                      className={classNames("all", sty.freeBox__tcyUc, {
+                        [sty.freeBoxedit__tcyUcOwUxX]: hasVariant(
                           $state,
                           "edit",
                           "edit"
                         )
                       })}
                     >
-                      {(() => {
-                        const child$Props = {
-                          arrow: true,
-                          className: classNames("__wab_instance", sty.start),
-                          content: (() => {
-                            const child$Props = {
-                              className: classNames(
-                                "__wab_instance",
-                                sty.timePickerStart
-                              ),
-                              notShowExclude: false,
-                              onChange: async (...eventArgs: any) => {
-                                generateStateOnChangeProp($state, [
-                                  "timePickerStart",
-                                  __plasmic_idx_0,
-                                  "value"
-                                ]).apply(null, eventArgs);
-
-                                (async time => {
-                                  const $steps = {};
-
-                                  $steps["runCode"] = false
-                                    ? (() => {
-                                        const actionArgs = {
-                                          customFunction: async () => {
-                                            return (() => {
-                                              $state.timePickerStart.forEach(
-                                                i =>
-                                                  (i.value =
-                                                    $state.timePickerStart[
-                                                      currentIndex
-                                                    ].value)
-                                              );
-                                              return $state.week.forEach(
-                                                i =>
-                                                  (i.start =
-                                                    $state.timePickerStart[
-                                                      currentIndex
-                                                    ].value)
-                                              );
-                                            })();
-                                          }
-                                        };
-                                        return (({ customFunction }) => {
-                                          return customFunction();
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                  if (
-                                    $steps["runCode"] != null &&
-                                    typeof $steps["runCode"] === "object" &&
-                                    typeof $steps["runCode"].then === "function"
-                                  ) {
-                                    $steps["runCode"] = await $steps["runCode"];
-                                  }
-
-                                  $steps["runCode2"] = true
-                                    ? (() => {
-                                        const actionArgs = {
-                                          customFunction: async () => {
-                                            return ($state.week[
-                                              currentIndex
-                                            ].start =
-                                              $state.timePickerStart[
-                                                currentIndex
-                                              ].value);
-                                          }
-                                        };
-                                        return (({ customFunction }) => {
-                                          return customFunction();
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                  if (
-                                    $steps["runCode2"] != null &&
-                                    typeof $steps["runCode2"] === "object" &&
-                                    typeof $steps["runCode2"].then ===
-                                      "function"
-                                  ) {
-                                    $steps["runCode2"] =
-                                      await $steps["runCode2"];
-                                  }
-                                }).apply(null, eventArgs);
-                              },
-                              value: generateStateValueProp($state, [
-                                "timePickerStart",
-                                __plasmic_idx_0,
-                                "value"
-                              ])
-                            };
-                            initializeCodeComponentStates(
-                              $state,
-                              [
-                                {
-                                  name: "value",
-                                  plasmicStateName: "timePickerStart[].value"
-                                }
-                              ],
-                              [__plasmic_idx_0],
-                              undefined ?? {},
-                              child$Props
-                            );
-                            initializePlasmicStates(
-                              $state,
-                              [
-                                {
-                                  name: "timePickerStart[].value",
-                                  initFunc: ({
-                                    $props,
-                                    $state,
-                                    $queries,
-                                    $q
-                                  }) => "00:00"
-                                }
-                              ],
-                              [__plasmic_idx_0]
-                            );
-                            return (
-                              <TimePicker
-                                data-plasmic-name={"timePickerStart"}
-                                data-plasmic-override={
-                                  overrides.timePickerStart
-                                }
-                                {...child$Props}
-                              />
-                            );
-                          })(),
-                          contentText: "Popover contents",
-                          defaultOpen: false,
-                          defaultStylesClassName: classNames(
-                            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
-                            "plasmic_default_styles",
-                            "plasmic_mixins",
-                            styleTokensClassNames
-                          ),
-                          mouseEnterDelay: 0,
-                          mouseLeaveDelay: 0,
-                          onOpenChange: async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "start",
-                              __plasmic_idx_0,
-                              "open"
-                            ]).apply(null, eventArgs);
-                          },
-                          open: generateStateValueProp($state, [
-                            "start",
-                            __plasmic_idx_0,
-                            "open"
-                          ]),
-                          popoverContentClassName: classNames({
-                            [sty["pcls_qSWO8dwocfH2"]]: true
-                          }),
-                          popoverScopeClassName: sty["start__popover"],
-                          title: null,
-                          trigger: "click"
-                        };
-                        initializeCodeComponentStates(
-                          $state,
-                          [
+                      <div
+                        className={classNames("all", sty.freeBox__xHrCj, {
+                          [sty.freeBoxedit__xHrCjOwUxX]: hasVariant(
+                            $state,
+                            "edit",
+                            "edit"
+                          )
+                        })}
+                      >
+                        <div
+                          className={classNames(
+                            "all",
+                            "__wab_text",
+                            sty.text__cXGwC,
                             {
-                              name: "open",
-                              plasmicStateName: "start[].open"
+                              [sty.textedit__cXGwCowUxX]: hasVariant(
+                                $state,
+                                "edit",
+                                "edit"
+                              )
                             }
-                          ],
-                          [__plasmic_idx_0],
-                          undefined ?? {},
-                          child$Props
-                        );
-                        initializePlasmicStates(
-                          $state,
-                          [
-                            {
-                              name: "start[].open",
-                              initFunc: ({ $props, $state, $queries, $q }) =>
-                                false
-                            }
-                          ],
-                          [__plasmic_idx_0]
-                        );
-                        return (
-                          <AntdPopover
-                            data-plasmic-name={"start"}
-                            data-plasmic-override={overrides.start}
-                            {...child$Props}
-                          >
-                            <div
-                              className={classNames("all", sty.freeBox__cblaD)}
-                            >
-                              <div
-                                className={classNames(
-                                  "all",
-                                  "__wab_text",
-                                  sty.text__jgBk8
-                                )}
-                              >
-                                <React.Fragment>
-                                  {(() => {
-                                    try {
-                                      return (
-                                        currentItem.start ||
-                                        $state.timePickerStart[currentIndex]
-                                          .value
-                                      );
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return "11:22";
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                </React.Fragment>
-                              </div>
-                            </div>
-                          </AntdPopover>
-                        );
-                      })()}
-                      {(() => {
-                        const child$Props = {
-                          arrow: true,
-                          className: classNames("__wab_instance", sty.end),
-                          content: (() => {
-                            const child$Props = {
-                              className: classNames(
-                                "__wab_instance",
-                                sty.timePickerEnd
-                              ),
-                              onChange: async (...eventArgs: any) => {
-                                generateStateOnChangeProp($state, [
-                                  "timePickerEnd",
-                                  __plasmic_idx_0,
-                                  "value"
-                                ]).apply(null, eventArgs);
-
-                                (async time => {
-                                  const $steps = {};
-
-                                  $steps["runCode"] = false
-                                    ? (() => {
-                                        const actionArgs = {
-                                          customFunction: async () => {
-                                            return (() => {
-                                              $state.timePickerEnd.forEach(
-                                                i =>
-                                                  (i.value =
-                                                    $state.timePickerEnd[
-                                                      currentIndex
-                                                    ].value)
-                                              );
-                                              return $state.week.forEach(
-                                                i =>
-                                                  (i.end =
-                                                    $state.timePickerEnd[
-                                                      currentIndex
-                                                    ].value)
-                                              );
-                                            })();
-                                          }
-                                        };
-                                        return (({ customFunction }) => {
-                                          return customFunction();
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                  if (
-                                    $steps["runCode"] != null &&
-                                    typeof $steps["runCode"] === "object" &&
-                                    typeof $steps["runCode"].then === "function"
-                                  ) {
-                                    $steps["runCode"] = await $steps["runCode"];
-                                  }
-
-                                  $steps["runCode2"] = true
-                                    ? (() => {
-                                        const actionArgs = {
-                                          customFunction: async () => {
-                                            return ($state.week[
-                                              currentIndex
-                                            ].end =
-                                              $state.timePickerEnd[
-                                                currentIndex
-                                              ].value);
-                                          }
-                                        };
-                                        return (({ customFunction }) => {
-                                          return customFunction();
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                  if (
-                                    $steps["runCode2"] != null &&
-                                    typeof $steps["runCode2"] === "object" &&
-                                    typeof $steps["runCode2"].then ===
-                                      "function"
-                                  ) {
-                                    $steps["runCode2"] =
-                                      await $steps["runCode2"];
-                                  }
-                                }).apply(null, eventArgs);
-                              },
-                              value: generateStateValueProp($state, [
-                                "timePickerEnd",
-                                __plasmic_idx_0,
-                                "value"
-                              ])
-                            };
-                            initializeCodeComponentStates(
-                              $state,
-                              [
-                                {
-                                  name: "value",
-                                  plasmicStateName: "timePickerEnd[].value"
+                          )}
+                        >
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return (() => {
+                                  if (currentItem.open24) return "شبانه روزی";
+                                  else
+                                    return (
+                                      currentItem.start ||
+                                      $state.timePickerStart[currentIndex].value
+                                    );
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "00:00";
                                 }
-                              ],
-                              [__plasmic_idx_0],
-                              undefined ?? {},
-                              child$Props
-                            );
-                            initializePlasmicStates(
-                              $state,
-                              [
-                                {
-                                  name: "timePickerEnd[].value",
-                                  initFunc: ({
-                                    $props,
-                                    $state,
-                                    $queries,
-                                    $q
-                                  }) => "00:00"
+                                throw e;
+                              }
+                            })()}
+                          </React.Fragment>
+                        </div>
+                      </div>
+                      <div
+                        className={classNames("all", sty.freeBox__tuPsS, {
+                          [sty.freeBoxedit__tuPsSowUxX]: hasVariant(
+                            $state,
+                            "edit",
+                            "edit"
+                          )
+                        })}
+                      >
+                        <div
+                          className={classNames(
+                            "all",
+                            "__wab_text",
+                            sty.text__u7Vgd
+                          )}
+                        >
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return (() => {
+                                  if (currentItem.open24) return "شبانه روزی";
+                                  else
+                                    return (
+                                      currentItem.end ||
+                                      $state.timePickerEnd[currentIndex].value
+                                    );
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "00:00";
                                 }
-                              ],
-                              [__plasmic_idx_0]
-                            );
-                            return (
-                              <TimePicker
-                                data-plasmic-name={"timePickerEnd"}
-                                data-plasmic-override={overrides.timePickerEnd}
-                                {...child$Props}
-                              />
-                            );
-                          })(),
-                          contentText: "Popover contents",
-                          defaultOpen: false,
-                          defaultStylesClassName: classNames(
-                            "root_reset_qARqpE4p5tZmJuNxFbTaPz",
-                            "plasmic_default_styles",
-                            "plasmic_mixins",
-                            styleTokensClassNames
-                          ),
-                          mouseEnterDelay: 0,
-                          mouseLeaveDelay: 0,
-                          onOpenChange: async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "end",
-                              __plasmic_idx_0,
-                              "open"
-                            ]).apply(null, eventArgs);
-                          },
-                          open: generateStateValueProp($state, [
-                            "end",
-                            __plasmic_idx_0,
-                            "open"
-                          ]),
-                          popoverContentClassName: classNames({
-                            [sty["pcls_p83RdXOFGjej"]]: true
-                          }),
-                          popoverScopeClassName: sty["end__popover"],
-                          title: null,
-                          trigger: "click"
-                        };
-                        initializeCodeComponentStates(
-                          $state,
-                          [
-                            {
-                              name: "open",
-                              plasmicStateName: "end[].open"
-                            }
-                          ],
-                          [__plasmic_idx_0],
-                          undefined ?? {},
-                          child$Props
-                        );
-                        initializePlasmicStates(
-                          $state,
-                          [
-                            {
-                              name: "end[].open",
-                              initFunc: ({ $props, $state, $queries, $q }) =>
-                                false
-                            }
-                          ],
-                          [__plasmic_idx_0]
-                        );
-                        return (
-                          <AntdPopover
-                            data-plasmic-name={"end"}
-                            data-plasmic-override={overrides.end}
-                            {...child$Props}
-                          >
-                            <div
-                              className={classNames("all", sty.freeBox__vrY6)}
-                            >
-                              <div
-                                className={classNames(
-                                  "all",
-                                  "__wab_text",
-                                  sty.text__hTdt9
-                                )}
-                              >
-                                <React.Fragment>
-                                  {(() => {
-                                    try {
-                                      return (
-                                        currentItem.end ||
-                                        $state.timePickerEnd[currentIndex].value
-                                      );
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return "11:22";
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                </React.Fragment>
-                              </div>
-                            </div>
-                          </AntdPopover>
-                        );
-                      })()}
+                                throw e;
+                              }
+                            })()}
+                          </React.Fragment>
+                        </div>
+                      </div>
                     </div>
                     {(() => {
                       const child$Props = {
                         children: null,
-                        className: classNames("__wab_instance", sty.option1),
-                        disabled: false,
+                        className: classNames("__wab_instance", sty.option2, {
+                          [sty.option2edit]: hasVariant($state, "edit", "edit")
+                        }),
+                        disabled: hasVariant($state, "edit", "edit")
+                          ? false
+                          : true,
                         isSelected: generateStateValueProp($state, [
-                          "option1",
+                          "option2",
                           __plasmic_idx_0,
                           "isSelected"
                         ]),
@@ -901,7 +612,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
                             className={classNames(
                               "all",
                               "__wab_text",
-                              sty.text__iGha3
+                              sty.text__ugwW6
                             )}
                           >
                             <div
@@ -927,7 +638,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
                         ),
                         onChange: async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
-                            "option1",
+                            "option2",
                             __plasmic_idx_0,
                             "isSelected"
                           ]).apply(null, eventArgs);
@@ -987,7 +698,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
                         $state,
                         [
                           {
-                            name: "option1[].isSelected",
+                            name: "option2[].isSelected",
                             initFunc: ({ $props, $state, $queries, $q }) =>
                               false
                           }
@@ -996,71 +707,55 @@ function PlasmicTimeWeek__RenderFunc(props: {
                       );
                       return (
                         <Checkbox
-                          data-plasmic-name={"option1"}
-                          data-plasmic-override={overrides.option1}
+                          data-plasmic-name={"option2"}
+                          data-plasmic-override={overrides.option2}
                           {...child$Props}
                         />
                       );
                     })()}
                     <div
-                      className={classNames("all", sty.freeBox__kk6F2, {
-                        [sty.freeBoxedit__kk6F2OwUxX]: hasVariant(
+                      className={classNames("all", sty.freeBox__aOh5, {
+                        [sty.freeBoxedit__aOh5OwUxX]: hasVariant(
                           $state,
                           "edit",
                           "edit"
                         )
                       })}
                     >
-                      {(() => {
-                        try {
-                          return currentIndex != 0;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return true;
-                          }
-                          throw e;
-                        }
-                      })() ? (
-                        <Icon127Icon
-                          data-plasmic-name={"svg"}
-                          data-plasmic-override={overrides.svg}
-                          className={classNames("all", sty.svg)}
-                          onClick={async event => {
-                            const $steps = {};
+                      <EditIcon
+                        data-plasmic-name={"svg"}
+                        data-plasmic-override={overrides.svg}
+                        className={classNames("all", sty.svg, {
+                          [sty.svgedit]: hasVariant($state, "edit", "edit")
+                        })}
+                        onClick={async event => {
+                          const $steps = {};
 
-                            $steps["runCode"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    customFunction: async () => {
-                                      return (() => {
-                                        $state.week[currentIndex].end =
-                                          $state.timePickerEnd[0].value;
-                                        return ($state.week[
-                                          currentIndex
-                                        ].start =
-                                          $state.timePickerStart[0].value);
-                                      })();
-                                    }
-                                  };
-                                  return (({ customFunction }) => {
-                                    return customFunction();
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["runCode"] != null &&
-                              typeof $steps["runCode"] === "object" &&
-                              typeof $steps["runCode"].then === "function"
-                            ) {
-                              $steps["runCode"] = await $steps["runCode"];
-                            }
-                          }}
-                          role={"img"}
-                        />
-                      ) : null}
+                          $steps["runCode"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  customFunction: async () => {
+                                    return (() => {
+                                      $state.selectWeek = [currentItem.value];
+                                      return ($state.modal.open = true);
+                                    })();
+                                  }
+                                };
+                                return (({ customFunction }) => {
+                                  return customFunction();
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["runCode"] != null &&
+                            typeof $steps["runCode"] === "object" &&
+                            typeof $steps["runCode"].then === "function"
+                          ) {
+                            $steps["runCode"] = await $steps["runCode"];
+                          }
+                        }}
+                        role={"img"}
+                      />
                     </div>
                   </div>
                 );
@@ -1068,7 +763,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
             </div>
           }
           showLabel={false}
-          value={generateStateValueProp($state, ["checkboxGroup", "value"])}
+          value={generateStateValueProp($state, ["checkboxGroup2", "value"])}
         />
       </div>
       <div
@@ -1080,7 +775,9 @@ function PlasmicTimeWeek__RenderFunc(props: {
       <AntdModal
         data-plasmic-name={"modal"}
         data-plasmic-override={overrides.modal}
-        className={classNames("__wab_instance", sty.modal)}
+        className={classNames("__wab_instance", sty.modal, {
+          [sty.modaledit]: hasVariant($state, "edit", "edit")
+        })}
         defaultStylesClassName={classNames(
           "root_reset_qARqpE4p5tZmJuNxFbTaPz",
           "plasmic_default_styles",
@@ -1089,6 +786,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
         )}
         hideFooter={true}
         maskClosable={true}
+        modalContentClassName={classNames({ [sty["pcls_sLtwfMBbmLS8"]]: true })}
         modalScopeClassName={sty["modal__modal"]}
         onOpenChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["modal", "open"]).apply(
@@ -1106,72 +804,634 @@ function PlasmicTimeWeek__RenderFunc(props: {
         }
         trigger={null}
       >
-        {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-          (() => {
-            try {
-              return (() => {
-                const weekDays = [
-                  {
-                    label: "ش",
-                    value: "sat"
-                  },
-                  {
-                    label: "ی",
-                    value: "sun"
-                  },
-                  {
-                    label: "د",
-                    value: "mon"
-                  },
-                  {
-                    label: "س",
-                    value: "tue"
-                  },
-                  {
-                    label: "چ",
-                    value: "wed"
-                  },
-                  {
-                    label: "پ",
-                    value: "thu"
-                  },
-                  {
-                    label: "ج",
-                    value: "fri"
-                  }
-                ];
+        <div className={classNames("all", sty.freeBox___9Crmo)}>
+          <div className={classNames("all", sty.freeBox__j3VZm)}>
+            {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+              (() => {
+                try {
+                  return (() => {
+                    const weekDays = [
+                      {
+                        label: "ش",
+                        value: "sat"
+                      },
+                      {
+                        label: "ی",
+                        value: "sun"
+                      },
+                      {
+                        label: "د",
+                        value: "mon"
+                      },
+                      {
+                        label: "س",
+                        value: "tue"
+                      },
+                      {
+                        label: "چ",
+                        value: "wed"
+                      },
+                      {
+                        label: "پ",
+                        value: "thu"
+                      },
+                      {
+                        label: "ج",
+                        value: "fri"
+                      }
+                    ];
 
-                return weekDays;
-              })();
+                    return weekDays;
+                  })();
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()
+            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+              const currentItem = __plasmic_item_0;
+              const currentIndex = __plasmic_idx_0;
+              return (
+                <Itemweek
+                  data-plasmic-name={"itemweek"}
+                  data-plasmic-override={overrides.itemweek}
+                  className={classNames("__wab_instance", sty.itemweek)}
+                  currentItem={currentItem.label}
+                  key={currentIndex}
+                  ligtht={true}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return (() => {
+                                const value = currentItem.value;
+                                const index = $state.selectWeek.indexOf(value);
+                                if (index > -1) {
+                                  return $state.selectWeek.splice(index, 1);
+                                } else {
+                                  return $state.selectWeek.push(value);
+                                }
+                              })();
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+                  }}
+                  select={(() => {
+                    try {
+                      return $state.selectWeek.includes(currentItem.value);
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()}
+                  slot2={
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return $props.currentItem;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "11:55";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  }
+                />
+              );
+            })}
+          </div>
+          <div className={classNames("all", sty.freeBox__jZsz4)}>
+            <Check
+              data-plasmic-name={"close"}
+              data-plasmic-override={overrides.close}
+              className={classNames("__wab_instance", sty.close)}
+              isSelected={generateStateValueProp($state, [
+                "close",
+                "isSelected"
+              ])}
+              label={"\u062a\u0639\u0637\u06cc\u0644\u06cc"}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "close",
+                  "isSelected"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+
+                (async val => {
+                  const $steps = {};
+
+                  $steps["runCode"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return ($state.open24.isSelected = false);
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode"] != null &&
+                    typeof $steps["runCode"] === "object" &&
+                    typeof $steps["runCode"].then === "function"
+                  ) {
+                    $steps["runCode"] = await $steps["runCode"];
+                  }
+                }).apply(null, eventArgs);
+              }}
+            />
+
+            <Check
+              data-plasmic-name={"open24"}
+              data-plasmic-override={overrides.open24}
+              className={classNames("__wab_instance", sty.open24)}
+              isSelected={generateStateValueProp($state, [
+                "open24",
+                "isSelected"
+              ])}
+              label={
+                "\u0634\u0628\u0627\u0646\u0647\u200c\u0631\u0648\u0632\u06cc"
+              }
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "open24",
+                  "isSelected"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+
+                (async val => {
+                  const $steps = {};
+
+                  $steps["runCode"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return ($state.close.isSelected = false);
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode"] != null &&
+                    typeof $steps["runCode"] === "object" &&
+                    typeof $steps["runCode"].then === "function"
+                  ) {
+                    $steps["runCode"] = await $steps["runCode"];
+                  }
+                }).apply(null, eventArgs);
+              }}
+            />
+          </div>
+          {(() => {
+            try {
+              return !$state.close.isSelected && !$state.open24.isSelected;
             } catch (e) {
               if (
                 e instanceof TypeError ||
                 e?.plasmicType === "PlasmicUndefinedDataError"
               ) {
-                return [];
+                return true;
               }
               throw e;
             }
-          })()
-        ).map((__plasmic_item_0, __plasmic_idx_0) => {
-          const currentItem = __plasmic_item_0;
-          const currentIndex = __plasmic_idx_0;
-          return (
-            <ItemShow
-              data-plasmic-name={"itemShow"}
-              data-plasmic-override={overrides.itemShow}
-              className={classNames("__wab_instance", sty.itemShow)}
-              currentItem={currentItem.label}
-              key={currentIndex}
-              ligtht={true}
-            >
-              <div className={classNames("all", "__wab_text", sty.text__lAoF)}>
-                {"Enter some text"}
-              </div>
-            </ItemShow>
-          );
-        })}
+          })() ? (
+            <div className={classNames("all", sty.freeBox__tDso8)}>
+              <TimeInput
+                data-plasmic-name={"timeInput"}
+                data-plasmic-override={overrides.timeInput}
+                className={classNames("__wab_instance", sty.timeInput)}
+                label={true}
+                onTimeChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "timeInput",
+                    "time"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                time={generateStateValueProp($state, ["timeInput", "time"])}
+              >
+                {
+                  "\u0633\u0627\u0639\u062a \u0634\u0631\u0648\u0639 \u0628\u0647 \u06a9\u0627\u0631"
+                }
+              </TimeInput>
+              <TimeInput
+                data-plasmic-name={"timeInput2"}
+                data-plasmic-override={overrides.timeInput2}
+                className={classNames("__wab_instance", sty.timeInput2)}
+                label={true}
+                onTimeChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "timeInput2",
+                    "time"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                time={generateStateValueProp($state, ["timeInput2", "time"])}
+              >
+                {
+                  "\u0633\u0627\u0639\u062a \u067e\u0627\u06cc\u0627\u0646 \u06a9\u0627\u0631"
+                }
+              </TimeInput>
+            </div>
+          ) : null}
+          <div className={classNames("all", sty.freeBox__iQVak)}>
+            <Button
+              data-plasmic-name={"button"}
+              data-plasmic-override={overrides.button}
+              className={classNames("__wab_instance", sty.button)}
+              color={"success"}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text__r0JbW)}
+                >
+                  {"\u0630\u062e\u06cc\u0631\u0647"}
+                </div>
+              }
+              loading={generateStateValueProp($state, ["button", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            const isHoliday = $state.close.isSelected ?? false;
+                            const isOpen24 = $state.open24.isSelected ?? false;
+                            let newStart = "";
+                            let newEnd = "";
+                            if (!isHoliday && !isOpen24) {
+                              const hasTimeInput =
+                                $state.timeInput?.time?.hour &&
+                                $state.timeInput?.time?.minute;
+                              const hasEndTimeInput =
+                                $state.timeInput2?.time?.hour &&
+                                $state.timeInput2?.time?.minute;
+                              if (hasTimeInput && hasEndTimeInput) {
+                                newStart = `${$state.timeInput.time.hour}:${$state.timeInput.time.minute}`;
+                                newEnd = `${$state.timeInput2.time.hour}:${$state.timeInput2.time.minute}`;
+                              } else {
+                                newStart = "08:00";
+                                newEnd = "17:00";
+                                console.log(
+                                  "ساعت‌ها برای روز فعال‌شده\u060C به صورت پیش‌فرض تنظیم شدند."
+                                );
+                              }
+                            } else {
+                              newStart = "";
+                              newEnd = "";
+                            }
+                            $state.week = $state.week.map(day => {
+                              if ($state.selectWeek.includes(day.value)) {
+                                return {
+                                  ...day,
+                                  start: newStart,
+                                  end: newEnd,
+                                  isHoliday: isHoliday,
+                                  open24: isOpen24
+                                };
+                              }
+                              return day;
+                            });
+                            return ($state.modal.open = false);
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+              }}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["button", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+            />
+
+            <Button
+              data-plasmic-name={"button3"}
+              data-plasmic-override={overrides.button3}
+              className={classNames("__wab_instance", sty.button3)}
+              color={"neutral"}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text__orcVz)}
+                >
+                  {"\u0644\u063a\u0648"}
+                </div>
+              }
+              loading={generateStateValueProp($state, ["button3", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return ($state.modal.open = false);
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+              }}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["button3", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+            />
+          </div>
+        </div>
       </AntdModal>
+      <div
+        className={classNames("all", sty.freeBox__efZ1J, {
+          [sty.freeBoxedit__efZ1JowUxX]: hasVariant($state, "edit", "edit")
+        })}
+      >
+        <Button
+          data-plasmic-name={"button4"}
+          data-plasmic-override={overrides.button4}
+          className={classNames("__wab_instance", sty.button4, {
+            [sty.button4edit]: hasVariant($state, "edit", "edit")
+          })}
+          color={"success"}
+          label={
+            <div className={classNames("all", "__wab_text", sty.text__lroaV)}>
+              {
+                "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0647\u0645\u0647 \u0631\u0648\u0632\u0647\u0627"
+              }
+            </div>
+          }
+          loading={generateStateValueProp($state, ["button4", "loading"])}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["runCode"] = true
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return (() => {
+                        $state.selectWeek = [
+                          "sat",
+                          "sun",
+                          "mon",
+                          "tue",
+                          "wed",
+                          "thu",
+                          "fri"
+                        ];
+
+                        return ($state.modal.open = true);
+                      })();
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runCode"] != null &&
+              typeof $steps["runCode"] === "object" &&
+              typeof $steps["runCode"].then === "function"
+            ) {
+              $steps["runCode"] = await $steps["runCode"];
+            }
+          }}
+          onLoadingChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["button4", "loading"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          roundedFull={true}
+        />
+
+        <Button
+          data-plasmic-name={"button5"}
+          data-plasmic-override={overrides.button5}
+          className={classNames("__wab_instance", sty.button5, {
+            [sty.button5edit]: hasVariant($state, "edit", "edit")
+          })}
+          color={"line"}
+          label={
+            <div className={classNames("all", "__wab_text", sty.text___6FEqr)}>
+              {
+                "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0631\u0648\u0632 \u0647\u0627\u06cc \u06a9\u0627\u0631\u06cc"
+              }
+            </div>
+          }
+          loading={generateStateValueProp($state, ["button5", "loading"])}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["runCode"] = true
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return (() => {
+                        $state.selectWeek = ["sat", "sun", "mon", "tue", "wed"];
+
+                        return ($state.modal.open = true);
+                      })();
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runCode"] != null &&
+              typeof $steps["runCode"] === "object" &&
+              typeof $steps["runCode"].then === "function"
+            ) {
+              $steps["runCode"] = await $steps["runCode"];
+            }
+          }}
+          onLoadingChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["button5", "loading"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          roundedFull={true}
+        />
+
+        <Button
+          data-plasmic-name={"button6"}
+          data-plasmic-override={overrides.button6}
+          className={classNames("__wab_instance", sty.button6, {
+            [sty.button6edit]: hasVariant($state, "edit", "edit")
+          })}
+          color={"line"}
+          label={
+            <div className={classNames("all", "__wab_text", sty.text__x3Zlk)}>
+              {
+                "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0622\u062e\u0631 \u0647\u0641\u062a\u0647"
+              }
+            </div>
+          }
+          loading={generateStateValueProp($state, ["button6", "loading"])}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["runCode"] = true
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return (() => {
+                        $state.selectWeek = ["thu", "fri"];
+
+                        return ($state.modal.open = true);
+                      })();
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runCode"] != null &&
+              typeof $steps["runCode"] === "object" &&
+              typeof $steps["runCode"].then === "function"
+            ) {
+              $steps["runCode"] = await $steps["runCode"];
+            }
+          }}
+          onLoadingChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["button6", "loading"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          roundedFull={true}
+        />
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
@@ -1179,51 +1439,64 @@ function PlasmicTimeWeek__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "button2",
-    "checkboxGroup",
-    "start",
-    "timePickerStart",
-    "end",
-    "timePickerEnd",
-    "option1",
+    "checkboxGroup2",
+    "option2",
     "svg",
     "modal",
-    "itemShow"
+    "itemweek",
+    "close",
+    "open24",
+    "timeInput",
+    "timeInput2",
+    "button",
+    "button3",
+    "button4",
+    "button5",
+    "button6"
   ],
-  button2: ["button2"],
-  checkboxGroup: [
-    "checkboxGroup",
-    "start",
-    "timePickerStart",
-    "end",
-    "timePickerEnd",
-    "option1",
-    "svg"
-  ],
-  start: ["start", "timePickerStart"],
-  timePickerStart: ["timePickerStart"],
-  end: ["end", "timePickerEnd"],
-  timePickerEnd: ["timePickerEnd"],
-  option1: ["option1"],
+  checkboxGroup2: ["checkboxGroup2", "option2", "svg"],
+  option2: ["option2"],
   svg: ["svg"],
-  modal: ["modal", "itemShow"],
-  itemShow: ["itemShow"]
+  modal: [
+    "modal",
+    "itemweek",
+    "close",
+    "open24",
+    "timeInput",
+    "timeInput2",
+    "button",
+    "button3"
+  ],
+  itemweek: ["itemweek"],
+  close: ["close"],
+  open24: ["open24"],
+  timeInput: ["timeInput"],
+  timeInput2: ["timeInput2"],
+  button: ["button"],
+  button3: ["button3"],
+  button4: ["button4"],
+  button5: ["button5"],
+  button6: ["button6"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  button2: typeof Button;
-  checkboxGroup: typeof CheckboxGroup;
-  start: typeof AntdPopover;
-  timePickerStart: typeof TimePicker;
-  end: typeof AntdPopover;
-  timePickerEnd: typeof TimePicker;
-  option1: typeof Checkbox;
+  checkboxGroup2: typeof CheckboxGroup;
+  option2: typeof Checkbox;
   svg: "svg";
   modal: typeof AntdModal;
-  itemShow: typeof ItemShow;
+  itemweek: typeof Itemweek;
+  close: typeof Check;
+  open24: typeof Check;
+  timeInput: typeof TimeInput;
+  timeInput2: typeof TimeInput;
+  button: typeof Button;
+  button3: typeof Button;
+  button4: typeof Button;
+  button5: typeof Button;
+  button6: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1288,16 +1561,20 @@ export const PlasmicTimeWeek = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    button2: makeNodeComponent("button2"),
-    checkboxGroup: makeNodeComponent("checkboxGroup"),
-    start: makeNodeComponent("start"),
-    timePickerStart: makeNodeComponent("timePickerStart"),
-    end: makeNodeComponent("end"),
-    timePickerEnd: makeNodeComponent("timePickerEnd"),
-    option1: makeNodeComponent("option1"),
+    checkboxGroup2: makeNodeComponent("checkboxGroup2"),
+    option2: makeNodeComponent("option2"),
     svg: makeNodeComponent("svg"),
     modal: makeNodeComponent("modal"),
-    itemShow: makeNodeComponent("itemShow"),
+    itemweek: makeNodeComponent("itemweek"),
+    close: makeNodeComponent("close"),
+    open24: makeNodeComponent("open24"),
+    timeInput: makeNodeComponent("timeInput"),
+    timeInput2: makeNodeComponent("timeInput2"),
+    button: makeNodeComponent("button"),
+    button3: makeNodeComponent("button3"),
+    button4: makeNodeComponent("button4"),
+    button5: makeNodeComponent("button5"),
+    button6: makeNodeComponent("button6"),
 
     // Metadata about props expected for PlasmicTimeWeek
     internalVariantProps: PlasmicTimeWeek__VariantProps,

@@ -29835,6 +29835,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicItemStaffs3.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "KF6uX-aIk7Mr",
+          "name": "Itemweek",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicItemweek.tsx",
+          "importSpec": {
+            "modulePath": "Itemweek.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicItemweek.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

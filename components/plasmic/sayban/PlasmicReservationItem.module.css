@@ -585,6 +585,7 @@
   max-width: 100%;
   grid-row-gap: var(--token-LBC0X5IbL9bo);
   grid-column-gap: var(--token-73iLa06AE6f4);
+  align-self: center;
   min-width: 0;
   padding: 0px;
 }
@@ -628,6 +629,7 @@
   width: 100%;
   font-size: var(--token-N8Pb0ZuDQAeF);
   color: var(--token-KjATzAYJ5IB7);
+  padding-top: var(--token-RuQNZpYm0Yds);
   min-width: 0;
 }
 .add8:global(.__wab_instance):global(.__wab_instance) {

@@ -195,8 +195,7 @@ function PlasmicReservationItem__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          user: {},
-          centerId: "4"
+          user: {}
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
@@ -960,9 +959,9 @@ function PlasmicReservationItem__RenderFunc(props: {
             ? (() => {
                 try {
                   return (
-                    ["awaitingOffers"].includes($props.currentItem.status) &&
-                    $props.currentItem.has_offer == 0 &&
-                    $props.centerId != null
+                    ["offersReceived", "awaitingOffers"].includes(
+                      $props.currentItem.status
+                    ) && $props.currentItem.has_offer == 0
                   );
                 } catch (e) {
                   if (
@@ -1205,6 +1204,7 @@ function PlasmicReservationItem__RenderFunc(props: {
       ) ? (
         <div
           className={classNames("all", sty.freeBox__kZi99, {
+            [sty.freeBoxhome__kZi99QqzeO]: hasVariant($state, "home", "home"),
             [sty.freeBoxopen__kZi99Lb9Mw]: hasVariant($state, "open", "open"),
             [sty.freeBoxuser2__kZi99IZq9P]: hasVariant($state, "user2", "user2")
           })}
@@ -2055,7 +2055,12 @@ function PlasmicReservationItem__RenderFunc(props: {
                             "__wab_instance",
                             sty.itemShow__bfK8W
                           )}
-                          currentItem={currentItem.staff_name}
+                          currentItem={(() => {
+                            if ($props.centerId)
+                              return `${currentItem.staff_name}`;
+                            else
+                              return `${currentItem.staff_name} (${currentItem.center_name})`;
+                          })()}
                           key={currentIndex}
                           ligtht={true}
                           select={true}
@@ -2551,7 +2556,9 @@ function PlasmicReservationItem__RenderFunc(props: {
               <Select
                 data-plasmic-name={"select"}
                 data-plasmic-override={overrides.select}
-                className={classNames("__wab_instance", sty.select)}
+                className={classNames("__wab_instance", sty.select, {
+                  [sty.selecthome]: hasVariant($state, "home", "home")
+                })}
                 isOpen={generateStateValueProp($state, ["select", "isOpen"])}
                 items={(_par =>
                   !_par ? [] : Array.isArray(_par) ? _par : [_par])(
@@ -2576,7 +2583,11 @@ function PlasmicReservationItem__RenderFunc(props: {
                       key={currentIndex}
                       label={(() => {
                         try {
-                          return currentItem.name;
+                          return (() => {
+                            if ($props.centerId) return `${currentItem.name}`;
+                            else
+                              return `${currentItem.name} (${currentItem.center_name})`;
+                          })();
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -2649,7 +2660,9 @@ function PlasmicReservationItem__RenderFunc(props: {
               <RangeSlider
                 data-plasmic-name={"rangeSlider"}
                 data-plasmic-override={overrides.rangeSlider}
-                className={classNames("__wab_instance", sty.rangeSlider)}
+                className={classNames("__wab_instance", sty.rangeSlider, {
+                  [sty.rangeSliderhome]: hasVariant($state, "home", "home")
+                })}
                 disabled={false}
                 filled={true}
                 maxValue={20000000}
@@ -2790,10 +2803,6 @@ function PlasmicReservationItem__RenderFunc(props: {
                                   message: "شناسه رزرو نامعتبر است."
                                 },
                                 {
-                                  value: $props.centerId,
-                                  message: "مرکز را انتخاب کنید."
-                                },
-                                {
                                   value: $state.select?.value,
                                   message: "پرسنل را انتخاب کنید."
                                 },
@@ -2872,8 +2881,12 @@ function PlasmicReservationItem__RenderFunc(props: {
                             undefined,
                             {
                               reservation_id: $props.currentItem?.id,
-                              center_id: $props.centerId,
                               staff_id: $state.select.value,
+                              center_id:
+                                $props.centerId ||
+                                $state.apiRequest3.data.result.find(
+                                  i => i.id.toString() === $state.select.value
+                                )?.center_id,
                               min_price: $state.rangeSlider.value
                                 ? $state.rangeSlider.value[0]
                                 : 0,
