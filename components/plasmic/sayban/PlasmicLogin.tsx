@@ -2569,7 +2569,7 @@ function PlasmicLogin__RenderFunc(props: {
                                       name: $state.name.value,
                                       national_code: $state.code.value,
                                       city: $state.city.city,
-                                      gender: $state.selectGender.value,
+                                      gender: $state.radioGroup.value,
                                       birth_date: birth_date,
                                       marital_status: $state.selectMarital.value
                                     };

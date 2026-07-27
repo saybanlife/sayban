@@ -1153,7 +1153,7 @@ function PlasmicEditUser__RenderFunc(props: {
                                 name: $state.name.value,
                                 national_code: $state.code.value,
                                 city: $state.city.city,
-                                gender: $state.selectGender.value,
+                                gender: $state.radioGroup.value,
                                 marital_status: $state.selectMarital.value
                               };
                             })();
