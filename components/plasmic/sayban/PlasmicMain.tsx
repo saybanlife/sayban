@@ -398,33 +398,55 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
-          { label: "\u0634\u0646\u0628\u0647", value: "sat", isHoliday: false },
+          {
+            label: "\u0634\u0646\u0628\u0647",
+            value: "Sat",
+            isHoliday: true,
+            start: "08:00:00",
+            end: "21:00:00"
+          },
           {
             label: "\u06cc\u06a9\u0634\u0646\u0628\u0647",
-            value: "sun",
-            isHoliday: false
+            value: "Sun",
+            isHoliday: true,
+            start: "08:00:00",
+            end: "21:00:00"
           },
           {
             label: "\u062f\u0648\u0634\u0646\u0628\u0647",
-            value: "mon",
-            isHoliday: false
+            value: "Mon",
+            isHoliday: true,
+            start: "08:00:00",
+            end: "21:00:00"
           },
           {
             label: "\u0633\u0647\u200c\u0634\u0646\u0628\u0647",
-            value: "tue",
-            isHoliday: false
+            value: "Tue",
+            isHoliday: true,
+            start: "08:00:00",
+            end: "21:00:00"
           },
           {
             label: "\u0686\u0647\u0627\u0631\u0634\u0646\u0628\u0647",
-            value: "wed",
-            isHoliday: false
+            value: "Wed",
+            isHoliday: true,
+            start: "08:00:00",
+            end: "21:00:00"
           },
           {
             label: "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647",
-            value: "thu",
-            isHoliday: false
+            value: "Thu",
+            isHoliday: true,
+            start: "08:00:00",
+            end: "21:00:00"
           },
-          { label: "\u062c\u0645\u0639\u0647", value: "fri", isHoliday: false }
+          {
+            label: "\u062c\u0645\u0639\u0647",
+            value: "Fri",
+            isHoliday: true,
+            start: "08:00:00",
+            end: "21:00:00"
+          }
         ]
       },
       {
@@ -1376,7 +1398,7 @@ function PlasmicMain__RenderFunc(props: {
         path: "timeWeek2.edit2",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
       },
       {
         path: "centerInfo.tags2",

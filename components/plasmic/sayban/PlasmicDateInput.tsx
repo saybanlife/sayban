@@ -76,10 +76,16 @@ import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-impor
 
 createPlasmicElementProxy;
 
-export type PlasmicDateInput__VariantMembers = {};
-export type PlasmicDateInput__VariantsArgs = {};
+export type PlasmicDateInput__VariantMembers = {
+  userInfo: "userInfo";
+};
+export type PlasmicDateInput__VariantsArgs = {
+  userInfo?: SingleBooleanChoiceArg<"userInfo">;
+};
 type VariantPropType = keyof PlasmicDateInput__VariantsArgs;
-export const PlasmicDateInput__VariantProps = new Array<VariantPropType>();
+export const PlasmicDateInput__VariantProps = new Array<VariantPropType>(
+  "userInfo"
+);
 
 export type PlasmicDateInput__ArgsType = {
   date?: any;
@@ -101,6 +107,7 @@ export type PlasmicDateInput__OverridesType = {
 export interface DefaultDateInputProps {
   date?: any;
   onDateChange?: (val: string) => void;
+  userInfo?: SingleBooleanChoiceArg<"userInfo">;
   className?: string;
 }
 
@@ -170,6 +177,12 @@ function PlasmicDateInput__RenderFunc(props: {
 
         valueProp: "date",
         onChangeProp: "onDateChange"
+      },
+      {
+        path: "userInfo",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.userInfo
       }
     ],
     [$props, $ctx, $refs]
@@ -197,7 +210,8 @@ function PlasmicDateInput__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        { [sty.rootuserInfo]: hasVariant($state, "userInfo", "userInfo") }
       )}
     >
       <div className={classNames("all", sty.freeBox__u85Yt)}>
@@ -255,22 +269,34 @@ function PlasmicDateInput__RenderFunc(props: {
               throw e;
             }
           })() ? (
-            <div className={classNames("all", "__wab_text", sty.text__coqJh)}>
-              <React.Fragment>
-                {(() => {
-                  try {
-                    return "مثال:  1405/06/07";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "\u0645\u062b\u0627\u0644 1406/5/1";
+            <div
+              className={classNames("all", "__wab_text", sty.text__coqJh, {
+                [sty.textuserInfo__coqJHc70Dw]: hasVariant(
+                  $state,
+                  "userInfo",
+                  "userInfo"
+                )
+              })}
+            >
+              {hasVariant($state, "userInfo", "userInfo") ? (
+                "\u062a\u0627\u0631\u06cc\u062e \u062a\u0648\u0644\u062f"
+              ) : (
+                <React.Fragment>
+                  {(() => {
+                    try {
+                      return "مثال:  1405/06/07";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "\u0645\u062b\u0627\u0644 1406/5/1";
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()}
-              </React.Fragment>
+                  })()}
+                </React.Fragment>
+              )}
             </div>
           ) : null}
           {(() => {
@@ -350,7 +376,9 @@ function PlasmicDateInput__RenderFunc(props: {
       <Dialog
         data-plasmic-name={"dialog"}
         data-plasmic-override={overrides.dialog}
-        className={classNames("__wab_instance", sty.dialog)}
+        className={classNames("__wab_instance", sty.dialog, {
+          [sty.dialoguserInfo]: hasVariant($state, "userInfo", "userInfo")
+        })}
         colorback={"w"}
         onOpendialogChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["dialog", "opendialog"]).apply(
@@ -372,12 +400,56 @@ function PlasmicDateInput__RenderFunc(props: {
           <DatePickers
             data-plasmic-name={"datePickers"}
             data-plasmic-override={overrides.datePickers}
-            SelectedDay={10}
-            SelectedMonth={10}
-            SelectedYear={1403}
-            className={classNames("__wab_instance", sty.datePickers)}
+            SelectedDay={(() => {
+              try {
+                return $state.date.day;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return 10;
+                }
+                throw e;
+              }
+            })()}
+            SelectedMonth={(() => {
+              try {
+                return $state.date.month;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return 10;
+                }
+                throw e;
+              }
+            })()}
+            SelectedYear={(() => {
+              try {
+                return $state.date.year;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return 1403;
+                }
+                throw e;
+              }
+            })()}
+            className={classNames("__wab_instance", sty.datePickers, {
+              [sty.datePickersuserInfo]: hasVariant(
+                $state,
+                "userInfo",
+                "userInfo"
+              )
+            })}
             customYears={[]}
-            disablePastDates={true}
+            disablePastDates={
+              hasVariant($state, "userInfo", "userInfo") ? false : true
+            }
             hideYear={false}
             onChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["datePickers", "value"]).apply(

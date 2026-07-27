@@ -669,7 +669,8 @@ function PlasmicLogin2__RenderFunc(props: {
                         }
                         throw e;
                       }
-                    })()
+                    })(),
+                    "top-left"
                   ]
                 };
                 return $globalActions["Fragment.showToast"]?.apply(null, [

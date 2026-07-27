@@ -790,7 +790,45 @@
 .selectGender:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
+.selectGenderpage_name:global(.__wab_instance):global(.__wab_instance) {
+  display: none;
+}
+.radioGroup:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.text__vEkhx {
+  color: var(--token-6G9-A5vsJlrH);
+}
+.freeBox__fiwCf {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  column-gap: var(--token-LBC0X5IbL9bo);
+}
+.freeBox__lEOvW {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  border-radius: var(--token-cfon0PHiXQoL);
+  padding: var(--token-rfsFxiclAtek);
+  border: 1px solid var(--token-KjATzAYJ5IB7);
+}
+.text__g6Pkq {
+  color: var(--token-Unt2O2MnUneb);
+}
 .selectMarital:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.selectMaritalpage_name:global(.__wab_instance):global(.__wab_instance) {
+  display: none;
+}
+.dateInput:global(.__wab_instance) {
   max-width: 100%;
 }
 .freeBox__iHjyx {

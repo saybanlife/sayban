@@ -309,6 +309,9 @@
 .sectionpage_booking__iGcInjjDoQ > * {
   grid-column: 4;
 }
+.sectionsearch2__iGcInUfPhZ > * {
+  grid-column: 4;
+}
 .sectionhomePage2_reminder__iGcInWvbFy {
   display: grid;
 }
@@ -541,6 +544,9 @@
   .textInput:global(.__wab_instance):global(.__wab_instance) {
     flex-shrink: 0;
   }
+}
+.textInputsearch2:global(.__wab_instance):global(.__wab_instance) {
+  flex-shrink: 0;
 }
 .textInputhomePage2_home:global(.__wab_instance):global(.__wab_instance) {
   flex-shrink: 0;

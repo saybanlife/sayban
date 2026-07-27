@@ -687,7 +687,7 @@ function PlasmicDashbord__RenderFunc(props: {
         path: "timeWeek.edit2",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
       },
       {
         path: "centerInfo.tags2",

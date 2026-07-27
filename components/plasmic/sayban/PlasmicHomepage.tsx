@@ -1726,7 +1726,8 @@ function PlasmicHomepage__RenderFunc(props: {
                   $state,
                   "page",
                   "subcategories"
-                )
+                ),
+                [sty.homePagesearch2]: hasVariant($state, "search2", "search2")
               })}
             >
               <section
@@ -1740,6 +1741,11 @@ function PlasmicHomepage__RenderFunc(props: {
                     $state,
                     "page",
                     "booking"
+                  ),
+                  [sty.sectionsearch2__iGcInUfPhZ]: hasVariant(
+                    $state,
+                    "search2",
+                    "search2"
                   )
                 })}
               >
@@ -2060,6 +2066,11 @@ function PlasmicHomepage__RenderFunc(props: {
                           $state,
                           "homePage2",
                           "home"
+                        ),
+                        [sty.textInputsearch2]: hasVariant(
+                          $state,
+                          "search2",
+                          "search2"
                         )
                       })}
                       onChange={async (...eventArgs: any) => {
@@ -2156,7 +2167,13 @@ function PlasmicHomepage__RenderFunc(props: {
                     />
 
                     <Icon49Icon
-                      className={classNames("all", sty.svg___0GKYj)}
+                      className={classNames("all", sty.svg___0GKYj, {
+                        [sty.svgsearch2___0GKYjUfPhZ]: hasVariant(
+                          $state,
+                          "search2",
+                          "search2"
+                        )
+                      })}
                       role={"img"}
                     />
 
@@ -2174,7 +2191,13 @@ function PlasmicHomepage__RenderFunc(props: {
                       }
                     })() ? (
                       <Icon10Icon
-                        className={classNames("all", sty.svg__gSs9U)}
+                        className={classNames("all", sty.svg__gSs9U, {
+                          [sty.svgsearch2__gSs9UUfPhZ]: hasVariant(
+                            $state,
+                            "search2",
+                            "search2"
+                          )
+                        })}
                         onClick={async event => {
                           const $steps = {};
 
@@ -2211,7 +2234,8 @@ function PlasmicHomepage__RenderFunc(props: {
                                     objRoot: $state,
                                     variablePath: ["textInput", "value"]
                                   },
-                                  operation: 1
+                                  operation: 0,
+                                  value: ""
                                 };
                                 return (({
                                   variable,
@@ -2224,8 +2248,8 @@ function PlasmicHomepage__RenderFunc(props: {
                                   }
                                   const { objRoot, variablePath } = variable;
 
-                                  $stateSet(objRoot, variablePath, undefined);
-                                  return undefined;
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
                                 })?.apply(null, [actionArgs]);
                               })()
                             : undefined;
@@ -2290,6 +2314,11 @@ function PlasmicHomepage__RenderFunc(props: {
                     $state,
                     "page",
                     "booking"
+                  ),
+                  [sty.revealsearch2__qDdchUfPhZ]: hasVariant(
+                    $state,
+                    "search2",
+                    "search2"
                   )
                 })}
                 damping={hasVariant($state, "homePage2", "user") ? 0.3 : 0.2}
@@ -2520,6 +2549,11 @@ function PlasmicHomepage__RenderFunc(props: {
                     $state,
                     "page",
                     "booking"
+                  ),
+                  [sty.revealsearch2__hc96MUfPhZ]: hasVariant(
+                    $state,
+                    "search2",
+                    "search2"
                   )
                 })}
                 damping={hasVariant($state, "homePage2", "user") ? 0.3 : 0.2}

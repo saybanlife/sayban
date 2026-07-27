@@ -65,6 +65,9 @@ import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import CodeTimer from "../../CodeTimer"; // plasmic-import: S3l1vuCFuyGc/component
 import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
+import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
+import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
+import DateInput from "../../DateInput"; // plasmic-import: 8LUOC3uVttVT/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
 import City from "../../City"; // plasmic-import: dRrvldGFbNOC/component
@@ -139,7 +142,10 @@ export type PlasmicLogin__OverridesType = {
   name?: Flex__<typeof TextInput>;
   code?: Flex__<typeof TextInput>;
   selectGender?: Flex__<typeof Select>;
+  radioGroup?: Flex__<typeof RadioGroup>;
+  radio?: Flex__<typeof Radio>;
   selectMarital?: Flex__<typeof Select>;
+  dateInput?: Flex__<typeof DateInput>;
   cityInput?: Flex__<typeof TextInput>;
   codeSubmit2?: Flex__<typeof Button>;
   sideEffect?: Flex__<typeof SideEffect>;
@@ -351,6 +357,18 @@ function PlasmicLogin__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "radioGroup.value",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "dateInput.date",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -2028,6 +2046,143 @@ function PlasmicLogin__RenderFunc(props: {
                   ])}
                 />
 
+                <RadioGroup
+                  data-plasmic-name={"radioGroup"}
+                  data-plasmic-override={overrides.radioGroup}
+                  className={classNames("__wab_instance", sty.radioGroup, {
+                    [sty.radioGrouppage_name]: hasVariant(
+                      $state,
+                      "page",
+                      "name"
+                    )
+                  })}
+                  label={
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text__vEkhx
+                      )}
+                    >
+                      {"\u062c\u0646\u0633\u06cc\u062a"}
+                    </div>
+                  }
+                  onChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "radioGroup",
+                      "value"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  options={
+                    <div className={classNames("all", sty.freeBox__fiwCf)}>
+                      {(_par =>
+                        !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                        (() => {
+                          try {
+                            return [
+                              {
+                                value: "male",
+                                label: "آقا"
+                              },
+                              {
+                                value: "female",
+                                label: "خانم"
+                              }
+                            ];
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()
+                      ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                        const currentItem = __plasmic_item_0;
+                        const currentIndex = __plasmic_idx_0;
+                        return (
+                          <div
+                            className={classNames("all", sty.freeBox__lEOvW, {
+                              [sty.freeBoxpage_name__lEOvWaq9MH]: hasVariant(
+                                $state,
+                                "page",
+                                "name"
+                              )
+                            })}
+                            key={currentIndex}
+                          >
+                            <Radio
+                              data-plasmic-name={"radio"}
+                              data-plasmic-override={overrides.radio}
+                              className={classNames("__wab_instance", {
+                                [sty.radiopage_name]: hasVariant(
+                                  $state,
+                                  "page",
+                                  "name"
+                                )
+                              })}
+                              label={
+                                <div
+                                  className={classNames(
+                                    "all",
+                                    "__wab_text",
+                                    sty.text__g6Pkq
+                                  )}
+                                >
+                                  <React.Fragment>
+                                    {(() => {
+                                      try {
+                                        return currentItem.label;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return "Option 3";
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                  </React.Fragment>
+                                </div>
+                              }
+                              value={(() => {
+                                try {
+                                  return currentItem.value;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  }
+                  value={generateStateValueProp($state, [
+                    "radioGroup",
+                    "value"
+                  ])}
+                />
+
                 <Select
                   data-plasmic-name={"selectMarital"}
                   data-plasmic-override={overrides.selectMarital}
@@ -2140,6 +2295,30 @@ function PlasmicLogin__RenderFunc(props: {
                   ])}
                 />
               </div>
+              <DateInput
+                data-plasmic-name={"dateInput"}
+                data-plasmic-override={overrides.dateInput}
+                className={classNames("__wab_instance", sty.dateInput, {
+                  [sty.dateInputpage_name]: hasVariant($state, "page", "name")
+                })}
+                date={generateStateValueProp($state, ["dateInput", "date"])}
+                onDateChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "dateInput",
+                    "date"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                userInfo={true}
+              />
+
               <div
                 className={classNames("all", sty.freeBox__iHjyx, {
                   [sty.freeBoxpage_name__iHjyxaq9MH]: hasVariant(
@@ -2346,8 +2525,10 @@ function PlasmicLogin__RenderFunc(props: {
                                   return "لطفا نام خود را وارد کنید";
                                 if (!$state.city.city)
                                   return "لطفا محل سکونت را وارد کنید";
-                                if (!$state.selectGender.value)
+                                if (!$state.radioGroup.value)
                                   return "لطفا جنسیت را انتخاب کنید";
+                                if (!$state.dateInput.date?.gregorian)
+                                  return "لطفا تاریخ تولد را انتخاب کنید";
                                 if (!$state.selectMarital.value)
                                   return "لطفا وضعیت تاهل را انتخاب کنید";
                               })();
@@ -2375,14 +2556,26 @@ function PlasmicLogin__RenderFunc(props: {
                               undefined,
                               (() => {
                                 try {
-                                  return {
-                                    user_Id: $state.id,
-                                    name: $state.name.value,
-                                    national_code: $state.code.value,
-                                    city: $state.city.city,
-                                    gender: $state.selectGender.value,
-                                    marital_status: $state.selectMarital.value
-                                  };
+                                  return (() => {
+                                    var year =
+                                      $state.dateInput.date.gregorian.year;
+                                    var month = String(
+                                      $state.dateInput.date.gregorian.month
+                                    ).padStart(2, "0");
+                                    var day = String(
+                                      $state.dateInput.date.gregorian.day
+                                    ).padStart(2, "0");
+                                    var birth_date = `${year}-${month}-${day}`;
+                                    return {
+                                      user_Id: $state.id,
+                                      name: $state.name.value,
+                                      national_code: $state.code.value,
+                                      city: $state.city.city,
+                                      gender: $state.selectGender.value,
+                                      birth_date: birth_date,
+                                      marital_status: $state.selectMarital.value
+                                    };
+                                  })();
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -2927,7 +3120,10 @@ const PlasmicDescendants = {
     "name",
     "code",
     "selectGender",
+    "radioGroup",
+    "radio",
     "selectMarital",
+    "dateInput",
     "cityInput",
     "codeSubmit2",
     "sideEffect",
@@ -2944,7 +3140,10 @@ const PlasmicDescendants = {
   name: ["name"],
   code: ["code"],
   selectGender: ["selectGender"],
+  radioGroup: ["radioGroup", "radio"],
+  radio: ["radio"],
   selectMarital: ["selectMarital"],
+  dateInput: ["dateInput"],
   cityInput: ["cityInput"],
   codeSubmit2: ["codeSubmit2"],
   sideEffect: ["sideEffect"],
@@ -2966,7 +3165,10 @@ type NodeDefaultElementType = {
   name: typeof TextInput;
   code: typeof TextInput;
   selectGender: typeof Select;
+  radioGroup: typeof RadioGroup;
+  radio: typeof Radio;
   selectMarital: typeof Select;
+  dateInput: typeof DateInput;
   cityInput: typeof TextInput;
   codeSubmit2: typeof Button;
   sideEffect: typeof SideEffect;
@@ -3046,7 +3248,10 @@ export const PlasmicLogin = Object.assign(
     _name: makeNodeComponent("name"),
     code: makeNodeComponent("code"),
     selectGender: makeNodeComponent("selectGender"),
+    radioGroup: makeNodeComponent("radioGroup"),
+    radio: makeNodeComponent("radio"),
     selectMarital: makeNodeComponent("selectMarital"),
+    dateInput: makeNodeComponent("dateInput"),
     cityInput: makeNodeComponent("cityInput"),
     codeSubmit2: makeNodeComponent("codeSubmit2"),
     sideEffect: makeNodeComponent("sideEffect"),

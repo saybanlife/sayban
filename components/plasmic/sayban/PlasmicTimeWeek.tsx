@@ -533,11 +533,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
                               try {
                                 return (() => {
                                   if (currentItem.open24) return "شبانه روزی";
-                                  else
-                                    return (
-                                      currentItem.start ||
-                                      $state.timePickerStart[currentIndex].value
-                                    );
+                                  else return currentItem.start;
                                 })();
                               } catch (e) {
                                 if (
@@ -573,11 +569,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
                               try {
                                 return (() => {
                                   if (currentItem.open24) return "شبانه روزی";
-                                  else
-                                    return (
-                                      currentItem.end ||
-                                      $state.timePickerEnd[currentIndex].value
-                                    );
+                                  else return currentItem.end;
                                 })();
                               } catch (e) {
                                 if (
@@ -813,31 +805,31 @@ function PlasmicTimeWeek__RenderFunc(props: {
                     const weekDays = [
                       {
                         label: "ش",
-                        value: "sat"
+                        value: "Sat"
                       },
                       {
                         label: "ی",
-                        value: "sun"
+                        value: "Sun"
                       },
                       {
                         label: "د",
-                        value: "mon"
+                        value: "Mon"
                       },
                       {
                         label: "س",
-                        value: "tue"
+                        value: "Tue"
                       },
                       {
                         label: "چ",
-                        value: "wed"
+                        value: "Wed"
                       },
                       {
                         label: "پ",
-                        value: "thu"
+                        value: "Thu"
                       },
                       {
                         label: "ج",
-                        value: "fri"
+                        value: "Fri"
                       }
                     ];
 
@@ -1144,7 +1136,10 @@ function PlasmicTimeWeek__RenderFunc(props: {
                               newEnd = "";
                             }
                             $state.week = $state.week.map(day => {
-                              if ($state.selectWeek.includes(day.value)) {
+                              const isSelected = $state.selectWeek.some(
+                                s => s.toLowerCase() === day.value.toLowerCase()
+                              );
+                              if (isSelected) {
                                 return {
                                   ...day,
                                   start: newStart,
@@ -1271,13 +1266,13 @@ function PlasmicTimeWeek__RenderFunc(props: {
                     customFunction: async () => {
                       return (() => {
                         $state.selectWeek = [
-                          "sat",
-                          "sun",
-                          "mon",
-                          "tue",
-                          "wed",
-                          "thu",
-                          "fri"
+                          "Sat",
+                          "Sun",
+                          "Mon",
+                          "Tue",
+                          "Wed",
+                          "Thu",
+                          "Fri"
                         ];
 
                         return ($state.modal.open = true);
@@ -1337,7 +1332,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
                   const actionArgs = {
                     customFunction: async () => {
                       return (() => {
-                        $state.selectWeek = ["sat", "sun", "mon", "tue", "wed"];
+                        $state.selectWeek = ["Sat", "Sun", "Mon", "Tue", "Wed"];
 
                         return ($state.modal.open = true);
                       })();
@@ -1396,7 +1391,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
                   const actionArgs = {
                     customFunction: async () => {
                       return (() => {
-                        $state.selectWeek = ["thu", "fri"];
+                        $state.selectWeek = ["Thu", "Fri"];
 
                         return ($state.modal.open = true);
                       })();
