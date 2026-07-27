@@ -1113,8 +1113,6 @@ function PlasmicEditUser__RenderFunc(props: {
                             return "لطفا جنسیت را انتخاب کنید";
                           if (!$state.dateInput.date?.gregorian)
                             return "لطفا تاریخ تولد را انتخاب کنید";
-                          if (!$state.selectMarital.value)
-                            return "لطفا وضعیت تاهل را انتخاب کنید";
                         })();
                       }
                     };
