@@ -878,7 +878,7 @@ function PlasmicCreateAccont__RenderFunc(props: {
             $steps["create"] = await $steps["create"];
           }
 
-          $steps["goToPanel"] = $steps.create?.data?.success
+          $steps["goToPanel"] = false
             ? (() => {
                 const actionArgs = {
                   destination: `/panel/${(() => {
@@ -927,7 +927,7 @@ function PlasmicCreateAccont__RenderFunc(props: {
             $steps["goToPanel"] = await $steps["goToPanel"];
           }
 
-          $steps["updateUserNameValue2"] = $steps.create?.data?.success
+          $steps["updateUserNameValue2"] = false
             ? (() => {
                 const actionArgs = {
                   variable: {
@@ -1011,7 +1011,7 @@ function PlasmicCreateAccont__RenderFunc(props: {
             $steps["runCode2"] = await $steps["runCode2"];
           }
 
-          $steps["invokeGlobalAction2"] = $steps.create?.data?.success
+          $steps["invokeGlobalAction2"] = false
             ? (() => {
                 const actionArgs = {
                   args: [
@@ -1043,6 +1043,31 @@ function PlasmicCreateAccont__RenderFunc(props: {
             typeof $steps["invokeGlobalAction2"].then === "function"
           ) {
             $steps["invokeGlobalAction2"] = await $steps["invokeGlobalAction2"];
+          }
+
+          $steps["goToPanel2"] = $steps.create?.data?.success
+            ? (() => {
+                const actionArgs = { destination: `/panel/${"login"}` };
+                return (({ destination }) => {
+                  if (
+                    typeof destination === "string" &&
+                    destination.startsWith("#")
+                  ) {
+                    document
+                      .getElementById(destination.substr(1))
+                      .scrollIntoView({ behavior: "smooth" });
+                  } else {
+                    __nextRouter?.push(destination);
+                  }
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["goToPanel2"] != null &&
+            typeof $steps["goToPanel2"] === "object" &&
+            typeof $steps["goToPanel2"].then === "function"
+          ) {
+            $steps["goToPanel2"] = await $steps["goToPanel2"];
           }
         }}
         onLoadingChange={async (...eventArgs: any) => {
