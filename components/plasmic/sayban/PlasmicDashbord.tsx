@@ -65,8 +65,8 @@ import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import MenuSection from "../../MenuSection"; // plasmic-import: PvgERH0q4dKA/component
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import UpDown from "../../UpDown"; // plasmic-import: 5PWgrzdAEryq/component
-import TimeWeek from "../../TimeWeek"; // plasmic-import: cN1_ZVwWpEB8/component
-import Comments from "../../Comments"; // plasmic-import: cWL9dXIRpWvf/component
+import Itemweek from "../../Itemweek"; // plasmic-import: KF6uX-aIk7Mr/component
+import { Chart } from "@/fragment/components/chart"; // plasmic-import: _f1hhQxasBCY/codeComponent
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
 import CenterInfo from "../../CenterInfo"; // plasmic-import: 5fhUfrSk0s6y/component
@@ -88,9 +88,9 @@ import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZW
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 import Icon290Icon from "./icons/PlasmicIcon__Icon290"; // plasmic-import: R1YQDitcVUYD/icon
 import Icon121Icon from "./icons/PlasmicIcon__Icon121"; // plasmic-import: 5rINOlLkZxNO/icon
-import Icon344Icon from "./icons/PlasmicIcon__Icon344"; // plasmic-import: xg4QbhJeesPk/icon
-import ClockIcon from "./icons/PlasmicIcon__Clock"; // plasmic-import: j27xQWkySupk/icon
-import Icon67Icon from "./icons/PlasmicIcon__Icon67"; // plasmic-import: 6d1G1xHnP3D8/icon
+import EyeIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Eye"; // plasmic-import: a8G7UBLzxa_z/icon
+import ClockHour2Icon from "../library_tabler_3_2_icons/icons/PlasmicIcon__ClockHour2"; // plasmic-import: nSpJNwOiERL0/icon
+import AlignBoxRightBottomFilledIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__AlignBoxRightBottomFilled"; // plasmic-import: 67fR6O6LGHE2/icon
 import Icon115Icon from "./icons/PlasmicIcon__Icon115"; // plasmic-import: K82EqXtBnJoL/icon
 
 createPlasmicElementProxy;
@@ -142,8 +142,7 @@ export type PlasmicDashbord__OverridesType = {
   button?: Flex__<typeof Button>;
   select?: Flex__<typeof Select>;
   active?: Flex__<typeof Select>;
-  timeWeek?: Flex__<typeof TimeWeek>;
-  comments?: Flex__<typeof Comments>;
+  fragmentChart?: Flex__<typeof Chart>;
   center?: Flex__<typeof ApiRequest>;
   modal?: Flex__<typeof AntdModal>;
   centerInfo?: Flex__<typeof CenterInfo>;
@@ -206,7 +205,6 @@ function PlasmicDashbord__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          id: "4",
           token:
             "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwaXJlIjoxNzY0NTA2MjczfQ.A6wRqW0jMYVg_rZ4OMZ5oXrcOVwKq3BG4i_wmvKf_8A",
           categories: []
@@ -276,110 +274,6 @@ function PlasmicDashbord__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
-      },
-      {
-        path: "timeWeek.week",
-        type: "private",
-        variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          (() => {
-            try {
-              return (() => {
-                var week = [
-                  {
-                    label: "شنبه",
-                    value: "Sat",
-                    isHoliday: false
-                  },
-                  {
-                    label: "یکشنبه",
-                    value: "Sun",
-                    isHoliday: false
-                  },
-                  {
-                    label: "دوشنبه",
-                    value: "Mon",
-                    isHoliday: false
-                  },
-                  {
-                    label: "سه‌شنبه",
-                    value: "Tue",
-                    isHoliday: false
-                  },
-                  {
-                    label: "چهارشنبه",
-                    value: "Wed",
-                    isHoliday: false
-                  },
-                  {
-                    label: "پنج‌شنبه",
-                    value: "Thu",
-                    isHoliday: false
-                  },
-                  {
-                    label: "جمعه",
-                    value: "Fri",
-                    isHoliday: false
-                  }
-                ];
-
-                const apiWeek = $state.centerData?.week || [];
-                week.forEach(i => {
-                  const match = apiWeek.find(j => j.day_of_week === i.value);
-                  if (match) {
-                    i.isHoliday = match.is_closed;
-                    i.start = match.open_time;
-                    i.end = match.close_time;
-                  }
-                });
-                return week;
-              })();
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return [
-                  {
-                    label: "\u0634\u0646\u0628\u0647",
-                    value: "sat",
-                    isHoliday: false
-                  },
-                  {
-                    label: "\u06cc\u06a9\u0634\u0646\u0628\u0647",
-                    value: "sun",
-                    isHoliday: false
-                  },
-                  {
-                    label: "\u062f\u0648\u0634\u0646\u0628\u0647",
-                    value: "mon",
-                    isHoliday: false
-                  },
-                  {
-                    label: "\u0633\u0647\u200c\u0634\u0646\u0628\u0647",
-                    value: "tue",
-                    isHoliday: false
-                  },
-                  {
-                    label: "\u0686\u0647\u0627\u0631\u0634\u0646\u0628\u0647",
-                    value: "wed",
-                    isHoliday: false
-                  },
-                  {
-                    label: "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647",
-                    value: "thu",
-                    isHoliday: false
-                  },
-                  {
-                    label: "\u062c\u0645\u0639\u0647",
-                    value: "fri",
-                    isHoliday: false
-                  }
-                ];
-              }
-              throw e;
-            }
-          })()
       },
       {
         path: "button3.loading",
@@ -586,44 +480,6 @@ function PlasmicDashbord__RenderFunc(props: {
           $state.centerData?.is_active?.toString()
       },
       {
-        path: "comments.percentages",
-        type: "private",
-        variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          (() => {
-            try {
-              return $state.center?.data?.result?.percentages || [];
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return [];
-              }
-              throw e;
-            }
-          })()
-      },
-      {
-        path: "comments.reviews",
-        type: "private",
-        variableType: "array",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          (() => {
-            try {
-              return $state.center?.data?.reviews || [];
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return [];
-              }
-              throw e;
-            }
-          })()
-      },
-      {
         path: "modal.open",
         type: "private",
         variableType: "boolean",
@@ -684,16 +540,22 @@ function PlasmicDashbord__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
-        path: "timeWeek.edit2",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
-      },
-      {
         path: "centerInfo.tags2",
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "period",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "month"
+      },
+      {
+        path: "status",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "all"
       }
     ],
     [$props, $ctx, $refs]
@@ -1117,534 +979,778 @@ function PlasmicDashbord__RenderFunc(props: {
       })() ? (
         <div className={classNames("all", sty.freeBox__hjtyT)}>
           <div className={classNames("all", sty.freeBox__gcMfF)}>
-            <div className={classNames("all", sty.freeBox__xjjT)}>
-              <div className={classNames("all", sty.freeBox___1L2Jz)}>
-                <div className={classNames("all", sty.freeBox__neRbz)}>
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__udz8Z)}
-                  >
-                    {
-                      "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632"
-                    }
-                  </div>
-                  <Line
-                    className={classNames("__wab_instance", sty.line__bZ5Qp)}
-                    size={"small"}
-                  />
+            <div className={classNames("all", sty.freeBox__iIjPl)}>
+              <div className={classNames("all", "__wab_text", sty.text__v4VHu)}>
+                {
+                  "\u062e\u0644\u0627\u0635\u0647 \u06af\u0632\u0627\u0631\u0634\u200c\u0647\u0627"
+                }
+              </div>
+              <div className={classNames("all", sty.freeBox__xjjT)}>
+                <div className={classNames("all", sty.freeBox___1L2Jz)}>
+                  <div className={classNames("all", sty.freeBox__neRbz)}>
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text__udz8Z
+                      )}
+                    >
+                      {
+                        "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632"
+                      }
+                    </div>
+                    <Line
+                      className={classNames("__wab_instance", sty.line__bZ5Qp)}
+                      size={"small"}
+                    />
 
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__xUyWb)}
-                  >
-                    <React.Fragment>
-                      {(() => {
-                        try {
-                          return $state.centerData.today_res;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text__xUyWb
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return $state.centerData.stats.today_res;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                            }
+                            throw e;
                           }
-                          throw e;
-                        }
-                      })()}
-                    </React.Fragment>
-                  </div>
-                  <UpDown
-                    className={classNames("__wab_instance", sty.upDown__nkvq2)}
-                    down={(() => {
-                      try {
-                        return (() => {
-                          const calculateChange = (today, yesterday) => {
-                            if (!yesterday) return 0;
-                            const change =
-                              ((today - yesterday) / yesterday) * 100;
-                            return change.toFixed(1);
-                          };
-                          const patientsChange =
-                            calculateChange(
-                              $state.centerData.today_res,
-                              $state.centerData.yesterday_res
-                            ) < 0;
-                          return patientsChange;
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
-                        }
-                        throw e;
-                      }
-                    })()}
-                    ziro={(() => {
-                      try {
-                        return (() => {
-                          const calculateChange = (today, yesterday) => {
-                            if (!yesterday) return 0;
-                            const change =
-                              ((today - yesterday) / yesterday) * 100;
-                            return change.toFixed(1);
-                          };
-                          const patientsChange =
-                            calculateChange(
-                              $state.centerData.today_res,
-                              $state.centerData.yesterday_res
-                            ) == 0;
-                          return patientsChange;
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
-                        }
-                        throw e;
-                      }
-                    })()}
-                  >
-                    <React.Fragment>
-                      {(() => {
+                        })()}
+                      </React.Fragment>
+                    </div>
+                    <UpDown
+                      className={classNames(
+                        "__wab_instance",
+                        sty.upDown__nkvq2
+                      )}
+                      down={(() => {
                         try {
                           return (() => {
                             const calculateChange = (today, yesterday) => {
-                              if (!yesterday && today) return "+100";
-                              if (!yesterday && !today) return "0";
+                              if (!yesterday) return 0;
                               const change =
                                 ((today - yesterday) / yesterday) * 100;
-                              const sign = change > 0 ? "+" : "";
-                              return `${sign}${change.toFixed(1)}`;
+                              return change.toFixed(1);
                             };
-                            const patientsChange = calculateChange(
-                              $state.centerData.today_res,
-                              $state.centerData.yesterday_res
-                            );
-                            const displayChange = `${patientsChange}%`;
-                            return displayChange;
+                            const patientsChange =
+                              calculateChange(
+                                $state.centerData.stats.today_res,
+                                $state.centerData.stats.yesterday_res
+                              ) < 0;
+                            return patientsChange;
                           })();
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
                             e?.plasmicType === "PlasmicUndefinedDataError"
                           ) {
-                            return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                            return [];
                           }
                           throw e;
                         }
                       })()}
-                    </React.Fragment>
-                  </UpDown>
-                  <Icon290Icon
-                    className={classNames("all", sty.svg__sAoB)}
-                    role={"img"}
-                  />
-                </div>
-              </div>
-              <div className={classNames("all", sty.freeBox__ex7DF)}>
-                <div className={classNames("all", sty.freeBox__a7GQ0)}>
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__skTiz)}
-                  >
-                    {
-                      "\u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632"
-                    }
-                  </div>
-                  <Line
-                    className={classNames("__wab_instance", sty.line__vOc8W)}
-                    size={"small"}
-                  />
-
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__iF3F)}
-                  >
-                    <React.Fragment>
-                      {(() => {
-                        try {
-                          return $state.centerData.today_appointments;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
-                          }
-                          throw e;
-                        }
-                      })()}
-                    </React.Fragment>
-                  </div>
-                  <UpDown
-                    className={classNames("__wab_instance", sty.upDown__fuRjM)}
-                    down={(() => {
-                      try {
-                        return (() => {
-                          const calculateChange = (today, yesterday) => {
-                            if (!yesterday) return 0;
-                            const change =
-                              ((today - yesterday) / yesterday) * 100;
-                            return change.toFixed(1);
-                          };
-                          const patientsChange =
-                            calculateChange(
-                              $state.centerData.today_appointments,
-                              $state.centerData.yesterday_appointments
-                            ) < 0;
-                          return patientsChange;
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
-                        }
-                        throw e;
-                      }
-                    })()}
-                    ziro={(() => {
-                      try {
-                        return (() => {
-                          const calculateChange = (today, yesterday) => {
-                            if (!yesterday) return 0;
-                            const change =
-                              ((today - yesterday) / yesterday) * 100;
-                            return change.toFixed(1);
-                          };
-                          const patientsChange =
-                            calculateChange(
-                              $state.centerData.today_appointments,
-                              $state.centerData.yesterday_appointments
-                            ) == 0;
-                          return patientsChange;
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
-                        }
-                        throw e;
-                      }
-                    })()}
-                  >
-                    <React.Fragment>
-                      {(() => {
+                      ziro={(() => {
                         try {
                           return (() => {
                             const calculateChange = (today, yesterday) => {
-                              if (!yesterday && today) return "+100";
-                              if (!yesterday && !today) return "0";
+                              if (!yesterday) return 0;
                               const change =
                                 ((today - yesterday) / yesterday) * 100;
-                              const sign = change > 0 ? "+" : "";
-                              return `${sign}${change.toFixed(1)}`;
+                              return change.toFixed(1);
                             };
-                            const patientsChange = calculateChange(
-                              $state.centerData.today_appointments,
-                              $state.centerData.yesterday_appointments
-                            );
-                            const displayChange = `${patientsChange}%`;
-                            return displayChange;
+                            const patientsChange =
+                              calculateChange(
+                                $state.centerData.stats.today_res,
+                                $state.centerData.stats.yesterday_res
+                              ) == 0;
+                            return patientsChange;
                           })();
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
                             e?.plasmicType === "PlasmicUndefinedDataError"
                           ) {
-                            return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                            return [];
                           }
                           throw e;
                         }
                       })()}
-                    </React.Fragment>
-                  </UpDown>
-                  <Icon121Icon
-                    className={classNames("all", sty.svg___1Ruwb)}
-                    role={"img"}
-                  />
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return (() => {
+                              const calculateChange = (today, yesterday) => {
+                                if (!yesterday && today) return "+100";
+                                if (!yesterday && !today) return "0";
+                                const change =
+                                  ((today - yesterday) / yesterday) * 100;
+                                const sign = change > 0 ? "+" : "";
+                                return `${sign}${change.toFixed(1)}`;
+                              };
+                              const patientsChange = calculateChange(
+                                $state.centerData.stats.today_res,
+                                $state.centerData.stats.yesterday_res
+                              );
+                              const displayChange = `${patientsChange}%`;
+                              return displayChange;
+                            })();
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </UpDown>
+                    <Icon290Icon
+                      className={classNames("all", sty.svg__sAoB)}
+                      role={"img"}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className={classNames("all", sty.freeBox__eOcdt)}>
-                <div className={classNames("all", sty.freeBox__tnC6E)}>
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__iln1I)}
-                  >
-                    {
-                      "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0644\u063a\u0648 \u0634\u062f\u0647"
-                    }
-                  </div>
-                  <Line
-                    className={classNames("__wab_instance", sty.line__hzLMs)}
-                    size={"small"}
-                  />
+                <div className={classNames("all", sty.freeBox__ex7DF)}>
+                  <div className={classNames("all", sty.freeBox__a7GQ0)}>
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text__skTiz
+                      )}
+                    >
+                      {
+                        "\u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632"
+                      }
+                    </div>
+                    <Line
+                      className={classNames("__wab_instance", sty.line__vOc8W)}
+                      size={"small"}
+                    />
 
-                  <div
-                    className={classNames(
-                      "all",
-                      "__wab_text",
-                      sty.text___5IxUf
-                    )}
-                  >
-                    <React.Fragment>
-                      {(() => {
-                        try {
-                          return $state.centerData.today_cancelled;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text__iF3F
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return $state.centerData.stats.today_appointments;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                            }
+                            throw e;
                           }
-                          throw e;
-                        }
-                      })()}
-                    </React.Fragment>
-                  </div>
-                  <UpDown
-                    className={classNames("__wab_instance", sty.upDown__fMpBe)}
-                    down={(() => {
-                      try {
-                        return (() => {
-                          const calculateChange = (today, yesterday) => {
-                            if (!yesterday) return 0;
-                            const change =
-                              ((today - yesterday) / yesterday) * 100;
-                            return change.toFixed(1);
-                          };
-                          const patientsChange =
-                            calculateChange(
-                              $state.centerData.today_cancelled,
-                              $state.centerData.yesterday_cancelled
-                            ) < 0;
-                          return patientsChange;
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
-                        }
-                        throw e;
-                      }
-                    })()}
-                    ziro={(() => {
-                      try {
-                        return (() => {
-                          const calculateChange = (today, yesterday) => {
-                            if (!yesterday) return 0;
-                            const change =
-                              ((today - yesterday) / yesterday) * 100;
-                            return change.toFixed(1);
-                          };
-                          const patientsChange =
-                            calculateChange(
-                              $state.centerData.today_cancelled,
-                              $state.centerData.yesterday_cancelled
-                            ) == 0;
-                          return patientsChange;
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
-                        }
-                        throw e;
-                      }
-                    })()}
-                  >
-                    <React.Fragment>
-                      {(() => {
+                        })()}
+                      </React.Fragment>
+                    </div>
+                    <UpDown
+                      className={classNames(
+                        "__wab_instance",
+                        sty.upDown__fuRjM
+                      )}
+                      down={(() => {
                         try {
                           return (() => {
                             const calculateChange = (today, yesterday) => {
-                              if (!yesterday && today) return "+100";
-                              if (!yesterday && !today) return "0";
+                              if (!yesterday) return 0;
                               const change =
                                 ((today - yesterday) / yesterday) * 100;
-                              const sign = change > 0 ? "+" : "";
-                              return `${sign}${change.toFixed(1)}`;
+                              return change.toFixed(1);
                             };
-                            const patientsChange = calculateChange(
-                              $state.centerData.today_cancelled,
-                              $state.centerData.yesterday_cancelled
-                            );
-                            const displayChange = `${patientsChange}%`;
-                            return displayChange;
+                            const patientsChange =
+                              calculateChange(
+                                $state.centerData.stats.today_appointments,
+                                $state.centerData.stats.yesterday_appointments
+                              ) < 0;
+                            return patientsChange;
                           })();
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
                             e?.plasmicType === "PlasmicUndefinedDataError"
                           ) {
-                            return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                            return [];
                           }
                           throw e;
                         }
                       })()}
-                    </React.Fragment>
-                  </UpDown>
-                  <Icon344Icon
-                    className={classNames("all", sty.svg__l8DNo)}
-                    role={"img"}
-                  />
-                </div>
-              </div>
-              <div className={classNames("all", sty.freeBox__kZ1KG)}>
-                <div className={classNames("all", sty.freeBox__vjqBo)}>
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__cNgZ)}
-                  >
-                    {
-                      "\u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0627\u06cc\u06cc\u062f"
-                    }
-                  </div>
-                  <Line
-                    className={classNames("__wab_instance", sty.line__bx1Z)}
-                    size={"small"}
-                  />
-
-                  <div
-                    className={classNames("all", "__wab_text", sty.text__x1Rqi)}
-                  >
-                    <React.Fragment>
-                      {(() => {
+                      ziro={(() => {
                         try {
-                          return $state.centerData.pending_visits;
+                          return (() => {
+                            const calculateChange = (today, yesterday) => {
+                              if (!yesterday) return 0;
+                              const change =
+                                ((today - yesterday) / yesterday) * 100;
+                              return change.toFixed(1);
+                            };
+                            const patientsChange =
+                              calculateChange(
+                                $state.centerData.stats.today_appointments,
+                                $state.centerData.stats.yesterday_appointments
+                              ) == 0;
+                            return patientsChange;
+                          })();
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
                             e?.plasmicType === "PlasmicUndefinedDataError"
                           ) {
-                            return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                            return [];
                           }
                           throw e;
                         }
                       })()}
-                    </React.Fragment>
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return (() => {
+                              const calculateChange = (today, yesterday) => {
+                                if (!yesterday && today) return "+100";
+                                if (!yesterday && !today) return "0";
+                                const change =
+                                  ((today - yesterday) / yesterday) * 100;
+                                const sign = change > 0 ? "+" : "";
+                                return `${sign}${change.toFixed(1)}`;
+                              };
+                              const patientsChange = calculateChange(
+                                $state.centerData.stats.today_appointments,
+                                $state.centerData.stats.yesterday_appointments
+                              );
+                              const displayChange = `${patientsChange}%`;
+                              return displayChange;
+                            })();
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </UpDown>
+                    <Icon121Icon
+                      className={classNames("all", sty.svg___1Ruwb)}
+                      role={"img"}
+                    />
                   </div>
-                  <ClockIcon
-                    className={classNames("all", sty.svg__x2JvG)}
-                    role={"img"}
-                  />
+                </div>
+                <div className={classNames("all", sty.freeBox__kZ1KG)}>
+                  <div className={classNames("all", sty.freeBox__vjqBo)}>
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text__cNgZ
+                      )}
+                    >
+                      {
+                        "\u062a\u0639\u062f\u0627\u062f \u0628\u0627\u0632\u062f\u06cc\u062f \u0627\u0645\u0631\u0648\u0632"
+                      }
+                    </div>
+                    <Line
+                      className={classNames("__wab_instance", sty.line__bx1Z)}
+                      size={"small"}
+                    />
+
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text__x1Rqi
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return $state.centerData.stats.today_views;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                    <EyeIcon
+                      className={classNames("all", sty.svg__x2JvG)}
+                      role={"img"}
+                    />
+
+                    <UpDown
+                      className={classNames(
+                        "__wab_instance",
+                        sty.upDown__lYiZc
+                      )}
+                      down={(() => {
+                        try {
+                          return (() => {
+                            const calculateChange = (today, yesterday) => {
+                              if (!yesterday) return 0;
+                              const change =
+                                ((today - yesterday) / yesterday) * 100;
+                              return change.toFixed(1);
+                            };
+                            const patientsChange =
+                              calculateChange(
+                                $state.centerData.stats.today_views,
+                                $state.centerData.stats.yesterday_views
+                              ) < 0;
+                            return patientsChange;
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()}
+                      ziro={(() => {
+                        try {
+                          return (() => {
+                            const calculateChange = (today, yesterday) => {
+                              if (yesterday === 0) {
+                                return today > 0 ? 100 : 0;
+                              }
+                              const change =
+                                ((today - yesterday) / yesterday) * 100;
+                              return change.toFixed(1);
+                            };
+                            const patientsChange =
+                              calculateChange(
+                                $state.centerData.stats.today_views,
+                                $state.centerData.stats.yesterday_views
+                              ) == 0;
+                            return patientsChange;
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return (() => {
+                              const calculateChange = (today, yesterday) => {
+                                if (!yesterday && today) return "+100";
+                                if (!yesterday && !today) return "0";
+                                const change =
+                                  ((today - yesterday) / yesterday) * 100;
+                                const sign = change > 0 ? "+" : "";
+                                return `${sign}${change.toFixed(1)}`;
+                              };
+                              const patientsChange = calculateChange(
+                                $state.centerData.stats.today_views,
+                                $state.centerData.stats.yesterday_views
+                              );
+                              const displayChange = `${patientsChange}%`;
+                              return displayChange;
+                            })();
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </UpDown>
+                  </div>
+                </div>
+                <div className={classNames("all", sty.freeBox__eOcdt)}>
+                  <div className={classNames("all", sty.freeBox__tnC6E)}>
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text__iln1I
+                      )}
+                    >
+                      {
+                        "\u0631\u0632\u0631\u0648 \u0647\u0627\u06cc \u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0627\u06cc\u06cc\u062f"
+                      }
+                    </div>
+                    <Line
+                      className={classNames("__wab_instance", sty.line__hzLMs)}
+                      size={"small"}
+                    />
+
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text___5IxUf
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return $state.centerData.stats.pending_visits;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                    <ClockHour2Icon
+                      className={classNames("all", sty.svg__l8DNo)}
+                      role={"img"}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-            <div className={classNames("all", sty.freeBox__suBj)} />
-
-            <div className={classNames("all", sty.freeBox__wNpu)}>
-              <div className={classNames("all", sty.freeBox__gdTCg)}>
-                <Icon67Icon
-                  className={classNames("all", sty.svg__cjXrw)}
-                  role={"img"}
-                />
-
+            <div className={classNames("all", sty.freeBox__ybyKw)}>
+              <div className={classNames("all", sty.freeBox__bVwd)}>
                 <div
-                  className={classNames("all", "__wab_text", sty.text__yRvGg)}
-                >
-                  {"\u0633\u0627\u0639\u062a \u06a9\u0627\u0631"}
-                </div>
-              </div>
-              <TimeWeek
-                data-plasmic-name={"timeWeek"}
-                data-plasmic-override={overrides.timeWeek}
-                className={classNames("__wab_instance", sty.timeWeek)}
-                edit2={generateStateValueProp($state, ["timeWeek", "edit2"])}
-                onEdit2Change={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "timeWeek",
-                    "edit2"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                onWeekChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, ["timeWeek", "week"]).apply(
-                    null,
-                    eventArgs
-                  );
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                week={generateStateValueProp($state, ["timeWeek", "week"])}
-              />
-            </div>
-            <div className={classNames("all", sty.freeBox__rORqK)}>
-              <div className={classNames("all", sty.freeBox__nWgV1)}>
-                <Icon67Icon
-                  className={classNames("all", sty.svg__phTvf)}
-                  role={"img"}
-                />
-
-                <div
-                  className={classNames("all", "__wab_text", sty.text__cRn1H)}
+                  className={classNames("all", "__wab_text", sty.text__t4DpM)}
                 >
                   {
-                    "\u0646\u0638\u0631 \u06a9\u0627\u0631\u0628\u0631\u0627\u0646"
+                    "\u0622\u0645\u0627\u0631  \u067e\u0631\u062f\u0627\u062e\u062a \u0647\u0627"
                   }
                 </div>
+                <div className={classNames("all", sty.freeBox__wYzp)}>
+                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                    (() => {
+                      try {
+                        return (() => {
+                          const periodOptions = [
+                            {
+                              value: "day",
+                              text: "روزانه"
+                            },
+                            {
+                              value: "week",
+                              text: "هفتگی"
+                            },
+                            {
+                              value: "month",
+                              text: "ماهانه"
+                            }
+                          ];
+
+                          return periodOptions;
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()
+                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                    const currentItem = __plasmic_item_0;
+                    const currentIndex = __plasmic_idx_0;
+                    return (
+                      <Itemweek
+                        className={classNames(
+                          "__wab_instance",
+                          sty.itemweek__mWuqu
+                        )}
+                        currentItem={currentItem.text}
+                        key={currentIndex}
+                        ligtht={true}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["updatePeriod"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["period"]
+                                  },
+                                  operation: 0,
+                                  value: currentItem.value
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updatePeriod"] != null &&
+                            typeof $steps["updatePeriod"] === "object" &&
+                            typeof $steps["updatePeriod"].then === "function"
+                          ) {
+                            $steps["updatePeriod"] =
+                              await $steps["updatePeriod"];
+                          }
+                        }}
+                        select={(() => {
+                          try {
+                            return currentItem.value == $state.period;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()}
+                        white={true}
+                      >
+                        <AlignBoxRightBottomFilledIcon
+                          className={classNames("all", sty.svg__nO5Ov)}
+                          role={"img"}
+                        />
+                      </Itemweek>
+                    );
+                  })}
+                </div>
               </div>
-              <Comments
-                data-plasmic-name={"comments"}
-                data-plasmic-override={overrides.comments}
-                className={classNames("__wab_instance", sty.comments)}
-                onPercentagesChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "comments",
-                    "percentages"
-                  ]).apply(null, eventArgs);
+              <div className={classNames("all", sty.freeBox__fY9C4)}>
+                <div className={classNames("all", sty.freeBox__hpwMx)}>
+                  <Chart
+                    data-plasmic-name={"fragmentChart"}
+                    data-plasmic-override={overrides.fragmentChart}
+                    cartesianGrid={["vertical", "horizontal"]}
+                    chartConfig={(() => {
+                      const __composite = [
+                        {
+                          color: null,
+                          type: "natural",
+                          dot: false,
+                          key: null,
+                          label: null
+                        },
+                        {
+                          color: null,
+                          type: "natural",
+                          dot: false,
+                          key: null,
+                          label: null
+                        }
+                      ];
+                      __composite["0"]["color"] = "var(--token-ee2TuxDknsJj)";
+                      __composite["0"]["key"] = "amount_success";
+                      __composite["0"]["label"] = "\u0645\u0628\u0644\u063a";
+                      __composite["1"]["color"] = "#D80000";
+                      __composite["1"]["key"] = "amount_failed";
+                      __composite["1"]["label"] = "\u0645\u0628\u0644\u063a";
+                      return __composite;
+                    })()}
+                    className={classNames("__wab_instance", sty.fragmentChart)}
+                    data={$state.centerData.chart.data}
+                    label={false}
+                    layout={"horizontal"}
+                    legend={false}
+                    stack={false}
+                    tooltip={(() => {
+                      const __composite = { enabled: null, indicator: null };
+                      __composite["enabled"] = true;
+                      __composite["indicator"] = "dot";
+                      return __composite;
+                    })()}
+                    type={"bar"}
+                    xAxis={(() => {
+                      const __composite = {
+                        enabled: null,
+                        tickLine: null,
+                        key: null,
+                        type: null,
+                        tickMargin: null
+                      };
+                      __composite["enabled"] = true;
+                      __composite["tickLine"] = false;
+                      __composite["key"] = "label";
+                      __composite["type"] = "category";
+                      __composite["tickMargin"] = 10;
+                      return __composite;
+                    })()}
+                    yAxis={(() => {
+                      const __composite = {
+                        enabled: null,
+                        tickLine: null,
+                        axisLine: null,
+                        key: null,
+                        tickMargin: null
+                      };
+                      __composite["enabled"] = true;
+                      __composite["tickLine"] = false;
+                      __composite["axisLine"] = false;
+                      __composite["key"] = "auto";
+                      __composite["tickMargin"] = 40;
+                      return __composite;
+                    })()}
+                  />
+                </div>
+                <div className={classNames("all", sty.freeBox__pJz6X)}>
+                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                    (() => {
+                      try {
+                        return (() => {
+                          const statusOptions = [
+                            {
+                              value: "all",
+                              text: "همه"
+                            },
+                            {
+                              value: "success",
+                              text: "موفق"
+                            },
+                            {
+                              value: "failed",
+                              text: "ناموفق"
+                            }
+                          ];
 
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                onReviewsChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "comments",
-                    "reviews"
-                  ]).apply(null, eventArgs);
+                          return statusOptions;
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()
+                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                    const currentItem = __plasmic_item_0;
+                    const currentIndex = __plasmic_idx_0;
+                    return (
+                      <Itemweek
+                        className={classNames(
+                          "__wab_instance",
+                          sty.itemweek__f6C8U
+                        )}
+                        currentItem={currentItem.text}
+                        key={currentIndex}
+                        ligtht={true}
+                        noColor={true}
+                        onClick={async event => {
+                          const $steps = {};
 
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                percentages={generateStateValueProp($state, [
-                  "comments",
-                  "percentages"
-                ])}
-                rate={$state.center?.data?.result?.rating_avg || ""}
-                reviews={generateStateValueProp($state, [
-                  "comments",
-                  "reviews"
-                ])}
-              />
+                          $steps["updateStatus"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["status"]
+                                  },
+                                  operation: 0,
+                                  value: currentItem.value
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateStatus"] != null &&
+                            typeof $steps["updateStatus"] === "object" &&
+                            typeof $steps["updateStatus"].then === "function"
+                          ) {
+                            $steps["updateStatus"] =
+                              await $steps["updateStatus"];
+                          }
+                        }}
+                        select={(() => {
+                          try {
+                            return currentItem.value == $state.status;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()}
+                      >
+                        <AlignBoxRightBottomFilledIcon
+                          className={classNames("all", sty.svg__qcPvl)}
+                          role={"img"}
+                          style={{
+                            color:
+                              currentItem.value === "success"
+                                ? "#008000"
+                                : currentItem.value === "failed"
+                                  ? "#FF0000"
+                                  : "#808080"
+                          }}
+                        />
+                      </Itemweek>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1779,7 +1885,10 @@ function PlasmicDashbord__RenderFunc(props: {
           try {
             return {
               id: $props.id,
-              restart: $state.restart
+              restart: $state.restart,
+              period: $state.period,
+              status: $state.status,
+              center_id: $props.id
             };
           } catch (e) {
             if (
@@ -1791,19 +1900,7 @@ function PlasmicDashbord__RenderFunc(props: {
             throw e;
           }
         })()}
-        shouldFetch={(() => {
-          try {
-            return $props.id != "";
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return true;
-            }
-            throw e;
-          }
-        })()}
+        shouldFetch={true}
         url={"/panel/dashbord"}
       />
 
@@ -3679,8 +3776,7 @@ const PlasmicDescendants = {
     "button",
     "select",
     "active",
-    "timeWeek",
-    "comments",
+    "fragmentChart",
     "center",
     "modal",
     "centerInfo",
@@ -3707,8 +3803,7 @@ const PlasmicDescendants = {
   button: ["button"],
   select: ["select"],
   active: ["active"],
-  timeWeek: ["timeWeek"],
-  comments: ["comments"],
+  fragmentChart: ["fragmentChart"],
   center: ["center"],
   modal: ["modal", "centerInfo", "saveInfo", "button5"],
   centerInfo: ["centerInfo"],
@@ -3740,8 +3835,7 @@ type NodeDefaultElementType = {
   button: typeof Button;
   select: typeof Select;
   active: typeof Select;
-  timeWeek: typeof TimeWeek;
-  comments: typeof Comments;
+  fragmentChart: typeof Chart;
   center: typeof ApiRequest;
   modal: typeof AntdModal;
   centerInfo: typeof CenterInfo;
@@ -3831,8 +3925,7 @@ export const PlasmicDashbord = Object.assign(
     button: makeNodeComponent("button"),
     select: makeNodeComponent("select"),
     active: makeNodeComponent("active"),
-    timeWeek: makeNodeComponent("timeWeek"),
-    comments: makeNodeComponent("comments"),
+    fragmentChart: makeNodeComponent("fragmentChart"),
     center: makeNodeComponent("center"),
     modal: makeNodeComponent("modal"),
     centerInfo: makeNodeComponent("centerInfo"),

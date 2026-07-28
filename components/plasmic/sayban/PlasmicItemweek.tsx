@@ -66,6 +66,8 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicItemweek.module.css"; // plasmic-import: KF6uX-aIk7Mr/css
 
+import AlignBoxRightBottomFilledIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__AlignBoxRightBottomFilled"; // plasmic-import: 67fR6O6LGHE2/icon
+
 createPlasmicElementProxy;
 
 export type PlasmicItemweek__VariantMembers = {
@@ -73,30 +75,38 @@ export type PlasmicItemweek__VariantMembers = {
   ligtht: "ligtht";
   unnamedVariant: "unnamedVariant";
   showMore: "showMore";
+  white: "white";
+  noColor: "noColor";
 };
 export type PlasmicItemweek__VariantsArgs = {
   select?: SingleBooleanChoiceArg<"select">;
   ligtht?: SingleBooleanChoiceArg<"ligtht">;
   unnamedVariant?: SingleBooleanChoiceArg<"unnamedVariant">;
   showMore?: SingleBooleanChoiceArg<"showMore">;
+  white?: SingleBooleanChoiceArg<"white">;
+  noColor?: SingleBooleanChoiceArg<"noColor">;
 };
 type VariantPropType = keyof PlasmicItemweek__VariantsArgs;
 export const PlasmicItemweek__VariantProps = new Array<VariantPropType>(
   "select",
   "ligtht",
   "unnamedVariant",
-  "showMore"
+  "showMore",
+  "white",
+  "noColor"
 );
 
 export type PlasmicItemweek__ArgsType = {
   currentItem?: any;
   onClick?: (event: any) => void;
+  children?: React.ReactNode;
   slot2?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicItemweek__ArgsType;
 export const PlasmicItemweek__ArgProps = new Array<ArgPropType>(
   "currentItem",
   "onClick",
+  "children",
   "slot2"
 );
 
@@ -108,11 +118,14 @@ export type PlasmicItemweek__OverridesType = {
 export interface DefaultItemweekProps {
   currentItem?: any;
   onClick?: (event: any) => void;
+  children?: React.ReactNode;
   slot2?: React.ReactNode;
   select?: SingleBooleanChoiceArg<"select">;
   ligtht?: SingleBooleanChoiceArg<"ligtht">;
   unnamedVariant?: SingleBooleanChoiceArg<"unnamedVariant">;
   showMore?: SingleBooleanChoiceArg<"showMore">;
+  white?: SingleBooleanChoiceArg<"white">;
+  noColor?: SingleBooleanChoiceArg<"noColor">;
   className?: string;
 }
 
@@ -181,6 +194,18 @@ function PlasmicItemweek__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.showMore
+      },
+      {
+        path: "white",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.white
+      },
+      {
+        path: "noColor",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.noColor
       }
     ],
     [$props, $ctx, $refs]
@@ -214,19 +239,29 @@ function PlasmicItemweek__RenderFunc(props: {
           [sty.rootligtht_select]:
             hasVariant($state, "ligtht", "ligtht") &&
             hasVariant($state, "select", "select"),
+          [sty.rootnoColor]: hasVariant($state, "noColor", "noColor"),
+          [sty.rootnoColor_select]:
+            hasVariant($state, "noColor", "noColor") &&
+            hasVariant($state, "select", "select"),
           [sty.rootselect]: hasVariant($state, "select", "select"),
           [sty.rootshowMore]: hasVariant($state, "showMore", "showMore"),
           [sty.rootunnamedVariant]: hasVariant(
             $state,
             "unnamedVariant",
             "unnamedVariant"
-          )
+          ),
+          [sty.rootwhite]: hasVariant($state, "white", "white")
         }
       )}
       onClick={args.onClick}
     >
       <div
         className={classNames("all", sty.freeBox___9Zcew, {
+          [sty.freeBoxnoColor___9ZcewS6QF2]: hasVariant(
+            $state,
+            "noColor",
+            "noColor"
+          ),
           [sty.freeBoxshowMore___9ZcewwOp4N]: hasVariant(
             $state,
             "showMore",
@@ -234,11 +269,22 @@ function PlasmicItemweek__RenderFunc(props: {
           )
         })}
       >
+        {renderPlasmicSlot({
+          defaultContents: (
+            <AlignBoxRightBottomFilledIcon
+              className={classNames("all", sty.svg__ejcB)}
+              role={"img"}
+            />
+          ),
+
+          value: args.children
+        })}
         <div
           data-plasmic-name={"text"}
           data-plasmic-override={overrides.text}
           className={classNames("all", "__wab_text", sty.text, {
             [sty.textligtht]: hasVariant($state, "ligtht", "ligtht"),
+            [sty.textnoColor]: hasVariant($state, "noColor", "noColor"),
             [sty.textselect]: hasVariant($state, "select", "select"),
             [sty.textshowMore]: hasVariant($state, "showMore", "showMore")
           })}
@@ -266,6 +312,11 @@ function PlasmicItemweek__RenderFunc(props: {
                 $state,
                 "ligtht",
                 "ligtht"
+              ),
+              [sty.freeBoxnoColor__cE0T6S6QF2]: hasVariant(
+                $state,
+                "noColor",
+                "noColor"
               ),
               [sty.freeBoxselect__cE0T6UkWqf]: hasVariant(
                 $state,

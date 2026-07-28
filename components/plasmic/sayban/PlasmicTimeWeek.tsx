@@ -74,6 +74,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import sty from "./PlasmicTimeWeek.module.css"; // plasmic-import: cN1_ZVwWpEB8/css
 
 import EditIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Edit"; // plasmic-import: Q3Mz32feM0mm/icon
+import AlignBoxRightBottomFilledIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__AlignBoxRightBottomFilled"; // plasmic-import: 67fR6O6LGHE2/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 

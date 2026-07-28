@@ -291,6 +291,14 @@
   height: 50px;
   flex-shrink: 0;
 }
+.svg__e09Te {
+  animation: none;
+  object-fit: cover;
+  max-width: 100%;
+  width: 12px;
+  height: 12px;
+  color: var(--token-WxyGMLCV1Pdq);
+}
 .freeBox__jZsz4 {
   display: flex;
   flex-direction: row;

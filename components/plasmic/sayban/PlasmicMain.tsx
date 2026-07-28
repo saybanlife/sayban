@@ -89,6 +89,7 @@ import UserMain from "../../UserMain"; // plasmic-import: cBSVDnOcnP2x/component
 import ServicePage from "../../ServicePage"; // plasmic-import: DKFJiURVeYup/component
 import MainPageQuestion from "../../MainPageQuestion"; // plasmic-import: gJ_VOn2U5Tvp/component
 import MainPageStaffs from "../../MainPageStaffs"; // plasmic-import: ApT4JJ-9bBRO/component
+import Dashbord from "../../Dashbord"; // plasmic-import: Ok_TcZHaeDSE/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
@@ -115,7 +116,8 @@ export type PlasmicMain__VariantMembers = {
     | "user"
     | "service"
     | "question"
-    | "staffs";
+    | "staffs"
+    | "dashboard";
 };
 export type PlasmicMain__VariantsArgs = {
   page?: SingleChoiceArg<
@@ -131,6 +133,7 @@ export type PlasmicMain__VariantsArgs = {
     | "service"
     | "question"
     | "staffs"
+    | "dashboard"
   >;
 };
 type VariantPropType = keyof PlasmicMain__VariantsArgs;
@@ -219,6 +222,7 @@ export type PlasmicMain__OverridesType = {
   servicePage?: Flex__<typeof ServicePage>;
   mainPageQuestion?: Flex__<typeof MainPageQuestion>;
   mainPageStaffs?: Flex__<typeof MainPageStaffs>;
+  dashbord?: Flex__<typeof Dashbord>;
 };
 
 export interface DefaultMainProps {
@@ -243,6 +247,7 @@ export interface DefaultMainProps {
     | "service"
     | "question"
     | "staffs"
+    | "dashboard"
   >;
   className?: string;
 }
@@ -1411,6 +1416,24 @@ function PlasmicMain__RenderFunc(props: {
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "dashbord.categpty",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "dashbord.apiRequestData",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "dashbord.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -1442,6 +1465,7 @@ function PlasmicMain__RenderFunc(props: {
         styleTokensClassNames,
         sty.root,
         {
+          [sty.rootpage_dashboard]: hasVariant($state, "page", "dashboard"),
           [sty.rootpage_payments]: hasVariant($state, "page", "payments"),
           [sty.rootpage_profile]: hasVariant($state, "page", "profile"),
           [sty.rootpage_question]: hasVariant($state, "page", "question"),
@@ -7869,6 +7893,76 @@ function PlasmicMain__RenderFunc(props: {
           "selected"
         ])}
       />
+
+      <Dashbord
+        data-plasmic-name={"dashbord"}
+        data-plasmic-override={overrides.dashbord}
+        apiRequestData={generateStateValueProp($state, [
+          "dashbord",
+          "apiRequestData"
+        ])}
+        categpty={generateStateValueProp($state, ["dashbord", "categpty"])}
+        className={classNames("__wab_instance", sty.dashbord, {
+          [sty.dashbordpage_dashboard]: hasVariant($state, "page", "dashboard")
+        })}
+        data={generateStateValueProp($state, ["dashbord", "data"])}
+        id={(() => {
+          try {
+            return $props.centerId;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+        onApiRequestDataChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "dashbord",
+            "apiRequestData"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onCategptyChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dashbord", "categpty"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        onDataChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dashbord", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        token={""}
+      />
     </div>
   ) as React.ReactElement | null;
 }
@@ -7934,7 +8028,8 @@ const PlasmicDescendants = {
     "userMain",
     "servicePage",
     "mainPageQuestion",
-    "mainPageStaffs"
+    "mainPageStaffs",
+    "dashbord"
   ],
   topPage: ["topPage"],
   mainPageCenter: ["mainPageCenter"],
@@ -8040,7 +8135,8 @@ const PlasmicDescendants = {
   userMain: ["userMain"],
   servicePage: ["servicePage"],
   mainPageQuestion: ["mainPageQuestion"],
-  mainPageStaffs: ["mainPageStaffs"]
+  mainPageStaffs: ["mainPageStaffs"],
+  dashbord: ["dashbord"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -8106,6 +8202,7 @@ type NodeDefaultElementType = {
   servicePage: typeof ServicePage;
   mainPageQuestion: typeof MainPageQuestion;
   mainPageStaffs: typeof MainPageStaffs;
+  dashbord: typeof Dashbord;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -8229,6 +8326,7 @@ export const PlasmicMain = Object.assign(
     servicePage: makeNodeComponent("servicePage"),
     mainPageQuestion: makeNodeComponent("mainPageQuestion"),
     mainPageStaffs: makeNodeComponent("mainPageStaffs"),
+    dashbord: makeNodeComponent("dashbord"),
 
     // Metadata about props expected for PlasmicMain
     internalVariantProps: PlasmicMain__VariantProps,
