@@ -331,7 +331,7 @@ function PlasmicTimeInput__RenderFunc(props: {
               <React.Fragment>
                 {(() => {
                   try {
-                    return `${$state.time.minute} : ${$state.time.hour}`;
+                    return `${String($state.time.minute).padStart(2, "0")} : ${String($state.time.hour).padStart(2, "0")}`;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||

@@ -226,7 +226,7 @@
 .freeBoxedit__aOh5OwUxX {
   display: flex;
 }
-.svg {
+.svg__o4Wiq {
   object-fit: cover;
   max-width: 100%;
   color: var(--token-5bOpHmsvlymK);
@@ -298,6 +298,7 @@
   width: 12px;
   height: 12px;
   color: var(--token-WxyGMLCV1Pdq);
+  display: none;
 }
 .freeBox__jZsz4 {
   display: flex;

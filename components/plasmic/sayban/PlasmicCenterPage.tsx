@@ -4032,7 +4032,7 @@ function PlasmicCenterPage__RenderFunc(props: {
                   data-plasmic-override={overrides.timeWeek}
                   className={classNames("__wab_instance", sty.timeWeek)}
                   edit2={generateStateValueProp($state, ["timeWeek", "edit2"])}
-                  onEdit2Change={async (...eventArgs: any) => {
+                  onEdit2Change2={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "timeWeek",
                       "edit2"

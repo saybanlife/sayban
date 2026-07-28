@@ -93,21 +93,20 @@ export type PlasmicTimeWeek__ArgsType = {
   week?: any;
   onWeekChange?: (val: string) => void;
   edit2?: boolean;
-  onEdit2Change?: (val: string) => void;
+  onEdit2Change2?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicTimeWeek__ArgsType;
 export const PlasmicTimeWeek__ArgProps = new Array<ArgPropType>(
   "week",
   "onWeekChange",
   "edit2",
-  "onEdit2Change"
+  "onEdit2Change2"
 );
 
 export type PlasmicTimeWeek__OverridesType = {
   root?: Flex__<"div">;
   checkboxGroup2?: Flex__<typeof CheckboxGroup>;
   option2?: Flex__<typeof Checkbox>;
-  svg?: Flex__<"svg">;
   modal?: Flex__<typeof AntdModal>;
   itemweek?: Flex__<typeof Itemweek>;
   close?: Flex__<typeof Check>;
@@ -125,7 +124,7 @@ export interface DefaultTimeWeekProps {
   week?: any;
   onWeekChange?: (val: string) => void;
   edit2?: boolean;
-  onEdit2Change?: (val: string) => void;
+  onEdit2Change2?: (val: string) => void;
   edit?: SingleBooleanChoiceArg<"edit">;
   className?: string;
 }
@@ -204,7 +203,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
         variableType: "boolean",
 
         valueProp: "edit2",
-        onChangeProp: "onEdit2Change"
+        onChangeProp: "onEdit2Change2"
       },
       {
         path: "modal.open",
@@ -261,8 +260,8 @@ function PlasmicTimeWeek__RenderFunc(props: {
                   const [startHour, startMinute] =
                     selectedDays[0].start.split(":");
                   result = {
-                    hour: startHour,
-                    minute: startMinute
+                    hour: Number(startHour),
+                    minute: Number(startMinute)
                   };
                 }
                 return result;
@@ -294,7 +293,9 @@ function PlasmicTimeWeek__RenderFunc(props: {
                   selectedDays.every(item => item.end === selectedDays[0].end);
                 let result = {};
                 if (isAllEqual) {
-                  const [endHour, endMinute] = selectedDays[0].end.split(":");
+                  const [endHour, endMinute] = selectedDays[0].end
+                    .split(":")
+                    .map(Number);
                   result = {
                     hour: endHour,
                     minute: endMinute
@@ -716,10 +717,12 @@ function PlasmicTimeWeek__RenderFunc(props: {
                       })}
                     >
                       <EditIcon
-                        data-plasmic-name={"svg"}
-                        data-plasmic-override={overrides.svg}
-                        className={classNames("all", sty.svg, {
-                          [sty.svgedit]: hasVariant($state, "edit", "edit")
+                        className={classNames("all", sty.svg__o4Wiq, {
+                          [sty.svgedit__o4WiqOwUxX]: hasVariant(
+                            $state,
+                            "edit",
+                            "edit"
+                          )
                         })}
                         onClick={async event => {
                           const $steps = {};
@@ -918,7 +921,12 @@ function PlasmicTimeWeek__RenderFunc(props: {
                       })()}
                     </React.Fragment>
                   }
-                />
+                >
+                  <AlignBoxRightBottomFilledIcon
+                    className={classNames("all", sty.svg__e09Te)}
+                    role={"img"}
+                  />
+                </Itemweek>
               );
             })}
           </div>
@@ -1437,7 +1445,6 @@ const PlasmicDescendants = {
     "root",
     "checkboxGroup2",
     "option2",
-    "svg",
     "modal",
     "itemweek",
     "close",
@@ -1450,9 +1457,8 @@ const PlasmicDescendants = {
     "button5",
     "button6"
   ],
-  checkboxGroup2: ["checkboxGroup2", "option2", "svg"],
+  checkboxGroup2: ["checkboxGroup2", "option2"],
   option2: ["option2"],
-  svg: ["svg"],
   modal: [
     "modal",
     "itemweek",
@@ -1481,7 +1487,6 @@ type NodeDefaultElementType = {
   root: "div";
   checkboxGroup2: typeof CheckboxGroup;
   option2: typeof Checkbox;
-  svg: "svg";
   modal: typeof AntdModal;
   itemweek: typeof Itemweek;
   close: typeof Check;
@@ -1559,7 +1564,6 @@ export const PlasmicTimeWeek = Object.assign(
     // Helper components rendering sub-elements
     checkboxGroup2: makeNodeComponent("checkboxGroup2"),
     option2: makeNodeComponent("option2"),
-    svg: makeNodeComponent("svg"),
     modal: makeNodeComponent("modal"),
     itemweek: makeNodeComponent("itemweek"),
     close: makeNodeComponent("close"),

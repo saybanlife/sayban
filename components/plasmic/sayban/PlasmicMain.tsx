@@ -1403,7 +1403,7 @@ function PlasmicMain__RenderFunc(props: {
         path: "timeWeek2.edit2",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "centerInfo.tags2",
@@ -5510,7 +5510,7 @@ function PlasmicMain__RenderFunc(props: {
                   data-plasmic-override={overrides.timeWeek}
                   className={classNames("__wab_instance", sty.timeWeek)}
                   edit2={generateStateValueProp($state, ["timeWeek", "edit2"])}
-                  onEdit2Change={async (...eventArgs: any) => {
+                  onEdit2Change2={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "timeWeek",
                       "edit2"
@@ -6648,7 +6648,7 @@ function PlasmicMain__RenderFunc(props: {
                   data-plasmic-override={overrides.timeWeek2}
                   className={classNames("__wab_instance", sty.timeWeek2)}
                   edit2={generateStateValueProp($state, ["timeWeek2", "edit2"])}
-                  onEdit2Change={async (...eventArgs: any) => {
+                  onEdit2Change2={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "timeWeek2",
                       "edit2"
