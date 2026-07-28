@@ -1858,11 +1858,6 @@ function PlasmicDashbord__RenderFunc(props: {
                       customFunction: async () => {
                         return (() => {
                           $state.centerData = $state.center?.data?.result;
-                          console.log($state.centerData);
-                          $state.data = {
-                            id: $state.center.data.result.id,
-                            name: $state.center.data.result.name
-                          };
                           return ($state.loading = false);
                         })();
                       }
