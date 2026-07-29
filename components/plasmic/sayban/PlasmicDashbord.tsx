@@ -66,8 +66,9 @@ import MenuSection from "../../MenuSection"; // plasmic-import: PvgERH0q4dKA/com
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import UpDown from "../../UpDown"; // plasmic-import: 5PWgrzdAEryq/component
 import Itemweek from "../../Itemweek"; // plasmic-import: KF6uX-aIk7Mr/component
-import { Chart } from "@/fragment/components/chart"; // plasmic-import: _f1hhQxasBCY/codeComponent
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+import { Chart } from "@/fragment/components/chart"; // plasmic-import: _f1hhQxasBCY/codeComponent
+import { AntdProgress } from "@plasmicpkgs/antd5/skinny/registerProgress";
 import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
 import CenterInfo from "../../CenterInfo"; // plasmic-import: 5fhUfrSk0s6y/component
 import UserPanelInfo from "../../UserPanelInfo"; // plasmic-import: NJmPC7ZHblW7/component
@@ -142,7 +143,7 @@ export type PlasmicDashbord__OverridesType = {
   button?: Flex__<typeof Button>;
   select?: Flex__<typeof Select>;
   active?: Flex__<typeof Select>;
-  fragmentChart?: Flex__<typeof Chart>;
+  chart?: Flex__<typeof ApiRequest>;
   center?: Flex__<typeof ApiRequest>;
   modal?: Flex__<typeof AntdModal>;
   centerInfo?: Flex__<typeof CenterInfo>;
@@ -205,6 +206,7 @@ function PlasmicDashbord__RenderFunc(props: {
     () =>
       Object.assign(
         {
+          id: "120",
           token:
             "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwaXJlIjoxNzY0NTA2MjczfQ.A6wRqW0jMYVg_rZ4OMZ5oXrcOVwKq3BG4i_wmvKf_8A",
           categories: []
@@ -556,6 +558,24 @@ function PlasmicDashbord__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => "all"
+      },
+      {
+        path: "chart.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "chart.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "chart.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -1014,7 +1034,7 @@ function PlasmicDashbord__RenderFunc(props: {
                       <React.Fragment>
                         {(() => {
                           try {
-                            return $state.centerData.stats.today_res;
+                            return $state.centerData.today_res;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1043,8 +1063,8 @@ function PlasmicDashbord__RenderFunc(props: {
                             };
                             const patientsChange =
                               calculateChange(
-                                $state.centerData.stats.today_res,
-                                $state.centerData.stats.yesterday_res
+                                $state.centerData.today_res,
+                                $state.centerData.yesterday_res
                               ) < 0;
                             return patientsChange;
                           })();
@@ -1069,8 +1089,8 @@ function PlasmicDashbord__RenderFunc(props: {
                             };
                             const patientsChange =
                               calculateChange(
-                                $state.centerData.stats.today_res,
-                                $state.centerData.stats.yesterday_res
+                                $state.centerData.today_res,
+                                $state.centerData.yesterday_res
                               ) == 0;
                             return patientsChange;
                           })();
@@ -1098,8 +1118,8 @@ function PlasmicDashbord__RenderFunc(props: {
                                 return `${sign}${change.toFixed(1)}`;
                               };
                               const patientsChange = calculateChange(
-                                $state.centerData.stats.today_res,
-                                $state.centerData.stats.yesterday_res
+                                $state.centerData.today_res,
+                                $state.centerData.yesterday_res
                               );
                               const displayChange = `${patientsChange}%`;
                               return displayChange;
@@ -1150,7 +1170,7 @@ function PlasmicDashbord__RenderFunc(props: {
                       <React.Fragment>
                         {(() => {
                           try {
-                            return $state.centerData.stats.today_appointments;
+                            return $state.centerData.today_appointments;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1179,8 +1199,8 @@ function PlasmicDashbord__RenderFunc(props: {
                             };
                             const patientsChange =
                               calculateChange(
-                                $state.centerData.stats.today_appointments,
-                                $state.centerData.stats.yesterday_appointments
+                                $state.centerData.today_appointments,
+                                $state.centerData.yesterday_appointments
                               ) < 0;
                             return patientsChange;
                           })();
@@ -1205,8 +1225,8 @@ function PlasmicDashbord__RenderFunc(props: {
                             };
                             const patientsChange =
                               calculateChange(
-                                $state.centerData.stats.today_appointments,
-                                $state.centerData.stats.yesterday_appointments
+                                $state.centerData.today_appointments,
+                                $state.centerData.yesterday_appointments
                               ) == 0;
                             return patientsChange;
                           })();
@@ -1234,8 +1254,8 @@ function PlasmicDashbord__RenderFunc(props: {
                                 return `${sign}${change.toFixed(1)}`;
                               };
                               const patientsChange = calculateChange(
-                                $state.centerData.stats.today_appointments,
-                                $state.centerData.stats.yesterday_appointments
+                                $state.centerData.today_appointments,
+                                $state.centerData.yesterday_appointments
                               );
                               const displayChange = `${patientsChange}%`;
                               return displayChange;
@@ -1286,7 +1306,7 @@ function PlasmicDashbord__RenderFunc(props: {
                       <React.Fragment>
                         {(() => {
                           try {
-                            return $state.centerData.stats.today_views;
+                            return $state.centerData.today_views;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1320,8 +1340,8 @@ function PlasmicDashbord__RenderFunc(props: {
                             };
                             const patientsChange =
                               calculateChange(
-                                $state.centerData.stats.today_views,
-                                $state.centerData.stats.yesterday_views
+                                $state.centerData.today_views,
+                                $state.centerData.yesterday_views
                               ) < 0;
                             return patientsChange;
                           })();
@@ -1348,8 +1368,8 @@ function PlasmicDashbord__RenderFunc(props: {
                             };
                             const patientsChange =
                               calculateChange(
-                                $state.centerData.stats.today_views,
-                                $state.centerData.stats.yesterday_views
+                                $state.centerData.today_views,
+                                $state.centerData.yesterday_views
                               ) == 0;
                             return patientsChange;
                           })();
@@ -1377,8 +1397,8 @@ function PlasmicDashbord__RenderFunc(props: {
                                 return `${sign}${change.toFixed(1)}`;
                               };
                               const patientsChange = calculateChange(
-                                $state.centerData.stats.today_views,
-                                $state.centerData.stats.yesterday_views
+                                $state.centerData.today_views,
+                                $state.centerData.yesterday_views
                               );
                               const displayChange = `${patientsChange}%`;
                               return displayChange;
@@ -1425,7 +1445,7 @@ function PlasmicDashbord__RenderFunc(props: {
                       <React.Fragment>
                         {(() => {
                           try {
-                            return $state.centerData.stats.pending_visits;
+                            return $state.centerData.pending_visits;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1563,79 +1583,136 @@ function PlasmicDashbord__RenderFunc(props: {
               </div>
               <div className={classNames("all", sty.freeBox__fY9C4)}>
                 <div className={classNames("all", sty.freeBox__hpwMx)}>
-                  <Chart
-                    data-plasmic-name={"fragmentChart"}
-                    data-plasmic-override={overrides.fragmentChart}
-                    cartesianGrid={["vertical", "horizontal"]}
-                    chartConfig={(() => {
-                      const __composite = [
-                        {
-                          color: null,
-                          type: "natural",
-                          dot: false,
+                  <ApiRequest
+                    data-plasmic-name={"chart"}
+                    data-plasmic-override={overrides.chart}
+                    className={classNames("__wab_instance", sty.chart)}
+                    errorDisplay={
+                      <div
+                        className={classNames(
+                          "all",
+                          "__wab_text",
+                          sty.text__gAn04
+                        )}
+                      >
+                        {"Error fetching data"}
+                      </div>
+                    }
+                    loadingDisplay={
+                      <div
+                        className={classNames(
+                          "all",
+                          "__wab_text",
+                          sty.text__aHejZ
+                        )}
+                      >
+                        {"Loading..."}
+                      </div>
+                    }
+                    method={"GET"}
+                    onError={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "chart",
+                        "error"
+                      ]).apply(null, eventArgs);
+                    }}
+                    onLoading={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "chart",
+                        "loading"
+                      ]).apply(null, eventArgs);
+                    }}
+                    onSuccess={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "chart",
+                        "data"
+                      ]).apply(null, eventArgs);
+                    }}
+                    params={{
+                      id: $props.id,
+                      restart: $state.restart,
+                      period: $state.period,
+                      status: $state.status,
+                      center_id: $props.id
+                    }}
+                    shouldFetch={true}
+                    url={"panel/dashboard/chart"}
+                  >
+                    <Chart
+                      cartesianGrid={["vertical", "horizontal"]}
+                      chartConfig={(() => {
+                        const __composite = [
+                          {
+                            color: null,
+                            type: "natural",
+                            dot: false,
+                            key: null,
+                            label: null
+                          },
+                          {
+                            color: null,
+                            type: "natural",
+                            dot: false,
+                            key: null,
+                            label: null
+                          }
+                        ];
+                        __composite["0"]["color"] = "var(--token-ee2TuxDknsJj)";
+                        __composite["0"]["key"] = "amount_success";
+                        __composite["0"]["label"] = "\u0645\u0628\u0644\u063a";
+                        __composite["1"]["color"] = "#D80000";
+                        __composite["1"]["key"] = "amount_failed";
+                        __composite["1"]["label"] = "\u0645\u0628\u0644\u063a";
+                        return __composite;
+                      })()}
+                      className={classNames(
+                        "__wab_instance",
+                        sty.fragmentChart__xSx4Y
+                      )}
+                      data={$state.chart.data?.result?.data}
+                      label={false}
+                      layout={"horizontal"}
+                      legend={false}
+                      stack={false}
+                      tooltip={(() => {
+                        const __composite = { enabled: null, indicator: null };
+                        __composite["enabled"] = true;
+                        __composite["indicator"] = "dot";
+                        return __composite;
+                      })()}
+                      type={"bar"}
+                      xAxis={(() => {
+                        const __composite = {
+                          enabled: null,
+                          tickLine: null,
                           key: null,
-                          label: null
-                        },
-                        {
-                          color: null,
-                          type: "natural",
-                          dot: false,
+                          type: null,
+                          tickMargin: null
+                        };
+                        __composite["enabled"] = true;
+                        __composite["tickLine"] = false;
+                        __composite["key"] = "label";
+                        __composite["type"] = "category";
+                        __composite["tickMargin"] = 10;
+                        return __composite;
+                      })()}
+                      yAxis={(() => {
+                        const __composite = {
+                          enabled: null,
+                          tickLine: null,
+                          axisLine: null,
                           key: null,
-                          label: null
-                        }
-                      ];
-                      __composite["0"]["color"] = "var(--token-ee2TuxDknsJj)";
-                      __composite["0"]["key"] = "amount_success";
-                      __composite["0"]["label"] = "\u0645\u0628\u0644\u063a";
-                      __composite["1"]["color"] = "#D80000";
-                      __composite["1"]["key"] = "amount_failed";
-                      __composite["1"]["label"] = "\u0645\u0628\u0644\u063a";
-                      return __composite;
-                    })()}
-                    className={classNames("__wab_instance", sty.fragmentChart)}
-                    data={$state.centerData.chart.data}
-                    label={false}
-                    layout={"horizontal"}
-                    legend={false}
-                    stack={false}
-                    tooltip={(() => {
-                      const __composite = { enabled: null, indicator: null };
-                      __composite["enabled"] = true;
-                      __composite["indicator"] = "dot";
-                      return __composite;
-                    })()}
-                    type={"bar"}
-                    xAxis={(() => {
-                      const __composite = {
-                        enabled: null,
-                        tickLine: null,
-                        key: null,
-                        type: null,
-                        tickMargin: null
-                      };
-                      __composite["enabled"] = true;
-                      __composite["tickLine"] = false;
-                      __composite["key"] = "label";
-                      __composite["type"] = "category";
-                      __composite["tickMargin"] = 10;
-                      return __composite;
-                    })()}
-                    yAxis={(() => {
-                      const __composite = {
-                        enabled: null,
-                        tickLine: null,
-                        axisLine: null,
-                        key: null,
-                        tickMargin: null
-                      };
-                      __composite["enabled"] = true;
-                      __composite["tickLine"] = false;
-                      __composite["axisLine"] = false;
-                      __composite["key"] = "auto";
-                      __composite["tickMargin"] = 40;
-                      return __composite;
-                    })()}
-                  />
+                          tickMargin: null
+                        };
+                        __composite["enabled"] = true;
+                        __composite["tickLine"] = false;
+                        __composite["axisLine"] = false;
+                        __composite["key"] = "auto";
+                        __composite["tickMargin"] = 40;
+                        return __composite;
+                      })()}
+                    />
+                  </ApiRequest>
                 </div>
                 <div className={classNames("all", sty.freeBox__pJz6X)}>
                   {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -1749,6 +1826,356 @@ function PlasmicDashbord__RenderFunc(props: {
                       </Itemweek>
                     );
                   })}
+                </div>
+              </div>
+              <div className={classNames("all", sty.freeBox__rPySz)}>
+                <div className={classNames("all", sty.freeBox__mmwAl)}>
+                  <Chart
+                    cartesianGrid={[]}
+                    chartConfig={(() => {
+                      const __composite = [
+                        {
+                          color: null,
+                          type: null,
+                          dot: null,
+                          key: null,
+                          label: null
+                        }
+                      ];
+                      __composite["0"]["color"] = "var(--token-vrTybXLeM0dG)";
+                      __composite["0"]["type"] = "natural";
+                      __composite["0"]["dot"] = false;
+                      __composite["0"]["key"] = "value";
+                      __composite["0"]["label"] =
+                        "\u062a\u0639\u062f\u0627\u062f";
+                      return __composite;
+                    })()}
+                    className={classNames(
+                      "__wab_instance",
+                      sty.fragmentChart__yEyUu
+                    )}
+                    data={$state.centerData.visitors.chart_data}
+                    label={false}
+                    layout={"horizontal"}
+                    legend={false}
+                    stack={false}
+                    tooltip={(() => {
+                      const __composite = { enabled: null, indicator: null };
+                      __composite["enabled"] = true;
+                      __composite["indicator"] = "dot";
+                      return __composite;
+                    })()}
+                    type={"line"}
+                    xAxis={(() => {
+                      const __composite = {
+                        enabled: null,
+                        tickLine: null,
+                        key: null,
+                        type: null,
+                        tickMargin: null,
+                        axisLine: null
+                      };
+                      __composite["enabled"] = true;
+                      __composite["tickLine"] = false;
+                      __composite["key"] = "month_fa";
+                      __composite["type"] = "category";
+                      __composite["tickMargin"] = 50;
+                      __composite["axisLine"] = false;
+                      return __composite;
+                    })()}
+                  />
+
+                  <div className={classNames("all", sty.freeBox___7Sx4X)}>
+                    <div className={classNames("all", sty.freeBox___7Waba)}>
+                      <div
+                        className={classNames(
+                          "all",
+                          "__wab_text",
+                          sty.text__kizB
+                        )}
+                      >
+                        <React.Fragment>
+                          {$state.centerData.visitors.formatted_count}
+                        </React.Fragment>
+                      </div>
+                      <div
+                        className={classNames(
+                          "all",
+                          "__wab_text",
+                          sty.text__dLk2P
+                        )}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return $state.centerData.visitors.title_fa;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "\u0646\u0631\u062e \u0645\u0648\u0641\u0642\u06cc\u062a \u0633\u0627\u0644 \u062c\u0627\u0631\u06cc";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </div>
+                    </div>
+                    <UpDown
+                      className={classNames(
+                        "__wab_instance",
+                        sty.upDown__qtViU
+                      )}
+                      down={(() => {
+                        try {
+                          return $state.centerData.visitors.raw_growth < 0;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()}
+                      ziro={(() => {
+                        try {
+                          return $state.centerData.visitors.raw_growth == 0;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return $state.centerData.visitors.growth_percentage;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </UpDown>
+                  </div>
+                </div>
+                <div className={classNames("all", sty.freeBox__shq1R)}>
+                  <div className={classNames("all", sty.freeBox__iFjv)}>
+                    <div className={classNames("all", sty.freeBox__pxj0)}>
+                      <AntdProgress
+                        className={classNames(
+                          "__wab_instance",
+                          sty.progress__cyVmA
+                        )}
+                        percent={$state.centerData.hit_rate.raw_percentage}
+                        showInfo={false}
+                        status={"normal"}
+                        strokeColor={true ? "#8FAE55" : undefined}
+                        strokeLinecap={"round"}
+                        strokeWidth={12}
+                        type={"circle"}
+                      />
+
+                      <div className={classNames("all", sty.freeBox__eT323)}>
+                        <div
+                          className={classNames(
+                            "all",
+                            "__wab_text",
+                            sty.text___9Vnqb
+                          )}
+                        >
+                          <React.Fragment>
+                            {$state.centerData.hit_rate.percentage}
+                          </React.Fragment>
+                        </div>
+                        <div
+                          className={classNames(
+                            "all",
+                            "__wab_text",
+                            sty.text__tyqEv
+                          )}
+                        >
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return $state.centerData.hit_rate.title_fa;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "\u0646\u0631\u062e \u0645\u0648\u0641\u0642\u06cc\u062a \u0633\u0627\u0644 \u062c\u0627\u0631\u06cc";
+                                }
+                                throw e;
+                              }
+                            })()}
+                          </React.Fragment>
+                        </div>
+                      </div>
+                      <UpDown
+                        className={classNames(
+                          "__wab_instance",
+                          sty.upDown__cdD6X
+                        )}
+                        down={(() => {
+                          try {
+                            return $state.centerData.hit_rate.raw_growth < 0;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()}
+                        ziro={(() => {
+                          try {
+                            return $state.centerData.hit_rate.raw_growth == 0;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return $state.centerData.hit_rate
+                                .growth_percentage;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </UpDown>
+                    </div>
+                    <div className={classNames("all", sty.freeBox__cFhM)}>
+                      <AntdProgress
+                        className={classNames(
+                          "__wab_instance",
+                          sty.progress__ivX1I
+                        )}
+                        percent={$state.centerData.deals.raw_percentage}
+                        showInfo={false}
+                        status={"normal"}
+                        strokeColor={true ? "#F3C94C" : undefined}
+                        strokeLinecap={"round"}
+                        strokeWidth={12}
+                        type={"circle"}
+                      />
+
+                      <div className={classNames("all", sty.freeBox__qKU3)}>
+                        <div
+                          className={classNames(
+                            "all",
+                            "__wab_text",
+                            sty.text__x5Zbl
+                          )}
+                        >
+                          <React.Fragment>
+                            {$state.centerData.deals.percentage}
+                          </React.Fragment>
+                        </div>
+                        <div
+                          className={classNames(
+                            "all",
+                            "__wab_text",
+                            sty.text__cKumg
+                          )}
+                        >
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return $state.centerData.deals.title_fa;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "\u0646\u0631\u062e \u0645\u0648\u0641\u0642\u06cc\u062a \u0633\u0627\u0644 \u062c\u0627\u0631\u06cc";
+                                }
+                                throw e;
+                              }
+                            })()}
+                          </React.Fragment>
+                        </div>
+                      </div>
+                      <UpDown
+                        className={classNames(
+                          "__wab_instance",
+                          sty.upDown___9AlSi
+                        )}
+                        down={(() => {
+                          try {
+                            return $state.centerData.deals.raw_growth < 0;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()}
+                        ziro={(() => {
+                          try {
+                            return $state.centerData.deals.raw_growth == 0;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return $state.centerData.deals.growth_percentage;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "\u0631\u0632\u0631\u0648\u0647\u0627\u06cc \u0627\u0645\u0631\u0648\u0632";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </UpDown>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1881,8 +2308,6 @@ function PlasmicDashbord__RenderFunc(props: {
             return {
               id: $props.id,
               restart: $state.restart,
-              period: $state.period,
-              status: $state.status,
               center_id: $props.id
             };
           } catch (e) {
@@ -1896,7 +2321,7 @@ function PlasmicDashbord__RenderFunc(props: {
           }
         })()}
         shouldFetch={true}
-        url={"/panel/dashbord"}
+        url={"/panel/dashboard/stats"}
       />
 
       <AntdModal
@@ -3771,7 +4196,7 @@ const PlasmicDescendants = {
     "button",
     "select",
     "active",
-    "fragmentChart",
+    "chart",
     "center",
     "modal",
     "centerInfo",
@@ -3798,7 +4223,7 @@ const PlasmicDescendants = {
   button: ["button"],
   select: ["select"],
   active: ["active"],
-  fragmentChart: ["fragmentChart"],
+  chart: ["chart"],
   center: ["center"],
   modal: ["modal", "centerInfo", "saveInfo", "button5"],
   centerInfo: ["centerInfo"],
@@ -3830,7 +4255,7 @@ type NodeDefaultElementType = {
   button: typeof Button;
   select: typeof Select;
   active: typeof Select;
-  fragmentChart: typeof Chart;
+  chart: typeof ApiRequest;
   center: typeof ApiRequest;
   modal: typeof AntdModal;
   centerInfo: typeof CenterInfo;
@@ -3920,7 +4345,7 @@ export const PlasmicDashbord = Object.assign(
     button: makeNodeComponent("button"),
     select: makeNodeComponent("select"),
     active: makeNodeComponent("active"),
-    fragmentChart: makeNodeComponent("fragmentChart"),
+    chart: makeNodeComponent("chart"),
     center: makeNodeComponent("center"),
     modal: makeNodeComponent("modal"),
     centerInfo: makeNodeComponent("centerInfo"),

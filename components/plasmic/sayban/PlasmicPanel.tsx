@@ -687,7 +687,7 @@ function PlasmicPanel__RenderFunc(props: {
               }
 
               $steps["goToPanel"] =
-                $ctx.params?.page?.length == 0
+                !$ctx.params?.page || $ctx.params.page.length === 0
                   ? (() => {
                       const actionArgs = {
                         destination: `/panel/${"dashboard"}`
