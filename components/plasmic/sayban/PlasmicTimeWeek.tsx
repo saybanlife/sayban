@@ -93,14 +93,14 @@ export type PlasmicTimeWeek__ArgsType = {
   week?: any;
   onWeekChange?: (val: string) => void;
   edit2?: boolean;
-  onEdit2Change2?: (val: string) => void;
+  onEdit2Change?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicTimeWeek__ArgsType;
 export const PlasmicTimeWeek__ArgProps = new Array<ArgPropType>(
   "week",
   "onWeekChange",
   "edit2",
-  "onEdit2Change2"
+  "onEdit2Change"
 );
 
 export type PlasmicTimeWeek__OverridesType = {
@@ -124,7 +124,7 @@ export interface DefaultTimeWeekProps {
   week?: any;
   onWeekChange?: (val: string) => void;
   edit2?: boolean;
-  onEdit2Change2?: (val: string) => void;
+  onEdit2Change?: (val: string) => void;
   edit?: SingleBooleanChoiceArg<"edit">;
   className?: string;
 }
@@ -203,7 +203,7 @@ function PlasmicTimeWeek__RenderFunc(props: {
         variableType: "boolean",
 
         valueProp: "edit2",
-        onChangeProp: "onEdit2Change2"
+        onChangeProp: "onEdit2Change"
       },
       {
         path: "modal.open",
@@ -1124,22 +1124,40 @@ function PlasmicTimeWeek__RenderFunc(props: {
                             let newStart = "";
                             let newEnd = "";
                             if (!isHoliday && !isOpen24) {
-                              const hasTimeInput =
-                                $state.timeInput?.time?.hour &&
-                                $state.timeInput?.time?.minute;
-                              const hasEndTimeInput =
-                                $state.timeInput2?.time?.hour &&
-                                $state.timeInput2?.time?.minute;
-                              if (hasTimeInput && hasEndTimeInput) {
-                                newStart = `${$state.timeInput.time.hour}:${$state.timeInput.time.minute}`;
-                                newEnd = `${$state.timeInput2.time.hour}:${$state.timeInput2.time.minute}`;
+                              const hasStartHour =
+                                !!$state.timeInput?.time?.hour;
+                              const hasStartMinute =
+                                !!$state.timeInput?.time?.minute;
+                              const hasEndHour =
+                                !!$state.timeInput2?.time?.hour;
+                              const hasEndMinute =
+                                !!$state.timeInput2?.time?.minute;
+                              let startHour = "";
+                              if (hasStartHour) {
+                                startHour = $state.timeInput.time.hour;
                               } else {
-                                newStart = "08:00";
-                                newEnd = "17:00";
-                                console.log(
-                                  "ساعت‌ها برای روز فعال‌شده\u060C به صورت پیش‌فرض تنظیم شدند."
-                                );
+                                startHour = "08";
                               }
+                              let startMinute = "";
+                              if (hasStartMinute) {
+                                startMinute = $state.timeInput.time.minute;
+                              } else {
+                                startMinute = "00";
+                              }
+                              newStart = `${startHour}:${startMinute}`;
+                              let endHour = "";
+                              if (hasEndHour) {
+                                endHour = $state.timeInput2.time.hour;
+                              } else {
+                                endHour = "17";
+                              }
+                              let endMinute = "";
+                              if (hasEndMinute) {
+                                endMinute = $state.timeInput2.time.minute;
+                              } else {
+                                endMinute = "00";
+                              }
+                              newEnd = `${endHour}:${endMinute}`;
                             } else {
                               newStart = "";
                               newEnd = "";

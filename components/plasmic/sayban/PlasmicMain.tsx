@@ -406,49 +406,42 @@ function PlasmicMain__RenderFunc(props: {
           {
             label: "\u0634\u0646\u0628\u0647",
             value: "Sat",
-            isHoliday: true,
             start: "08:00:00",
             end: "21:00:00"
           },
           {
             label: "\u06cc\u06a9\u0634\u0646\u0628\u0647",
             value: "Sun",
-            isHoliday: true,
             start: "08:00:00",
             end: "21:00:00"
           },
           {
             label: "\u062f\u0648\u0634\u0646\u0628\u0647",
             value: "Mon",
-            isHoliday: true,
             start: "08:00:00",
             end: "21:00:00"
           },
           {
             label: "\u0633\u0647\u200c\u0634\u0646\u0628\u0647",
             value: "Tue",
-            isHoliday: true,
             start: "08:00:00",
             end: "21:00:00"
           },
           {
             label: "\u0686\u0647\u0627\u0631\u0634\u0646\u0628\u0647",
             value: "Wed",
-            isHoliday: true,
             start: "08:00:00",
             end: "21:00:00"
           },
           {
             label: "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647",
             value: "Thu",
-            isHoliday: true,
             start: "08:00:00",
             end: "21:00:00"
           },
           {
             label: "\u062c\u0645\u0639\u0647",
             value: "Fri",
-            isHoliday: true,
             start: "08:00:00",
             end: "21:00:00"
           }
@@ -1403,7 +1396,7 @@ function PlasmicMain__RenderFunc(props: {
         path: "timeWeek2.edit2",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => true
       },
       {
         path: "centerInfo.tags2",
@@ -5510,7 +5503,7 @@ function PlasmicMain__RenderFunc(props: {
                   data-plasmic-override={overrides.timeWeek}
                   className={classNames("__wab_instance", sty.timeWeek)}
                   edit2={generateStateValueProp($state, ["timeWeek", "edit2"])}
-                  onEdit2Change2={async (...eventArgs: any) => {
+                  onEdit2Change={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "timeWeek",
                       "edit2"
@@ -6648,7 +6641,7 @@ function PlasmicMain__RenderFunc(props: {
                   data-plasmic-override={overrides.timeWeek2}
                   className={classNames("__wab_instance", sty.timeWeek2)}
                   edit2={generateStateValueProp($state, ["timeWeek2", "edit2"])}
-                  onEdit2Change2={async (...eventArgs: any) => {
+                  onEdit2Change={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "timeWeek2",
                       "edit2"

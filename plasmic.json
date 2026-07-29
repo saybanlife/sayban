@@ -29844,6 +29844,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicItemweek.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "rmWlaLnTKIDZ",
+          "name": "Table",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicTable.tsx",
+          "importSpec": {
+            "modulePath": "Table.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicTable.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
