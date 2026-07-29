@@ -29846,15 +29846,15 @@
           "componentType": "component"
         },
         {
-          "id": "rmWlaLnTKIDZ",
-          "name": "Table",
+          "id": "c0CmQp08WGLN",
+          "name": "ReservationItemMini",
           "type": "managed",
           "projectId": "qARqpE4p5tZmJuNxFbTaPz",
-          "renderModuleFilePath": "plasmic/sayban/PlasmicTable.tsx",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicReservationItemMini.tsx",
           "importSpec": {
-            "modulePath": "Table.tsx"
+            "modulePath": "ReservationItemMini.tsx"
           },
-          "cssFilePath": "plasmic/sayban/PlasmicTable.module.css",
+          "cssFilePath": "plasmic/sayban/PlasmicReservationItemMini.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
