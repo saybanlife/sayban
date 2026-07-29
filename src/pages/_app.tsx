@@ -28,22 +28,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       const checkPermissionsAndShowPrompt = async () => {
         const permission = Notification.permission;
         setHasNotificationPermission(permission === "granted");
-
-        // 👇 لاگ برای عیب‌یابی (این مقادیر را در کنسول مرورگر بررسی کنید)
-        console.log("--- بررسی شرایط نمایش مودال نوتیفیکیشن ---");
-        console.log("آدرس فعلی صفحه (pathname):", router.pathname);
-        console.log("آدرس دقیق‌تر (asPath):", router.asPath);
-        console.log("وضعیت دسترسی مرورگر (permission):", permission);
-        console.log(
-          "زمان یادآوری رد شده است؟ (shouldShowModal):",
-          shouldShowModal
-        );
-        console.log(
-          "تاریخ انقضای لکال‌استوریج:",
-          reminderSetTime
-            ? new Date(Number(reminderSetTime)).toLocaleString()
-            : "تنظیم نشده"
-        );
         if (permission === "granted") {
           console.log("نتیجه: دسترسی از قبل داده شده است. FCM فعال می‌شود.");
           initFcm();
