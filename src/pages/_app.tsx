@@ -15,7 +15,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const [hasNotificationPermission, setHasNotificationPermission] =
     useState(false);
   useEffect(() => {
-    // ۱. حتماً منتظر بمانیم تا راوتر نکست‌جی‌اس کاملاً آماده شود
     if (!router.isReady) return;
     if (
       typeof window !== "undefined" &&
@@ -51,7 +50,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         } else if (
           permission === "default" &&
           shouldShowModal &&
-          (router.pathname === "/home" || router.asPath === "/home")
+          (router.pathname === "/home/" || router.asPath === "/home/")
         ) {
           console.log(
             "نتیجه: شرایط برقرار است! مودال تا ۲ ثانیه دیگر نمایش داده می‌شود."
