@@ -263,8 +263,8 @@ function PlasmicMainPageCategories__RenderFunc(props: {
       {
         path: "user",
         type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "restart",
@@ -1473,7 +1473,7 @@ function PlasmicMainPageCategories__RenderFunc(props: {
             <React.Fragment>
               {(() => {
                 try {
-                  return $state.selected.id
+                  return $state.selected.category_id
                     ? "ویرایش دسته بندی"
                     : "افزودن دسته بندی";
                 } catch (e) {
@@ -1562,6 +1562,13 @@ function PlasmicMainPageCategories__RenderFunc(props: {
             value={generateStateValueProp($state, ["slugInput", "value"])}
           />
 
+          <div className={classNames("all", "__wab_text", sty.text__qjEdn)}>
+            <React.Fragment>
+              {
+                "فقط از حروف انگلیسی\u060C اعداد و خط تیره (-) استفاده کنید. این مقدار در آدرس (URL) صفحه نمایش داده می‌شود."
+              }
+            </React.Fragment>
+          </div>
           <TextAreaInput
             data-plasmic-name={"textAreaInput"}
             data-plasmic-override={overrides.textAreaInput}
@@ -2036,6 +2043,13 @@ function PlasmicMainPageCategories__RenderFunc(props: {
             value={generateStateValueProp($state, ["slugInput1", "value"])}
           />
 
+          <div className={classNames("all", "__wab_text", sty.text__pVqjC)}>
+            <React.Fragment>
+              {
+                "فقط از حروف انگلیسی\u060C اعداد و خط تیره (-) استفاده کنید. این مقدار در آدرس (URL) صفحه نمایش داده می‌شود."
+              }
+            </React.Fragment>
+          </div>
           <TextAreaInput
             data-plasmic-name={"textAreaInput2"}
             data-plasmic-override={overrides.textAreaInput2}
