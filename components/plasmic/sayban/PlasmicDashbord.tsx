@@ -2147,7 +2147,7 @@ function PlasmicDashbord__RenderFunc(props: {
                           <React.Fragment>
                             {(() => {
                               try {
-                                return $state.centerData.hit_rate.title_fa;
+                                return "نرخ تبدیل بازدید به درخواست";
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||

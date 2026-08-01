@@ -62,6 +62,7 @@ import {
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+import Switch from "../../Switch"; // plasmic-import: gmLkAM4DXGYW/component
 import AnswersUser from "../../AnswersUser"; // plasmic-import: k7RSAEFr4xx-/component
 import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
 import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
@@ -72,7 +73,6 @@ import Next from "../../Next"; // plasmic-import: gLmxuN6lLlgW/component
 import Topics from "../../Topics"; // plasmic-import: K08M_vX52xMI/component
 import Calendar from "../../Calendar"; // plasmic-import: Ne_OAR5Gww2F/component
 import SelectTime from "../../SelectTime"; // plasmic-import: gjWWc9BL-2Ke/component
-import Switch from "../../Switch"; // plasmic-import: gmLkAM4DXGYW/component
 import SelectStars from "../../SelectStars"; // plasmic-import: rIv-AfQad6sO/component
 import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4/component
 import { TimePickerCustom } from "@/components/TimePickerCustom"; // plasmic-import: 4tsOFSHTfvZu/codeComponent
@@ -84,11 +84,11 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicCenterOffers.module.css"; // plasmic-import: mdgKYN8y8UQf/css
 
+import InfoCircleIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__InfoCircle"; // plasmic-import: uQcTfBHdDn4g/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 import CalendarTimeIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CalendarTime"; // plasmic-import: 6AQWb52cQDRN/icon
 import Icon42Icon from "./icons/PlasmicIcon__Icon42"; // plasmic-import: jkq895Pwga0g/icon
-import InfoCircleIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__InfoCircle"; // plasmic-import: uQcTfBHdDn4g/icon
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 import PlusIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Plus"; // plasmic-import: _pdhShvRj8aO/icon
 
@@ -149,6 +149,7 @@ export type PlasmicCenterOffers__OverridesType = {
   embedHtml?: Flex__<typeof Embed>;
   header?: Flex__<typeof Header>;
   full2?: Flex__<typeof ApiRequest>;
+  _switch?: Flex__<typeof Switch>;
   answersUser?: Flex__<typeof AnswersUser>;
   full?: Flex__<typeof ApiRequest>;
   radioGroup2?: Flex__<typeof RadioGroup>;
@@ -162,7 +163,6 @@ export type PlasmicCenterOffers__OverridesType = {
   topics2?: Flex__<typeof Topics>;
   date?: Flex__<typeof ApiRequest>;
   selectTime?: Flex__<typeof SelectTime>;
-  _switch?: Flex__<typeof Switch>;
   button2?: Flex__<typeof Button>;
   selectuser?: Flex__<typeof Dialog>;
   patient?: Flex__<typeof ApiRequest>;
@@ -905,29 +905,7 @@ function PlasmicCenterOffers__RenderFunc(props: {
         errorDisplay={null}
         loadingDisplay={
           <div className={classNames("all", sty.freeBox__u5HO)}>
-            <div
-              className={classNames("all", sty.freeBox___5Fpfw, "shimmer")}
-            />
-
-            {(
-              hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
-            ) ? (
-              <div className={classNames("all", sty.freeBox__cFmSx, ``)} />
-            ) : null}
-            <div className={classNames("all", sty.freeBox__ftSga, "shimmer")} />
-
-            <div className={classNames("all", sty.freeBox__d2KKu, "shimmer")} />
-
             <div className={classNames("all", sty.freeBox__pQy70)}>
-              <div className={classNames("all", sty.freeBox__hDVhW)}>
-                <div
-                  className={classNames("all", sty.freeBox__kVfLg, "shimmer")}
-                />
-
-                <div
-                  className={classNames("all", sty.freeBox__gn4I3, "shimmer")}
-                />
-              </div>
               <div className={classNames("all", sty.freeBox___8ZzTf)}>
                 <div
                   className={classNames("all", sty.freeBox__utzBk, "shimmer")}
@@ -936,51 +914,52 @@ function PlasmicCenterOffers__RenderFunc(props: {
                 <div
                   className={classNames("all", sty.freeBox__iUsL6, "shimmer")}
                 />
+              </div>
+              <div className={classNames("all", sty.freeBox__u7DMt)}>
+                <div
+                  className={classNames("all", sty.freeBox__vhHha, "shimmer")}
+                />
 
                 <div
-                  className={classNames("all", sty.freeBox__vyS1G, "shimmer")}
+                  className={classNames("all", sty.freeBox__deNgj, "shimmer")}
                 />
               </div>
-              <div className={classNames("all", sty.freeBox__pVh4)}>
+              <div className={classNames("all", sty.freeBox__m8PbU)}>
                 <div
-                  className={classNames("all", sty.freeBox__zfCzE, "shimmer")}
+                  className={classNames("all", sty.freeBox__eujk, "shimmer")}
                 />
 
                 <div
-                  className={classNames("all", sty.freeBox__lcGfo, "shimmer")}
-                />
-
-                <div
-                  className={classNames("all", sty.freeBox__v7Jc, "shimmer")}
+                  className={classNames("all", sty.freeBox___2MeM5, "shimmer")}
                 />
               </div>
-              {(
-                hasVariant(globalVariants, "screen", "mobileOnly")
-                  ? true
-                  : false
-              ) ? (
-                <div className={classNames("all", sty.freeBox__l24Yu)}>
-                  <div
-                    className={classNames(
-                      "all",
-                      sty.freeBox___1E0X6,
-                      "shimmer"
-                    )}
-                  />
+              <div className={classNames("all", sty.freeBox__bVfL3)}>
+                <div
+                  className={classNames("all", sty.freeBox__rhWr9, "shimmer")}
+                />
 
-                  <div
-                    className={classNames(
-                      "all",
-                      sty.freeBox___6Ordk,
-                      "shimmer"
-                    )}
-                  />
+                <div
+                  className={classNames("all", sty.freeBox__tQcZp, "shimmer")}
+                />
+              </div>
+              <div className={classNames("all", sty.freeBox__d1Aqb)}>
+                <div
+                  className={classNames("all", sty.freeBox__mJoC, "shimmer")}
+                />
 
-                  <div
-                    className={classNames("all", sty.freeBox__w7QIb, "shimmer")}
-                  />
-                </div>
-              ) : null}
+                <div
+                  className={classNames("all", sty.freeBox___9VFif, "shimmer")}
+                />
+              </div>
+              <div className={classNames("all", sty.freeBox__rabCu)}>
+                <div
+                  className={classNames("all", sty.freeBox__ikSh, "shimmer")}
+                />
+
+                <div
+                  className={classNames("all", sty.freeBox__deUAs, "shimmer")}
+                />
+              </div>
             </div>
           </div>
         }
@@ -1067,6 +1046,216 @@ function PlasmicCenterOffers__RenderFunc(props: {
               {
                 "\u062c\u0647\u062a \u062a\u06a9\u0645\u06cc\u0644 \u0641\u0631\u0622\u06cc\u0646\u062f \u062f\u0631\u062e\u0648\u0627\u0633\u062a \u067e\u0631\u0633\u062a\u0627\u0631\u060c \u062e\u0648\u0627\u0647\u0634\u0645\u0646\u062f \u0627\u0633\u062a \u0628\u0647 \u067e\u0631\u0633\u0634\u200c\u0647\u0627\u06cc \u0632\u06cc\u0631 \u067e\u0627\u0633\u062e \u062f\u0647\u06cc\u062f."
               }
+            </div>
+            <div
+              className={classNames("all", sty.freeBox__t25Ws)}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateSelectuserOpendialog"] =
+                  Object.keys($state.userSelect || {}).length == 0
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["selectuser", "opendialog"]
+                          },
+                          operation: 4
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, !oldValue);
+                          return !oldValue;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                if (
+                  $steps["updateSelectuserOpendialog"] != null &&
+                  typeof $steps["updateSelectuserOpendialog"] === "object" &&
+                  typeof $steps["updateSelectuserOpendialog"].then ===
+                    "function"
+                ) {
+                  $steps["updateSelectuserOpendialog"] =
+                    await $steps["updateSelectuserOpendialog"];
+                }
+
+                $steps["runCode"] =
+                  Object.keys($state.userSelect || {}).length > 0
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return (() => {
+                              $state.userSelect = {};
+                              return ($state.radioGroup.value = null);
+                            })();
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+              }}
+            >
+              <div className={classNames("all", sty.freeBox__vvjew)}>
+                <div
+                  className={classNames("all", "__wab_text", sty.text__dGomJ)}
+                >
+                  {
+                    "\u0631\u0632\u0631\u0648 \u0628\u0631\u0627\u06cc \u062f\u06cc\u06af\u0631\u06cc"
+                  }
+                </div>
+                {(() => {
+                  const child$Props = {
+                    className: classNames("__wab_instance", sty._switch),
+                    color: "green",
+                    disabled: true,
+                    isSelected: generateStateValueProp($state, [
+                      "_switch",
+                      "isSelected"
+                    ]),
+                    label: (
+                      <div
+                        className={classNames(
+                          "all",
+                          "__wab_text",
+                          sty.text__qdObw
+                        )}
+                      >
+                        {
+                          "\u0631\u0632\u0631\u0648 \u0628\u0631\u0627\u06cc \u062f\u06cc\u06af\u0631\u06cc"
+                        }
+                      </div>
+                    ),
+                    onChange: async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "_switch",
+                        "isSelected"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    },
+                    showLabel: false
+                  };
+
+                  initializePlasmicStates(
+                    $state,
+                    [
+                      {
+                        name: "_switch.isSelected",
+                        initFunc: ({ $props, $state, $queries, $q }) =>
+                          (() => {
+                            try {
+                              return (
+                                Object.keys($state.userSelect || {}).length > 0
+                              );
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return false;
+                              }
+                              throw e;
+                            }
+                          })()
+                      }
+                    ],
+                    []
+                  );
+                  return (
+                    <Switch
+                      data-plasmic-name={"_switch"}
+                      data-plasmic-override={overrides._switch}
+                      {...child$Props}
+                    />
+                  );
+                })()}
+              </div>
+              <div className={classNames("all", sty.freeBox___4Die0)}>
+                <InfoCircleIcon
+                  className={classNames("all", sty.svg__pkxnK)}
+                  role={"img"}
+                />
+
+                {(() => {
+                  try {
+                    return Object.keys($state.userSelect || {}).length == 0;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <div
+                    className={classNames("all", "__wab_text", sty.text__dI6Cp)}
+                  >
+                    {
+                      "\u0628\u0627 \u0641\u0639\u0627\u0644 \u06a9\u0631\u062f\u0646 \u0627\u06cc\u0646 \u06af\u0632\u06cc\u0646\u0647 \u0645\u06cc\u062a\u0648\u0627\u0646\u06cc\u062f \u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u0631\u0627 \u0628\u0631\u0627\u06cc \u0641\u0631\u062f \u062f\u06cc\u06af\u0631\u06cc \u0627\u0646\u062c\u0627\u0645 \u062f\u0647\u06cc\u062f."
+                    }
+                  </div>
+                ) : null}
+                {(() => {
+                  try {
+                    return Object.keys($state.userSelect || {}).length > 0;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <div
+                    className={classNames("all", "__wab_text", sty.text___6R3R)}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return `درخواست برای ${$state.userSelect.name} (${$state.userSelect.relation_persian})`;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "\u0628\u0627 \u0641\u0639\u0627\u0644 \u06a9\u0631\u062f\u0646 \u0627\u06cc\u0646 \u06af\u0632\u06cc\u0646\u0647 \u0645\u06cc\u062a\u0648\u0627\u0646\u06cc\u062f \u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u0631\u0627 \u0628\u0631\u0627\u06cc \u0641\u0631\u062f \u062f\u06cc\u06af\u0631\u06cc \u0627\u0646\u062c\u0627\u0645 \u062f\u0647\u06cc\u062f.";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
+                ) : null}
+              </div>
             </div>
             {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
               (() => {
@@ -1690,7 +1879,10 @@ function PlasmicCenterOffers__RenderFunc(props: {
                         "POST",
                         "/reservations/questionnaires",
                         undefined,
-                        { answers: $steps.answersText },
+                        {
+                          answers: $steps.answersText,
+                          patient_id: $state.userSelect.id || null
+                        },
 
                         {
                           headers: {
@@ -3171,231 +3363,6 @@ function PlasmicCenterOffers__RenderFunc(props: {
             </div>
             <section className={classNames("all", sty.section__c113C)}>
               <div className={classNames("all", sty.freeBox__cCvDp)}>
-                <div
-                  className={classNames("all", sty.freeBox__t25Ws)}
-                  onClick={async event => {
-                    const $steps = {};
-
-                    $steps["updateSelectuserOpendialog"] =
-                      Object.keys($state.userSelect || {}).length == 0
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["selectuser", "opendialog"]
-                              },
-                              operation: 4
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              const oldValue = $stateGet(objRoot, variablePath);
-                              $stateSet(objRoot, variablePath, !oldValue);
-                              return !oldValue;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                    if (
-                      $steps["updateSelectuserOpendialog"] != null &&
-                      typeof $steps["updateSelectuserOpendialog"] ===
-                        "object" &&
-                      typeof $steps["updateSelectuserOpendialog"].then ===
-                        "function"
-                    ) {
-                      $steps["updateSelectuserOpendialog"] =
-                        await $steps["updateSelectuserOpendialog"];
-                    }
-
-                    $steps["runCode"] =
-                      Object.keys($state.userSelect || {}).length > 0
-                        ? (() => {
-                            const actionArgs = {
-                              customFunction: async () => {
-                                return (() => {
-                                  $state.userSelect = {};
-                                  return ($state.radioGroup.value = null);
-                                })();
-                              }
-                            };
-                            return (({ customFunction }) => {
-                              return customFunction();
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                    if (
-                      $steps["runCode"] != null &&
-                      typeof $steps["runCode"] === "object" &&
-                      typeof $steps["runCode"].then === "function"
-                    ) {
-                      $steps["runCode"] = await $steps["runCode"];
-                    }
-                  }}
-                >
-                  <div className={classNames("all", sty.freeBox__vvjew)}>
-                    <div
-                      className={classNames(
-                        "all",
-                        "__wab_text",
-                        sty.text__dGomJ
-                      )}
-                    >
-                      {
-                        "\u0631\u0632\u0631\u0648 \u0628\u0631\u0627\u06cc \u062f\u06cc\u06af\u0631\u06cc"
-                      }
-                    </div>
-                    {(() => {
-                      const child$Props = {
-                        className: classNames("__wab_instance", sty._switch),
-                        color: "green",
-                        disabled: true,
-                        isSelected: generateStateValueProp($state, [
-                          "_switch",
-                          "isSelected"
-                        ]),
-                        label: (
-                          <div
-                            className={classNames(
-                              "all",
-                              "__wab_text",
-                              sty.text__qdObw
-                            )}
-                          >
-                            {
-                              "\u0631\u0632\u0631\u0648 \u0628\u0631\u0627\u06cc \u062f\u06cc\u06af\u0631\u06cc"
-                            }
-                          </div>
-                        ),
-                        onChange: async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "_switch",
-                            "isSelected"
-                          ]).apply(null, eventArgs);
-
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
-                          }
-                        },
-                        showLabel: false
-                      };
-
-                      initializePlasmicStates(
-                        $state,
-                        [
-                          {
-                            name: "_switch.isSelected",
-                            initFunc: ({ $props, $state, $queries, $q }) =>
-                              (() => {
-                                try {
-                                  return (
-                                    Object.keys($state.userSelect || {})
-                                      .length > 0
-                                  );
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return false;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                          }
-                        ],
-                        []
-                      );
-                      return (
-                        <Switch
-                          data-plasmic-name={"_switch"}
-                          data-plasmic-override={overrides._switch}
-                          {...child$Props}
-                        />
-                      );
-                    })()}
-                  </div>
-                  <div className={classNames("all", sty.freeBox___4Die0)}>
-                    <InfoCircleIcon
-                      className={classNames("all", sty.svg__pkxnK)}
-                      role={"img"}
-                    />
-
-                    {(() => {
-                      try {
-                        return Object.keys($state.userSelect || {}).length == 0;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
-                        }
-                        throw e;
-                      }
-                    })() ? (
-                      <div
-                        className={classNames(
-                          "all",
-                          "__wab_text",
-                          sty.text__dI6Cp
-                        )}
-                      >
-                        {
-                          "\u0628\u0627 \u0641\u0639\u0627\u0644 \u06a9\u0631\u062f\u0646 \u0627\u06cc\u0646 \u06af\u0632\u06cc\u0646\u0647 \u0645\u06cc\u062a\u0648\u0627\u0646\u06cc\u062f \u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u0631\u0627 \u0628\u0631\u0627\u06cc \u0641\u0631\u062f \u062f\u06cc\u06af\u0631\u06cc \u0627\u0646\u062c\u0627\u0645 \u062f\u0647\u06cc\u062f."
-                        }
-                      </div>
-                    ) : null}
-                    {(() => {
-                      try {
-                        return Object.keys($state.userSelect || {}).length > 0;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
-                        }
-                        throw e;
-                      }
-                    })() ? (
-                      <div
-                        className={classNames(
-                          "all",
-                          "__wab_text",
-                          sty.text___6R3R
-                        )}
-                      >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return `درخواست برای ${$state.userSelect.name} (${$state.userSelect.relation_persian})`;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "\u0628\u0627 \u0641\u0639\u0627\u0644 \u06a9\u0631\u062f\u0646 \u0627\u06cc\u0646 \u06af\u0632\u06cc\u0646\u0647 \u0645\u06cc\u062a\u0648\u0627\u0646\u06cc\u062f \u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u0631\u0627 \u0628\u0631\u0627\u06cc \u0641\u0631\u062f \u062f\u06cc\u06af\u0631\u06cc \u0627\u0646\u062c\u0627\u0645 \u062f\u0647\u06cc\u062f.";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
-                      </div>
-                    ) : null}
-                  </div>
-                </div>
                 <Button
                   data-plasmic-name={"button2"}
                   data-plasmic-override={overrides.button2}
@@ -4509,6 +4476,7 @@ const PlasmicDescendants = {
     "embedHtml",
     "header",
     "full2",
+    "_switch",
     "answersUser",
     "full",
     "radioGroup2",
@@ -4522,7 +4490,6 @@ const PlasmicDescendants = {
     "topics2",
     "date",
     "selectTime",
-    "_switch",
     "button2",
     "selectuser",
     "patient",
@@ -4539,7 +4506,8 @@ const PlasmicDescendants = {
   ],
   embedHtml: ["embedHtml"],
   header: ["header"],
-  full2: ["full2", "answersUser"],
+  full2: ["full2", "_switch", "answersUser"],
+  _switch: ["_switch"],
   answersUser: ["answersUser"],
   full: ["full", "radioGroup2", "reportItem"],
   radioGroup2: ["radioGroup2"],
@@ -4554,7 +4522,6 @@ const PlasmicDescendants = {
     "topics2",
     "date",
     "selectTime",
-    "_switch",
     "button2"
   ],
   holidays: [
@@ -4564,7 +4531,6 @@ const PlasmicDescendants = {
     "topics2",
     "date",
     "selectTime",
-    "_switch",
     "button2"
   ],
   topics3: ["topics3"],
@@ -4572,7 +4538,6 @@ const PlasmicDescendants = {
   topics2: ["topics2"],
   date: ["date", "selectTime"],
   selectTime: ["selectTime"],
-  _switch: ["_switch"],
   button2: ["button2"],
   selectuser: ["selectuser", "patient", "radioGroup", "img", "button4"],
   patient: ["patient", "radioGroup", "img", "button4"],
@@ -4595,6 +4560,7 @@ type NodeDefaultElementType = {
   embedHtml: typeof Embed;
   header: typeof Header;
   full2: typeof ApiRequest;
+  _switch: typeof Switch;
   answersUser: typeof AnswersUser;
   full: typeof ApiRequest;
   radioGroup2: typeof RadioGroup;
@@ -4608,7 +4574,6 @@ type NodeDefaultElementType = {
   topics2: typeof Topics;
   date: typeof ApiRequest;
   selectTime: typeof SelectTime;
-  _switch: typeof Switch;
   button2: typeof Button;
   selectuser: typeof Dialog;
   patient: typeof ApiRequest;
@@ -4689,6 +4654,7 @@ export const PlasmicCenterOffers = Object.assign(
     embedHtml: makeNodeComponent("embedHtml"),
     header: makeNodeComponent("header"),
     full2: makeNodeComponent("full2"),
+    _switch: makeNodeComponent("_switch"),
     answersUser: makeNodeComponent("answersUser"),
     full: makeNodeComponent("full"),
     radioGroup2: makeNodeComponent("radioGroup2"),
@@ -4702,7 +4668,6 @@ export const PlasmicCenterOffers = Object.assign(
     topics2: makeNodeComponent("topics2"),
     date: makeNodeComponent("date"),
     selectTime: makeNodeComponent("selectTime"),
-    _switch: makeNodeComponent("_switch"),
     button2: makeNodeComponent("button2"),
     selectuser: makeNodeComponent("selectuser"),
     patient: makeNodeComponent("patient"),

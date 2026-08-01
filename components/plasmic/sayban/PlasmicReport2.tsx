@@ -377,7 +377,7 @@ function PlasmicReport2__RenderFunc(props: {
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {
                   try {
-                    return $props.data;
+                    return $state.apiRequest.data.totalPerChannel;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -522,6 +522,7 @@ function PlasmicReport2__RenderFunc(props: {
                             return;
                           }
                         },
+                        reminder: true,
                         select: (() => {
                           try {
                             return $state.selectchanels.includes(master.value);

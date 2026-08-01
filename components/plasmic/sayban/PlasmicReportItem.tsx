@@ -79,17 +79,20 @@ export type PlasmicReportItem__VariantMembers = {
   select: "select";
   send: "send";
   disable: "disable";
+  reminder: "reminder";
 };
 export type PlasmicReportItem__VariantsArgs = {
   select?: SingleBooleanChoiceArg<"select">;
   send?: SingleBooleanChoiceArg<"send">;
   disable?: SingleBooleanChoiceArg<"disable">;
+  reminder?: SingleBooleanChoiceArg<"reminder">;
 };
 type VariantPropType = keyof PlasmicReportItem__VariantsArgs;
 export const PlasmicReportItem__VariantProps = new Array<VariantPropType>(
   "select",
   "send",
-  "disable"
+  "disable",
+  "reminder"
 );
 
 export type PlasmicReportItem__ArgsType = {
@@ -112,7 +115,6 @@ export const PlasmicReportItem__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicReportItem__OverridesType = {
   root?: Flex__<"div">;
-  img?: Flex__<typeof PlasmicImg__>;
   button4?: Flex__<typeof Button2>;
   button?: Flex__<typeof Button>;
 };
@@ -127,6 +129,7 @@ export interface DefaultReportItemProps {
   select?: SingleBooleanChoiceArg<"select">;
   send?: SingleBooleanChoiceArg<"send">;
   disable?: SingleBooleanChoiceArg<"disable">;
+  reminder?: SingleBooleanChoiceArg<"reminder">;
   className?: string;
 }
 
@@ -226,6 +229,12 @@ function PlasmicReportItem__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "reminder",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.reminder
       }
     ],
     [$props, $ctx, $refs]
@@ -254,7 +263,10 @@ function PlasmicReportItem__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
-        { [sty.rootselect]: hasVariant($state, "select", "select") }
+        {
+          [sty.rootreminder]: hasVariant($state, "reminder", "reminder"),
+          [sty.rootselect]: hasVariant($state, "select", "select")
+        }
       )}
     >
       <div
@@ -263,6 +275,11 @@ function PlasmicReportItem__RenderFunc(props: {
             $state,
             "disable",
             "disable"
+          ),
+          [sty.freeBoxreminder__f3SnzfBrLl]: hasVariant(
+            $state,
+            "reminder",
+            "reminder"
           ),
           [sty.freeBoxselect__f3Snz7GgNj]: hasVariant(
             $state,
@@ -302,10 +319,14 @@ function PlasmicReportItem__RenderFunc(props: {
           >
             <div className={classNames("all", sty.freeBox__tpj9O)}>
               <PlasmicImg__
-                data-plasmic-name={"img"}
-                data-plasmic-override={overrides.img}
                 alt={""}
-                className={classNames(sty.img)}
+                className={classNames(sty.img__gJOf2, {
+                  [sty.imgreminder__gJOf2FBrLl]: hasVariant(
+                    $state,
+                    "reminder",
+                    "reminder"
+                  )
+                })}
                 displayHeight={"2.25rem"}
                 displayMaxHeight={"none"}
                 displayMaxWidth={"100%"}
@@ -321,43 +342,132 @@ function PlasmicReportItem__RenderFunc(props: {
                   aspectRatio: undefined
                 }}
               />
+
+              <PlasmicImg__
+                alt={""}
+                className={classNames(sty.img__dNpek, {
+                  [sty.imgreminder__dNpekfBrLl]: hasVariant(
+                    $state,
+                    "reminder",
+                    "reminder"
+                  )
+                })}
+                displayHeight={"2.25rem"}
+                displayMaxHeight={"none"}
+                displayMaxWidth={"100%"}
+                displayMinHeight={"0"}
+                displayMinWidth={"0"}
+                displayWidth={"2.25rem"}
+                format={"webp"}
+                loading={"lazy"}
+                src={(() => {
+                  try {
+                    return $props.master.icon_path;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return {
+                        src: "/plasmic/sayban/images/_202607060E84Ddab49054287Bb450050910D90AfPng.png",
+                        fullWidth: 512,
+                        fullHeight: 512,
+                        aspectRatio: undefined
+                      };
+                    }
+                    throw e;
+                  }
+                })()}
+              />
             </div>
             <div className={classNames("all", sty.freeBox__zwsXz)}>
-              <div className={classNames("all", "__wab_text", sty.text__gR05A)}>
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return $state.data.name;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "";
+              <div
+                className={classNames("all", "__wab_text", sty.text__gR05A, {
+                  [sty.textreminder__gR05AfBrLl]: hasVariant(
+                    $state,
+                    "reminder",
+                    "reminder"
+                  )
+                })}
+              >
+                {hasVariant($state, "reminder", "reminder") ? (
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $props.master.name;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
                       }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
+                    })()}
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $state.data.name;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                )}
               </div>
             </div>
           </div>
-          <div className={classNames("all", "__wab_text", sty.text__nNr4G)}>
-            <React.Fragment>
-              {(() => {
-                try {
-                  return $state.data.description;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "";
+          <div
+            className={classNames("all", "__wab_text", sty.text__nNr4G, {
+              [sty.textreminder__nNr4GfBrLl]: hasVariant(
+                $state,
+                "reminder",
+                "reminder"
+              )
+            })}
+          >
+            {hasVariant($state, "reminder", "reminder") ? (
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return `قیمت‌ برای ${$props.apiRequestData.totalLabel} محاسبه شده است.`;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "";
+                    }
+                    throw e;
                   }
-                  throw e;
-                }
-              })()}
-            </React.Fragment>
+                })()}
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return $state.data.description;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            )}
           </div>
           <div
             className={classNames("all", sty.freeBox__fpTfb, {
@@ -376,6 +486,11 @@ function PlasmicReportItem__RenderFunc(props: {
           >
             <div
               className={classNames("all", sty.freeBox__klPHd, {
+                [sty.freeBoxreminder__klPHdfBrLl]: hasVariant(
+                  $state,
+                  "reminder",
+                  "reminder"
+                ),
                 [sty.freeBoxselect__klPHd7GgNj]: hasVariant(
                   $state,
                   "select",
@@ -385,6 +500,11 @@ function PlasmicReportItem__RenderFunc(props: {
             >
               <div
                 className={classNames("all", "__wab_text", sty.text__i1RHp, {
+                  [sty.textreminder__i1RHPfBrLl]: hasVariant(
+                    $state,
+                    "reminder",
+                    "reminder"
+                  ),
                   [sty.textselect__i1RHp7GgNj]: hasVariant(
                     $state,
                     "select",
@@ -392,21 +512,24 @@ function PlasmicReportItem__RenderFunc(props: {
                   )
                 })}
               >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return `${$state.data.final_price} تومان`;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "";
+                <div
+                  className={"__wab_expr_html_text"}
+                  dangerouslySetInnerHTML={{
+                    __html: (() => {
+                      try {
+                        return `${Number($props.master.value) === 0 ? '<span class="free-badge">رایگان</span>' : `${$props.master.value} ریال`}`;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
                       }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
+                    })()
+                  }}
+                />
               </div>
             </div>
             <div
@@ -415,6 +538,11 @@ function PlasmicReportItem__RenderFunc(props: {
                   $state,
                   "disable",
                   "disable"
+                ),
+                [sty.freeBoxreminder__rzZlTfBrLl]: hasVariant(
+                  $state,
+                  "reminder",
+                  "reminder"
                 ),
                 [sty.freeBoxselect__rzZlt7GgNj]: hasVariant(
                   $state,
@@ -509,6 +637,11 @@ function PlasmicReportItem__RenderFunc(props: {
                 data-plasmic-name={"button"}
                 data-plasmic-override={overrides.button}
                 className={classNames("__wab_instance", sty.button, {
+                  [sty.buttonreminder]: hasVariant(
+                    $state,
+                    "reminder",
+                    "reminder"
+                  ),
                   [sty.buttonsend_select]:
                     hasVariant($state, "send", "send") &&
                     hasVariant($state, "select", "select")
@@ -595,8 +728,7 @@ function PlasmicReportItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "img", "button4", "button"],
-  img: ["img"],
+  root: ["root", "button4", "button"],
   button4: ["button4"],
   button: ["button"]
 } as const;
@@ -605,7 +737,6 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  img: typeof PlasmicImg__;
   button4: typeof Button2;
   button: typeof Button;
 };
@@ -672,7 +803,6 @@ export const PlasmicReportItem = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    img: makeNodeComponent("img"),
     button4: makeNodeComponent("button4"),
     button: makeNodeComponent("button"),
 

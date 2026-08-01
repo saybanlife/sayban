@@ -1,6 +1,6 @@
 .root {
   display: inline-flex;
-  flex-direction: column;
+  flex-direction: row;
   width: auto;
   height: auto;
   max-width: 100%;
@@ -64,6 +64,10 @@
 }
 .rootstatus_refunded {
   background: var(--token-qsHKKmoi9Z2N);
+}
+.rootedit {
+  column-gap: var(--token-rfsFxiclAtek);
+  row-gap: 0px;
 }
 .roottextcolor_status_pending {
   background: none;
@@ -178,4 +182,16 @@
   color: var(--token-Yo4gdKCgyuAu);
   font-size: var(--token-Tca_MqWoqq_b);
   font-weight: 700;
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  width: var(--token-73iLa06AE6f4);
+  height: var(--token-73iLa06AE6f4);
+  color: #00000042;
+  flex-shrink: 0;
+  display: none;
+}
+.svgedit {
+  display: block;
 }

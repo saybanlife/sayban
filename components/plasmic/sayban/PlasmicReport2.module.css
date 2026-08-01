@@ -178,6 +178,10 @@
   min-width: 0;
   padding: 0px;
 }
+.reportItem:global(.__wab_instance) {
+  width: 100%;
+  min-width: 0;
+}
 .line:global(.__wab_instance) {
   max-width: 100%;
   flex-shrink: 0;

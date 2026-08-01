@@ -66,6 +66,8 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicStatus.module.css"; // plasmic-import: UhSHXabmHrQP/css
 
+import EditIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Edit"; // plasmic-import: Q3Mz32feM0mm/icon
+
 createPlasmicElementProxy;
 
 export type PlasmicStatus__VariantMembers = {
@@ -93,6 +95,7 @@ export type PlasmicStatus__VariantMembers = {
     | "refunded"
     | "awaitingSupport";
   textcolor: "textcolor";
+  edit: "edit";
 };
 export type PlasmicStatus__VariantsArgs = {
   status?: SingleChoiceArg<
@@ -120,11 +123,13 @@ export type PlasmicStatus__VariantsArgs = {
     | "awaitingSupport"
   >;
   textcolor?: SingleBooleanChoiceArg<"textcolor">;
+  edit?: SingleBooleanChoiceArg<"edit">;
 };
 type VariantPropType = keyof PlasmicStatus__VariantsArgs;
 export const PlasmicStatus__VariantProps = new Array<VariantPropType>(
   "status",
-  "textcolor"
+  "textcolor",
+  "edit"
 );
 
 export type PlasmicStatus__ArgsType = {};
@@ -134,6 +139,7 @@ export const PlasmicStatus__ArgProps = new Array<ArgPropType>();
 export type PlasmicStatus__OverridesType = {
   root?: Flex__<"div">;
   text?: Flex__<"div">;
+  svg?: Flex__<"svg">;
 };
 
 export interface DefaultStatusProps {
@@ -162,6 +168,7 @@ export interface DefaultStatusProps {
     | "awaitingSupport"
   >;
   textcolor?: SingleBooleanChoiceArg<"textcolor">;
+  edit?: SingleBooleanChoiceArg<"edit">;
   className?: string;
 }
 
@@ -231,6 +238,12 @@ function PlasmicStatus__RenderFunc(props: {
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           $props.unnamedGroupOfVariants2
+      },
+      {
+        path: "edit",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.edit
       }
     ],
     [$props, $ctx, $refs]
@@ -260,6 +273,7 @@ function PlasmicStatus__RenderFunc(props: {
         styleTokensClassNames,
         sty.root,
         {
+          [sty.rootedit]: hasVariant($state, "edit", "edit"),
           [sty.rootstatus_awaitingCenterContact]: hasVariant(
             $state,
             "status",
@@ -277,6 +291,9 @@ function PlasmicStatus__RenderFunc(props: {
           ),
           [sty.rootstatus_canceled]: hasVariant($state, "status", "canceled"),
           [sty.rootstatus_completed]: hasVariant($state, "status", "completed"),
+          [sty.rootstatus_completed_edit]:
+            hasVariant($state, "status", "completed") &&
+            hasVariant($state, "edit", "edit"),
           [sty.rootstatus_confirmed]: hasVariant($state, "status", "confirmed"),
           [sty.rootstatus_draft]: hasVariant($state, "status", "draft"),
           [sty.rootstatus_finalConfirmed]: hasVariant(
@@ -347,6 +364,7 @@ function PlasmicStatus__RenderFunc(props: {
         data-plasmic-name={"text"}
         data-plasmic-override={overrides.text}
         className={classNames("all", "__wab_text", sty.text, {
+          [sty.textedit]: hasVariant($state, "edit", "edit"),
           [sty.textstatus_awaitingCenterContact]: hasVariant(
             $state,
             "status",
@@ -525,13 +543,22 @@ function PlasmicStatus__RenderFunc(props: {
                                                   ? "\u062a\u0623\u06cc\u06cc\u062f \u0634\u062f\u0647"
                                                   : "\u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0627\u06cc\u06cc\u062f"}
       </div>
+      <EditIcon
+        data-plasmic-name={"svg"}
+        data-plasmic-override={overrides.svg}
+        className={classNames("all", sty.svg, {
+          [sty.svgedit]: hasVariant($state, "edit", "edit")
+        })}
+        role={"img"}
+      />
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "text"],
-  text: ["text"]
+  root: ["root", "text", "svg"],
+  text: ["text"],
+  svg: ["svg"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -539,6 +566,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   text: "div";
+  svg: "svg";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -604,6 +632,7 @@ export const PlasmicStatus = Object.assign(
   {
     // Helper components rendering sub-elements
     text: makeNodeComponent("text"),
+    svg: makeNodeComponent("svg"),
 
     // Metadata about props expected for PlasmicStatus
     internalVariantProps: PlasmicStatus__VariantProps,

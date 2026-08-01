@@ -1162,6 +1162,7 @@ function PlasmicReservationItem__RenderFunc(props: {
             data-plasmic-name={"status"}
             data-plasmic-override={overrides.status}
             className={classNames("__wab_instance", sty.status)}
+            edit={true}
             status={(() => {
               try {
                 return $props?.currentItem?.status || null;
