@@ -66,6 +66,7 @@ import MenuSection from "../../MenuSection"; // plasmic-import: PvgERH0q4dKA/com
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Errorpage from "../../Errorpage"; // plasmic-import: HTnfDJNIbaau/component
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
+import Switch from "../../Switch"; // plasmic-import: gmLkAM4DXGYW/component
 import Tags from "../../Tags"; // plasmic-import: Lr-0_vYS3Xmt/component
 import ImageEdit from "../../ImageEdit"; // plasmic-import: PU02M3FSmgy6/component
 import AddServise2 from "../../AddServise2"; // plasmic-import: ldHafC0LATYt/component
@@ -74,6 +75,8 @@ import Comments from "../../Comments"; // plasmic-import: cWL9dXIRpWvf/component
 import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
 import CenterInfo from "../../CenterInfo"; // plasmic-import: 5fhUfrSk0s6y/component
 import UserPanelInfo from "../../UserPanelInfo"; // plasmic-import: NJmPC7ZHblW7/component
+import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
+import Hide from "../../Hide"; // plasmic-import: 6tyxrSjs9tps/component
 import Modal from "../../Modal"; // plasmic-import: Oo9r7A7X8FP7/component
 import Imag from "../../Imag"; // plasmic-import: ScLhJpeVxPbk/component
 import ImageProfile from "../../ImageProfile"; // plasmic-import: NCgtBMbIwpli/component
@@ -148,6 +151,8 @@ export type PlasmicCenterPage__OverridesType = {
   center?: Flex__<typeof ApiRequest>;
   errorpage?: Flex__<typeof Errorpage>;
   edit5?: Flex__<typeof Button>;
+  _switch?: Flex__<typeof Switch>;
+  edit6?: Flex__<typeof Button>;
   img?: Flex__<typeof PlasmicImg__>;
   edit3?: Flex__<typeof Button>;
   edit4?: Flex__<typeof Button>;
@@ -172,6 +177,12 @@ export type PlasmicCenterPage__OverridesType = {
   userPanelInfo?: Flex__<typeof UserPanelInfo>;
   saveInfo3?: Flex__<typeof Button>;
   button6?: Flex__<typeof Button>;
+  modal3?: Flex__<typeof AntdModal>;
+  userPanelInfo2?: Flex__<typeof UserPanelInfo>;
+  password?: Flex__<typeof TextInput>;
+  hide?: Flex__<typeof Hide>;
+  saveInfo4?: Flex__<typeof Button>;
+  button8?: Flex__<typeof Button>;
   imageinsert?: Flex__<typeof Modal>;
   imag?: Flex__<typeof Imag>;
   saveUpload?: Flex__<typeof Button>;
@@ -838,6 +849,85 @@ function PlasmicCenterPage__RenderFunc(props: {
           ($state.center?.data?.result?.tags || []).map(i =>
             i.tag_id.toString()
           )
+      },
+      {
+        path: "modal3.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "userPanelInfo2.categories",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "userPanelInfo2.emailvalue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "userPanelInfo2.password1",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "userPanelInfo2.mobileValue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "userPanelInfo2.nameValue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "saveInfo4.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button8.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "password.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "hide.show",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "hide.type",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "password"
+      },
+      {
+        path: "edit6.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "_switch.isSelected",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $state?.centerData?.user?.is_active || false
       }
     ],
     [$props, $ctx, $refs]
@@ -1940,7 +2030,241 @@ function PlasmicCenterPage__RenderFunc(props: {
                       </React.Fragment>
                     </div>
                   </div>
+                  <Line
+                    className={classNames("__wab_instance", sty.line__p3CC4)}
+                    size={"small"}
+                  />
+
+                  <div
+                    className={classNames("all", sty.freeBox__tt8Du, {
+                      [sty.freeBoxrole_centerAdmin__tt8Du2AC0]: hasVariant(
+                        $state,
+                        "role",
+                        "centerAdmin"
+                      )
+                    })}
+                  >
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text___0VBdj,
+                        {
+                          [sty.textrole_centerAdmin___0VBdj2AC0]: hasVariant(
+                            $state,
+                            "role",
+                            "centerAdmin"
+                          )
+                        }
+                      )}
+                    >
+                      {
+                        "\u0648\u0636\u0639\u06cc\u062a \u062d\u0633\u0627\u0628"
+                      }
+                    </div>
+                    <Switch
+                      data-plasmic-name={"_switch"}
+                      data-plasmic-override={overrides._switch}
+                      className={classNames("__wab_instance", sty._switch)}
+                      isSelected={generateStateValueProp($state, [
+                        "_switch",
+                        "isSelected"
+                      ])}
+                      label={
+                        <div
+                          className={classNames(
+                            "all",
+                            "__wab_text",
+                            sty.text__ldZDc
+                          )}
+                        >
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return $state.centerData.user.is_active == 1
+                                  ? "فعال"
+                                  : "غیر فعال";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "Label";
+                                }
+                                throw e;
+                              }
+                            })()}
+                          </React.Fragment>
+                        </div>
+                      }
+                      onChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "_switch",
+                          "isSelected"
+                        ]).apply(null, eventArgs);
+
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
+                          return;
+                        }
+
+                        (async val => {
+                          const $steps = {};
+
+                          $steps["invokeGlobalAction"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    "POST",
+                                    "panel/users/is_active",
+                                    undefined,
+                                    {
+                                      id: $state.center.data.result.user.id,
+                                      is_active: $state._switch.isSelected
+                                    }
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Fragment.apiRequest"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["invokeGlobalAction"] != null &&
+                            typeof $steps["invokeGlobalAction"] === "object" &&
+                            typeof $steps["invokeGlobalAction"].then ===
+                              "function"
+                          ) {
+                            $steps["invokeGlobalAction"] =
+                              await $steps["invokeGlobalAction"];
+                          }
+
+                          $steps["runCode"] = $steps.invokeGlobalAction?.data
+                            ?.success
+                            ? (() => {
+                                const actionArgs = {
+                                  customFunction: async () => {
+                                    return !$state.center.data.result.is_active;
+                                  }
+                                };
+                                return (({ customFunction }) => {
+                                  return customFunction();
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["runCode"] != null &&
+                            typeof $steps["runCode"] === "object" &&
+                            typeof $steps["runCode"].then === "function"
+                          ) {
+                            $steps["runCode"] = await $steps["runCode"];
+                          }
+                        }).apply(null, eventArgs);
+                      }}
+                      showLabel={true}
+                    />
+                  </div>
                 </div>
+                <Button
+                  data-plasmic-name={"edit6"}
+                  data-plasmic-override={overrides.edit6}
+                  className={classNames("__wab_instance", sty.edit6)}
+                  color={"neutral"}
+                  label={
+                    <div
+                      className={classNames(
+                        "all",
+                        "__wab_text",
+                        sty.text__vh3J
+                      )}
+                    >
+                      {"\u062a\u063a\u06cc\u06cc\u0631 \u0631\u0645\u0632"}
+                    </div>
+                  }
+                  loading={generateStateValueProp($state, ["edit6", "loading"])}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return (() => {
+                                $state.userPanelInfo2.emailvalue =
+                                  $state.centerData.user.email;
+                                $state.userPanelInfo2.mobileValue =
+                                  $state.centerData.user.mobile;
+                                return ($state.userPanelInfo2.nameValue =
+                                  $state.centerData.user.name);
+                              })();
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+
+                    $steps["updateMap2IsOpen"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["modal3", "open"]
+                            },
+                            operation: 4
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            const oldValue = $stateGet(objRoot, variablePath);
+                            $stateSet(objRoot, variablePath, !oldValue);
+                            return !oldValue;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateMap2IsOpen"] != null &&
+                      typeof $steps["updateMap2IsOpen"] === "object" &&
+                      typeof $steps["updateMap2IsOpen"].then === "function"
+                    ) {
+                      $steps["updateMap2IsOpen"] =
+                        await $steps["updateMap2IsOpen"];
+                    }
+                  }}
+                  onLoadingChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "edit6",
+                      "loading"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                />
               </div>
               <div
                 className={classNames("all", sty.freeBox__sNve7, "", {
@@ -5076,6 +5400,563 @@ function PlasmicCenterPage__RenderFunc(props: {
           />
         </div>
       </AntdModal>
+      <AntdModal
+        data-plasmic-name={"modal3"}
+        data-plasmic-override={overrides.modal3}
+        className={classNames("__wab_instance", sty.modal3, {
+          [sty.modal3role_superAdmin]: hasVariant($state, "role", "superAdmin")
+        })}
+        defaultStylesClassName={classNames(
+          "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+          "plasmic_default_styles",
+          "plasmic_mixins",
+          styleTokensClassNames
+        )}
+        footer={
+          <div className={classNames("all", sty.freeBox__qbYcY)}>
+            <Button
+              data-plasmic-name={"saveInfo4"}
+              data-plasmic-override={overrides.saveInfo4}
+              className={classNames("__wab_instance", sty.saveInfo4, {
+                [sty.saveInfo4role_superAdmin]: hasVariant(
+                  $state,
+                  "role",
+                  "superAdmin"
+                )
+              })}
+              color={"success"}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text__nR1NA)}
+                >
+                  {"\u0630\u062e\u06cc\u0631\u0647"}
+                </div>
+              }
+              loading={generateStateValueProp($state, ["saveInfo4", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateSaveInfoLoading"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["saveInfo4", "loading"]
+                        },
+                        operation: 4
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateSaveInfoLoading"] != null &&
+                  typeof $steps["updateSaveInfoLoading"] === "object" &&
+                  typeof $steps["updateSaveInfoLoading"].then === "function"
+                ) {
+                  $steps["updateSaveInfoLoading"] =
+                    await $steps["updateSaveInfoLoading"];
+                }
+
+                $steps["update"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "POST",
+                          "panel/change/pass-simple",
+                          undefined,
+                          {
+                            id: $state.center.data.result.user.id,
+                            password: $state.password.value
+                          }
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["update"] != null &&
+                  typeof $steps["update"] === "object" &&
+                  typeof $steps["update"].then === "function"
+                ) {
+                  $steps["update"] = await $steps["update"];
+                }
+
+                $steps["updateSaveInfoLoading2"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["saveInfo4", "loading"]
+                        },
+                        operation: 4
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateSaveInfoLoading2"] != null &&
+                  typeof $steps["updateSaveInfoLoading2"] === "object" &&
+                  typeof $steps["updateSaveInfoLoading2"].then === "function"
+                ) {
+                  $steps["updateSaveInfoLoading2"] =
+                    await $steps["updateSaveInfoLoading2"];
+                }
+
+                $steps["updateModalOpen"] = $steps.update?.data?.success
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["modal3", "open"]
+                        },
+                        operation: 4
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateModalOpen"] != null &&
+                  typeof $steps["updateModalOpen"] === "object" &&
+                  typeof $steps["updateModalOpen"].then === "function"
+                ) {
+                  $steps["updateModalOpen"] = await $steps["updateModalOpen"];
+                }
+
+                $steps["invokeGlobalAction"] = $steps.update?.data?.success
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "success",
+                          "\u0639\u0645\u0644\u06cc\u0627\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0646\u062c\u0627\u0645 \u0634\u062f.",
+                          "top-center"
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] =
+                    await $steps["invokeGlobalAction"];
+                }
+
+                $steps["runCode"] = $steps.update?.data?.success
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return ($state.restart += "1");
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+              }}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "saveInfo4",
+                  "loading"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+            />
+
+            <Button
+              data-plasmic-name={"button8"}
+              data-plasmic-override={overrides.button8}
+              className={classNames("__wab_instance", sty.button8)}
+              color={"neutral"}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text__f82Mg)}
+                >
+                  {"\u0644\u063a\u0648"}
+                </div>
+              }
+              loading={generateStateValueProp($state, ["button8", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateModalIsOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["modal3", "open"]
+                        },
+                        operation: 4,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateModalIsOpen"] != null &&
+                  typeof $steps["updateModalIsOpen"] === "object" &&
+                  typeof $steps["updateModalIsOpen"].then === "function"
+                ) {
+                  $steps["updateModalIsOpen"] =
+                    await $steps["updateModalIsOpen"];
+                }
+              }}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["button8", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+            />
+          </div>
+        }
+        modalScopeClassName={sty["modal3__modal"]}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["modal3", "open"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        open={generateStateValueProp($state, ["modal3", "open"])}
+        title={null}
+        trigger={null}
+      >
+        <div className={classNames("all", sty.freeBox__oki6O, "dark")}>
+          <UserPanelInfo
+            data-plasmic-name={"userPanelInfo2"}
+            data-plasmic-override={overrides.userPanelInfo2}
+            categories={generateStateValueProp($state, [
+              "userPanelInfo2",
+              "categories"
+            ])}
+            className={classNames("__wab_instance", sty.userPanelInfo2, {
+              [sty.userPanelInfo2role_superAdmin]: hasVariant(
+                $state,
+                "role",
+                "superAdmin"
+              )
+            })}
+            edit={true}
+            emailvalue={generateStateValueProp($state, [
+              "userPanelInfo2",
+              "emailvalue"
+            ])}
+            mobileValue={generateStateValueProp($state, [
+              "userPanelInfo2",
+              "mobileValue"
+            ])}
+            nameValue={generateStateValueProp($state, [
+              "userPanelInfo2",
+              "nameValue"
+            ])}
+            onCategoriesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "userPanelInfo2",
+                "categories"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onEmailvalueChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "userPanelInfo2",
+                "emailvalue"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onMobileValueChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "userPanelInfo2",
+                "mobileValue"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onNameValueChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "userPanelInfo2",
+                "nameValue"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onPasswordChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "userPanelInfo2",
+                "password1"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            password1={generateStateValueProp($state, [
+              "userPanelInfo2",
+              "password1"
+            ])}
+          />
+
+          <div className={classNames("all", "__wab_text", sty.text___4Uskx)}>
+            {"\u0631\u0645\u0632 \u0639\u0628\u0648\u0631"}
+          </div>
+          <div className={classNames("all", sty.freeBox__ptvaL)}>
+            <TextInput
+              data-plasmic-name={"password"}
+              data-plasmic-override={overrides.password}
+              className={classNames("__wab_instance", sty.password)}
+              inputType={(() => {
+                try {
+                  return $state.hide.type;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "password";
+                  }
+                  throw e;
+                }
+              })()}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["password", "value"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              placeholder={
+                "\u062d\u062f\u0627\u0642\u0644 8 \u06a9\u0627\u0631\u0627\u06a9\u062a\u0631"
+              }
+              size={"langh"}
+              type={"line"}
+              value={generateStateValueProp($state, ["password", "value"])}
+            />
+
+            <Hide
+              data-plasmic-name={"hide"}
+              data-plasmic-override={overrides.hide}
+              className={classNames("__wab_instance", sty.hide)}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            $state.hide.show = !$state.hide.show;
+                            return ($state.hide.type = "text");
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+
+                $steps["invokeGlobalAction"] = true
+                  ? (() => {
+                      const actionArgs = { args: [3000] };
+                      return $globalActions["Fragment.wait"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] =
+                    await $steps["invokeGlobalAction"];
+                }
+
+                $steps["runCode2"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            $state.hide.show = !$state.hide.show;
+                            return ($state.hide.type = "password");
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode2"] != null &&
+                  typeof $steps["runCode2"] === "object" &&
+                  typeof $steps["runCode2"].then === "function"
+                ) {
+                  $steps["runCode2"] = await $steps["runCode2"];
+                }
+              }}
+              onShowChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["hide", "show"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              onTypeChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["hide", "type"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              show={generateStateValueProp($state, ["hide", "show"])}
+              type={generateStateValueProp($state, ["hide", "type"])}
+            />
+          </div>
+        </div>
+      </AntdModal>
       <Modal
         data-plasmic-name={"imageinsert"}
         data-plasmic-override={overrides.imageinsert}
@@ -6084,6 +6965,8 @@ const PlasmicDescendants = {
     "center",
     "errorpage",
     "edit5",
+    "_switch",
+    "edit6",
     "img",
     "edit3",
     "edit4",
@@ -6108,6 +6991,12 @@ const PlasmicDescendants = {
     "userPanelInfo",
     "saveInfo3",
     "button6",
+    "modal3",
+    "userPanelInfo2",
+    "password",
+    "hide",
+    "saveInfo4",
+    "button8",
     "imageinsert",
     "imag",
     "saveUpload",
@@ -6130,6 +7019,8 @@ const PlasmicDescendants = {
     "center",
     "errorpage",
     "edit5",
+    "_switch",
+    "edit6",
     "img",
     "edit3",
     "edit4",
@@ -6149,6 +7040,8 @@ const PlasmicDescendants = {
   ],
   errorpage: ["errorpage"],
   edit5: ["edit5"],
+  _switch: ["_switch"],
+  edit6: ["edit6"],
   img: ["img"],
   edit3: ["edit3"],
   edit4: ["edit4"],
@@ -6173,6 +7066,19 @@ const PlasmicDescendants = {
   userPanelInfo: ["userPanelInfo"],
   saveInfo3: ["saveInfo3"],
   button6: ["button6"],
+  modal3: [
+    "modal3",
+    "userPanelInfo2",
+    "password",
+    "hide",
+    "saveInfo4",
+    "button8"
+  ],
+  userPanelInfo2: ["userPanelInfo2"],
+  password: ["password"],
+  hide: ["hide"],
+  saveInfo4: ["saveInfo4"],
+  button8: ["button8"],
   imageinsert: ["imageinsert", "imag", "saveUpload", "close"],
   imag: ["imag"],
   saveUpload: ["saveUpload"],
@@ -6199,6 +7105,8 @@ type NodeDefaultElementType = {
   center: typeof ApiRequest;
   errorpage: typeof Errorpage;
   edit5: typeof Button;
+  _switch: typeof Switch;
+  edit6: typeof Button;
   img: typeof PlasmicImg__;
   edit3: typeof Button;
   edit4: typeof Button;
@@ -6223,6 +7131,12 @@ type NodeDefaultElementType = {
   userPanelInfo: typeof UserPanelInfo;
   saveInfo3: typeof Button;
   button6: typeof Button;
+  modal3: typeof AntdModal;
+  userPanelInfo2: typeof UserPanelInfo;
+  password: typeof TextInput;
+  hide: typeof Hide;
+  saveInfo4: typeof Button;
+  button8: typeof Button;
   imageinsert: typeof Modal;
   imag: typeof Imag;
   saveUpload: typeof Button;
@@ -6307,6 +7221,8 @@ export const PlasmicCenterPage = Object.assign(
     center: makeNodeComponent("center"),
     errorpage: makeNodeComponent("errorpage"),
     edit5: makeNodeComponent("edit5"),
+    _switch: makeNodeComponent("_switch"),
+    edit6: makeNodeComponent("edit6"),
     img: makeNodeComponent("img"),
     edit3: makeNodeComponent("edit3"),
     edit4: makeNodeComponent("edit4"),
@@ -6331,6 +7247,12 @@ export const PlasmicCenterPage = Object.assign(
     userPanelInfo: makeNodeComponent("userPanelInfo"),
     saveInfo3: makeNodeComponent("saveInfo3"),
     button6: makeNodeComponent("button6"),
+    modal3: makeNodeComponent("modal3"),
+    userPanelInfo2: makeNodeComponent("userPanelInfo2"),
+    password: makeNodeComponent("password"),
+    hide: makeNodeComponent("hide"),
+    saveInfo4: makeNodeComponent("saveInfo4"),
+    button8: makeNodeComponent("button8"),
     imageinsert: makeNodeComponent("imageinsert"),
     imag: makeNodeComponent("imag"),
     saveUpload: makeNodeComponent("saveUpload"),

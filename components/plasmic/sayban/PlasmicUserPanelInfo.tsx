@@ -327,7 +327,9 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
           <TextInput
             data-plasmic-name={"email"}
             data-plasmic-override={overrides.email}
-            className={classNames("__wab_instance", sty.email)}
+            className={classNames("__wab_instance", sty.email, {
+              [sty.emailedit]: hasVariant($state, "edit", "edit")
+            })}
             inputType={"text"}
             onChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["email", "value"]).apply(
@@ -355,7 +357,9 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
           <TextInput
             data-plasmic-name={"mobile"}
             data-plasmic-override={overrides.mobile}
-            className={classNames("__wab_instance", sty.mobile)}
+            className={classNames("__wab_instance", sty.mobile, {
+              [sty.mobileedit]: hasVariant($state, "edit", "edit")
+            })}
             inputType={"text"}
             onChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["mobile", "value"]).apply(
@@ -381,7 +385,11 @@ function PlasmicUserPanelInfo__RenderFunc(props: {
             [sty.freeBoxedit___31P8B1N5Q]: hasVariant($state, "edit", "edit")
           })}
         >
-          <div className={classNames("all", "__wab_text", sty.text__bTGeg)}>
+          <div
+            className={classNames("all", "__wab_text", sty.text__bTGeg, {
+              [sty.textedit__bTGeg1N5Q]: hasVariant($state, "edit", "edit")
+            })}
+          >
             {"\u0631\u0645\u0632 \u0639\u0628\u0648\u0631"}
           </div>
           <TextInput
