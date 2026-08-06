@@ -29857,6 +29857,19 @@
           "cssFilePath": "plasmic/sayban/PlasmicReservationItemMini.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "Yhl0_R0HeZVf",
+          "name": "ReportItem2",
+          "type": "managed",
+          "projectId": "qARqpE4p5tZmJuNxFbTaPz",
+          "renderModuleFilePath": "plasmic/sayban/PlasmicReportItem2.tsx",
+          "importSpec": {
+            "modulePath": "ReportItem2.tsx"
+          },
+          "cssFilePath": "plasmic/sayban/PlasmicReportItem2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -30894,6 +30907,16 @@
           "id": "9Xfm_lI0FWYZ",
           "name": "Icon127Icon",
           "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon127.tsx"
+        },
+        {
+          "id": "K5IjoZWbEjhk",
+          "name": "Icon128Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon128.tsx"
+        },
+        {
+          "id": "ef3M3isnda4d",
+          "name": "Icon129Icon",
+          "moduleFilePath": "plasmic/sayban/icons/PlasmicIcon__Icon129.tsx"
         }
       ],
       "images": [
