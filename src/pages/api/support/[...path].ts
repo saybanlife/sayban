@@ -137,24 +137,6 @@ export default async function handler(
       return res.status(200).json({ success: true, result });
     }
 
-    if (path === "callbacks/create" && req.method === "POST") {
-      const { userId } = requireUserId(auth);
-      const body = (req.body || {}) as {
-        phone?: string;
-        time_preference?: "anytime" | "specific";
-        preferred_time?: string | null;
-        source?: string | null;
-      };
-      const result = await supportService.userCreateCallbackRequest({
-        userId,
-        phone: String(body.phone || ""),
-        timePreference: body.time_preference,
-        preferredTime: body.preferred_time,
-        source: body.source
-      });
-      return res.status(200).json({ success: true, result });
-    }
-
     return res.status(404).json({ success: false, message: "Not found" });
   } catch (error) {
     if (

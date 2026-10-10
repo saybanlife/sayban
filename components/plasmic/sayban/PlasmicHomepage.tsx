@@ -12,7 +12,7 @@
 // Component: qQJONu9yTCat
 
 import * as React from "react";
-import SupportFab from "../../support/SupportFab";
+
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
@@ -146,24 +146,24 @@ createPlasmicElementProxy;
 
 export type PlasmicHomepage__VariantMembers = {
   page:
-  | "categories"
-  | "subcategories"
-  | "center"
-  | "payment"
-  | "editUser"
-  | "booking"
-  | "about"
-  | "faq"
-  | "rules"
-  | "notif"
-  | "addPatient"
-  | "patient"
-  | "reminderSetting"
-  | "address"
-  | "addAddress"
-  | "bookNurse"
-  | "offers"
-  | "staff";
+    | "categories"
+    | "subcategories"
+    | "center"
+    | "payment"
+    | "editUser"
+    | "booking"
+    | "about"
+    | "faq"
+    | "rules"
+    | "notif"
+    | "addPatient"
+    | "patient"
+    | "reminderSetting"
+    | "address"
+    | "addAddress"
+    | "bookNurse"
+    | "offers"
+    | "staff";
   search2: "search2";
   homePage2: "home" | "reminder" | "user" | "booking";
 };
@@ -237,14 +237,14 @@ export type PlasmicHomepage__OverridesType = {
   staff?: Flex__<typeof Staff>;
 };
 
-export interface DefaultHomepageProps { }
+export interface DefaultHomepageProps {}
 
 const $$ = {};
 
 function useNextRouter() {
   try {
     return useRouter();
-  } catch { }
+  } catch {}
   return undefined;
 }
 
@@ -1514,11 +1514,11 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["getCookie"] = true
                 ? (() => {
-                  const actionArgs = { args: [PUBLIC_AUTH_COOKIE_NAME] };
-                  return $globalActions["Fragment.getCookie"]?.apply(null, [
-                    ...actionArgs.args
-                  ]);
-                })()
+                    const actionArgs = { args: [PUBLIC_AUTH_COOKIE_NAME] };
+                    return $globalActions["Fragment.getCookie"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
                 : undefined;
               if (
                 $steps["getCookie"] != null &&
@@ -1567,26 +1567,26 @@ function PlasmicHomepage__RenderFunc(props: {
                   return false;
                 })()
                   ? (() => {
-                    // `/login/[[...step]]` is the file-route pattern, not a
-                    // URL; pushing it parked the user on an encoded path.
-                    // `replace` also matters: with `push`, Back returned here,
-                    // the cookie was still missing, and this redirect fired
-                    // again — an inescapable home/login loop.
-                    // Name-first entry is bare `/login`. OTP stays on `/login/mobile`.
-                    const actionArgs = { destination: `/login` };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.replace(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
+                      // `/login/[[...step]]` is the file-route pattern, not a
+                      // URL; pushing it parked the user on an encoded path.
+                      // `replace` also matters: with `push`, Back returned here,
+                      // the cookie was still missing, and this redirect fired
+                      // again — an inescapable home/login loop.
+                      // Name-first entry is bare `/login`. OTP stays on `/login/mobile`.
+                      const actionArgs = { destination: `/login` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.replace(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
                   : undefined;
               if (
                 $steps["goToLogin"] != null &&
@@ -1598,24 +1598,24 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["updateToken"] = true
                 ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["token"]
-                    },
-                    operation: 0,
-                    value: resolvePublicAuthToken($steps.getCookie)
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["token"]
+                      },
+                      operation: 0,
+                      value: resolvePublicAuthToken($steps.getCookie)
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
 
-                    $stateSet(objRoot, variablePath, value);
-                    return value;
-                  })?.apply(null, [actionArgs]);
-                })()
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["updateToken"] != null &&
@@ -1629,7 +1629,7 @@ function PlasmicHomepage__RenderFunc(props: {
 
           {(
             hasVariant($state, "page", "reminderSetting") &&
-              hasVariant($state, "homePage2", "reminder")
+            hasVariant($state, "homePage2", "reminder")
               ? true
               : hasVariant($state, "homePage2", "reminder")
                 ? true
@@ -1660,52 +1660,52 @@ function PlasmicHomepage__RenderFunc(props: {
                                         : hasVariant($state, "page", "booking")
                                           ? true
                                           : hasVariant(
-                                            $state,
-                                            "page",
-                                            "editUser"
-                                          )
-                                            ? true
-                                            : hasVariant(
-                                              $state,
-                                              "page",
-                                              "payment"
-                                            )
-                                              ? true
-                                              : hasVariant(
                                                 $state,
                                                 "page",
-                                                "center"
+                                                "editUser"
                                               )
-                                                ? true
-                                                : hasVariant(
+                                            ? true
+                                            : hasVariant(
                                                   $state,
                                                   "page",
-                                                  "subcategories"
+                                                  "payment"
                                                 )
-                                                  ? true
-                                                  : hasVariant(
+                                              ? true
+                                              : hasVariant(
                                                     $state,
                                                     "page",
-                                                    "categories"
+                                                    "center"
                                                   )
+                                                ? true
+                                                : hasVariant(
+                                                      $state,
+                                                      "page",
+                                                      "subcategories"
+                                                    )
+                                                  ? true
+                                                  : hasVariant(
+                                                        $state,
+                                                        "page",
+                                                        "categories"
+                                                      )
                                                     ? true
                                                     : (() => {
-                                                      try {
-                                                        return (
-                                                          $state.token != ""
-                                                        );
-                                                      } catch (e) {
-                                                        if (
-                                                          e instanceof
-                                                          TypeError ||
-                                                          e?.plasmicType ===
-                                                          "PlasmicUndefinedDataError"
-                                                        ) {
-                                                          return true;
+                                                        try {
+                                                          return (
+                                                            $state.token != ""
+                                                          );
+                                                        } catch (e) {
+                                                          if (
+                                                            e instanceof
+                                                              TypeError ||
+                                                            e?.plasmicType ===
+                                                              "PlasmicUndefinedDataError"
+                                                          ) {
+                                                            return true;
+                                                          }
+                                                          throw e;
                                                         }
-                                                        throw e;
-                                                      }
-                                                    })()
+                                                      })()
           ) ? (
             <div
               data-plasmic-name={"homePage"}
@@ -1967,40 +1967,35 @@ function PlasmicHomepage__RenderFunc(props: {
                         )
                       })}
                     >
-                      {(() => {
-                        const slug = $ctx.params?.slug;
-                        const hasSlug = Array.isArray(slug)
-                          ? slug.length > 0
-                          : Boolean(slug);
-                        const isHomeLanding =
-                          String($ctx.params?.page || "") === "home" &&
-                          !hasSlug;
-                        const profileName = String(
-                          $state.profile?.data?.result?.name ||
-                          $state.profile?.data?.result?.full_name ||
-                          ""
-                        ).trim();
-                        return isHomeLanding ? (
-                          <div className={sty.headerRow}>
-                            <p className={sty.greeting}>
-                              {profileName ? `سلام، ${profileName}` : "سلام"}
-                            </p>
-                          </div>
-                        ) : null;
-                      })()}
+                      <Icon96Icon
+                        className={classNames("all", sty.svg__vv3O, {
+                          [sty.svghomePage2_home__vv3ORvb1B]: hasVariant(
+                            $state,
+                            "homePage2",
+                            "home"
+                          )
+                        })}
+                        role={"img"}
+                      />
+
+                      <div
+                        className={classNames(
+                          "all",
+                          "__wab_text",
+                          sty.text___7H0Pn,
+                          {
+                            [sty.texthomePage2_home___7H0PnRvb1B]: hasVariant(
+                              $state,
+                              "homePage2",
+                              "home"
+                            )
+                          }
+                        )}
+                      >
+                        {"\u0645\u0634\u0647\u062f"}
+                      </div>
                     </div>
                     <div className={classNames("all", sty.freeBox__t2LSn)}>
-
-                      <SupportFab
-                        hidden={false}
-                        onOpen={() => {
-                          if (typeof window !== "undefined") {
-                            window.dispatchEvent(
-                              new CustomEvent("sayban:open-support-menu")
-                            );
-                          }
-                        }}
-                      />
                       <Icon98Icon
                         className={classNames("all", sty.svg__o7U7D, {
                           [sty.svghomePage2_home__o7U7DRvb1B]: hasVariant(
@@ -2024,35 +2019,35 @@ function PlasmicHomepage__RenderFunc(props: {
 
                           $steps["goToHomepage"] = true
                             ? (() => {
-                              const actionArgs = {
-                                destination: `/${(() => {
-                                  try {
-                                    return $ctx.params.page;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
+                                const actionArgs = {
+                                  destination: `/${(() => {
+                                    try {
+                                      return $ctx.params.page;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
                                     }
-                                    throw e;
+                                  })()}/${"notif"}`
+                                };
+                                return (({ destination }) => {
+                                  if (
+                                    typeof destination === "string" &&
+                                    destination.startsWith("#")
+                                  ) {
+                                    document
+                                      .getElementById(destination.substr(1))
+                                      .scrollIntoView({ behavior: "smooth" });
+                                  } else {
+                                    __nextRouter?.push(destination);
                                   }
-                                })()}/${"notif"}`
-                              };
-                              return (({ destination }) => {
-                                if (
-                                  typeof destination === "string" &&
-                                  destination.startsWith("#")
-                                ) {
-                                  document
-                                    .getElementById(destination.substr(1))
-                                    .scrollIntoView({ behavior: "smooth" });
-                                } else {
-                                  __nextRouter?.push(destination);
-                                }
-                              })?.apply(null, [actionArgs]);
-                            })()
+                                })?.apply(null, [actionArgs]);
+                              })()
                             : undefined;
                           if (
                             $steps["goToHomepage"] != null &&
@@ -2066,7 +2061,7 @@ function PlasmicHomepage__RenderFunc(props: {
                         role={"img"}
                       />
 
-                      {/* <Icon27Icon
+                      <Icon27Icon
                         className={classNames("all", sty.svg__nuBs, {
                           [sty.svghomePage2_home__nuBsRvb1B]: hasVariant(
                             $state,
@@ -2080,7 +2075,7 @@ function PlasmicHomepage__RenderFunc(props: {
                           )
                         })}
                         role={"img"}
-                      /> */}
+                      />
                     </div>
                   </div>
                   <div
@@ -2127,29 +2122,29 @@ function PlasmicHomepage__RenderFunc(props: {
                           $steps["updateKeyword"] =
                             $state.textInput.value.length % 3 == 0
                               ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["keyword"]
-                                  },
-                                  operation: 0,
-                                  value: $state.textInput.value
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["keyword"]
+                                    },
+                                    operation: 0,
+                                    value: $state.textInput.value
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
 
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
                               : undefined;
                           if (
                             $steps["updateKeyword"] != null &&
@@ -2166,18 +2161,18 @@ function PlasmicHomepage__RenderFunc(props: {
 
                         $steps["runCode"] = true
                           ? (() => {
-                            const actionArgs = {
-                              customFunction: async () => {
-                                return (() => {
-                                  $state.home.search = true;
-                                  return ($state.search2 = true);
-                                })();
-                              }
-                            };
-                            return (({ customFunction }) => {
-                              return customFunction();
-                            })?.apply(null, [actionArgs]);
-                          })()
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return (() => {
+                                    $state.home.search = true;
+                                    return ($state.search2 = true);
+                                  })();
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
                           : undefined;
                         if (
                           $steps["runCode"] != null &&
@@ -2237,25 +2232,25 @@ function PlasmicHomepage__RenderFunc(props: {
 
                           $steps["updateTextInputValue2"] = true
                             ? (() => {
-                              const actionArgs = {
-                                customFunction: async () => {
-                                  return (() => {
-                                    $state.home.search = false;
-                                    return ($state.search2 = false);
-                                  })();
-                                }
-                              };
-                              return (({ customFunction }) => {
-                                return customFunction();
-                              })?.apply(null, [actionArgs]);
-                            })()
+                                const actionArgs = {
+                                  customFunction: async () => {
+                                    return (() => {
+                                      $state.home.search = false;
+                                      return ($state.search2 = false);
+                                    })();
+                                  }
+                                };
+                                return (({ customFunction }) => {
+                                  return customFunction();
+                                })?.apply(null, [actionArgs]);
+                              })()
                             : undefined;
                           if (
                             $steps["updateTextInputValue2"] != null &&
                             typeof $steps["updateTextInputValue2"] ===
-                            "object" &&
+                              "object" &&
                             typeof $steps["updateTextInputValue2"].then ===
-                            "function"
+                              "function"
                           ) {
                             $steps["updateTextInputValue2"] =
                               await $steps["updateTextInputValue2"];
@@ -2263,36 +2258,36 @@ function PlasmicHomepage__RenderFunc(props: {
 
                           $steps["updateTextInputValue"] = true
                             ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["textInput", "value"]
-                                },
-                                operation: 0,
-                                value: ""
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["textInput", "value"]
+                                  },
+                                  operation: 0,
+                                  value: ""
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
 
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
                             : undefined;
                           if (
                             $steps["updateTextInputValue"] != null &&
                             typeof $steps["updateTextInputValue"] ===
-                            "object" &&
+                              "object" &&
                             typeof $steps["updateTextInputValue"].then ===
-                            "function"
+                              "function"
                           ) {
                             $steps["updateTextInputValue"] =
                               await $steps["updateTextInputValue"];
@@ -2396,34 +2391,34 @@ function PlasmicHomepage__RenderFunc(props: {
 
                     $steps["goToHomepage"] = true
                       ? (() => {
-                        const actionArgs = {
-                          destination: `/${(() => {
-                            try {
-                              return $ctx.params.page;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                          const actionArgs = {
+                            destination: `/${(() => {
+                              try {
+                                return $ctx.params.page;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
+                            })()}/${"address"}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
                             }
-                          })()}/${"address"}`
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
+                          })?.apply(null, [actionArgs]);
+                        })()
                       : undefined;
                     if (
                       $steps["goToHomepage"] != null &&
@@ -2438,23 +2433,34 @@ function PlasmicHomepage__RenderFunc(props: {
 
                     $steps["goToHomepage"] = true
                       ? (() => {
-                        const actionArgs = {
-                          // Footer shell: open Booking at /booking/ (not /{page}/booking)
-                          destination: "/booking/"
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
+                          const actionArgs = {
+                            destination: `/${(() => {
+                              try {
+                                return $ctx.params.page;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}/${"booking"}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
                       : undefined;
                     if (
                       $steps["goToHomepage"] != null &&
@@ -2469,46 +2475,46 @@ function PlasmicHomepage__RenderFunc(props: {
 
                     $steps["goToHomepage"] = true
                       ? (() => {
-                        const actionArgs = {
-                          destination: `/${(() => {
-                            try {
-                              return $ctx.params.page;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                          const actionArgs = {
+                            destination: `/${(() => {
+                              try {
+                                return $ctx.params.page;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()}/${(() => {
-                            try {
-                              return "editProfile";
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                            })()}/${(() => {
+                              try {
+                                return "editProfile";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
+                            })()}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
                             }
-                          })()}`
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
+                          })?.apply(null, [actionArgs]);
+                        })()
                       : undefined;
                     if (
                       $steps["goToHomepage"] != null &&
@@ -2523,22 +2529,22 @@ function PlasmicHomepage__RenderFunc(props: {
 
                     $steps["goToHomepage"] = true
                       ? (() => {
-                        const actionArgs = {
-                          destination: `/${"user"}/${"patient"}`
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
+                          const actionArgs = {
+                            destination: `/${"user"}/${"patient"}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
                       : undefined;
                     if (
                       $steps["goToHomepage"] != null &&
@@ -2740,46 +2746,46 @@ function PlasmicHomepage__RenderFunc(props: {
 
                     $steps["goToHomepage"] = !$ctx.pagePath.includes("addPage")
                       ? (() => {
-                        const actionArgs = {
-                          destination: `/${(() => {
-                            try {
-                              return $ctx.params.page;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                          const actionArgs = {
+                            destination: `/${(() => {
+                              try {
+                                return $ctx.params.page;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()}/${(() => {
-                            try {
-                              return $state.slug.join("/");
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                            })()}/${(() => {
+                              try {
+                                return $state.slug.join("/");
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
+                            })()}#${"addPage"}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
                             }
-                          })()}#${"addPage"}`
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
+                          })?.apply(null, [actionArgs]);
+                        })()
                       : undefined;
                     if (
                       $steps["goToHomepage"] != null &&
@@ -2791,46 +2797,46 @@ function PlasmicHomepage__RenderFunc(props: {
 
                     $steps["goToHomepage2"] = $ctx.pagePath.includes("addPage")
                       ? (() => {
-                        const actionArgs = {
-                          destination: `/${(() => {
-                            try {
-                              return $ctx.params.page;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                          const actionArgs = {
+                            destination: `/${(() => {
+                              try {
+                                return $ctx.params.page;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()}/${(() => {
-                            try {
-                              return $state.slug.join("/");
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                            })()}/${(() => {
+                              try {
+                                return $state.slug.join("/");
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
+                            })()}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
                             }
-                          })()}`
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
+                          })?.apply(null, [actionArgs]);
+                        })()
                       : undefined;
                     if (
                       $steps["goToHomepage2"] != null &&
@@ -2845,49 +2851,49 @@ function PlasmicHomepage__RenderFunc(props: {
 
                     $steps["goToHomepage"] = true
                       ? (() => {
-                        const actionArgs = {
-                          destination: `/${(() => {
-                            try {
-                              return $ctx.params.page;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                          const actionArgs = {
+                            destination: `/${(() => {
+                              try {
+                                return $ctx.params.page;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()}/${(() => {
-                            try {
-                              return (() => {
-                                $state.slug.push("reminderSetting");
-                                return $state.slug.join("/");
-                              })();
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                            })()}/${(() => {
+                              try {
+                                return (() => {
+                                  $state.slug.push("reminderSetting");
+                                  return $state.slug.join("/");
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
+                            })()}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
                             }
-                          })()}`
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
+                          })?.apply(null, [actionArgs]);
+                        })()
                       : undefined;
                     if (
                       $steps["goToHomepage"] != null &&
@@ -2958,19 +2964,19 @@ function PlasmicHomepage__RenderFunc(props: {
                                         : hasVariant($state, "page", "payment")
                                           ? true
                                           : (() => {
-                                            try {
-                                              return $state.token != "";
-                                            } catch (e) {
-                                              if (
-                                                e instanceof TypeError ||
-                                                e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                              ) {
-                                                return true;
+                                              try {
+                                                return $state.token != "";
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return true;
+                                                }
+                                                throw e;
                                               }
-                                              throw e;
-                                            }
-                                          })()
+                                            })()
           ) ? (
             <div
               className={classNames("all", sty.freeBox__yWuCa, {
@@ -3287,49 +3293,49 @@ function PlasmicHomepage__RenderFunc(props: {
 
                     $steps["goToHomepage"] = true
                       ? (() => {
-                        const actionArgs = {
-                          destination: `/${(() => {
-                            try {
-                              return $ctx.params.page;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                          const actionArgs = {
+                            destination: `/${(() => {
+                              try {
+                                return $ctx.params.page;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()}/${(() => {
-                            try {
-                              return (() => {
-                                $state.slug.push("bookNurse");
-                                return $state.slug.join("/");
-                              })();
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                            })()}/${(() => {
+                              try {
+                                return (() => {
+                                  $state.slug.push("bookNurse");
+                                  return $state.slug.join("/");
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
+                            })()}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
                             }
-                          })()}`
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
+                          })?.apply(null, [actionArgs]);
+                        })()
                       : undefined;
                     if (
                       $steps["goToHomepage"] != null &&
@@ -3425,46 +3431,46 @@ function PlasmicHomepage__RenderFunc(props: {
 
                     $steps["goToHomepage"] = true
                       ? (() => {
-                        const actionArgs = {
-                          destination: `/${(() => {
-                            try {
-                              return $ctx.params.page || "home";
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "home";
+                          const actionArgs = {
+                            destination: `/${(() => {
+                              try {
+                                return $ctx.params.page || "home";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "home";
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()}/${(() => {
-                            try {
-                              return $state.home.categori.slug;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                            })()}/${(() => {
+                              try {
+                                return $state.home.categori.slug;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
+                            })()}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
                             }
-                          })()}`
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
+                          })?.apply(null, [actionArgs]);
+                        })()
                       : undefined;
                     if (
                       $steps["goToHomepage"] != null &&
@@ -3521,54 +3527,54 @@ function PlasmicHomepage__RenderFunc(props: {
 
                     $steps["goToHomepage"] = true
                       ? (() => {
-                        const actionArgs = {
-                          destination: `/${(() => {
-                            try {
-                              return $ctx.params.page;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}/${(() => {
-                            try {
-                              return (() => {
-                                if ($state.home.selectedCenderid) {
-                                  $state.slug.push("center");
-                                  $state.slug.push(
-                                    $state.home.selectedCenderid
-                                  );
+                          const actionArgs = {
+                            destination: `/${(() => {
+                              try {
+                                return $ctx.params.page;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
                                 }
-                                return $state.slug.join("/");
-                              })();
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                                throw e;
                               }
-                              throw e;
+                            })()}/${(() => {
+                              try {
+                                return (() => {
+                                  if ($state.home.selectedCenderid) {
+                                    $state.slug.push("center");
+                                    $state.slug.push(
+                                      $state.home.selectedCenderid
+                                    );
+                                  }
+                                  return $state.slug.join("/");
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
                             }
-                          })()}`
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
+                          })?.apply(null, [actionArgs]);
+                        })()
                       : undefined;
                     if (
                       $steps["goToHomepage"] != null &&
@@ -3755,52 +3761,52 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["goToHomepage"] = true
                 ? (() => {
-                  const actionArgs = {
-                    destination: `/${(() => {
-                      try {
-                        return $ctx.params.page;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}/${(() => {
-                      try {
-                        return (() => {
-                          if ($state?.categories?.subcategories?.slug)
-                            $state.slug.push(
-                              $state?.categories?.subcategories?.slug
-                            );
-                          return $state.slug.join("/");
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            if ($state?.categories?.subcategories?.slug)
+                              $state.slug.push(
+                                $state?.categories?.subcategories?.slug
+                              );
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
                       }
-                    })()}`
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -3877,54 +3883,54 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["goToHomepage"] = true
                 ? (() => {
-                  const actionArgs = {
-                    destination: `/${(() => {
-                      try {
-                        return $ctx.params.page;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()}/${(() => {
-                      try {
-                        return (() => {
-                          if (window.sessionStorage.getItem("id")) {
-                            $state.slug.push("center");
-                            $state.slug.push(
-                              window.sessionStorage.getItem("id")
-                            );
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
                           }
-                          return $state.slug.join("/");
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                          throw e;
                         }
-                        throw e;
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            if (window.sessionStorage.getItem("id")) {
+                              $state.slug.push("center");
+                              $state.slug.push(
+                                window.sessionStorage.getItem("id")
+                              );
+                            }
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
                       }
-                    })()}`
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -3998,31 +4004,31 @@ function PlasmicHomepage__RenderFunc(props: {
             center={
               hasVariant($state, "page", "center")
                 ? (() => {
-                  try {
-                    return $state.subcategories.center;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+                    try {
+                      return $state.subcategories.center;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()
+                  })()
                 : (() => {
-                  try {
-                    return $state.subcategories.center;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+                    try {
+                      return $state.subcategories.center;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()
+                  })()
             }
             className={classNames("__wab_instance", sty.center, {
               [sty.centerhomePage2_user]: hasVariant(
@@ -4051,51 +4057,51 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["goToHomepage"] = true
                 ? (() => {
-                  const actionArgs = {
-                    destination: `/${(() => {
-                      try {
-                        return $ctx.params.page;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}/${(() => {
-                      try {
-                        return (() => {
-                          $state.slug.push(
-                            `pay_${id || window.sessionStorage.getItem("payId")}`
-                          );
-                          return $state.slug.join("/");
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            $state.slug.push(
+                              `pay_${id || window.sessionStorage.getItem("payId")}`
+                            );
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
                       }
-                    })()}`
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -4108,41 +4114,41 @@ function PlasmicHomepage__RenderFunc(props: {
             id={
               hasVariant($state, "page", "center")
                 ? (() => {
-                  try {
-                    return (() => {
-                      const index = $ctx.params.slug.findIndex(
-                        i => i === "center"
-                      );
-                      return index === -1 ? "" : $ctx.params.slug[index + 1];
-                    })();
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+                    try {
+                      return (() => {
+                        const index = $ctx.params.slug.findIndex(
+                          i => i === "center"
+                        );
+                        return index === -1 ? "" : $ctx.params.slug[index + 1];
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()
+                  })()
                 : (() => {
-                  try {
-                    return (() => {
-                      const index = $state.slug.findIndex(
-                        i => i === "center"
-                      );
-                      return index === -1 ? "" : $state.slug[index + 1];
-                    })();
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+                    try {
+                      return (() => {
+                        const index = $state.slug.findIndex(
+                          i => i === "center"
+                        );
+                        return index === -1 ? "" : $state.slug[index + 1];
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()
+                  })()
             }
             id2={generateStateValueProp($state, ["center", "id2"])}
             onEntryOpendialogChange={async (...eventArgs: any) => {
@@ -4203,80 +4209,80 @@ function PlasmicHomepage__RenderFunc(props: {
             token={
               hasVariant($state, "page", "center")
                 ? (() => {
-                  try {
-                    return $state.token;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+                    try {
+                      return $state.token;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()
+                  })()
                 : (() => {
-                  try {
-                    return $state.token;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+                    try {
+                      return $state.token;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()
+                  })()
             }
             userNew={async () => {
               const $steps = {};
 
               $steps["goToHomepage"] = true
                 ? (() => {
-                  const actionArgs = {
-                    destination: `/${(() => {
-                      try {
-                        return $ctx.params.page;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}/${(() => {
-                      try {
-                        return (() => {
-                          $state.slug.push("addPatient");
-                          return $state.slug.join("/");
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            $state.slug.push("addPatient");
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
                       }
-                    })()}`
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -4342,54 +4348,54 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["goToHomepage"] = true
                 ? (() => {
-                  const actionArgs = {
-                    destination: `/${(() => {
-                      try {
-                        return $ctx.params.page;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()}/${(() => {
-                      try {
-                        return (() => {
-                          if (window.sessionStorage.getItem("id")) {
-                            $state.slug.push("center");
-                            $state.slug.push(
-                              window.sessionStorage.getItem("id")
-                            );
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
                           }
-                          return $state.slug.join("/");
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                          throw e;
                         }
-                        throw e;
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            if (window.sessionStorage.getItem("id")) {
+                              $state.slug.push("center");
+                              $state.slug.push(
+                                window.sessionStorage.getItem("id")
+                              );
+                            }
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
                       }
-                    })()}`
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -4404,52 +4410,52 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["goToHomepage"] = true
                 ? (() => {
-                  const actionArgs = {
-                    destination: `/${(() => {
-                      try {
-                        return $ctx.params.page;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()}/${(() => {
-                      try {
-                        return (() => {
-                          const id = window.sessionStorage.getItem("id");
-                          if (id) {
-                            $state.slug.push(`offer_${id}`);
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
                           }
-                          return $state.slug.join("/");
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                          throw e;
                         }
-                        throw e;
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            const id = window.sessionStorage.getItem("id");
+                            if (id) {
+                              $state.slug.push(`offer_${id}`);
+                            }
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
                       }
-                    })()}`
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -4464,23 +4470,23 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["updateTextInputValue"] = true
                 ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["textInput", "value"]
-                    },
-                    operation: 0
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["textInput", "value"]
+                      },
+                      operation: 0
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
 
-                    $stateSet(objRoot, variablePath, value);
-                    return value;
-                  })?.apply(null, [actionArgs]);
-                })()
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["updateTextInputValue"] != null &&
@@ -4510,51 +4516,51 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["goToHomepage"] = true
                 ? (() => {
-                  const actionArgs = {
-                    destination: `/${(() => {
-                      try {
-                        return $ctx.params.page;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}/${(() => {
-                      try {
-                        return (() => {
-                          $state.slug.push(
-                            `pay_${window.sessionStorage.getItem("payId")}`
-                          );
-                          return $state.slug.join("/");
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            $state.slug.push(
+                              `pay_${window.sessionStorage.getItem("payId")}`
+                            );
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
                       }
-                    })()}`
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -4589,37 +4595,37 @@ function PlasmicHomepage__RenderFunc(props: {
             id={
               hasVariant($state, "page", "payment")
                 ? (() => {
-                  try {
-                    return $ctx.params.slug
-                      .find(i => i.includes("pay_"))
-                      .split("pay_")[1];
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+                    try {
+                      return $ctx.params.slug
+                        .find(i => i.includes("pay_"))
+                        .split("pay_")[1];
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()
+                  })()
                 : undefined
             }
             token={
               hasVariant($state, "page", "payment")
                 ? (() => {
-                  try {
-                    return $state.token;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+                    try {
+                      return $state.token;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()
+                  })()
                 : undefined
             }
           />
@@ -4697,15 +4703,15 @@ function PlasmicHomepage__RenderFunc(props: {
 
                 $steps["runCode"] = true
                   ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return window.history.back();
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return window.history.back();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
                   : undefined;
                 if (
                   $steps["runCode"] != null &&
@@ -4795,34 +4801,34 @@ function PlasmicHomepage__RenderFunc(props: {
 
                 $steps["goToHomepage"] = true
                   ? (() => {
-                    const actionArgs = {
-                      destination: `/${(() => {
-                        try {
-                          return $ctx.params.page;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
+                      const actionArgs = {
+                        destination: `/${(() => {
+                          try {
+                            return $ctx.params.page;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
                           }
-                          throw e;
+                        })()}/${"editProfile"}?city=${"true"}`
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
                         }
-                      })()}/${"editProfile"}?city=${"true"}`
-                    };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
+                      })?.apply(null, [actionArgs]);
+                    })()
                   : undefined;
                 if (
                   $steps["goToHomepage"] != null &&
@@ -4919,15 +4925,15 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["runCode"] = true
                 ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return ($state.patient.refresh = Date.now().toString());
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.patient.refresh = Date.now().toString());
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["runCode"] != null &&
@@ -4939,18 +4945,18 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["runCode2"] = $ctx.pagePath.includes("center")
                 ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return (() => {
-                        $state.center.entryOpendialog = true;
-                        return ($state.center.userSelectOpendialog = true);
-                      })();
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.center.entryOpendialog = true;
+                          return ($state.center.userSelectOpendialog = true);
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["runCode2"] != null &&
@@ -5132,49 +5138,49 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["goToHomepage"] = true
                 ? (() => {
-                  const actionArgs = {
-                    destination: `/${(() => {
-                      try {
-                        return $ctx.params.page;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}/${(() => {
-                      try {
-                        return (() => {
-                          $state.slug.push("addPatient");
-                          return $state.slug.join("/");
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            $state.slug.push("addPatient");
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
                       }
-                    })()}`
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -5251,46 +5257,46 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["goToHomepage"] = !$ctx.pagePath.includes("addPage")
                 ? (() => {
-                  const actionArgs = {
-                    destination: `/${(() => {
-                      try {
-                        return $ctx.params.page;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}/${(() => {
-                      try {
-                        return $state.slug.join("/");
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                      })()}/${(() => {
+                        try {
+                          return $state.slug.join("/");
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
+                      })()}#${"addPage"}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
                       }
-                    })()}#${"addPage"}`
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -5302,46 +5308,46 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["goToHomepage2"] = $ctx.pagePath.includes("addPage")
                 ? (() => {
-                  const actionArgs = {
-                    destination: `/${(() => {
-                      try {
-                        return $ctx.params.page;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}/${(() => {
-                      try {
-                        return $state.slug.join("/");
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                      })()}/${(() => {
+                        try {
+                          return $state.slug.join("/");
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
                       }
-                    })()}`
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["goToHomepage2"] != null &&
@@ -5786,49 +5792,49 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["goToHomepage"] = true
                 ? (() => {
-                  const actionArgs = {
-                    destination: `/${(() => {
-                      try {
-                        return $ctx.params.page;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}/${(() => {
-                      try {
-                        return (() => {
-                          $state.slug.push("addAddress");
-                          return $state.slug.join("/");
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            $state.slug.push("addAddress");
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
                       }
-                    })()}`
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -5902,15 +5908,15 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["runCode"] = true
                 ? (() => {
-                  const actionArgs = {
-                    customFunction: async () => {
-                      return ($state.address.refresh = Date.now().toString());
-                    }
-                  };
-                  return (({ customFunction }) => {
-                    return customFunction();
-                  })?.apply(null, [actionArgs]);
-                })()
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.address.refresh = Date.now().toString());
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["runCode"] != null &&
@@ -6030,20 +6036,20 @@ function PlasmicHomepage__RenderFunc(props: {
 
                 $steps["goToHomepage"] = true
                   ? (() => {
-                    const actionArgs = { destination: `/${"home"}/${""}` };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
+                      const actionArgs = { destination: `/${"home"}/${""}` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
                   : undefined;
                 if (
                   $steps["goToHomepage"] != null &&
@@ -6068,35 +6074,34 @@ function PlasmicHomepage__RenderFunc(props: {
 
                 $steps["goToHomepage"] = true
                   ? (() => {
-                    const actionArgs = {
-                      destination: "/booking"
-                      // destination: `/${(() => {
-                      //   try {
-                      //     return $ctx.params.page;
-                      //   } catch (e) {
-                      //     if (
-                      //       e instanceof TypeError ||
-                      //       e?.plasmicType === "PlasmicUndefinedDataError"
-                      //     ) {
-                      //       return undefined;
-                      //     }
-                      //     throw e;
-                      //   }
-                      // })()}/${"booking"}`
-                    };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
+                      const actionArgs = {
+                        destination: `/${(() => {
+                          try {
+                            return $ctx.params.page;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}/${"booking"}`
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
                   : undefined;
                 if (
                   $steps["goToHomepage"] != null &&
@@ -6125,52 +6130,52 @@ function PlasmicHomepage__RenderFunc(props: {
 
                 $steps["goToHomepage"] = true
                   ? (() => {
-                    const actionArgs = {
-                      destination: `/${(() => {
-                        try {
-                          return $ctx.params.page;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
+                      const actionArgs = {
+                        destination: `/${(() => {
+                          try {
+                            return $ctx.params.page;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
                           }
-                          throw e;
-                        }
-                      })()}/${(() => {
-                        try {
-                          return (() => {
-                            $state.slug = $state.slug || [];
-                            $state.slug.push(
-                              `pay_${$ctx.query.reservation_id || window.sessionStorage.getItem("payId")}`
-                            );
-                            return $state.slug.join("/");
-                          })();
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
+                        })()}/${(() => {
+                          try {
+                            return (() => {
+                              $state.slug = $state.slug || [];
+                              $state.slug.push(
+                                `pay_${$ctx.query.reservation_id || window.sessionStorage.getItem("payId")}`
+                              );
+                              return $state.slug.join("/");
+                            })();
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
                           }
-                          throw e;
+                        })()}`
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
                         }
-                      })()}`
-                    };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
+                      })?.apply(null, [actionArgs]);
+                    })()
                   : undefined;
                 if (
                   $steps["goToHomepage"] != null &&
@@ -6256,49 +6261,49 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["goToHomepage"] = true
                 ? (() => {
-                  const actionArgs = {
-                    destination: `/${(() => {
-                      try {
-                        return $ctx.params.page;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}/${(() => {
-                      try {
-                        return (() => {
-                          $state.slug.push("addAddress");
-                          return $state.slug.join("/");
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            $state.slug.push("addAddress");
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
                       }
-                    })()}`
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -6388,49 +6393,49 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["goToHomepage"] = true
                 ? (() => {
-                  const actionArgs = {
-                    destination: `/${(() => {
-                      try {
-                        return $ctx.params.page;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()}/${(() => {
-                      try {
-                        return (() => {
-                          $state.slug.push("answerSheet");
-                          return $state.slug.join("/");
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            $state.slug.push("answerSheet");
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
                       }
-                    })()}`
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -6458,23 +6463,23 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["updateTextInputValue"] = true
                 ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["textInput", "value"]
-                    },
-                    operation: 0
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["textInput", "value"]
+                      },
+                      operation: 0
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
 
-                    $stateSet(objRoot, variablePath, value);
-                    return value;
-                  })?.apply(null, [actionArgs]);
-                })()
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["updateTextInputValue"] != null &&
@@ -6519,51 +6524,51 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["goToHomepage"] = true
                 ? (() => {
-                  const actionArgs = {
-                    destination: `/${(() => {
-                      try {
-                        return $ctx.params.page;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()}/${(() => {
-                      try {
-                        return (() => {
-                          if ($state.staffs.staff) {
-                            $state.slug.push(`staff_${$state.staffs.staff}`);
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
                           }
-                          return $state.slug.join("/");
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+                          throw e;
                         }
-                        throw e;
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            if ($state.staffs.staff) {
+                              $state.slug.push(`staff_${$state.staffs.staff}`);
+                            }
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
                       }
-                    })()}`
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
+                    })?.apply(null, [actionArgs]);
+                  })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -6831,20 +6836,20 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicHomepage__ArgsType;
     overrides?: NodeOverridesType<T>;
   } &
-  // Specify variants directly as props
-  Omit<PlasmicHomepage__VariantsArgs, ReservedPropsType> &
-  // Specify args directly as props
-  Omit<PlasmicHomepage__ArgsType, ReservedPropsType> &
-  // Specify overrides for each element directly as props
-  Omit<
-    NodeOverridesType<T>,
-    ReservedPropsType | VariantPropType | ArgPropType
-  > &
-  // Specify props for the root element
-  Omit<
-    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-  >;
+    // Specify variants directly as props
+    Omit<PlasmicHomepage__VariantsArgs, ReservedPropsType> &
+    // Specify args directly as props
+    Omit<PlasmicHomepage__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
+      NodeOverridesType<T>,
+      ReservedPropsType | VariantPropType | ArgPropType
+    > &
+    // Specify props for the root element
+    Omit<
+      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+    >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };

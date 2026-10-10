@@ -95,14 +95,11 @@ export function usePanelApi(token?: string) {
     ) => {
       const res = await apiRequest(method, url, params, body);
       if (res?.data?.success) {
-        // Empty successMessage = silent success (e.g. drag-reorder autosave).
-        if (successMessage) {
-          showToast(
-            "success",
-            (typeof res.data.message === "string" && res.data.message) ||
-              successMessage
-          );
-        }
+        showToast(
+          "success",
+          (typeof res.data.message === "string" && res.data.message) ||
+            successMessage
+        );
         return true;
       }
       const msg =
@@ -344,16 +341,12 @@ export function usePanelApi(token?: string) {
   );
 
   const syncCenterCareItems = React.useCallback(
-    (
-      centerId: string | number,
-      items: CareItemSyncItem[],
-      options?: { quiet?: boolean }
-    ) =>
+    (centerId: string | number, items: CareItemSyncItem[]) =>
       mutate(
         "POST",
         PANEL_ROUTES.careItemsSync,
         { center_id: centerId, items },
-        options?.quiet ? "" : "موارد مراقبت ذخیره شد.",
+        "موارد مراقبت ذخیره شد.",
         "ذخیره مراقبت ناموفق بود."
       ),
     [mutate]
@@ -370,39 +363,36 @@ export function usePanelApi(token?: string) {
   );
 
   const createSpecialist = React.useCallback(
-    (payload: SpecialistPayload, options?: { quiet?: boolean }) =>
+    (payload: SpecialistPayload) =>
       mutate(
         "POST",
         PANEL_ROUTES.specialistsAdd,
         payload,
-        options?.quiet ? "" : "متخصص اضافه شد.",
+        "متخصص اضافه شد.",
         "افزودن متخصص ناموفق بود."
       ),
     [mutate]
   );
 
   const updateSpecialist = React.useCallback(
-    (
-      payload: Required<Pick<SpecialistPayload, "id">> & SpecialistPayload,
-      options?: { quiet?: boolean }
-    ) =>
+    (payload: Required<Pick<SpecialistPayload, "id">> & SpecialistPayload) =>
       mutate(
         "POST",
         PANEL_ROUTES.specialistsUpdate,
         payload,
-        options?.quiet ? "" : "متخصص ویرایش شد.",
+        "متخصص ویرایش شد.",
         "ویرایش متخصص ناموفق بود."
       ),
     [mutate]
   );
 
   const deleteSpecialist = React.useCallback(
-    (id: number, options?: { quiet?: boolean }) =>
+    (id: number) =>
       mutate(
         "POST",
         PANEL_ROUTES.specialistsDelete,
         { id },
-        options?.quiet ? "" : "متخصص حذف شد.",
+        "متخصص حذف شد.",
         "حذف متخصص ناموفق بود."
       ),
     [mutate]

@@ -69,11 +69,6 @@ import {
   isAutofillableQuestion,
   resolveBookingPerson
 } from "../../reservation/questionnaireAutofill";
-import {
-  getAnswerByQuestionId,
-  isQuestionVisible,
-  shouldShowCategoryHeading
-} from "../../questions/questionVisibility";
 import Switch from "../../Switch"; // plasmic-import: gmLkAM4DXGYW/component
 import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
 import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
@@ -838,29 +833,6 @@ function PlasmicCenterOffers__RenderFunc(props: {
       $stateSet($state, ["answersUser", index, "answers"], value ?? "");
     });
   }, [autofillPersonKey, $state.full2?.data?.result, $state]);
-
-  const answersVisibilityKey = React.useMemo(() => {
-    try {
-      return JSON.stringify(
-        ($state.answersUser || []).map((row: any) => row?.answers ?? "")
-      );
-    } catch {
-      return "";
-    }
-  }, [$state.answersUser]);
-
-  React.useEffect(() => {
-    const questions = $state.full2?.data?.result;
-    if (!Array.isArray(questions) || !questions.length) return;
-    const getAnswer = (questionId: number) =>
-      getAnswerByQuestionId(questions, $state.answersUser, questionId);
-    questions.forEach((question: any, index: number) => {
-      if (isQuestionVisible(question, questions, getAnswer)) return;
-      const current = $state.answersUser?.[index]?.answers;
-      if (current === "" || current == null) return;
-      $stateSet($state, ["answersUser", index, "answers"], "");
-    });
-  }, [answersVisibilityKey, $state.full2?.data?.result, $state]);
 
   return (
     <div
@@ -1695,36 +1667,8 @@ function PlasmicCenterOffers__RenderFunc(props: {
                 }
               })()
             ).map((__plasmic_item_0, __plasmic_idx_0) => {
-              const questionsList = (() => {
-                try {
-                  return Array.isArray($state.full2?.data?.result)
-                    ? $state.full2.data.result
-                    : [];
-                } catch {
-                  return [];
-                }
-              })();
-              const getAnswer = (questionId: number) =>
-                getAnswerByQuestionId(
-                  questionsList,
-                  $state.answersUser,
-                  questionId
-                );
-              const visibleFlags = questionsList.map((question: any) =>
-                isQuestionVisible(question, questionsList, getAnswer)
-              );
-              const baseItem = __plasmic_item_0;
+              const currentItem = __plasmic_item_0;
               const currentIndex = __plasmic_idx_0;
-              const currentItem = {
-                ...baseItem,
-                _hidden: !visibleFlags[currentIndex],
-                category_first: shouldShowCategoryHeading(
-                  baseItem,
-                  questionsList,
-                  currentIndex,
-                  index => Boolean(visibleFlags[index])
-                )
-              };
               return (() => {
                 const child$Props = {
                   addressDialogAddUser: args.addAddress,
@@ -1951,27 +1895,10 @@ function PlasmicCenterOffers__RenderFunc(props: {
                       const actionArgs = {
                         customFunction: async () => {
                           return (() => {
-                            const questionsList = Array.isArray(
-                              $state.full2?.data?.result
-                            )
-                              ? $state.full2.data.result
-                              : [];
-                            const getAnswer = (questionId: number) =>
-                              getAnswerByQuestionId(
-                                questionsList,
-                                $state.answersUser,
-                                questionId
-                              );
                             if (
-                              $state.answersUser.some(i => {
-                                const data = i?.data;
-                                if (!data?.is_required || i.answers) return false;
-                                return isQuestionVisible(
-                                  data,
-                                  questionsList,
-                                  getAnswer
-                                );
-                              })
+                              $state.answersUser.some(
+                                i => !i.answers && i.data?.is_required
+                              )
                             ) {
                               return "لطفاً موارد ستاره‌دار را پر کنید.";
                             }
@@ -2007,30 +1934,11 @@ function PlasmicCenterOffers__RenderFunc(props: {
                       const actionArgs = {
                         customFunction: async () => {
                           return (() => {
-                            const questionsList = Array.isArray(
-                              $state.full2?.data?.result
-                            )
-                              ? $state.full2.data.result
-                              : [];
-                            const getAnswer = (questionId: number) =>
-                              getAnswerByQuestionId(
-                                questionsList,
-                                $state.answersUser,
-                                questionId
-                              );
                             const questionnaireJson = JSON.stringify(
-                              $state.answersUser
-                                .filter(i =>
-                                  isQuestionVisible(
-                                    i?.data || {},
-                                    questionsList,
-                                    getAnswer
-                                  )
-                                )
-                                .map(i => ({
-                                  ...i.data,
-                                  answer: i.answers
-                                }))
+                              $state.answersUser.map(i => ({
+                                ...i.data,
+                                answer: i.answers
+                              }))
                             );
                             return questionnaireJson;
                           })();

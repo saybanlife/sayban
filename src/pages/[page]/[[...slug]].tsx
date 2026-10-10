@@ -44,4 +44,9 @@ function HomepagePage() {
   );
 }
 
+/** Force request-time SSR so nested routes (favorites, address, …) get real query/asPath. */
+export async function getServerSideProps() {
+  return { props: {} };
+}
+
 export default HomepagePage;

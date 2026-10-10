@@ -27,14 +27,14 @@
 .freeBox__h8Ix2 {
   display: flex;
   flex-direction: column;
+  width: auto;
   height: auto;
-  width: 70px;
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
   background: var(--token-pyhDq7s0RTkz);
   row-gap: var(--token-gLYiSvxc94NR);
-  border-radius: 1.5rem;
+  border-radius: 100px;
   padding: var(--token-D_3fp_JIDs1G) var(--token-D_3fp_JIDs1G)
     var(--token-gLYiSvxc94NR);
 }
@@ -76,9 +76,9 @@
 .svg {
   object-fit: cover;
   max-width: 100%;
-  width: 12px;
-  height: 12px;
-  color: #6f8a3a;
+  width: 10px;
+  height: 10px;
+  color: var(--token-HyiizzCtnTod);
   flex-shrink: 0;
 }
 .svgdisable {

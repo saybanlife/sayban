@@ -106,8 +106,8 @@
 }
 
 .panelTablePage :global(.ant-checkbox-checked .ant-checkbox-inner) {
-  background: #6f8a3a !important;
-  border-color: #6f8a3a !important;
+  background: #2563eb !important;
+  border-color: #2563eb !important;
 }
 
 .panelTablePage :global(.ant-input),
@@ -186,7 +186,7 @@
 }
 
 .panelTablePage :global(.ant-pagination .ant-pagination-item-active a) {
-  color: #6f8a3a;
+  color: #2563eb;
   font-weight: 700;
 }
 

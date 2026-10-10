@@ -66,7 +66,6 @@ import Dialog2 from "../../Dialog2"; // plasmic-import: olR2fMb0XmJG/component
 import CopyBox from "../../CopyBox"; // plasmic-import: dbGhFgxUm-xc/component
 import Button2 from "../../Button2"; // plasmic-import: SlKtguGGSfon/component
 import CreaditButten from "../../CreaditButten"; // plasmic-import: llzFxmPBny5m/component
-import MainLiadHeaderDate from "../../MainLiadHeaderDate";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -2345,34 +2344,32 @@ function PlasmicMainLiad__RenderFunc(props: {
               role={"img"}
             />
           ) : null}
-          {/* <CreaditButten
+          <CreaditButten
             data-plasmic-name={"creaditButten"}
             data-plasmic-override={overrides.creaditButten}
             className={classNames("__wab_instance", sty.creaditButten)}
             onClick={async event => {
-                event.preventDefault();
-                event.stopPropagation();
-            //   const $steps = {};
+              const $steps = {};
 
-            //   $steps["runCode"] = true
-            //     ? (() => {
-            //         const actionArgs = {
-            //           customFunction: async () => {
-            //             return window.open("/mojod/home/", "_self");
-            //           }
-            //         };
-            //         return (({ customFunction }) => {
-            //           return customFunction();
-            //         })?.apply(null, [actionArgs]);
-            //       })()
-            //     : undefined;
-            //   if (
-            //     $steps["runCode"] != null &&
-            //     typeof $steps["runCode"] === "object" &&
-            //     typeof $steps["runCode"].then === "function"
-            //   ) {
-            //     $steps["runCode"] = await $steps["runCode"];
-            //   }
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return window.open("/mojod/home/", "_self");
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
             }}
             onCreaditChange2={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
@@ -2401,24 +2398,8 @@ function PlasmicMainLiad__RenderFunc(props: {
                 throw e;
               }
             })()}
-          /> */}
+          />
         </div>
-        <MainLiadHeaderDate
-          reminders={(() => {
-            try {
-              return $state.remind;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()}
-          onSettingsClick={args.reminderSetting ?? args.setting}
-        />
       </div>
     </div>
   ) as React.ReactElement | null;

@@ -44,11 +44,18 @@
 }
 
 /*
- * Hide «افزودن» on Reminder settings — create stays available from Reminder
- * (MainLiad) category flow, not from this list page.
+ * Plasmic ships button7 (افزودن) as display:none; without it the only create
+ * path (افزودن → category → رویداد جدید) is unreachable from the list.
  */
 .host :global([class*="PlasmicReminderSetting_button7"]) {
-  display: none !important;
+  display: inline-flex !important;
+  align-items: center;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 2rem;
+  flex-shrink: 0;
 }
 
 

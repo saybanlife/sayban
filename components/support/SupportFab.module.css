@@ -1,95 +1,276 @@
-.supportAction {
-  flex: 0 0 auto;
+/* Fixed overlay only — must not affect page layout / scroll height */
+
+.fab {
+  --sf-ink: #1c211e;
+  --sf-ink-soft: #262c28;
+  --sf-green: #6f8f55;
+  --sf-green-deep: #4f6a3c;
+  --sf-green-bright: #8fbf68;
+  --sf-lime: #b7e08a;
+  --sf-shadow: 0 10px 28px rgba(28, 33, 30, 0.28);
+  /* Mirrors the bottom nav geometry (Menu2.module.css --menu-bar-height /
+     --menu-lift) so the FAB always clears it. */
+  --sf-menu-height: 4.25rem;
+  --sf-menu-lift: 1.55rem;
+  --sf-menu-gap: 0.55rem;
+
+  position: fixed;
+  z-index: 45;
+  /* On wide screens, pin to the public phone column (see globals.css --sayban-app-max) */
+  right: max(
+    0.85rem,
+    env(safe-area-inset-right, 0px),
+    calc(50vw - (var(--sayban-app-max, 100vw) / 2) + 0.85rem)
+  );
+  bottom: calc(
+    var(--sf-menu-height) + var(--sf-menu-lift) + var(--sf-menu-gap) +
+      env(safe-area-inset-bottom, 0px)
+  );
+  /* Never let the pill run past the viewport on a narrow screen. */
+  max-width: calc(100vw - 1.7rem);
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  pointer-events: none;
+  contain: layout style;
 }
 
 .button {
-  appearance: none;
-  display: inline-flex;
-  direction: ltr;
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0;
+  border: none;
+  padding: 0;
   margin: 0;
-  padding: 0.2rem 0.3rem 0.2rem 0.85rem;
-  border: 0;
-  border-radius: 999px;
-  background: #fffdf74f;
-  color: var(--token-KPGXdu9o7llP, #f5f3eb);
-  box-shadow: 0 0.2rem 0.65rem rgba(52, 65, 34, 0.08);
+  background: transparent;
   cursor: pointer;
-  font-family: inherit;
+  pointer-events: auto;
   -webkit-tap-highlight-color: transparent;
-  transition: transform 160ms ease, box-shadow 160ms ease;
+  filter: drop-shadow(var(--sf-shadow));
+  transition: transform 0.2s cubic-bezier(0.34, 1.45, 0.64, 1);
 }
 
 .button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 0.35rem 0.8rem rgba(52, 65, 34, 0.13);
+  transform: translateY(-2px);
 }
 
 .button:active {
-  transform: scale(0.98);
+  transform: translateY(1px) scale(0.985);
 }
 
 .button:focus-visible {
-  outline: 2px solid var(--token-Yo4gdKCgyuAu, #f3c94c);
+  outline: 2px solid rgba(143, 191, 104, 0.95);
   outline-offset: 3px;
+  border-radius: 999px;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  min-height: 3.15rem;
+  padding: 0.45rem 3.35rem 0.45rem 0.95rem;
+  margin-right: -2.35rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--sf-ink-soft) 0%, var(--sf-ink) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  color: #fff;
+  text-align: right;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+.titleRow {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .title {
-  direction: rtl;
-  font-size: 0.98rem;
+  font-size: 0.875rem;
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.statusDot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: var(--sf-lime);
+  box-shadow: 0 0 0 0 rgba(183, 224, 138, 0.55);
+  animation: sfPulse 2s ease-out infinite;
+  flex-shrink: 0;
+}
+
+.subtitle {
+  font-size: 0.68rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.72);
   white-space: nowrap;
 }
 
 .badge {
   position: relative;
+  z-index: 1;
+  width: 3.55rem;
+  height: 3.55rem;
+  flex-shrink: 0;
+}
+
+.badgeRing {
   display: grid;
   place-items: center;
-  width: 2rem;
-  height: 2rem;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: var(--token-Yo4gdKCgyuAu, #f3c94c);
-  color: #111811;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  padding: 0.18rem;
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.55), transparent 28%),
+    linear-gradient(145deg, var(--sf-green-bright) 0%, var(--sf-green) 42%, var(--sf-green-deep) 100%);
+  box-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.22) inset,
+    0 -2px 4px rgba(0, 0, 0, 0.18) inset;
+}
+
+.badgeCore {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  background: radial-gradient(
+    circle at 50% 28%,
+    #3a433c 0%,
+    #1a1f1c 62%,
+    #121613 100%
+  );
+  color: #fff;
 }
 
 .agentIcon {
-  display: block;
   width: 1.55rem;
   height: 1.55rem;
+  display: block;
 }
 
-.statusDot {
+.sparkles {
   position: absolute;
-  top: -0.1rem;
+  top: -0.15rem;
   right: -0.05rem;
-  width: 0.78rem;
-  height: 0.78rem;
-  border: 2px solid #fffdf7;
-  border-radius: 50%;
-  background: #58bb58;
+  width: 1.1rem;
+  height: 1.1rem;
+  pointer-events: none;
 }
 
-@media (max-width: 380px) {
-  .button {
-    gap: 0.5rem;
-    padding: 0.2rem 0.3rem 0.2rem 0.65rem;
+.sparkles span {
+  position: absolute;
+  border-radius: 999px;
+  background: var(--sf-green-bright);
+  opacity: 0.85;
+}
+
+.sparkles span:nth-child(1) {
+  width: 0.38rem;
+  height: 0.38rem;
+  top: 0.05rem;
+  right: 0.15rem;
+  animation: sfSparkle 2.4s ease-in-out infinite;
+}
+
+.sparkles span:nth-child(2) {
+  width: 0.22rem;
+  height: 0.22rem;
+  top: 0.42rem;
+  right: 0.55rem;
+  background: var(--sf-lime);
+  animation: sfSparkle 2.4s ease-in-out 0.35s infinite;
+}
+
+.sparkles span:nth-child(3) {
+  width: 0.16rem;
+  height: 0.16rem;
+  top: 0.02rem;
+  right: 0.62rem;
+  opacity: 0.65;
+  animation: sfSparkle 2.4s ease-in-out 0.7s infinite;
+}
+
+@keyframes sfPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(183, 224, 138, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 0.45rem rgba(183, 224, 138, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(183, 224, 138, 0);
+  }
+}
+
+@keyframes sfSparkle {
+  0%,
+  100% {
+    transform: scale(0.85);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+/* The bottom nav is shorter on phones, so recompute the clearance from the
+   same numbers Menu2 uses at this breakpoint. */
+@media (max-width: 768px) {
+  .fab {
+    --sf-menu-height: 4.1rem;
+    --sf-menu-lift: 1.45rem;
+  }
+}
+
+/* The full pill spans well over half a small phone's width, and `.button` takes
+   pointer events, so it swallowed taps on whatever sat beneath it. Shrink it
+   progressively instead. */
+@media (max-width: 480px) {
+  .subtitle {
+    display: none;
+  }
+
+  .pill {
+    min-height: 2.9rem;
+    padding: 0.4rem 3.1rem 0.4rem 0.8rem;
   }
 
   .title {
-    font-size: 0.85rem;
-  }
-
-  .badge {
-    width: 2.55rem;
-    height: 2.55rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .button {
-    transition: none;
+/* Below this the label cannot fit alongside page content; keep only the badge.
+   The button's aria-label still names the action. */
+@media (max-width: 380px) {
+  .pill {
+    display: none;
+  }
+
+  .badge {
+    width: 3.25rem;
+    height: 3.25rem;
   }
 }

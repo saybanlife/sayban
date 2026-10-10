@@ -32,37 +32,6 @@ export function shouldShowStaffsMenu(input: {
 
 const STAFFS_MENU_VALUE = "staffs";
 
-/** Insert «درخواست تماس پشتیبانی» after chat support for super admins. */
-export function withSupportCallbackMenuItem(menu: unknown): unknown {
-  if (!Array.isArray(menu)) return menu;
-  if (
-    menu.some(
-      item =>
-        item &&
-        typeof item === "object" &&
-        (item as { value?: unknown }).value === "support_callbacks"
-    )
-  ) {
-    return menu;
-  }
-  const item = {
-    label: "درخواست تماس پشتیبانی",
-    value: "support_callbacks",
-    icon: "history",
-    permissions: ["super_admin"]
-  };
-  const supportIndex = menu.findIndex(
-    entry =>
-      entry &&
-      typeof entry === "object" &&
-      (entry as { value?: unknown }).value === "support"
-  );
-  if (supportIndex < 0) return [...menu, item];
-  const next = menu.slice();
-  next.splice(supportIndex + 1, 0, item);
-  return next;
-}
-
 export function filterPanelMenuForNurseStaffing<T>(
   menu: T,
   input: { role?: unknown; careDomain?: unknown }

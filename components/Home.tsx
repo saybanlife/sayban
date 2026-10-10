@@ -7,7 +7,6 @@ import {
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 import { SwiperSlider } from "@/components/SwiperSlider";
 import sliderStyles from "./HomeSlider.module.css";
-import scrollStyles from "./home/homeScroll.module.css";
 import {
   HomeSliderItem,
   normalizeHomeSliders,
@@ -40,7 +39,6 @@ function Home_(props: HomeProps, ref: HTMLElementRefOf<"div">) {
           ) => (
             <DefaultSwiper
               {...renderProps}
-              className={[renderProps.className, scrollStyles.banner].filter(Boolean).join(" ")}
               autoplay={slides.length > 1}
               loop={slides.length > 1}
               showPagination={slides.length > 1}
@@ -73,7 +71,7 @@ function Home_(props: HomeProps, ref: HTMLElementRefOf<"div">) {
           render: () => (
             <img
               alt=""
-              className={`${sliderStyles.promoFallbackImage} ${scrollStyles.banner}`}
+              className={sliderStyles.promoFallbackImage}
               loading="lazy"
               src={PROMO_FALLBACK_IMAGE}
             />

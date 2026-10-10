@@ -19,22 +19,6 @@ assert.deepEqual(views("home", ["center", "42"]), ["center"]);
 assert.deepEqual(views("home", ["offer_8"]), ["staffs"]);
 assert.deepEqual(views("home", ["staff_7"]), ["staff"]);
 assert.deepEqual(views("home", ["booking"]), ["booking"]);
-assert.deepEqual(views("booking"), ["booking"]);
-assert.deepEqual(views("user", ["booking"]), ["booking"]);
 assert.deepEqual(views("home", ["pay_9"], "true"), ["payResult", "payment"]);
 assert.deepEqual(views("home", ["services"]), ["subcategories"]);
-
-const userSource = fs.readFileSync(
-  new URL("../components/User.tsx", import.meta.url),
-  "utf8"
-);
-assert.match(userSource, /router\.push\("\/booking\/"\)/);
-assert.doesNotMatch(userSource, /goToBooking[\s\S]*push\(`\/\$\{pageBase\}\/booking`\)/);
-
-const homepageSource = fs.readFileSync(
-  new URL("../components/Homepage.tsx", import.meta.url),
-  "utf8"
-);
-assert.match(homepageSource, /goBackOrReplace\(router, "\/booking\/"\)/);
-
 console.log("Homepage active-view routing tests passed.");

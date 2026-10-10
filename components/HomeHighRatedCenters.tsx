@@ -8,12 +8,6 @@ import {
 } from "@/lib/publicAuthToken";
 import { buildCenterRoute } from "./centerNavigation";
 import { centerRating } from "./centers/centerListFilters";
-import ItemBooking from "./ItemBookingNext";
-import {
-  RESERVATION_CACHE_KEY,
-  type ReservationRecord
-} from "./reservation/reservationDetailsModel";
-import { selectLatestHomeReservations } from "./home/homeReservationStatus";
 import { readCookie } from "./support/supportTypes";
 import StarFilledIcon from "./plasmic/library_tabler_3_2_icons/icons/PlasmicIcon__StarFilled";
 import MapPinIcon from "./plasmic/library_tabler_3_2_icons/icons/PlasmicIcon__MapPin";
@@ -24,9 +18,6 @@ const CACHE_KEY = "home-high-rated-centers-v2";
 const CACHE_TTL_MS = 15 * 60 * 1000;
 const MAX_CARDS = 12;
 const MIN_RATE = 4;
-const RESERVATION_POLL_MS = 30000;
-/** Temporarily off — set true to restore «مراکز با امتیاز زیاد» on Home. */
-const SHOW_HIGH_RATED_CENTERS = false;
 
 export type HomeHighRatedCenter = {
   id: string;
@@ -134,10 +125,6 @@ export function HomeHighRatedCenters({
 }: HomeHighRatedCentersProps) {
   const router = useRouter();
   const [items, setItems] = React.useState<HomeHighRatedCenter[]>([]);
-  const [reservationSnapshot, setReservationSnapshot] = React.useState<{
-    token: string;
-    items: ReservationRecord[];
-  }>({ token: "", items: [] });
 
   const authToken = React.useMemo(
     () =>
@@ -148,10 +135,6 @@ export function HomeHighRatedCenters({
   );
 
   const categorySlug = String(viewAllSlug || "").trim();
-  const latestReservations =
-    authToken && reservationSnapshot.token === authToken
-      ? reservationSnapshot.items
-      : [];
 
   const pageBase =
     typeof router.query.page === "string" && router.query.page
@@ -179,127 +162,38 @@ export function HomeHighRatedCenters({
     if (items[0]?.id) await goToCenter(items[0].id);
   }, [categorySlug, goToCenter, items, pageBase, router]);
 
-  const goToReservation = React.useCallback(
-    async (reservation: ReservationRecord) => {
-      if (!reservation.id) return;
-      try {
-        window.sessionStorage.setItem(
-          RESERVATION_CACHE_KEY,
-          JSON.stringify(reservation)
-        );
-      } catch {
-        /* ignore quota */
-      }
-      await router.push(`/${pageBase}/reservation_${reservation.id}`);
-    },
-    [pageBase, router]
-  );
-
-  const goToPay = React.useCallback(
-    async (reservation: ReservationRecord) => {
-      if (!reservation.id) return;
-      try {
-        window.sessionStorage.setItem(
-          RESERVATION_CACHE_KEY,
-          JSON.stringify(reservation)
-        );
-      } catch {
-        /* ignore quota */
-      }
-      await router.push(`/${pageBase}/pay_${reservation.id}`);
-    },
-    [pageBase, router]
-  );
-
-  const patchReservation = React.useCallback(
-    (updated: ReservationRecord) => {
-      setReservationSnapshot(prev => ({
-        ...prev,
-        items: prev.items.map(item =>
-          String(item.id) === String(updated.id) ? { ...item, ...updated } : item
-        )
-      }));
-    },
-    []
-  );
-
   return (
     <>
-      {/* «مراکز با امتیاز زیاد» — فعلاً غیرفعال (SHOW_HIGH_RATED_CENTERS) */}
-      {SHOW_HIGH_RATED_CENTERS ? (
-        <ApiRequest
-          method="GET"
-          url={PUBLIC_ROUTES.centers}
-          params={{
-            category: categorySlug,
-            sort: "highest_rate"
-          }}
-          config={
-            authToken
-              ? { headers: { Authorization: `Bearer ${authToken}` } }
-              : undefined
-          }
-          shouldFetch={Boolean(authToken && categorySlug)}
-          cacheKey={`${CACHE_KEY}:${categorySlug}`}
-          cacheTtlMs={CACHE_TTL_MS}
-          loadingDisplay={null}
-          errorDisplay={null}
-          onSuccess={(data: unknown) => {
-            setItems(normalizeHighRatedCenters(data));
-          }}
-          onError={() => {
-            setItems([]);
-          }}
-        >
-          {null}
-        </ApiRequest>
-      ) : null}
-
       <ApiRequest
         method="GET"
-        url={PUBLIC_ROUTES.reservation}
-        params={{}}
+        url={PUBLIC_ROUTES.centers}
+        // `/centers` needs a category (or subcategory) slug; without it n8n
+        // returns a placeholder empty row. Home passes the first category.
+        params={{
+          category: categorySlug,
+          sort: "highest_rate"
+        }}
         config={
           authToken
             ? { headers: { Authorization: `Bearer ${authToken}` } }
             : undefined
         }
-        shouldFetch={Boolean(authToken)}
-        fresh
-        refreshInterval={RESERVATION_POLL_MS}
+        shouldFetch={Boolean(authToken && categorySlug)}
+        cacheKey={`${CACHE_KEY}:${categorySlug}`}
+        cacheTtlMs={CACHE_TTL_MS}
         loadingDisplay={null}
         errorDisplay={null}
         onSuccess={(data: unknown) => {
-          const items = selectLatestHomeReservations(data);
-          setReservationSnapshot(prev => {
-            if (
-              prev.token === authToken &&
-              prev.items.length === items.length &&
-              prev.items.every(
-                (item, index) =>
-                  String(item.id) === String(items[index]?.id) &&
-                  String(item.status) === String(items[index]?.status) &&
-                  String(item.lifecycle_stage ?? "") ===
-                  String(items[index]?.lifecycle_stage ?? "")
-              )
-            ) {
-              return prev;
-            }
-            return { token: authToken, items };
-          });
+          setItems(normalizeHighRatedCenters(data));
         }}
         onError={() => {
-          setReservationSnapshot(prev =>
-            prev.items.length === 0
-              ? { token: authToken, items: [] }
-              : prev
-          );
+          setItems([]);
         }}
       >
         {null}
       </ApiRequest>
 
-      {SHOW_HIGH_RATED_CENTERS && items.length > 0 ? (
+      {items.length > 0 ? (
         <section
           className={[styles.root, className].filter(Boolean).join(" ")}
           aria-label="مراکز با امتیاز زیاد"
@@ -358,56 +252,6 @@ export function HomeHighRatedCenters({
                   مشاهده مرکز
                 </button>
               </article>
-            ))}
-          </div>
-        </section>
-      ) : null}
-
-      {latestReservations.length > 0 ? (
-        <section
-          className={[styles.statusSection, className]
-            .filter(Boolean)
-            .join(" ")}
-          aria-label="وضعیت"
-        >
-          <div
-            style={{
-              width: "100%",
-              textAlign: "right",
-              fontSize: "1.05rem",
-              fontWeight: 800,
-              lineHeight: 1.6,
-              color: "#1F2A0F",
-              padding: "4px 4px 8px 4px",
-              display: "flex",
-              alignItems: "center",
-              gap: 8
-            }}
-          >
-            <span
-              aria-hidden="true"
-              style={{
-                width: 4,
-                height: 18,
-                borderRadius: 2,
-                background: "#6F8A3A",
-                flex: "0 0 auto"
-              }}
-            />
-            وضعیت
-          </div>
-          <div className={styles.statusList}>
-            {latestReservations.map(reservation => (
-              <ItemBooking
-                key={String(reservation.id)}
-                className={styles.statusCard}
-                home
-                item={reservation}
-                token={authToken || undefined}
-                goToDetails={() => void goToReservation(reservation)}
-                pay={() => void goToPay(reservation)}
-                onReservationChange={patchReservation}
-              />
             ))}
           </div>
         </section>

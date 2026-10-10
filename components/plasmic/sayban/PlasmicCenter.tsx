@@ -161,10 +161,6 @@ export type PlasmicCenter__ArgsType = {
   userSelectOpendialog?: boolean;
   onUserSelectOpendialogChange?: (val: boolean) => void;
   userNew?: () => void;
-  /** When set, «رزرو وقت بازدید» navigates/opens via host instead of the entry Dialog. */
-  onBookVisit?: () => void;
-  /** Seed `$state.service` with the shared VISIT service (standalone booking page). */
-  seedVisitService?: boolean;
 };
 type ArgPropType = keyof PlasmicCenter__ArgsType;
 export const PlasmicCenter__ArgProps = new Array<ArgPropType>(
@@ -180,9 +176,7 @@ export const PlasmicCenter__ArgProps = new Array<ArgPropType>(
   "onId2Change",
   "userSelectOpendialog",
   "onUserSelectOpendialogChange",
-  "userNew",
-  "onBookVisit",
-  "seedVisitService"
+  "userNew"
 );
 
 export type PlasmicCenter__OverridesType = {
@@ -233,8 +227,6 @@ export interface DefaultCenterProps {
   userSelectOpendialog?: boolean;
   onUserSelectOpendialogChange?: (val: boolean) => void;
   userNew?: () => void;
-  onBookVisit?: () => void;
-  seedVisitService?: boolean;
   top?: SingleBooleanChoiceArg<"top">;
   className?: string;
 }
@@ -400,8 +392,7 @@ function PlasmicCenter__RenderFunc(props: {
         path: "service",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          $props.seedVisitService ? visitService() : {}
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "entry.opendialog",
@@ -4134,11 +4125,6 @@ function PlasmicCenter__RenderFunc(props: {
           }
         })()}
         onBookVisit={() => {
-          // Host page can take over navigation (standalone visit-booking page).
-          if (typeof $props.onBookVisit === "function") {
-            $props.onBookVisit();
-            return;
-          }
           // Do not DOM-click `[data-plasmic-name="button"]` — that selector matches
           // other buttons on Homepage (e.g. MainLiad), and the real booking button
           // lives in a display:none section. Open the entry dialog via state.

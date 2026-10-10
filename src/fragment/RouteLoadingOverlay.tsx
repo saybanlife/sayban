@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useRouter } from "next/router";
 import PageLoadingOverlay from "./PageLoadingOverlay";
-import { isFooterShellLanding } from "./footerShellNav";
 
 const SHOW_DELAY_MS = 120;
 const MIN_VISIBLE_MS = 250;
@@ -23,13 +22,7 @@ export function RouteLoadingOverlay() {
       if (hideTimer.current) clearTimeout(hideTimer.current);
       if (maxTimer.current) clearTimeout(maxTimer.current);
     };
-    const start = (url: string) => {
-      if (
-        isFooterShellLanding(router.asPath) &&
-        isFooterShellLanding(url)
-      ) {
-        return;
-      }
+    const start = () => {
       clearTimers();
       showTimer.current = setTimeout(() => {
         shownAt.current = Date.now();
@@ -54,7 +47,7 @@ export function RouteLoadingOverlay() {
       router.events.off("routeChangeComplete", finish);
       router.events.off("routeChangeError", finish);
     };
-  }, [router.asPath, router.events]);
+  }, [router.events]);
 
   return visible ? <PageLoadingOverlay message="در حال بارگذاری صفحه..." /> : null;
 }

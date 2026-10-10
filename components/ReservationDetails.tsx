@@ -11,7 +11,6 @@ import Status from "./Status";
 import UploudeTime from "./UploudeTime";
 import Button from "./Button";
 import { resolveApiUrl, PUBLIC_ROUTES } from "../src/lib/apiRoutes";
-import { reservationDetailsUrl } from "./reservation/reservationLifecycleApi";
 import { goBackOrReplace } from "./navigation/backNavigation";
 import {
   RESERVATION_CACHE_KEY,
@@ -19,7 +18,6 @@ import {
   isFreeReservation,
   isNurseReservation,
   isPaymentDone,
-  reservationFlow,
   reservationPaymentStatusLabel,
   reservationStatusHint,
   type ReservationRecord
@@ -31,8 +29,7 @@ import BoxIcon from "./plasmic/library_tabler_3_2_icons/icons/PlasmicIcon__Box";
 import UserShieldIcon from "./plasmic/library_tabler_3_2_icons/icons/PlasmicIcon__UserShield";
 import CreditCardPayIcon from "./plasmic/library_tabler_3_2_icons/icons/PlasmicIcon__CreditCardPay";
 import BellIcon from "./plasmic/library_tabler_3_2_icons/icons/PlasmicIcon__Bell";
-import NurseOffersList from "./NurseOffersList";
-import ReservationStateDetails from "./ReservationStateDetails";
+import CalendarCheckIcon from "./plasmic/library_tabler_3_2_icons/icons/PlasmicIcon__CalendarCheck";
 
 export interface ReservationDetailsProps
   extends Omit<DefaultReservationDetailsProps, "api"> {
@@ -130,56 +127,32 @@ function buildPostTime(reservation: ReservationRecord | null) {
 }
 
 function ReservationStepIcon({
-  index,
-  done,
-  current
+  stepKey
 }: {
-  index: number;
-  done: boolean;
-  current: boolean;
+  stepKey: ReturnType<typeof buildReservationSteps>[number]["key"];
 }) {
-  return (
-    <span className={detailStyles.stepIcon} aria-hidden="true">
-      {done && !current ? "✓" : (index + 1).toLocaleString("fa-IR")}
-    </span>
-  );
+  const iconProps = {
+    className: detailStyles.stepIcon,
+    "aria-hidden": true
+  };
+  if (stepKey === "payment") return <CreditCardPayIcon {...iconProps} />;
+  if (stepKey === "centerConfirm") return <CalendarCheckIcon {...iconProps} />;
+  if (stepKey === "nurseOffer") return <UserShieldIcon {...iconProps} />;
+  return <BoxIcon {...iconProps} />;
 }
-
-const STATUS_TITLES: Record<string, string> = {
-  pending: "در انتظار بررسی درخواست",
-  awaitingOffers: "در انتظار پیشنهاد مراکز",
-  offersReceived: "پیشنهادهای پرستار آماده است",
-  nurseSelected: "پرستار انتخاب شد",
-  awaitingPayment: "در انتظار پرداخت",
-  paymentCompleted: "پرداخت انجام شد",
-  awaitingCenterContact: "در انتظار تماس مرکز",
-  confirmed: "رزرو تأیید شد",
-  finalConfirmed: "رزرو قطعی شد",
-  readyForDispatch: "آماده اعزام",
-  inProgress: "خدمت در حال انجام است",
-  completed: "خدمت انجام شد",
-  serviceFinished: "خدمت پایان یافت",
-  canceled: "رزرو لغو شد",
-  rejected: "درخواست رد شد",
-  refunded: "وجه رزرو مسترد شد"
-};
 
 function ReservationDetailsBody({
   reservation,
   loading,
   error,
   onPay,
-  token,
-  pageBase,
-  onChange
+  onOffers
 }: {
   reservation: ReservationRecord | null;
   loading: boolean;
   error: string | null;
   onPay: () => void;
-  token?: string;
-  pageBase?: string;
-  onChange: (reservation: ReservationRecord) => void;
+  onOffers: () => void;
 }) {
   const nurse = isNurseReservation(reservation);
   const steps = buildReservationSteps(reservation);
@@ -217,18 +190,6 @@ function ReservationDetailsBody({
           {error}
         </div>
       </div>
-    );
-  }
-
-  if (Boolean(reservation)) {
-    return (
-      <ReservationStateDetails
-        reservation={reservation as ReservationRecord}
-        token={token}
-        pageBase={pageBase}
-        onPay={onPay}
-        onChange={onChange}
-      />
     );
   }
 
@@ -292,11 +253,7 @@ function ReservationDetailsBody({
                 aria-current={step.current ? "step" : undefined}
               >
                 <div className={classNames("all", detailStyles.stepDot)}>
-                  <ReservationStepIcon
-                    index={index}
-                    done={step.done}
-                    current={step.current}
-                  />
+                  <ReservationStepIcon stepKey={step.key} />
                 </div>
                 <div className={classNames("all", detailStyles.stepLabel)}>
                   {step.label}
@@ -320,41 +277,13 @@ function ReservationDetailsBody({
         </div>
         <div className={classNames("all", sty.freeBox__wDFdQ, detailStyles.textGroup)}>
           <div className={classNames("all", "__wab_text", sty.text__q7FPj, detailStyles.infoTitle)}>
-              <Status status={status as any} />
-              {STATUS_TITLES[status] || "وضعیت درخواست"}
+            وضعیت درخواست
           </div>
           <div className={classNames("all", "__wab_text", sty.text__udEzn, detailStyles.infoValue)}>
             {reservationStatusHint(status)}
           </div>
-            {showOffers ? (
-              <button
-                type="button"
-                className={detailStyles.inlineOfferLink}
-                onClick={() => document.getElementById("reservation-offers")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                مشاهده پیشنهادها الان
-              </button>
-            ) : null}
         </div>
       </div>
-
-      <div className={detailStyles.previousCard}>
-        <div>
-          <strong>مراحل قبلی</strong>
-          <span>✓ درخواست ثبت شد</span>
-        </div>
-        <small>{reservation?.created_at ? "ثبت‌شده" : ""}</small>
-      </div>
-
-      <details className={detailStyles.requestSummary}>
-        <summary>خلاصه درخواست</summary>
-        <div className={detailStyles.summaryGrid}>
-          <div><span>خدمت</span><strong>{nurse ? "درخواست پرستار" : reservation?.service_name || "—"}</strong></div>
-          <div><span>مرکز</span><strong>{reservation?.center_name || "در حال انتخاب"}</strong></div>
-          <div><span>پرداخت</span><strong>{paymentLabel}</strong></div>
-          {addressText ? <div><span>آدرس</span><strong>{addressText}</strong></div> : null}
-        </div>
-      </details>
 
       {reservation?.user?.name ? (
         <div className={classNames("all", sty.freeBox__mMtpm, detailStyles.infoCard)}>
@@ -497,8 +426,16 @@ function ReservationDetailsBody({
         </aside>
       ) : null}
 
-      {showPay && (
+      {(showPay || showOffers) && (
         <div className={classNames("all", detailStyles.detailsActions)}>
+          {showOffers ? (
+            <Button
+              className={detailStyles.detailsCta}
+              color="success"
+              label="انتخاب پرستار"
+              onClick={onOffers}
+            />
+          ) : null}
           {showPay ? (
             <Button
               className={detailStyles.detailsCta}
@@ -509,16 +446,6 @@ function ReservationDetailsBody({
           ) : null}
         </div>
       )}
-
-      {showOffers && reservation?.id ? (
-        <div id="reservation-offers" className={detailStyles.offersSection}>
-          <NurseOffersList
-            compact
-            reservationId={String(reservation.id)}
-            token={token}
-          />
-        </div>
-      ) : null}
     </div>
   );
 }
@@ -556,11 +483,12 @@ function ReservationDetails({
       };
 
       try {
-        const paymentRes = await fetch(reservationDetailsUrl(reservationId), {
-          method: "GET",
-          headers,
-          cache: "no-store"
-        });
+        const paymentRes = await fetch(
+          resolveApiUrl(
+            `/reservations/payment?id=${encodeURIComponent(reservationId)}`
+          ),
+          { method: "GET", headers, cache: "no-store" }
+        );
         if (paymentRes.ok) {
           const paymentData = await paymentRes.json().catch(() => null);
           const fromPayment = pickReservationPayload(paymentData);
@@ -631,20 +559,11 @@ function ReservationDetails({
     router.push(`/${basePath}/pay_${reservation.id}`);
   };
 
-  const handleReservationChange = React.useCallback(
-    (nextReservation: ReservationRecord) => {
-      setReservation(nextReservation);
-      try {
-        window.sessionStorage.setItem(
-          RESERVATION_CACHE_KEY,
-          JSON.stringify(nextReservation)
-        );
-      } catch {
-        /* ignore quota */
-      }
-    },
-    []
-  );
+  const handleOffers = () => {
+    if (!reservation?.id) return;
+    window.sessionStorage.setItem("id", String(reservation.id));
+    router.push(`/${basePath}/offer_${reservation.id}`);
+  };
 
   return (
     <PlasmicReservationDetails
@@ -659,9 +578,7 @@ function ReservationDetails({
               loading={loading}
               error={error}
               onPay={handlePay}
-              token={token ? String(token) : undefined}
-              pageBase={basePath}
-              onChange={handleReservationChange}
+              onOffers={handleOffers}
             />
           )
         },
@@ -672,20 +589,7 @@ function ReservationDetails({
             back: handleBack,
             slot: (
               <div className={classNames("all", "__wab_text", sty.text___26COw)}>
-                {(() => {
-                  const flow = reservationFlow(reservation);
-                  if (flow === "visit") {
-                    return ["بازدید", reservation?.center_name || reservation?.user?.name]
-                      .filter(Boolean)
-                      .join(" - ");
-                  }
-                  const serviceLabel =
-                    reservation?.service_name ||
-                    (flow === "nurse" ? "مراقب مداوم" : "جزئیات رزرو");
-                  return [serviceLabel, reservation?.user?.name]
-                    .filter(Boolean)
-                    .join(" - ");
-                })()}
+                جزئیات رزرو
               </div>
             ),
             slot2: null

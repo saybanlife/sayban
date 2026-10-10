@@ -5,10 +5,6 @@ import type {
   SupportStatus
 } from "./supportTypes";
 import { readCookie } from "./supportTypes";
-import type {
-  SupportCallbackRequest,
-  SupportCallbackTimePreference
-} from "./supportCallbackModel";
 import { userSupportMessagesPath } from "../../src/lib/apiRoutes";
 
 type ApiResult<T> = {
@@ -180,37 +176,6 @@ export async function panelCloseSupportConversation(
   return panelRequest(
     "POST",
     `conversations/${conversationId}/close`,
-    undefined,
-    token
-  );
-}
-
-export async function createSupportCallbackRequest(
-  body: {
-    phone: string;
-    time_preference?: SupportCallbackTimePreference;
-    preferred_time?: string | null;
-    source?: string | null;
-  },
-  tokenOverride?: string
-) {
-  return supportRequest<{ result?: SupportCallbackRequest }>(
-    "POST",
-    "callbacks/create",
-    {
-      phone: body.phone,
-      time_preference: body.time_preference || "anytime",
-      preferred_time: body.preferred_time ?? null,
-      source: body.source || "nurse_request"
-    },
-    tokenOverride
-  );
-}
-
-export async function panelListSupportCallbacks(token: string | undefined) {
-  return panelRequest<{ result?: SupportCallbackRequest[] }>(
-    "GET",
-    "callbacks",
     undefined,
     token
   );

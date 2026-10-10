@@ -7,31 +7,6 @@
   direction: rtl;
 }
 
-.questionCategory {
-  width: 100%;
-  margin: 18px 0 8px;
-  border-inline-start: 4px solid var(--plasmic-token-primary-green, #6f8a3a);
-  border-radius: 8px;
-  padding: 10px 12px;
-  direction: rtl;
-  background: color-mix(in srgb, var(--plasmic-token-primary-green, #6f8a3a) 9%, white);
-  text-align: right;
-}
-
-.questionCategoryTitle {
-  color: var(--token-9M5jRUPt8Msb, #202020);
-  font-weight: 800;
-  line-height: 1.7;
-}
-
-.questionCategoryDescription {
-  margin-top: 3px;
-  color: #68715d;
-  font-size: 0.82rem;
-  line-height: 1.8;
-}
-
-
 .serviceTypeLabel {
   width: 100%;
   color: var(--token-9M5jRUPt8Msb, #202020);

@@ -159,7 +159,6 @@ CREATE TABLE IF NOT EXISTS reminder_templates (
   title_fa VARCHAR(255) NOT NULL,
   default_text TEXT NULL,
   schedule_type ENUM('every_day', 'every_year', 'once') NOT NULL DEFAULT 'every_year',
-  template VARCHAR(50) NOT NULL DEFAULT '',
   default_times JSON NULL,
   kind ENUM('occasion', 'suggestion') NOT NULL DEFAULT 'suggestion',
   meta JSON NULL,
@@ -181,8 +180,8 @@ INSERT IGNORE INTO reminder_categories (code, title_fa, icon, is_addable, sort_o
   ('occasion', 'مناسبت', 'gift', 1, 30, 1);
 
 INSERT IGNORE INTO reminder_templates (
-  category_code, title_fa, default_text, schedule_type, template, default_times, kind, sort_order, active
+  category_code, title_fa, default_text, schedule_type, default_times, kind, sort_order, active
 ) VALUES
-  ('medicine_time', 'مصرف دارو', 'زمان مصرف دارو فرا رسیده است.', 'every_day', 'medicine_time', '["09:30"]', 'suggestion', 10, 1),
-  ('occasion', 'روز زن', 'روز زن مبارک!', 'every_year', 'occasion', '["09:00"]', 'occasion', 10, 1),
-  ('occasion', 'روز مادر', 'روز مادر مبارک!', 'every_year', 'occasion', '["09:00"]', 'occasion', 20, 1);
+  ('medicine_time', 'مصرف دارو', 'زمان مصرف دارو فرا رسیده است.', 'every_day', '["09:30"]', 'suggestion', 10, 1),
+  ('occasion', 'روز زن', 'روز زن مبارک!', 'every_year', '["09:00"]', 'occasion', 10, 1),
+  ('occasion', 'روز مادر', 'روز مادر مبارک!', 'every_year', '["09:00"]', 'occasion', 20, 1);

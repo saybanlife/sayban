@@ -91,11 +91,10 @@ assert.equal(
 );
 
 const centerOffers = read("components/CenterOffers.tsx");
-assert.match(centerOffers, /NurseRequestFlow/);
-const nurseWizard = read("components/nurseRequest/NurseRequestFlow.tsx");
-assert.match(nurseWizard, /title="مراقب"/);
-assert.match(nurseWizard, /title="پرستار"/);
-assert.match(nurseWizard, /افزودن همراه/);
+assert.match(centerOffers, /label: "مراقب", value: "general"/);
+assert.match(centerOffers, /label: "پرستار", value: "specialized"/);
+assert.match(centerOffers, /onChange=\{renderProps\.onChange\}/);
+assert.match(centerOffers, /FragmentSelect/);
 
 const userInfo = read("components/reservations/PanelReservationUserInfo.tsx");
 for (const label of [

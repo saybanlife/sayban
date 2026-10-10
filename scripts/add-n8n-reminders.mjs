@@ -161,12 +161,9 @@ function buildWorkflow() {
       credentials: withJwt ? JWT_AUTH : undefined
     });
 
-  const code = (name, jsCode, x, yPos, mode) =>
+  const code = (name, jsCode, x, yPos) =>
     add({
-      parameters: {
-        jsCode,
-        ...(mode ? { mode } : {})
-      },
+      parameters: { jsCode },
       type: "n8n-nodes-base.code",
       typeVersion: 2,
       position: [col(x), row(yPos)],
@@ -925,122 +922,94 @@ return statements.map(s => ({ json: s }));`,
        LIMIT 30
      ) x ON x.id = o.id
      SET o.status='claimed', o.claimed_at=NOW(), o.claimed_by='dispatch', o.attempt_count=o.attempt_count+1;
-     SELECT ROW_COUNT() AS claimed_count;`,
+     SELECT o.*, r.phone_number, r.bale_id, r.name AS reminder_name
+     FROM reminder_occurrences o
+     JOIN reminders r ON r.id=o.reminder_id
+     WHERE o.status='claimed' AND o.claimed_by='dispatch' AND o.claimed_at >= (NOW() - INTERVAL 2 MINUTE)
+     ORDER BY o.fire_at ASC
+     LIMIT 30;`,
     undefined,
     1,
     y
   );
-  // Kept for backward-compat / manual debug; live chain skips expand.
   code(
     "cron_dispatch_expand",
-    `return items;`,
+    `${TEHRAN_SCHEDULE_JS}
+const occs = items.map(i => i.json).filter(r => r && r.id);
+const out = [];
+for (const o of occs) {
+  out.push({ json: { ...o, phase: 'load_deliveries' } });
+}
+return out.length ? out : [];`,
     2,
     y
   );
   mysql(
     "cron_dispatch_deliveries",
     `SELECT d.*, u.fcmToken, u.isnotif, u.mobile,
-            o.id AS occurrence_id, o.fire_at,
-            r.phone_number, r.bale_id, r.name AS reminder_name, r.type AS reminder_type,
-            (
-              SELECT t.title_fa FROM reminder_templates t
-              WHERE t.active=1 AND (t.title_fa = r.name OR t.category_code = r.type OR t.template = r.type)
-              ORDER BY CASE WHEN t.title_fa = r.name THEN 0 ELSE 1 END,
-                       CASE WHEN t.category_code = r.type THEN 0 ELSE 1 END,
-                       t.sort_order, t.id LIMIT 1
-            ) AS tpl_title_fa,
-            (
-              SELECT t.default_text FROM reminder_templates t
-              WHERE t.active=1 AND (t.title_fa = r.name OR t.category_code = r.type OR t.template = r.type)
-              ORDER BY CASE WHEN t.title_fa = r.name THEN 0 ELSE 1 END,
-                       CASE WHEN t.category_code = r.type THEN 0 ELSE 1 END,
-                       t.sort_order, t.id LIMIT 1
-            ) AS tpl_default_text,
-            (
-              SELECT t.template FROM reminder_templates t
-              WHERE t.active=1 AND (t.title_fa = r.name OR t.category_code = r.type OR t.template = r.type)
-              ORDER BY CASE WHEN t.title_fa = r.name THEN 0 ELSE 1 END,
-                       CASE WHEN t.category_code = r.type THEN 0 ELSE 1 END,
-                       t.sort_order, t.id LIMIT 1
-            ) AS tpl_sms_template
+            o.title, o.body, o.channels AS occ_channels
      FROM reminder_deliveries d
      JOIN reminder_occurrences o ON o.id=d.occurrence_id
-     JOIN reminders r ON r.id=d.reminder_id
      LEFT JOIN users u ON u.id=d.user_id
-     WHERE o.status='claimed' AND o.claimed_by='dispatch'
-       AND o.claimed_at >= (NOW() - INTERVAL 2 MINUTE)
-       AND d.status IN ('pending','retry_wait')
-       AND (d.next_retry_at IS NULL OR d.next_retry_at <= NOW())
-     ORDER BY o.fire_at ASC, d.id ASC
-     LIMIT 100`,
-    undefined,
+     WHERE d.occurrence_id=$1 AND d.status IN ('pending','retry_wait')
+       AND (d.next_retry_at IS NULL OR d.next_retry_at <= NOW())`,
+    "={{ [$json.id] }}",
     3,
     y
   );
   code(
     "cron_dispatch_plan",
-    `const d = $input.item.json || {};
-if (!d.id) return { json: { _skip: true } };
-function normMobile(m) {
-  let s = String(m || '').replace(/\\D/g, '');
-  if (s.startsWith('98') && s.length === 12) s = '0' + s.slice(2);
-  if (s.length === 10 && s.startsWith('9')) s = '0' + s;
-  return s;
+    `${TEHRAN_SCHEDULE_JS}
+const occ = $('cron_dispatch_expand').item.json;
+const deliveries = items.map(i => i.json).filter(d => d && d.id);
+const plans = [];
+for (const d of deliveries) {
+  const channel = d.channel;
+  const cost = Number(d.unit_cost) || 0;
+  plans.push({
+    json: {
+      delivery_id: d.id,
+      occurrence_id: occ.id,
+      reminder_id: d.reminder_id,
+      user_id: d.user_id,
+      channel,
+      unit_cost: cost,
+      title: d.title || occ.title || occ.reminder_name || 'یادآوری',
+      body: d.body || occ.body || '',
+      fcmToken: d.fcmToken || null,
+      isnotif: Number(d.isnotif) || 0,
+      mobile: d.mobile || occ.phone_number || null,
+      bale_id: occ.bale_id || null,
+      attempt_no: Number(d.attempt_no) || 0,
+      max_attempts: Number(d.max_attempts) || 5,
+      idempotency_key: 'delivery:' + d.id + ':attempt:' + ((Number(d.attempt_no)||0) + 1),
+      now: tehranNowString()
+    }
+  });
 }
-const title = d.tpl_title_fa || 'یادآوری';
-const body = d.tpl_default_text || '';
-const sms_template = d.tpl_sms_template || '';
-const mobile = d.mobile || d.phone_number || null;
-return { json: {
-  delivery_id: d.id,
-  occurrence_id: Number(d.occurrence_id) || 0,
-  reminder_id: d.reminder_id,
-  user_id: d.user_id,
-  channel: d.channel,
-  unit_cost: Number(d.unit_cost) || 0,
-  title, body, sms_template,
-  fcmToken: d.fcmToken || null,
-  isnotif: Number(d.isnotif) || 0,
-  mobile,
-  mobile_norm: normMobile(mobile),
-  bale_id: d.bale_id || null,
-  attempt_no: Number(d.attempt_no) || 0,
-  max_attempts: Number(d.max_attempts) || 5,
-  idempotency_key: 'delivery:' + d.id + ':attempt:' + ((Number(d.attempt_no)||0) + 1)
-}};`,
+return plans;
+`,
     4,
-    y,
-    "runOnceForEachItem"
+    y
   );
-  // Wallet + status update + channel send orchestration — one item per delivery
+  // Wallet + status update + channel send orchestration in one SQL/code loop item
   code(
     "cron_dispatch_execute",
-    `const p = $input.item.json || {};
-if (p._skip) return { json: p };
+    `${TEHRAN_SCHEDULE_JS}
+// Prepare per-delivery action for downstream SQL/HTTP.
+const p = items[0].json || {};
 const channel = p.channel;
 const cost = Number(p.unit_cost) || 0;
 let action = 'send';
 let error_code = null;
 let error = null;
-const TEST_MOBILE = '09228951264';
-function normMobile(m) {
-  let s = String(m || '').replace(/\\D/g, '');
-  if (s.startsWith('98') && s.length === 12) s = '0' + s.slice(2);
-  if (s.length === 10 && s.startsWith('9')) s = '0' + s;
-  return s;
-}
-const mobileNorm = p.mobile_norm || normMobile(p.mobile);
 
-// Temporary test gate: only this mobile receives notification/SMS
-if ((channel === 'notification' || channel === 'sms') && mobileNorm !== TEST_MOBILE) {
-  action = 'skip';
-  error_code = 'TEST_ALLOWLIST';
-  error = 'تست: فقط شماره مجاز';
-} else if (channel === 'notification') {
-  // inbox/push even without fcm when allowed
+if (channel === 'notification') {
+  if (!p.isnotif || !p.fcmToken) {
+    // still write inbox even without push when isnotif allows; if no token, inbox-only
+  }
 } else if (channel === 'sms') {
   if (!p.mobile) { action = 'skip'; error_code = 'NO_MOBILE'; error = 'شماره موبایل نیست'; }
-  else if (!p.sms_template) { action = 'skip'; error_code = 'NO_SMS_TEMPLATE'; error = 'قالب پیامک یافت نشد'; }
 } else if (channel === 'bale') {
   // Provider URL not configured in v1 → skip without charge
   action = 'skip'; error_code = 'PROVIDER_NOT_CONFIGURED'; error = 'ارسال بله هنوز پیکربندی نشده';
@@ -1048,10 +1017,10 @@ if ((channel === 'notification' || channel === 'sms') && mobileNorm !== TEST_MOB
   action = 'skip'; error_code = 'UNKNOWN_CHANNEL'; error = channel;
 }
 
-return { json: { ...p, action, error_code, error, needs_charge: action === 'send' && cost > 0 } };`,
+return [{ json: { ...p, action, error_code, error, needs_charge: action === 'send' && cost > 0 } }];
+`,
     5,
-    y,
-    "runOnceForEachItem"
+    y
   );
   mysql(
     "cron_dispatch_charge",
@@ -1175,18 +1144,19 @@ SELECT @delivery_id AS delivery_id, @user_id AS user_id, @action AS action, @cha
   );
   code(
     "cron_dispatch_wallet_logic",
-    `const plan = $('cron_dispatch_execute').item.json || {};
-if (plan._skip) return { json: plan };
+    `${TEHRAN_SCHEDULE_JS}
+const plan = $('cron_dispatch_execute').item.json || {};
+const d = items[0].json || {};
 if (plan.action === 'skip') {
-  return { json: { ...plan, do: 'skip', delivery_id: plan.delivery_id } };
+  return [{ json: { ...plan, do: 'skip', delivery_id: plan.delivery_id } }];
 }
 if (!plan.needs_charge) {
-  return { json: { ...plan, do: 'send', delivery_id: plan.delivery_id } };
+  return [{ json: { ...plan, do: 'send', delivery_id: plan.delivery_id } }];
 }
-return { json: { ...plan, do: 'charge_then_send', delivery_id: plan.delivery_id } };`,
+return [{ json: { ...plan, do: 'charge_then_send', delivery_id: plan.delivery_id } }];
+`,
     7,
-    y - 2,
-    "runOnceForEachItem"
+    y - 2
   );
   mysql(
     "cron_dispatch_try_charge",
@@ -1199,23 +1169,21 @@ return { json: { ...plan, do: 'charge_then_send', delivery_id: plan.delivery_id 
   code(
     "cron_dispatch_after_balance",
     `const plan = $('cron_dispatch_wallet_logic').item.json || {};
-if (plan._skip) return { json: plan };
-const balRow = $input.item.json || {};
+const balRow = items[0].json || {};
 const balance = Number(balRow.balance);
 const cost = Number(plan.unit_cost) || 0;
 if (plan.do === 'skip') {
-  return { json: { ...plan, final_action: 'skip' } };
+  return [{ json: { ...plan, final_action: 'skip' } }];
 }
 if (plan.do === 'send') {
-  return { json: { ...plan, final_action: 'send', charged: 0 } };
+  return [{ json: { ...plan, final_action: 'send', charged: 0 } }];
 }
 if (!(balance >= cost)) {
-  return { json: { ...plan, final_action: 'skip', error_code: 'INSUFFICIENT_BALANCE', error: 'موجودی کافی نیست', charged: 0 } };
+  return [{ json: { ...plan, final_action: 'skip', error_code: 'INSUFFICIENT_BALANCE', error: 'موجودی کافی نیست', charged: 0 } }];
 }
-return { json: { ...plan, final_action: 'debit_and_send', charged: 1, balance } };`,
+return [{ json: { ...plan, final_action: 'debit_and_send', charged: 1, balance } }];`,
     9,
-    y - 2,
-    "runOnceForEachItem"
+    y - 2
   );
   mysql(
     "cron_dispatch_debit",
@@ -1236,16 +1204,14 @@ return { json: { ...plan, final_action: 'debit_and_send', charged: 1, balance } 
   code(
     "cron_dispatch_route_channel",
     `const plan = $('cron_dispatch_after_balance').item.json || {};
-if (plan._skip) return { json: plan };
 let final_action = plan.final_action;
 if (final_action === 'debit_and_send') final_action = 'send';
 if (final_action === 'skip') {
-  return { json: { ...plan, final_action: 'skip' } };
+  return [{ json: { ...plan, final_action: 'skip' } }];
 }
-return { json: { ...plan, final_action: 'send' } };`,
+return [{ json: { ...plan, final_action: 'send' } }];`,
     11,
-    y - 2,
-    "runOnceForEachItem"
+    y - 2
   );
   mysql(
     "cron_dispatch_skip_sql",
@@ -1257,12 +1223,15 @@ return { json: { ...plan, final_action: 'send' } };`,
     12,
     y - 2
   );
-  // Pass-through before push; send-notif (isSaveData) writes users__notification.
-  // Channel IF nodes are applied live via scripts/patch-n8n-reminders-channel-if.mjs
-  // (notification → push; sms → sms; else → finish). Do not wire push→sms directly.
+  // notification inbox + push
   mysql(
     "cron_dispatch_inbox",
-    `SELECT $6 AS delivery_id, $4 AS final_action, $5 AS channel, $1 AS user_id, $2 AS title, $3 AS text;`,
+    `INSERT INTO users__notification (userId, title, text, action, notification_type, is_seen)
+     SELECT $1, $2, $3, '/reminder/', 'reminder', 0 FROM DUAL WHERE $4='send' AND $5='notification';
+     UPDATE reminder_deliveries
+       SET inbox_notification_id = IF($5='notification' AND $4='send', LAST_INSERT_ID(), inbox_notification_id)
+     WHERE id=$6;
+     SELECT $6 AS delivery_id, $4 AS final_action, $5 AS channel, $1 AS user_id, $2 AS title, $3 AS text;`,
     `={{ (() => { const j=$('cron_dispatch_route_channel').item.json; return [j.user_id, j.title, j.body, j.final_action, j.channel, j.delivery_id]; })() }}`,
     13,
     y - 2
@@ -1271,7 +1240,7 @@ return { json: { ...plan, final_action: 'send' } };`,
     "cron_dispatch_push",
     "POST",
     `${WEBHOOK_BASE}send-notif`,
-    `={{ (() => { const plan=$('cron_dispatch_route_channel').item.json||{}; const row=$json||{}; return JSON.stringify({ title: row.title||plan.title||'یادآوری', text: row.text||plan.body||'', action:'/reminder/', notification_type:'reminder', userId:Number(row.user_id||plan.user_id)||0, isSendNow:true, isSaveData:true }); })() }}`,
+    `={{ JSON.stringify({ title: $json.title, text: $json.text, action: '/reminder/', notification_type: 'reminder', userId: $json.user_id }) }}`,
     14,
     y - 2
   );
@@ -1279,16 +1248,13 @@ return { json: { ...plan, final_action: 'send' } };`,
     "cron_dispatch_sms",
     "POST",
     `${WEBHOOK_BASE}users/sms`,
-    `={{ JSON.stringify({ id: $('cron_dispatch_route_channel').item.json.user_id, template: $('cron_dispatch_route_channel').item.json.sms_template }) }}`,
+    `={{ JSON.stringify({ id: $('cron_dispatch_route_channel').item.json.user_id, template: $('cron_dispatch_route_channel').item.json.body || $('cron_dispatch_route_channel').item.json.title }) }}`,
     15,
     y - 2
   );
   code(
     "cron_dispatch_finish",
     `const plan = $('cron_dispatch_route_channel').item.json || {};
-if (plan._skip) {
-  return { json: { delivery_id: plan.delivery_id || 0, occurrence_id: plan.occurrence_id || 0, status: 'skipped', error_code: 'SKIP', error: null, channel: plan.channel || null } };
-}
 const channel = plan.channel;
 const final_action = plan.final_action;
 let status = 'sent';
@@ -1306,17 +1272,16 @@ if (final_action === 'skip') {
 } else {
   status = 'sent';
 }
-return { json: {
+return [{ json: {
   delivery_id: plan.delivery_id,
   occurrence_id: plan.occurrence_id,
   status,
   error_code,
   error,
   channel
-}};`,
+}}];`,
     16,
-    y - 2,
-    "runOnceForEachItem"
+    y - 2
   );
   mysql(
     "cron_dispatch_mark_done",
@@ -1352,8 +1317,8 @@ return { json: {
   );
 
   link("cron_dispatch", "cron_dispatch_claim");
-  // Load ALL deliveries for claimed occurrences in one query (no per-occ expand).
-  link("cron_dispatch_claim", "cron_dispatch_deliveries");
+  link("cron_dispatch_claim", "cron_dispatch_expand");
+  link("cron_dispatch_expand", "cron_dispatch_deliveries");
   link("cron_dispatch_deliveries", "cron_dispatch_plan");
   link("cron_dispatch_plan", "cron_dispatch_execute");
   link("cron_dispatch_execute", "cron_dispatch_mark_sending");
@@ -1363,11 +1328,10 @@ return { json: {
   link("cron_dispatch_after_balance", "cron_dispatch_debit");
   link("cron_dispatch_debit", "cron_dispatch_route_channel");
   link("cron_dispatch_route_channel", "cron_dispatch_skip_sql");
-  // Live workflow uses IF nodes (see patch-n8n-reminders-channel-if.mjs).
-  // Builder keeps a safe notification-only default: inbox → push → finish (no SMS).
   link("cron_dispatch_skip_sql", "cron_dispatch_inbox");
   link("cron_dispatch_inbox", "cron_dispatch_push");
-  link("cron_dispatch_push", "cron_dispatch_finish");
+  link("cron_dispatch_push", "cron_dispatch_sms");
+  link("cron_dispatch_sms", "cron_dispatch_finish");
   link("cron_dispatch_finish", "cron_dispatch_mark_done");
 
   return {

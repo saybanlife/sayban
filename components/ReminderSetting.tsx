@@ -6,17 +6,12 @@ import {
   type PlasmicReminderSetting__OverridesType
 } from "./plasmic/sayban/PlasmicReminderSetting";
 import plasmicStyles from "./plasmic/sayban/PlasmicReminderSetting.module.css";
-import reportStyles from "./plasmic/sayban/PlasmicReport2.module.css";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 import {
   hasMedicineReminderCategory,
   isUsableReminderUserId,
   normalizeReminderCategoryCatalog,
-  normalizeReminderList,
-  toReminderEditPageSelect,
-  clickReminderEditPageSelect,
-  subscribeReminderEdit,
-  takePendingReminderEdit
+  normalizeReminderList
 } from "@/lib/reminderTask";
 import { readCookie } from "@/lib/authCookies";
 import {
@@ -145,78 +140,17 @@ function mergeReminderExtras(
   return next;
 }
 
-type EventStepStore = {
-  get: () => number;
-  set: (next: number) => void;
-  subscribe: (listener: () => void) => () => void;
-};
-
-function triggerDomClick(el: Element | null | undefined) {
-  if (!el) return false;
-  const reactKey = Object.keys(el).find(
-    key =>
-      key.startsWith("__reactProps$") ||
-      key.startsWith("__reactEventHandlers$")
-  );
-  const reactProps = reactKey
-    ? ((el as unknown as Record<string, { onClick?: (e: Event) => void }>)[
-        reactKey
-      ] as { onClick?: (e: Event) => void } | undefined)
-    : undefined;
-  if (typeof reactProps?.onClick === "function") {
-    const evt = new MouseEvent("click", {
-      bubbles: true,
-      cancelable: true,
-      view: window
-    });
-    reactProps.onClick(evt);
-    return true;
-  }
-  el.dispatchEvent(
-    new MouseEvent("click", { bubbles: true, cancelable: true, view: window })
-  );
-  return true;
-}
-
-function createEventStepStore(): EventStepStore {
-  let step = 0;
-  const listeners = new Set<() => void>();
-  return {
-    get: () => step,
-    set: next => {
-      if (step === next) return;
-      step = next;
-      listeners.forEach(listener => listener());
-    },
-    subscribe: listener => {
-      listeners.add(listener);
-      return () => {
-        listeners.delete(listener);
-      };
-    }
-  };
-}
-
 /** Closes category dialog when create/edit form opens (prop-driven). */
 function ReminderEventPageBridge({
   renderProps,
   onFormOpen,
-  onOpenChange,
-  stepStore,
-  onStepBack
+  onOpenChange
 }: {
   renderProps: Record<string, unknown>;
   onFormOpen: () => void;
   onOpenChange: (open: boolean) => void;
-  stepStore: EventStepStore;
-  onStepBack: () => void;
 }) {
   const open = Boolean(renderProps.opendialog);
-  const step = React.useSyncExternalStore(
-    stepStore.subscribe,
-    stepStore.get,
-    () => 0
-  );
   React.useEffect(() => {
     onOpenChange(open);
     if (open) onFormOpen();
@@ -231,8 +165,6 @@ function ReminderEventPageBridge({
           | ((val: boolean | string) => void)
           | undefined
       }
-      step={step}
-      onStepBack={onStepBack}
     >
       {renderProps.children as React.ReactNode}
     </ReminderEventPage>
@@ -280,118 +212,11 @@ function ReminderSetting_(
   const dialog2Controlled = props.dialogOpendialog3 !== undefined;
   const [localDialog2Open, setLocalDialog2Open] = React.useState(false);
   const [eventPageOpen, setEventPageOpen] = React.useState(false);
-  const [settingKey, setSettingKey] = React.useState(0);
-  const wasEventOpenRef = React.useRef(false);
-  const stepBackLockRef = React.useRef(false);
-  const eventStepStore = React.useMemo(() => createEventStepStore(), []);
-  const eventStep = React.useSyncExternalStore(
-    eventStepStore.subscribe,
-    eventStepStore.get,
-    () => 0
-  );
-  const [forcedPageSelect, setForcedPageSelect] = React.useState<Record<
-    string,
-    unknown
-  > | null>(null);
   const dialog2Open = dialog2Controlled
     ? Boolean(props.dialogOpendialog3)
     : localDialog2Open;
 
   extrasRef.current = extras;
-
-  // Detail → ویرایش: inject pageSelect then trigger hidden #pageSelect1.
-  React.useEffect(() => {
-    const pending = takePendingReminderEdit();
-    if (pending) {
-      const selected = toReminderEditPageSelect(pending);
-      if (selected) setForcedPageSelect(selected);
-    }
-    return subscribeReminderEdit(reminder => {
-      const selected = toReminderEditPageSelect(reminder);
-      if (!selected) return;
-      setForcedPageSelect(selected);
-    });
-  }, []);
-
-  React.useEffect(() => {
-    if (!forcedPageSelect) return;
-    const t = window.setTimeout(() => {
-      clickReminderEditPageSelect();
-    }, 0);
-    return () => window.clearTimeout(t);
-  }, [forcedPageSelect]);
-
-  // Full reset after every close so the next open always starts at step 0.
-  React.useEffect(() => {
-    if (wasEventOpenRef.current && !eventPageOpen) {
-      eventStepStore.set(0);
-      setExtras(EMPTY_EXTRAS);
-      setForcedPageSelect(null);
-      setSettingKey(k => k + 1);
-    }
-    if (eventPageOpen) {
-      eventStepStore.set(0);
-    }
-    wasEventOpenRef.current = eventPageOpen;
-  }, [eventPageOpen, eventStepStore]);
-
-  const handleStepBack = React.useCallback(() => {
-    const current = eventStepStore.get();
-    if (current <= 0) return;
-    if (current === 1) {
-      eventStepStore.set(0);
-      return;
-    }
-    // Step 2 (channels) → back to scheduling via Plasmic chevron.
-    stepBackLockRef.current = true;
-    eventStepStore.set(1);
-    triggerDomClick(
-      document.querySelector('[data-reminder-event-page] [class*="svg__fiXy5"]')
-    );
-    window.setTimeout(() => {
-      stepBackLockRef.current = false;
-    }, 400);
-  }, [eventStepStore]);
-
-  /** Header Back: previous wizard step; close only on step 0. */
-  const handleHeaderBack = React.useCallback(() => {
-    if (eventStepStore.get() >= 1) {
-      handleStepBack();
-      return;
-    }
-    // Step 0 — same exit path as ReminderEventPage popstate.
-    if (typeof window !== "undefined") {
-      window.history.back();
-    }
-  }, [eventStepStore, handleStepBack]);
-
-  // Mirror Plasmic channel step → local eventStep 2 (for stepper + history).
-  React.useEffect(() => {
-    if (!eventPageOpen) return;
-    const sync = () => {
-      if (stepBackLockRef.current) return;
-      const root = document.querySelector("[data-reminder-event-page]");
-      if (!root) return;
-      // Plasmic channels screen shows the back-chevron (fiXy5).
-      if (root.querySelector('[class*="svg__fiXy5"]')) {
-        eventStepStore.set(2);
-        return;
-      }
-      // Still on plasmic form step 0 — keep local 0/1 from continue button.
-      if (eventStepStore.get() === 2) {
-        eventStepStore.set(1);
-      }
-    };
-    sync();
-    const mo = new MutationObserver(sync);
-    const root = document.querySelector("[data-reminder-event-page]");
-    if (root) mo.observe(root, { childList: true, subtree: true });
-    const t = window.setInterval(sync, 400);
-    return () => {
-      mo.disconnect();
-      window.clearInterval(t);
-    };
-  }, [eventPageOpen, eventStepStore]);
 
   const wrapTitleWithExtras = React.useCallback(
     (node: React.ReactNode) => (
@@ -407,31 +232,6 @@ function ReminderSetting_(
     [companions, extras]
   );
 
-  const renderContinueButton = React.useCallback(
-    (
-      renderProps: React.ComponentProps<typeof Button2>,
-      DefaultButton: typeof Button2
-    ) => (
-      <DefaultButton
-        {...renderProps}
-        onClick={event => {
-          // Step 0 → details done; advance local wizard to scheduling.
-          if (eventStep === 0) {
-            eventStepStore.set(1);
-            return;
-          }
-          // Step 1 → run Plasmic validation + advance to channels.
-          return (
-            renderProps.onClick as
-              | ((clickEvent: typeof event) => void)
-              | undefined
-          )?.(event);
-        }}
-      />
-    ),
-    [eventStep, eventStepStore]
-  );
-
   const handleDialog2OpenChange = React.useCallback(
     (val: boolean | string) => {
       const next = typeof val === "boolean" ? val : Boolean(val);
@@ -445,23 +245,15 @@ function ReminderSetting_(
     setEventPageOpen(open);
   }, []);
 
-  // Stable render fn so step updates don't remount ReminderEventPage history.
   const renderEventPage = React.useCallback(
     (renderProps: Record<string, unknown>, _DefaultDialog: unknown) => (
       <ReminderEventPageBridge
         renderProps={renderProps}
         onFormOpen={() => handleDialog2OpenChange(false)}
         onOpenChange={handleEventPageOpenChange}
-        stepStore={eventStepStore}
-        onStepBack={handleStepBack}
       />
     ),
-    [
-      handleDialog2OpenChange,
-      handleEventPageOpenChange,
-      eventStepStore,
-      handleStepBack
-    ]
+    [handleDialog2OpenChange, handleEventPageOpenChange]
   );
 
   // Drop local hides once parent list no longer contains those ids.
@@ -868,35 +660,17 @@ function ReminderSetting_(
   overscroll-behavior: contain;
   padding-bottom: calc(8.5rem + env(safe-area-inset-bottom, 0px));
 }
-/* Full-page event shell: flex below fixed Header (do NOT use height:100% —
- * that makes Steps2 paint under the fixed title bar). */
+/* Full-page event shell: same scroll budget as list host (in-tree page). */
 [data-reminder-event-page] .${plasmicStyles.steps2},
 [data-reminder-event-page] .${plasmicStyles.steps23} {
   flex: 1 1 auto !important;
   min-height: 0 !important;
-  max-height: none !important;
-  height: auto !important;
-  overflow-x: hidden;
+  max-height: none;
+  height: 100% !important;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-}
-[data-reminder-event-page][data-reminder-event-step="2"] .${plasmicStyles.steps2},
-[data-reminder-event-page][data-reminder-event-step="2"] .${plasmicStyles.steps23} {
-  height: auto !important;
-  max-height: none !important;
-  min-height: 0 !important;
-  overflow-y: auto !important;
-}
-[data-reminder-event-page][data-reminder-event-step="2"] .${plasmicStyles.freeBox__mn6W},
-[data-reminder-event-page][data-reminder-event-step="2"] .${plasmicStyles.freeBox___3H0L},
-[data-reminder-event-page][data-reminder-event-step="2"] .${plasmicStyles.report2},
-[data-reminder-event-page][data-reminder-event-step="2"] .${plasmicStyles.report4},
-[data-reminder-event-page][data-reminder-event-step="2"] .${reportStyles.root},
-[data-reminder-event-page][data-reminder-event-step="2"] .${reportStyles.freeBox__tvHwT} {
-  height: auto !important;
-  min-height: 0 !important;
-  overflow: visible !important;
+  padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
 }
 .${styles.host} .${plasmicStyles.freeBox__o43To} {
   height: auto !important;
@@ -941,7 +715,6 @@ function ReminderSetting_(
         <ReminderAlarmSetup />
       </div>
       <PlasmicReminderSetting
-        key={settingKey}
         {...props}
         manId={safeManId}
         token={token || undefined}
@@ -949,36 +722,12 @@ function ReminderSetting_(
         category={catalog as DefaultReminderSettingProps["category"]}
         dialogOpendialog3={dialog2Open}
         onDialogOpendialog3Change={handleDialog2OpenChange}
-        pageSelect={forcedPageSelect ?? props.pageSelect}
-        onPageSelectChange={(...args: unknown[]) => {
-          props.onPageSelectChange?.(...(args as [never]));
-          if (forcedPageSelect) setForcedPageSelect(null);
-        }}
         dateDiolog={{ props: { disableModalHash: true } }}
         time={{ props: { disableModalHash: true } }}
         weekDays={{ props: { disableModalHash: true } }}
         preReminder={{ props: { disableModalHash: true } }}
         textbox={{ wrap: wrapTitleWithExtras }}
         textbox2={{ wrap: wrapTitleWithExtras }}
-        steps2={{
-          props: {
-            stepLabels: ["مشخصات یادآوری", "زمان‌بندی", "روش ارسال"],
-            visualCurrentStep: eventStep
-          }
-        }}
-        steps23={{
-          props: {
-            stepLabels: ["مشخصات یادآوری", "زمان‌بندی", "روش ارسال"],
-            visualCurrentStep: eventStep
-          }
-        }}
-        button14={{ render: renderContinueButton }}
-        button17={{ render: renderContinueButton }}
-        header={{
-          props: {
-            back: handleHeaderBack
-          }
-        }}
         dialog={
           {
             render: renderEventPage

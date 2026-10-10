@@ -11,11 +11,8 @@ import {
   VISIT_SERVICE_CODE,
   buildHolidayQueryParams,
   buildReservationPayload,
-  buildSlotRangeQueryParams,
   buildSlotQueryParams,
   canConfirmBooking,
-  findFirstAvailableBookingSlot,
-  findFirstAvailableBookingDay,
   formatReservationPostTime,
   isValidBookingDate,
   isValidBookingSlot,
@@ -42,46 +39,6 @@ function check(name, actual, expected) {
 
 const CENTER = "a87ff679a2f3e71d9181a67b7542122c";
 const SLOT = { slot_start: "08:05", slot_end: "08:35", status: "available" };
-
-check(
-  "range params: visit",
-  buildSlotRangeQueryParams({
-    centerId: CENTER,
-    service: visitService(),
-    dateFrom: "2026-10-09",
-    dateTo: "2026-11-21"
-  }),
-  {
-    service_code: "VISIT",
-    center_id: CENTER,
-    date_from: "2026-10-09",
-    date_to: "2026-11-21"
-  }
-);
-check(
-  "range params: rejects reverse range",
-  buildSlotRangeQueryParams({
-    centerId: CENTER,
-    service: visitService(),
-    dateFrom: "2026-11-21",
-    dateTo: "2026-10-09"
-  }),
-  null
-);
-check(
-  "bulk availability: earliest valid day and time",
-  findFirstAvailableBookingDay([
-    { date: "2026-10-11", result: [{ period: "noon", slots: [{ slot_start: "13:00", slot_end: "13:30", status: "available" }] }] },
-    { date: "2026-10-10", result: [{ period: "morning", slots: [{ slot_start: "09:00", slot_end: "09:30", status: "booked" }] }] },
-    { date: "2026-10-12", result: [{ period: "morning", slots: [{ slot_start: "08:00", slot_end: "08:30", status: "available" }] }] }
-  ]),
-  {
-    date: "2026-10-11",
-    groups: [{ period: "noon", slots: [{ slot_start: "13:00", slot_end: "13:30", status: "available" }] }],
-    period: "noon",
-    slot: { slot_start: "13:00", slot_end: "13:30", status: "available" }
-  }
-);
 
 // --- date validation: the exact values the picker used to leak ---------------
 check("date: valid", isValidBookingDate("2026-09-01"), true);
@@ -115,40 +72,6 @@ check("confirm: no date", canConfirmBooking(undefined, SLOT), false);
 check("confirm: no slot", canConfirmBooking("2026-09-01", ""), false);
 check("confirm: neither", canConfirmBooking(0, {}), false);
 
-// --- first available slot ---------------------------------------------------
-const FIRST_AVAILABLE = {
-  period: "morning",
-  slot: { slot_start: "08:30", slot_end: "09:00", status: "available" }
-};
-check(
-  "first slot: earliest available across periods",
-  findFirstAvailableBookingSlot([
-    {
-      period: "noon",
-      slots: [{ slot_start: "13:00", slot_end: "13:30", status: "available" }]
-    },
-    {
-      period: "morning",
-      slots: [
-        { slot_start: "08:00", slot_end: "08:30", status: "reserved" },
-        FIRST_AVAILABLE.slot
-      ]
-    }
-  ]),
-  FIRST_AVAILABLE
-);
-check(
-  "first slot: none available",
-  findFirstAvailableBookingSlot([
-    {
-      period: "morning",
-      slots: [{ slot_start: "08:00", slot_end: "08:30", status: "reserved" }]
-    }
-  ]),
-  null
-);
-check("first slot: invalid response", findFirstAvailableBookingSlot(null), null);
-
 // --- companion patient id ---------------------------------------------------
 check("patient: null for self", normalizePatientId(null), null);
 check("patient: zero for self", normalizePatientId(0), null);
@@ -162,11 +85,6 @@ check("service: visit flagged", isVisitService(visitService()), true);
 check(
   "service: visit flagged by name",
   isVisitService({ name: "رزرو وقت بازدید" }),
-  true
-);
-check(
-  "service: production visit name flagged",
-  isVisitService({ name: "رزرو وقت مشاوره و بازدید" }),
   true
 );
 check("service: clinical not flagged", isVisitService({ id: 7, name: "فیزیوتراپی" }), false);

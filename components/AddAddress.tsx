@@ -7,8 +7,6 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 import { useGlobalActions } from "@plasmicapp/react-web/lib/host";
 import { useRouter } from "next/router";
 import LoactionUser from "./LoactionUser";
-import TextAreaInput from "./TextAreaInput";
-import TextInput from "./TextInput";
 import styles from "./AddAddress.module.css";
 import plasmicStyles from "./plasmic/sayban/PlasmicAddAddress.module.css";
 import { clearEditAddress, readEditAddress } from "./user/patientAddressApi";
@@ -18,17 +16,6 @@ import {
   readAddressDialogReturn,
   stripAddAddressSegment
 } from "./address/addressDialogFlow";
-import {
-  joinAddressDetails,
-  splitAddressDetails
-} from "./address/addressDetails";
-import {
-  durationLabel,
-  faDigits,
-  readWizardSnapshot,
-  roleLabel
-} from "./nurseRequest/nurseRequestModel";
-import UserIcon from "./plasmic/library_tabler_3_2_icons/icons/PlasmicIcon__User";
 
 declare global {
   interface Window {
@@ -74,18 +61,6 @@ function emptySnapshot(city = ""): LocationSnapshot {
   return { address: "", lat: "", lon: "", city2: city };
 }
 
-function readNurseContextChip(): string {
-  const snap = readWizardSnapshot();
-  if (!snap) return "";
-  const serviceBit = [roleLabel(snap.role), durationLabel(snap.duration)]
-    .filter(Boolean)
-    .join(" ");
-  const name = String(snap.personName || "").trim();
-  if (name && serviceBit) return `${name} - ${serviceBit}`;
-  if (name) return name;
-  return serviceBit;
-}
-
 function AddAddress_(props: AddAddressProps, ref: HTMLElementRefOf<"div">) {
   const $globalActions = useGlobalActions?.();
   const router = useRouter();
@@ -119,15 +94,6 @@ function AddAddress_(props: AddAddressProps, ref: HTMLElementRefOf<"div">) {
   const prefilledRef = React.useRef(false);
 
   const isActive = isAddAddressPath(router.asPath);
-  const contextChip = React.useMemo(() => readNurseContextChip(), [isActive, step]);
-  const fromNurseWizard = Boolean(contextChip);
-  const progressTotal = fromNurseWizard ? 4 : 2;
-  const progressCurrent = fromNurseWizard ? (step === 1 ? 2 : 2) : step;
-  const progressLabel = fromNurseWizard
-    ? `مرحله ${faDigits(2)} از ${faDigits(4)} • آدرس`
-    : step === 1
-      ? `مرحله ${faDigits(1)} از ${faDigits(2)} • موقعیت`
-      : `مرحله ${faDigits(2)} از ${faDigits(2)} • آدرس`;
 
   const setStepSafe = React.useCallback((next: AddressStep) => {
     stepRef.current = next;
@@ -420,9 +386,6 @@ function AddAddress_(props: AddAddressProps, ref: HTMLElementRefOf<"div">) {
           render: (headerProps, DefaultHeader) => (
             <DefaultHeader
               {...headerProps}
-              className={`${headerProps.className ?? ""} ${
-                step === 2 ? styles.step2Header : ""
-              }`.trim()}
               runCode
               back={handleHeaderBack}
               slot={
@@ -490,45 +453,6 @@ function AddAddress_(props: AddAddressProps, ref: HTMLElementRefOf<"div">) {
 
             return (
               <div className={styles.stepContainer}>
-                <div className={styles.progressWrap}>
-                  <div
-                    className={`${styles.progressTrack} ${
-                      progressTotal === 4
-                        ? styles.progressTrackFour
-                        : styles.progressTrackTwo
-                    }`}
-                    aria-hidden
-                  >
-                    {Array.from({ length: progressTotal }, (_, i) => i + 1).map(
-                      seg => (
-                        <span
-                          key={seg}
-                          className={
-                            seg <= progressCurrent
-                              ? styles.progressSegOn
-                              : styles.progressSeg
-                          }
-                        />
-                      )
-                    )}
-                  </div>
-                  <div className={styles.progressLabel}>{progressLabel}</div>
-                </div>
-
-                {contextChip ? (
-                  <div className={styles.contextChip}>
-                    <span className={styles.contextChipIcon} aria-hidden>
-                      <UserIcon />
-                    </span>
-                    <span className={styles.contextChipText}>{contextChip}</span>
-                  </div>
-                ) : null}
-
-                {step === 2 ? (
-                  <h1 className={styles.step2Title}>
-                    {isEdit ? "ویرایش آدرس" : "آدرس جدید"}
-                  </h1>
-                ) : null}
                 <div className={styles.mapStage}>
                   <LoactionUser
                     mapOnly
@@ -566,95 +490,10 @@ function AddAddress_(props: AddAddressProps, ref: HTMLElementRefOf<"div">) {
                 </div>
 
                 <div className={styles.formSheet}>
-                  {step === 1 ? (
-                    <DefaultLoaction2
-                      {...syncedProps}
-                      loaction2={"loaction2" as const}
-                    />
-                  ) : (
-                    (() => {
-                      const details = splitAddressDetails(renderProps.address2);
-                      return (
-                        <div className={styles.step2Fields}>
-                          <label className={styles.fieldGroup}>
-                            <span>نشانی</span>
-                            <TextAreaInput
-                              className={styles.addressField}
-                              value={renderProps.address}
-                              onChange={syncedProps.onAddressChange}
-                              placeholder="تهران، سعادت‌آباد، خیابان سرو غربی"
-                              type="outline"
-                              padded={[]}
-                            />
-                          </label>
-
-                          <div className={styles.addressParts}>
-                            <label className={styles.fieldGroup}>
-                              <span>پلاک</span>
-                              <TextInput
-                                className={styles.compactField}
-                                value={details.plaque}
-                                onChange={value =>
-                                  renderProps.onAddressChange2?.(
-                                    joinAddressDetails(value, details.unit)
-                                  )
-                                }
-                                inputMode="numeric"
-                                placeholder="۱۲"
-                                size="langh"
-                                type="lineBox"
-                              />
-                            </label>
-                            <label className={styles.fieldGroup}>
-                              <span>واحد</span>
-                              <TextInput
-                                className={styles.compactField}
-                                value={details.unit}
-                                onChange={value =>
-                                  renderProps.onAddressChange2?.(
-                                    joinAddressDetails(details.plaque, value)
-                                  )
-                                }
-                                inputMode="numeric"
-                                placeholder="۳"
-                                size="langh"
-                                type="lineBox"
-                              />
-                            </label>
-                          </div>
-
-                          <label className={styles.fieldGroup}>
-                            <span>برچسب (اختیاری)</span>
-                            <TextInput
-                              className={styles.fullField}
-                              value={renderProps.title2}
-                              onChange={renderProps.onTitleChange}
-                              placeholder="خانهٔ ما"
-                              size="langh"
-                              type="lineBox"
-                            />
-                          </label>
-
-                          <label
-                            className={`${styles.fieldGroup} ${styles.postalField}`}
-                          >
-                            <span>کد پستی (اختیاری)</span>
-                            <TextInput
-                              className={styles.fullField}
-                              value={renderProps.post}
-                              onChange={renderProps.onPostChange}
-                              autoComplete="postal-code"
-                              inputMode="numeric"
-                              maxLength={10}
-                              placeholder="کد پستی"
-                              size="langh"
-                              type="lineBox"
-                            />
-                          </label>
-                        </div>
-                      );
-                    })()
-                  )}
+                  <DefaultLoaction2
+                    {...syncedProps}
+                    loaction2={step === 1 ? ("loaction2" as const) : undefined}
+                  />
                 </div>
               </div>
             );
@@ -666,8 +505,7 @@ function AddAddress_(props: AddAddressProps, ref: HTMLElementRefOf<"div">) {
               return (
                 <DefaultButton
                   {...renderProps}
-                  color="warning"
-                  label={<div className={plasmicStyles.text}>تأیید موقعیت</div>}
+                  label={<div className={plasmicStyles.text}>تأیید</div>}
                   onClick={handleConfirmStep1}
                 />
               );
@@ -675,11 +513,12 @@ function AddAddress_(props: AddAddressProps, ref: HTMLElementRefOf<"div">) {
             return (
               <DefaultButton
                 {...renderProps}
-                color="warning"
                 label={
-                  <div className={plasmicStyles.text}>
-                    {isEdit ? "ذخیره تغییرات" : "ذخیره و ادامه"}
-                  </div>
+                  isEdit ? (
+                    <div className={plasmicStyles.text}>ذخیره تغییرات</div>
+                  ) : (
+                    renderProps.label
+                  )
                 }
                 onClick={() => handleSubmitAddress(renderProps)}
               />

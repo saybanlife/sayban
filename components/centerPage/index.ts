@@ -46,7 +46,6 @@ export { CenterAmenitiesSection } from "./CenterAmenitiesSection";
 export { CenterLocationSection } from "./CenterLocationSection";
 export { CenterStaffSection } from "./CenterStaffSection";
 export { CenterStaffListPage } from "./CenterStaffListPage";
-export { VisitBookingPage } from "./VisitBookingPage";
 export { CenterServicesSection } from "./CenterServicesSection";
 export { CenterCareSection } from "./CenterCareSection";
 export { CenterWorkingHoursSection } from "./CenterWorkingHoursSection";

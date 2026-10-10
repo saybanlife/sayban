@@ -3,9 +3,6 @@
  * the JWT cookie from OTP (`users/validate` → `token`) after upgrade.
  */
 
-/** Temporary kill-switch: no auto-guest browse; users go to mobile OTP. */
-export const GUEST_MODE_ENABLED = false;
-
 export const GUEST_SESSION_STORAGE_KEY = "sayban_guest_session";
 export const AUTH_RETURN_STORAGE_KEY = "sayban_auth_return";
 

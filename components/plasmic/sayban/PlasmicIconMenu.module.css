@@ -31,7 +31,7 @@
   flex-shrink: 0;
 }
 .svgselect {
-  color: white
+  color: var(--token-fr7DwvJwRjZb);
 }
 .text {
   position: relative;

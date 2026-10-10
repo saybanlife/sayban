@@ -24,8 +24,6 @@ const RELATION_CASE = `    CASE relation
         WHEN 'brother' THEN 'برادر'
         WHEN 'sister' THEN 'خواهر'
         WHEN 'grandparent' THEN 'پدربزرگ / مادربزرگ'
-        WHEN 'grandmother' THEN 'مادربزرگ'
-        WHEN 'grandfather' THEN 'پدربزرگ'
         WHEN 'relative' THEN 'سایر فامیل درج شده'
         WHEN 'other' THEN 'سایر موارد (غیر فامیل)'
         ELSE relation -- اگر مقداری خارج از لیست بود خود همان را برمی‌گرداند
@@ -47,7 +45,6 @@ const PATCHED_QUERY = `SELECT
     gender,
     marital_status,
     relation,
-    birth_date,
     city,
     address,
     details,

@@ -1164,9 +1164,7 @@
   position: relative;
   right: auto;
   min-height: 0;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 8rem;
+  padding: 2rem 0px 0px;
 }
 .text__wNiYi {
   width: 100%;
@@ -1235,7 +1233,7 @@
   z-index: 1;
   right: 0;
   bottom: 0;
-  padding: 1rem;
+  padding: var(--token-73iLa06AE6f4);
 }
 .freeBox__fr0I3 {
   display: flex;

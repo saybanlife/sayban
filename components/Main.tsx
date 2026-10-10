@@ -6,10 +6,8 @@ import MainPageTags from "./MainPageTags";
 import MainPageNotifications from "./MainPageNotifications";
 import MainPageSendNotif from "./MainPageSendNotif";
 import MainPageSupport from "./MainPageSupport";
-import MainPageSupportCallbacks from "./MainPageSupportCallbacks";
 import MainPageReviews from "./MainPageReviews";
 import CenterRegistrationReview from "./centerPanel/CenterRegistrationReview";
-import CenterStaffServicesDurationManager from "./centerPanel/CenterStaffServicesDurationManager";
 import styles from "./MainHomeElements.module.css";
 import tagStyles from "./MainPageTags.module.css";
 
@@ -22,7 +20,6 @@ export interface MainProps extends Omit<DefaultMainProps, "page"> {
     | "notifications"
     | "send_notif"
     | "support"
-    | "support_callbacks"
     | "reviews"
     | string;
 }
@@ -74,12 +71,9 @@ function Main_(props: MainProps, ref: HTMLElementRefOf<"div">) {
   const showSendNotif = props.page === "send_notif" && staffOnly;
   const showNotifications = props.page === "notifications";
   const showSupport = props.page === "support" && staffOnly;
-  const showSupportCallbacks =
-    props.page === "support_callbacks" && staffOnly;
   const showReviews =
     props.page === "reviews" && props.role === "center_admin";
   const showCenterInfo = Boolean(centerInfoId) && staffOnly;
-  const showStaffServicesDuration = props.page === "services";
   const customPage =
     showHomeSlider ||
     showTags ||
@@ -87,7 +81,6 @@ function Main_(props: MainProps, ref: HTMLElementRefOf<"div">) {
     showNotifications ||
     showSendNotif ||
     showSupport ||
-    showSupportCallbacks ||
     showReviews ||
     showCenterInfo;
 
@@ -97,9 +90,9 @@ function Main_(props: MainProps, ref: HTMLElementRefOf<"div">) {
   const notificationsMounted = useActivatedOnce(showNotifications);
   const sendNotifMounted = useActivatedOnce(showSendNotif);
   const supportMounted = useActivatedOnce(showSupport);
-  const supportCallbacksMounted = useActivatedOnce(showSupportCallbacks);
   const reviewsMounted = useActivatedOnce(showReviews);
   const centerInfoMounted = useActivatedOnce(showCenterInfo);
+
   // Custom pages are not Plasmic variants — leave `page` unset so other
   // MainPage* slots stay hidden; TopPage still renders from PlasmicMain.
   const plasmicPage = customPage
@@ -119,18 +112,6 @@ function Main_(props: MainProps, ref: HTMLElementRefOf<"div">) {
       {...(props as DefaultMainProps)}
       page={plasmicPage}
       overrides={{
-        ...(showStaffServicesDuration
-          ? {
-              mainPageServise: {
-                render: (slotProps: any, DefaultComp: any) => (
-                  <div>
-                    <DefaultComp {...slotProps} />
-                    <CenterStaffServicesDurationManager token={props.token} />
-                  </div>
-                )
-              }
-            }
-          : {}),
         root: {
           props: { ref },
           render: (rootProps: any, Root: any) => {
@@ -202,15 +183,6 @@ function Main_(props: MainProps, ref: HTMLElementRefOf<"div">) {
                     className={classNames(
                       styles.pageLayer,
                       showSupport && styles.pageLayerActive
-                    )}
-                    token={props.token}
-                  />
-                ) : null}
-                {supportCallbacksMounted ? (
-                  <MainPageSupportCallbacks
-                    className={classNames(
-                      styles.pageLayer,
-                      showSupportCallbacks && styles.pageLayerActive
                     )}
                     token={props.token}
                   />

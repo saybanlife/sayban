@@ -7,7 +7,7 @@ import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 
-const BASE = process.env.SAYBAN_UI_BASE || "http://127.0.0.1:3000";
+const BASE = process.env.SAYBAN_UI_BASE || "http://127.0.0.1:3001";
 const SAMPLE =
   "https://teh-3.s3.poshtiban.com/lioms3/2026-06/panel/liad/2026-06-06-b48be7d5-b980-46c1-8232-72fa509d5524.png";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -100,40 +100,19 @@ await page.keyboard.press("Escape");
 await page.waitForTimeout(800);
 await page.evaluate(() => document.querySelector("nextjs-portal")?.remove());
 
-// --- Create path via افزودن → category → form ---
+// --- Create path via hidden #pageSelect (same as category OK) ---
 await page.evaluate(() => {
-  const hit = [...document.querySelectorAll("button, [role='button']")].find(
-    el => /^افزودن$/.test((el.textContent || "").replace(/\s+/g, " ").trim())
-  );
-  if (!hit) throw new Error("افزودن missing");
-  hit.click();
+  const el = document.getElementById("pageSelect");
+  if (!el) throw new Error("pageSelect missing");
+  el.click();
 });
-await page.waitForTimeout(800);
-await page.evaluate(() => document.querySelector("nextjs-portal")?.remove());
-await page.evaluate(() => {
-  const dlg = document.querySelector("[role=dialog]");
-  const boxes = [
-    ...(dlg?.querySelectorAll(
-      "[class*=RadioGrop_freeBox], [class*=radioGrop], [class*=RadioGrop]"
-    ) || [])
-  ];
-  const hit =
-    boxes.find(
-      el => (el.textContent || "").replace(/\s+/g, " ").trim() === "مصرف دارو"
-    ) ||
-    boxes.find(el =>
-      /مصرف دارو|دارو/.test((el.textContent || "").replace(/\s+/g, " ").trim())
-    );
-  if (!hit) throw new Error("category item missing");
-  hit.click();
-});
-await page.waitForSelector("[data-reminder-event-page]", { timeout: 15000 });
+await page.waitForTimeout(2000);
 await page.evaluate(() => document.querySelector("nextjs-portal")?.remove());
 
 const bodyCreate = await page.locator("body").innerText();
 assert(
   /رویداد جدید|عنوان/.test(bodyCreate),
-  "create sheet missing after افزودن"
+  "create sheet missing after pageSelect"
 );
 assert(/همراه/.test(bodyCreate), "companion missing on create");
 assert(/تصویر یادآوری/.test(bodyCreate), "image missing on create");

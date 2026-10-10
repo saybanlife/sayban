@@ -77,8 +77,8 @@ import {
   today as todayLocal
 } from "@/lib/datetime";
 import {
-  toReminderEditPageSelect,
-  requestReminderDetail
+  clickReminderEditPageSelect,
+  toReminderEditPageSelect
 } from "@/lib/reminderTask";
 import HeaderLiom from "../../HeaderLiom"; // plasmic-import: b_w8hk3_vJDJ/component
 import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
@@ -2429,7 +2429,9 @@ function PlasmicReminder__RenderFunc(props: {
                                                   currentItem
                                                 );
                                               if (!selected) return;
-                                              requestReminderDetail(selected);
+                                              $state.reminderSetting.pageSelect =
+                                                selected;
+                                              clickReminderEditPageSelect();
                                             }}
                                             onKeyDown={async event => {
                                               if (
@@ -2445,7 +2447,9 @@ function PlasmicReminder__RenderFunc(props: {
                                                   currentItem
                                                 );
                                               if (!selected) return;
-                                              requestReminderDetail(selected);
+                                              $state.reminderSetting.pageSelect =
+                                                selected;
+                                              clickReminderEditPageSelect();
                                             }}
                                           >
                                             <div
@@ -2647,7 +2651,7 @@ function PlasmicReminder__RenderFunc(props: {
                     timeZone: "Asia/Tehran"
                   });
                   const todayFa = formatter.format(today);
-                  const title = `یادآوری های امروز`;
+                  const title = `یادآوری های امروز (${todayFa})`;
                   return title;
                 })();
               } catch (e) {
@@ -2878,7 +2882,8 @@ function PlasmicReminder__RenderFunc(props: {
                 event.stopPropagation();
                 const selected = toReminderEditPageSelect(currentday);
                 if (!selected) return;
-                requestReminderDetail(selected);
+                $state.reminderSetting.pageSelect = selected;
+                clickReminderEditPageSelect();
               }}
               onKeyDown={async event => {
                 if (event.key !== "Enter" && event.key !== " ") {
@@ -2888,7 +2893,8 @@ function PlasmicReminder__RenderFunc(props: {
                 event.stopPropagation();
                 const selected = toReminderEditPageSelect(currentday);
                 if (!selected) return;
-                requestReminderDetail(selected);
+                $state.reminderSetting.pageSelect = selected;
+                clickReminderEditPageSelect();
               }}
             >
               <div className={classNames("all", sty.freeBox__pgDxd)}>

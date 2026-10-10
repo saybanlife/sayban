@@ -207,11 +207,6 @@ check(
   "بعد از ظهر"
 );
 check("display: empty text", formatQuestionnaireAnswer({ ...Q.notes, answer: "" }), "");
-check(
-  "display: multi select array",
-  formatQuestionnaireAnswer({ question_text: "خدمات", type: "multiple_choice", answer: ["تزریقات", "پانسمان"] }),
-  "تزریقات، پانسمان"
-);
 check("display: null item", formatQuestionnaireAnswer(null), "");
 check(
   "display: stray boolean on a non-checkbox",

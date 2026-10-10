@@ -201,7 +201,6 @@ export type CenterResult = {
     visit_interval?: string | null;
     days_of_week?: string | null;
     is_active?: boolean | number | string;
-    sort_order?: number;
   }[];
   visit_policy?: {
     visit_days?: string | null;

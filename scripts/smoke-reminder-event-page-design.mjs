@@ -19,11 +19,10 @@ assert.doesNotMatch(pageTsx, /\{\.\.\.props\}/);
 assert.doesNotMatch(pageTsx, /className=\{className\}/);
 
 assert.match(pageCss, /--sayban-app-max/);
-assert.match(pageCss, /--ev-cream|--token-KPGXdu9o7llP|token-ee2TuxDknsJj/);
+assert.match(pageCss, /token-KPGXdu9o7llP/);
 assert.match(pageCss, /freeBox__iq19N/);
 assert.match(pageCss, /freeBox__yWwKt/);
 assert.match(pageCss, /z-index:\s*200/);
-assert.match(pageCss, /data-reminder-event-step="2"/);
 
 assert.match(setting, /ReminderEventPageBridge/);
 assert.match(setting, /data-reminder-event-open/);

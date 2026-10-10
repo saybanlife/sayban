@@ -14,7 +14,6 @@ import {
   compareDates,
   formatJalaliLong,
   formatJalaliShort,
-  formatJalaliWeekdayLong,
   formatTimeForDisplay,
   fromJalali,
   isTimeRangeValid,
@@ -112,11 +111,6 @@ check("jalali: month length leap Esfand", jalaliMonthLength(1403, 12), 30);
 check("jalali: month length common Esfand", jalaliMonthLength(1404, 12), 29);
 check("jalali: long format", formatJalaliLong("2026-03-07"), "۱۶ اسفند ۱۴۰۴");
 check("jalali: short format", formatJalaliShort("2026-03-07"), "۱۴۰۴/۱۲/۱۶");
-check(
-  "jalali: weekday long format",
-  formatJalaliWeekdayLong("2026-10-03"),
-  "شنبه ۱۱ مهر ۱۴۰۵"
-);
 
 // --- today: must not use the UTC day ----------------------------------------
 // 00:30 Tehran on 7 March is still 6 March in UTC; `toISOString()` returned the

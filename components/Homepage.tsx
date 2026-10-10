@@ -6,7 +6,6 @@ import homepageSty from "./plasmic/sayban/PlasmicHomepage.module.css";
 import Home from "./Home";
 import HomeSearchInput from "./HomeSearchInput";
 import ReservationDetails from "./ReservationDetails";
-import ReminderDetailPage from "./ReminderDetailPage";
 import Support from "./Support";
 import SupportChat from "./SupportChat";
 import SupportQuickMenu from "./support/SupportQuickMenu";
@@ -17,7 +16,6 @@ import embedStyles from "./support/SupportEmbed.module.css";
 import chromeStyles from "./HomepageChrome.module.css";
 import type { HomeSliderItem } from "./homeSlider/homeSliderTypes";
 import { extractReservationIdFromSlug } from "./reservation/reservationDetailsModel";
-import { extractReminderIdFromSlug } from "@/lib/reminderTask";
 import { goBackOrReplace } from "./navigation/backNavigation";
 import {
   extractSupportChatIdFromSlug,
@@ -46,11 +44,7 @@ import {
 } from "./homepage/activeView";
 import FavoritesPage from "./favorites/FavoritesPage";
 import { CenterStaffListPage } from "./centerPage/CenterStaffListPage";
-import { VisitBookingPage } from "./centerPage/VisitBookingPage";
-import {
-  extractCenterStaffsIdFromSlug,
-  extractVisitBookingIdFromSlug
-} from "./centerNavigation";
+import { extractCenterStaffsIdFromSlug } from "./centerNavigation";
 import {
   activeViewsRequireVerifiedAuth,
   clearInvalidPublicAuth,
@@ -59,10 +53,6 @@ import {
   isGuestOnly
 } from "@/lib/publicAuthGate";
 import { rememberAuthReturn } from "@/lib/guestSession";
-import { useHomeScrollStage } from "./home/useHomeScrollStage";
-import { ENABLE_HOME_SCROLL_STAGES } from "./home/homeScrollStageConfig";
-import { resolveHomeProfileName } from "./home/homeProfile";
-import searchStyles from "./HomeSearchInput.module.css";
 
 const hideWhenSupport = { props: { style: { display: "none" } } };
 
@@ -96,9 +86,7 @@ function Homepage() {
   const [categoriesFullReady, setCategoriesFullReady] = React.useState(false);
   const [categoriesFullLoading, setCategoriesFullLoading] = React.useState(false);
   const [supportMenuOpen, setSupportMenuOpen] = React.useState(false);
-  const [profileName, setProfileName] = React.useState("");
   const homePageRef = React.useRef<HTMLDivElement | null>(null);
-  const homepageRootRef = React.useRef<HTMLDivElement | null>(null);
   const { show: showPageLoading, hide: hidePageLoading } = usePageLoading();
   const fullLoadingVisibleRef = React.useRef(false);
   const profileLoadingVisibleRef = React.useRef(false);
@@ -108,11 +96,6 @@ function Homepage() {
 
   const reservationId = React.useMemo(
     () => extractReservationIdFromSlug(router.query.slug as string | string[]),
-    [router.query.slug]
-  );
-
-  const reminderDetailId = React.useMemo(
-    () => extractReminderIdFromSlug(router.query.slug as string | string[]),
     [router.query.slug]
   );
 
@@ -212,7 +195,6 @@ function Homepage() {
   const companionHostOverride = React.useCallback(
     (host: CompanionDialogHost) => ({
       render: (renderProps: any, DefaultHost: any) => {
-        if (host === "visitBooking") return null;
         if (!isViewActive(host === "centerOffers" ? "centerOffers" : host)) {
           return null;
         }
@@ -286,14 +268,10 @@ function Homepage() {
   const isHomeLanding =
     pageBase === "home" && !supportActive && !isNestedHomePath;
 
-  useHomeScrollStage(
-    homepageRootRef,
-    ENABLE_HOME_SCROLL_STAGES && isHomeLanding
-  );
-
   const isBookingPage =
-    isViewActive("booking") ||
-    slugParts.some(part => part.startsWith("reservation_"));
+    pageBase === "home" &&
+    (slugParts[0] === "booking" ||
+      slugParts.some(part => part.startsWith("reservation_")));
 
   /** Skip Home categories fetch on booking/reminder shells to cut competing network work. */
   const shouldFetchHomeCategories =
@@ -386,13 +364,6 @@ function Homepage() {
   }, []);
 
   React.useEffect(() => {
-    const onOpenSupportMenu = () => setSupportMenuOpen(true);
-    window.addEventListener("sayban:open-support-menu", onOpenSupportMenu);
-    return () =>
-      window.removeEventListener("sayban:open-support-menu", onOpenSupportMenu);
-  }, []);
-
-  React.useEffect(() => {
     const icon = homePageRef.current?.querySelector(
       `.${homepageSty.svg__nuBs}`
     ) as HTMLElement | null;
@@ -416,25 +387,14 @@ function Homepage() {
     return (
       <ReservationDetails
         reservationId={reservationId}
-        onBack={() => goBackOrReplace(router, "/booking/")}
-      />
-    );
-  }
-
-  // Same early-return pattern as reservation details — not a PlasmicHomepage slot.
-  if (reminderDetailId) {
-    return (
-      <ReminderDetailPage
-        reminderId={reminderDetailId}
-        onBack={() => goBackOrReplace(router, `/${pageBase}`)}
+        onBack={() => goBackOrReplace(router, `/${pageBase}/booking`)}
       />
     );
   }
 
   // Favorites is not a PlasmicHomepage page slot — render alone so User chrome
   // / auth SideEffect do not sit underneath (same pattern as reservation details).
-  // Prefer asPath: catch-all stays statically optimizable (no getServerSideProps),
-  // so query.slug can lag on hard loads while asPath already has /favorites.
+  // asPath + activeViews (GSSP fills query) — avoid window checks (hydration).
   const favoritesActive =
     pathIncludesSegment(router.asPath, "favorites") ||
     isViewActive("favorites");
@@ -453,17 +413,6 @@ function Homepage() {
     return <CenterStaffListPage centerId={centerStaffsId} />;
   }
 
-  const visitBookingId =
-    extractVisitBookingIdFromSlug(router.query.slug as string | string[]) ||
-    (isViewActive("visitBooking")
-      ? extractVisitBookingIdFromSlug(
-          router.asPath.split(/[?#]/)[0].split("/").filter(Boolean)
-        )
-      : null);
-  if (visitBookingId) {
-    return <VisitBookingPage centerId={visitBookingId} />;
-  }
-
   // Shared fixed Home search chrome (section__pJCrL) stays outside `.homePage`
   // and is only CSS-hidden for booking/reminder — hide it on every nested route.
   const hideSharedHomeHeader = !isHomeLanding;
@@ -474,7 +423,6 @@ function Homepage() {
         overrides={{
           root: {
             props: {
-              ref: homepageRootRef,
               className: classNames(
                 hideSharedHomeHeader && chromeStyles.hideSharedHomeHeader,
                 supportActive && chromeStyles.supportMode
@@ -577,7 +525,6 @@ function Homepage() {
                 }}
                 onSuccess={(data: any) => {
                   handleProfileLoading(false);
-                  setProfileName(resolveHomeProfileName(data));
                   renderProps.onSuccess?.(data);
                 }}
                 onError={(error: any) => {
@@ -612,7 +559,6 @@ function Homepage() {
               <HomeSearchInput
                 {...renderProps}
                 onDebouncedValueChange={setSearchKeyword}
-                
               />
             )
           },
@@ -663,12 +609,7 @@ function Homepage() {
           user: renderActiveView("user"),
           mainLiad: renderActiveView("mainLiad"),
           categories: renderActiveView("categories"),
-          booking: {
-            render: (renderProps: any, DefaultBooking: any) =>
-              isViewActive("booking") ? (
-                <DefaultBooking {...renderProps} api />
-              ) : null
-          },
+          booking: renderActiveView("booking"),
           payment: renderActiveView("payment"),
           about: renderActiveView("about"),
           faQs: renderActiveView("faQs"),
@@ -713,6 +654,12 @@ function Homepage() {
       />
       {!supportActive ? (
         <>
+          {isHomeLanding ? (
+            <SupportFab
+              hidden={!categoriesFullReady || categoriesFullLoading}
+              onOpen={() => setSupportMenuOpen(true)}
+            />
+          ) : null}
           <SupportQuickMenu
             open={supportMenuOpen}
             onOpenChange={next => setSupportMenuOpen(Boolean(next))}

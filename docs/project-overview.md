@@ -1,6 +1,6 @@
 # Sayban (سایبان) — Project Overview
 
-> **Last updated:** October 2026
+> **Last updated:** September 2026  
 > **Repository:** `sayban` — Persian healthcare booking & admin platform (PWA)
 
 ---
@@ -160,8 +160,6 @@ The homepage is a **single-page shell** that switches content via Plasmic varian
 | `patient` | `/patient/` | Patient list |
 | `addPatient` | `/addPatient/` | Add patient |
 | `reminderSetting` | `/reminderSetting/` | Reminder configuration |
-| `reminder` (homePage2) | `/reminder/` | Reminder list (MainLiad) |
-| — | `/reminder/reminder_{id}` | Reminder detail (Homepage early-return, same pattern as `reservation_{id}`) |
 | `address` / `addAddress` | `/address/` | Address management |
 | `editUser` | `/editUser/` | Profile editing |
 | `notif` | `/notif/` | Notifications |
@@ -334,12 +332,6 @@ Example: `forgotPassword.module.css` mirrors `PlasmicLogin2.module.css` structur
 
 ## 8. API & Data Layer
 
-Customer reservation details + lifecycle status actions use n8n webhooks on `API_BASE_URL`: `GET reservations/details?id=` and `POST reservations/lifecycle` (jwtAuth, workflow `reservations`). The UI resolves these via `PUBLIC_ROUTES.reservationDetails` / `reservationLifecycle` and `resolveApiUrl` — not same-origin `/api/reservations/:id` (that Next BFF remains for local/test compatibility but is not deployed on `sayban.darkube.ir`). Additive nurse interview, trial, contract, and cancellation-policy data lives in `reservations__lifecycle`; forward and rollback migrations are in `scripts/sql/reservation_lifecycle.sql` and `scripts/sql/reservation_lifecycle_rollback.sql`. Center admins propose multiple interview slots via `GET/POST /api/panel/interview-slots` (stored on `centers__offers.proposed_slots` and mirrored to `reservations__lifecycle.interview_options`); the public details page lets the user pick one slot + mode (`select_interview`).
-
-Reservation detail flow is data-driven: `service_code=VISIT` uses the three-step visit flow; a home reservation with no `service_id` is the nurse staffing/collaboration flow created by `/reservations/steff2`; reservations with a real `service_id` are one-time service bookings even when their location is `home`.
-
-Visit booking keeps the legacy single-day `GET /service/working/` contract for normal date changes. The «first available appointment» action uses the additive `GET /service/working/range/` endpoint (`date_from`, `date_to`, plus the existing service/center identifiers), which returns all grouped daily slots in one response so the client performs one ordered in-memory search instead of one request per day. The endpoint is managed by `scripts/patch-n8n-service-working-range.mjs` and supports `--revert`.
-
 ### 8.1 Fragment Global Actions
 
 Defined in `src/fragment/fragment.tsx` and exposed to all Plasmic interactions as `$globalActions["Fragment.*"]`:
@@ -362,10 +354,6 @@ Example paths used in Plasmic-generated code:
 - `POST /forgot-password` — Password reset (custom component uses full URL)
 
 **Reminders (لیاد)** — greenfield on Sayban DB + n8n workflow `reminders` (see `scripts/sql/README_reminders.md`). Canonical paths live in `PUBLIC_ROUTES` (`reminders`, `wallet`, aliases `user/task/*`). Client calls resolve via `resolveClientApiUrl` onto `API_BASE_URL` (legacy `n8n.staas.ir` reminder URLs are rewritten). Channels: `notification` / `sms` / `bale`. Times are `Asia/Tehran`; materialize horizon 30 days.
-
-**Service-form question categories** — `centers__question_categories` stores category title, description, and display order; the nullable `centers__question.category_id` keeps all legacy questions valid as uncategorized rows. The active n8n `panel-question` workflow preserves the flat `GET /panel/question` contract and adds category metadata plus category CRUD at `/panel/question/categories*`. Forward/rollback migrations are `scripts/sql/question_categories.sql` and `scripts/sql/question_categories_rollback.sql`.
-
-Question rendering remains driven by each row's `type`. In addition to legacy text/date/time/address/checkbox inputs, `single_choice`, `multiple_choice`, and `number` use developer-owned renderers in `AnswersUser`; numeric bounds/step and choice options remain serialized in the existing `options` column, so saved questionnaire JSON stays backward compatible.
 
 ### 8.2 ApiRequest Plasmic Component
 

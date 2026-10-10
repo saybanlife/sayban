@@ -6,7 +6,6 @@ import {
   DefaultStaffsProps
 } from "./plasmic/sayban/PlasmicStaffs";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
-import NurseOffersList from "./NurseOffersList";
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -39,29 +38,7 @@ function Staffs_(props: StaffsProps, ref: HTMLElementRefOf<"div">) {
   // By default, we are just piping all StaffsProps here, but feel free
   // to do whatever works for you.
 
-  if (!props.offer) return <PlasmicStaffs root={{ ref }} {...props} />;
-
-  return (
-    <PlasmicStaffs
-      root={{ ref }}
-      {...props}
-      header={{
-        props: {
-          search: false,
-          slot: "پیشنهادهای پرستار",
-          slot2: null
-        }
-      }}
-      centers={{
-        render: () => (
-          <NurseOffersList
-            reservationId={String(props.offer)}
-            token={props.token ? String(props.token) : undefined}
-          />
-        )
-      }}
-    />
-  );
+  return <PlasmicStaffs root={{ ref }} {...props} />;
 }
 
 const Staffs = React.forwardRef(Staffs_);

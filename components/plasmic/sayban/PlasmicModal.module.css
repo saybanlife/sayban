@@ -46,20 +46,16 @@
 .ariaDialog:global(.__wab_instance) {
   max-width: 90vw;
   max-height: 90vh;
-  min-width: min(340px, calc(100vw - 32px));
-  min-height: 320px;
   display: flex;
   flex-direction: column;
   outline-style: none;
   overflow: hidden;
+  min-height: 0;
 }
 .headingWrap {
   padding: 1.5rem;
   text-align: right !important;
   flex-shrink: 0;
-}
-.headingWrap:empty {
-  display: none;
 }
 .h3__gGbK {
   padding: 1.5rem !important;
@@ -73,12 +69,10 @@
   flex-direction: column;
   position: relative;
   align-items: stretch;
-  min-width: 350px;
   justify-content: flex-start;
   overflow: auto;
   flex: 1 1 auto;
   min-height: 0;
-  padding-bottom: var(--token-zOTmRNiLzxBx);
   padding-left: var(--token-zOTmRNiLzxBx);
   padding-right: var(--token-zOTmRNiLzxBx);
 }

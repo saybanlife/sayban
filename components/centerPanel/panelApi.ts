@@ -45,8 +45,6 @@ export type CareItemSyncItem = {
   id: number;
   has_it: boolean;
   note?: string | null;
-  /** Per-center display order (0-based). */
-  sort_order?: number;
 };
 
 export type SpecialistRow = {
@@ -58,7 +56,6 @@ export type SpecialistRow = {
   visit_interval?: string | null;
   days_of_week?: string | null;
   is_active?: number | boolean;
-  sort_order?: number;
   created_at?: string;
 };
 
@@ -74,8 +71,6 @@ export type SpecialistPayload = {
   visit_interval?: string | null;
   days_of_week?: string;
   is_active?: number | boolean;
-  /** Per-center display order (0-based). */
-  sort_order?: number;
 };
 
 export type DailyScheduleRow = {

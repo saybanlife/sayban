@@ -783,7 +783,7 @@
     {
       "name": "Brand/Brand",
       "type": "color",
-      "value": "#6F8A3A",
+      "value": "#2563EB",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -793,7 +793,7 @@
     {
       "name": "Brand/Brand-Border",
       "type": "color",
-      "value": "#A3B18A",
+      "value": "#93C5FD",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -803,7 +803,7 @@
     {
       "name": "Brand/Brand-Foreground",
       "type": "color",
-      "value": "#F5EFDB",
+      "value": "#EFF6FF",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -813,7 +813,7 @@
     {
       "name": "Brand/Brand-Soft",
       "type": "color",
-      "value": "#EEF6D6",
+      "value": "#DBEAFE",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -823,7 +823,7 @@
     {
       "name": "Brand/Brand-Soft-Foreground",
       "type": "color",
-      "value": "#1F2A0F",
+      "value": "#1E3A8A",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -3933,7 +3933,7 @@
     {
       "name": "dark primary",
       "type": "color",
-      "value": "#6F8A3A",
+      "value": "#552F96",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -4173,7 +4173,7 @@
     {
       "name": "gradient-2",
       "type": "color",
-      "value": "#6F8A3A",
+      "value": "#8254C6",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -5043,7 +5043,7 @@
     {
       "name": "primary",
       "type": "color",
-      "value": "#6F8A3A",
+      "value": "#8254C6",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -5053,7 +5053,7 @@
     {
       "name": "purple",
       "type": "color",
-      "value": "#6F8A3A",
+      "value": "#8254C6",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",
@@ -5403,7 +5403,7 @@
     {
       "name": "serface",
       "type": "color",
-      "value": "#F5F1E3",
+      "value": "#F8EDFF",
       "category": "color",
       "meta": {
         "projectId": "qARqpE4p5tZmJuNxFbTaPz",

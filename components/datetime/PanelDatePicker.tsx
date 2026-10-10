@@ -1,5 +1,5 @@
 import * as React from "react";
-import Modal from "../Modal";
+import Dialog from "../Dialog";
 import {
   JALALI_MONTH_NAMES,
   formatJalaliShort,
@@ -26,12 +26,6 @@ type PanelDatePickerProps = {
   disablePastDates?: boolean;
   minYear?: number;
   maxYear?: number;
-  /** Override trigger text (default: short Jalali). */
-  formatDisplay?: (value: DateValue) => string;
-  /** Hide calendar / chevron icons (form pill look). */
-  showIcons?: boolean;
-  /** `form` matches questionnaire short inputs (pill, no icons chrome). */
-  appearance?: "default" | "form";
 };
 
 function jalaliWeekdayIndex(jy: number, jm: number, jd: number): number {
@@ -58,7 +52,7 @@ function shiftMonth(jy: number, jm: number, delta: number): { jy: number; jm: nu
 }
 
 /**
- * Panel-only Jalali date field: trigger opens a calendar modal; Confirm commits.
+ * Panel-only Jalali date field: trigger opens a calendar dialog; Confirm commits.
  */
 export default function PanelDatePicker({
   value,
@@ -70,10 +64,7 @@ export default function PanelDatePicker({
   id,
   disablePastDates = false,
   minYear,
-  maxYear,
-  formatDisplay,
-  showIcons = true,
-  appearance = "default"
+  maxYear
 }: PanelDatePickerProps) {
   const today = todayJalali();
   const yearMin = minYear ?? today.jy - 100;
@@ -123,13 +114,8 @@ export default function PanelDatePicker({
   ];
   while (cells.length % 7 !== 0) cells.push(null);
 
-  const display = (formatDisplay || formatJalaliShort)(parseDate(value));
+  const display = formatJalaliShort(parseDate(value));
   const monthTitle = `${JALALI_MONTH_NAMES[viewJm - 1]} ${toPersianDigits(viewJy)}`;
-  const iconsVisible = appearance === "form" ? false : showIcons;
-  const triggerClass =
-    appearance === "form"
-      ? `${styles.trigger} ${styles.triggerForm}`
-      : styles.trigger;
 
   const confirm = () => {
     if (draftJd == null) return;
@@ -137,100 +123,6 @@ export default function PanelDatePicker({
     onChange(fromJalali(viewJy, viewJm, draftJd));
     close();
   };
-
-  const sheet = (
-    <div className={styles.sheet} dir="rtl">
-      <header className={styles.header}>
-        <h2 className={styles.title}>انتخاب تاریخ</h2>
-      </header>
-
-      <div className={styles.monthNav}>
-        <button
-          type="button"
-          className={styles.navBtn}
-          aria-label="ماه بعد"
-          disabled={!canNavNext()}
-          onClick={() => {
-            const next = shiftMonth(viewJy, viewJm, 1);
-            setViewJy(next.jy);
-            setViewJm(next.jm);
-            setDraftJd(null);
-          }}
-        >
-          ‹
-        </button>
-        <div className={styles.monthLabel}>{monthTitle}</div>
-        <button
-          type="button"
-          className={styles.navBtn}
-          aria-label="ماه قبل"
-          disabled={!canNavPrev()}
-          onClick={() => {
-            const prev = shiftMonth(viewJy, viewJm, -1);
-            setViewJy(prev.jy);
-            setViewJm(prev.jm);
-            setDraftJd(null);
-          }}
-        >
-          ›
-        </button>
-      </div>
-
-      <div className={styles.weekdays}>
-        {WEEKDAY_LABELS.map(day => (
-          <span key={day} className={styles.weekday}>
-            {day}
-          </span>
-        ))}
-      </div>
-
-      <div className={styles.grid} role="grid">
-        {cells.map((day, index) => {
-          if (day == null) {
-            return <span key={`e-${index}`} className={styles.empty} />;
-          }
-          const past = isPast(viewJy, viewJm, day);
-          const selected = draftJd === day;
-          const isToday =
-            viewJy === today.jy && viewJm === today.jm && day === today.jd;
-          return (
-            <button
-              key={day}
-              type="button"
-              role="gridcell"
-              disabled={past}
-              aria-selected={selected}
-              className={[
-                styles.day,
-                selected ? styles.daySelected : "",
-                isToday && !selected ? styles.dayToday : "",
-                past ? styles.dayDisabled : ""
-              ]
-                .filter(Boolean)
-                .join(" ")}
-              onClick={() => setDraftJd(day)}
-            >
-              {toPersianDigits(day)}
-            </button>
-          );
-        })}
-      </div>
-
-      <footer className={styles.footer}>
-        <button type="button" className={styles.cancelBtn} onClick={close}>
-          لغو
-        </button>
-        <button
-          type="button"
-          className={styles.confirmBtn}
-          disabled={draftJd == null}
-          onClick={confirm}
-        >
-          تأیید
-        </button>
-      </footer>
-    </div>
-  );
 
   return (
     <div className={[styles.root, className].filter(Boolean).join(" ")}>
@@ -242,7 +134,7 @@ export default function PanelDatePicker({
       <button
         type="button"
         id={id}
-        className={triggerClass}
+        className={styles.trigger}
         disabled={disabled}
         aria-labelledby={id && label ? `${id}-label` : undefined}
         aria-haspopup="dialog"
@@ -251,31 +143,122 @@ export default function PanelDatePicker({
           if (!disabled) setOpen(true);
         }}
       >
-        {iconsVisible ? (
-          <span className={styles.triggerIcon} aria-hidden="true">
-            <CalendarIcon />
-          </span>
-        ) : null}
+        <span className={styles.triggerIcon} aria-hidden="true">
+          <CalendarIcon />
+        </span>
         <span
           className={display ? styles.triggerValue : styles.triggerPlaceholder}
         >
           {display || placeholder}
         </span>
-        {iconsVisible ? (
-          <span className={styles.triggerChevron} aria-hidden="true">
-            <ChevronIcon />
-          </span>
-        ) : null}
+        <span className={styles.triggerChevron} aria-hidden="true">
+          <ChevronIcon />
+        </span>
       </button>
 
-      <Modal
-        isOpen={open}
-        onOpenChange={setOpen}
-        noTrigger
-        heading={null}
-        footer={null}
-        content={sheet}
-      />
+      <Dialog
+        opendialog={open}
+        onOpendialogChange={next => {
+          const nextOpen = typeof next === "boolean" ? next : Boolean(next);
+          setOpen(nextOpen);
+        }}
+        disableOpenAutoFocus
+        colorback="w"
+      >
+        <div className={styles.sheet} dir="rtl">
+          <header className={styles.header}>
+            <h2 className={styles.title}>انتخاب تاریخ</h2>
+          </header>
+
+          <div className={styles.monthNav}>
+            <button
+              type="button"
+              className={styles.navBtn}
+              aria-label="ماه بعد"
+              disabled={!canNavNext()}
+              onClick={() => {
+                const next = shiftMonth(viewJy, viewJm, 1);
+                setViewJy(next.jy);
+                setViewJm(next.jm);
+                setDraftJd(null);
+              }}
+            >
+              ‹
+            </button>
+            <div className={styles.monthLabel}>{monthTitle}</div>
+            <button
+              type="button"
+              className={styles.navBtn}
+              aria-label="ماه قبل"
+              disabled={!canNavPrev()}
+              onClick={() => {
+                const prev = shiftMonth(viewJy, viewJm, -1);
+                setViewJy(prev.jy);
+                setViewJm(prev.jm);
+                setDraftJd(null);
+              }}
+            >
+              ›
+            </button>
+          </div>
+
+          <div className={styles.weekdays}>
+            {WEEKDAY_LABELS.map(day => (
+              <span key={day} className={styles.weekday}>
+                {day}
+              </span>
+            ))}
+          </div>
+
+          <div className={styles.grid} role="grid">
+            {cells.map((day, index) => {
+              if (day == null) {
+                return <span key={`e-${index}`} className={styles.empty} />;
+              }
+              const past = isPast(viewJy, viewJm, day);
+              const selected = draftJd === day;
+              const isToday =
+                viewJy === today.jy &&
+                viewJm === today.jm &&
+                day === today.jd;
+              return (
+                <button
+                  key={day}
+                  type="button"
+                  role="gridcell"
+                  disabled={past}
+                  aria-selected={selected}
+                  className={[
+                    styles.day,
+                    selected ? styles.daySelected : "",
+                    isToday && !selected ? styles.dayToday : "",
+                    past ? styles.dayDisabled : ""
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                  onClick={() => setDraftJd(day)}
+                >
+                  {toPersianDigits(day)}
+                </button>
+              );
+            })}
+          </div>
+
+          <footer className={styles.footer}>
+            <button type="button" className={styles.cancelBtn} onClick={close}>
+              لغو
+            </button>
+            <button
+              type="button"
+              className={styles.confirmBtn}
+              disabled={draftJd == null}
+              onClick={confirm}
+            >
+              تأیید
+            </button>
+          </footer>
+        </div>
+      </Dialog>
     </div>
   );
 }

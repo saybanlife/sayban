@@ -13,7 +13,6 @@ import {
 import {
   clearGuestSession,
   consumeAuthReturn,
-  GUEST_MODE_ENABLED,
   hasGuestSession,
   peekAuthReturn,
   readGuestSession
@@ -30,8 +29,8 @@ import styles from "./Login.module.css";
 
 /**
  * Public entry:
- * - bare `/login` → `/login/mobile` while guest mode is off
- * - when guest mode is on: outside app auto-guest; native → mobile OTP
+ * - bare `/login` outside app → auto guest «کاربر مهمان»
+ * - bare `/login` inside native app → `/login/mobile`
  * - `/login/mobile|code|name` is the existing Plasmic OTP / profile flow
  */
 export interface LoginProps extends DefaultLoginProps {}
@@ -104,28 +103,24 @@ function Login_(props: LoginProps, ref: HTMLElementRefOf<"div">) {
     const path = router.asPath.split(/[?#]/)[0].replace(/\/+$/, "") || "/";
     if (path !== "/login") return;
     const raw = readTokenCookie();
-    // Valid JWT + stale guest marker (OTP via Plasmic never cleared LS): keep JWT.
     if (isPublicAuthTokenValid(raw)) {
-      if (hasGuestSession() && !GUEST_MODE_ENABLED) {
-        clearGuestSession();
+      if (!hasGuestSession()) {
+        const dest = consumeAuthReturn() || "/home";
+        void router.replace(dest);
+        return;
       }
       void router.replace(consumeAuthReturn() || "/home");
       return;
     }
-    // Guest-only leftover while guest mode is off → drop marker (no JWT left).
-    if (hasGuestSession() && !GUEST_MODE_ENABLED) {
-      clearGuestSession();
-    } else {
-      clearInvalidPublicAuth();
-    }
+    clearInvalidPublicAuth();
 
-    // Guest temporarily disabled (or native): always mobile OTP — no auto-guest.
-    if (!GUEST_MODE_ENABLED || isSaybanNativeAndroid()) {
+    // Inside native app: no auto-guest — go straight to mobile OTP.
+    if (isSaybanNativeAndroid()) {
       void router.replace("/login/mobile");
       return;
     }
 
-    // Outside app with guest mode on: auto-create default guest.
+    // Outside app: auto-create default guest and enter the app.
     if (autoGuestStartedRef.current) return;
     autoGuestStartedRef.current = true;
     setBootError("");

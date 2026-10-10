@@ -150,11 +150,6 @@ export default async function handler(
       return res.status(200).json({ success: true, result });
     }
 
-    if (path === "callbacks" && req.method === "GET") {
-      const result = await supportService.panelListCallbackRequests();
-      return res.status(200).json({ success: true, result });
-    }
-
     return res.status(404).json({ success: false, message: "Not found" });
   } catch (error) {
     if (

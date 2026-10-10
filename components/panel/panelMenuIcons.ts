@@ -48,7 +48,6 @@ const MENU_VALUE_ICONS: Record<string, PanelMenuIconName> = {
   home_slider: "layers",
   tags: "target",
   support: "message",
-  support_callbacks: "history",
   send_notif: "notification",
   reviews: "message",
   notifications: "notification"

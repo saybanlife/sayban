@@ -51,21 +51,13 @@ function decodeJwtPayload(token: string): Record<string, unknown> | null {
  * Empty, malformed, or expired tokens are invalid.
  */
 export function isPublicAuthTokenValid(cookieToken?: string | null): boolean {
-  // TEMP mock: Plasmic Homepage onMount already trusts the mock token; keep
-  // Homepage.tsx gate (`hasVerifiedPublicAuth`) consistent so /home does not
-  // bounce to /login when the baked JWT `expire` is past.
-  if (USE_MOCK_PUBLIC_AUTH_TOKEN) {
-    return Boolean(String(resolvePublicAuthToken(cookieToken) || "").trim());
-  }
   const token = String(resolvePublicAuthToken(cookieToken) || "").trim();
   if (!token) return false;
   const payload = decodeJwtPayload(token);
   if (!payload) return false;
   const expireRaw = payload.expire ?? payload.exp;
   if (expireRaw == null) return true;
-  const expireNum = Number(expireRaw);
-  if (!Number.isFinite(expireNum)) return false;
-  // n8n may emit unix seconds or milliseconds; treat large values as ms.
-  const expireMs = expireNum > 1e12 ? expireNum : expireNum * 1000;
-  return expireMs > Date.now();
+  const expireSec = Number(expireRaw);
+  if (!Number.isFinite(expireSec)) return false;
+  return expireSec * 1000 > Date.now();
 }

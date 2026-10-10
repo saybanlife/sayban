@@ -65,7 +65,6 @@ import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import Item from "../../Item"; // plasmic-import: lqR7VxT6h9YH/component
 import HomeCategoriesPager from "../../HomeCategoriesPager";
 import HomeHighRatedCenters from "../../HomeHighRatedCenters";
-import servicesStyles from "../../homeServices.module.css"; // adjust the path to your project structure
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
@@ -469,144 +468,115 @@ function PlasmicHome__RenderFunc(props: {
             </SwiperSlider>
           </div>
         </div>
-        <div className={classNames("all", sty.servicesContent)}>
-          <div
-            className={classNames("all", "__wab_text")}
-            style={{
-              width: "100%",
-              textAlign: "right",
-              fontSize: "1.05rem",
-              fontWeight: 800,
-              lineHeight: 1.6,
-              color: "#1F2A0F",
-              padding: "4px 4px 0",
-              display: "flex",
-              alignItems: "center",
-              gap: 8
-            }}
-          >
-            <span
-              aria-hidden="true"
-              style={{
-                width: 4,
-                height: 18,
-                borderRadius: 2,
-                background: "#6F8A3A",
-                flex: "0 0 auto"
-              }}
-            />
-            خدمات
-          </div>
-          <HomeCategoriesPager
-            categories={(() => {
-              try {
-                return $props.categories;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return [];
-                }
-                throw e;
-              }
-            })()}
-            search={hasVariant($state, "search", "search")}
-            onItemClick={async currentItem => {
-              const $steps = {};
-
-              $steps["updateCategori"] = true
-                ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["categori"]
-                    },
-                    operation: 0,
-                    value: currentItem
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
-
-                    $stateSet(objRoot, variablePath, value);
-                    return value;
-                  })?.apply(null, [actionArgs]);
-                })()
-                : undefined;
+        <HomeCategoriesPager
+          categories={(() => {
+            try {
+              return $props.categories;
+            } catch (e) {
               if (
-                $steps["updateCategori"] != null &&
-                typeof $steps["updateCategori"] === "object" &&
-                typeof $steps["updateCategori"].then === "function"
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
               ) {
-                $steps["updateCategori"] = await $steps["updateCategori"];
+                return [];
               }
-
-              $steps["runOnCategori"] = true
-                ? (() => {
-                  const actionArgs = { eventRef: $props["onCategori"] };
-                  return (({ eventRef, args }) => {
-                    return eventRef?.(...(args ?? []));
-                  })?.apply(null, [actionArgs]);
-                })()
-                : undefined;
-              if (
-                $steps["runOnCategori"] != null &&
-                typeof $steps["runOnCategori"] === "object" &&
-                typeof $steps["runOnCategori"].then === "function"
-              ) {
-                $steps["runOnCategori"] = await $steps["runOnCategori"];
-              }
-            }}
-          />
-          {(() => {
-            if (hasVariant($state, "search", "search")) return null;
-            const viewAllSlug = (() => {
-              try {
-                const cats = Array.isArray($props.categories)
-                  ? $props.categories
-                  : [];
-                for (const raw of cats) {
-                  if (!raw || typeof raw !== "object") continue;
-                  const slug = String(
-                    (raw as { slug?: unknown }).slug ?? ""
-                  ).trim();
-                  if (slug) return slug;
-                }
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-              return undefined;
-            })();
-            return (
-              <HomeHighRatedCenters
-                viewAllSlug={viewAllSlug}
-                token={(() => {
-                  try {
-                    return $props.token;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-              />
-            );
+              throw e;
+            }
           })()}
-          <div className={classNames("all", sty.freeBox__vQqMi)} />
-        </div>
+          search={hasVariant($state, "search", "search")}
+          onItemClick={async currentItem => {
+            const $steps = {};
+
+            $steps["updateCategori"] = true
+              ? (() => {
+                const actionArgs = {
+                  variable: {
+                    objRoot: $state,
+                    variablePath: ["categori"]
+                  },
+                  operation: 0,
+                  value: currentItem
+                };
+                return (({ variable, value, startIndex, deleteCount }) => {
+                  if (!variable) {
+                    return;
+                  }
+                  const { objRoot, variablePath } = variable;
+
+                  $stateSet(objRoot, variablePath, value);
+                  return value;
+                })?.apply(null, [actionArgs]);
+              })()
+              : undefined;
+            if (
+              $steps["updateCategori"] != null &&
+              typeof $steps["updateCategori"] === "object" &&
+              typeof $steps["updateCategori"].then === "function"
+            ) {
+              $steps["updateCategori"] = await $steps["updateCategori"];
+            }
+
+            $steps["runOnCategori"] = true
+              ? (() => {
+                const actionArgs = { eventRef: $props["onCategori"] };
+                return (({ eventRef, args }) => {
+                  return eventRef?.(...(args ?? []));
+                })?.apply(null, [actionArgs]);
+              })()
+              : undefined;
+            if (
+              $steps["runOnCategori"] != null &&
+              typeof $steps["runOnCategori"] === "object" &&
+              typeof $steps["runOnCategori"].then === "function"
+            ) {
+              $steps["runOnCategori"] = await $steps["runOnCategori"];
+            }
+          }}
+        />
+        {(() => {
+          if (hasVariant($state, "search", "search")) return null;
+          const viewAllSlug = (() => {
+            try {
+              const cats = Array.isArray($props.categories)
+                ? $props.categories
+                : [];
+              for (const raw of cats) {
+                if (!raw || typeof raw !== "object") continue;
+                const slug = String(
+                  (raw as { slug?: unknown }).slug ?? ""
+                ).trim();
+                if (slug) return slug;
+              }
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+            return undefined;
+          })();
+          return (
+            <HomeHighRatedCenters
+              viewAllSlug={viewAllSlug}
+              token={(() => {
+                try {
+                  return $props.token;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+            />
+          );
+        })()}
+        <div className={classNames("all", sty.freeBox__vQqMi)} />
       </div>
       <div
         className={classNames("all", sty.freeBox___8ZSjn, {

@@ -49,17 +49,6 @@ const PERSIAN_MONTHS = [
   "اسفند"
 ] as const;
 
-/** JS `Date#getDay()` order: Sun…Sat. */
-const PERSIAN_WEEKDAYS = [
-  "یکشنبه",
-  "دوشنبه",
-  "سه‌شنبه",
-  "چهارشنبه",
-  "پنجشنبه",
-  "جمعه",
-  "شنبه"
-] as const;
-
 export const JALALI_MONTH_NAMES: readonly string[] = PERSIAN_MONTHS;
 
 /**
@@ -270,18 +259,6 @@ export function formatJalaliLong(value: DateValue): string {
   if (!jalali) return "";
   const monthName = PERSIAN_MONTHS[jalali.jm - 1] ?? "";
   return `${toPersianDigits(jalali.jd)} ${monthName} ${toPersianDigits(jalali.jy)}`;
-}
-
-/** `"شنبه ۱۱ مهر ۱۴۰۵"` — weekday + long Jalali (form date fields). */
-export function formatJalaliWeekdayLong(value: DateValue): string {
-  const jalali = toJalali(value);
-  const parts = dateParts(value);
-  if (!jalali || !parts) return "";
-  // Local calendar weekday for the Gregorian Y-M-D (no UTC shift).
-  const weekday = new Date(parts.year, parts.month - 1, parts.day).getDay();
-  const weekdayName = PERSIAN_WEEKDAYS[weekday] ?? "";
-  const monthName = PERSIAN_MONTHS[jalali.jm - 1] ?? "";
-  return `${weekdayName} ${toPersianDigits(jalali.jd)} ${monthName} ${toPersianDigits(jalali.jy)}`.trim();
 }
 
 /** `"۱۴۰۵/۰۶/۰۹"` — compact form for inputs and chips. */

@@ -18,7 +18,6 @@ export type HomepageActiveView =
   | "address"
   | "favorites"
   | "centerStaffs"
-  | "visitBooking"
   | "addAddress"
   | "payResult"
   | "centerOffers"
@@ -41,7 +40,6 @@ export function resolveHomepageActiveViews(
   else if (includes("bookNurse")) active.add("centerOffers");
   else if (hasPrefix("pay_")) active.add("payment");
   else if (hasPrefix("centerStaffs_")) active.add("centerStaffs");
-  else if (hasPrefix("visitBooking_")) active.add("visitBooking");
   else if (includes("center")) active.add("center");
   else if (hasPrefix("staff_")) active.add("staff");
   else if (hasPrefix("offer_")) active.add("staffs");
@@ -54,9 +52,7 @@ export function resolveHomepageActiveViews(
   else if (includes("patient")) active.add("patient");
   else if (includes("address")) active.add("address");
   else if (includes("favorites")) active.add("favorites");
-  else if (hasPrefix("reminder_")) {
-    /* Handled by Homepage early-return ReminderDetailPage — not a Plasmic slot. */
-  } else if (includes("reminderSetting")) active.add("reminderSetting");
+  else if (includes("reminderSetting")) active.add("reminderSetting");
   else if (slugParts.length > 0) active.add("subcategories");
   else if (pageBase === "user") active.add("user");
   else if (pageBase === "reminder") active.add("mainLiad");

@@ -1,5 +1,5 @@
 import * as React from "react";
-import Modal from "../Modal";
+import Dialog from "../Dialog";
 import {
   buildTime,
   parseTime,
@@ -19,8 +19,8 @@ type PanelTimePickerProps = {
   className?: string;
   id?: string;
   /**
-   * Expand wheels in-flow (no portaled Modal). Required inside react-aria
-   * Modals — nested dialogs lose real mouse/touch to the parent overlay
+   * Expand wheels in-flow (no portaled Dialog). Required inside react-aria
+   * Modals — nested Radix dialogs lose real mouse/touch to the parent overlay
    * the same way native `<select>` did (see PanelOptionSelect).
    */
   inline?: boolean;
@@ -240,7 +240,7 @@ export default function PanelTimePicker({
     <div
       className={inline ? `${styles.sheet} ${styles.sheetInline}` : styles.sheet}
       dir="rtl"
-      data-time-picker-sheet={inline ? "inline" : "modal"}
+      data-time-picker-sheet={inline ? "inline" : "dialog"}
     >
       <header className={styles.header}>
         <h2 className={styles.title}>انتخاب ساعت</h2>
@@ -379,15 +379,18 @@ export default function PanelTimePicker({
       {inline ? (
         open ? sheet : null
       ) : (
-        <Modal
-          isOpen={open}
-          onOpenChange={setOpen}
+        <Dialog
+          opendialog={open}
+          onOpendialogChange={next => {
+            const nextOpen = typeof next === "boolean" ? next : Boolean(next);
+            setOpen(nextOpen);
+          }}
+          disableOpenAutoFocus
           disableModalHash
-          noTrigger
-          heading={null}
-          footer={null}
-          content={sheet}
-        />
+          colorback="w"
+        >
+          {sheet}
+        </Dialog>
       )}
     </div>
   );

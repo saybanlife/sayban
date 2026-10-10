@@ -902,8 +902,7 @@ function PlasmicStaff__RenderFunc(props: {
             <React.Fragment>
               {(() => {
                 try {
-                  const staffName = $state.full?.data?.result?.staff?.name;
-                  return staffName ? `جزئیات ${staffName}` : "جزئیات پرستار";
+                  return $state.full?.data?.result?.name;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -1293,143 +1292,34 @@ function PlasmicStaff__RenderFunc(props: {
                         throw e;
                       }
                     })() ? (
-                      <>
-                        <div className={sty.videoBadge}>ویدیوی معرفی</div>
-                        <VideoPlayer
-                          data-plasmic-name={"videoPlayer"}
-                          data-plasmic-override={overrides.videoPlayer}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.videoPlayer
-                          )}
-                          link={generateStateValueProp($state, [
+                      <VideoPlayer
+                        data-plasmic-name={"videoPlayer"}
+                        data-plasmic-override={overrides.videoPlayer}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.videoPlayer
+                        )}
+                        link={generateStateValueProp($state, [
+                          "videoPlayer",
+                          "link"
+                        ])}
+                        onLinkChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
                             "videoPlayer",
                             "link"
-                          ])}
-                          onLinkChange={async (...eventArgs: any) => {
-                            generateStateOnChangeProp($state, [
-                              "videoPlayer",
-                              "link"
-                            ]).apply(null, eventArgs);
+                          ]).apply(null, eventArgs);
 
-                            if (
-                              eventArgs.length > 1 &&
-                              eventArgs[1] &&
-                              eventArgs[1]._plasmic_state_init_
-                            ) {
-                              return;
-                            }
-                          }}
-                        />
-                        <div className={sty.mediaGallery} aria-hidden={true}>
-                          <span>▧</span>
-                          <span>▧</span>
-                          <span>▧</span>
-                        </div>
-                      </>
+                          if (
+                            eventArgs.length > 1 &&
+                            eventArgs[1] &&
+                            eventArgs[1]._plasmic_state_init_
+                          ) {
+                            return;
+                          }
+                        }}
+                      />
                     ) : null}
                   </div>
-                  <div className={classNames("all", sty.staffFacts)}>
-                    <div className={sty.staffFactRow}>
-                      <span>سابقه</span>
-                      <strong>
-                        {$state.full?.data?.result?.staff?.experience_years != null
-                          ? `${$state.full.data.result.staff.experience_years} سال`
-                          : "—"}
-                      </strong>
-                    </div>
-                    <div className={sty.staffFactRow}>
-                      <span>مرکز</span>
-                      <strong>
-                        {$state.full?.data?.result?.staff?.center_name || "—"}
-                      </strong>
-                    </div>
-                    <div className={sty.staffFactRow}>
-                      <span>امتیاز</span>
-                      <strong>
-                        {$state.full?.data?.result?.staff?.rating != null
-                          ? `${$state.full.data.result.staff.rating} از ۵ ★`
-                          : "—"}
-                      </strong>
-                    </div>
-                    <div className={sty.staffFactRow}>
-                      <span>بازه قیمت</span>
-                      <strong>
-                        {(() => {
-                          const staff = $state.full?.data?.result?.staff;
-                          const services = $state.full?.data?.result?.services;
-                          const prices = Array.isArray(services)
-                            ? services
-                                .map(service => service?.final_price ?? service?.price)
-                                .filter(price => Number.isFinite(Number(price)))
-                                .map(Number)
-                            : [];
-                          if (prices.length) {
-                            const min = Math.min(...prices).toLocaleString("fa-IR");
-                            const max = Math.max(...prices).toLocaleString("fa-IR");
-                            return min === max
-                              ? `${min} تومان`
-                              : `${min} تا ${max} تومان`;
-                          }
-                          if (staff?.price_min != null || staff?.price_max != null) {
-                            return [staff.price_min, staff.price_max]
-                              .filter(value => value != null)
-                              .map(value => Number(value).toLocaleString("fa-IR"))
-                              .join(" تا ") + " تومان";
-                          }
-                          return "—";
-                        })()}
-                      </strong>
-                    </div>
-                  </div>
-
-                  {(() => {
-                    const staff = $state.full?.data?.result?.staff;
-                    const documents = [
-                      [staff?.national_card_img, "کارت ملی"],
-                      [staff?.nursing_card_img, "کارت پرستاری"],
-                      [staff?.education_img, "مدرک تحصیلی"],
-                      [staff?.clearance_img, "گواهی سوءپیشینه"]
-                    ].filter(([src]) => Boolean(src));
-                    return documents.length ? (
-                      <div className={classNames("all", sty.staffDocuments)}>
-                        <div className={sty.staffCardTitle}>مدارک تاییدشده</div>
-                        <div className={sty.staffChips}>
-                          {documents.map(([, label]) => (
-                            <span className={sty.verifiedChip} key={String(label)}>
-                              {label}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    ) : null;
-                  })()}
-
-                  {(() => {
-                    const rawSkills = $state.full?.data?.result?.staff?.skills;
-                    let skills: any[] = [];
-                    try {
-                      skills = Array.isArray(rawSkills)
-                        ? rawSkills
-                        : JSON.parse(rawSkills || "[]");
-                    } catch {
-                      skills = rawSkills ? [rawSkills] : [];
-                    }
-                    return skills.length ? (
-                      <div className={classNames("all", sty.staffSkills)}>
-                        <div className={sty.staffCardTitle}>مهارت‌ها</div>
-                        <div className={sty.staffChips}>
-                          {skills.map((skill, index) => (
-                            <span className={sty.skillChip} key={`${String(skill)}-${index}`}>
-                              {typeof skill === "string"
-                                ? skill
-                                : skill?.label || skill?.name || String(skill)}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    ) : null;
-                  })()}
                   <Line
                     data-plasmic-name={"line"}
                     data-plasmic-override={overrides.line}
@@ -2159,7 +2049,7 @@ drawRating(${$state.rate});
               <div
                 className={classNames("all", "__wab_text", sty.text___5ShBs)}
               >
-                {`انتخاب ${$state.full?.data?.result?.staff?.name || "پرستار"} برای مصاحبه`}
+                {"\u0631\u0632\u0631\u0648 \u0632\u0645\u0627\u0646"}
               </div>
             }
             loading={generateStateValueProp($state, ["button", "loading"])}

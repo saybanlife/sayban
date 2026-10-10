@@ -8,7 +8,6 @@ import CenterDailyLifeManager from "./CenterDailyLifeManager";
 import CenterVisitPolicyManager from "./CenterVisitPolicyManager";
 import CenterAmenitiesManager from "./CenterAmenitiesManager";
 import CenterFaqManager from "./CenterFaqManager";
-import CenterNursePricingManager from "./CenterNursePricingManager";
 import { usePanelApi } from "./usePanelApi";
 import { isPureNursingCenter } from "../centerPage/centerEnumLocales";
 import styles from "./CenterPanelWorkspace.module.css";
@@ -133,14 +132,6 @@ export function CenterPanelWorkspace({
             </CollapsiblePanelCard>
           </>
         )}
-
-        <CollapsiblePanelCard
-          title="قیمت‌گذاری مراقب / پرستار"
-          hint="قیمت پایه موردی و مستمر و عوامل مؤثر روی برآورد."
-          defaultOpen={false}
-        >
-          <CenterNursePricingManager centerId={centerId} token={token} />
-        </CollapsiblePanelCard>
 
         <CollapsiblePanelCard title="سوالات متداول" defaultOpen={false}>
           <CenterFaqManager centerId={centerId} token={token} compact />

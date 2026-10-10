@@ -3,17 +3,10 @@ import { useRouter } from "next/router";
 import { PlasmicUser, DefaultUserProps } from "./plasmic/sayban/PlasmicUser";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 import userSty from "./plasmic/sayban/PlasmicUser.module.css";
-import userPageSty from "./User.module.css";
-import { setCompactWithFlip } from "./user/compactFlip";
 import {
   asNotificationPreference,
   saveNotificationPreference
 } from "./user/notificationPreference";
-import {
-  collectScrollTargets,
-  maxScrollTop,
-  nextCompactState
-} from "./user/userScrollCompact";
 import { isSaybanNativeAndroid } from "@/lib/nativeShell";
 import {
   isNotificationSwitchOn,
@@ -129,7 +122,6 @@ function wireFavoritesMenuRow(
 function User_(props: UserProps, ref: HTMLElementRefOf<"section">) {
   const router = useRouter();
   const rootRef = React.useRef<HTMLElement | null>(null);
-  const [rootEl, setRootEl] = React.useState<HTMLElement | null>(null);
   const syncedNotificationRef = React.useRef<boolean | null>(null);
   const [, bumpNotifUi] = React.useState(0);
 
@@ -203,15 +195,9 @@ function User_(props: UserProps, ref: HTMLElementRefOf<"section">) {
     router.push(`/${pageBase}/favorites`);
   }, [pageBase, router]);
 
-  /** Footer shell tab — always absolute `/booking/`, never `/{page}/booking`. */
-  const goToBooking = React.useCallback((_event?: unknown) => {
-    void router.push("/booking/");
-  }, [router]);
-
   const setRootRef = React.useCallback(
     (node: HTMLElement | null) => {
       rootRef.current = node;
-      setRootEl(node);
       if (typeof ref === "function") {
         ref(node as never);
       } else if (ref) {
@@ -248,42 +234,6 @@ function User_(props: UserProps, ref: HTMLElementRefOf<"section">) {
     };
   }, [goToFavorites, goToSupport]);
 
-  React.useEffect(() => {
-    const root = rootEl;
-    if (!root || typeof window === "undefined") return;
-
-    root.classList.add(userPageSty.host);
-
-    let compact = false;
-    let allowAnimate = false;
-
-    const applyCompact = (next: boolean) => {
-      if (next === compact) return;
-      compact = next;
-      setCompactWithFlip(root, next, allowAnimate);
-    };
-
-    const targets = collectScrollTargets(root);
-
-    const onScroll = () => {
-      applyCompact(nextCompactState(compact, maxScrollTop(targets)));
-    };
-
-    for (const target of targets) {
-      target.addEventListener("scroll", onScroll, { passive: true });
-    }
-    onScroll();
-    allowAnimate = true;
-
-    return () => {
-      for (const target of targets) {
-        target.removeEventListener("scroll", onScroll);
-      }
-      root.classList.remove(userPageSty.host);
-      root.removeAttribute("data-user-scroll-compact");
-    };
-  }, [rootEl]);
-
 
   React.useEffect(() => {
     const root = rootRef.current;
@@ -319,12 +269,11 @@ function User_(props: UserProps, ref: HTMLElementRefOf<"section">) {
 
   const switchSelected = isNotificationSwitchOn(props.userinfo?.isnotif);
 
-  const { overrides, goToBooking: _ignoredGoToBooking, ...restProps } = props;
+  const { overrides, ...restProps } = props;
   return (
     <PlasmicUser
       root={{ ref: setRootRef }}
       {...restProps}
-      goToBooking={goToBooking}
       overrides={{
         ...overrides,
         // Generated handler only expires domain=.darkube.ir and leaves guest

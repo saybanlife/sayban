@@ -244,17 +244,13 @@ html[data-sayban-shell="app"] {
   html[data-sayban-shell="app"] .page,
   html[data-sayban-shell="app"] .fixed-box,
   html[data-sayban-shell="app"] .fixed-bottom,
-  html[data-sayban-shell="app"] [data-reminder-event-page],
-  html[data-sayban-shell="app"] [data-reminder-detail],
-  html[data-sayban-shell="app"] [data-reminder-lightbox] {
+  html[data-sayban-shell="app"] [data-reminder-event-page] {
     max-width: var(--sayban-app-max);
     width: 100%;
     margin-left: auto;
     margin-right: auto;
     left: 0;
     right: 0;
-    border-bottom-right-radius: var(--token-0tl2H1TRPHhV);
-    border-bottom-left-radius: var(--token-0tl2H1TRPHhV);
   }
 
   /*
@@ -281,8 +277,7 @@ html[data-sayban-shell="app"] {
     box-sizing: border-box;
   }
 
-  html[data-sayban-shell="app"]
-    [role="dialog"]:not([aria-hidden="true"]):not([data-reminder-lightbox]) {
+  html[data-sayban-shell="app"] [role="dialog"]:not([aria-hidden="true"]) {
     min-width: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
@@ -291,18 +286,4 @@ html[data-sayban-shell="app"] {
     margin: 0 !important;
     max-height: min(88dvh, 100%) !important;
   }
-
-  /* Reminder photo lightbox must fill the phone column (no sheet max-height). */
-  html[data-sayban-shell="app"] [data-reminder-lightbox] {
-    max-height: none !important;
-    height: auto !important;
-    border-radius: 0 !important;
-  }
-}
-
-/* Reminder add-event portal: hide Homepage bottom nav under the full-page shell. */
-html[data-reminder-event-open="1"] nav[aria-label="???? ????"],
-html[data-reminder-event-open="1"] [class*="PlasmicHomepage_section__iGcIn"] {
-  visibility: hidden !important;
-  pointer-events: none !important;
 }

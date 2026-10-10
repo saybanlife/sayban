@@ -90,24 +90,6 @@
   padding: 1rem;
 }
 
-.cardHeader {
-  margin-bottom: 0.875rem;
-}
-
-.cardTitle {
-  margin: 0 0 0.35rem;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--plasmic-token-text-primary);
-}
-
-.cardHint {
-  margin: 0;
-  font-size: 0.8125rem;
-  color: var(--plasmic-token-muted-muted-soft-foreground);
-  line-height: 1.65;
-}
-
 .formGrid {
   display: grid;
   grid-template-columns: 1fr;
@@ -209,64 +191,6 @@
   border-radius: 0.75rem;
   padding: 0.875rem;
   background: var(--plasmic-token-background-light);
-}
-
-.listItemDraggable {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  cursor: grab;
-  touch-action: none;
-}
-
-.listItemDraggable:active {
-  cursor: grabbing;
-}
-
-.listItemDragging {
-  opacity: 0.55;
-  border-style: dashed;
-}
-
-.listItemDragOver {
-  box-shadow: inset 0 0 0 2px var(--plasmic-token-primary-green);
-}
-
-.listItemBodyGrow {
-  flex: 1 1 auto;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.dragHandle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  align-self: flex-start;
-  width: 1.75rem;
-  height: 1.75rem;
-  margin-inline-end: 0.35rem;
-  border-radius: 0.4rem;
-  color: var(--plasmic-token-muted-muted-soft-foreground);
-  background: color-mix(in srgb, var(--plasmic-token-gray) 10%, transparent);
-  user-select: none;
-  font-size: 0.85rem;
-  line-height: 1;
-  cursor: grab;
-}
-
-.dragHandle:active {
-  cursor: grabbing;
-}
-
-.listItemRow {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 0.25rem;
-  width: 100%;
 }
 
 .listItemTitle {

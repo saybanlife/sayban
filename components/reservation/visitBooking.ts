@@ -27,16 +27,6 @@ export type BookingSlot = {
   status?: string | null;
 };
 
-export type BookingSlotGroup = {
-  period?: string | null;
-  slots?: BookingSlot[] | null;
-};
-
-export type BookingAvailabilityDay = {
-  date?: string | null;
-  result?: BookingSlotGroup[] | null;
-};
-
 export type BookingService = {
   id?: number | string | null;
   code?: string | null;
@@ -54,23 +44,14 @@ export function visitService(): BookingService {
   };
 }
 
-/** Production visit service titles vary slightly; keep clinical services out. */
-export function isVisitServiceName(name: unknown): boolean {
-  if (typeof name !== "string") return false;
-  const trimmed = name.trim();
-  if (!trimmed) return false;
-  if (trimmed === VISIT_SERVICE_NAME) return true;
-  // e.g. «رزرو وقت مشاوره و بازدید», «رزرو وقت بازدید و مشاوره», «رزرو بازدید»
-  return /بازدید/.test(trimmed) && (/رزرو/.test(trimmed) || /مشاوره/.test(trimmed));
-}
-
 export function isVisitService(service: unknown): boolean {
   const candidate = service as BookingService | null;
   const code = candidate?.code;
   if (typeof code === "string" && code.toUpperCase() === VISIT_SERVICE_CODE) {
     return true;
   }
-  return isVisitServiceName(candidate?.name);
+  const name = candidate?.name;
+  return typeof name === "string" && name.trim() === VISIT_SERVICE_NAME;
 }
 
 /**
@@ -125,50 +106,6 @@ export function canConfirmBooking(date: unknown, slot: unknown): boolean {
   return isValidBookingDate(date) && isValidBookingSlot(slot);
 }
 
-/** Earliest actually bookable slot across every time period. */
-export function findFirstAvailableBookingSlot(
-  groups: unknown
-): { period: string; slot: BookingSlot } | null {
-  if (!Array.isArray(groups)) return null;
-
-  const available = (groups as BookingSlotGroup[]).flatMap(group => {
-    if (!group || typeof group.period !== "string" || !Array.isArray(group.slots)) {
-      return [];
-    }
-    return group.slots
-      .filter(isValidBookingSlot)
-      .map(slot => ({ period: group.period as string, slot }));
-  });
-
-  available.sort((a, b) =>
-    String(a.slot.slot_start ?? "").localeCompare(String(b.slot.slot_start ?? ""))
-  );
-  return available[0] ?? null;
-}
-
-/** Earliest bookable date/slot from the bulk availability response. */
-export function findFirstAvailableBookingDay(
-  days: unknown
-): { date: string; groups: BookingSlotGroup[]; period: string; slot: BookingSlot } | null {
-  if (!Array.isArray(days)) return null;
-
-  const ordered = (days as BookingAvailabilityDay[])
-    .filter(day => isValidBookingDate(day?.date) && Array.isArray(day?.result))
-    .sort((a, b) => String(a.date).localeCompare(String(b.date)));
-
-  for (const day of ordered) {
-    const first = findFirstAvailableBookingSlot(day.result);
-    if (first) {
-      return {
-        date: day.date as string,
-        groups: day.result as BookingSlotGroup[],
-        ...first
-      };
-    }
-  }
-  return null;
-}
-
 /** Companion id for reservations; 0 / empty means “for myself”. */
 export function normalizePatientId(value: unknown): number | string | null {
   if (value === undefined || value === null || value === "" || value === 0 || value === "0") {
@@ -187,10 +124,7 @@ export type ReservationPayload = {
   start_time: string;
   end_time: string;
   final_price: number;
-  /** Legacy companion id (users__patient.id). Kept for backward compatibility. */
   patient_id: number | string | null;
-  /** User the visit is for (self = booker, companion = linked user). */
-  for_user_id?: number | string | null;
 };
 
 /**
@@ -203,9 +137,8 @@ export function buildReservationPayload(input: {
   date?: unknown;
   slot?: unknown;
   patientId?: number | string | null;
-  forUserId?: number | string | null;
 }): ReservationPayload | null {
-  const { centerId, service, date, slot, patientId, forUserId } = input;
+  const { centerId, service, date, slot, patientId } = input;
   if (!centerId) return null;
   if (!isValidBookingDate(date)) return null;
   if (!isValidBookingSlot(slot)) return null;
@@ -219,7 +152,6 @@ export function buildReservationPayload(input: {
   if (!visit && serviceId == null) return null;
 
   const price = Number(service?.final_price);
-  const resolvedForUser = normalizePatientId(forUserId);
 
   return {
     center_id: centerId,
@@ -229,8 +161,7 @@ export function buildReservationPayload(input: {
     start_time: `${date} ${start}`,
     end_time: `${date} ${end}`,
     final_price: Number.isFinite(price) ? price : 0,
-    patient_id: normalizePatientId(patientId),
-    ...(resolvedForUser != null ? { for_user_id: resolvedForUser } : {})
+    patient_id: normalizePatientId(patientId)
   };
 }
 
@@ -252,30 +183,6 @@ export function buildSlotQueryParams(input: {
   }
   if (service?.id == null) return null;
   return { id: String(service.id), date };
-}
-
-/** Params for the additive bulk slot endpoint used by «اولین نوبت». */
-export function buildSlotRangeQueryParams(input: {
-  centerId?: string | null;
-  service?: BookingService | null;
-  dateFrom?: unknown;
-  dateTo?: unknown;
-}): Record<string, string> | null {
-  const { centerId, service, dateFrom, dateTo } = input;
-  if (!isValidBookingDate(dateFrom) || !isValidBookingDate(dateTo)) return null;
-  if (dateFrom > dateTo) return null;
-
-  if (isVisitService(service)) {
-    if (!centerId) return null;
-    return {
-      service_code: VISIT_SERVICE_CODE,
-      center_id: centerId,
-      date_from: dateFrom,
-      date_to: dateTo
-    };
-  }
-  if (service?.id == null) return null;
-  return { id: String(service.id), date_from: dateFrom, date_to: dateTo };
 }
 
 /** Params for `GET /service/holiday`, same center-vs-service split as above. */

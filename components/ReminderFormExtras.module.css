@@ -1,4 +1,4 @@
-/* Match Add Event mock: همراه full-width pill + small dashed image tile on the right */
+/* Match ReminderSetting «عنوان» column (freeBox__pymZ5 + textbox). */
 
 .root {
   display: contents;
@@ -11,18 +11,21 @@
   max-width: 100%;
   min-width: 0;
   justify-content: flex-start;
-  align-items: stretch;
-  row-gap: 0.4rem;
+  align-items: center;
+  row-gap: var(--token-rfsFxiclAtek, 0.5rem);
   padding: 0;
   box-sizing: border-box;
 }
 
 .fieldLabel {
   width: 100%;
+  height: auto;
+  max-width: 100%;
   text-align: right;
-  font-size: 0.9rem;
-  font-weight: 800;
-  color: var(--token-ee2TuxDknsJj, #6f8a3a);
+  font-size: var(--token-N8Pb0ZuDQAeF, 0.875rem);
+  font-weight: 700;
+  white-space: pre;
+  color: var(--token-9M5jRUPt8Msb, #2c281c);
   min-width: 0;
 }
 
@@ -31,27 +34,27 @@
   flex-direction: column;
   position: relative;
   width: 100%;
-  height: 3.15rem;
+  height: 45px;
   max-width: 100%;
   box-sizing: border-box;
   justify-content: center;
   align-items: stretch;
   font-size: 16px;
   font-family: inherit;
-  color: #2c2a26;
-  background: #ffffff;
+  color: inherit;
+  background: none;
   min-width: 0;
   flex-shrink: 0;
-  border-radius: 1.35rem;
-  padding: 0.65rem 1.15rem;
-  border: 1.5px solid rgba(111, 138, 58, 0.42);
+  border-radius: var(--token-73iLa06AE6f4, 8px);
+  padding: 8px 12px;
+  border: 1px solid var(--token-pyhDq7s0RTkz, rgba(40, 36, 24, 0.18));
   appearance: none;
   direction: rtl;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236f8a3a' d='M1.2 1.2 6 6l4.8-4.8'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%232c281c' d='M1.2 1.2 6 6l4.8-4.8'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: left 1rem center;
+  background-position: left 12px center;
   background-size: 0.7rem;
-  padding-left: 2.2rem;
+  padding-left: 2rem;
 }
 
 .fieldControl:disabled {
@@ -62,61 +65,49 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
-  gap: 0.55rem;
+  gap: 0.5rem;
   width: 100%;
+  min-height: 45px;
   box-sizing: border-box;
 }
 
-.addChip {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
-  margin: 0;
-  width: 5.75rem;
-  min-height: 5.75rem;
-  border-radius: 1.05rem;
-  border: 1.5px dashed rgba(111, 138, 58, 0.55);
-  background: transparent;
-  color: var(--token-ee2TuxDknsJj, #6f8a3a);
-  font: inherit;
-  font-size: 0.88rem;
-  font-weight: 700;
-  cursor: pointer;
-  box-sizing: border-box;
-  padding: 0.65rem;
-}
-
-.addPlus {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  color: inherit;
-}
-
+/* Same language as «افزودن» chips on date/time rows */
+.addChip,
 .removeChip {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 0.25rem;
   margin: 0;
-  border-radius: 999px;
+  border-radius: var(--token-73iLa06AE6f4, 8px);
   font: inherit;
-  font-size: 0.85rem;
-  font-weight: 700;
-  padding: 0.45rem 0.9rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.5rem 0.85rem;
   min-height: 2.25rem;
   cursor: pointer;
   box-sizing: border-box;
+}
+
+.addChip {
+  border: 1px solid var(--token-pyhDq7s0RTkz, rgba(40, 36, 24, 0.18));
+  background: none;
+  color: var(--token-9M5jRUPt8Msb, #2c281c);
+}
+
+.addPlus {
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.removeChip {
   border: 1px solid rgba(180, 60, 50, 0.35);
   background: none;
   color: #a33a32;
-  align-self: center;
 }
 
 .addChip:disabled,
@@ -130,13 +121,14 @@
 }
 
 .previewWrap {
-  width: 5.75rem;
-  height: 5.75rem;
-  border-radius: 1.05rem;
+  width: 100%;
+  margin-top: 0.15rem;
+  border-radius: var(--token-73iLa06AE6f4, 8px);
   overflow: hidden;
-  border: 1.5px solid rgba(111, 138, 58, 0.28);
+  border: 1px solid var(--token-pyhDq7s0RTkz, rgba(40, 36, 24, 0.12));
   background: rgba(40, 36, 24, 0.04);
-  flex-shrink: 0;
+  aspect-ratio: 16 / 9;
+  max-height: 8.5rem;
 }
 
 .preview {

@@ -141,8 +141,6 @@ const ROOM_TYPE_ENTRIES: LocaleEntry[] = [
 /**
  * Dispatchable workforce types for nursing centers (multi-select).
  * Experience options are leaves under «پرستار دارای تجربه مراقبت از».
- * The first two entries are top-level; everything after is an experience leaf
- * (see DISPATCH_WORKFORCE_TOP_FA_OPTIONS / DISPATCH_EXPERIENCE_DB).
  */
 const DISPATCH_WORKFORCE_ENTRIES: LocaleEntry[] = [
   {
@@ -174,40 +172,6 @@ const DISPATCH_WORKFORCE_ENTRIES: LocaleEntry[] = [
     db: "exp_respiratory",
     fa: "بیمار تنفسی",
     aliases: ["تنفسی", "respiratory"]
-  },
-  {
-    db: "exp_incontinence",
-    fa: "پوشکی",
-    aliases: [
-      "بیمار پوشکی",
-      "پوشک",
-      "نیازمند پوشک",
-      "بی‌اختیاری",
-      "incontinence",
-      "diaper"
-    ]
-  },
-  {
-    db: "exp_parkinsons",
-    fa: "پارکینسون",
-    aliases: ["بیمار پارکینسون", "پارکینسونی", "parkinsons", "parkinson"]
-  },
-  {
-    db: "exp_pelvic",
-    fa: "لگنی",
-    aliases: ["بیمار لگنی", "شکستگی لگن", "pelvic"]
-  },
-  {
-    db: "exp_mobility",
-    fa: "ویلچری یا نیاز به کمک در جابجایی",
-    aliases: [
-      "ویلچری",
-      "ویلچر",
-      "کمک در جابجایی",
-      "جابجایی",
-      "wheelchair",
-      "mobility"
-    ]
   }
 ];
 
@@ -292,17 +256,6 @@ const DISPATCH_LEAD_TIME_ENTRIES: LocaleEntry[] = [
     db: "next_day",
     fa: "روز بعد",
     aliases: ["next day", "فردا"]
-  },
-  {
-    db: "2_to_3_days",
-    fa: "از ۲ تا ۳ روز قبل",
-    aliases: [
-      "از 2 تا 3 روز قبل",
-      "۲-۳ روز قبل",
-      "2-3 روز قبل",
-      "2 تا 3 روز",
-      "2_to_3_days_ahead"
-    ]
   }
 ];
 
@@ -410,11 +363,7 @@ const DISPATCH_EXPERIENCE_DB = new Set([
   "exp_alzheimers",
   "exp_stroke",
   "exp_cancer",
-  "exp_respiratory",
-  "exp_incontinence",
-  "exp_parkinsons",
-  "exp_pelvic",
-  "exp_mobility"
+  "exp_respiratory"
 ]);
 
 /**

@@ -6,7 +6,6 @@
 import { deleteCookie, readCookie } from "./authCookies";
 import {
   clearGuestSession,
-  GUEST_MODE_ENABLED,
   hasGuestSession,
   rememberAuthReturn
 } from "./guestSession";
@@ -31,8 +30,7 @@ export const AUTH_REQUIRED_VIEWS: ReadonlySet<string> = new Set([
   "mainLiad",
   "centerOffers",
   "staffs",
-  "staff",
-  "visitBooking"
+  "staff"
 ]);
 
 export type PhoneVerifyOpenRequest = {
@@ -49,14 +47,7 @@ export function registerPhoneVerifyOpener(opener: PhoneVerifyOpener | null): voi
   phoneVerifyOpener = opener;
 }
 
-/**
- * Valid public JWT — enough to open `/home`.
- *
- * While guest mode is off, a leftover `sayban_guest_session` marker must not
- * treat a still-valid JWT as logged-out. Plasmic OTP writes the cookie without
- * always clearing that marker; treating it as unverified sent users to `/login`,
- * which then called `clearPublicSession()` and wiped the JWT.
- */
+/** Valid public JWT (guest or phone) — enough to open `/home`. */
 export function hasVerifiedPublicAuth(
   cookieToken?: string | null
 ): boolean {
@@ -64,11 +55,7 @@ export function hasVerifiedPublicAuth(
     cookieToken !== undefined && cookieToken !== null
       ? cookieToken
       : readCookie(PUBLIC_AUTH_COOKIE_NAME);
-  if (!isPublicAuthTokenValid(raw)) return false;
-  if (!GUEST_MODE_ENABLED && hasGuestSession()) {
-    clearGuestSession();
-  }
-  return true;
+  return isPublicAuthTokenValid(raw);
 }
 
 /**

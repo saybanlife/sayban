@@ -84,10 +84,6 @@ export function formatQuestionnaireAnswer(
     return "";
   }
 
-  if (Array.isArray(answer)) {
-    return answer.map(String).filter(Boolean).join("، ");
-  }
-
   if (typeof answer === "object") {
     return formatObject(answer as Record<string, unknown>);
   }

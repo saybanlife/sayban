@@ -5,7 +5,6 @@ export { default as CenterAmenitiesManager } from "./CenterAmenitiesManager";
 export { default as CenterCareItemsManager } from "./CenterCareItemsManager";
 export { default as CenterDailyLifeManager } from "./CenterDailyLifeManager";
 export { default as CenterVisitPolicyManager } from "./CenterVisitPolicyManager";
-export { default as CenterNursePricingManager } from "./CenterNursePricingManager";
 export { default as CenterSocialLinksEditor } from "./CenterSocialLinksEditor";
 export { default as CenterGalleryManager } from "./CenterGalleryManager";
 export { default as CenterPreviewCard } from "./CenterPreviewCard";

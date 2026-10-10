@@ -38,12 +38,6 @@ const login = fs.readFileSync(path.join(root, "components/Login.tsx"), "utf8");
 assert.doesNotMatch(login, /LoginWelcome/);
 assert.match(login, /PlasmicLogin/);
 assert.match(login, /createDefaultGuestSession/);
-assert.match(
-  fs.readFileSync(path.join(root, "src/lib/guestSession.ts"), "utf8"),
-  /GUEST_MODE_ENABLED\s*=\s*false/
-);
-assert.match(login, /GUEST_MODE_ENABLED/);
-
 assert.match(login, /isSaybanNativeAndroid/);
 assert.match(login, /\/login\/mobile/);
 assert.match(login, /DEFAULT_GUEST_NAME/);
@@ -104,26 +98,5 @@ assert.match(
   fs.readFileSync(path.join(root, "components/Homepage.tsx"), "utf8"),
   /replace\("\/login"\)/
 );
-
-// Stale guest marker must not wipe a valid JWT while guest mode is off.
-assert.match(gate, /clearGuestSession\(\)/);
-assert.doesNotMatch(
-  login,
-  /hasGuestSession\(\)\s*&&\s*!GUEST_MODE_ENABLED\)\s*\{\s*clearPublicSession/
-);
-assert.match(
-  fs.readFileSync(path.join(root, "src/fragment/fragment.tsx"), "utf8"),
-  /name === PUBLIC_AUTH_COOKIE_NAME[\s\S]*clearGuestSession/
-);
-
-// JWT expire: seconds and milliseconds both valid.
-function isExpireValid(expireNum) {
-  if (!Number.isFinite(expireNum)) return false;
-  const expireMs = expireNum > 1e12 ? expireNum : expireNum * 1000;
-  return expireMs > Date.now();
-}
-assert.equal(isExpireValid(Math.floor(Date.now() / 1000) + 3600), true);
-assert.equal(isExpireValid(Date.now() + 3600_000), true);
-assert.equal(isExpireValid(Math.floor(Date.now() / 1000) - 10), false);
 
 console.log("guest-session tests OK");

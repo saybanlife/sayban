@@ -8,12 +8,6 @@ import {
 
 export type CompanionRecord = {
   id: number;
-  /** Owner account id (users.id of the booker / parent). */
-  user_id?: number | string | null;
-  /** Companion user row (users.id with parent_user_id = owner). */
-  linked_user_id?: number | string | null;
-  /** Alias of linked_user_id for booking payloads. */
-  for_user_id?: number | string | null;
   name?: string | null;
   national_code?: string | null;
   mobile?: string | null;
@@ -21,7 +15,6 @@ export type CompanionRecord = {
   marital_status?: string | null;
   relation?: string | null;
   relation_persian?: string | null;
-  birth_date?: string | null;
   city?: string | null;
   address?: string | null;
   details?: string | null;

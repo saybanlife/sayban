@@ -29,7 +29,7 @@ export function Icon167Icon(props: Icon167IconProps) {
         width={"23"}
         height={"23"}
         rx={"11.5"}
-        fill={"#6f8a3a"}
+        fill={"#8254C6"}
       ></rect>
 
       <rect
@@ -38,7 +38,7 @@ export function Icon167Icon(props: Icon167IconProps) {
         width={"23"}
         height={"23"}
         rx={"11.5"}
-        stroke={"#6f8a3a"}
+        stroke={"#8254C6"}
       ></rect>
 
       <mask

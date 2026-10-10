@@ -6,8 +6,7 @@
   --hr-title: #2a2f28;
   --hr-muted: #8a8f86;
   --hr-card-bg: #fdf9e8;
-  --hr-card-border: #6F8A3A;
-  /* بردر نازک تان/زیتونی */
+  --hr-card-border: #6F8A3A;    /* بردر نازک تان/زیتونی */
   --hr-rating-bg: #fff9e6;
   --hr-rating-fg: #f2b805;
   --hr-section-bg: #f7f8f4;
@@ -31,7 +30,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0 0 0.65rem 1rem;
+  padding: 0 0 0.65rem 1rem;  
   box-sizing: border-box;
 }
 
@@ -273,46 +272,4 @@
 .cta:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--hr-green) 55%, white);
   outline-offset: 2px;
-}
-
-.statusSection {
-  direction: rtl;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-  padding: 0.55rem 0 0;
-  padding-left: var(--token-TONjX_YbO9_T);
-  margin: 0.1rem 0 0.35rem;
-}
-
-.statusTitle {
-  margin: 0 0 0.75rem;
-  color: var(--hr-title, #2a2f28);
-  font-size: 1rem;
-  font-weight: 800;
-  line-height: 1.45;
-  text-align: right;
-}
-
-.statusList {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.85rem;
-  width: 100%;
-  min-width: 0;
-}
-
-.statusCard:global(.__wab_instance),
-.statusCard {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-}
-
-@media (max-width: 360px) {
-  .statusSection {
-    padding-right: 0.75rem;
-    padding-left: 0.75rem;
-  }
 }

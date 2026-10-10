@@ -71,10 +71,6 @@ export const ApiRequest = (props: ApiRequestType) => {
   } = props;
   const fragmentConfig = useSelector("Fragment");
   const [isLoading, setIsLoading] = useState(false);
-  /** After the first successful response for the current fetch key, background
-   * revalidation (refreshInterval / remount) must not tear down children. */
-  const [hasSucceeded, setHasSucceeded] = useState(false);
-  const hasSucceededRef = useRef(false);
 
   const cacheEnabled = !!cacheKey && !fresh;
   // Read synchronously on first render so a cached payload is available before
@@ -100,25 +96,11 @@ export const ApiRequest = (props: ApiRequestType) => {
     ? JSON.stringify({ ...fetchProps, shouldFetch, fresh })
     : null;
 
-  // Reset success tracking synchronously when the SWR key changes so a new
-  // query can show loading once, without a post-paint effect flash.
-  const prevFetchKeyRef = useRef<string | null>(null);
-  if (prevFetchKeyRef.current !== fetchKey) {
-    prevFetchKeyRef.current = fetchKey;
-    hasSucceededRef.current = false;
-    if (hasSucceeded) {
-      setHasSucceeded(false);
-    }
-  }
-
   const reuqestFn = async ({ method, url, params, body, config }: any) => {
-    // Soft refresh: keep existing UI; only announce loading on the first fetch
-    // for this key (or after a key change).
-    if (!hasSucceededRef.current) {
-      onLoading?.(true);
-      setIsLoading(true);
-    }
+    onLoading?.(true);
     onError?.(null);
+    // Do not clear prior success payload here — avoids empty flashes and feels faster.
+    setIsLoading(true);
     try {
       if (method === "GET") {
         return await axios.get(url, {
@@ -155,8 +137,6 @@ export const ApiRequest = (props: ApiRequestType) => {
       onSuccess(data) {
         onLoading?.(false);
         setIsLoading(false);
-        hasSucceededRef.current = true;
-        setHasSucceeded(true);
         if (cacheEnabled) {
           writeApiCache(cacheKey!, data?.data);
           // Mark the entry fresh so a later key change (the Authorization
@@ -172,11 +152,8 @@ export const ApiRequest = (props: ApiRequestType) => {
       // one still revalidates, but behind the already-painted cached data.
       revalidateOnMount: hasFreshCache ? false : true,
       revalidateIfStale: hasFreshCache ? false : true,
-      // Dedupe identical in-flight polls; `fresh` alone used to force 0 and
-      // allow stacked Reservation requests every tick.
-      dedupingInterval: fresh && !(refreshInterval > 0) ? 0 : 2000,
-      // Keep the previous payload painted while polling / soft-refreshing.
-      keepPreviousData: !fresh || refreshInterval > 0,
+      dedupingInterval: fresh ? 0 : 2000,
+      keepPreviousData: !fresh,
       refreshInterval,
       // Polling a background tab wastes requests; SWR revalidates on remount.
       refreshWhenHidden: false,
@@ -208,13 +185,13 @@ export const ApiRequest = (props: ApiRequestType) => {
     onLoadingRef.current?.(false);
   }, [fetchKey]);
 
-  // Initial fresh fetch may show a skeleton; background polling / revalidation
-  // must keep children mounted so lists and form state do not reset.
+  // Fresh requests should show loading whenever validating (no stale paint).
+  // Any cached payload (even stale) suppresses the skeleton, since the data is
+  // already on screen while revalidation happens in the background.
   const showLoading =
     previewLoadingDisplay ||
     (!(cacheEnabled && cached) &&
-      (isLoading ||
-        (fresh && isValidating && shouldFetchRequest && !hasSucceeded)));
+      (isLoading || (fresh && isValidating && shouldFetchRequest)));
 
   if (showLoading) {
     return loadingDisplay;

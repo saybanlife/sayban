@@ -1041,21 +1041,13 @@
   max-width: 100%;
   left: 0;
   top: 0;
-  bottom: 0;
   z-index: 0;
   position: absolute;
   right: 0;
   display: none;
-  min-height: 0;
-  /* Same node as MainPageQuestion.module.css .root — must scroll here. */
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
 .mainPageQuestionpage_question:global(.__wab_instance) {
   display: flex;
-  flex-direction: column;
-  min-height: 0;
 }
 .mainPageStaffs:global(.__wab_instance) {
   max-width: 100%;

@@ -9,11 +9,7 @@
  */
 
 /** Screens that host a companion picker dialog. */
-export type CompanionDialogHost =
-  | "center"
-  | "centerOffers"
-  | "staff"
-  | "visitBooking";
+export type CompanionDialogHost = "center" | "centerOffers" | "staff";
 
 export type CompanionReturn = {
   /** `router.asPath` of the screen that opened the picker. */
@@ -23,12 +19,7 @@ export type CompanionReturn = {
 
 const STORAGE_KEY = "sayban.companion.return";
 
-const HOSTS: CompanionDialogHost[] = [
-  "center",
-  "centerOffers",
-  "staff",
-  "visitBooking"
-];
+const HOSTS: CompanionDialogHost[] = ["center", "centerOffers", "staff"];
 
 export function rememberCompanionReturn(entry: CompanionReturn) {
   if (typeof window === "undefined") return;

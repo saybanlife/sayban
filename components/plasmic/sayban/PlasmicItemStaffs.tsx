@@ -676,7 +676,7 @@ function PlasmicItemStaffs__RenderFunc(props: {
           label={
             <div className={classNames("all", "__wab_text", sty.text__dcDSy)}>
               {
-                "\u0627\u0646\u062a\u062e\u0627\u0628 \u0628\u0631\u0627\u06cc \u0645\u0635\u0627\u062d\u0628\u0647"
+                "\u0627\u0646\u062a\u062e\u0627\u0628 \u067e\u0631\u0633\u062a\u0627\u0631"
               }
             </div>
           }

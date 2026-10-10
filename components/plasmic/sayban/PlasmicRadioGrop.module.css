@@ -16,7 +16,7 @@
   border-width: 0px;
 }
 .rootselectedLine {
-  border-color: #6f8a3a;
+  border-color: #8254c6;
 }
 .rootdisable {
   background: var(--token-lvtosLib60Mj);
@@ -185,7 +185,7 @@
   font-weight: 700;
 }
 .slotTargetChildrenselected_color_light {
-  color: #6f8a3a;
+  color: #8254c6;
 }
 .slotTargetChildrenstyle2_lineligt_selected {
   color: var(--token-9M5jRUPt8Msb);

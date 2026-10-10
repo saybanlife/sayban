@@ -43,19 +43,7 @@ export const PUBLIC_ROUTES = {
   search: "/search",
   serviceHoliday: "/service/holiday",
   serviceWorking: "/service/working/",
-  /** Bulk availability for the visit picker (inclusive Gregorian range). */
-  serviceWorkingRange: "/service/working/range/",
   reservation: "/Reservation",
-  /**
-   * GET ?id= — enriched reservation details for the signed-in owner
-   * (n8n `reservations` workflow; replaces same-origin `/api/reservations/:id` GET).
-   */
-  reservationDetails: "reservations/details",
-  /**
-   * POST { reservation_id, action, ... } — customer lifecycle status actions
-   * (n8n `reservations` workflow; replaces same-origin `/api/reservations/:id` POST).
-   */
-  reservationLifecycle: "reservations/lifecycle",
   setComment: "set/comment/",
   city: "city",
   staffServices: "/staffServices",
@@ -78,10 +66,6 @@ export const PUBLIC_ROUTES = {
   deletePatient: "delete/patient",
   updateAddress: "update/address",
   deleteAddress: "delete/address",
-
-  /** Persistent «وضعیت سالمند» answers for a user (self or companion linked user). */
-  elderlyStatus: "elderly-status",
-  elderlyStatusUpdate: "elderly-status/update",
 
   /** Public FCM token upsert: POST { token, platform }. Bearer user JWT. */
   setFcmToken: "setFcmToken",
@@ -222,9 +206,6 @@ export const PANEL_ROUTES = {
   question: "/panel/question",
   questionUpdate: "/panel/question/update",
   questionDelete: "/panel/question/delete",
-  questionCategories: "/panel/question/categories",
-  questionCategoryUpdate: "/panel/question/categories/update",
-  questionCategoryDelete: "/panel/question/categories/delete",
 
   /** Support chat (SuperAdmin) */
   supportConversations: "panel/support/conversations",
@@ -245,9 +226,7 @@ export function resolveApiUrl(path: string): string {
 export const SUPPORT_WEBHOOK = {
   userListConversations: "support/conversations/",
   userCreateConversation: "support/conversations/create",
-  userCreateCallback: "support/callbacks/create",
   panelListConversations: "panel/support/conversations",
-  panelListCallbacks: "panel/support/callbacks",
   userMessages: (id: string | number) => userSupportMessagesPath(id),
   userClose: (id: string | number) =>
     `user-support-close/support/conversations/${id}/close`,
@@ -281,9 +260,6 @@ export function resolveUserSupportWebhookPath(
   if (internalPath === "conversations/create" && httpMethod === "POST") {
     return SUPPORT_WEBHOOK.userCreateConversation;
   }
-  if (internalPath === "callbacks/create" && httpMethod === "POST") {
-    return SUPPORT_WEBHOOK.userCreateCallback;
-  }
   if (internalPath === "conversations" && httpMethod === "GET") {
     return SUPPORT_WEBHOOK.userListConversations;
   }
@@ -311,9 +287,6 @@ export function resolvePanelSupportWebhookPath(
 
   if (pathOnly === "conversations" && httpMethod === "GET") {
     return SUPPORT_WEBHOOK.panelListConversations;
-  }
-  if (pathOnly === "callbacks" && httpMethod === "GET") {
-    return SUPPORT_WEBHOOK.panelListCallbacks;
   }
 
   const messagesMatch = pathOnly.match(/^conversations\/(\d+)\/messages$/);

@@ -17,8 +17,7 @@ import { PANEL_ROUTES, resolveApiUrl } from "@/lib/apiRoutes";
 import { PANEL_AUTH_COOKIE_NAME, readCookie } from "@/lib/authCookies";
 import {
   filterPanelMenuForNurseStaffing,
-  shouldShowStaffsMenu,
-  withSupportCallbackMenuItem
+  shouldShowStaffsMenu
 } from "./panel/nurseStaffingAccess";
 
 type PanelProfile = {
@@ -207,14 +206,14 @@ function Panel() {
             render: (renderProps: any, Comp: any) => (
               <Comp
                 {...renderProps}
-                menu={withSupportCallbackMenuItem(
+                menu={
                   careDomainReady
                     ? filterPanelMenuForNurseStaffing(renderProps.menu, {
                         role: profile?.role,
                         careDomain: profile?.care_domain
                       })
                     : renderProps.menu
-                )}
+                }
                 selecteItem={menuSelection}
               />
             )

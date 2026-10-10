@@ -147,60 +147,12 @@ export function resolveReservationDisplayPerson(
     item.longitude
   );
 
-  const owner = pickPerson(asRecord(item.user));
-  const forUser =
-    pickPerson(asRecord(item.for_user)) ||
-    pickPerson(asRecord(item.booked_for_user)) ||
-    pickPerson(asRecord(item.forUser));
   const patient =
     pickPerson(asRecord(item.patient)) ||
     pickPerson(asRecord(item.companion)) ||
     pickPerson(asRecord(item.booked_for)) ||
     pickPerson(asRecord(item.patient_info));
-
-  const bookerId = Number(item.user_id);
-  const forUserId = Number(
-    item.for_user_id ?? asRecord(item.for_user)?.id ?? asRecord(item.booked_for_user)?.id
-  );
-  const forUserIsCompanion =
-    Number.isFinite(forUserId) &&
-    forUserId > 0 &&
-    Number.isFinite(bookerId) &&
-    bookerId > 0 &&
-    forUserId !== bookerId;
-
-  if (forUser && (forUserIsCompanion || patient)) {
-    return {
-      ...forUser,
-      mobile: forUser.mobile || patient?.mobile || owner?.mobile,
-      phone: forUser.phone || patient?.phone || owner?.phone,
-      national_code:
-        forUser.national_code || patient?.national_code || owner?.national_code,
-      national_id:
-        forUser.national_id || patient?.national_id || owner?.national_id,
-      gender: forUser.gender || patient?.gender || owner?.gender,
-      birth_date: forUser.birth_date || patient?.birth_date || owner?.birth_date,
-      address:
-        forUser.address ||
-        patient?.address ||
-        owner?.address ||
-        reservationAddress,
-      latitude:
-        forUser.latitude ||
-        patient?.latitude ||
-        owner?.latitude ||
-        reservationLatitude,
-      longitude:
-        forUser.longitude ||
-        patient?.longitude ||
-        owner?.longitude ||
-        reservationLongitude,
-      relation: forUser.relation || patient?.relation,
-      relation_persian:
-        forUser.relation_persian || patient?.relation_persian,
-      isCompanion: true
-    };
-  }
+  const owner = pickPerson(asRecord(item.user));
 
   if (patient) {
     return {
@@ -217,16 +169,6 @@ export function resolveReservationDisplayPerson(
       longitude:
         patient.longitude || owner?.longitude || reservationLongitude,
       isCompanion: true
-    };
-  }
-
-  if (forUser && !forUserIsCompanion) {
-    return {
-      ...forUser,
-      address: forUser.address || owner?.address || reservationAddress,
-      latitude: forUser.latitude || owner?.latitude || reservationLatitude,
-      longitude: forUser.longitude || owner?.longitude || reservationLongitude,
-      isCompanion: false
     };
   }
 

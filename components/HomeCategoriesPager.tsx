@@ -1,7 +1,6 @@
 import * as React from "react";
 import plasmicStyles from "./plasmic/sayban/PlasmicHome.module.css";
 import styles from "./HomeCategoriesPager.module.css";
-import scrollStyles from "./home/homeScroll.module.css";
 import Icon33Icon from "./plasmic/sayban/icons/PlasmicIcon__Icon33";
 import Icon34Icon from "./plasmic/sayban/icons/PlasmicIcon__Icon34";
 
@@ -89,7 +88,6 @@ export function HomeCategoriesPager({
         "all",
         plasmicStyles.freeBox___9Bjvc,
         styles.pager,
-        scrollStyles.cards,
         className
       ]
         .filter(Boolean)

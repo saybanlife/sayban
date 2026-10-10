@@ -755,17 +755,13 @@ export function getCareTreatmentGroups(
     .filter(item => asTruthyFlag(item.has_it) && String(item.name || "").trim())
     .map(item => {
       const slug = String(item.slug || item.id || item.name);
-      const dbOrder = Number(item.sort_order);
       return {
         id: slug,
         label: String(item.name).trim(),
         detail: item.note ? String(item.note).trim() : undefined,
         available: true,
         keywords: [String(item.name)],
-        // Prefer DB order (panel DnD); fall back to catalog slug order.
-        sortKey: Number.isFinite(dbOrder)
-          ? dbOrder
-          : FACILITY_ORDER.get(slug) ?? 999
+        sortKey: FACILITY_ORDER.get(slug) ?? Number(item.sort_order ?? 999)
       };
     })
     .sort((a, b) => a.sortKey - b.sortKey)
@@ -777,16 +773,13 @@ export function getCareTreatmentGroups(
     .filter(row => String(row.specialist_type).trim() !== DOCTOR_TYPE)
     .map(row => {
       const type = String(row.specialist_type).trim();
-      const dbOrder = Number(row.sort_order);
       return {
         id: type,
         label: specialistLabel(type),
         detail: careScheduleDetail(row) ?? undefined,
         available: true,
         keywords: [type, specialistLabel(type)],
-        sortKey: Number.isFinite(dbOrder)
-          ? dbOrder
-          : SERVICE_ORDER.get(type) ?? 999
+        sortKey: SERVICE_ORDER.get(type) ?? 999
       };
     })
     .sort((a, b) => a.sortKey - b.sortKey)

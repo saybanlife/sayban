@@ -7,7 +7,6 @@ const PLACEHOLDER_SUFFIX = "مرکز، خدمات و امکانات";
 
 export type HomeSearchInputProps = TextInputProps & {
   onDebouncedValueChange?: (value: string) => void;
-  header?: React.ReactNode;
 };
 
 export const HOME_SEARCH_DEBOUNCE_MS = 250;
@@ -15,7 +14,6 @@ export const HOME_SEARCH_DEBOUNCE_MS = 250;
 export function HomeSearchInput({
   onChange,
   onDebouncedValueChange,
-  header,
   ...inputProps
 }: HomeSearchInputProps) {
   const externalValue = String(inputProps.value ?? "");
@@ -51,7 +49,6 @@ export function HomeSearchInput({
 
   return (
     <div className={styles.wrap}>
-      {header}
       {!hasValue ? (
         <div className={styles.placeholderOverlay} aria-hidden="true">
           <span className={styles.placeholderPrefix}>{PLACEHOLDER_PREFIX}</span>

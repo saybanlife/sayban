@@ -15,8 +15,7 @@ import { mergePublicAuthHeaders } from "@/lib/publicAuthHeaders";
 import { deleteCookie, readCookie, writeCookie } from "@/lib/authCookies";
 import { logoutPanel } from "@/lib/panelSession";
 import { normalizeOptionalProfileNationalCode } from "@/lib/profilePayload";
-import { clearGuestSession, rememberAuthReturn } from "@/lib/guestSession";
-import { PUBLIC_AUTH_COOKIE_NAME } from "@/lib/publicAuthToken";
+import { rememberAuthReturn } from "@/lib/guestSession";
 import {
   ensureVerifiedPublicAuth,
   hasPhoneVerifiedPublicAuth
@@ -238,12 +237,6 @@ export const Fragment = ({
 
       setCookie: (name: string, value: string, days: number = 7) => {
         writeCookie(name, value, days);
-        // Phone OTP (PlasmicLogin) writes `token` without clearing guest LS.
-        // Leaving the marker made Login/Homepage treat the session as guest-only
-        // and wipe a valid JWT while GUEST_MODE_ENABLED is false.
-        if (name === PUBLIC_AUTH_COOKIE_NAME && value) {
-          clearGuestSession();
-        }
       },
 
       getCookie: (name: string) => {

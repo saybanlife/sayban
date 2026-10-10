@@ -85,12 +85,12 @@
   background: #ffffff00;
 }
 .rootcolor_perper {
-  background: #6f8a3a4d;
+  background: #8254c64d;
 }
 .rootcolor_line {
   background: none;
   border-width: 2px;
-  border-color: #6f8a3a;
+  border-color: #8254c6;
 }
 .rootcolor_orange {
   background: #fa8214;
@@ -113,7 +113,7 @@
   background: var(--token-clkRsHVdZgT8);
 }
 .rootfilterX {
-  background: #6f8a3a00;
+  background: #8254c600;
 }
 .rootloading {
   padding-top: 0px;
@@ -130,7 +130,7 @@
   border-color: var(--token-kI60KiRr_Lur);
 }
 .rootbuttonDataaa {
-  background: linear-gradient(#682c2c00, #682c2c00), #6f8a3a;
+  background: linear-gradient(#682c2c00, #682c2c00), #8254c6;
 }
 .rootserface {
   background: var(--token-O-9PmcwkoIXk);
@@ -160,12 +160,12 @@
   outline: none;
 }
 .root:hover:hover {
-  background: #6f8a3a;
+  background: #8254c6;
   backdrop-filter: grayscale(15%);
   -webkit-backdrop-filter: grayscale(15%);
 }
 .root:active:active {
-  background: #6f8a3a;
+  background: #8254c6;
   backdrop-filter: grayscale(21%);
   -webkit-backdrop-filter: grayscale(21%);
 }
@@ -248,10 +248,10 @@
   background: #ffffff00;
 }
 .rootcolor_perper:hover:hover {
-  background: #6f8a3a33;
+  background: #8254c633;
 }
 .rootcolor_perper:active:active {
-  background: #6f8a3a99;
+  background: #8254c699;
 }
 .rootcolor_line:hover:hover {
   background: #7444bc1a;
@@ -434,7 +434,7 @@
   color: rgb(0, 0, 0);
 }
 .slotTargetChildrencolor_line {
-  color: #6f8a3a;
+  color: #8254c6;
   font-weight: 700;
 }
 .slotTargetChildrencolor_softBlack {

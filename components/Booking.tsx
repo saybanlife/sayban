@@ -9,65 +9,23 @@ import {
   RESERVATION_CACHE_KEY,
   type ReservationRecord
 } from "./reservation/reservationDetailsModel";
-import {
-  reservationRows,
-  reservationsForBookingTab,
-  type BookingTab
-} from "./reservation/bookingTabs";
 import { ApiRequest } from "@/fragment/components/api-request";
-import ItemBooking from "./ItemBooking";
-import BookingCreateMenu from "./booking/BookingCreateMenu";
-import InactiveBookingCard from "./booking/InactiveBookingCard";
 import layoutStyles from "./BookingLayout.module.css";
 
 export interface BookingProps extends DefaultBookingProps {}
 
-/** Soft background refresh — long enough to avoid request spam on the booking page. */
-const RESERVATION_POLL_MS = 30000;
-
-function reservationListSignature(rows: ReservationRecord[]) {
-  return rows
-    .map(item =>
-      [
-        item.id,
-        item.status,
-        item.lifecycle_stage,
-        item.payment_status,
-        item.start_time,
-        item.updated_at
-      ].join(":")
-    )
-    .join("|");
-}
+/** Matches the support chat's polling cadence (`SupportChat.tsx`). */
+const RESERVATION_POLL_MS = 10000;
 
 function Booking_(props: BookingProps, ref: HTMLElementRefOf<"div">) {
   const router = useRouter();
-  /** Bumps when entering booking with auth so the list refetches once. */
+  /** Bumps on every visit to the booking page so reservation list is always refetched. */
   const [visitKey, setVisitKey] = React.useState(0);
-  const [selectedTab, setSelectedTab] = React.useState<BookingTab>("active");
-  const [reservations, setReservations] = React.useState<ReservationRecord[]>(
-    []
-  );
-  const reservationsRef = React.useRef(reservations);
-  reservationsRef.current = reservations;
-  const apiReady = Boolean(props.api);
 
   React.useEffect(() => {
-    if (!apiReady) return;
-    // Soft remount of the SWR key only — do not wipe the list (avoids jump).
+    if (!props.api) return;
     setVisitKey(key => key + 1);
-  }, [apiReady, router.asPath]);
-
-  const activeReservations = React.useMemo(
-    () => reservationsForBookingTab(reservations, "active"),
-    [reservations]
-  );
-  const completedReservations = React.useMemo(
-    () => reservationsForBookingTab(reservations, "completed"),
-    [reservations]
-  );
-  const visibleReservations =
-    selectedTab === "active" ? activeReservations : completedReservations;
+  }, [props.api, router.asPath]);
 
   const openReservationPage = React.useCallback(
     (item: ReservationRecord | null | undefined) => {
@@ -89,31 +47,11 @@ function Booking_(props: BookingProps, ref: HTMLElementRefOf<"div">) {
     [router]
   );
 
-  const applyReservationPayload = React.useCallback((data: unknown) => {
-    const next = reservationRows(data);
-    const prev = reservationsRef.current;
-    if (reservationListSignature(prev) === reservationListSignature(next)) {
-      return false;
-    }
-    setReservations(next);
-    return true;
-  }, []);
-
   return (
-    <>
-      <PlasmicBooking
-        {...props}
-        root={{
-          ref,
-          className: [
-            layoutStyles.bookingRoot,
-            props.api ? layoutStyles.bookingVisible : "",
-            props.className
-          ]
-            .filter(Boolean)
-            .join(" ")
-        }}
-        overrides={{
+    <PlasmicBooking
+      {...props}
+      root={{ ref, className: layoutStyles.bookingRoot }}
+      overrides={{
         reservation: {
           render: (
             renderProps: React.ComponentProps<typeof ApiRequest>,
@@ -122,21 +60,10 @@ function Booking_(props: BookingProps, ref: HTMLElementRefOf<"div">) {
             <DefaultApiRequest
               {...renderProps}
               fresh
-              // Soft poll: ApiRequest keeps children mounted while revalidating.
+              // Reservation status changes server-side (confirmed, cancelled,
+              // paid), so keep the list current without a manual refresh.
               refreshInterval={RESERVATION_POLL_MS}
               shouldFetch={Boolean(renderProps.shouldFetch) && visitKey > 0}
-              onSuccess={(data: unknown) => {
-                const changed = applyReservationPayload(data);
-                // Avoid Plasmic $state churn on identical soft-refresh payloads.
-                if (changed) renderProps.onSuccess?.(data);
-              }}
-              onError={(error: unknown) => {
-                // Keep the current list on soft-refresh failures.
-                if (reservationsRef.current.length === 0) {
-                  setReservations([]);
-                  renderProps.onError?.(error);
-                }
-              }}
               config={{
                 ...renderProps.config,
                 headers: {
@@ -145,43 +72,7 @@ function Booking_(props: BookingProps, ref: HTMLElementRefOf<"div">) {
                   "X-Client-Visit": String(visitKey)
                 }
               }}
-            >
-              {visibleReservations.length > 0 ? (
-                <div
-                  className={layoutStyles.requestList}
-                  role="list"
-                  data-booking-list={selectedTab}
-                >
-                  {visibleReservations.map(reservation => (
-                    <div
-                      key={String(reservation.id)}
-                      className={layoutStyles.requestItem}
-                      role="listitem"
-                    >
-                      {selectedTab === "completed" ? (
-                        <InactiveBookingCard
-                          reservation={reservation}
-                          onOpenDetails={() => openReservationPage(reservation)}
-                        />
-                      ) : (
-                        <ItemBooking
-                          booking
-                          home={reservation.service_location === "home"}
-                          item={reservation}
-                          goToDetails={() => openReservationPage(reservation)}
-                        />
-                      )}
-                    </div>
-                  ))}
-                </div>
-              ) : reservations.length > 0 ? (
-                <div className={layoutStyles.tabEmpty} role="status">
-                  درخواستی در این بخش وجود ندارد.
-                </div>
-              ) : (
-                renderProps.children
-              )}
-            </DefaultApiRequest>
+            />
           )
         },
         itemBooking: {
@@ -196,53 +87,13 @@ function Booking_(props: BookingProps, ref: HTMLElementRefOf<"div">) {
             />
           )
         },
-        header: {
-          props: {
-            slot2: (
-              <div
-                className={layoutStyles.tabs}
-                role="tablist"
-                aria-label="وضعیت درخواست‌ها"
-              >
-                <button
-                  type="button"
-                  role="tab"
-                  aria-selected={selectedTab === "active"}
-                  className={
-                    selectedTab === "active"
-                      ? layoutStyles.tabActive
-                      : layoutStyles.tab
-                  }
-                  onClick={() => setSelectedTab("active")}
-                >
-                  فعال ({activeReservations.length.toLocaleString("fa-IR")})
-                </button>
-                <button
-                  type="button"
-                  role="tab"
-                  aria-selected={selectedTab === "completed"}
-                  className={
-                    selectedTab === "completed"
-                      ? layoutStyles.tabActive
-                      : layoutStyles.tab
-                  }
-                  onClick={() => setSelectedTab("completed")}
-                >
-                  تمام‌شده ({completedReservations.length.toLocaleString("fa-IR")})
-                </button>
-              </div>
-            )
-          }
-        },
         dialog: {
           props: {
             opendialog: false
           }
         }
-        }}
-      />
-      {props.api ? <BookingCreateMenu /> : null}
-    </>
+      }}
+    />
   );
 }
 

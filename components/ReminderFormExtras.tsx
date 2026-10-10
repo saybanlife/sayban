@@ -106,38 +106,12 @@ export default function ReminderFormExtras({
             onClick={() => fileRef.current?.click()}
           >
             <span className={styles.addPlus} aria-hidden>
-              <svg
-                viewBox="0 0 24 24"
-                width="1.15em"
-                height="1.15em"
-                aria-hidden
-                focusable="false"
-              >
-                <rect
-                  x="4"
-                  y="5.5"
-                  width="16"
-                  height="13"
-                  rx="2.2"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.7"
-                />
-                <circle cx="9" cy="10" r="1.4" fill="currentColor" />
-                <path
-                  d="M5.8 16.2 9.6 12.8l2.4 2.2 3-3.2 3.2 4.4"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              +
             </span>
             {uploading
               ? "در حال آپلود…"
               : value.imageUrl
-                ? "تغییر"
+                ? "تغییر تصویر"
                 : "افزودن"}
           </button>
           {value.imageUrl ? (
