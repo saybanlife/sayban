@@ -61,13 +61,8 @@ import {
 
 import RadioGrop from "../../RadioGrop"; // plasmic-import: 1Z5DhPAqCT-z/component
 import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -299,9 +294,17 @@ function PlasmicRadioGroupLiom__RenderFunc(props: {
         {
           [sty.rootcolor_base2]: hasVariant($state, "color", "base2"),
           [sty.rootcolor_line]: hasVariant($state, "color", "line"),
+          [sty.rootcolor_line_size_mini]:
+            hasVariant($state, "size", "mini") &&
+            hasVariant($state, "color", "line"),
           [sty.rootdirection_v]: hasVariant($state, "direction", "v"),
           [sty.rooticon]: hasVariant($state, "icon", "icon"),
           [sty.rootmoulty]: hasVariant($state, "moulty", "moulty"),
+          [sty.rootmoulty_color_line_size_mini]:
+            hasVariant($state, "size", "mini") &&
+            hasVariant($state, "color", "line") &&
+            hasVariant($state, "moulty", "moulty"),
+          [sty.rootnoselect]: hasVariant($state, "noselect", "noselect"),
           [sty.rootsize_mini]: hasVariant($state, "size", "mini"),
           [sty.rootsize_small]: hasVariant($state, "size", "small"),
           [sty.rootsize_textSize]: hasVariant($state, "size", "textSize"),
@@ -391,11 +394,18 @@ function PlasmicRadioGroupLiom__RenderFunc(props: {
               )
             })}
             color={hasVariant($state, "color", "base2") ? undefined : "light"}
+            comingSoon={Boolean(
+              (currentItem as { __addDisabled?: boolean })?.__addDisabled
+            )}
             direction={hasVariant($state, "direction", "v") ? "v" : undefined}
             icon={hasVariant($state, "icon", "icon") ? true : undefined}
             key={currentIndex}
             onClick={async event => {
               const $steps = {};
+
+              if ((currentItem as { __addDisabled?: boolean })?.__addDisabled) {
+                return;
+              }
 
               $steps["updateSelected"] = true
                 ? (() => {
@@ -493,6 +503,7 @@ function PlasmicRadioGroupLiom__RenderFunc(props: {
                   ),
                   [sty.menuIconicon]: hasVariant($state, "icon", "icon")
                 })}
+                color={"praimery"}
                 icons={(() => {
                   try {
                     return (() => {
@@ -704,11 +715,17 @@ function PlasmicRadioGroupLiom__RenderFunc(props: {
                     ? (() => {
                         const actionArgs = {
                           customFunction: async () => {
-                            return $state.selects.includes(currentItem.value)
-                              ? ($state.selects = $state.selects.filter(
+                            const current = Array.isArray($state.selects)
+                              ? [...$state.selects]
+                              : [];
+                            return current.includes(currentItem.value)
+                              ? ($state.selects = current.filter(
                                   i => i != currentItem.value
                                 ))
-                              : $state.selects.push(currentItem.value);
+                              : ($state.selects = [
+                                  ...current,
+                                  currentItem.value
+                                ]);
                           }
                         };
                         return (({ customFunction }) => {

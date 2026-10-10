@@ -1,0 +1,28 @@
+/* Hosts MainPageHomeSlider / MainPageTags / MainPageSupport / MainPageReviews
+   inside PlasmicMain, matching MainPageReservation absolute fill + TopPage clearance. */
+
+.mainRootFill {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  align-self: stretch;
+  flex: 1;
+}
+
+/* Same shell as .mainPageReservation in PlasmicMain.module.css */
+.pageLayer {
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.pageLayerActive {
+  display: flex;
+}

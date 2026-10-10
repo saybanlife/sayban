@@ -1,0 +1,35 @@
+.panelPad {
+  padding: var(--token-73iLa06AE6f4);
+  overflow: auto;
+}
+
+.fieldset {
+  border: 1px solid var(--token-LN1YkB123lXQ);
+  border-radius: 0.625rem;
+  padding: 0.75rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.radioRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--token-9M5jRUPt8Msb);
+}
+
+.resultBox {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 0.625rem;
+  background: var(--token-KPGXdu9o7llP);
+  color: var(--token-KjATzAYJ5IB7);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-width: 40rem;
+}

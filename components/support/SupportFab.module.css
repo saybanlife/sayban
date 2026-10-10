@@ -1,0 +1,95 @@
+.supportAction {
+  flex: 0 0 auto;
+}
+
+.button {
+  appearance: none;
+  display: inline-flex;
+  direction: ltr;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0.2rem 0.3rem 0.2rem 0.85rem;
+  border: 0;
+  border-radius: 999px;
+  background: #fffdf74f;
+  color: var(--token-KPGXdu9o7llP, #f5f3eb);
+  box-shadow: 0 0.2rem 0.65rem rgba(52, 65, 34, 0.08);
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0.35rem 0.8rem rgba(52, 65, 34, 0.13);
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--token-Yo4gdKCgyuAu, #f3c94c);
+  outline-offset: 3px;
+}
+
+.title {
+  direction: rtl;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.badge {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--token-Yo4gdKCgyuAu, #f3c94c);
+  color: #111811;
+}
+
+.agentIcon {
+  display: block;
+  width: 1.55rem;
+  height: 1.55rem;
+}
+
+.statusDot {
+  position: absolute;
+  top: -0.1rem;
+  right: -0.05rem;
+  width: 0.78rem;
+  height: 0.78rem;
+  border: 2px solid #fffdf7;
+  border-radius: 50%;
+  background: #58bb58;
+}
+
+@media (max-width: 380px) {
+  .button {
+    gap: 0.5rem;
+    padding: 0.2rem 0.3rem 0.2rem 0.65rem;
+  }
+
+  .title {
+    font-size: 0.85rem;
+  }
+
+  .badge {
+    width: 2.55rem;
+    height: 2.55rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

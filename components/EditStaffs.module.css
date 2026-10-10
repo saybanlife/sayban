@@ -1,0 +1,29 @@
+.switchRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0.75rem;
+  margin: 0.75rem 0 0.25rem;
+  padding: 0.65rem 0.85rem;
+  box-sizing: border-box;
+  direction: rtl;
+  border: 1px solid var(--panel-border, #e8ece8);
+  border-radius: 10px;
+  background: var(--panel-bg-muted, #fafbfa);
+}
+
+.label {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--token-9M5jRUPt8Msb, var(--panel-text, #1f2937));
+  line-height: 1.4;
+}
+
+.checkbox {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: #2f6b4f;
+  cursor: pointer;
+  flex-shrink: 0;
+}

@@ -68,13 +68,8 @@ import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import SelectStars from "../../SelectStars"; // plasmic-import: rIv-AfQad6sO/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { DialogClose } from "@plasmicpkgs/radix-ui";
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -82,13 +77,8 @@ import sty from "./PlasmicFilter.module.css"; // plasmic-import: TmisqS8piGSB/cs
 
 import ChevronRightIcon from "./icons/PlasmicIcon__ChevronRight"; // plasmic-import: asThzEchEMNJ/icon
 import ChevronLeftIcon from "./icons/PlasmicIcon__ChevronLeft"; // plasmic-import: vQC4_6sr1Yuo/icon
-<<<<<<< HEAD
-import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
-import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
-=======
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
->>>>>>> plasmicops/rQ6tUgoS/newMain
 import XIcon from "./icons/PlasmicIcon__X"; // plasmic-import: YuRnfxQGHRim/icon
 
 createPlasmicElementProxy;
@@ -675,23 +665,40 @@ function PlasmicFilter__RenderFunc(props: {
                       const actionArgs = {
                         customFunction: async () => {
                           return (() => {
+                            const next = {
+                              ...(typeof $state.filtes === "object" &&
+                              $state.filtes
+                                ? $state.filtes
+                                : {})
+                            };
                             if ($state.selectStars.rate > 0) {
-                              $state.filtes.rate = {
+                              next.rate = {
                                 value: $state.selectStars.rate,
                                 label: `امتیاز ${$state.selectStars.rate} به بالا`
                               };
                             } else {
-                              delete $state.filtes.rate;
+                              delete next.rate;
                             }
                             if (
                               $state.availability.selected &&
-                              $state.availability.selected !== ""
+                              $state.availability.selected !== "" &&
+                              $state.availability.selected !== "any"
                             ) {
-                              return ($state.filtes.availability =
-                                $state.availability.selected);
+                              const availabilityLabels = {
+                                open_now: "در حال حاضر باز",
+                                bookable: "قابل نوبت‌دهی"
+                              };
+                              next.availability = {
+                                value: $state.availability.selected,
+                                label:
+                                  availabilityLabels[
+                                    $state.availability.selected
+                                  ] || $state.availability.selected
+                              };
                             } else {
-                              return delete $state.filtes.availability;
+                              delete next.availability;
                             }
+                            $stateSet($state, ["filtes"], next);
                           })();
                         }
                       };
@@ -779,9 +786,9 @@ function PlasmicFilter__RenderFunc(props: {
                       const actionArgs = {
                         customFunction: async () => {
                           return (() => {
-                            $state.filtes = {};
-                            $state.selectStars.rate = 0;
-                            return ($state.availability.selected = "");
+                            $stateSet($state, ["filtes"], {});
+                            $stateSet($state, ["selectStars", "rate"], 0);
+                            $stateSet($state, ["availability", "selected"], "");
                           })();
                         }
                       };

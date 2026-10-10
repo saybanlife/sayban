@@ -1,0 +1,26 @@
+/* Places the address picker inside the centers page header, on the visual left.
+   The class lands on Header's root <section> (see components/Header.tsx), so the
+   generated header boxes are reached with :global() — the same approach as
+   components/HeaderHitArea.module.css. */
+
+/* `freeBox__o586O` is the Header's `children` slot. The top row is a plain
+   `flex-direction: row` in an RTL document, so this last child already sits at
+   the visual left; it only needs to stop being clamped to the designed 100x30.
+   In RTL `flex-end` is the visual left edge, so the chip hugs it. */
+.headerWithAddress :global([class*="freeBox__o586O"]) {
+  width: auto;
+  height: auto;
+  min-width: 0;
+  max-width: 60%;
+  flex: 0 1 auto;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Let the `width: 100%` title shrink instead of pushing the picker out of the
+   row, and keep it from colliding with the picker. */
+.headerWithAddress :global([class*="freeBox___07Lui"]) {
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+}

@@ -12,7 +12,7 @@
 // Component: qQJONu9yTCat
 
 import * as React from "react";
-
+import SupportFab from "../../support/SupportFab";
 import Head from "next/head";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
@@ -62,23 +62,50 @@ import {
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import Menu2 from "../../Menu2"; // plasmic-import: z9yXgH-e4ant/component
 import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
-import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import User from "../../User"; // plasmic-import: PVZXFz1DIsfR/component
-import Booking from "../../Booking"; // plasmic-import: f1blqtlMCCYK/component
+import MainLiad from "../../MainLiad"; // plasmic-import: 9XN_qwXFJeGM/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import Home from "../../Home"; // plasmic-import: m-UDUThzN-63/component
+// Hand-added: skeleton for the categories loading state (see loadingDisplay).
+import HomeCategoriesSkeleton from "../../home/HomeCategoriesSkeleton";
 import Categories from "../../Categories"; // plasmic-import: R95SHqmqnvX5/component
 import Subcategories from "../../Subcategories"; // plasmic-import: JM9_woEGqy8m/component
 import Center from "../../Center"; // plasmic-import: Lh-Py4-EsRhC/component
+import Booking from "../../Booking"; // plasmic-import: f1blqtlMCCYK/component
 import Payment from "../../Payment"; // plasmic-import: BVIyToFh1miy/component
+import About from "../../About"; // plasmic-import: HCruh85VppFE/component
+import FaQs from "../../FaQs"; // plasmic-import: yPuIj8DNJTuo/component
+import Rules from "../../Rules"; // plasmic-import: QNZBG-ZiRePi/component
+import EditUser from "../../EditUser"; // plasmic-import: gFlyeK2pwR_U/component
+import Notif from "../../Notif"; // plasmic-import: EmnESI2odNrR/component
+import AddPatient from "../../AddPatient"; // plasmic-import: Cu_HVmxmGUNj/component
+import Patient from "../../Patient"; // plasmic-import: MK3ubKSYpzpl/component
+import ReminderSetting from "../../ReminderSetting"; // plasmic-import: PpaPS3SR8Zgr/component
+import Address from "../../Address"; // plasmic-import: O3mS57D3HQdC/component
+import AddAddress from "../../AddAddress"; // plasmic-import: KL79QbMT1Ux3/component
+import PayResult from "../../PayResult"; // plasmic-import: _Vn_IJAgvRM-/component
+import CenterOffers from "../../CenterOffers"; // plasmic-import: mdgKYN8y8UQf/component
+import Staffs from "../../Staffs"; // plasmic-import: 1DOsDXz78UnH/component
+import Staff from "../../Staff"; // plasmic-import: -tivlNol30TA/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
+import {
+  PUBLIC_AUTH_COOKIE_NAME,
+  resolvePublicAuthToken,
+  USE_MOCK_PUBLIC_AUTH_TOKEN,
+  isPublicAuthTokenValid
+} from "@/lib/publicAuthToken";
+import { deleteCookie } from "@/lib/authCookies";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: qQJONu9yTCat/css
 
+import Icon96Icon from "./icons/PlasmicIcon__Icon96"; // plasmic-import: FVWbxRCL1aWE/icon
+import Icon98Icon from "./icons/PlasmicIcon__Icon98"; // plasmic-import: cj8dkcU7fHZX/icon
+import Icon27Icon from "./icons/PlasmicIcon__Icon27"; // plasmic-import: H0kX6aZGCrcz/icon
 import Icon49Icon from "./icons/PlasmicIcon__Icon49"; // plasmic-import: GiSR5zfG8C_s/icon
 import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
@@ -118,13 +145,48 @@ export function generateDynamicMetadata($q: any, $ctx: PageCtx) {
 createPlasmicElementProxy;
 
 export type PlasmicHomepage__VariantMembers = {
-  page: "categories" | "subcategories" | "center" | "payment" | "editUser";
+  page:
+  | "categories"
+  | "subcategories"
+  | "center"
+  | "payment"
+  | "editUser"
+  | "booking"
+  | "about"
+  | "faq"
+  | "rules"
+  | "notif"
+  | "addPatient"
+  | "patient"
+  | "reminderSetting"
+  | "address"
+  | "addAddress"
+  | "bookNurse"
+  | "offers"
+  | "staff";
   search2: "search2";
   homePage2: "home" | "reminder" | "user" | "booking";
 };
 export type PlasmicHomepage__VariantsArgs = {
   page?: SingleChoiceArg<
-    "categories" | "subcategories" | "center" | "payment" | "editUser"
+    | "categories"
+    | "subcategories"
+    | "center"
+    | "payment"
+    | "editUser"
+    | "booking"
+    | "about"
+    | "faq"
+    | "rules"
+    | "notif"
+    | "addPatient"
+    | "patient"
+    | "reminderSetting"
+    | "address"
+    | "addAddress"
+    | "bookNurse"
+    | "offers"
+    | "staff"
   >;
   search2?: SingleBooleanChoiceArg<"search2">;
   homePage2?: SingleChoiceArg<"home" | "reminder" | "user" | "booking">;
@@ -146,28 +208,43 @@ export type PlasmicHomepage__OverridesType = {
   homePage?: Flex__<"div">;
   menu2?: Flex__<typeof Menu2>;
   textInput?: Flex__<typeof TextInput>;
-  button?: Flex__<typeof Button>;
-  img?: Flex__<typeof PlasmicImg__>;
   user?: Flex__<typeof User>;
-  booking?: Flex__<typeof Booking>;
+  mainLiad?: Flex__<typeof MainLiad>;
   categories2?: Flex__<typeof ApiRequest>;
+  button2?: Flex__<typeof Button>;
+  img?: Flex__<typeof PlasmicImg__>;
   home?: Flex__<typeof Home>;
   profile?: Flex__<typeof ApiRequest>;
   categories?: Flex__<typeof Categories>;
   subcategories?: Flex__<typeof Subcategories>;
   center?: Flex__<typeof Center>;
+  booking?: Flex__<typeof Booking>;
   payment?: Flex__<typeof Payment>;
+  about?: Flex__<typeof About>;
+  faQs?: Flex__<typeof FaQs>;
+  rules?: Flex__<typeof Rules>;
+  editUser?: Flex__<typeof EditUser>;
+  notif?: Flex__<typeof Notif>;
+  addPatient?: Flex__<typeof AddPatient>;
   search?: Flex__<typeof ApiRequest>;
+  patient?: Flex__<typeof Patient>;
+  reminderSetting?: Flex__<typeof ReminderSetting>;
+  address?: Flex__<typeof Address>;
+  addAddress?: Flex__<typeof AddAddress>;
+  payResult?: Flex__<typeof PayResult>;
+  centerOffers?: Flex__<typeof CenterOffers>;
+  staffs?: Flex__<typeof Staffs>;
+  staff?: Flex__<typeof Staff>;
 };
 
-export interface DefaultHomepageProps {}
+export interface DefaultHomepageProps { }
 
 const $$ = {};
 
 function useNextRouter() {
   try {
     return useRouter();
-  } catch {}
+  } catch { }
   return undefined;
 }
 
@@ -241,13 +318,33 @@ function PlasmicHomepage__RenderFunc(props: {
           (() => {
             try {
               return (() => {
+                if ($ctx.params?.slug?.includes("addAddress"))
+                  return "addAddress";
+                if ($ctx.params?.slug?.includes("addPatient"))
+                  return "addPatient";
+                if ($ctx.params?.slug?.includes("bookNurse"))
+                  return "bookNurse";
                 if ($ctx.params?.slug?.find(i => i.includes("pay_")))
                   return "payment";
                 if ($ctx.params?.slug?.includes("center")) return "center";
+                if ($ctx.params?.slug?.find(i => i.includes("staff_")))
+                  return "staff";
+                if ($ctx.params?.slug?.find(i => i.includes("offer_")))
+                  return "offers";
                 if ($ctx.params?.slug?.includes("editProfile"))
                   return "editUser";
-                if ($ctx.params?.slug?.[1] != undefined) return "subcategories";
-                if ($ctx.params?.slug?.[0] != undefined) return "categories";
+                if ($ctx.params?.slug?.includes("booking")) return "booking";
+                if ($ctx.params?.slug?.includes("FAQ")) return "faq";
+                if ($ctx.params?.slug?.includes("about")) return "about";
+                if ($ctx.params?.slug?.includes("rules")) return "rules";
+                if ($ctx.params?.slug?.includes("notif")) return "notif";
+                if ($ctx.params?.slug?.includes("patient")) return "patient";
+                if ($ctx.params?.slug?.includes("address")) return "address";
+                if ($ctx.params?.slug?.includes("reminderSetting"))
+                  return "reminderSetting";
+                // Single slug segment opens centers list (skip subcategory picker).
+                // Two segments keep subcategory → centers deep-link.
+                if ($ctx.params?.slug?.[0] != undefined) return "subcategories";
               })();
             } catch (e) {
               if (
@@ -301,8 +398,7 @@ function PlasmicHomepage__RenderFunc(props: {
         path: "token",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwaXJlIjoxNzY0NTA2MjczfQ.A6wRqW0jMYVg_rZ4OMZ5oXrcOVwKq3BG4i_wmvKf_8A"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "search.data",
@@ -339,12 +435,6 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
-      },
-      {
-        path: "button.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "search2",
@@ -413,6 +503,866 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "about.subcategories",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "rules.subcategories",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "editUser.openCity",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $ctx.query?.city == "true";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "notif.subcategories",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "addPatient.openCity",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "addPatient.token",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.token;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "addPatient.id",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.profile.data.result.id;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "editUser.token",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.token;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "editUser.id",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.profile.data.result.id;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "patient.subcategories",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "rP",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "editUser.refresh",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "patient.refresh",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "mainLiad.editTime",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "mainLiad.userInfo",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "mainLiad.token",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU3OWYxMTA5LTAzYzQtNGUxZS1iMDg4LWUxODU4MzI2OTZkMyIsInR5cGUiOiJ1c2VyIiwiaWF0IjoxNzY2MzE5NjQ3fQ.uZnxA89esuV6GR004WIh0sEZyaKTT04uLzKrpp3H2PY"
+      },
+      {
+        path: "mainLiad.remind",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "mainLiad.refresh",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.reminderSetting.refresh;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "mainLiad.reminderBalance",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "mainLiad.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "mainLiad.telegramDialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "reminderSetting.refresh",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "reminderSetting.tel",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "reminderSetting.sms",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "reminderSetting.refreshTime",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "reminderSetting.dialogOpendialog3",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "reminderSetting.category",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({
+          category: [
+            {
+              id: 1,
+              name: "love",
+              name_fa: "\u0639\u0627\u0634\u0642\u0627\u0646\u0647",
+              description:
+                "\u0645\u0646\u0627\u0633\u0628\u062a\u200c\u0647\u0627 \u0648 \u06cc\u0627\u062f\u0622\u0648\u0631\u0647\u0627\u06cc \u0627\u062d\u0633\u0627\u0633\u06cc \u0648 \u0631\u0645\u0627\u0646\u062a\u06cc\u06a9.",
+              color: "#E91E63"
+            },
+            {
+              id: 2,
+              name: "birthday",
+              name_fa: "\u062a\u0648\u0644\u062f",
+              description:
+                "\u06cc\u0627\u062f\u0622\u0648\u0631 \u062a\u0648\u0644\u062f \u0639\u0632\u06cc\u0632\u0627\u0646 \u0648 \u062f\u0648\u0633\u062a\u0627\u0646.",
+              color: "#FFC107"
+            },
+            {
+              id: 3,
+              name: "health",
+              name_fa: "\u0633\u0644\u0627\u0645\u062a",
+              description:
+                "\u06cc\u0627\u062f\u0622\u0648\u0631\u0647\u0627\u06cc \u0645\u0631\u062a\u0628\u0637 \u0628\u0627 \u0633\u0644\u0627\u0645\u062a \u062c\u0633\u0645 \u0648 \u0631\u0648\u0627\u0646\u060c \u0645\u0627\u0646\u0646\u062f \u0686\u06a9\u0627\u067e\u060c \u062f\u0627\u0631\u0648 \u0648 \u0648\u0631\u0632\u0634.",
+              color: "#4CAF50"
+            },
+            {
+              id: 4,
+              name: "international_days",
+              name_fa:
+                "\u0631\u0648\u0632\u0647\u0627\u06cc \u062c\u0647\u0627\u0646\u06cc",
+              description:
+                "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0631\u0648\u0632\u0647\u0627\u06cc \u062c\u0647\u0627\u0646\u06cc \u0645\u0647\u0645 \u0645\u0627\u0646\u0646\u062f \u0631\u0648\u0632 \u0632\u0645\u06cc\u0646\u060c \u0631\u0648\u0632 \u0632\u0646 \u0648 ...",
+              color: "#2196F3"
+            },
+            {
+              id: 5,
+              name: "religious_days",
+              name_fa:
+                "\u0631\u0648\u0632\u0647\u0627\u06cc \u0645\u0630\u0647\u0628\u06cc",
+              description:
+                "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0645\u0646\u0627\u0633\u0628\u062a\u200c\u0647\u0627 \u0648 \u062a\u0639\u0637\u06cc\u0644\u0627\u062a \u0645\u0630\u0647\u0628\u06cc \u0645\u0627\u0646\u0646\u062f \u0639\u06cc\u062f \u0642\u0631\u0628\u0627\u0646\u060c \u0631\u0645\u0636\u0627\u0646 \u0648 ...",
+              color: "#9C27B0"
+            },
+            {
+              id: 6,
+              name: "national_days",
+              name_fa:
+                "\u0631\u0648\u0632\u0647\u0627\u06cc \u0645\u0644\u06cc",
+              description:
+                "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0645\u0646\u0627\u0633\u0628\u062a\u200c\u0647\u0627 \u0648 \u0631\u0648\u0632\u0647\u0627\u06cc \u0645\u0644\u06cc \u0645\u0627\u0646\u0646\u062f \u0631\u0648\u0632 \u0645\u0639\u0644\u0645\u060c \u067e\u062f\u0631\u060c \u067e\u0631\u0633\u062a\u0627\u0631 \u0648 \u062f\u0647\u0647 \u0641\u062c\u0631",
+              color: "#FF7043"
+            }
+          ],
+          type: [
+            {
+              category_id: 1,
+              category_name: "love",
+              category_name_fa: "\u0639\u0627\u0634\u0642\u0627\u0646\u0647",
+              items: [
+                {
+                  id: 1,
+                  category_id: 1,
+                  type: "wedding_anniversary",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0633\u0627\u0644\u06af\u0631\u062f \u0627\u0632\u062f\u0648\u0627\u062c",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0633\u0627\u0644\u06af\u0631\u062f \u0627\u0632\u062f\u0648\u0627\u062c \u0628\u0627 \u0647\u0645\u0633\u0631.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "marriage",
+                  tag: null,
+                  color: "#E91E63",
+                  icon: "wedding_anniversary"
+                },
+                {
+                  id: 2,
+                  category_id: 1,
+                  type: "relationship_anniversary",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0633\u0627\u0644\u06af\u0631\u062f \u0622\u0634\u0646\u0627\u06cc\u06cc",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0633\u0627\u0644\u06af\u0631\u062f \u0622\u0634\u0646\u0627\u06cc\u06cc \u06cc\u0627 \u0634\u0631\u0648\u0639 \u0631\u0627\u0628\u0637\u0647.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "relationship_anniversary",
+                  tag: null,
+                  color: "#EC407A",
+                  icon: "relationship_anniversary"
+                }
+              ]
+            },
+            {
+              category_id: 2,
+              category_name: "birthday",
+              category_name_fa: "\u062a\u0648\u0644\u062f",
+              items: [
+                {
+                  id: 3,
+                  category_id: 2,
+                  type: "spouse_birthday",
+                  schedule_type: "everyYear",
+                  type_fa: "\u062a\u0648\u0644\u062f \u0647\u0645\u0633\u0631",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u062a\u0648\u0644\u062f \u0647\u0645\u0633\u0631.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "birthdayWife",
+                  tag: null,
+                  color: "#FFB300",
+                  icon: "spouse_birthday"
+                },
+                {
+                  id: 4,
+                  category_id: 2,
+                  type: "mother_birthday",
+                  schedule_type: "everyYear",
+                  type_fa: "\u062a\u0648\u0644\u062f \u0645\u0627\u062f\u0631",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u062a\u0648\u0644\u062f \u0645\u0627\u062f\u0631.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "birthdayMother",
+                  tag: null,
+                  color: "#FFC107",
+                  icon: "mother_birthday"
+                },
+                {
+                  id: 5,
+                  category_id: 2,
+                  type: "father_birthday",
+                  schedule_type: "everyYear",
+                  type_fa: "\u062a\u0648\u0644\u062f \u067e\u062f\u0631",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u062a\u0648\u0644\u062f \u067e\u062f\u0631.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "birthdayFather",
+                  tag: null,
+                  color: "#FFD54F",
+                  icon: "father_birthday"
+                },
+                {
+                  id: 6,
+                  category_id: 2,
+                  type: "child_birthday",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u062a\u0648\u0644\u062f \u0641\u0631\u0632\u0646\u062f",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u062a\u0648\u0644\u062f \u0641\u0631\u0632\u0646\u062f.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "birthdayChild",
+                  tag: null,
+                  color: "#FFE082",
+                  icon: "child_birthday"
+                },
+                {
+                  id: 20,
+                  category_id: 2,
+                  type: "other_birthday",
+                  schedule_type: "everyYear",
+                  type_fa: "\u062a\u0648\u0644\u062f ...",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u062a\u0648\u0644\u062f \u0647\u0645\u0633\u0631.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "birthday",
+                  tag: null,
+                  color: "#FFB300",
+                  icon: "spouse_birthday"
+                }
+              ]
+            },
+            {
+              category_id: 3,
+              category_name: "health",
+              category_name_fa: "\u0633\u0644\u0627\u0645\u062a",
+              items: [
+                {
+                  id: 9,
+                  category_id: 3,
+                  type: "medicine_time",
+                  schedule_type: "everyDay",
+                  type_fa: "\u0645\u0635\u0631\u0641 \u062f\u0627\u0631\u0648",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0632\u0645\u0627\u0646 \u0645\u0635\u0631\u0641 \u062f\u0627\u0631\u0648.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "pill",
+                  tag: '["repead"]',
+                  color: "#66BB6A",
+                  icon: "medicine_time"
+                },
+                {
+                  id: 18,
+                  category_id: 3,
+                  type: "water_time",
+                  schedule_type: "everyDay",
+                  type_fa: "\u0646\u0648\u0634\u06cc\u062f\u0646 \u0622\u0628",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0632\u0645\u0627\u0646 \u0646\u0648\u0634\u06cc\u062f\u0646 \u0622\u0628.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "drinkWater",
+                  tag: null,
+                  color: "#66BB6A",
+                  icon: "water"
+                },
+                {
+                  id: 24,
+                  category_id: 3,
+                  type: "routine_skin",
+                  schedule_type: "everyDay",
+                  type_fa:
+                    "\u0631\u0648\u062a\u06cc\u0646 \u067e\u0648\u0633\u062a",
+                  description:
+                    "\u06cc\u0627\u062f\u0622\u0648\u0631 \u0632\u0645\u0627\u0646 \u0646\u0648\u0634\u06cc\u062f\u0646 \u0622\u0628.",
+                  date: null,
+                  pre_reminders: "[null, null, null, null]",
+                  text: "routineSkin",
+                  tag: null,
+                  color: "#66BB6A",
+                  icon: "routine_skin"
+                }
+              ]
+            },
+            {
+              category_id: 4,
+              category_name: "international_days",
+              category_name_fa:
+                "\u0631\u0648\u0632\u0647\u0627\u06cc \u062c\u0647\u0627\u0646\u06cc",
+              items: [
+                {
+                  id: 12,
+                  category_id: 4,
+                  type: "valentine_day",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0631\u0648\u0632 \u0648\u0644\u0646\u062a\u0627\u06cc\u0646",
+                  description:
+                    "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u0639\u0634\u0642 \u0648 \u0645\u062d\u0628\u062a.",
+                  date: "0000-02-14",
+                  pre_reminders: '["02-07", "02-11", "02-12", "02-13"]',
+                  text: "valentine",
+                  tag: null,
+                  color: "#F06292",
+                  icon: "valentine_day"
+                },
+                {
+                  id: 13,
+                  category_id: 4,
+                  type: "womens_day",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u062f\u062e\u062a\u0631",
+                  description:
+                    "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u0632\u0646 \u0648 \u062d\u0642\u0648\u0642 \u0628\u0631\u0627\u0628\u0631.",
+                  date: "0000-04-19",
+                  pre_reminders: '["04-12", "04-16", "04-17", "04-18"]',
+                  text: "girlsGlobal",
+                  tag: null,
+                  color: "#42A5F5",
+                  icon: "womens_day"
+                },
+                {
+                  id: 14,
+                  category_id: 4,
+                  type: "mothers_day",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u0632\u0646",
+                  description:
+                    "\u0631\u0648\u0632 \u0642\u062f\u0631\u062f\u0627\u0646\u06cc \u0627\u0632 \u0645\u0627\u062f\u0631\u0627\u0646 \u062f\u0631 \u0633\u0631\u0627\u0633\u0631 \u062c\u0647\u0627\u0646.",
+                  date: "0000-03-08",
+                  pre_reminders: '["03-01", "03-05", "03-06", "03-07"]',
+                  text: "mothers_day",
+                  tag: null,
+                  color: "#64B5F6",
+                  icon: "mothers_day"
+                },
+                {
+                  id: 21,
+                  category_id: 4,
+                  type: "boys_day",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u067e\u0633\u0631",
+                  description:
+                    "\u0631\u0648\u0632 \u062a\u0648\u062c\u0647 \u0628\u0647 \u067e\u0633\u0631\u0627\u0646 \u0648 \u0627\u0647\u0645\u06cc\u062a \u0631\u0634\u062f\u060c \u0622\u0645\u0648\u0632\u0634 \u0648 \u0633\u0644\u0627\u0645\u062a \u0631\u0648\u0627\u0646 \u0622\u0646\u0627\u0646.",
+                  date: "0000-05-16",
+                  pre_reminders: '["05-09", "05-13", "05-14", "05-15"]',
+                  text: "boys_day",
+                  tag: null,
+                  color: "#64B5F6",
+                  icon: "mens_day"
+                },
+                {
+                  id: 22,
+                  category_id: 4,
+                  type: "mens_day",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u0645\u0631\u062f",
+                  description:
+                    "\u0631\u0648\u0632 \u0642\u062f\u0631\u062f\u0627\u0646\u06cc \u0627\u0632 \u0645\u0631\u062f\u0627\u0646 \u0648 \u0646\u0642\u0634 \u0622\u0646\u0627\u0646 \u062f\u0631 \u062e\u0627\u0646\u0648\u0627\u062f\u0647 \u0648 \u062c\u0627\u0645\u0639\u0647.",
+                  date: "0000-11-19",
+                  pre_reminders: '["11-12", "11-16", "11-17", "11-18"]',
+                  text: "mens_day",
+                  tag: null,
+                  color: "#4FC3F7",
+                  icon: "mens_day"
+                }
+              ]
+            },
+            {
+              category_id: 5,
+              category_name: "religious_days",
+              category_name_fa:
+                "\u0631\u0648\u0632\u0647\u0627\u06cc \u0645\u0630\u0647\u0628\u06cc",
+              items: [
+                {
+                  id: 16,
+                  category_id: 5,
+                  type: "religious_womens_day",
+                  schedule_type: "everyYear",
+                  type_fa: "\u0631\u0648\u0632 \u0632\u0646 ",
+                  description:
+                    "\u0631\u0648\u0632 \u0628\u0632\u0631\u06af\u062f\u0627\u0634\u062a \u0645\u0642\u0627\u0645 \u0632\u0646 \u062f\u0631 \u0627\u0633\u0644\u0627\u0645.",
+                  date: "0000-11-30",
+                  pre_reminders: '["11-23", "11-27", "11-28", "11-29"]',
+                  text: "motherAndWifeDayIran",
+                  tag: null,
+                  color: "#CE93D8",
+                  icon: "womens_day"
+                },
+                {
+                  id: 19,
+                  category_id: 5,
+                  type: "religious_girl_day",
+                  schedule_type: "everyYear",
+                  type_fa: "\u0631\u0648\u0632 \u062f\u062e\u062a\u0631 ",
+                  description:
+                    "\u0631\u0648\u0632 \u0628\u0632\u0631\u06af\u062f\u0627\u0634\u062a \u0645\u0642\u0627\u0645 \u062f\u062e\u062a\u0631 \u062f\u0631 \u0627\u0633\u0644\u0627\u0645.",
+                  date: "0000-04-19",
+                  pre_reminders: '["04-12", "04-16", "04-17", "04-18"]',
+                  text: "religious_girl_day",
+                  tag: null,
+                  color: "#CE93D8",
+                  icon: "womens_day"
+                },
+                {
+                  id: 23,
+                  category_id: 5,
+                  type: "islamic_mens_day",
+                  schedule_type: "everyYear",
+                  type_fa: "\u0631\u0648\u0632 \u0645\u0631\u062f",
+                  description:
+                    "\u0631\u0648\u0632 \u0648\u0644\u0627\u062f\u062a \u062d\u0636\u0631\u062a \u0639\u0644\u06cc (\u0639) \u0648 \u0628\u0632\u0631\u06af\u062f\u0627\u0634\u062a \u0645\u0642\u0627\u0645 \u067e\u062f\u0631 \u0648 \u0645\u0631\u062f \u062f\u0631 \u0641\u0631\u0647\u0646\u06af \u0627\u0633\u0644\u0627\u0645\u06cc.",
+                  date: "0000-01-03",
+                  pre_reminders: '["12-27", "12-31", "01-01", "01-02"]',
+                  text: "islamic_mens_day",
+                  tag: null,
+                  color: "#81C784",
+                  icon: "mens_day"
+                }
+              ]
+            },
+            {
+              category_id: 6,
+              category_name: "national_days",
+              category_name_fa:
+                "\u0631\u0648\u0632\u0647\u0627\u06cc \u0645\u0644\u06cc",
+              items: [
+                {
+                  id: 17,
+                  category_id: 6,
+                  type: "sepandarmazgan",
+                  schedule_type: "everyYear",
+                  type_fa:
+                    "\u0631\u0648\u0632 \u0633\u067e\u0646\u062f\u0627\u0631\u0645\u0630\u06af\u0627\u0646",
+                  description:
+                    "\u0631\u0648\u0632 \u0639\u0634\u0642 \u0627\u06cc\u0631\u0627\u0646\u06cc\u060c \u062c\u0634\u0646 \u0645\u0647\u0631 \u0648 \u0645\u062d\u0628\u062a \u062f\u0631 \u0641\u0631\u0647\u0646\u06af \u067e\u0627\u0631\u0633\u06cc.",
+                  date: "0000-02-18",
+                  pre_reminders: '["02-11", "02-15", "02-16", "02-17"]',
+                  text: "sepandarmazgan",
+                  tag: null,
+                  color: "#F48FB1",
+                  icon: "sepandarmazgan"
+                }
+              ]
+            }
+          ]
+        })
+      },
+      {
+        path: "reminderSetting.pageSelect",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "reminderSetting.creaditButtenCreadit",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              if (typeof window === "undefined") return 0;
+              return window.sessionStorage.getItem("balance");
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return 0;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "reminderSetting.topic",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "love"
+      },
+      {
+        path: "address.subcategories",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "address.refresh",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "addAddress.token",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.token;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "addAddress.id",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.profile.data.result.id;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "addAddress.openCity",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "addAddress.refresh",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "center.userSelectOpendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "center.entryOpendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "addAddress.loaction2City2",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.profile?.data?.result?.city;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "mainLiad.userId",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return `sayban-${$state?.profile?.data?.result?.id}`;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "payResult.dialogOpendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                {
+                  {
+                    return ["true", "false"].includes($ctx.query.status);
+                  }
+                }
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "button2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "centerOffers.entryOpendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "centerOffers.id2",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "centerOffers.userSelectOpendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "staffs.center",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "staff.entryOpendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "staff.id2",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "staff.userSelectOpendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "staffs.staff",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -465,22 +1415,59 @@ function PlasmicHomepage__RenderFunc(props: {
                 "homePage2",
                 "booking"
               ),
+              [sty.roothomePage2_home]: hasVariant($state, "homePage2", "home"),
+              [sty.roothomePage2_home_page_center]:
+                hasVariant($state, "homePage2", "home") &&
+                hasVariant($state, "page", "center"),
+              [sty.roothomePage2_home_page_editUser]:
+                hasVariant($state, "homePage2", "home") &&
+                hasVariant($state, "page", "editUser"),
+              [sty.roothomePage2_home_page_subcategories]:
+                hasVariant($state, "homePage2", "home") &&
+                hasVariant($state, "page", "subcategories"),
               [sty.roothomePage2_reminder]: hasVariant(
                 $state,
                 "homePage2",
                 "reminder"
               ),
               [sty.roothomePage2_user]: hasVariant($state, "homePage2", "user"),
+              [sty.roothomePage2_user_page_booking]:
+                hasVariant($state, "page", "booking") &&
+                hasVariant($state, "homePage2", "user"),
+              [sty.roothomePage2_user_page_notif]:
+                hasVariant($state, "homePage2", "user") &&
+                hasVariant($state, "page", "notif"),
+              [sty.roothomePage2_user_page_patient]:
+                hasVariant($state, "homePage2", "user") &&
+                hasVariant($state, "page", "patient"),
+              [sty.rootpage_addAddress]: hasVariant(
+                $state,
+                "page",
+                "addAddress"
+              ),
+              [sty.rootpage_bookNurse]: hasVariant($state, "page", "bookNurse"),
+              [sty.rootpage_booking]: hasVariant($state, "page", "booking"),
+              [sty.rootpage_booking_homePage2_home]:
+                hasVariant($state, "homePage2", "home") &&
+                hasVariant($state, "page", "booking"),
               [sty.rootpage_categories]: hasVariant(
                 $state,
                 "page",
                 "categories"
               ),
+              [sty.rootpage_categories_homePage2_home]:
+                hasVariant($state, "page", "categories") &&
+                hasVariant($state, "homePage2", "home"),
               [sty.rootpage_categories_search2]:
                 hasVariant($state, "search2", "search2") &&
                 hasVariant($state, "page", "categories"),
               [sty.rootpage_center]: hasVariant($state, "page", "center"),
+              [sty.rootpage_notif]: hasVariant($state, "page", "notif"),
+              [sty.rootpage_offers]: hasVariant($state, "page", "offers"),
               [sty.rootpage_payment]: hasVariant($state, "page", "payment"),
+              [sty.rootpage_payment_homePage2_home]:
+                hasVariant($state, "homePage2", "home") &&
+                hasVariant($state, "page", "payment"),
               [sty.rootpage_subcategories]: hasVariant(
                 $state,
                 "page",
@@ -494,22 +1481,44 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-name={"sideEffect"}
             data-plasmic-override={overrides.sideEffect}
             className={classNames("__wab_instance", sty.sideEffect, {
+              [sty.sideEffecthomePage2_user]: hasVariant(
+                $state,
+                "homePage2",
+                "user"
+              ),
+              [sty.sideEffectpage_booking]: hasVariant(
+                $state,
+                "page",
+                "booking"
+              ),
               [sty.sideEffectpage_editUser]: hasVariant(
                 $state,
                 "page",
                 "editUser"
+              ),
+              [sty.sideEffectpage_patient]: hasVariant(
+                $state,
+                "page",
+                "patient"
               )
             })}
             onMount={async () => {
               const $steps = {};
 
+              // TEMP mock: when USE_MOCK_PUBLIC_AUTH_TOKEN is true, skip cookie + login redirect.
+              // Flip the flag in src/lib/publicAuthToken.ts to restore cookie auth.
+              if (USE_MOCK_PUBLIC_AUTH_TOKEN) {
+                $stateSet($state, ["token"], resolvePublicAuthToken());
+                return;
+              }
+
               $steps["getCookie"] = true
                 ? (() => {
-                    const actionArgs = { args: ["token"] };
-                    return $globalActions["Fragment.getCookie"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
+                  const actionArgs = { args: [PUBLIC_AUTH_COOKIE_NAME] };
+                  return $globalActions["Fragment.getCookie"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
                 : undefined;
               if (
                 $steps["getCookie"] != null &&
@@ -519,9 +1528,52 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["getCookie"] = await $steps["getCookie"];
               }
 
-              $steps["goToLogin"] = false
-                ? (() => {
-                    const actionArgs = { destination: `/login/[[...step]]` };
+              $steps["goToLogin"] =
+                (() => {
+                  try {
+                    const slug = $ctx.params?.slug;
+                    if (Array.isArray(slug) && slug.includes("center")) {
+                      return false;
+                    }
+                    if (Array.isArray(slug) && slug.includes("favorites")) {
+                      return false;
+                    }
+                    if (
+                      typeof window !== "undefined" &&
+                      String(window.location.pathname || "").includes("/center/")
+                    ) {
+                      return false;
+                    }
+                    if (
+                      typeof window !== "undefined" &&
+                      String(window.location.pathname || "").includes(
+                        "/favorites"
+                      )
+                    ) {
+                      return false;
+                    }
+                  } catch (e) {
+                    // ignore and fall through to cookie check
+                  }
+                  const cookieToken = $steps.getCookie;
+                  if (!isPublicAuthTokenValid(cookieToken)) {
+                    try {
+                      if (cookieToken) deleteCookie(PUBLIC_AUTH_COOKIE_NAME);
+                    } catch (e) {
+                      // ignore
+                    }
+                    return true;
+                  }
+                  return false;
+                })()
+                  ? (() => {
+                    // `/login/[[...step]]` is the file-route pattern, not a
+                    // URL; pushing it parked the user on an encoded path.
+                    // `replace` also matters: with `push`, Back returned here,
+                    // the cookie was still missing, and this redirect fired
+                    // again — an inescapable home/login loop.
+                    // Name-first entry is bare `/login`. OTP stays on `/login/mobile`.
+                    const actionArgs = { destination: `/login` };
                     return (({ destination }) => {
                       if (
                         typeof destination === "string" &&
@@ -531,11 +1583,11 @@ function PlasmicHomepage__RenderFunc(props: {
                           .getElementById(destination.substr(1))
                           .scrollIntoView({ behavior: "smooth" });
                       } else {
-                        __nextRouter?.push(destination);
+                        __nextRouter?.replace(destination);
                       }
                     })?.apply(null, [actionArgs]);
                   })()
-                : undefined;
+                  : undefined;
               if (
                 $steps["goToLogin"] != null &&
                 typeof $steps["goToLogin"] === "object" &&
@@ -544,26 +1596,26 @@ function PlasmicHomepage__RenderFunc(props: {
                 $steps["goToLogin"] = await $steps["goToLogin"];
               }
 
-              $steps["updateToken"] = false
+              $steps["updateToken"] = true
                 ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["token"]
-                      },
-                      operation: 0,
-                      value: $steps.getCookie
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["token"]
+                    },
+                    operation: 0,
+                    value: resolvePublicAuthToken($steps.getCookie)
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
+                    }
+                    const { objRoot, variablePath } = variable;
 
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
+                    $stateSet(objRoot, variablePath, value);
+                    return value;
+                  })?.apply(null, [actionArgs]);
+                })()
                 : undefined;
               if (
                 $steps["updateToken"] != null &&
@@ -575,172 +1627,506 @@ function PlasmicHomepage__RenderFunc(props: {
             }}
           />
 
-          <div
-            data-plasmic-name={"homePage"}
-            data-plasmic-override={overrides.homePage}
-            className={classNames("all", sty.homePage, {
-              [sty.homePagehomePage2_reminder]: hasVariant(
-                $state,
-                "homePage2",
-                "reminder"
-              ),
-              [sty.homePagepage_categories]: hasVariant(
-                $state,
-                "page",
-                "categories"
-              ),
-              [sty.homePagepage_center]: hasVariant($state, "page", "center"),
-              [sty.homePagepage_editUser]: hasVariant(
-                $state,
-                "page",
-                "editUser"
-              ),
-              [sty.homePagepage_payment]: hasVariant($state, "page", "payment"),
-              [sty.homePagepage_subcategories]: hasVariant(
-                $state,
-                "page",
-                "subcategories"
-              )
-            })}
-          >
-            <section className={classNames("all", sty.section__iGcIn)}>
-              <div
-                className={classNames("all", sty.freeBox__rU92E, "fixed-box")}
-              >
-                {(() => {
-                  const child$Props = {
-                    className: classNames("__wab_instance", sty.menu2, {
-                      [sty.menu2homePage2_reminder]: hasVariant(
-                        $state,
-                        "homePage2",
-                        "reminder"
-                      ),
-                      [sty.menu2homePage2_user]: hasVariant(
-                        $state,
-                        "homePage2",
-                        "user"
-                      )
-                    }),
-                    onSelectChange: async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "menu2",
-                        "select"
-                      ]).apply(null, eventArgs);
-
-                      if (
-                        eventArgs.length > 1 &&
-                        eventArgs[1] &&
-                        eventArgs[1]._plasmic_state_init_
-                      ) {
-                        return;
-                      }
-                    },
-                    select: generateStateValueProp($state, ["menu2", "select"])
-                  };
-
-                  initializePlasmicStates(
-                    $state,
-                    [
-                      {
-                        name: "menu2.select",
-                        initFunc: ({ $props, $state, $queries, $q }) =>
-                          (() => {
-                            try {
-                              return $ctx.params.page;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                      }
-                    ],
-                    []
-                  );
-                  return (
-                    <Menu2
-                      data-plasmic-name={"menu2"}
-                      data-plasmic-override={overrides.menu2}
-                      {...child$Props}
-                    />
-                  );
-                })()}
-              </div>
-            </section>
-            <section
-              className={classNames("all", sty.section__pJCrL, {
-                [sty.sectionhomePage2_booking__pJCrLzQze8]: hasVariant(
+          {(
+            hasVariant($state, "page", "reminderSetting") &&
+              hasVariant($state, "homePage2", "reminder")
+              ? true
+              : hasVariant($state, "homePage2", "reminder")
+                ? true
+                : hasVariant($state, "page", "staff")
+                  ? true
+                  : hasVariant($state, "page", "offers")
+                    ? true
+                    : hasVariant($state, "page", "bookNurse")
+                      ? true
+                      : hasVariant($state, "page", "addAddress")
+                        ? true
+                        : hasVariant($state, "page", "address")
+                          ? true
+                          : hasVariant($state, "page", "reminderSetting")
+                            ? true
+                            : hasVariant($state, "page", "patient")
+                              ? true
+                              : hasVariant($state, "page", "addPatient")
+                                ? true
+                                : hasVariant($state, "page", "notif")
+                                  ? true
+                                  : hasVariant($state, "page", "rules")
+                                    ? true
+                                    : hasVariant($state, "page", "faq")
+                                      ? true
+                                      : hasVariant($state, "page", "about")
+                                        ? true
+                                        : hasVariant($state, "page", "booking")
+                                          ? true
+                                          : hasVariant(
+                                            $state,
+                                            "page",
+                                            "editUser"
+                                          )
+                                            ? true
+                                            : hasVariant(
+                                              $state,
+                                              "page",
+                                              "payment"
+                                            )
+                                              ? true
+                                              : hasVariant(
+                                                $state,
+                                                "page",
+                                                "center"
+                                              )
+                                                ? true
+                                                : hasVariant(
+                                                  $state,
+                                                  "page",
+                                                  "subcategories"
+                                                )
+                                                  ? true
+                                                  : hasVariant(
+                                                    $state,
+                                                    "page",
+                                                    "categories"
+                                                  )
+                                                    ? true
+                                                    : (() => {
+                                                      try {
+                                                        return (
+                                                          $state.token != ""
+                                                        );
+                                                      } catch (e) {
+                                                        if (
+                                                          e instanceof
+                                                          TypeError ||
+                                                          e?.plasmicType ===
+                                                          "PlasmicUndefinedDataError"
+                                                        ) {
+                                                          return true;
+                                                        }
+                                                        throw e;
+                                                      }
+                                                    })()
+          ) ? (
+            <div
+              data-plasmic-name={"homePage"}
+              data-plasmic-override={overrides.homePage}
+              className={classNames("all", sty.homePage, {
+                [sty.homePagehomePage2_home_page_offers]:
+                  hasVariant($state, "page", "offers") &&
+                  hasVariant($state, "homePage2", "home"),
+                [sty.homePagehomePage2_reminder]: hasVariant(
                   $state,
                   "homePage2",
+                  "reminder"
+                ),
+                [sty.homePagehomePage2_reminder_page_reminderSetting]:
+                  hasVariant($state, "page", "reminderSetting") &&
+                  hasVariant($state, "homePage2", "reminder"),
+                [sty.homePagepage_about]: hasVariant($state, "page", "about"),
+                [sty.homePagepage_addAddress]: hasVariant(
+                  $state,
+                  "page",
+                  "addAddress"
+                ),
+                [sty.homePagepage_addPatient]: hasVariant(
+                  $state,
+                  "page",
+                  "addPatient"
+                ),
+                [sty.homePagepage_address]: hasVariant(
+                  $state,
+                  "page",
+                  "address"
+                ),
+                [sty.homePagepage_bookNurse]: hasVariant(
+                  $state,
+                  "page",
+                  "bookNurse"
+                ),
+                [sty.homePagepage_bookNurse_homePage2_home]:
+                  hasVariant($state, "homePage2", "home") &&
+                  hasVariant($state, "page", "bookNurse"),
+                [sty.homePagepage_booking]: hasVariant(
+                  $state,
+                  "page",
                   "booking"
                 ),
-                [sty.sectionpage_categories__pJCrLnaUaI]: hasVariant(
+                [sty.homePagepage_categories]: hasVariant(
                   $state,
                   "page",
                   "categories"
-                )
+                ),
+                [sty.homePagepage_center]: hasVariant($state, "page", "center"),
+                [sty.homePagepage_editUser]: hasVariant(
+                  $state,
+                  "page",
+                  "editUser"
+                ),
+                [sty.homePagepage_faq]: hasVariant($state, "page", "faq"),
+                [sty.homePagepage_notif]: hasVariant($state, "page", "notif"),
+                [sty.homePagepage_offers]: hasVariant($state, "page", "offers"),
+                [sty.homePagepage_patient]: hasVariant(
+                  $state,
+                  "page",
+                  "patient"
+                ),
+                [sty.homePagepage_payment]: hasVariant(
+                  $state,
+                  "page",
+                  "payment"
+                ),
+                [sty.homePagepage_reminderSetting]: hasVariant(
+                  $state,
+                  "page",
+                  "reminderSetting"
+                ),
+                [sty.homePagepage_rules]: hasVariant($state, "page", "rules"),
+                [sty.homePagepage_staff]: hasVariant($state, "page", "staff"),
+                [sty.homePagepage_subcategories]: hasVariant(
+                  $state,
+                  "page",
+                  "subcategories"
+                ),
+                [sty.homePagesearch2]: hasVariant($state, "search2", "search2")
               })}
             >
-              <div
-                className={classNames("all", sty.freeBox__ibbNl, "fixed-box", {
-                  [sty.freeBoxhomePage2_home__ibbNlRvb1B]: hasVariant(
-                    $state,
-                    "homePage2",
-                    "home"
-                  ),
-                  [sty.freeBoxhomePage2_reminder__ibbNlWvbFy]: hasVariant(
+              <section
+                className={classNames("all", sty.section__iGcIn, {
+                  [sty.sectionhomePage2_reminder__iGcInWvbFy]: hasVariant(
                     $state,
                     "homePage2",
                     "reminder"
                   ),
-                  [sty.freeBoxhomePage2_user__ibbNl33Nz]: hasVariant(
+                  [sty.sectionpage_booking__iGcInjjDoQ]: hasVariant(
                     $state,
-                    "homePage2",
-                    "user"
+                    "page",
+                    "booking"
                   ),
-                  [sty.freeBoxsearch2__ibbNlUfPhZ]: hasVariant(
+                  [sty.sectionsearch2__iGcInUfPhZ]: hasVariant(
                     $state,
                     "search2",
                     "search2"
                   )
                 })}
-                id={"headerMain"}
               >
-                <div className={classNames("all", sty.freeBox___9C3Gw)}>
-                  <TextInput
-                    data-plasmic-name={"textInput"}
-                    data-plasmic-override={overrides.textInput}
-                    className={classNames("__wab_instance", sty.textInput, {
-                      [sty.textInputhomePage2_home]: hasVariant(
+                <div
+                  className={classNames(
+                    "all",
+                    sty.freeBox__rU92E,
+                    "fixed-box",
+                    {
+                      [sty.freeBoxhomePage2_reminder__rU92EWvbFy]: hasVariant(
+                        $state,
+                        "homePage2",
+                        "reminder"
+                      )
+                    }
+                  )}
+                >
+                  {(() => {
+                    const child$Props = {
+                      className: classNames("__wab_instance", sty.menu2, {
+                        [sty.menu2homePage2_booking]: hasVariant(
+                          $state,
+                          "homePage2",
+                          "booking"
+                        ),
+                        [sty.menu2homePage2_reminder]: hasVariant(
+                          $state,
+                          "homePage2",
+                          "reminder"
+                        ),
+                        [sty.menu2homePage2_user]: hasVariant(
+                          $state,
+                          "homePage2",
+                          "user"
+                        )
+                      }),
+                      onSelectChange: async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "menu2",
+                          "select"
+                        ]).apply(null, eventArgs);
+
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
+                          return;
+                        }
+                      },
+                      select: generateStateValueProp($state, [
+                        "menu2",
+                        "select"
+                      ])
+                    };
+
+                    initializePlasmicStates(
+                      $state,
+                      [
+                        {
+                          name: "menu2.select",
+                          initFunc: ({ $props, $state, $queries, $q }) =>
+                            (() => {
+                              try {
+                                return $ctx.params.page;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                        }
+                      ],
+                      []
+                    );
+                    return (
+                      <Menu2
+                        data-plasmic-name={"menu2"}
+                        data-plasmic-override={overrides.menu2}
+                        {...child$Props}
+                      />
+                    );
+                  })()}
+                </div>
+              </section>
+              <section
+                className={classNames("all", sty.section__pJCrL, {
+                  [sty.sectionhomePage2_booking__pJCrLzQze8]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "booking"
+                  ),
+                  [sty.sectionhomePage2_home__pJCrLRvb1B]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "home"
+                  ),
+                  [sty.sectionhomePage2_reminder__pJCrLWvbFy]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "reminder"
+                  ),
+                  [sty.sectionpage_booking__pJCrLjjDoQ]: hasVariant(
+                    $state,
+                    "page",
+                    "booking"
+                  ),
+                  [sty.sectionpage_categories__pJCrLnaUaI]: hasVariant(
+                    $state,
+                    "page",
+                    "categories"
+                  )
+                })}
+              >
+                <div
+                  className={classNames("all", sty.freeBox__ibbNl, "page", {
+                    [sty.freeBoxhomePage2_home__ibbNlRvb1B]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "home"
+                    ),
+                    [sty.freeBoxhomePage2_reminder__ibbNlWvbFy]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "reminder"
+                    ),
+                    [sty.freeBoxhomePage2_user__ibbNl33Nz]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "user"
+                    ),
+                    [sty.freeBoxsearch2__ibbNlUfPhZ]: hasVariant(
+                      $state,
+                      "search2",
+                      "search2"
+                    )
+                  })}
+                  id={""}
+                >
+                  <div
+                    className={classNames("all", sty.freeBox___73Ayi, {
+                      [sty.freeBoxhomePage2_home___73AyiRvb1B]: hasVariant(
                         $state,
                         "homePage2",
                         "home"
                       )
                     })}
-                    onChange={async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "textInput",
-                        "value"
-                      ]).apply(null, eventArgs);
+                  >
+                    <div
+                      className={classNames("all", sty.freeBox__uEZdE, {
+                        [sty.freeBoxhomePage2_home__uEZdERvb1B]: hasVariant(
+                          $state,
+                          "homePage2",
+                          "home"
+                        )
+                      })}
+                    >
+                      {(() => {
+                        const slug = $ctx.params?.slug;
+                        const hasSlug = Array.isArray(slug)
+                          ? slug.length > 0
+                          : Boolean(slug);
+                        const isHomeLanding =
+                          String($ctx.params?.page || "") === "home" &&
+                          !hasSlug;
+                        const profileName = String(
+                          $state.profile?.data?.result?.name ||
+                          $state.profile?.data?.result?.full_name ||
+                          ""
+                        ).trim();
+                        return isHomeLanding ? (
+                          <div className={sty.headerRow}>
+                            <p className={sty.greeting}>
+                              {profileName ? `سلام، ${profileName}` : "سلام"}
+                            </p>
+                          </div>
+                        ) : null;
+                      })()}
+                    </div>
+                    <div className={classNames("all", sty.freeBox__t2LSn)}>
 
-                      if (
-                        eventArgs.length > 1 &&
-                        eventArgs[1] &&
-                        eventArgs[1]._plasmic_state_init_
-                      ) {
-                        return;
-                      }
+                      <SupportFab
+                        hidden={false}
+                        onOpen={() => {
+                          if (typeof window !== "undefined") {
+                            window.dispatchEvent(
+                              new CustomEvent("sayban:open-support-menu")
+                            );
+                          }
+                        }}
+                      />
+                      <Icon98Icon
+                        className={classNames("all", sty.svg__o7U7D, {
+                          [sty.svghomePage2_home__o7U7DRvb1B]: hasVariant(
+                            $state,
+                            "homePage2",
+                            "home"
+                          ),
+                          [sty.svghomePage2_user__o7U7D33Nz]: hasVariant(
+                            $state,
+                            "homePage2",
+                            "user"
+                          ),
+                          [sty.svgpage_notif__o7U7DlNcwE]: hasVariant(
+                            $state,
+                            "page",
+                            "notif"
+                          )
+                        })}
+                        onClick={async event => {
+                          const $steps = {};
 
-                      (async val => {
-                        const $steps = {};
-
-                        $steps["updateKeyword"] =
-                          $state.textInput.value.length % 3 == 0
+                          $steps["goToHomepage"] = true
                             ? (() => {
+                              const actionArgs = {
+                                destination: `/${(() => {
+                                  try {
+                                    return $ctx.params.page;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()}/${"notif"}`
+                              };
+                              return (({ destination }) => {
+                                if (
+                                  typeof destination === "string" &&
+                                  destination.startsWith("#")
+                                ) {
+                                  document
+                                    .getElementById(destination.substr(1))
+                                    .scrollIntoView({ behavior: "smooth" });
+                                } else {
+                                  __nextRouter?.push(destination);
+                                }
+                              })?.apply(null, [actionArgs]);
+                            })()
+                            : undefined;
+                          if (
+                            $steps["goToHomepage"] != null &&
+                            typeof $steps["goToHomepage"] === "object" &&
+                            typeof $steps["goToHomepage"].then === "function"
+                          ) {
+                            $steps["goToHomepage"] =
+                              await $steps["goToHomepage"];
+                          }
+                        }}
+                        role={"img"}
+                      />
+
+                      {/* <Icon27Icon
+                        className={classNames("all", sty.svg__nuBs, {
+                          [sty.svghomePage2_home__nuBsRvb1B]: hasVariant(
+                            $state,
+                            "homePage2",
+                            "home"
+                          ),
+                          [sty.svgpage_notif__nuBslNcwE]: hasVariant(
+                            $state,
+                            "page",
+                            "notif"
+                          )
+                        })}
+                        role={"img"}
+                      /> */}
+                    </div>
+                  </div>
+                  <div
+                    className={classNames("all", sty.freeBox___9C3Gw, {
+                      [sty.freeBoxhomePage2_home___9C3GwRvb1B]: hasVariant(
+                        $state,
+                        "homePage2",
+                        "home"
+                      )
+                    })}
+                  >
+                    <TextInput
+                      data-plasmic-name={"textInput"}
+                      data-plasmic-override={overrides.textInput}
+                      className={classNames("__wab_instance", sty.textInput, {
+                        [sty.textInputhomePage2_home]: hasVariant(
+                          $state,
+                          "homePage2",
+                          "home"
+                        ),
+                        [sty.textInputsearch2]: hasVariant(
+                          $state,
+                          "search2",
+                          "search2"
+                        )
+                      })}
+                      onChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "textInput",
+                          "value"
+                        ]).apply(null, eventArgs);
+
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
+                          return;
+                        }
+
+                        (async val => {
+                          const $steps = {};
+
+                          $steps["updateKeyword"] =
+                            $state.textInput.value.length % 3 == 0
+                              ? (() => {
                                 const actionArgs = {
                                   variable: {
                                     objRoot: $state,
@@ -764,22 +2150,22 @@ function PlasmicHomepage__RenderFunc(props: {
                                   return value;
                                 })?.apply(null, [actionArgs]);
                               })()
-                            : undefined;
-                        if (
-                          $steps["updateKeyword"] != null &&
-                          typeof $steps["updateKeyword"] === "object" &&
-                          typeof $steps["updateKeyword"].then === "function"
-                        ) {
-                          $steps["updateKeyword"] =
-                            await $steps["updateKeyword"];
-                        }
-                      }).apply(null, eventArgs);
-                    }}
-                    onFocus={async focusEvent => {
-                      const $steps = {};
+                              : undefined;
+                          if (
+                            $steps["updateKeyword"] != null &&
+                            typeof $steps["updateKeyword"] === "object" &&
+                            typeof $steps["updateKeyword"].then === "function"
+                          ) {
+                            $steps["updateKeyword"] =
+                              await $steps["updateKeyword"];
+                          }
+                        }).apply(null, eventArgs);
+                      }}
+                      onFocus={async focusEvent => {
+                        const $steps = {};
 
-                      $steps["runCode"] = true
-                        ? (() => {
+                        $steps["runCode"] = true
+                          ? (() => {
                             const actionArgs = {
                               customFunction: async () => {
                                 return (() => {
@@ -792,52 +2178,65 @@ function PlasmicHomepage__RenderFunc(props: {
                               return customFunction();
                             })?.apply(null, [actionArgs]);
                           })()
-                        : undefined;
-                      if (
-                        $steps["runCode"] != null &&
-                        typeof $steps["runCode"] === "object" &&
-                        typeof $steps["runCode"].then === "function"
-                      ) {
-                        $steps["runCode"] = await $steps["runCode"];
+                          : undefined;
+                        if (
+                          $steps["runCode"] != null &&
+                          typeof $steps["runCode"] === "object" &&
+                          typeof $steps["runCode"].then === "function"
+                        ) {
+                          $steps["runCode"] = await $steps["runCode"];
+                        }
+                      }}
+                      padded={["left", "right"]}
+                      placeholder={
+                        "\u0646\u0627\u0645 \u0645\u0631\u06a9\u0632\u060c \u062e\u062f\u0645\u062a ..."
                       }
-                    }}
-                    padded={["left", "right"]}
-                    placeholder={
-                      "\u0646\u0627\u0645 \u0645\u0631\u06a9\u0632\u060c \u062e\u062f\u0645\u062a ..."
-                    }
-                    size={"langh"}
-                    style2={"rounded"}
-                    value={generateStateValueProp($state, [
-                      "textInput",
-                      "value"
-                    ])}
-                  />
+                      shadow={true}
+                      size={"langh"}
+                      style2={"rounded"}
+                      value={generateStateValueProp($state, [
+                        "textInput",
+                        "value"
+                      ])}
+                    />
 
-                  <Icon49Icon
-                    className={classNames("all", sty.svg___0GKYj)}
-                    role={"img"}
-                  />
+                    <Icon49Icon
+                      className={classNames("all", sty.svg___0GKYj, {
+                        [sty.svgsearch2___0GKYjUfPhZ]: hasVariant(
+                          $state,
+                          "search2",
+                          "search2"
+                        )
+                      })}
+                      role={"img"}
+                    />
 
-                  {(() => {
-                    try {
-                      return $state.home.search == true;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return true;
+                    {(() => {
+                      try {
+                        return $state.home.search == true;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
                       }
-                      throw e;
-                    }
-                  })() ? (
-                    <Icon10Icon
-                      className={classNames("all", sty.svg__gSs9U)}
-                      onClick={async event => {
-                        const $steps = {};
+                    })() ? (
+                      <Icon10Icon
+                        className={classNames("all", sty.svg__gSs9U, {
+                          [sty.svgsearch2__gSs9UUfPhZ]: hasVariant(
+                            $state,
+                            "search2",
+                            "search2"
+                          )
+                        })}
+                        onClick={async event => {
+                          const $steps = {};
 
-                        $steps["updateTextInputValue2"] = true
-                          ? (() => {
+                          $steps["updateTextInputValue2"] = true
+                            ? (() => {
                               const actionArgs = {
                                 customFunction: async () => {
                                   return (() => {
@@ -850,25 +2249,27 @@ function PlasmicHomepage__RenderFunc(props: {
                                 return customFunction();
                               })?.apply(null, [actionArgs]);
                             })()
-                          : undefined;
-                        if (
-                          $steps["updateTextInputValue2"] != null &&
-                          typeof $steps["updateTextInputValue2"] === "object" &&
-                          typeof $steps["updateTextInputValue2"].then ===
+                            : undefined;
+                          if (
+                            $steps["updateTextInputValue2"] != null &&
+                            typeof $steps["updateTextInputValue2"] ===
+                            "object" &&
+                            typeof $steps["updateTextInputValue2"].then ===
                             "function"
-                        ) {
-                          $steps["updateTextInputValue2"] =
-                            await $steps["updateTextInputValue2"];
-                        }
+                          ) {
+                            $steps["updateTextInputValue2"] =
+                              await $steps["updateTextInputValue2"];
+                          }
 
-                        $steps["updateTextInputValue"] = true
-                          ? (() => {
+                          $steps["updateTextInputValue"] = true
+                            ? (() => {
                               const actionArgs = {
                                 variable: {
                                   objRoot: $state,
                                   variablePath: ["textInput", "value"]
                                 },
-                                operation: 1
+                                operation: 0,
+                                value: ""
                               };
                               return (({
                                 variable,
@@ -881,186 +2282,193 @@ function PlasmicHomepage__RenderFunc(props: {
                                 }
                                 const { objRoot, variablePath } = variable;
 
-                                $stateSet(objRoot, variablePath, undefined);
-                                return undefined;
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
                               })?.apply(null, [actionArgs]);
                             })()
-                          : undefined;
-                        if (
-                          $steps["updateTextInputValue"] != null &&
-                          typeof $steps["updateTextInputValue"] === "object" &&
-                          typeof $steps["updateTextInputValue"].then ===
+                            : undefined;
+                          if (
+                            $steps["updateTextInputValue"] != null &&
+                            typeof $steps["updateTextInputValue"] ===
+                            "object" &&
+                            typeof $steps["updateTextInputValue"].then ===
                             "function"
-                        ) {
-                          $steps["updateTextInputValue"] =
-                            await $steps["updateTextInputValue"];
-                        }
-                      }}
-                      role={"img"}
+                          ) {
+                            $steps["updateTextInputValue"] =
+                              await $steps["updateTextInputValue"];
+                          }
+                        }}
+                        role={"img"}
+                      />
+                    ) : null}
+                  </div>
+                  {(() => {
+                    try {
+                      return $state.home.search;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <div
+                      className={classNames("all", sty.freeBox__t0TZ, {
+                        [sty.freeBoxhomePage2_home__t0TZRvb1B]: hasVariant(
+                          $state,
+                          "homePage2",
+                          "home"
+                        )
+                      })}
                     />
                   ) : null}
                 </div>
-                <div
-                  className={classNames(
-                    "all",
-                    sty.freeBox___4JaU4,
-                    (() => {
-                      try {
-                        return $state.home.search != true
-                          ? "fade-in"
-                          : "fade-out";
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()
-                  )}
-                >
-                  <div className={classNames("all", sty.freeBox__k4OH1)}>
-                    <div
-                      className={classNames(
-                        "all",
-                        "__wab_text",
-                        sty.text__fmPbl
-                      )}
-                    >
-                      {
-                        "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645\r"
-                      }
-                    </div>
-                    <div
-                      className={classNames(
-                        "all",
-                        "__wab_text",
-                        sty.text__qxfk
-                      )}
-                    >
-                      {
-                        "\u0644\u0648\u0631\u0645 \u0627\u06cc\u067e\u0633\u0648\u0645 \u0645\u062a\u0646 \u0633\u0627\u062e\u062a\u06af\u06cc \u0628\u0627 \u062a\u0648\u0644\u06cc\u062f \u0633\u0627\u062f\u06af\u06cc \u0646\u0627\u0645\u0641\u0647\u0648\u0645 \r\n"
-                      }
-                    </div>
-                    <Button
-                      data-plasmic-name={"button"}
-                      data-plasmic-override={overrides.button}
-                      className={classNames("__wab_instance", sty.button)}
-                      color={"second"}
-                      label={
-                        <div
-                          className={classNames(
-                            "all",
-                            "__wab_text",
-                            sty.text__ekymK
-                          )}
-                        >
-                          {
-                            "\u0645\u0634\u0627\u0647\u062f\u0647 \u0628\u06cc\u0634\u062a\u0631"
-                          }
-                        </div>
-                      }
-                      loading={generateStateValueProp($state, [
-                        "button",
-                        "loading"
-                      ])}
-                      onLoadingChange={async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "button",
-                          "loading"
-                        ]).apply(null, eventArgs);
-
-                        if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
-                        ) {
-                          return;
-                        }
-                      }}
-                      roundedFull={true}
-                    />
-                  </div>
-                  <PlasmicImg__
-                    data-plasmic-name={"img"}
-                    data-plasmic-override={overrides.img}
-                    alt={""}
-                    className={classNames(sty.img)}
-                    displayHeight={"150px"}
-                    displayMaxHeight={"none"}
-                    displayMaxWidth={"100%"}
-                    displayMinHeight={"0"}
-                    displayMinWidth={"0"}
-                    displayWidth={"150px"}
-                    loading={"lazy"}
-                    src={{
-                      src: "/plasmic/sayban/images/chatGptImageDec232025112923AmPng.png",
-                      fullWidth: 1024,
-                      fullHeight: 998,
-                      aspectRatio: undefined
-                    }}
-                  />
-                </div>
-                {(() => {
-                  try {
-                    return $state.home.search;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <div className={classNames("all", sty.freeBox__t0TZ)} />
-                ) : null}
-              </div>
-            </section>
-            <Reveal
-              className={classNames("__wab_instance", sty.reveal__qDdch, {
-                [sty.revealhomePage2_reminder__qDdchWvbFy]: hasVariant(
-                  $state,
-                  "homePage2",
-                  "reminder"
-                ),
-                [sty.revealhomePage2_user__qDdch33Nz]: hasVariant(
-                  $state,
-                  "homePage2",
-                  "user"
-                )
-              })}
-              damping={hasVariant($state, "homePage2", "user") ? 0.3 : 0.2}
-              triggerOnce={true}
-            >
-              <User
-                data-plasmic-name={"user"}
-                data-plasmic-override={overrides.user}
-                className={classNames("__wab_instance", sty.user, {
-                  [sty.userhomePage2_home]: hasVariant(
+              </section>
+              <Reveal
+                className={classNames("__wab_instance", sty.reveal__qDdch, {
+                  [sty.revealhomePage2_booking__qDdchzQze8]: hasVariant(
                     $state,
                     "homePage2",
-                    "home"
+                    "booking"
                   ),
-                  [sty.userhomePage2_reminder]: hasVariant(
+                  [sty.revealhomePage2_reminder__qDdchWvbFy]: hasVariant(
                     $state,
                     "homePage2",
                     "reminder"
                   ),
-                  [sty.userhomePage2_user]: hasVariant(
+                  [sty.revealhomePage2_user__qDdch33Nz]: hasVariant(
                     $state,
                     "homePage2",
                     "user"
+                  ),
+                  [sty.revealpage_booking__qDdchjjDoQ]: hasVariant(
+                    $state,
+                    "page",
+                    "booking"
+                  ),
+                  [sty.revealsearch2__qDdchUfPhZ]: hasVariant(
+                    $state,
+                    "search2",
+                    "search2"
                   )
                 })}
-                goToEdit={async event => {
-                  const $steps = {};
+                damping={hasVariant($state, "homePage2", "user") ? 0.3 : 0.2}
+                triggerOnce={true}
+              >
+                <User
+                  data-plasmic-name={"user"}
+                  data-plasmic-override={overrides.user}
+                  className={classNames("__wab_instance", sty.user, {
+                    [sty.userhomePage2_booking]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "booking"
+                    ),
+                    [sty.userhomePage2_home]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "home"
+                    ),
+                    [sty.userhomePage2_reminder]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "reminder"
+                    ),
+                    [sty.userhomePage2_user]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "user"
+                    ),
+                    [sty.userhomePage2_user_page_patient]:
+                      hasVariant($state, "homePage2", "user") &&
+                      hasVariant($state, "page", "patient"),
+                    [sty.userpage_booking]: hasVariant(
+                      $state,
+                      "page",
+                      "booking"
+                    )
+                  })}
+                  goToAddress={async () => {
+                    const $steps = {};
 
-                  $steps["goToHomepage"] = true
-                    ? (() => {
+                    $steps["goToHomepage"] = true
+                      ? (() => {
+                        const actionArgs = {
+                          destination: `/${(() => {
+                            try {
+                              return $ctx.params.page;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}/${"address"}`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                      : undefined;
+                    if (
+                      $steps["goToHomepage"] != null &&
+                      typeof $steps["goToHomepage"] === "object" &&
+                      typeof $steps["goToHomepage"].then === "function"
+                    ) {
+                      $steps["goToHomepage"] = await $steps["goToHomepage"];
+                    }
+                  }}
+                  goToBooking={async event => {
+                    const $steps = {};
+
+                    $steps["goToHomepage"] = true
+                      ? (() => {
+                        const actionArgs = {
+                          // Footer shell: open Booking at /booking/ (not /{page}/booking)
+                          destination: "/booking/"
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                      : undefined;
+                    if (
+                      $steps["goToHomepage"] != null &&
+                      typeof $steps["goToHomepage"] === "object" &&
+                      typeof $steps["goToHomepage"].then === "function"
+                    ) {
+                      $steps["goToHomepage"] = await $steps["goToHomepage"];
+                    }
+                  }}
+                  goToEdit={async event => {
+                    const $steps = {};
+
+                    $steps["goToHomepage"] = true
+                      ? (() => {
                         const actionArgs = {
                           destination: `/${(() => {
                             try {
@@ -1101,69 +2509,342 @@ function PlasmicHomepage__RenderFunc(props: {
                           }
                         })?.apply(null, [actionArgs]);
                       })()
-                    : undefined;
-                  if (
-                    $steps["goToHomepage"] != null &&
-                    typeof $steps["goToHomepage"] === "object" &&
-                    typeof $steps["goToHomepage"].then === "function"
-                  ) {
-                    $steps["goToHomepage"] = await $steps["goToHomepage"];
-                  }
-                }}
-                userinfo={$state.profile?.data?.result}
-              />
-            </Reveal>
-            <Reveal
-              className={classNames("__wab_instance", sty.reveal__c55C0, {
-                [sty.revealhomePage2_booking__c55C0ZQze8]: hasVariant(
-                  $state,
-                  "homePage2",
-                  "booking"
-                ),
-                [sty.revealhomePage2_home__c55C0Rvb1B]: hasVariant(
-                  $state,
-                  "homePage2",
-                  "home"
-                ),
-                [sty.revealhomePage2_reminder__c55C0WvbFy]: hasVariant(
-                  $state,
-                  "homePage2",
-                  "reminder"
-                ),
-                [sty.revealhomePage2_user__c55C033Nz]: hasVariant(
-                  $state,
-                  "homePage2",
-                  "user"
-                )
-              })}
-              damping={hasVariant($state, "homePage2", "user") ? 0.3 : 0.2}
-              triggerOnce={true}
-            >
-              <Booking
-                data-plasmic-name={"booking"}
-                data-plasmic-override={overrides.booking}
-                className={classNames("__wab_instance", sty.booking, {
-                  [sty.bookinghomePage2_booking]: hasVariant(
+                      : undefined;
+                    if (
+                      $steps["goToHomepage"] != null &&
+                      typeof $steps["goToHomepage"] === "object" &&
+                      typeof $steps["goToHomepage"].then === "function"
+                    ) {
+                      $steps["goToHomepage"] = await $steps["goToHomepage"];
+                    }
+                  }}
+                  goToPatient={async () => {
+                    const $steps = {};
+
+                    $steps["goToHomepage"] = true
+                      ? (() => {
+                        const actionArgs = {
+                          destination: `/${"user"}/${"patient"}`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                      : undefined;
+                    if (
+                      $steps["goToHomepage"] != null &&
+                      typeof $steps["goToHomepage"] === "object" &&
+                      typeof $steps["goToHomepage"].then === "function"
+                    ) {
+                      $steps["goToHomepage"] = await $steps["goToHomepage"];
+                    }
+                  }}
+                  userinfo={$state.profile?.data?.result}
+                />
+              </Reveal>
+              <Reveal
+                className={classNames("__wab_instance", sty.reveal__hc96M, {
+                  [sty.revealhomePage2_booking__hc96MZQze8]: hasVariant(
                     $state,
                     "homePage2",
                     "booking"
                   ),
-                  [sty.bookingpage_center]: hasVariant(
+                  [sty.revealhomePage2_reminder__hc96MWvbFy]: hasVariant(
                     $state,
-                    "page",
-                    "center"
+                    "homePage2",
+                    "reminder"
                   ),
-                  [sty.bookingpage_subcategories]: hasVariant(
+                  [sty.revealhomePage2_user__hc96M33Nz]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "user"
+                  ),
+                  [sty.revealpage_booking__hc96MJjDoQ]: hasVariant(
                     $state,
                     "page",
-                    "subcategories"
+                    "booking"
+                  ),
+                  [sty.revealsearch2__hc96MUfPhZ]: hasVariant(
+                    $state,
+                    "search2",
+                    "search2"
                   )
                 })}
-                goToCenter={async id => {
-                  const $steps = {};
+                damping={hasVariant($state, "homePage2", "user") ? 0.3 : 0.2}
+                triggerOnce={true}
+              >
+                <MainLiad
+                  data-plasmic-name={"mainLiad"}
+                  data-plasmic-override={overrides.mainLiad}
+                  className={classNames("__wab_instance", sty.mainLiad, {
+                    [sty.mainLiadhomePage2_home]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "home"
+                    ),
+                    [sty.mainLiadhomePage2_reminder]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "reminder"
+                    )
+                  })}
+                  editTime={generateStateValueProp($state, [
+                    "mainLiad",
+                    "editTime"
+                  ])}
+                  onEditTimeChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "mainLiad",
+                      "editTime"
+                    ]).apply(null, eventArgs);
 
-                  $steps["goToHomepage"] = true
-                    ? (() => {
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onLoadingChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "mainLiad",
+                      "loading"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onRefreshChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "mainLiad",
+                      "refresh"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onRemindChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "mainLiad",
+                      "remind"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onReminderBalanceChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "mainLiad",
+                      "reminderBalance"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onTelegramDialogChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "mainLiad",
+                      "telegramDialog"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onTokenChange2={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "mainLiad",
+                      "token"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onUserIdChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "mainLiad",
+                      "userId"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onUserInfoChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "mainLiad",
+                      "userInfo"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  refresh={generateStateValueProp($state, [
+                    "mainLiad",
+                    "refresh"
+                  ])}
+                  remind={generateStateValueProp($state, [
+                    "mainLiad",
+                    "remind"
+                  ])}
+                  reminderReminderSettingAddBack={async () => {
+                    const $steps = {};
+
+                    $steps["goToHomepage"] = !$ctx.pagePath.includes("addPage")
+                      ? (() => {
+                        const actionArgs = {
+                          destination: `/${(() => {
+                            try {
+                              return $ctx.params.page;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}/${(() => {
+                            try {
+                              return $state.slug.join("/");
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}#${"addPage"}`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                      : undefined;
+                    if (
+                      $steps["goToHomepage"] != null &&
+                      typeof $steps["goToHomepage"] === "object" &&
+                      typeof $steps["goToHomepage"].then === "function"
+                    ) {
+                      $steps["goToHomepage"] = await $steps["goToHomepage"];
+                    }
+
+                    $steps["goToHomepage2"] = $ctx.pagePath.includes("addPage")
+                      ? (() => {
+                        const actionArgs = {
+                          destination: `/${(() => {
+                            try {
+                              return $ctx.params.page;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}/${(() => {
+                            try {
+                              return $state.slug.join("/");
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                      : undefined;
+                    if (
+                      $steps["goToHomepage2"] != null &&
+                      typeof $steps["goToHomepage2"] === "object" &&
+                      typeof $steps["goToHomepage2"].then === "function"
+                    ) {
+                      $steps["goToHomepage2"] = await $steps["goToHomepage2"];
+                    }
+                  }}
+                  reminderSetting={async () => {
+                    const $steps = {};
+
+                    $steps["goToHomepage"] = true
+                      ? (() => {
                         const actionArgs = {
                           destination: `/${(() => {
                             try {
@@ -1180,10 +2861,686 @@ function PlasmicHomepage__RenderFunc(props: {
                           })()}/${(() => {
                             try {
                               return (() => {
-                                if (window.sessionStorage.getItem("id")) {
+                                $state.slug.push("reminderSetting");
+                                return $state.slug.join("/");
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                      : undefined;
+                    if (
+                      $steps["goToHomepage"] != null &&
+                      typeof $steps["goToHomepage"] === "object" &&
+                      typeof $steps["goToHomepage"].then === "function"
+                    ) {
+                      $steps["goToHomepage"] = await $steps["goToHomepage"];
+                    }
+                  }}
+                  telegramDialog={generateStateValueProp($state, [
+                    "mainLiad",
+                    "telegramDialog"
+                  ])}
+                  token={(() => {
+                    try {
+                      return $state.token;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                  userId={generateStateValueProp($state, [
+                    "mainLiad",
+                    "userId"
+                  ])}
+                  userInfo={generateStateValueProp($state, [
+                    "mainLiad",
+                    "userInfo"
+                  ])}
+                />
+              </Reveal>
+            </div>
+          ) : null}
+          {(
+            hasVariant($state, "homePage2", "reminder")
+              ? true
+              : hasVariant($state, "page", "staff")
+                ? true
+                : hasVariant($state, "page", "offers")
+                  ? true
+                  : hasVariant($state, "page", "bookNurse")
+                    ? true
+                    : hasVariant($state, "page", "addAddress")
+                      ? true
+                      : hasVariant($state, "page", "address")
+                        ? true
+                        : hasVariant($state, "page", "reminderSetting")
+                          ? true
+                          : hasVariant($state, "page", "patient")
+                            ? true
+                            : hasVariant($state, "page", "addPatient")
+                              ? true
+                              : hasVariant($state, "page", "notif")
+                                ? true
+                                : hasVariant($state, "page", "rules")
+                                  ? true
+                                  : hasVariant($state, "page", "faq")
+                                    ? true
+                                    : hasVariant($state, "page", "about")
+                                      ? true
+                                      : hasVariant($state, "page", "booking")
+                                        ? true
+                                        : hasVariant($state, "page", "payment")
+                                          ? true
+                                          : (() => {
+                                            try {
+                                              return $state.token != "";
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                              ) {
+                                                return true;
+                                              }
+                                              throw e;
+                                            }
+                                          })()
+          ) ? (
+            <div
+              className={classNames("all", sty.freeBox__yWuCa, {
+                [sty.freeBoxhomePage2_home__yWuCaRvb1B]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "home"
+                ),
+                [sty.freeBoxhomePage2_reminder__yWuCaWvbFy]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "reminder"
+                ),
+                [sty.freeBoxpage_about__yWuCaObsAs]: hasVariant(
+                  $state,
+                  "page",
+                  "about"
+                ),
+                [sty.freeBoxpage_addAddress__yWuCabBlZ]: hasVariant(
+                  $state,
+                  "page",
+                  "addAddress"
+                ),
+                [sty.freeBoxpage_addPatient__yWuCa0Pk0]: hasVariant(
+                  $state,
+                  "page",
+                  "addPatient"
+                ),
+                [sty.freeBoxpage_address__yWuCaxcLdE]: hasVariant(
+                  $state,
+                  "page",
+                  "address"
+                ),
+                [sty.freeBoxpage_bookNurse__yWuCa5GQTv]: hasVariant(
+                  $state,
+                  "page",
+                  "bookNurse"
+                ),
+                [sty.freeBoxpage_booking__yWuCajjDoQ]: hasVariant(
+                  $state,
+                  "page",
+                  "booking"
+                ),
+                [sty.freeBoxpage_categories__yWuCanaUaI]: hasVariant(
+                  $state,
+                  "page",
+                  "categories"
+                ),
+                [sty.freeBoxpage_faq__yWuCaWotZ1]: hasVariant(
+                  $state,
+                  "page",
+                  "faq"
+                ),
+                [sty.freeBoxpage_notif__yWuCAlNcwE]: hasVariant(
+                  $state,
+                  "page",
+                  "notif"
+                ),
+                [sty.freeBoxpage_offers__yWuCavaWiE]: hasVariant(
+                  $state,
+                  "page",
+                  "offers"
+                ),
+                [sty.freeBoxpage_patient__yWuCanr7Eq]: hasVariant(
+                  $state,
+                  "page",
+                  "patient"
+                ),
+                [sty.freeBoxpage_payment__yWuCao4602]: hasVariant(
+                  $state,
+                  "page",
+                  "payment"
+                ),
+                [sty.freeBoxpage_payment_homePage2_home__yWuCao4602Rvb1B]:
+                  hasVariant($state, "homePage2", "home") &&
+                  hasVariant($state, "page", "payment"),
+                [sty.freeBoxpage_reminderSetting__yWuCAyw7Ta]: hasVariant(
+                  $state,
+                  "page",
+                  "reminderSetting"
+                ),
+                [sty.freeBoxpage_rules__yWuCau6Lbx]: hasVariant(
+                  $state,
+                  "page",
+                  "rules"
+                ),
+                [sty.freeBoxpage_staff__yWuCaHlNL]: hasVariant(
+                  $state,
+                  "page",
+                  "staff"
+                )
+              })}
+            >
+              <ApiRequest
+                data-plasmic-name={"categories2"}
+                data-plasmic-override={overrides.categories2}
+                className={classNames("__wab_instance", sty.categories2, {
+                  [sty.categories2homePage2_home]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "home"
+                  ),
+                  [sty.categories2homePage2_reminder]: hasVariant(
+                    $state,
+                    "homePage2",
+                    "reminder"
+                  ),
+                  [sty.categories2page_bookNurse]: hasVariant(
+                    $state,
+                    "page",
+                    "bookNurse"
+                  ),
+                  [sty.categories2page_categories]: hasVariant(
+                    $state,
+                    "page",
+                    "categories"
+                  ),
+                  [sty.categories2page_center]: hasVariant(
+                    $state,
+                    "page",
+                    "center"
+                  ),
+                  [sty.categories2page_offers]: hasVariant(
+                    $state,
+                    "page",
+                    "offers"
+                  ),
+                  [sty.categories2page_payment]: hasVariant(
+                    $state,
+                    "page",
+                    "payment"
+                  ),
+                  [sty.categories2page_subcategories]: hasVariant(
+                    $state,
+                    "page",
+                    "subcategories"
+                  ),
+                  [sty.categories2search2]: hasVariant(
+                    $state,
+                    "search2",
+                    "search2"
+                  )
+                })}
+                config={(() => {
+                  try {
+                    return {
+                      headers: {
+                        Authorization: `Bearer ${$state.token}`
+                      }
+                    };
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                errorDisplay={null}
+                loadingDisplay={
+                  <div
+                    className={classNames("all", sty.freeBox__sCmYa, {
+                      [sty.freeBoxhomePage2_booking__sCmYazQze8]: hasVariant(
+                        $state,
+                        "homePage2",
+                        "booking"
+                      ),
+                      [sty.freeBoxhomePage2_home__sCmYaRvb1B]: hasVariant(
+                        $state,
+                        "homePage2",
+                        "home"
+                      )
+                    })}
+                  >
+                    <div className={classNames("all", sty.freeBox__tm0AO)}>
+                      <div className={classNames("all", sty.freeBox__kfxpp)}>
+                        <div className={classNames("all", sty.freeBox__vc3Zg)}>
+                          <div
+                            className={classNames(
+                              "all",
+                              "__wab_text",
+                              sty.text__t3HeK
+                            )}
+                          >
+                            {
+                              "\u0627\u0639\u0632\u0627\u0645 \u0647\u0648\u0634\u0645\u0646\u062f \u067e\u0631\u0633\u062a\u0627\u0631"
+                            }
+                          </div>
+                          <div
+                            className={classNames(
+                              "all",
+                              "__wab_text",
+                              sty.text__e4Rv7
+                            )}
+                          >
+                            {
+                              "\u0645\u0631\u0627\u0642\u0628\u062a \u0648 \u062f\u0631\u0645\u0627\u0646 \u062f\u0631 \u0645\u0646\u0632\u0644\u060c \u0628\u0627 \u06a9\u0627\u062f\u0631 \u062a\u0627\u06cc\u06cc\u062f\u0634\u062f\u0647 \u0648 \u062a\u0636\u0645\u06cc\u0646 \u0627\u0645\u0646\u06cc\u062a \u0627\u0632 \u0633\u0648\u06cc \u0633\u0627\u06cc\u0628\u0627\u0646"
+                            }
+                          </div>
+                          <Button
+                            data-plasmic-name={"button2"}
+                            data-plasmic-override={overrides.button2}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.button2
+                            )}
+                            color={"second"}
+                            label={
+                              <div
+                                className={classNames(
+                                  "all",
+                                  "__wab_text",
+                                  sty.text___6MR7
+                                )}
+                              >
+                                {
+                                  "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u067e\u0631\u0633\u062a\u0627\u0631"
+                                }
+                              </div>
+                            }
+                            loading={generateStateValueProp($state, [
+                              "button2",
+                              "loading"
+                            ])}
+                            onLoadingChange={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "button2",
+                                "loading"
+                              ]).apply(null, eventArgs);
+
+                              if (
+                                eventArgs.length > 1 &&
+                                eventArgs[1] &&
+                                eventArgs[1]._plasmic_state_init_
+                              ) {
+                                return;
+                              }
+                            }}
+                            roundedFull={true}
+                          />
+                        </div>
+                        <PlasmicImg__
+                          data-plasmic-name={"img"}
+                          data-plasmic-override={overrides.img}
+                          alt={""}
+                          className={classNames(sty.img)}
+                          displayHeight={"150px"}
+                          displayMaxHeight={"none"}
+                          displayMaxWidth={"100%"}
+                          displayMinHeight={"0"}
+                          displayMinWidth={"0"}
+                          displayWidth={"150px"}
+                          loading={"lazy"}
+                          src={{
+                            src: "/plasmic/sayban/images/میPng.png",
+                            fullWidth: 512,
+                            fullHeight: 520,
+                            aspectRatio: undefined
+                          }}
+                        />
+                      </div>
+                    </div>
+                    {/*
+                      Hand-replaced: the generated placeholder was four 100px
+                      squares whose `.freeBox___1SPfr { animation: none }` also
+                      cancelled the shimmer. HomeCategoriesSkeleton mirrors the
+                      real category grid and popular-services strip instead.
+                    */}
+                    <HomeCategoriesSkeleton />
+                    <div className={classNames("all", sty.freeBox__jBh0L)} />
+                  </div>
+                }
+                method={"GET"}
+                onError={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "categories2",
+                    "error"
+                  ]).apply(null, eventArgs);
+                }}
+                onLoading={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "categories2",
+                    "loading"
+                  ]).apply(null, eventArgs);
+                }}
+                onSuccess={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "categories2",
+                    "data"
+                  ]).apply(null, eventArgs);
+                }}
+                shouldFetch={(() => {
+                  try {
+                    return $state.token != null && $state.token != "";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })()}
+                url={"/categories/full"}
+              >
+                <Home
+                  data-plasmic-name={"home"}
+                  data-plasmic-override={overrides.home}
+                  bookNurse={async event => {
+                    const $steps = {};
+
+                    $steps["goToHomepage"] = true
+                      ? (() => {
+                        const actionArgs = {
+                          destination: `/${(() => {
+                            try {
+                              return $ctx.params.page;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}/${(() => {
+                            try {
+                              return (() => {
+                                $state.slug.push("bookNurse");
+                                return $state.slug.join("/");
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                      : undefined;
+                    if (
+                      $steps["goToHomepage"] != null &&
+                      typeof $steps["goToHomepage"] === "object" &&
+                      typeof $steps["goToHomepage"].then === "function"
+                    ) {
+                      $steps["goToHomepage"] = await $steps["goToHomepage"];
+                    }
+                  }}
+                  categori={generateStateValueProp($state, [
+                    "home",
+                    "categori"
+                  ])}
+                  categories={(() => {
+                    try {
+                      return $state.categories2.data.result;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                  token={(() => {
+                    try {
+                      return $state.token;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                  className={classNames("__wab_instance", sty.home, {
+                    [sty.homehomePage2_booking]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "booking"
+                    ),
+                    [sty.homehomePage2_home]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "home"
+                    ),
+                    [sty.homehomePage2_home_search2]:
+                      hasVariant($state, "homePage2", "home") &&
+                      hasVariant($state, "search2", "search2"),
+                    [sty.homehomePage2_reminder]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "reminder"
+                    ),
+                    [sty.homehomePage2_user]: hasVariant(
+                      $state,
+                      "homePage2",
+                      "user"
+                    ),
+                    [sty.homepage_categories]: hasVariant(
+                      $state,
+                      "page",
+                      "categories"
+                    ),
+                    [sty.homepage_categories_homePage2_home]:
+                      hasVariant($state, "homePage2", "home") &&
+                      hasVariant($state, "page", "categories"),
+                    [sty.homepage_center]: hasVariant($state, "page", "center"),
+                    [sty.homepage_editUser]: hasVariant(
+                      $state,
+                      "page",
+                      "editUser"
+                    ),
+                    [sty.homepage_notif]: hasVariant($state, "page", "notif"),
+                    [sty.homepage_payment]: hasVariant(
+                      $state,
+                      "page",
+                      "payment"
+                    ),
+                    [sty.homepage_subcategories]: hasVariant(
+                      $state,
+                      "page",
+                      "subcategories"
+                    ),
+                    [sty.homesearch2]: hasVariant($state, "search2", "search2")
+                  })}
+                  onCategori={async () => {
+                    const $steps = {};
+
+                    $steps["goToHomepage"] = true
+                      ? (() => {
+                        const actionArgs = {
+                          destination: `/${(() => {
+                            try {
+                              return $ctx.params.page || "home";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "home";
+                              }
+                              throw e;
+                            }
+                          })()}/${(() => {
+                            try {
+                              return $state.home.categori.slug;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                      : undefined;
+                    if (
+                      $steps["goToHomepage"] != null &&
+                      typeof $steps["goToHomepage"] === "object" &&
+                      typeof $steps["goToHomepage"].then === "function"
+                    ) {
+                      $steps["goToHomepage"] = await $steps["goToHomepage"];
+                    }
+                  }}
+                  onCategoriChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "home",
+                      "categori"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onSearchChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, ["home", "search"]).apply(
+                      null,
+                      eventArgs
+                    );
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onSelectedCenderidChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "home",
+                      "selectedCenderid"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  openCenter={async () => {
+                    const $steps = {};
+
+                    $steps["goToHomepage"] = true
+                      ? (() => {
+                        const actionArgs = {
+                          destination: `/${(() => {
+                            try {
+                              return $ctx.params.page;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}/${(() => {
+                            try {
+                              return (() => {
+                                if ($state.home.selectedCenderid) {
                                   $state.slug.push("center");
                                   $state.slug.push(
-                                    window.sessionStorage.getItem("id")
+                                    $state.home.selectedCenderid
                                   );
                                 }
                                 return $state.slug.join("/");
@@ -1212,375 +3569,37 @@ function PlasmicHomepage__RenderFunc(props: {
                           }
                         })?.apply(null, [actionArgs]);
                       })()
-                    : undefined;
-                  if (
-                    $steps["goToHomepage"] != null &&
-                    typeof $steps["goToHomepage"] === "object" &&
-                    typeof $steps["goToHomepage"].then === "function"
-                  ) {
-                    $steps["goToHomepage"] = await $steps["goToHomepage"];
-                  }
-                }}
-                onSelectCenterChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "booking",
-                    "selectCenter"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                selectCenter={generateStateValueProp($state, [
-                  "booking",
-                  "selectCenter"
-                ])}
-                token={$state.token}
-              />
-            </Reveal>
-          </div>
-          <ApiRequest
-            data-plasmic-name={"categories2"}
-            data-plasmic-override={overrides.categories2}
-            className={classNames("__wab_instance", sty.categories2, {
-              [sty.categories2homePage2_reminder]: hasVariant(
-                $state,
-                "homePage2",
-                "reminder"
-              ),
-              [sty.categories2page_categories]: hasVariant(
-                $state,
-                "page",
-                "categories"
-              ),
-              [sty.categories2page_center]: hasVariant(
-                $state,
-                "page",
-                "center"
-              ),
-              [sty.categories2page_payment]: hasVariant(
-                $state,
-                "page",
-                "payment"
-              ),
-              [sty.categories2page_subcategories]: hasVariant(
-                $state,
-                "page",
-                "subcategories"
-              ),
-              [sty.categories2search2]: hasVariant($state, "search2", "search2")
-            })}
-            config={(() => {
-              try {
-                return {
-                  headers: {
-                    Authorization: `Bearer ${$state.token}`
-                  }
-                };
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })()}
-            errorDisplay={null}
-            loadingDisplay={
-              <div className={classNames("all", sty.freeBox__sCmYa)}>
-                <div className={classNames("all", sty.freeBox___19TiU)}>
-                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                    (() => {
-                      try {
-                        return [2, 3, 4, 5];
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
-                        }
-                        throw e;
+                      : undefined;
+                    if (
+                      $steps["goToHomepage"] != null &&
+                      typeof $steps["goToHomepage"] === "object" &&
+                      typeof $steps["goToHomepage"].then === "function"
+                    ) {
+                      $steps["goToHomepage"] = await $steps["goToHomepage"];
+                    }
+                  }}
+                  search={generateStateValueProp($state, ["home", "search"])}
+                  searchItems={(() => {
+                    try {
+                      return $state.search.data.result;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
                       }
-                    })()
-                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                    const currentItem = __plasmic_item_0;
-                    const currentIndex = __plasmic_idx_0;
-                    return (
-                      <div
-                        className={classNames("all", sty.freeBox__y0Iqc, ``)}
-                        key={currentIndex}
-                      >
-                        <div
-                          className={classNames(
-                            "all",
-                            sty.freeBox___1SPfr,
-                            "shimmer"
-                          )}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            }
-            method={"GET"}
-            onError={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["categories2", "error"]).apply(
-                null,
-                eventArgs
-              );
-            }}
-            onLoading={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "categories2",
-                "loading"
-              ]).apply(null, eventArgs);
-            }}
-            onSuccess={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["categories2", "data"]).apply(
-                null,
-                eventArgs
-              );
-            }}
-            shouldFetch={(() => {
-              try {
-                return $state.token != null && $state.token != "";
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
-                }
-                throw e;
-              }
-            })()}
-            url={"/categories/full"}
-          >
-            <Home
-              data-plasmic-name={"home"}
-              data-plasmic-override={overrides.home}
-              categori={generateStateValueProp($state, ["home", "categori"])}
-              categories={(() => {
-                try {
-                  return $state.categories2.data.result;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-              className={classNames("__wab_instance", sty.home, {
-                [sty.homehomePage2_booking]: hasVariant(
-                  $state,
-                  "homePage2",
-                  "booking"
-                ),
-                [sty.homehomePage2_home]: hasVariant(
-                  $state,
-                  "homePage2",
-                  "home"
-                ),
-                [sty.homehomePage2_reminder]: hasVariant(
-                  $state,
-                  "homePage2",
-                  "reminder"
-                ),
-                [sty.homehomePage2_user]: hasVariant(
-                  $state,
-                  "homePage2",
-                  "user"
-                ),
-                [sty.homepage_categories]: hasVariant(
-                  $state,
-                  "page",
-                  "categories"
-                ),
-                [sty.homepage_center]: hasVariant($state, "page", "center"),
-                [sty.homepage_editUser]: hasVariant($state, "page", "editUser"),
-                [sty.homepage_payment]: hasVariant($state, "page", "payment"),
-                [sty.homepage_subcategories]: hasVariant(
-                  $state,
-                  "page",
-                  "subcategories"
-                ),
-                [sty.homesearch2]: hasVariant($state, "search2", "search2")
-              })}
-              onCategori={async () => {
-                const $steps = {};
-
-                $steps["goToHomepage"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        destination: `/${"home"}/${(() => {
-                          try {
-                            return $state.home.categori.slug;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}`
-                      };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToHomepage"] != null &&
-                  typeof $steps["goToHomepage"] === "object" &&
-                  typeof $steps["goToHomepage"].then === "function"
-                ) {
-                  $steps["goToHomepage"] = await $steps["goToHomepage"];
-                }
-              }}
-              onCategoriChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["home", "categori"]).apply(
-                  null,
-                  eventArgs
-                );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              onSearchChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["home", "search"]).apply(
-                  null,
-                  eventArgs
-                );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              onSelectedCenderidChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "home",
-                  "selectedCenderid"
-                ]).apply(null, eventArgs);
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              openCenter={async () => {
-                const $steps = {};
-
-                $steps["goToHomepage"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        destination: `/${(() => {
-                          try {
-                            return $ctx.params.page;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}/${(() => {
-                          try {
-                            return (() => {
-                              if ($state.home.selectedCenderid) {
-                                $state.slug.push("center");
-                                $state.slug.push($state.home.selectedCenderid);
-                              }
-                              return $state.slug.join("/");
-                            })();
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}`
-                      };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToHomepage"] != null &&
-                  typeof $steps["goToHomepage"] === "object" &&
-                  typeof $steps["goToHomepage"].then === "function"
-                ) {
-                  $steps["goToHomepage"] = await $steps["goToHomepage"];
-                }
-              }}
-              search={generateStateValueProp($state, ["home", "search"])}
-              searchItems={(() => {
-                try {
-                  return $state.search.data.result;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-              selectedCenderid={generateStateValueProp($state, [
-                "home",
-                "selectedCenderid"
-              ])}
-            />
-          </ApiRequest>
+                      throw e;
+                    }
+                  })()}
+                  selectedCenderid={generateStateValueProp($state, [
+                    "home",
+                    "selectedCenderid"
+                  ])}
+                />
+              </ApiRequest>
+            </div>
+          ) : null}
           <ApiRequest
             data-plasmic-name={"profile"}
             data-plasmic-override={overrides.profile}
@@ -1591,12 +3610,22 @@ function PlasmicHomepage__RenderFunc(props: {
                 "homePage2",
                 "reminder"
               ),
+              [sty.profilehomePage2_user_page_booking]:
+                hasVariant($state, "page", "booking") &&
+                hasVariant($state, "homePage2", "user"),
+              [sty.profilepage_bookNurse]: hasVariant(
+                $state,
+                "page",
+                "bookNurse"
+              ),
+              [sty.profilepage_booking]: hasVariant($state, "page", "booking"),
               [sty.profilepage_categories]: hasVariant(
                 $state,
                 "page",
                 "categories"
               ),
               [sty.profilepage_center]: hasVariant($state, "page", "center"),
+              [sty.profilepage_offers]: hasVariant($state, "page", "offers"),
               [sty.profilepage_payment]: hasVariant($state, "page", "payment"),
               [sty.profilepage_subcategories]: hasVariant(
                 $state,
@@ -1642,6 +3671,9 @@ function PlasmicHomepage__RenderFunc(props: {
                 eventArgs
               );
             }}
+            params={{
+              r: $state.editUser.refresh
+            }}
             shouldFetch={(() => {
               try {
                 return $state.token != null && $state.token != "";
@@ -1677,12 +3709,36 @@ function PlasmicHomepage__RenderFunc(props: {
               }
             })()}
             className={classNames("__wab_instance", sty.categories, {
+              [sty.categorieshomePage2_booking]: hasVariant(
+                $state,
+                "homePage2",
+                "booking"
+              ),
+              [sty.categorieshomePage2_home]: hasVariant(
+                $state,
+                "homePage2",
+                "home"
+              ),
+              [sty.categorieshomePage2_reminder]: hasVariant(
+                $state,
+                "homePage2",
+                "reminder"
+              ),
+              [sty.categoriespage_booking]: hasVariant(
+                $state,
+                "page",
+                "booking"
+              ),
               [sty.categoriespage_categories]: hasVariant(
                 $state,
                 "page",
                 "categories"
               ),
+              [sty.categoriespage_categories_homePage2_home]:
+                hasVariant($state, "homePage2", "home") &&
+                hasVariant($state, "page", "categories"),
               [sty.categoriespage_center]: hasVariant($state, "page", "center"),
+              [sty.categoriespage_offers]: hasVariant($state, "page", "offers"),
               [sty.categoriespage_payment]: hasVariant(
                 $state,
                 "page",
@@ -1699,52 +3755,52 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["goToHomepage"] = true
                 ? (() => {
-                    const actionArgs = {
-                      destination: `/${(() => {
-                        try {
-                          return $ctx.params.page;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
+                  const actionArgs = {
+                    destination: `/${(() => {
+                      try {
+                        return $ctx.params.page;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
                         }
-                      })()}/${(() => {
-                        try {
-                          return (() => {
-                            if ($state?.categories?.subcategories?.slug)
-                              $state.slug.push(
-                                $state?.categories?.subcategories?.slug
-                              );
-                            return $state.slug.join("/");
-                          })();
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}`
-                    };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
+                        throw e;
                       }
-                    })?.apply(null, [actionArgs]);
-                  })()
+                    })()}/${(() => {
+                      try {
+                        return (() => {
+                          if ($state?.categories?.subcategories?.slug)
+                            $state.slug.push(
+                              $state?.categories?.subcategories?.slug
+                            );
+                          return $state.slug.join("/");
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}`
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -1779,15 +3835,31 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-override={overrides.subcategories}
             center={generateStateValueProp($state, ["subcategories", "center"])}
             className={classNames("__wab_instance", sty.subcategories, {
+              [sty.subcategorieshomePage2_home]: hasVariant(
+                $state,
+                "homePage2",
+                "home"
+              ),
+              [sty.subcategorieshomePage2_home_page_subcategories]:
+                hasVariant($state, "homePage2", "home") &&
+                hasVariant($state, "page", "subcategories"),
               [sty.subcategoriespage_categories]: hasVariant(
                 $state,
                 "page",
                 "categories"
               ),
+              [sty.subcategoriespage_categories_homePage2_home]:
+                hasVariant($state, "homePage2", "home") &&
+                hasVariant($state, "page", "categories"),
               [sty.subcategoriespage_center]: hasVariant(
                 $state,
                 "page",
                 "center"
+              ),
+              [sty.subcategoriespage_offers]: hasVariant(
+                $state,
+                "page",
+                "offers"
               ),
               [sty.subcategoriespage_subcategories]: hasVariant(
                 $state,
@@ -1805,54 +3877,54 @@ function PlasmicHomepage__RenderFunc(props: {
 
               $steps["goToHomepage"] = true
                 ? (() => {
-                    const actionArgs = {
-                      destination: `/${(() => {
-                        try {
-                          return $ctx.params.page;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
+                  const actionArgs = {
+                    destination: `/${(() => {
+                      try {
+                        return $ctx.params.page;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
                         }
-                      })()}/${(() => {
-                        try {
-                          return (() => {
-                            if (window.sessionStorage.getItem("id")) {
-                              $state.slug.push("center");
-                              $state.slug.push(
-                                window.sessionStorage.getItem("id")
-                              );
-                            }
-                            return $state.slug.join("/");
-                          })();
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}`
-                    };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
+                        throw e;
                       }
-                    })?.apply(null, [actionArgs]);
-                  })()
+                    })()}/${(() => {
+                      try {
+                        return (() => {
+                          if (window.sessionStorage.getItem("id")) {
+                            $state.slug.push("center");
+                            $state.slug.push(
+                              window.sessionStorage.getItem("id")
+                            );
+                          }
+                          return $state.slug.join("/");
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}`
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -1878,7 +3950,10 @@ function PlasmicHomepage__RenderFunc(props: {
             }}
             slug={(() => {
               try {
-                return $ctx.params?.slug?.[1] || "";
+                // Prefer subcategory slug when present; otherwise category slug.
+                return (
+                  $ctx.params?.slug?.[1] || $ctx.params?.slug?.[0] || ""
+                );
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -1923,31 +3998,31 @@ function PlasmicHomepage__RenderFunc(props: {
             center={
               hasVariant($state, "page", "center")
                 ? (() => {
-                    try {
-                      return $state.subcategories.center;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
+                  try {
+                    return $state.subcategories.center;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
                     }
-                  })()
+                    throw e;
+                  }
+                })()
                 : (() => {
-                    try {
-                      return $state.subcategories.center;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
+                  try {
+                    return $state.subcategories.center;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
                     }
-                  })()
+                    throw e;
+                  }
+                })()
             }
             className={classNames("__wab_instance", sty.center, {
               [sty.centerhomePage2_user]: hasVariant(
@@ -1959,6 +4034,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 hasVariant($state, "homePage2", "user") &&
                 hasVariant($state, "page", "center"),
               [sty.centerpage_center]: hasVariant($state, "page", "center"),
+              [sty.centerpage_offers]: hasVariant($state, "page", "offers"),
               [sty.centerpage_payment]: hasVariant($state, "page", "payment"),
               [sty.centerpage_subcategories]: hasVariant(
                 $state,
@@ -1966,56 +4042,60 @@ function PlasmicHomepage__RenderFunc(props: {
                 "subcategories"
               )
             })}
+            entryOpendialog={generateStateValueProp($state, [
+              "center",
+              "entryOpendialog"
+            ])}
             goToPayment={async id => {
               const $steps = {};
 
               $steps["goToHomepage"] = true
                 ? (() => {
-                    const actionArgs = {
-                      destination: `/${(() => {
-                        try {
-                          return $ctx.params.page;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
+                  const actionArgs = {
+                    destination: `/${(() => {
+                      try {
+                        return $ctx.params.page;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
                         }
-                      })()}/${(() => {
-                        try {
-                          return (() => {
-                            $state.slug.push(
-                              `pay_${id || window.sessionStorage.getItem("payId")}`
-                            );
-                            return $state.slug.join("/");
-                          })();
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}`
-                    };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
+                        throw e;
                       }
-                    })?.apply(null, [actionArgs]);
-                  })()
+                    })()}/${(() => {
+                      try {
+                        return (() => {
+                          $state.slug.push(
+                            `pay_${id || window.sessionStorage.getItem("payId")}`
+                          );
+                          return $state.slug.join("/");
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}`
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
                 : undefined;
               if (
                 $steps["goToHomepage"] != null &&
@@ -2028,48 +4108,76 @@ function PlasmicHomepage__RenderFunc(props: {
             id={
               hasVariant($state, "page", "center")
                 ? (() => {
-                    try {
-                      return (() => {
-                        const index = $ctx.params.slug.findIndex(
-                          i => i === "center"
-                        );
-                        return index === -1 ? "" : $ctx.params.slug[index + 1];
-                      })();
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
+                  try {
+                    return (() => {
+                      const index = $ctx.params.slug.findIndex(
+                        i => i === "center"
+                      );
+                      return index === -1 ? "" : $ctx.params.slug[index + 1];
+                    })();
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
                     }
-                  })()
+                    throw e;
+                  }
+                })()
                 : (() => {
-                    try {
-                      return (() => {
-                        const index = $state.slug.findIndex(
-                          i => i === "center"
-                        );
-                        return index === -1 ? "" : $state.slug[index + 1];
-                      })();
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
+                  try {
+                    return (() => {
+                      const index = $state.slug.findIndex(
+                        i => i === "center"
+                      );
+                      return index === -1 ? "" : $state.slug[index + 1];
+                    })();
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
                     }
-                  })()
+                    throw e;
+                  }
+                })()
             }
             id2={generateStateValueProp($state, ["center", "id2"])}
+            onEntryOpendialogChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "center",
+                "entryOpendialog"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
             onId2Change={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["center", "id2"]).apply(
                 null,
                 eventArgs
               );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onUserSelectOpendialogChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "center",
+                "userSelectOpendialog"
+              ]).apply(null, eventArgs);
 
               if (
                 eventArgs.length > 1 &&
@@ -2095,77 +4203,818 @@ function PlasmicHomepage__RenderFunc(props: {
             token={
               hasVariant($state, "page", "center")
                 ? (() => {
-                    try {
-                      return $state.token;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
+                  try {
+                    return $state.token;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
                     }
-                  })()
+                    throw e;
+                  }
+                })()
                 : (() => {
-                    try {
-                      return $state.token;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
+                  try {
+                    return $state.token;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
                     }
-                  })()
+                    throw e;
+                  }
+                })()
             }
+            userNew={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                  const actionArgs = {
+                    destination: `/${(() => {
+                      try {
+                        return $ctx.params.page;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}/${(() => {
+                      try {
+                        return (() => {
+                          $state.slug.push("addPatient");
+                          return $state.slug.join("/");
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}`
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+            userSelectOpendialog={generateStateValueProp($state, [
+              "center",
+              "userSelectOpendialog"
+            ])}
+          />
+
+          <Booking
+            data-plasmic-name={"booking"}
+            data-plasmic-override={overrides.booking}
+            api={(() => {
+              try {
+                return $state.page == "booking";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })()}
+            className={classNames("__wab_instance", sty.booking, {
+              [sty.bookinghomePage2_booking]: hasVariant(
+                $state,
+                "homePage2",
+                "booking"
+              ),
+              [sty.bookinghomePage2_home]: hasVariant(
+                $state,
+                "homePage2",
+                "home"
+              ),
+              [sty.bookinghomePage2_user_page_booking]:
+                hasVariant($state, "page", "booking") &&
+                hasVariant($state, "homePage2", "user"),
+              [sty.bookingpage_booking]: hasVariant($state, "page", "booking"),
+              [sty.bookingpage_center]: hasVariant($state, "page", "center"),
+              [sty.bookingpage_editUser]: hasVariant(
+                $state,
+                "page",
+                "editUser"
+              ),
+              [sty.bookingpage_offers]: hasVariant($state, "page", "offers"),
+              [sty.bookingpage_payment]: hasVariant($state, "page", "payment"),
+              [sty.bookingpage_subcategories]: hasVariant(
+                $state,
+                "page",
+                "subcategories"
+              )
+            })}
+            goToCenter={async id => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                  const actionArgs = {
+                    destination: `/${(() => {
+                      try {
+                        return $ctx.params.page;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}/${(() => {
+                      try {
+                        return (() => {
+                          if (window.sessionStorage.getItem("id")) {
+                            $state.slug.push("center");
+                            $state.slug.push(
+                              window.sessionStorage.getItem("id")
+                            );
+                          }
+                          return $state.slug.join("/");
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}`
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+            goToOffers={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                  const actionArgs = {
+                    destination: `/${(() => {
+                      try {
+                        return $ctx.params.page;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}/${(() => {
+                      try {
+                        return (() => {
+                          const id = window.sessionStorage.getItem("id");
+                          if (id) {
+                            $state.slug.push(`offer_${id}`);
+                          }
+                          return $state.slug.join("/");
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}`
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+            goToReservation={async event => {
+              const $steps = {};
+
+              $steps["updateTextInputValue"] = true
+                ? (() => {
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["textInput", "value"]
+                    },
+                    operation: 0
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
+                    }
+                    const { objRoot, variablePath } = variable;
+
+                    $stateSet(objRoot, variablePath, value);
+                    return value;
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["updateTextInputValue"] != null &&
+                typeof $steps["updateTextInputValue"] === "object" &&
+                typeof $steps["updateTextInputValue"].then === "function"
+              ) {
+                $steps["updateTextInputValue"] =
+                  await $steps["updateTextInputValue"];
+              }
+            }}
+            onSelectCenterChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "booking",
+                "selectCenter"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            pay={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                  const actionArgs = {
+                    destination: `/${(() => {
+                      try {
+                        return $ctx.params.page;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}/${(() => {
+                      try {
+                        return (() => {
+                          $state.slug.push(
+                            `pay_${window.sessionStorage.getItem("payId")}`
+                          );
+                          return $state.slug.join("/");
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}`
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+            selectCenter={generateStateValueProp($state, [
+              "booking",
+              "selectCenter"
+            ])}
+            token={$state.token}
           />
 
           <Payment
             data-plasmic-name={"payment"}
             data-plasmic-override={overrides.payment}
             className={classNames("__wab_instance", sty.payment, {
+              [sty.paymenthomePage2_home]: hasVariant(
+                $state,
+                "homePage2",
+                "home"
+              ),
               [sty.paymentpage_center]: hasVariant($state, "page", "center"),
-              [sty.paymentpage_payment]: hasVariant($state, "page", "payment")
+              [sty.paymentpage_payment]: hasVariant($state, "page", "payment"),
+              [sty.paymentpage_payment_homePage2_home]:
+                hasVariant($state, "page", "payment") &&
+                hasVariant($state, "homePage2", "home")
             })}
             id={
               hasVariant($state, "page", "payment")
                 ? (() => {
-                    try {
-                      return $ctx.params.slug
-                        .find(i => i.includes("pay_"))
-                        .split("pay_")[1];
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
+                  try {
+                    return $ctx.params.slug
+                      .find(i => i.includes("pay_"))
+                      .split("pay_")[1];
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
                     }
-                  })()
+                    throw e;
+                  }
+                })()
                 : undefined
             }
             token={
               hasVariant($state, "page", "payment")
                 ? (() => {
-                    try {
-                      return $state.token;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
+                  try {
+                    return $state.token;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
                     }
-                  })()
+                    throw e;
+                  }
+                })()
                 : undefined
             }
+          />
+
+          <About
+            data-plasmic-name={"about"}
+            data-plasmic-override={overrides.about}
+            className={classNames("__wab_instance", sty.about, {
+              [sty.aboutpage_about]: hasVariant($state, "page", "about"),
+              [sty.aboutpage_faq]: hasVariant($state, "page", "faq"),
+              [sty.aboutpage_rules]: hasVariant($state, "page", "rules")
+            })}
+            onSubcategoriesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "about",
+                "subcategories"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            subcategories={generateStateValueProp($state, [
+              "about",
+              "subcategories"
+            ])}
+          />
+
+          <FaQs
+            data-plasmic-name={"faQs"}
+            data-plasmic-override={overrides.faQs}
+            className={classNames("__wab_instance", sty.faQs, {
+              [sty.faQshomePage2_user_page_faq]:
+                hasVariant($state, "page", "faq") &&
+                hasVariant($state, "homePage2", "user"),
+              [sty.faQspage_about]: hasVariant($state, "page", "about"),
+              [sty.faQspage_faq]: hasVariant($state, "page", "faq")
+            })}
+          />
+
+          <Rules
+            data-plasmic-name={"rules"}
+            data-plasmic-override={overrides.rules}
+            className={classNames("__wab_instance", sty.rules, {
+              [sty.rulespage_rules]: hasVariant($state, "page", "rules")
+            })}
+            onSubcategoriesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "rules",
+                "subcategories"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            subcategories={generateStateValueProp($state, [
+              "rules",
+              "subcategories"
+            ])}
+          />
+
+          {(() => {
+            const child$Props = {
+              cityBack: async () => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return window.history.back();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+              },
+              className: classNames("__wab_instance", sty.editUser, {
+                [sty.editUserhomePage2_user]: hasVariant(
+                  $state,
+                  "homePage2",
+                  "user"
+                ),
+                [sty.editUserpage_editUser]: hasVariant(
+                  $state,
+                  "page",
+                  "editUser"
+                )
+              }),
+              data: $state.profile?.data?.result || {},
+
+              id: generateStateValueProp($state, ["editUser", "id"]),
+              onIdChange: async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["editUser", "id"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              },
+              onOpenCityChange2: async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "editUser",
+                  "openCity"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              },
+              onRefreshChange: async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "editUser",
+                  "refresh"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              },
+              onTokenChange: async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["editUser", "token"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              },
+              openCity: generateStateValueProp($state, [
+                "editUser",
+                "openCity"
+              ]),
+              opencity: async event => {
+                const $steps = {};
+
+                $steps["goToHomepage"] = true
+                  ? (() => {
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}/${"editProfile"}?city=${"true"}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                  : undefined;
+                if (
+                  $steps["goToHomepage"] != null &&
+                  typeof $steps["goToHomepage"] === "object" &&
+                  typeof $steps["goToHomepage"].then === "function"
+                ) {
+                  $steps["goToHomepage"] = await $steps["goToHomepage"];
+                }
+              },
+              refresh: generateStateValueProp($state, ["editUser", "refresh"]),
+              token: generateStateValueProp($state, ["editUser", "token"])
+            };
+
+            initializePlasmicStates(
+              $state,
+              [
+                {
+                  name: "editUser.openCity",
+                  initFunc: ({ $props, $state, $queries, $q }) =>
+                    (() => {
+                      try {
+                        return $ctx.query?.city == "true";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return false;
+                        }
+                        throw e;
+                      }
+                    })()
+                }
+              ],
+              []
+            );
+            return (
+              <EditUser
+                data-plasmic-name={"editUser"}
+                data-plasmic-override={overrides.editUser}
+                {...child$Props}
+              />
+            );
+          })()}
+          <Notif
+            data-plasmic-name={"notif"}
+            data-plasmic-override={overrides.notif}
+            className={classNames("__wab_instance", sty.notif, {
+              [sty.notifpage_addPatient]: hasVariant(
+                $state,
+                "page",
+                "addPatient"
+              ),
+              [sty.notifpage_notif]: hasVariant($state, "page", "notif")
+            })}
+            onSubcategoriesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "notif",
+                "subcategories"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            subcategories={generateStateValueProp($state, [
+              "notif",
+              "subcategories"
+            ])}
+            token={(() => {
+              try {
+                return $state.token;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          />
+
+          <AddPatient
+            data-plasmic-name={"addPatient"}
+            data-plasmic-override={overrides.addPatient}
+            addNew={async () => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return ($state.patient.refresh = Date.now().toString());
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["runCode2"] = $ctx.pagePath.includes("center")
+                ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return (() => {
+                        $state.center.entryOpendialog = true;
+                        return ($state.center.userSelectOpendialog = true);
+                      })();
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["runCode2"] != null &&
+                typeof $steps["runCode2"] === "object" &&
+                typeof $steps["runCode2"].then === "function"
+              ) {
+                $steps["runCode2"] = await $steps["runCode2"];
+              }
+            }}
+            className={classNames("__wab_instance", sty.addPatient, {
+              [sty.addPatientpage_addPatient]: hasVariant(
+                $state,
+                "page",
+                "addPatient"
+              )
+            })}
+            id={generateStateValueProp($state, ["addPatient", "id"])}
+            onIdChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["addPatient", "id"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onOpenCityChange2={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "addPatient",
+                "openCity"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onTokenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["addPatient", "token"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            openCity={generateStateValueProp($state, [
+              "addPatient",
+              "openCity"
+            ])}
+            token={generateStateValueProp($state, ["addPatient", "token"])}
           />
 
           <ApiRequest
@@ -2186,11 +5035,17 @@ function PlasmicHomepage__RenderFunc(props: {
             })()}
             children={null}
             className={classNames("__wab_instance", sty.search, {
+              [sty.searchhomePage2_home]: hasVariant(
+                $state,
+                "homePage2",
+                "home"
+              ),
               [sty.searchhomePage2_reminder]: hasVariant(
                 $state,
                 "homePage2",
                 "reminder"
               ),
+              [sty.searchpage_booking]: hasVariant($state, "page", "booking"),
               [sty.searchpage_categories]: hasVariant(
                 $state,
                 "page",
@@ -2258,6 +5113,1601 @@ function PlasmicHomepage__RenderFunc(props: {
             })()}
             url={"/search"}
           />
+
+          <div
+            className={classNames("all", sty.freeBox__tTYjs, {
+              [sty.freeBoxhomePage2_reminder__tTYjsWvbFy]: hasVariant(
+                $state,
+                "homePage2",
+                "reminder"
+              )
+            })}
+          />
+
+          <Patient
+            data-plasmic-name={"patient"}
+            data-plasmic-override={overrides.patient}
+            addUser={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                  const actionArgs = {
+                    destination: `/${(() => {
+                      try {
+                        return $ctx.params.page;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}/${(() => {
+                      try {
+                        return (() => {
+                          $state.slug.push("addPatient");
+                          return $state.slug.join("/");
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}`
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+            className={classNames("__wab_instance", sty.patient, {
+              [sty.patienthomePage2_user]: hasVariant(
+                $state,
+                "homePage2",
+                "user"
+              ),
+              [sty.patienthomePage2_user_page_notif]:
+                hasVariant($state, "homePage2", "user") &&
+                hasVariant($state, "page", "notif"),
+              [sty.patientpage_patient]: hasVariant($state, "page", "patient")
+            })}
+            onRefreshChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["patient", "refresh"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onSubcategoriesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "patient",
+                "subcategories"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            refresh={generateStateValueProp($state, ["patient", "refresh"])}
+            subcategories={generateStateValueProp($state, [
+              "patient",
+              "subcategories"
+            ])}
+            token={(() => {
+              try {
+                return $state.token;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          />
+
+          <ReminderSetting
+            data-plasmic-name={"reminderSetting"}
+            data-plasmic-override={overrides.reminderSetting}
+            addBack={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = !$ctx.pagePath.includes("addPage")
+                ? (() => {
+                  const actionArgs = {
+                    destination: `/${(() => {
+                      try {
+                        return $ctx.params.page;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}/${(() => {
+                      try {
+                        return $state.slug.join("/");
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}#${"addPage"}`
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+
+              $steps["goToHomepage2"] = $ctx.pagePath.includes("addPage")
+                ? (() => {
+                  const actionArgs = {
+                    destination: `/${(() => {
+                      try {
+                        return $ctx.params.page;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}/${(() => {
+                      try {
+                        return $state.slug.join("/");
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}`
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["goToHomepage2"] != null &&
+                typeof $steps["goToHomepage2"] === "object" &&
+                typeof $steps["goToHomepage2"].then === "function"
+              ) {
+                $steps["goToHomepage2"] = await $steps["goToHomepage2"];
+              }
+            }}
+            category={generateStateValueProp($state, [
+              "reminderSetting",
+              "category"
+            ])}
+            className={classNames("__wab_instance", sty.reminderSetting, {
+              [sty.reminderSettinghomePage2_reminder_page_reminderSetting]:
+                hasVariant($state, "page", "reminderSetting") &&
+                hasVariant($state, "homePage2", "reminder"),
+              [sty.reminderSettingpage_offers]: hasVariant(
+                $state,
+                "page",
+                "offers"
+              ),
+              [sty.reminderSettingpage_reminderSetting]: hasVariant(
+                $state,
+                "page",
+                "reminderSetting"
+              )
+            })}
+            creaditButtenCreadit={generateStateValueProp($state, [
+              "reminderSetting",
+              "creaditButtenCreadit"
+            ])}
+            data={(() => {
+              try {
+                return $state.mainLiad.remind;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [
+                    {
+                      id: 831,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "womens_day",
+                      name: "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u062f\u062e\u062a\u0631",
+                      text: "girlsGlobal",
+                      token1: null,
+                      dates: '["2026-04-19"]',
+                      weekdays: null,
+                      times: '["13:30"]',
+                      finishTime: null,
+                      chanels: '["notification"]',
+                      pre_reminders: null,
+                      times_pre_reminders: null,
+                      active: 1,
+                      timestamp: "2025-12-08 11:35:46"
+                    },
+                    {
+                      id: 832,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "wedding_anniversary",
+                      name: "\u0633\u0627\u0644\u06af\u0631\u062f \u0627\u0632\u062f\u0648\u0627\u062c",
+                      text: "marriage",
+                      token1: null,
+                      dates: '["2025-12-31"]',
+                      weekdays: null,
+                      times: '["11:55"]',
+                      finishTime: null,
+                      chanels: '["notification","telegram"]',
+                      pre_reminders: null,
+                      times_pre_reminders: null,
+                      active: 1,
+                      timestamp: "2025-12-14 13:21:20"
+                    },
+                    {
+                      id: 835,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "boys_day",
+                      name: "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u067e\u0633\u0631",
+                      text: "boys_day",
+                      token1: null,
+                      dates: '["2026-05-16"]',
+                      weekdays: null,
+                      times: '["16:30"]',
+                      finishTime: null,
+                      chanels: '["notification"]',
+                      pre_reminders: null,
+                      times_pre_reminders: null,
+                      active: 1,
+                      timestamp: "2025-12-08 11:35:46"
+                    },
+                    {
+                      id: 1069,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyDay",
+                      type: "medicine_time",
+                      name: "\u062f\u0646\u062f\u0648\u0646 \u062f\u0631\u062f",
+                      text: "pill",
+                      token1: null,
+                      dates: null,
+                      weekdays: '["saturday"]',
+                      times: '["20:00"]',
+                      finishTime: null,
+                      chanels: '["telegram"]',
+                      pre_reminders: null,
+                      times_pre_reminders: null,
+                      active: 1,
+                      timestamp: "2025-12-14 13:38:40"
+                    },
+                    {
+                      id: 1190,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "spouse_birthday",
+                      name: "\u062a\u0648\u0644\u062f \u0647\u0645\u0633\u0631",
+                      text: "birthdayWife",
+                      token1: null,
+                      dates: '["2025-12-31"]',
+                      weekdays: null,
+                      times: '["04:30"]',
+                      finishTime: null,
+                      chanels: '["notification","telegram"]',
+                      pre_reminders:
+                        '["0000-12-21", "0000-12-24", "0000-12-28", "0000-12-30"]',
+                      times_pre_reminders: '["09:55"]',
+                      active: 1,
+                      timestamp: "2025-12-19 17:34:18"
+                    },
+                    {
+                      id: 1248,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "mothers_day",
+                      name: "\u0631\u0648\u0632 \u062c\u0647\u0627\u0646\u06cc \u0632\u0646",
+                      text: "mothers_day",
+                      token1: null,
+                      dates: '["2026-03-08"]',
+                      weekdays: null,
+                      times: '["09:30"]',
+                      finishTime: null,
+                      chanels: '["notification"]',
+                      pre_reminders: null,
+                      times_pre_reminders: null,
+                      active: 0,
+                      timestamp: "2025-12-15 11:52:12"
+                    },
+                    {
+                      id: 1264,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "valentine_day",
+                      name: "\u0631\u0648\u0632 \u0648\u0644\u0646\u062a\u0627\u06cc\u0646",
+                      text: "valentine",
+                      token1: null,
+                      dates: '["2026-02-14"]',
+                      weekdays: null,
+                      times: '["17:30"]',
+                      finishTime: null,
+                      chanels: '["notification"]',
+                      pre_reminders:
+                        '["0000-02-04","0000-02-09","0000-02-11","0000-02-13"]',
+                      times_pre_reminders: '["09:45"]',
+                      active: 1,
+                      timestamp: "2025-12-19 17:16:25"
+                    },
+                    {
+                      id: 1265,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "sepandarmazgan",
+                      name: "\u0631\u0648\u0632 \u0633\u067e\u0646\u062f\u0627\u0631\u0645\u0630\u06af\u0627\u0646",
+                      text: "sepandarmazgan",
+                      token1: null,
+                      dates: '["2026-02-18"]',
+                      weekdays: null,
+                      times: '["18:30"]',
+                      finishTime: null,
+                      chanels: '["notification"]',
+                      pre_reminders: null,
+                      times_pre_reminders: null,
+                      active: 1,
+                      timestamp: "2025-12-16 09:57:59"
+                    },
+                    {
+                      id: 1291,
+                      liomId: "579f1109-03c4-4e1e-b088-e185832696d3",
+                      telegramId: "480992663",
+                      phoneNumber: "09228951264",
+                      schedule_type: "everyYear",
+                      type: "spouse_birthday",
+                      name: "\u062a\u0648\u0644\u062f \u0647\u0645\u0633\u0631",
+                      text: "birthdayWife",
+                      token1: null,
+                      dates: '["2025-12-31"]',
+                      weekdays: null,
+                      times: '["09:30"]',
+                      finishTime: null,
+                      chanels: "[]",
+                      pre_reminders:
+                        '["0000-12-21", "0000-12-24", "0000-12-28", "0000-12-30"]',
+                      times_pre_reminders: '["09:55"]',
+                      active: 1,
+                      timestamp: "2025-12-19 17:34:18"
+                    }
+                  ];
+                }
+                throw e;
+              }
+            })()}
+            dialogOpendialog3={generateStateValueProp($state, [
+              "reminderSetting",
+              "dialogOpendialog3"
+            ])}
+            manId={(() => {
+              try {
+                const id = $state?.profile?.data?.result?.id;
+                return id != null && String(id).trim() !== ""
+                  ? `sayban-${id}`
+                  : undefined;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            phoneNumber={(() => {
+              try {
+                return $state?.profile?.data?.result?.mobile;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            onCategoryChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "category"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onCreaditButtenCreaditChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "creaditButtenCreadit"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onDialogOpendialog3Change={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "dialogOpendialog3"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onPageSelectChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "pageSelect"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onRefreshChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "refresh"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onRefreshTimeChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "refreshTime"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onSmsChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "sms"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onTelChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "tel"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onTopicChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "reminderSetting",
+                "topic"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            pageSelect={generateStateValueProp($state, [
+              "reminderSetting",
+              "pageSelect"
+            ])}
+            refresh={generateStateValueProp($state, [
+              "reminderSetting",
+              "refresh"
+            ])}
+            refreshTime={generateStateValueProp($state, [
+              "reminderSetting",
+              "refreshTime"
+            ])}
+            sms={generateStateValueProp($state, ["reminderSetting", "sms"])}
+            tel={generateStateValueProp($state, ["reminderSetting", "tel"])}
+            topic={generateStateValueProp($state, ["reminderSetting", "topic"])}
+            token={(() => {
+              try {
+                return $state.token;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            manId={(() => {
+              try {
+                return (
+                  $state.mainLiad?.userId ||
+                  $state.profile?.data?.id ||
+                  $state.profile?.data?.result?.id ||
+                  undefined
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          />
+
+          <Address
+            data-plasmic-name={"address"}
+            data-plasmic-override={overrides.address}
+            addUser={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                  const actionArgs = {
+                    destination: `/${(() => {
+                      try {
+                        return $ctx.params.page;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}/${(() => {
+                      try {
+                        return (() => {
+                          $state.slug.push("addAddress");
+                          return $state.slug.join("/");
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}`
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+            className={classNames("__wab_instance", sty.address, {
+              [sty.addresspage_addAddress]: hasVariant(
+                $state,
+                "page",
+                "addAddress"
+              ),
+              [sty.addresspage_address]: hasVariant($state, "page", "address")
+            })}
+            onRefreshChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["address", "refresh"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onSubcategoriesChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "address",
+                "subcategories"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            refresh={generateStateValueProp($state, ["address", "refresh"])}
+            subcategories={generateStateValueProp($state, [
+              "address",
+              "subcategories"
+            ])}
+            token={(() => {
+              try {
+                return $state.token;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          />
+
+          <AddAddress
+            data-plasmic-name={"addAddress"}
+            data-plasmic-override={overrides.addAddress}
+            addNew={async () => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return ($state.address.refresh = Date.now().toString());
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+            className={classNames("__wab_instance", sty.addAddress, {
+              [sty.addAddresspage_addAddress]: hasVariant(
+                $state,
+                "page",
+                "addAddress"
+              )
+            })}
+            id={generateStateValueProp($state, ["addAddress", "id"])}
+            loaction2City2={generateStateValueProp($state, [
+              "addAddress",
+              "loaction2City2"
+            ])}
+            onIdChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["addAddress", "id"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onLoaction2City2Change={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "addAddress",
+                "loaction2City2"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onOpenCityChange2={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "addAddress",
+                "openCity"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onRefreshChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "addAddress",
+                "refresh"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onTokenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["addAddress", "token"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            openCity={generateStateValueProp($state, [
+              "addAddress",
+              "openCity"
+            ])}
+            refresh={generateStateValueProp($state, ["addAddress", "refresh"])}
+            token={generateStateValueProp($state, ["addAddress", "token"])}
+            userCity={(() => {
+              try {
+                return $state.profile?.data?.result?.city;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          />
+
+          {(() => {
+            const child$Props = {
+              back: async event => {
+                const $steps = {};
+
+                $steps["goToHomepage"] = true
+                  ? (() => {
+                    const actionArgs = { destination: `/${"home"}/${""}` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                  : undefined;
+                if (
+                  $steps["goToHomepage"] != null &&
+                  typeof $steps["goToHomepage"] === "object" &&
+                  typeof $steps["goToHomepage"].then === "function"
+                ) {
+                  $steps["goToHomepage"] = await $steps["goToHomepage"];
+                }
+              },
+              className: classNames("__wab_instance", sty.payResult, {
+                [sty.payResultpage_bookNurse_homePage2_home]:
+                  hasVariant($state, "homePage2", "home") &&
+                  hasVariant($state, "page", "bookNurse"),
+                [sty.payResultpage_offers]: hasVariant($state, "page", "offers")
+              }),
+              dialogOpendialog: generateStateValueProp($state, [
+                "payResult",
+                "dialogOpendialog"
+              ]),
+              goToBooking: async event => {
+                const $steps = {};
+
+                $steps["goToHomepage"] = true
+                  ? (() => {
+                    const actionArgs = {
+                      destination: "/booking"
+                      // destination: `/${(() => {
+                      //   try {
+                      //     return $ctx.params.page;
+                      //   } catch (e) {
+                      //     if (
+                      //       e instanceof TypeError ||
+                      //       e?.plasmicType === "PlasmicUndefinedDataError"
+                      //     ) {
+                      //       return undefined;
+                      //     }
+                      //     throw e;
+                      //   }
+                      // })()}/${"booking"}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                  : undefined;
+                if (
+                  $steps["goToHomepage"] != null &&
+                  typeof $steps["goToHomepage"] === "object" &&
+                  typeof $steps["goToHomepage"].then === "function"
+                ) {
+                  $steps["goToHomepage"] = await $steps["goToHomepage"];
+                }
+              },
+              onDialogOpendialogChange: async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "payResult",
+                  "dialogOpendialog"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              },
+              retry: async event => {
+                const $steps = {};
+
+                $steps["goToHomepage"] = true
+                  ? (() => {
+                    const actionArgs = {
+                      destination: `/${(() => {
+                        try {
+                          return $ctx.params.page;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}/${(() => {
+                        try {
+                          return (() => {
+                            $state.slug = $state.slug || [];
+                            $state.slug.push(
+                              `pay_${$ctx.query.reservation_id || window.sessionStorage.getItem("payId")}`
+                            );
+                            return $state.slug.join("/");
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                  : undefined;
+                if (
+                  $steps["goToHomepage"] != null &&
+                  typeof $steps["goToHomepage"] === "object" &&
+                  typeof $steps["goToHomepage"].then === "function"
+                ) {
+                  $steps["goToHomepage"] = await $steps["goToHomepage"];
+                }
+              },
+              status: (() => {
+                try {
+                  return (() => {
+                    {
+                      {
+                        return $ctx.query.status === "true";
+                      }
+                    }
+                  })();
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })()
+            };
+
+            initializePlasmicStates(
+              $state,
+              [
+                {
+                  name: "payResult.dialogOpendialog",
+                  initFunc: ({ $props, $state, $queries, $q }) =>
+                    (() => {
+                      try {
+                        return (() => {
+                          {
+                            {
+                              return ["true", "false"].includes(
+                                $ctx.query.status
+                              );
+                            }
+                          }
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })()
+                }
+              ],
+              []
+            );
+            return (
+              <PayResult
+                data-plasmic-name={"payResult"}
+                data-plasmic-override={overrides.payResult}
+                {...child$Props}
+              />
+            );
+          })()}
+          <CenterOffers
+            data-plasmic-name={"centerOffers"}
+            data-plasmic-override={overrides.centerOffers}
+            profile={(() => {
+              try {
+                // Lets the questionnaire prefill itself for “رزرو برای خودم”.
+                return $state.profile?.data?.result;
+              } catch (e) {
+                return undefined;
+              }
+            })()}
+            addAddress={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                  const actionArgs = {
+                    destination: `/${(() => {
+                      try {
+                        return $ctx.params.page;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}/${(() => {
+                      try {
+                        return (() => {
+                          $state.slug.push("addAddress");
+                          return $state.slug.join("/");
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}`
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+            className={classNames("__wab_instance", sty.centerOffers, {
+              [sty.centerOfferspage_bookNurse]: hasVariant(
+                $state,
+                "page",
+                "bookNurse"
+              ),
+              [sty.centerOfferspage_bookNurse_homePage2_home]:
+                hasVariant($state, "homePage2", "home") &&
+                hasVariant($state, "page", "bookNurse"),
+              [sty.centerOfferspage_offers]: hasVariant(
+                $state,
+                "page",
+                "offers"
+              )
+            })}
+            entryOpendialog={generateStateValueProp($state, [
+              "centerOffers",
+              "entryOpendialog"
+            ])}
+            id2={generateStateValueProp($state, ["centerOffers", "id2"])}
+            onEntryOpendialogChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "centerOffers",
+                "entryOpendialog"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onId2Change={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["centerOffers", "id2"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onUserSelectOpendialogChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "centerOffers",
+                "userSelectOpendialog"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            steps={(() => {
+              try {
+                return $state.slug[1];
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
+              }
+            })()}
+            steps2={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                  const actionArgs = {
+                    destination: `/${(() => {
+                      try {
+                        return $ctx.params.page;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}/${(() => {
+                      try {
+                        return (() => {
+                          $state.slug.push("answerSheet");
+                          return $state.slug.join("/");
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}`
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+            token={(() => {
+              try {
+                return $state.token;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            userNew={async () => {
+              const $steps = {};
+
+              $steps["updateTextInputValue"] = true
+                ? (() => {
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["textInput", "value"]
+                    },
+                    operation: 0
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
+                    }
+                    const { objRoot, variablePath } = variable;
+
+                    $stateSet(objRoot, variablePath, value);
+                    return value;
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["updateTextInputValue"] != null &&
+                typeof $steps["updateTextInputValue"] === "object" &&
+                typeof $steps["updateTextInputValue"].then === "function"
+              ) {
+                $steps["updateTextInputValue"] =
+                  await $steps["updateTextInputValue"];
+              }
+            }}
+            userSelectOpendialog={generateStateValueProp($state, [
+              "centerOffers",
+              "userSelectOpendialog"
+            ])}
+          />
+
+          <Staffs
+            data-plasmic-name={"staffs"}
+            data-plasmic-override={overrides.staffs}
+            center={generateStateValueProp($state, ["staffs", "center"])}
+            className={classNames("__wab_instance", sty.staffs, {
+              [sty.staffspage_offers]: hasVariant($state, "page", "offers"),
+              [sty.staffspage_staff]: hasVariant($state, "page", "staff")
+            })}
+            offer={(() => {
+              try {
+                return $ctx.params.slug
+                  .find(i => i.includes("offer"))
+                  .split("offer_")[1];
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            onCenter={async () => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                  const actionArgs = {
+                    destination: `/${(() => {
+                      try {
+                        return $ctx.params.page;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}/${(() => {
+                      try {
+                        return (() => {
+                          if ($state.staffs.staff) {
+                            $state.slug.push(`staff_${$state.staffs.staff}`);
+                          }
+                          return $state.slug.join("/");
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}`
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+            onCenterChange2={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["staffs", "center"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onStaffChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["staffs", "staff"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            staff={generateStateValueProp($state, ["staffs", "staff"])}
+            token={(() => {
+              try {
+                return $state.token;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          />
+
+          <Staff
+            data-plasmic-name={"staff"}
+            data-plasmic-override={overrides.staff}
+            className={classNames("__wab_instance", sty.staff, {
+              [sty.staffhomePage2_home_page_offers]:
+                hasVariant($state, "page", "offers") &&
+                hasVariant($state, "homePage2", "home"),
+              [sty.staffpage_center]: hasVariant($state, "page", "center"),
+              [sty.staffpage_offers]: hasVariant($state, "page", "offers"),
+              [sty.staffpage_staff]: hasVariant($state, "page", "staff")
+            })}
+            entryOpendialog={generateStateValueProp($state, [
+              "staff",
+              "entryOpendialog"
+            ])}
+            id={(() => {
+              try {
+                return $ctx.params.slug
+                  .find(i => i.includes("staff_"))
+                  .split("staff_")[1];
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            id2={generateStateValueProp($state, ["staff", "id2"])}
+            onEntryOpendialogChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "staff",
+                "entryOpendialog"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onId2Change={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["staff", "id2"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onUserSelectOpendialogChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "staff",
+                "userSelectOpendialog"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            token={(() => {
+              try {
+                return $state.token;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            userSelectOpendialog={generateStateValueProp($state, [
+              "staff",
+              "userSelectOpendialog"
+            ])}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -2271,43 +6721,65 @@ const PlasmicDescendants = {
     "homePage",
     "menu2",
     "textInput",
-    "button",
-    "img",
     "user",
-    "booking",
+    "mainLiad",
     "categories2",
+    "button2",
+    "img",
     "home",
     "profile",
     "categories",
     "subcategories",
     "center",
+    "booking",
     "payment",
-    "search"
+    "about",
+    "faQs",
+    "rules",
+    "editUser",
+    "notif",
+    "addPatient",
+    "search",
+    "patient",
+    "reminderSetting",
+    "address",
+    "addAddress",
+    "payResult",
+    "centerOffers",
+    "staffs",
+    "staff"
   ],
   sideEffect: ["sideEffect"],
-  homePage: [
-    "homePage",
-    "menu2",
-    "textInput",
-    "button",
-    "img",
-    "user",
-    "booking"
-  ],
+  homePage: ["homePage", "menu2", "textInput", "user", "mainLiad"],
   menu2: ["menu2"],
   textInput: ["textInput"],
-  button: ["button"],
-  img: ["img"],
   user: ["user"],
-  booking: ["booking"],
-  categories2: ["categories2", "home"],
+  mainLiad: ["mainLiad"],
+  categories2: ["categories2", "button2", "img", "home"],
+  button2: ["button2"],
+  img: ["img"],
   home: ["home"],
   profile: ["profile"],
   categories: ["categories"],
   subcategories: ["subcategories"],
   center: ["center"],
+  booking: ["booking"],
   payment: ["payment"],
-  search: ["search"]
+  about: ["about"],
+  faQs: ["faQs"],
+  rules: ["rules"],
+  editUser: ["editUser"],
+  notif: ["notif"],
+  addPatient: ["addPatient"],
+  search: ["search"],
+  patient: ["patient"],
+  reminderSetting: ["reminderSetting"],
+  address: ["address"],
+  addAddress: ["addAddress"],
+  payResult: ["payResult"],
+  centerOffers: ["centerOffers"],
+  staffs: ["staffs"],
+  staff: ["staff"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -2318,18 +6790,33 @@ type NodeDefaultElementType = {
   homePage: "div";
   menu2: typeof Menu2;
   textInput: typeof TextInput;
-  button: typeof Button;
-  img: typeof PlasmicImg__;
   user: typeof User;
-  booking: typeof Booking;
+  mainLiad: typeof MainLiad;
   categories2: typeof ApiRequest;
+  button2: typeof Button;
+  img: typeof PlasmicImg__;
   home: typeof Home;
   profile: typeof ApiRequest;
   categories: typeof Categories;
   subcategories: typeof Subcategories;
   center: typeof Center;
+  booking: typeof Booking;
   payment: typeof Payment;
+  about: typeof About;
+  faQs: typeof FaQs;
+  rules: typeof Rules;
+  editUser: typeof EditUser;
+  notif: typeof Notif;
+  addPatient: typeof AddPatient;
   search: typeof ApiRequest;
+  patient: typeof Patient;
+  reminderSetting: typeof ReminderSetting;
+  address: typeof Address;
+  addAddress: typeof AddAddress;
+  payResult: typeof PayResult;
+  centerOffers: typeof CenterOffers;
+  staffs: typeof Staffs;
+  staff: typeof Staff;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -2344,20 +6831,20 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicHomepage__ArgsType;
     overrides?: NodeOverridesType<T>;
   } &
-    // Specify variants directly as props
-    Omit<PlasmicHomepage__VariantsArgs, ReservedPropsType> &
-    // Specify args directly as props
-    Omit<PlasmicHomepage__ArgsType, ReservedPropsType> &
-    // Specify overrides for each element directly as props
-    Omit<
-      NodeOverridesType<T>,
-      ReservedPropsType | VariantPropType | ArgPropType
-    > &
-    // Specify props for the root element
-    Omit<
-      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-    >;
+  // Specify variants directly as props
+  Omit<PlasmicHomepage__VariantsArgs, ReservedPropsType> &
+  // Specify args directly as props
+  Omit<PlasmicHomepage__ArgsType, ReservedPropsType> &
+  // Specify overrides for each element directly as props
+  Omit<
+    NodeOverridesType<T>,
+    ReservedPropsType | VariantPropType | ArgPropType
+  > &
+  // Specify props for the root element
+  Omit<
+    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+  >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };
@@ -2398,18 +6885,33 @@ export const PlasmicHomepage = Object.assign(
     homePage: makeNodeComponent("homePage"),
     menu2: makeNodeComponent("menu2"),
     textInput: makeNodeComponent("textInput"),
-    button: makeNodeComponent("button"),
-    img: makeNodeComponent("img"),
     user: makeNodeComponent("user"),
-    booking: makeNodeComponent("booking"),
+    mainLiad: makeNodeComponent("mainLiad"),
     categories2: makeNodeComponent("categories2"),
+    button2: makeNodeComponent("button2"),
+    img: makeNodeComponent("img"),
     home: makeNodeComponent("home"),
     profile: makeNodeComponent("profile"),
     categories: makeNodeComponent("categories"),
     subcategories: makeNodeComponent("subcategories"),
     center: makeNodeComponent("center"),
+    booking: makeNodeComponent("booking"),
     payment: makeNodeComponent("payment"),
+    about: makeNodeComponent("about"),
+    faQs: makeNodeComponent("faQs"),
+    rules: makeNodeComponent("rules"),
+    editUser: makeNodeComponent("editUser"),
+    notif: makeNodeComponent("notif"),
+    addPatient: makeNodeComponent("addPatient"),
     search: makeNodeComponent("search"),
+    patient: makeNodeComponent("patient"),
+    reminderSetting: makeNodeComponent("reminderSetting"),
+    address: makeNodeComponent("address"),
+    addAddress: makeNodeComponent("addAddress"),
+    payResult: makeNodeComponent("payResult"),
+    centerOffers: makeNodeComponent("centerOffers"),
+    staffs: makeNodeComponent("staffs"),
+    staff: makeNodeComponent("staff"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

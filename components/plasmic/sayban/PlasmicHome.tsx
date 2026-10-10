@@ -60,15 +60,21 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { SwiperSlider } from "@/components/SwiperSlider"; // plasmic-import: byElilYJKEPk/codeComponent
-import ToolsItem from "../../ToolsItem"; // plasmic-import: M_mJLv9BDPmq/component
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import Item from "../../Item"; // plasmic-import: lqR7VxT6h9YH/component
+import HomeCategoriesPager from "../../HomeCategoriesPager";
+import HomeHighRatedCenters from "../../HomeHighRatedCenters";
+import servicesStyles from "../../homeServices.module.css"; // adjust the path to your project structure
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicHome.module.css"; // plasmic-import: m-UDUThzN-63/css
+
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 
 createPlasmicElementProxy;
 
@@ -91,6 +97,9 @@ export type PlasmicHome__ArgsType = {
   selectedCenderid?: string;
   onSelectedCenderidChange?: (val: string) => void;
   openCenter?: () => void;
+  bookNurse?: (event: any) => void;
+  /** Public auth token for home data fetches (e.g. high-rated centers). */
+  token?: string;
 };
 type ArgPropType = keyof PlasmicHome__ArgsType;
 export const PlasmicHome__ArgProps = new Array<ArgPropType>(
@@ -102,12 +111,17 @@ export const PlasmicHome__ArgProps = new Array<ArgPropType>(
   "searchItems",
   "selectedCenderid",
   "onSelectedCenderidChange",
-  "openCenter"
+  "openCenter",
+  "bookNurse",
+  "token"
 );
 
 export type PlasmicHome__OverridesType = {
   root?: Flex__<"div">;
   swiperSlider2?: Flex__<typeof SwiperSlider>;
+  homePromoSlider?: Flex__<typeof SwiperSlider>;
+  button2?: Flex__<typeof Button>;
+  button?: Flex__<typeof Button>;
   reveal?: Flex__<typeof Reveal>;
   item?: Flex__<typeof Item>;
 };
@@ -122,6 +136,8 @@ export interface DefaultHomeProps {
   selectedCenderid?: string;
   onSelectedCenderidChange?: (val: string) => void;
   openCenter?: () => void;
+  bookNurse?: (event: any) => void;
+  token?: string;
   search?: SingleBooleanChoiceArg<"search">;
   className?: string;
 }
@@ -131,7 +147,7 @@ const $$ = {};
 function useNextRouter() {
   try {
     return useRouter();
-  } catch {}
+  } catch { }
   return undefined;
 }
 
@@ -188,6 +204,18 @@ function PlasmicHome__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
+        path: "homePromoSlider.activeSlideIndex",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 0
+      },
+      {
+        path: "homePromoSlider.lockSlides",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
         path: "categori",
         type: "writable",
         variableType: "object",
@@ -202,6 +230,18 @@ function PlasmicHome__RenderFunc(props: {
 
         valueProp: "selectedCenderid",
         onChangeProp: "onSelectedCenderidChange"
+      },
+      {
+        path: "button.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -353,14 +393,112 @@ function PlasmicHome__RenderFunc(props: {
           )
         })}
       >
-        <div className={classNames("all", "__wab_text", sty.text__gVzmw)}>
-          {"\u062e\u062f\u0645\u0627\u062a"}
+        <div className={classNames("all", sty.freeBox__cWlS)}>
+          <div
+            className={classNames("all", sty.freeBox___219Hk)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runBookNurse"] = true
+                ? (() => {
+                  const actionArgs = { eventRef: $props["bookNurse"] };
+                  return (({ eventRef, args }) => {
+                    return eventRef?.(...(args ?? []));
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["runBookNurse"] != null &&
+                typeof $steps["runBookNurse"] === "object" &&
+                typeof $steps["runBookNurse"].then === "function"
+              ) {
+                $steps["runBookNurse"] = await $steps["runBookNurse"];
+              }
+            }}
+          >
+            <SwiperSlider
+              data-plasmic-name={"homePromoSlider"}
+              data-plasmic-override={overrides.homePromoSlider}
+              activeBulletColor={"#ffffff"}
+              activeSlideIndex={generateStateValueProp($state, [
+                "homePromoSlider",
+                "activeSlideIndex"
+              ])}
+              autoplay={true}
+              autoplayDelay={5000}
+              bulletColor={"#888888"}
+              className={classNames("__wab_instance", sty.homePromoSlider)}
+              disablePaginationClick={false}
+              lockSlides={generateStateValueProp($state, [
+                "homePromoSlider",
+                "lockSlides"
+              ])}
+              loop={true}
+              onActiveSlideIndexChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "homePromoSlider",
+                  "activeSlideIndex"
+                ]).apply(null, eventArgs);
+              }}
+              onLockSlidesChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "homePromoSlider",
+                  "lockSlides"
+                ]).apply(null, eventArgs);
+              }}
+              showNavigationButtons={false}
+              showPagination={true}
+            >
+              <PlasmicImg__
+                alt=""
+                className={classNames(sty.img___24Gka)}
+                displayHeight="150px"
+                displayMaxHeight="150px"
+                displayMaxWidth="100%"
+                displayMinHeight="150px"
+                displayMinWidth="0"
+                displayWidth="100%"
+                loading="lazy"
+                src={{
+                  src: "/plasmic/sayban/images/میPng.png",
+                  fullWidth: 512,
+                  fullHeight: 520,
+                  aspectRatio: undefined
+                }}
+              />
+            </SwiperSlider>
+          </div>
         </div>
-        <div
-          className={classNames("all", sty.freeBox___0N18J, "container-scroll")}
-        >
-          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-            (() => {
+        <div className={classNames("all", sty.servicesContent)}>
+          <div
+            className={classNames("all", "__wab_text")}
+            style={{
+              width: "100%",
+              textAlign: "right",
+              fontSize: "1.05rem",
+              fontWeight: 800,
+              lineHeight: 1.6,
+              color: "#1F2A0F",
+              padding: "4px 4px 0",
+              display: "flex",
+              alignItems: "center",
+              gap: 8
+            }}
+          >
+            <span
+              aria-hidden="true"
+              style={{
+                width: 4,
+                height: 18,
+                borderRadius: 2,
+                background: "#6F8A3A",
+                flex: "0 0 auto"
+              }}
+            />
+            خدمات
+          </div>
+          <HomeCategoriesPager
+            categories={(() => {
               try {
                 return $props.categories;
               } catch (e) {
@@ -372,131 +510,88 @@ function PlasmicHome__RenderFunc(props: {
                 }
                 throw e;
               }
-            })()
-          ).map((__plasmic_item_0, __plasmic_idx_0) => {
-            const currentItem = __plasmic_item_0;
-            const currentIndex = __plasmic_idx_0;
-            return (
-              <ToolsItem
-                back={true}
-                className={classNames("__wab_instance", sty.toolsItem___1Kg6M, {
-                  [sty.toolsItemsearch___1Kg6MMh4IK]: hasVariant(
-                    $state,
-                    "search",
-                    "search"
-                  )
-                })}
-                data={(() => {
-                  try {
-                    return currentItem;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+            })()}
+            search={hasVariant($state, "search", "search")}
+            onItemClick={async currentItem => {
+              const $steps = {};
+
+              $steps["updateCategori"] = true
+                ? (() => {
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["categori"]
+                    },
+                    operation: 0,
+                    value: currentItem
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
                     }
-                    throw e;
-                  }
-                })()}
-                key={currentIndex}
-                onClick={async event => {
-                  const $steps = {};
+                    const { objRoot, variablePath } = variable;
 
-                  $steps["updateCategori"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["categori"]
-                          },
-                          operation: 0,
-                          value: currentItem
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
+                    $stateSet(objRoot, variablePath, value);
+                    return value;
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["updateCategori"] != null &&
+                typeof $steps["updateCategori"] === "object" &&
+                typeof $steps["updateCategori"].then === "function"
+              ) {
+                $steps["updateCategori"] = await $steps["updateCategori"];
+              }
 
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateCategori"] != null &&
-                    typeof $steps["updateCategori"] === "object" &&
-                    typeof $steps["updateCategori"].then === "function"
-                  ) {
-                    $steps["updateCategori"] = await $steps["updateCategori"];
-                  }
-
-                  $steps["runOnCategori"] = true
-                    ? (() => {
-                        const actionArgs = { eventRef: $props["onCategori"] };
-                        return (({ eventRef, args }) => {
-                          return eventRef?.(...(args ?? []));
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runOnCategori"] != null &&
-                    typeof $steps["runOnCategori"] === "object" &&
-                    typeof $steps["runOnCategori"].then === "function"
-                  ) {
-                    $steps["runOnCategori"] = await $steps["runOnCategori"];
-                  }
-                }}
-              />
-            );
-          })}
-        </div>
-        <div
-          className={classNames("all", "__wab_text", sty.text___26Ec, {
-            [sty.textsearch___26EcMh4IK]: hasVariant($state, "search", "search")
-          })}
-        >
-          {
-            "\u067e\u0631\u06a9\u0627\u0631\u0628\u0631\u062f \u062a\u0631\u06cc\u0646 \u062e\u062f\u0645\u0627\u062a"
-          }
-        </div>
-        <div className={classNames("all", sty.freeBox__ozEqI)}>
-          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-            (() => {
+              $steps["runOnCategori"] = true
+                ? (() => {
+                  const actionArgs = { eventRef: $props["onCategori"] };
+                  return (({ eventRef, args }) => {
+                    return eventRef?.(...(args ?? []));
+                  })?.apply(null, [actionArgs]);
+                })()
+                : undefined;
+              if (
+                $steps["runOnCategori"] != null &&
+                typeof $steps["runOnCategori"] === "object" &&
+                typeof $steps["runOnCategori"].then === "function"
+              ) {
+                $steps["runOnCategori"] = await $steps["runOnCategori"];
+              }
+            }}
+          />
+          {(() => {
+            if (hasVariant($state, "search", "search")) return null;
+            const viewAllSlug = (() => {
               try {
-                return $props.categories.filter(i => i.is_popular);
+                const cats = Array.isArray($props.categories)
+                  ? $props.categories
+                  : [];
+                for (const raw of cats) {
+                  if (!raw || typeof raw !== "object") continue;
+                  const slug = String(
+                    (raw as { slug?: unknown }).slug ?? ""
+                  ).trim();
+                  if (slug) return slug;
+                }
               } catch (e) {
                 if (
                   e instanceof TypeError ||
                   e?.plasmicType === "PlasmicUndefinedDataError"
                 ) {
-                  return [];
+                  return undefined;
                 }
                 throw e;
               }
-            })()
-          ).map((__plasmic_item_0, __plasmic_idx_0) => {
-            const currentItem = __plasmic_item_0;
-            const currentIndex = __plasmic_idx_0;
+              return undefined;
+            })();
             return (
-              <ToolsItem
-                back={true}
-                className={classNames("__wab_instance", sty.toolsItem__eZt82, {
-                  [sty.toolsItemsearch__eZt82Mh4IK]: hasVariant(
-                    $state,
-                    "search",
-                    "search"
-                  )
-                })}
-                data={(() => {
+              <HomeHighRatedCenters
+                viewAllSlug={viewAllSlug}
+                token={(() => {
                   try {
-                    return currentItem;
+                    return $props.token;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -507,64 +602,10 @@ function PlasmicHome__RenderFunc(props: {
                     throw e;
                   }
                 })()}
-                key={currentIndex}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["updateCategori"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["categori"]
-                          },
-                          operation: 0,
-                          value: currentItem
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateCategori"] != null &&
-                    typeof $steps["updateCategori"] === "object" &&
-                    typeof $steps["updateCategori"].then === "function"
-                  ) {
-                    $steps["updateCategori"] = await $steps["updateCategori"];
-                  }
-
-                  $steps["runOnCategori"] = true
-                    ? (() => {
-                        const actionArgs = { eventRef: $props["onCategori"] };
-                        return (({ eventRef, args }) => {
-                          return eventRef?.(...(args ?? []));
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runOnCategori"] != null &&
-                    typeof $steps["runOnCategori"] === "object" &&
-                    typeof $steps["runOnCategori"].then === "function"
-                  ) {
-                    $steps["runOnCategori"] = await $steps["runOnCategori"];
-                  }
-                }}
-                top={true}
               />
             );
-          })}
+          })()}
+          <div className={classNames("all", sty.freeBox__vQqMi)} />
         </div>
       </div>
       <div
@@ -628,29 +669,29 @@ function PlasmicHome__RenderFunc(props: {
 
                   $steps["updateSelectedCenderid"] = true
                     ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["selectedCenderid"]
-                          },
-                          operation: 0,
-                          value: currentItem.id
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["selectedCenderid"]
+                        },
+                        operation: 0,
+                        value: currentItem.id
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
 
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
                     : undefined;
                   if (
                     $steps["updateSelectedCenderid"] != null &&
@@ -663,11 +704,11 @@ function PlasmicHome__RenderFunc(props: {
 
                   $steps["runOpenCenter"] = true
                     ? (() => {
-                        const actionArgs = { eventRef: $props["openCenter"] };
-                        return (({ eventRef, args }) => {
-                          return eventRef?.(...(args ?? []));
-                        })?.apply(null, [actionArgs]);
-                      })()
+                      const actionArgs = { eventRef: $props["openCenter"] };
+                      return (({ eventRef, args }) => {
+                        return eventRef?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
                     : undefined;
                   if (
                     $steps["runOpenCenter"] != null &&
@@ -687,8 +728,11 @@ function PlasmicHome__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "swiperSlider2", "reveal", "item"],
+  root: ["root", "swiperSlider2", "homePromoSlider", "button2", "button", "reveal", "item"],
   swiperSlider2: ["swiperSlider2"],
+  homePromoSlider: ["homePromoSlider"],
+  button2: ["button2"],
+  button: ["button"],
   reveal: ["reveal", "item"],
   item: ["item"]
 } as const;
@@ -698,6 +742,9 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   swiperSlider2: typeof SwiperSlider;
+  homePromoSlider: typeof SwiperSlider;
+  button2: typeof Button;
+  button: typeof Button;
   reveal: typeof Reveal;
   item: typeof Item;
 };
@@ -714,20 +761,20 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicHome__ArgsType;
     overrides?: NodeOverridesType<T>;
   } &
-    // Specify variants directly as props
-    Omit<PlasmicHome__VariantsArgs, ReservedPropsType> &
-    // Specify args directly as props
-    Omit<PlasmicHome__ArgsType, ReservedPropsType> &
-    // Specify overrides for each element directly as props
-    Omit<
-      NodeOverridesType<T>,
-      ReservedPropsType | VariantPropType | ArgPropType
-    > &
-    // Specify props for the root element
-    Omit<
-      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-    >;
+  // Specify variants directly as props
+  Omit<PlasmicHome__VariantsArgs, ReservedPropsType> &
+  // Specify args directly as props
+  Omit<PlasmicHome__ArgsType, ReservedPropsType> &
+  // Specify overrides for each element directly as props
+  Omit<
+    NodeOverridesType<T>,
+    ReservedPropsType | VariantPropType | ArgPropType
+  > &
+  // Specify props for the root element
+  Omit<
+    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+  >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };
@@ -765,6 +812,9 @@ export const PlasmicHome = Object.assign(
   {
     // Helper components rendering sub-elements
     swiperSlider2: makeNodeComponent("swiperSlider2"),
+    homePromoSlider: makeNodeComponent("homePromoSlider"),
+    button2: makeNodeComponent("button2"),
+    button: makeNodeComponent("button"),
     reveal: makeNodeComponent("reveal"),
     item: makeNodeComponent("item"),
 

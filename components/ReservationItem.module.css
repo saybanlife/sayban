@@ -1,0 +1,8 @@
+.enhancedReservation :global([class*="freeBox___8WjW7"]) {
+  display: none;
+}
+
+.topicAndUser {
+  width: 100%;
+  min-width: 0;
+}

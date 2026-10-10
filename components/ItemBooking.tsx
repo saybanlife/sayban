@@ -3,42 +3,66 @@
 import * as React from "react";
 import {
   PlasmicItemBooking,
-  DefaultItemBookingProps
+  DefaultItemBookingProps,
+  type PlasmicItemBooking__OverridesType
 } from "./plasmic/sayban/PlasmicItemBooking";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
+import { reservationDisplayTime } from "./reservation/visitBooking";
+import type { ReservationRecord } from "./reservation/reservationDetailsModel";
+import HomeStatusCard from "./home/HomeStatusCard";
 
-// Your component props start with props for variants and slots you defined
-// in Plasmic, but you can add more here, like event handlers that you can
-// attach to named nodes in your component.
-//
-// If you don't want to expose certain variants or slots as a prop, you can use
-// Omit to hide them:
-//
-// interface ItemBookingProps extends Omit<DefaultItemBookingProps, "hideProps1"|"hideProp2"> {
-//   // etc.
-// }
-//
-// You can also stop extending from DefaultItemBookingProps altogether and have
-// total control over the props for your component.
-export interface ItemBookingProps extends DefaultItemBookingProps {}
+export interface ItemBookingProps extends DefaultItemBookingProps {
+  token?: string;
+  onReservationChange?: (reservation: ReservationRecord) => void;
+}
 
 function ItemBooking_(props: ItemBookingProps, ref: HTMLElementRefOf<"div">) {
-  // Use PlasmicItemBooking to render this component as it was
-  // designed in Plasmic, by activating the appropriate variants,
-  // attaching the appropriate event handlers, etc.  You
-  // can also install whatever React hooks you need here to manage state or
-  // fetch data.
-  //
-  // Props you can pass into PlasmicItemBooking are:
-  // 1. Variants you want to activate,
-  // 2. Contents for slots you want to fill,
-  // 3. Overrides for any named node in the component to attach behavior and data,
-  // 4. Props to set on the root node.
-  //
-  // By default, we are just piping all ItemBookingProps here, but feel free
-  // to do whatever works for you.
+  const {
+    home,
+    item,
+    token,
+    onReservationChange,
+    goToDetails,
+    pay,
+    className,
+    ...rest
+  } = props;
 
-  return <PlasmicItemBooking root={{ ref }} {...props} />;
+  const startTime = (item as { start_time?: unknown } | null | undefined)
+    ?.start_time;
+
+  const overrides = React.useMemo<PlasmicItemBooking__OverridesType>(
+    () => ({
+      uploudeTime: { props: { posttime: reservationDisplayTime(startTime) } }
+    }),
+    [startTime]
+  );
+
+  if (home && item) {
+    return (
+      <HomeStatusCard
+        reservation={item as ReservationRecord}
+        className={className}
+        token={token}
+        onOpenDetails={() => goToDetails?.(undefined)}
+        onPay={() => pay?.()}
+        onChange={onReservationChange}
+      />
+    );
+  }
+
+  return (
+    <PlasmicItemBooking
+      root={{ ref }}
+      {...rest}
+      home={home}
+      item={item}
+      goToDetails={goToDetails}
+      pay={pay}
+      className={className}
+      overrides={overrides}
+    />
+  );
 }
 
 const ItemBooking = React.forwardRef(ItemBooking_);

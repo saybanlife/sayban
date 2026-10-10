@@ -1,0 +1,45 @@
+.menuBtn {
+  display: none;
+  appearance: none;
+  border: 1px solid
+    color-mix(in srgb, var(--token-ee2TuxDknsJj, #6f8a3a) 40%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--token-h2xt7bB598yU, #f5f1e3) 80%,
+    #fff
+  );
+  color: var(--token-9M5jRUPt8Msb, #1f2a0f);
+  border-radius: 0.65rem;
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menuBtn:focus-visible {
+  outline: 2px solid var(--token-Yo4gdKCgyuAu, #f3c94c);
+  outline-offset: 2px;
+}
+
+.icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .menuBtn {
+    display: inline-flex;
+  }
+}
+
+:global(html.dark) .menuBtn,
+:global(html[data-panel-theme="dark"]) .menuBtn {
+  background: #2a3a22;
+  color: #f3efe0;
+  border-color: color-mix(in srgb, #8fae55 40%, transparent);
+}

@@ -1,14 +1,12 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBVtKyIzcD0xVEMOjeMYjDdNRozFVVrmRo",
-  authDomain: "liom-31952.firebaseapp.com",
-  databaseURL: "https://liom-31952.firebaseio.com",
-  projectId: "liom-31952",
-  storageBucket: "liom-31952.firebasestorage.app",
-  messagingSenderId: "518322220404",
-  appId: "1:518322220404:web:09527c8a42f2f017d89021",
-  measurementId: "G-TVWYWYEH1D",
+  apiKey: "AIzaSyAG_UJ8y1wWjqJT4LnFKT3O6bWGjd7CORI",
+  authDomain: "sayban-web.firebaseapp.com",
+  projectId: "sayban-web",
+  storageBucket: "sayban-web.firebasestorage.app",
+  messagingSenderId: "856382957880",
+  appId: "1:856382957880:web:13290f4f3da5805ac179cd"
 };
 
 export const firebaseApp =

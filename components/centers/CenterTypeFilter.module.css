@@ -1,0 +1,65 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 0.15rem 0 0.85rem;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--token-fr7DwvJwRjZb, #afa491) 22%, transparent);
+  margin-bottom: 0.65rem;
+}
+
+.label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--token-9M5jRUPt8Msb, #1a1a1a);
+  text-align: right;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: flex-start;
+}
+
+.chip {
+  appearance: none;
+  border: 1px solid
+    color-mix(in srgb, var(--token-fr7DwvJwRjZb, #afa491) 35%, transparent);
+  background: var(--token-h2xt7bB598yU, #f5f1e3);
+  color: var(--token-9M5jRUPt8Msb, #1a1a1a);
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--token-9M5jRUPt8Msb, #1a1a1a) 72%, #888);
+}
+
+.chipDisabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.dialogContent :global([class*="freeBox___1Sg16"]) {
+  display: none;
+}
+
+.dialogContent :global([class*="line__cyp4B"]) {
+  display: none;
+}
+
+.chipActive {
+  background: color-mix(in srgb, #8fae55 42%, #f5f1e3);
+  border-color: color-mix(in srgb, #8fae55 55%, #afa491);
+  color: #2f3a22;
+}

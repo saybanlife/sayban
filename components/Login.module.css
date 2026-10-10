@@ -1,0 +1,91 @@
+/* Signup step must not show profile extras (national code, birth date, city). */
+.signupSlim :global([data-plasmic-name="code"]),
+.signupSlim :global([data-plasmic-name="dateInput"]),
+.signupSlim :global([data-plasmic-name="cityInput"]),
+.signupSlim :global(.freeBox__iHjyx) {
+  display: none !important;
+}
+
+.welcomeRoot {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  max-width: 24rem;
+  margin: 0 auto;
+  min-height: 100dvh;
+  padding: 2rem 1.25rem calc(2rem + env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
+  gap: 0.75rem;
+  background: var(--token-KPGXdu9o7llP, #f5f1e3);
+  font-family: Vazirmatn, sans-serif;
+}
+
+.welcomeLogo {
+  display: block;
+  width: auto;
+  height: 7rem;
+  max-width: 100%;
+  margin: 0 auto 0.5rem;
+  object-fit: contain;
+}
+
+.welcomeTitle {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    text-align: center;
+    color: var(--token-9M5jRUPt8Msb);
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-top: 0;
+    min-width: 0;
+}
+
+.welcomeSubtitle {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    text-align: center;
+    color: var(--token-KjATzAYJ5IB7);
+    font-size: var(--token-N8Pb0ZuDQAeF);
+    font-weight: 400;
+    padding-top: 0;
+    min-width: 0;
+}
+
+.welcomeField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.welcomeError {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #b91c1c;
+  text-align: right;
+}
+
+.welcomeSubmit {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.welcomeHasAccount {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: #647C34;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.75rem 0.5rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}

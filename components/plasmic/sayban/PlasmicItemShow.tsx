@@ -59,41 +59,42 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicItemShow.module.css"; // plasmic-import: hegjECXSYJcF/css
 
-<<<<<<< HEAD
-import Icon10Icon from "../website_starter/icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
-=======
 import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 createPlasmicElementProxy;
 
 export type PlasmicItemShow__VariantMembers = {
   select: "select";
+  ligtht: "ligtht";
+  unnamedVariant: "unnamedVariant";
+  showMore: "showMore";
 };
 export type PlasmicItemShow__VariantsArgs = {
   select?: SingleBooleanChoiceArg<"select">;
+  ligtht?: SingleBooleanChoiceArg<"ligtht">;
+  unnamedVariant?: SingleBooleanChoiceArg<"unnamedVariant">;
+  showMore?: SingleBooleanChoiceArg<"showMore">;
 };
 type VariantPropType = keyof PlasmicItemShow__VariantsArgs;
 export const PlasmicItemShow__VariantProps = new Array<VariantPropType>(
-  "select"
+  "select",
+  "ligtht",
+  "unnamedVariant",
+  "showMore"
 );
 
 export type PlasmicItemShow__ArgsType = {
   currentItem?: any;
   onClick?: (event: any) => void;
   children?: React.ReactNode;
+  slot2?: React.ReactNode;
   slot?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicItemShow__ArgsType;
@@ -101,6 +102,7 @@ export const PlasmicItemShow__ArgProps = new Array<ArgPropType>(
   "currentItem",
   "onClick",
   "children",
+  "slot2",
   "slot"
 );
 
@@ -113,8 +115,12 @@ export interface DefaultItemShowProps {
   currentItem?: any;
   onClick?: (event: any) => void;
   children?: React.ReactNode;
+  slot2?: React.ReactNode;
   slot?: React.ReactNode;
   select?: SingleBooleanChoiceArg<"select">;
+  ligtht?: SingleBooleanChoiceArg<"ligtht">;
+  unnamedVariant?: SingleBooleanChoiceArg<"unnamedVariant">;
+  showMore?: SingleBooleanChoiceArg<"showMore">;
   className?: string;
 }
 
@@ -164,6 +170,25 @@ function PlasmicItemShow__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.select
+      },
+      {
+        path: "ligtht",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.ligtht
+      },
+      {
+        path: "unnamedVariant",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $props.unnamedVariant
+      },
+      {
+        path: "showMore",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.showMore
       }
     ],
     [$props, $ctx, $refs]
@@ -192,7 +217,19 @@ function PlasmicItemShow__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
-        { [sty.rootselect]: hasVariant($state, "select", "select") }
+        {
+          [sty.rootligtht]: hasVariant($state, "ligtht", "ligtht"),
+          [sty.rootselect]: hasVariant($state, "select", "select"),
+          [sty.rootselect_ligtht]:
+            hasVariant($state, "ligtht", "ligtht") &&
+            hasVariant($state, "select", "select"),
+          [sty.rootshowMore]: hasVariant($state, "showMore", "showMore"),
+          [sty.rootunnamedVariant]: hasVariant(
+            $state,
+            "unnamedVariant",
+            "unnamedVariant"
+          )
+        }
       )}
       onClick={args.onClick}
     >
@@ -204,27 +241,98 @@ function PlasmicItemShow__RenderFunc(props: {
         value: args.children
       })}
       <div
-        data-plasmic-name={"text"}
-        data-plasmic-override={overrides.text}
-        className={classNames("all", "__wab_text", sty.text, {
-          [sty.textselect]: hasVariant($state, "select", "select")
+        className={classNames("all", sty.freeBox__yqJ9K, {
+          [sty.freeBoxshowMore__yqJ9KADhI7]: hasVariant(
+            $state,
+            "showMore",
+            "showMore"
+          )
         })}
       >
-        <React.Fragment>
-          {(() => {
-            try {
-              return $props.currentItem;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return "11:55";
+        <div
+          data-plasmic-name={"text"}
+          data-plasmic-override={overrides.text}
+          className={classNames("all", "__wab_text", sty.text, {
+            [sty.textligtht]: hasVariant($state, "ligtht", "ligtht"),
+            [sty.textselect]: hasVariant($state, "select", "select"),
+            [sty.textshowMore]: hasVariant($state, "showMore", "showMore")
+          })}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.currentItem;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "11:55";
+                }
+                throw e;
               }
-              throw e;
-            }
-          })()}
-        </React.Fragment>
+            })()}
+          </React.Fragment>
+        </div>
+        {(hasVariant($state, "showMore", "showMore") ? true : false) ? (
+          <div
+            className={classNames("all", sty.freeBox___3ODb0, {
+              [sty.freeBoxligtht___3ODb0K6RI]: hasVariant(
+                $state,
+                "ligtht",
+                "ligtht"
+              ),
+              [sty.freeBoxselect___3ODb0Qxa]: hasVariant(
+                $state,
+                "select",
+                "select"
+              ),
+              [sty.freeBoxshowMore___3ODb0ADhI7]: hasVariant(
+                $state,
+                "showMore",
+                "showMore"
+              )
+            })}
+          >
+            {renderPlasmicSlot({
+              defaultContents: (
+                <React.Fragment>
+                  {(() => {
+                    try {
+                      return $props.currentItem;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "11:55";
+                      }
+                      throw e;
+                    }
+                  })()}
+                </React.Fragment>
+              ),
+              value: args.slot2,
+              className: classNames(sty.slotTargetSlot2, {
+                [sty.slotTargetSlot2ligtht]: hasVariant(
+                  $state,
+                  "ligtht",
+                  "ligtht"
+                ),
+                [sty.slotTargetSlot2select]: hasVariant(
+                  $state,
+                  "select",
+                  "select"
+                ),
+                [sty.slotTargetSlot2showMore]: hasVariant(
+                  $state,
+                  "showMore",
+                  "showMore"
+                )
+              })
+            })}
+          </div>
+        ) : null}
       </div>
       {(hasVariant($state, "select", "select") ? true : false)
         ? renderPlasmicSlot({

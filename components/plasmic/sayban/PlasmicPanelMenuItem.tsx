@@ -61,23 +61,14 @@ import {
 
 import MenuIcon from "../../MenuIcon"; // plasmic-import: Byb4ZkDGA1E5/component
 import PanelMenuSubItem from "../../PanelMenuSubItem"; // plasmic-import: gmp4wRUyxyG1/component
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicPanelMenuItem.module.css"; // plasmic-import: tm4UWCfc9LMS/css
 
-<<<<<<< HEAD
-import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
-=======
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
->>>>>>> plasmicops/rQ6tUgoS/newMain
 import Icon50Icon from "./icons/PlasmicIcon__Icon50"; // plasmic-import: WJRkqS_3bYMM/icon
 
 createPlasmicElementProxy;
@@ -283,7 +274,7 @@ function PlasmicPanelMenuItem__RenderFunc(props: {
           }
 
           $steps["updateOpensubItem"] =
-            $props.item.children.length > 0
+            ($props.item?.children?.length ?? 0) > 0
               ? (() => {
                   const actionArgs = { vgroup: "opensubItem", operation: 2 };
                   return (({ vgroup, value }) => {
@@ -313,7 +304,7 @@ function PlasmicPanelMenuItem__RenderFunc(props: {
             [sty.menuIconselect]: hasVariant($state, "select", "select")
           })}
           color={
-            hasVariant($state, "select", "select") ? "praimery" : "iconColor"
+            hasVariant($state, "select", "select") ? "iconColor" : "waite"
           }
           icons={(() => {
             try {

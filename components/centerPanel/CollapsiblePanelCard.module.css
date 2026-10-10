@@ -1,0 +1,88 @@
+/* Mirrors the Plasmic section card (PlasmicCenterPage freeBox__oArX). */
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  direction: rtl;
+  text-align: right;
+  box-shadow: none;
+  border-radius: var(--token-rfsFxiclAtek, 0.75rem);
+  background: var(--token-W0eejbtvb0xw, var(--panel-bg-elevated, #fff));
+  color: var(--token-9M5jRUPt8Msb, var(--panel-text, #1f2a0f));
+  border: 1px solid var(--panel-border, transparent);
+  padding: var(--token-0tl2H1TRPHhV, 1rem);
+  row-gap: var(--token-cfon0PHiXQoL, 0.5rem);
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.toggle {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-top: 0.1rem;
+  border: 1px solid color-mix(in srgb, var(--plasmic-token-gray) 22%, transparent);
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--plasmic-token-gray) 6%, transparent);
+  color: var(--token-9M5jRUPt8Msb, var(--panel-text, #1a1a1a));
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.toggle:hover {
+  background: color-mix(in srgb, var(--plasmic-token-primary-green, #2d6a4f) 12%, transparent);
+}
+
+.chevron {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.titleBlock {
+  flex: 1 1 auto;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--token-9M5jRUPt8Msb, var(--panel-text, #1a1a1a));
+  line-height: 1.5;
+}
+
+.hint {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--token-KjATzAYJ5IB7, var(--panel-text-muted, #6b7a5a));
+  line-height: 1.55;
+}
+
+.headerExtra {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.bodyHidden {
+  display: none;
+}
+
+.body {
+  width: 100%;
+  min-width: 0;
+}

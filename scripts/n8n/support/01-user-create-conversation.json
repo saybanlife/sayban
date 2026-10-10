@@ -1,0 +1,87 @@
+{
+  "name": "Sayban - Support User Create Conversation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "support/conversations/create",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0],
+      "id": "support-user-create-webhook",
+      "name": "Webhook",
+      "webhookId": "support-user-create"
+    },
+    {
+      "parameters": {
+        "jsCode": "const headers = $json.headers || {};\nconst auth = headers.authorization || headers.Authorization || '';\nconst token = String(auth).replace(/^Bearer\\s+/i, '').trim();\nif (!token) throw new Error('Unauthorized');\nconst payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString('utf8'));\nconst userId = Number(payload.id || payload.userId || payload.sub);\nif (!userId) throw new Error('Unauthorized');\nconst body = $json.body || {};\nconst message = String(body.message || '').trim();\nif (!message) throw new Error('message required');\nreturn [{ json: { userId, message } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 0],
+      "id": "support-user-create-auth",
+      "name": "Auth + Parse"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO support__conversations (user_id, status, last_message, last_message_at, message_count)\nVALUES (?, 'open', ?, NOW(), 1);\nSELECT LAST_INSERT_ID() AS id;",
+        "options": {
+          "queryReplacement": "={{ [$json.userId, $json.message] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [440, 0],
+      "id": "support-user-create-insert-conv",
+      "name": "Insert Conversation",
+      "credentials": { "mySql": { "id": "oNRa6pdlbbcsx18m", "name": "MySQL account" } }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO support__messages (conversation_id, sender_id, sender_type, message)\nVALUES (?, ?, 'user', ?);",
+        "options": {
+          "queryReplacement": "={{ [ $('Auth + Parse').item.json.userId && $('Insert Conversation').item.json.id, $('Auth + Parse').item.json.userId, $('Auth + Parse').item.json.message ] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [660, 0],
+      "id": "support-user-create-insert-msg",
+      "name": "Insert Message",
+      "credentials": { "mySql": { "id": "oNRa6pdlbbcsx18m", "name": "MySQL account" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "const convId = Number($('Insert Conversation').item.json.id);\nconst auth = $('Auth + Parse').item.json;\nreturn [{ json: { success: true, result: { id: convId, user_id: auth.userId, status: 'open', last_message: auth.message, message_count: 1 } } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [880, 0],
+      "id": "support-user-create-respond-code",
+      "name": "Build Response"
+    },
+    {
+      "parameters": { "options": {} },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [1100, 0],
+      "id": "support-user-create-respond",
+      "name": "Respond"
+    }
+  ],
+  "connections": {
+    "Webhook": { "main": [[{ "node": "Auth + Parse", "type": "main", "index": 0 }]] },
+    "Auth + Parse": { "main": [[{ "node": "Insert Conversation", "type": "main", "index": 0 }]] },
+    "Insert Conversation": { "main": [[{ "node": "Insert Message", "type": "main", "index": 0 }]] },
+    "Insert Message": { "main": [[{ "node": "Build Response", "type": "main", "index": 0 }]] },
+    "Build Response": { "main": [[{ "node": "Respond", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "meta": { "templateCredsSetupCompleted": true }
+}

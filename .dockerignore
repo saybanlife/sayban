@@ -1,0 +1,14 @@
+# Editor / local ops — never ship into the runtime image
+.cursor
+.cursor/**
+
+# Dependencies & build
+node_modules
+.next
+.git
+*.md
+!docs/**
+
+# Local env / secrets
+.env*
+!.env.example

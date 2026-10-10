@@ -61,13 +61,23 @@ import {
 
 import Line from "../../Line"; // plasmic-import: XcTsDHGhCv1N/component
 import Switch from "../../Switch"; // plasmic-import: gmLkAM4DXGYW/component
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
+import Modal from "../../Modal"; // plasmic-import: Oo9r7A7X8FP7/component
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import {
+  asNotificationPreference,
+  saveNotificationPreference
+} from "../../user/notificationPreference";
+import {
+  enableNotificationsWithFcm,
+  isNotificationSwitchOn,
+  openNativeNotificationSettings,
+  requestNativeNotificationPermission,
+  resolveNotificationGate,
+  toggleActiveNotificationPreference
+} from "@/lib/notificationStatus";
+import { isSaybanNativeAndroid } from "@/lib/nativeShell";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -75,17 +85,22 @@ import sty from "./PlasmicUser.module.css"; // plasmic-import: PVZXFz1DIsfR/css
 
 import Icon88Icon from "./icons/PlasmicIcon__Icon88"; // plasmic-import: aFZZTVjUhsRZ/icon
 import Icon70Icon from "./icons/PlasmicIcon__Icon70"; // plasmic-import: PWsALiD1VW02/icon
-import MessageIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Message"; // plasmic-import: r2jZeTOT_KvL/icon
+import Icon264Icon from "./icons/PlasmicIcon__Icon264"; // plasmic-import: 7YjsND1KK6EP/icon
 import Icon76Icon from "./icons/PlasmicIcon__Icon76"; // plasmic-import: PNmvwHPTSPVF/icon
+import MessageIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Message"; // plasmic-import: r2jZeTOT_KvL/icon
+import Icon268Icon from "./icons/PlasmicIcon__Icon268"; // plasmic-import: 1XnMx9ZcPwLh/icon
+import CurrentLocationIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__CurrentLocation"; // plasmic-import: AblxVode3mz8/icon
 import TagIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Tag"; // plasmic-import: 719VbVnZMlwm/icon
-import Icon78Icon from "./icons/PlasmicIcon__Icon78"; // plasmic-import: rn5Sm-68bTpC/icon
-import BrandTelegramIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__BrandTelegram"; // plasmic-import: 4E611EcCApzn/icon
+import HeadphonesIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Headphones"; // plasmic-import: p_Pvf8ez_yuB/icon
 import Icon85Icon from "./icons/PlasmicIcon__Icon85"; // plasmic-import: ZwDSzgb1OoZy/icon
 import Icon80Icon from "./icons/PlasmicIcon__Icon80"; // plasmic-import: 085F3u06dwLP/icon
 import Icon81Icon from "./icons/PlasmicIcon__Icon81"; // plasmic-import: JFikrSBW0K-n/icon
 import Icon83Icon from "./icons/PlasmicIcon__Icon83"; // plasmic-import: Lr0xJJRemopC/icon
 import Icon84Icon from "./icons/PlasmicIcon__Icon84"; // plasmic-import: S2KVA8WxUeNT/icon
 import Icon87Icon from "./icons/PlasmicIcon__Icon87"; // plasmic-import: DSiKrPvxYlkt/icon
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+import Icon342Icon from "./icons/PlasmicIcon__Icon342"; // plasmic-import: 3cI93FpEy9Rj/icon
 
 createPlasmicElementProxy;
 
@@ -97,11 +112,17 @@ export const PlasmicUser__VariantProps = new Array<VariantPropType>();
 export type PlasmicUser__ArgsType = {
   userinfo?: any;
   goToEdit?: (event: any) => void;
+  goToBooking?: (event: any) => void;
+  goToPatient?: () => void;
+  goToAddress?: () => void;
 };
 type ArgPropType = keyof PlasmicUser__ArgsType;
 export const PlasmicUser__ArgProps = new Array<ArgPropType>(
   "userinfo",
-  "goToEdit"
+  "goToEdit",
+  "goToBooking",
+  "goToPatient",
+  "goToAddress"
 );
 
 export type PlasmicUser__OverridesType = {
@@ -110,11 +131,17 @@ export type PlasmicUser__OverridesType = {
   img?: Flex__<typeof PlasmicImg__>;
   _switch?: Flex__<typeof Switch>;
   switch2?: Flex__<typeof Switch>;
+  modal?: Flex__<typeof Modal>;
+  button2?: Flex__<typeof Button>;
+  button3?: Flex__<typeof Button>;
 };
 
 export interface DefaultUserProps {
   userinfo?: any;
   goToEdit?: (event: any) => void;
+  goToBooking?: (event: any) => void;
+  goToPatient?: () => void;
+  goToAddress?: () => void;
   className?: string;
 }
 
@@ -163,10 +190,37 @@ function PlasmicUser__RenderFunc(props: {
         path: "_switch.isSelected",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            return isNotificationSwitchOn($props.userinfo?.isnotif);
+          })()
       },
       {
         path: "switch2.isSelected",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "modal.isOpen",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "button.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button3.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
@@ -174,6 +228,8 @@ function PlasmicUser__RenderFunc(props: {
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
 
   const $state = useDollarState(stateSpecs, {
     $props,
@@ -206,26 +262,6 @@ function PlasmicUser__RenderFunc(props: {
         className={classNames("all", sty.section)}
       >
         <div className={classNames("all", sty.freeBox__wxYE, "page ")}>
-          <PlasmicImg__
-            data-plasmic-name={"img"}
-            data-plasmic-override={overrides.img}
-            alt={""}
-            className={classNames(sty.img)}
-            displayHeight={"auto"}
-            displayMaxHeight={"none"}
-            displayMaxWidth={"100%"}
-            displayMinHeight={"0"}
-            displayMinWidth={"0"}
-            displayWidth={"auto"}
-            loading={"lazy"}
-            src={{
-              src: "/plasmic/sayban/images/image24.svg",
-              fullWidth: 200,
-              fullHeight: 200,
-              aspectRatio: undefined
-            }}
-          />
-
           <div
             className={classNames("all", sty.freeBox__apRfu)}
             onClick={async event => {
@@ -262,6 +298,25 @@ function PlasmicUser__RenderFunc(props: {
                 role={"img"}
               />
             </div>
+            <PlasmicImg__
+              data-plasmic-name={"img"}
+              data-plasmic-override={overrides.img}
+              alt={""}
+              className={classNames(sty.img)}
+              displayHeight={"6rem"}
+              displayMaxHeight={"none"}
+              displayMaxWidth={"100%"}
+              displayMinHeight={"0"}
+              displayMinWidth={"0"}
+              displayWidth={"6rem"}
+              loading={"lazy"}
+              src={{
+                src: "/plasmic/sayban/images/geminiGeneratedImageVeesxkveesxkveesRemovebgPreviewPng.png",
+                fullWidth: 500,
+                fullHeight: 500,
+                aspectRatio: undefined
+              }}
+            />
           </div>
           <div className={classNames("all", "__wab_text", sty.text__bMlg7)}>
             <React.Fragment>
@@ -287,14 +342,66 @@ function PlasmicUser__RenderFunc(props: {
       </section>
       <div className={classNames("all", sty.freeBox___9IFyv)}>
         <div className={classNames("all", sty.freeBox___9JjmT)}>
-          <div className={classNames("all", sty.freeBox___5C91)}>
+          <div
+            className={classNames("all", sty.freeBox__en7Fw)}
+            onClick={args.goToBooking}
+          >
+            <Icon264Icon
+              className={classNames("all", sty.svg__vtuG1)}
+              role={"img"}
+            />
+
+            <div className={classNames("all", "__wab_text", sty.text__znMkH)}>
+              {"\u0631\u0632\u0631\u0648 \u0647\u0627\u06cc \u0634\u0645\u0627"}
+            </div>
+            <Icon76Icon
+              className={classNames("all", sty.svg__yb2Pb)}
+              role={"img"}
+            />
+          </div>
+          <Line
+            className={classNames("__wab_instance", sty.line__ixqxs)}
+            size={"small"}
+          />
+
+          <div
+            className={classNames("all", sty.freeBox___5C91)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = { destination: `/${"user"}/${"notif"}` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+          >
             <MessageIcon
               className={classNames("all", sty.svg__ybHfZ)}
               role={"img"}
             />
 
             <div className={classNames("all", "__wab_text", sty.text__sU1Id)}>
-              {"\u067e\u06cc\u0627\u0645"}
+              {"\u0627\u0637\u0644\u0627\u0639\u06cc\u0647 \u0647\u0627"}
             </div>
             <Icon76Icon
               className={classNames("all", sty.svg__gMpm)}
@@ -306,6 +413,81 @@ function PlasmicUser__RenderFunc(props: {
             size={"small"}
           />
 
+          <div
+            className={classNames("all", sty.freeBox___9Vhxr)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runGoToPatient"] = true
+                ? (() => {
+                    const actionArgs = { eventRef: $props["goToPatient"] };
+                    return (({ eventRef, args }) => {
+                      return eventRef?.(...(args ?? []));
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runGoToPatient"] != null &&
+                typeof $steps["runGoToPatient"] === "object" &&
+                typeof $steps["runGoToPatient"].then === "function"
+              ) {
+                $steps["runGoToPatient"] = await $steps["runGoToPatient"];
+              }
+            }}
+          >
+            <Icon268Icon
+              className={classNames("all", sty.svg__mV15M)}
+              role={"img"}
+            />
+
+            <div className={classNames("all", "__wab_text", sty.text__e9Vtm)}>
+              {"\u0647\u0645\u0631\u0627\u0647\u0627\u0646"}
+            </div>
+            <Icon76Icon
+              className={classNames("all", sty.svg__g63Z2)}
+              role={"img"}
+            />
+          </div>
+          <Line
+            className={classNames("__wab_instance", sty.line__qrasf)}
+            size={"small"}
+          />
+
+          <div
+            className={classNames("all", sty.freeBox___2Y08)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runGoToAddress"] = true
+                ? (() => {
+                    const actionArgs = { eventRef: $props["goToAddress"] };
+                    return (({ eventRef, args }) => {
+                      return eventRef?.(...(args ?? []));
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runGoToAddress"] != null &&
+                typeof $steps["runGoToAddress"] === "object" &&
+                typeof $steps["runGoToAddress"].then === "function"
+              ) {
+                $steps["runGoToAddress"] = await $steps["runGoToAddress"];
+              }
+            }}
+          >
+            <CurrentLocationIcon
+              className={classNames("all", sty.svg__iOav5)}
+              role={"img"}
+            />
+
+            <div className={classNames("all", "__wab_text", sty.text__iIgCq)}>
+              {"\u0622\u062f\u0631\u0633 \u0647\u0627\u06cc \u0645\u0646"}
+            </div>
+            <Icon76Icon
+              className={classNames("all", sty.svg__ikNxs)}
+              role={"img"}
+            />
+          </div>
           <div className={classNames("all", sty.freeBox__eLfl3)}>
             <TagIcon
               className={classNames("all", sty.svg__zMxX)}
@@ -322,46 +504,205 @@ function PlasmicUser__RenderFunc(props: {
           </div>
         </div>
         <div className={classNames("all", sty.freeBox__dUvuz)}>
-          <div className={classNames("all", sty.freeBox__bvw0)}>
-            <Icon78Icon
-              className={classNames("all", sty.svg__uqKim)}
+          <div className={classNames("all", sty.freeBox__ux03)}>
+            <HeadphonesIcon
+              className={classNames("all", sty.svg___7Ka3R)}
               role={"img"}
             />
 
-            <div className={classNames("all", "__wab_text", sty.text__a2MQ)}>
-              {
-                "\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u062a\u0644\u0641\u0646\u06cc"
-              }
+            <div className={classNames("all", "__wab_text", sty.text__s5GpZ)}>
+              {"\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc "}
             </div>
             <Icon76Icon
-              className={classNames("all", sty.svg___0HQm1)}
-              role={"img"}
-            />
-          </div>
-          <Line
-            className={classNames("__wab_instance", sty.line__dfpV5)}
-            size={"small"}
-          />
-
-          <div className={classNames("all", sty.freeBox__vnrYw)}>
-            <BrandTelegramIcon
-              className={classNames("all", sty.svg__h4Emz)}
-              role={"img"}
-            />
-
-            <div className={classNames("all", "__wab_text", sty.text__nLr14)}>
-              {
-                "\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u062a\u0644\u06af\u0631\u0627\u0645\u06cc"
-              }
-            </div>
-            <Icon76Icon
-              className={classNames("all", sty.svg__wcYd6)}
+              className={classNames("all", sty.svg__ji7TF)}
               role={"img"}
             />
           </div>
         </div>
         <div className={classNames("all", sty.freeBox___4PsTr)}>
-          <div className={classNames("all", sty.freeBox__er2Gs)}>
+          <div
+            className={classNames("all", sty.freeBox__er2Gs)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return resolveNotificationGate();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["invokeGlobalAction"] =
+                $steps.runCode == "not_asked"
+                  ? (() => {
+                      const actionArgs = { args: [] };
+                      if (isSaybanNativeAndroid()) {
+                        return (async () => {
+                          try {
+                            await requestNativeNotificationPermission();
+                            const ok = await enableNotificationsWithFcm();
+                            if (ok) {
+                              try {
+                                await saveNotificationPreference(true);
+                                if ($props.userinfo) {
+                                  $props.userinfo.isnotif = 1;
+                                }
+                                $state._switch.isSelected = true;
+                              } catch (error) {
+                                console.error(
+                                  "Failed to save notification preference after native grant",
+                                  error
+                                );
+                              }
+                              $globalActions["Fragment.showToast"]?.(
+                                "success",
+                                "اعلان‌ها فعال شد.",
+                                "top-center"
+                              );
+                            }
+                          } catch (error) {
+                            console.error(
+                              "Native notification permission request failed",
+                              error
+                            );
+                            $globalActions["Fragment.showToast"]?.(
+                              "error",
+                              "درخواست دسترسی اعلان ناموفق بود.",
+                              "top-center"
+                            );
+                          }
+                        })();
+                      }
+                      return $globalActions[
+                        "Fragment.openNotificationModal"
+                      ]?.apply(null, [...actionArgs.args]);
+                    })()
+                  : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["showBlockedToast"] =
+                $steps.runCode == "blocked"
+                  ? (() => {
+                      if (isSaybanNativeAndroid()) {
+                        openNativeNotificationSettings();
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [
+                            "error",
+                            "دسترسی اعلان در تنظیمات برنامه مسدود است. از تنظیمات، اعلان‌ها را فعال کنید.",
+                            "top-center"
+                          ]
+                        );
+                      }
+                      return $globalActions["Fragment.showToast"]?.apply(
+                        null,
+                        [
+                          "error",
+                          "دسترسی اعلان در تنظیمات مرورگر مسدود شده است. لطفاً از تنظیمات مرورگر یا دستگاه اجازه دهید.",
+                          "top-center"
+                        ]
+                      );
+                    })()
+                  : undefined;
+              if (
+                $steps["showBlockedToast"] != null &&
+                typeof $steps["showBlockedToast"] === "object" &&
+                typeof $steps["showBlockedToast"].then === "function"
+              ) {
+                $steps["showBlockedToast"] = await $steps["showBlockedToast"];
+              }
+
+              $steps["showUnsupportedToast"] =
+                $steps.runCode == "not_supported"
+                  ? (() => {
+                      return $globalActions["Fragment.showToast"]?.apply(
+                        null,
+                        [
+                          "error",
+                          "این مرورگر از اعلان پشتیبانی نمی‌کند.",
+                          "top-center"
+                        ]
+                      );
+                    })()
+                  : undefined;
+              if (
+                $steps["showUnsupportedToast"] != null &&
+                typeof $steps["showUnsupportedToast"] === "object" &&
+                typeof $steps["showUnsupportedToast"].then === "function"
+              ) {
+                $steps["showUnsupportedToast"] =
+                  await $steps["showUnsupportedToast"];
+              }
+
+              $steps["toggleActiveNotif"] =
+                $steps.runCode == "active"
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          const currentlyOn = asNotificationPreference(
+                            $props.userinfo?.isnotif
+                          );
+                          try {
+                            const next = await toggleActiveNotificationPreference(
+                              $props.userinfo
+                            );
+                            $state._switch.isSelected = next;
+                            $globalActions["Fragment.showToast"]?.(
+                              "success",
+                              next
+                                ? "اعلان‌ها فعال شد."
+                                : "اعلان‌ها غیرفعال شد.",
+                              "top-center"
+                            );
+                            return next;
+                          } catch (error) {
+                            console.error(
+                              "Failed to toggle notification preference",
+                              error
+                            );
+                            $globalActions["Fragment.showToast"]?.(
+                              "error",
+                              "ذخیره وضعیت اعلان ناموفق بود.",
+                              "top-center"
+                            );
+                            return currentlyOn;
+                          }
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+              if (
+                $steps["toggleActiveNotif"] != null &&
+                typeof $steps["toggleActiveNotif"] === "object" &&
+                typeof $steps["toggleActiveNotif"].then === "function"
+              ) {
+                $steps["toggleActiveNotif"] = await $steps["toggleActiveNotif"];
+              }
+            }}
+          >
             <Icon85Icon
               className={classNames("all", sty.svg__aL28T)}
               role={"img"}
@@ -372,30 +713,52 @@ function PlasmicUser__RenderFunc(props: {
                 "\u0648\u0636\u0639\u06cc\u062a \u0627\u0637\u0644\u0627\u0639\u200c\u0631\u0633\u0627\u0646\u06cc"
               }
             </div>
-            <Switch
-              data-plasmic-name={"_switch"}
-              data-plasmic-override={overrides._switch}
-              className={classNames("__wab_instance", sty._switch)}
-              isSelected={generateStateValueProp($state, [
-                "_switch",
-                "isSelected"
-              ])}
-              onChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
+            {(() => {
+              const child$Props = {
+                className: classNames("__wab_instance", sty._switch),
+                disabled: true,
+                isSelected: generateStateValueProp($state, [
                   "_switch",
                   "isSelected"
-                ]).apply(null, eventArgs);
+                ]),
+                onChange: async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "_switch",
+                    "isSelected"
+                  ]).apply(null, eventArgs);
 
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              showLabel={false}
-            />
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                },
+                showLabel: false
+              };
+
+              initializePlasmicStates(
+                $state,
+                [
+                  {
+                    name: "_switch.isSelected",
+                    initFunc: ({ $props, $state, $queries, $q }) =>
+                      (() => {
+                        return isNotificationSwitchOn($props.userinfo?.isnotif);
+                      })()
+                  }
+                ],
+                []
+              );
+              return (
+                <Switch
+                  data-plasmic-name={"_switch"}
+                  data-plasmic-override={overrides._switch}
+                  {...child$Props}
+                />
+              );
+            })()}
           </div>
           <Line
             className={classNames("__wab_instance", sty.line___7QHjk)}
@@ -438,7 +801,37 @@ function PlasmicUser__RenderFunc(props: {
           </div>
         </div>
         <div className={classNames("all", sty.freeBox__wCec3)}>
-          <div className={classNames("all", sty.freeBox__npzrb)}>
+          <div
+            className={classNames("all", sty.freeBox__npzrb)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = { destination: `/${"user"}/${"about"}` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+          >
             <Icon81Icon
               className={classNames("all", sty.svg__oFjmx)}
               role={"img"}
@@ -457,7 +850,51 @@ function PlasmicUser__RenderFunc(props: {
             size={"small"}
           />
 
-          <div className={classNames("all", sty.freeBox__aPmkP)}>
+          <div
+            className={classNames("all", sty.freeBox__aPmkP)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${"user"}/${(() => {
+                        try {
+                          return "FAQ";
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+          >
             <Icon83Icon
               className={classNames("all", sty.svg__xF93B)}
               role={"img"}
@@ -478,7 +915,39 @@ function PlasmicUser__RenderFunc(props: {
             size={"small"}
           />
 
-          <div className={classNames("all", sty.freeBox__chlYp)}>
+          <div
+            className={classNames("all", sty.freeBox__chlYp)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["goToHomepage"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/${"user"}/${"rules "}`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
+              ) {
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
+              }
+            }}
+          >
             <Icon84Icon
               className={classNames("all", sty.svg__xY61)}
               role={"img"}
@@ -496,7 +965,32 @@ function PlasmicUser__RenderFunc(props: {
           </div>
         </div>
         <div className={classNames("all", sty.freeBox__sqyt4)}>
-          <div className={classNames("all", sty.freeBox__lTj)}>
+          <div
+            className={classNames("all", sty.freeBox__lTj)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.modal.isOpen = true);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+          >
             <Icon87Icon
               className={classNames("all", sty.svg__bmKiq)}
               role={"img"}
@@ -514,16 +1008,205 @@ function PlasmicUser__RenderFunc(props: {
           </div>
         </div>
       </div>
+      <Modal
+        data-plasmic-name={"modal"}
+        data-plasmic-override={overrides.modal}
+        className={classNames("__wab_instance", sty.modal)}
+        closeOnBackdropClick={false}
+        content={
+          <div className={classNames("all", sty.freeBox__axXbg)}>
+            <div className={classNames("all", sty.freeBox__dSsz4)}>
+              <Icon342Icon
+                className={classNames("all", sty.svg__yutAy)}
+                role={"img"}
+              />
+            </div>
+            <div className={classNames("all", "__wab_text", sty.text__ipE1V)}>
+              {"\u062e\u0631\u0648\u062c \u0627\u0632 \u062d\u0633\u0627\u0628"}
+            </div>
+            <div className={classNames("all", "__wab_text", sty.text__hs22H)}>
+              {
+                "\u0627\u0632 \u062e\u0627\u0631\u062c \u0634\u062f\u0646 \u0627\u0632 \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc \u062e\u0648\u062f \u0645\u0637\u0645\u0626\u0646 \u0647\u0633\u062a\u06cc\u062f\u061f"
+              }
+            </div>
+          </div>
+        }
+        footer={
+          <div className={classNames("all", sty.freeBox__zsXtV)}>
+            <Button
+              data-plasmic-name={"button2"}
+              data-plasmic-override={overrides.button2}
+              className={classNames("__wab_instance", sty.button2)}
+              color={"second"}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text__dOu08)}
+                >
+                  {"\u062e\u0631\u0648\u062c"}
+                </div>
+              }
+              loading={generateStateValueProp($state, ["button2", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (window.document.cookie =
+                            "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.darkube.ir; secure; SameSite=Lax");
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+
+                $steps["goToLogin"] = true
+                  ? (() => {
+                      const actionArgs = { destination: `/login/${"login"}` };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToLogin"] != null &&
+                  typeof $steps["goToLogin"] === "object" &&
+                  typeof $steps["goToLogin"].then === "function"
+                ) {
+                  $steps["goToLogin"] = await $steps["goToLogin"];
+                }
+              }}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["button2", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+            />
+
+            <Button
+              data-plasmic-name={"button3"}
+              data-plasmic-override={overrides.button3}
+              className={classNames("__wab_instance", sty.button3)}
+              color={"clear"}
+              label={
+                <div
+                  className={classNames("all", "__wab_text", sty.text__zw1Ui)}
+                >
+                  {"\u062e\u06cc\u0631"}
+                </div>
+              }
+              loading={generateStateValueProp($state, ["button3", "loading"])}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return ($state.modal.isOpen = false);
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+              }}
+              onLoadingChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["button3", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+            />
+          </div>
+        }
+        heading={null}
+        isOpen={generateStateValueProp($state, ["modal", "isOpen"])}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["modal", "isOpen"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        showFooter={false}
+        showHeader={false}
+      />
+
+      <div className={classNames("all", sty.freeBox__xnhpN, "page ")} />
     </section>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "section", "img", "_switch", "switch2"],
+  root: [
+    "root",
+    "section",
+    "img",
+    "_switch",
+    "switch2",
+    "modal",
+    "button2",
+    "button3"
+  ],
   section: ["section", "img"],
   img: ["img"],
   _switch: ["_switch"],
-  switch2: ["switch2"]
+  switch2: ["switch2"],
+  modal: ["modal", "button2", "button3"],
+  button2: ["button2"],
+  button3: ["button3"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -534,6 +1217,9 @@ type NodeDefaultElementType = {
   img: typeof PlasmicImg__;
   _switch: typeof Switch;
   switch2: typeof Switch;
+  modal: typeof Modal;
+  button2: typeof Button;
+  button3: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -602,6 +1288,9 @@ export const PlasmicUser = Object.assign(
     img: makeNodeComponent("img"),
     _switch: makeNodeComponent("_switch"),
     switch2: makeNodeComponent("switch2"),
+    modal: makeNodeComponent("modal"),
+    button2: makeNodeComponent("button2"),
+    button3: makeNodeComponent("button3"),
 
     // Metadata about props expected for PlasmicUser
     internalVariantProps: PlasmicUser__VariantProps,

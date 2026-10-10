@@ -1,0 +1,28 @@
+.root {
+  position: relative;
+  width: 100%;
+  /* Fill the parent stage — never force a full-viewport height that spills
+     under the confirm footer or past a step-2 preview clip. */
+  height: 100%;
+  min-height: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  background: #eee;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+.loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  color: #6b7280;
+  z-index: 2;
+}

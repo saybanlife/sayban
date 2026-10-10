@@ -67,13 +67,8 @@ import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-impor
 import { AntdInput } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { inputHelpers as AntdInput_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { DialogClose } from "@plasmicpkgs/radix-ui";
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -92,15 +87,18 @@ createPlasmicElementProxy;
 export type PlasmicDialog__VariantMembers = {
   fullpage: "fullpage";
   nopadding: "nopadding";
+  colorback: "w";
 };
 export type PlasmicDialog__VariantsArgs = {
   fullpage?: SingleBooleanChoiceArg<"fullpage">;
   nopadding?: SingleBooleanChoiceArg<"nopadding">;
+  colorback?: SingleChoiceArg<"w">;
 };
 type VariantPropType = keyof PlasmicDialog__VariantsArgs;
 export const PlasmicDialog__VariantProps = new Array<VariantPropType>(
   "fullpage",
-  "nopadding"
+  "nopadding",
+  "colorback"
 );
 
 export type PlasmicDialog__ArgsType = {
@@ -130,6 +128,7 @@ export interface DefaultDialogProps {
   onOpendialogChange?: (val: string) => void;
   fullpage?: SingleBooleanChoiceArg<"fullpage">;
   nopadding?: SingleBooleanChoiceArg<"nopadding">;
+  colorback?: SingleChoiceArg<"w">;
   className?: string;
 }
 
@@ -230,6 +229,12 @@ function PlasmicDialog__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.nopadding
+      },
+      {
+        path: "colorback",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.colorback
       }
     ],
     [$props, $ctx, $refs]
@@ -261,6 +266,7 @@ function PlasmicDialog__RenderFunc(props: {
         styleTokensClassNames,
         sty.dialog3,
         {
+          [sty.dialog3colorback_w]: hasVariant($state, "colorback", "w"),
           [sty.dialog3fullpage]: hasVariant($state, "fullpage", "fullpage"),
           [sty.dialog3nopadding]: hasVariant($state, "nopadding", "nopadding")
         }
@@ -279,45 +285,21 @@ function PlasmicDialog__RenderFunc(props: {
         }
       })()}
       onOpenChange={async (...eventArgs: any) => {
-        generateStateOnChangeProp($state, ["dialog3", "open"]).apply(
-          null,
-          eventArgs
-        );
-
-        (async open => {
-          const $steps = {};
-
-          $steps["updateOpendialog"] = true
-            ? (() => {
-                const actionArgs = {
-                  variable: {
-                    objRoot: $state,
-                    variablePath: ["opendialog"]
-                  },
-                  operation: 4
-                };
-                return (({ variable, value, startIndex, deleteCount }) => {
-                  if (!variable) {
-                    return;
-                  }
-                  const { objRoot, variablePath } = variable;
-
-                  const oldValue = $stateGet(objRoot, variablePath);
-                  $stateSet(objRoot, variablePath, !oldValue);
-                  return !oldValue;
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
-          if (
-            $steps["updateOpendialog"] != null &&
-            typeof $steps["updateOpendialog"] === "object" &&
-            typeof $steps["updateOpendialog"].then === "function"
-          ) {
-            $steps["updateOpendialog"] = await $steps["updateOpendialog"];
-          }
-        }).apply(null, eventArgs);
+        // Assign the Radix open value — do not toggle. Toggling closed the
+        // dialog when Radix re-emitted `true` on open (or `false` from a
+        // nested overlay), which looked like an auto-close.
+        const nextOpen = Boolean(eventArgs[0]);
+        generateStateOnChangeProp($state, ["dialog3", "open"]).apply(null, [
+          nextOpen
+        ]);
+        $stateSet($state, ["opendialog"], nextOpen);
       }}
-      open={generateStateValueProp($state, ["dialog3", "open"])}
+      open={
+        // Keep Radix `open` in lockstep with the writable `opendialog` prop.
+        // The private `dialog3.open` copy lagged behind programmatic opens
+        // (e.g. `$state.dateDiolog.opendialog = true`) and then fought them.
+        Boolean(generateStateValueProp($state, ["opendialog"]))
+      }
       overlayClassName={classNames({
         [sty["pcls_DZh5IDQdayKU"]]: hasVariant(
           globalVariants,
@@ -337,7 +319,9 @@ function PlasmicDialog__RenderFunc(props: {
         <Button2
           data-plasmic-name={"button3"}
           data-plasmic-override={overrides.button3}
-          className={classNames("__wab_instance", sty.button3)}
+          className={classNames("__wab_instance", sty.button3, {
+            [sty.button3nopadding]: hasVariant($state, "nopadding", "nopadding")
+          })}
           color={generateStateValueProp($state, ["button3", "color"])}
           endIcon={
             <ChevronLeftIcon
@@ -406,6 +390,7 @@ function PlasmicDialog__RenderFunc(props: {
         data-plasmic-name={"dialogContent"}
         data-plasmic-override={overrides.dialogContent}
         className={classNames("__wab_instance", sty.dialogContent, {
+          [sty.dialogContentcolorback_w]: hasVariant($state, "colorback", "w"),
           [sty.dialogContentfullpage]: hasVariant(
             $state,
             "fullpage",
@@ -694,7 +679,13 @@ function PlasmicDialog__RenderFunc(props: {
         <DialogClose
           data-plasmic-name={"dialogClose"}
           data-plasmic-override={overrides.dialogClose}
-          className={classNames("__wab_instance", sty.dialogClose)}
+          className={classNames("__wab_instance", sty.dialogClose, {
+            [sty.dialogClosenopadding]: hasVariant(
+              $state,
+              "nopadding",
+              "nopadding"
+            )
+          })}
         >
           <XIcon className={classNames("all", sty.svg__nuLi2)} role={"img"} />
         </DialogClose>

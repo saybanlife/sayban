@@ -1,0 +1,20 @@
+/* Enlarge Header back control hit target without changing icon look */
+
+.root :global([class*="freeBox__ameEp"]) {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.55rem !important;
+  box-sizing: border-box;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 0.65rem;
+}
+
+.root :global([class*="freeBox__ameEp"]) :global(svg) {
+  width: 25px;
+  height: 25px;
+  pointer-events: none;
+}

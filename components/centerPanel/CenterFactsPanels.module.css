@@ -1,0 +1,773 @@
+/* =========================================================
+   Main Layout
+   ========================================================= */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  direction: rtl;
+  text-align: right;
+
+  margin: 0;
+  padding: 1rem 0;
+
+  box-sizing: border-box;
+
+  gap: 1rem;
+}
+
+
+/* =========================================================
+   Section / Card
+   ========================================================= */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+
+  box-sizing: border-box;
+
+  background: var(--token-W0eejbtvb0xw, var(--panel-bg-elevated, #fff));
+
+  border: 1px solid var(--panel-border, #e8ece8);
+  border-radius: 12px;
+
+  box-shadow: var(--panel-shadow, 0 2px 8px rgba(0, 0, 0, 0.04));
+  color: var(--token-9M5jRUPt8Msb, var(--panel-text, #17251c));
+}
+
+
+/* =========================================================
+   Section Header
+   ========================================================= */
+
+.sectionHeader {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  gap: 1rem;
+
+  padding: 0 0 1rem;
+  margin: 0 0 0.25rem;
+
+  box-sizing: border-box;
+
+  border-bottom: 1px solid #edf0ed;
+}
+
+
+/* =========================================================
+   Section Title
+   ========================================================= */
+
+.sectionTitle {
+  flex: 1 1 auto;
+
+  min-width: 0;
+
+  margin: 0;
+
+  font-size: var(--token-9jx4RULNbWhl,
+      1rem);
+
+  font-weight: 700;
+
+  line-height: 1.7;
+
+  text-align: right;
+
+  color: var(--plasmic-token-text-primary,
+      #17251c);
+}
+
+
+/* =========================================================
+   Edit Button / Link
+   ========================================================= */
+
+.editLink {
+  flex: 0 0 auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid color-mix(in srgb, var(--panel-accent, #6f8a3a) 35%, transparent);
+  border-radius: 8px;
+
+  background: var(--token-W0eejbtvb0xw, var(--panel-bg-elevated, #fff));
+
+  color: var(--token-ee2TuxDknsJj, #6f7f4d);
+
+  font-size: 0.8125rem;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  padding: 0.4rem 0.75rem;
+
+  white-space: nowrap;
+
+  line-height: 1.5;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.editLink:hover {
+  background: #f7f9f3;
+  border-color: #9eae7d;
+  color: #59683b;
+}
+
+.editLink:active {
+  background: #f0f4e9;
+}
+
+.editLink:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   Rows Container
+   ========================================================= */
+
+.rows {
+  display: grid;
+
+  grid-template-columns: repeat(2,
+      minmax(0, 1fr));
+
+  column-gap: 3rem;
+  row-gap: 0;
+
+  align-items: stretch;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  padding-top: 0.5rem;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   Single Row
+   ========================================================= */
+
+.row {
+  display: flex;
+
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  min-height: 3.5rem;
+
+  padding: 0.75rem 0;
+
+  box-sizing: border-box;
+
+  gap: 1.5rem;
+
+  border-bottom: 1px solid #edf0ed;
+
+  font-size: var(--token-9jx4RULNbWhl,
+      0.875rem);
+
+  font-weight: 400;
+
+  line-height: 1.7;
+
+  text-align: right;
+
+  color: var(--plasmic-token-text-primary,
+      #17251c);
+
+  word-break: break-word;
+}
+
+
+/* آخرین ردیف‌ها در دو ستون بدون border */
+.row:nth-last-child(-n + 2) {
+  border-bottom: none;
+}
+
+
+/* =========================================================
+   Row Label
+   ========================================================= */
+
+.rowLabel {
+  flex: 0 1 auto;
+
+  min-width: 0;
+
+  color: #7b877d;
+
+  font-weight: 400;
+
+  white-space: normal;
+
+  word-break: break-word;
+}
+
+
+/* =========================================================
+   Row Value
+   ========================================================= */
+
+.rowValue {
+  flex: 0 0 auto;
+
+  max-width: 55%;
+
+  min-width: 0;
+
+  color: var(--token-9M5jRUPt8Msb, var(--panel-text, #17251c));
+
+  font-weight: 500;
+
+  text-align: left;
+
+  word-break: break-word;
+}
+
+
+/* =========================================================
+   Loading
+   ========================================================= */
+
+.loadingText {
+  width: 100%;
+
+  padding: 1rem 0;
+
+  font-size: var(--token-9jx4RULNbWhl,
+      0.875rem);
+
+  line-height: 1.7;
+
+  color: var(--plasmic-token-muted-muted-soft-foreground,
+      #8a938c);
+
+  text-align: right;
+}
+
+
+/* =========================================================
+   Divider
+   ========================================================= */
+
+/*
+   چون خود Sectionها Card هستند،
+   divider بین آن‌ها دیگر لازم نیست.
+*/
+
+.divider {
+  display: none;
+}
+
+
+/* =========================================================
+   Modal Form
+   ========================================================= */
+
+.modalForm {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 1rem;
+
+  width: 500px;
+  max-width: 100%;
+
+  direction: rtl;
+  text-align: right;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   Modal Dialog
+   ========================================================= */
+
+.modalDialog {
+  width: 500px !important;
+
+  max-width: calc(100vw - 32px) !important;
+
+  min-width: 0;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   Form Grid
+   ========================================================= */
+
+.formGrid {
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: 0.75rem;
+
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
+.inlineUnitRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+
+/* =========================================================
+   Field Label
+   ========================================================= */
+
+.fieldLabel {
+  display: block;
+
+  margin-bottom: 0.375rem;
+
+  font-size: 0.8125rem;
+
+  font-weight: 600;
+
+  line-height: 1.6;
+
+  color: var(--plasmic-token-text-primary,
+      #17251c);
+}
+
+
+/* =========================================================
+   Field Hint
+   ========================================================= */
+
+.fieldHint {
+  display: block;
+
+  margin-top: 0.375rem;
+
+  font-size: 0.75rem;
+
+  line-height: 1.7;
+
+  color: var(--plasmic-token-text-primary,
+      #17251c);
+
+  opacity: 0.7;
+}
+
+
+/* =========================================================
+   Inputs
+   ========================================================= */
+
+.input,
+.select {
+  width: 100%;
+  max-width: 100%;
+
+  min-height: 42px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #dfe5df;
+
+  border-radius: 0.625rem;
+
+  padding: 0.625rem 0.75rem;
+
+  font-family: inherit;
+
+  font-size: 0.875rem;
+
+  line-height: 1.5;
+
+  background: var(--plasmic-token-background-light,
+      #fff);
+
+  color: var(--plasmic-token-text-primary,
+      #17251c);
+
+  /* Native menus must receive clicks above modal scroll chrome. */
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+
+/* Placeholder */
+
+.input::placeholder {
+  color: #6b7a5a;
+
+  opacity: 1;
+}
+
+
+/* Focus */
+
+.input:focus,
+.select:focus {
+  outline: none;
+
+  border-color: #8fac70;
+
+  box-shadow:
+    0 0 0 3px rgba(47, 158, 106, 0.12);
+}
+
+
+/* =========================================================
+   Switch
+   ========================================================= */
+
+.switchRow {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  width: 100%;
+
+  gap: 0.75rem;
+
+  padding: 0.5rem 0.25rem;
+
+  box-sizing: border-box;
+}
+
+
+.switchLabel {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   Chips
+   ========================================================= */
+
+.chipGroup {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0.5rem;
+
+  width: 100%;
+}
+
+
+.chip {
+  border: 1px solid #dfe5df;
+
+  border-radius: 999px;
+
+  padding: 0.4rem 0.85rem;
+
+  font-family: inherit;
+
+  font-size: 0.8125rem;
+
+  font-weight: 600;
+
+  line-height: 1.5;
+
+  cursor: pointer;
+
+  background: #f7f8f6;
+
+  color: var(--plasmic-token-text-primary,
+      #17251c);
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+
+.chip:hover {
+  border-color: #b8c59d;
+
+  background: #f3f6ed;
+}
+
+
+.chipActive {
+  background: #ccea92;
+  border-color: var(--plasmic-token-primary-green,
+      #2f9e6a);
+
+  color: var(--plasmic-token-text-primary,
+      #17251c);
+}
+
+
+/* =========================================================
+   Error
+   ========================================================= */
+
+.errorText {
+  font-size: 0.8125rem;
+
+  line-height: 1.6;
+
+  color: #b91c1c;
+}
+
+
+/* =========================================================
+   Actions
+   ========================================================= */
+
+.actionsRow {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 0.5rem;
+
+  justify-content: flex-start;
+
+  margin-top: 0.25rem;
+}
+
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+
+.btn {
+  border: none;
+
+  border-radius: 999px;
+
+  padding: 0.5rem 1rem;
+
+  font-family: inherit;
+
+  font-size: 0.8125rem;
+
+  font-weight: 600;
+
+  line-height: 1.5;
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+
+.btnPrimary {
+  background: var(--plasmic-token-primary-green,
+      #2f9e6a);
+
+  color: #fff;
+}
+
+
+.btnSecondary {
+  background: #f1f3f0;
+
+  color: var(--plasmic-token-text-primary,
+      #17251c);
+}
+
+
+.btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   Responsive - Tablet
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .rows {
+    column-gap: 2rem;
+  }
+
+  .section {
+    padding: 1.125rem 1.25rem;
+  }
+}
+
+
+/* =========================================================
+   Responsive - Mobile
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .stack {
+    padding: 0.75rem 0;
+
+    gap: 0.75rem;
+  }
+
+  .section {
+    padding: 1rem;
+
+    border-radius: 10px;
+  }
+
+  .sectionHeader {
+    padding-bottom: 0.75rem;
+  }
+
+  .sectionTitle {
+    font-size: 0.9375rem;
+  }
+
+  .rows {
+    grid-template-columns: 1fr;
+
+    column-gap: 0;
+  }
+
+  .row {
+    min-height: 3.25rem;
+
+    gap: 1rem;
+  }
+
+  /*
+    در حالت تک‌ستونه فقط آخرین row بدون border باشد
+  */
+
+  .row:nth-last-child(-n + 2) {
+    border-bottom: 1px solid #edf0ed;
+  }
+
+  .row:last-child {
+    border-bottom: none;
+  }
+
+  .rowValue {
+    max-width: 50%;
+  }
+
+  .editLink {
+    padding: 0.35rem 0.65rem;
+
+    font-size: 0.75rem;
+  }
+}
+
+
+/* =========================================================
+   Responsive - Small Mobile
+   ========================================================= */
+
+@media (max-width: 540px) {
+  .section {
+    padding: 0.875rem;
+  }
+
+  .sectionHeader {
+    gap: 0.5rem;
+  }
+
+  .row {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 0.15rem;
+
+    padding: 0.7rem 0;
+  }
+
+  .rowLabel {
+    width: 100%;
+  }
+
+  .rowValue {
+    width: 100%;
+
+    max-width: 100%;
+
+    text-align: right;
+  }
+
+  .modalForm {
+    width: 100%;
+
+    max-width: 100%;
+  }
+
+  .modalDialog {
+    width: calc(100vw - 32px) !important;
+
+    max-width: calc(100vw - 32px) !important;
+  }
+
+  .actionsRow {
+    width: 100%;
+  }
+
+  .btn {
+    flex: 1 1 auto;
+  }
+}

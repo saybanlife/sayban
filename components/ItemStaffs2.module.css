@@ -1,0 +1,16 @@
+.centerLink {
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.centerLink:focus-visible {
+  border-radius: 4px;
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.clearanceBadge {
+  margin: 0.35rem 0.75rem 0.6rem;
+  align-self: flex-start;
+}

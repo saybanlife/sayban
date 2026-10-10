@@ -68,25 +68,25 @@ import Errorpage from "../../Errorpage"; // plasmic-import: HTnfDJNIbaau/compone
 import { RichTable } from "@plasmicpkgs/plasmic-rich-components/skinny/rich-table";
 import { tableHelpers as RichTable_Helpers } from "@plasmicpkgs/plasmic-rich-components/skinny/rich-table";
 import EmptyPage from "../../EmptyPage"; // plasmic-import: q5YsvjSR6-JD/component
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
+import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
+
+import Pagination from "../../Pagination";
+import {
+  PANEL_LIST_PAGE_SIZE,
+  readPaginationFromApiPayload
+} from "../../panel/panelListPagination";
+import adminTablesStyles from "../../AdminTablesTheme.module.css";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicMainPageUser.module.css"; // plasmic-import: bC8HfGfKThwf/css
 
-<<<<<<< HEAD
-import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
-=======
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
->>>>>>> plasmicops/rQ6tUgoS/newMain
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 import Icon115Icon from "./icons/PlasmicIcon__Icon115"; // plasmic-import: K82EqXtBnJoL/icon
+import Icon5Icon from "./icons/PlasmicIcon__Icon5"; // plasmic-import: 8vOA1S70pHdl/icon
 
 createPlasmicElementProxy;
 
@@ -106,8 +106,10 @@ export type PlasmicMainPageUser__ArgsType = {
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
-  onListChange?: (val: string) => void;
+  onListChange2?: (val: string) => void;
   state?: string;
+  selected?: any;
+  onSelectedChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicMainPageUser__ArgsType;
 export const PlasmicMainPageUser__ArgProps = new Array<ArgPropType>(
@@ -121,8 +123,10 @@ export const PlasmicMainPageUser__ArgProps = new Array<ArgPropType>(
   "restart",
   "onRestartChange",
   "list",
-  "onListChange",
-  "state"
+  "onListChange2",
+  "state",
+  "selected",
+  "onSelectedChange"
 );
 
 export type PlasmicMainPageUser__OverridesType = {
@@ -136,6 +140,7 @@ export type PlasmicMainPageUser__OverridesType = {
   errorpage?: Flex__<typeof Errorpage>;
   table?: Flex__<typeof RichTable>;
   emptyPage?: Flex__<typeof EmptyPage>;
+  embedHtml?: Flex__<typeof Embed>;
 };
 
 export interface DefaultMainPageUserProps {
@@ -149,8 +154,10 @@ export interface DefaultMainPageUserProps {
   restart?: string;
   onRestartChange?: (val: string) => void;
   list?: boolean;
-  onListChange?: (val: string) => void;
+  onListChange2?: (val: string) => void;
   state?: string;
+  selected?: any;
+  onSelectedChange?: (val: string) => void;
   className?: string;
 }
 
@@ -311,11 +318,21 @@ function PlasmicMainPageUser__RenderFunc(props: {
         variableType: "boolean",
 
         valueProp: "list",
-        onChangeProp: "onListChange"
+        onChangeProp: "onListChange2"
+      },
+      {
+        path: "selected",
+        type: "writable",
+        variableType: "object",
+
+        valueProp: "selected",
+        onChangeProp: "onSelectedChange"
       }
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
 
   const $state = useDollarState(stateSpecs, {
     $props,
@@ -326,6 +343,15 @@ function PlasmicMainPageUser__RenderFunc(props: {
   });
 
   const styleTokensClassNames = _useStyleTokens();
+
+  // --- pagination logic (moved in from the MainPageUser wrapper) ---
+  const [__paginationPage, __setPaginationPage] = React.useState(1);
+  const [__paginationTotalPages, __setPaginationTotalPages] = React.useState(1);
+
+  React.useEffect(() => {
+    __setPaginationPage(1);
+  }, [$props.state]);
+  // --- end pagination logic ---
 
   return (
     <div
@@ -618,7 +644,7 @@ function PlasmicMainPageUser__RenderFunc(props: {
         </div>
       </div>
       <div className={classNames("all", sty.freeBox__xhZ4K)}>
-        <div className={classNames("all", sty.freeBox__at9R7)}>
+        <div className={classNames("all", sty.freeBox__at9R7, "users")}>
           <ApiRequest
             data-plasmic-name={"users"}
             data-plasmic-override={overrides.users}
@@ -713,9 +739,24 @@ function PlasmicMainPageUser__RenderFunc(props: {
                 ) {
                   $steps["runCode"] = await $steps["runCode"];
                 }
+
+                // --- pagination logic (moved in from the MainPageUser wrapper) ---
+                const __pagination = readPaginationFromApiPayload(data);
+                if (__pagination) {
+                  __setPaginationTotalPages(__pagination.totalPages);
+                  if (__pagination.page !== __paginationPage) {
+                    __setPaginationPage(__pagination.page);
+                  }
+                }
+                // --- end pagination logic ---
               }).apply(null, eventArgs);
             }}
-            params={{ active: $props.state == "inactive" ? 0 : 1 }}
+            params={{
+              active: $props.state == "inactive" ? 0 : 1,
+              r: $state.restart,
+              page: __paginationPage,
+              limit: PANEL_LIST_PAGE_SIZE
+            }}
             shouldFetch={(() => {
               try {
                 return $state.list;
@@ -763,10 +804,79 @@ function PlasmicMainPageUser__RenderFunc(props: {
                         throw e;
                       }
                     })(),
-                    fields: [],
+                    fields: (() => {
+                      const __composite = [
+                        { key: "شناسه", fieldId: "شناسه", isHidden: null },
+                        { disableSorting: null },
+                        { key: "نام", fieldId: "نام" },
+                        { key: "موبایل", fieldId: "موبایل", dataType: null },
+                        { key: "کد ملی", fieldId: "کد ملی", dataType: null },
+                        { key: "شهر", fieldId: "شهر" },
+                        {
+                          key: "جنسیت",
+                          fieldId: "جنسیت",
+                          disableSorting: null,
+                          expr: null,
+                          dataType: null
+                        },
+                        {
+                          key: "وضعیت تاهل",
+                          fieldId: "وضعیت تاهل",
+                          expr: null,
+                          dataType: null
+                        }
+                      ];
+                      __composite["0"]["isHidden"] = true;
+                      __composite["1"]["disableSorting"] = true;
+                      __composite["3"]["dataType"] = "string";
+                      __composite["4"]["dataType"] = "string";
+                      __composite["6"]["disableSorting"] = false;
+                      __composite["6"]["expr"] = (
+                        currentItem,
+                        currentValue
+                      ) => {
+                        return currentItem.جنسیت === "male"
+                          ? "مرد"
+                          : currentItem.جنسیت === "female"
+                            ? "خانم"
+                            : "";
+                      };
+                      __composite["6"]["dataType"] = "string";
+                      __composite["7"]["expr"] = (
+                        currentItem,
+                        currentValue
+                      ) => {
+                        return currentItem["وضعیت تاهل"] === "single"
+                          ? "مجرد"
+                          : currentItem["وضعیت تاهل"] === "married"
+                            ? "متأهل"
+                            : "";
+                      };
+                      __composite["7"]["dataType"] = "string";
+                      return __composite;
+                    })(),
+
                     hideDensity: true,
                     onRowClick: async (rowKey, row, event) => {
                       const $steps = {};
+
+                      $steps["invokeGlobalAction"] = true
+                        ? (() => {
+                            const actionArgs = { args: [200] };
+                            return $globalActions["Fragment.wait"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["invokeGlobalAction"] != null &&
+                        typeof $steps["invokeGlobalAction"] === "object" &&
+                        typeof $steps["invokeGlobalAction"].then === "function"
+                      ) {
+                        $steps["invokeGlobalAction"] =
+                          await $steps["invokeGlobalAction"];
+                      }
 
                       $steps["runOnRowClicked"] = true
                         ? (() => {
@@ -813,8 +923,82 @@ function PlasmicMainPageUser__RenderFunc(props: {
                         RichTable_Helpers
                       ).apply(null, eventArgs);
                     },
-                    pageSize: 15,
-                    rowActions: [],
+                    pageSize: PANEL_LIST_PAGE_SIZE,
+                    hideSearch: true,
+                    rowActions: (() => {
+                      const __composite = [
+                        { type: null, label: null, onClick: null }
+                      ];
+                      __composite["0"]["type"] = "item";
+                      __composite["0"]["label"] = "حذف";
+                      __composite["0"]["onClick"] = async (rowKey, row) => {
+                        const $steps = {};
+
+                        $steps["runCode"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return (() => {
+                                    $state.selected.name = row["نام"];
+                                    return ($state.selected.id =
+                                      row["شناسه"] ?? row.id);
+                                  })();
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["runCode"] != null &&
+                          typeof $steps["runCode"] === "object" &&
+                          typeof $steps["runCode"].then === "function"
+                        ) {
+                          $steps["runCode"] = await $steps["runCode"];
+                        }
+
+                        $steps["invokeGlobalAction2"] = true
+                          ? (() => {
+                              const actionArgs = { args: [200] };
+                              return $globalActions["Fragment.wait"]?.apply(
+                                null,
+                                [...actionArgs.args]
+                              );
+                            })()
+                          : undefined;
+                        if (
+                          $steps["invokeGlobalAction2"] != null &&
+                          typeof $steps["invokeGlobalAction2"] === "object" &&
+                          typeof $steps["invokeGlobalAction2"].then ===
+                            "function"
+                        ) {
+                          $steps["invokeGlobalAction2"] =
+                            await $steps["invokeGlobalAction2"];
+                        }
+
+                        $steps["runCenterDelete"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                eventRef: $props["centerDelete"]
+                              };
+                              return (({ eventRef, args }) => {
+                                return eventRef?.(...(args ?? []));
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["runCenterDelete"] != null &&
+                          typeof $steps["runCenterDelete"] === "object" &&
+                          typeof $steps["runCenterDelete"].then === "function"
+                        ) {
+                          $steps["runCenterDelete"] =
+                            await $steps["runCenterDelete"];
+                        }
+                      };
+                      return __composite;
+                    })(),
+
                     scopeClassName: sty["table__instance"],
                     selectedRowKey: generateStateValueProp($state, [
                       "table",
@@ -866,6 +1050,15 @@ function PlasmicMainPageUser__RenderFunc(props: {
                   );
                 })()
               : null}
+            <div
+              className={classNames("all", sty.freeBox__d43D)}
+              id={"profile-icon"}
+            >
+              <Icon5Icon
+                className={classNames("all", sty.svg__ub6Qi)}
+                role={"img"}
+              />
+            </div>
             {(() => {
               try {
                 return (
@@ -888,6 +1081,25 @@ function PlasmicMainPageUser__RenderFunc(props: {
               />
             ) : null}
           </ApiRequest>
+          <Embed
+            data-plasmic-name={"embedHtml"}
+            data-plasmic-override={overrides.embedHtml}
+            className={classNames("__wab_instance", sty.embedHtml)}
+            code={
+              "<script>\r\n(function() {\r\n    const observer = new MutationObserver(function() {\r\n        const inputs = document.querySelectorAll('input[placeholder=\"Search\"]');\r\n        inputs.forEach(input => {\r\n            input.setAttribute('placeholder', '\u062c\u0633\u062a\u062c\u0648');\r\n            input.style.textAlign = 'right';\r\n        });\r\n\r\n        const profileIcon = document.getElementById('profile-icon');\r\n        const cells = document.querySelectorAll('.users table tr td:nth-child(2)');\r\n\r\n        if (profileIcon) {\r\n            profileIcon.style.display = 'none'; // \u0645\u062e\u0641\u06cc \u06a9\u0631\u062f\u0646 \u0627\u0644\u0645\u0646\u062a \u0627\u0635\u0644\u06cc\r\n        }\r\n\r\n        if (profileIcon && cells.length > 0) {\r\n            cells.forEach(cell => {\r\n                if (!cell.querySelector('.profile-icon-clone')) {\r\n                    const clone = profileIcon.cloneNode(true);\r\n                    clone.removeAttribute('id');\r\n                    clone.classList.add('profile-icon-clone');\r\n                    clone.style.display = ''; // \u062a\u0627 clone \u062f\u06cc\u062f\u0647 \u0634\u0648\u062f\r\n                    cell.appendChild(clone);\r\n                }\r\n            });\r\n        }\r\n    });\r\n\r\n    observer.observe(document.body, {\r\n        childList: true,\r\n        subtree: true\r\n    });\r\n})();\r\n</script>\r\n"
+            }
+          />
+          <div className={adminTablesStyles.serverPaginationBar}>
+            <Pagination
+              page={__paginationPage}
+              limit={PANEL_LIST_PAGE_SIZE}
+              totalPages={__paginationTotalPages}
+              onPageChange={val => {
+                const next = Math.max(Number(val) || 1, 1);
+                __setPaginationPage(next);
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -905,7 +1117,8 @@ const PlasmicDescendants = {
     "users",
     "errorpage",
     "table",
-    "emptyPage"
+    "emptyPage",
+    "embedHtml"
   ],
   select2: ["select2", "menuSection"],
   menuSection: ["menuSection"],
@@ -915,7 +1128,8 @@ const PlasmicDescendants = {
   users: ["users", "errorpage", "table", "emptyPage"],
   errorpage: ["errorpage"],
   table: ["table"],
-  emptyPage: ["emptyPage"]
+  emptyPage: ["emptyPage"],
+  embedHtml: ["embedHtml"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -931,6 +1145,7 @@ type NodeDefaultElementType = {
   errorpage: typeof Errorpage;
   table: typeof RichTable;
   emptyPage: typeof EmptyPage;
+  embedHtml: typeof Embed;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1004,6 +1219,7 @@ export const PlasmicMainPageUser = Object.assign(
     errorpage: makeNodeComponent("errorpage"),
     table: makeNodeComponent("table"),
     emptyPage: makeNodeComponent("emptyPage"),
+    embedHtml: makeNodeComponent("embedHtml"),
 
     // Metadata about props expected for PlasmicMainPageUser
     internalVariantProps: PlasmicMainPageUser__VariantProps,

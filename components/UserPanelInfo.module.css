@@ -1,0 +1,18 @@
+/**
+ * Keep password visible in the «اطلاعات ورود» edit modal.
+ * Plasmic hides `.freeBoxedit___31P8B1N5Q` in edit mode (intended for
+ * change-password-only), but create-if-missing needs a password field.
+ */
+.root :global([data-plasmic-name="password"]) {
+  display: block !important;
+  max-width: 100%;
+}
+
+/* Force the password row container visible even if Plasmic re-applies display:none */
+.root :global(.PlasmicUserPanelInfo_freeBoxedit___31P8B1N5Q),
+.root :global([class*="freeBoxedit___31P8B"]) {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100%;
+  max-width: 100%;
+}

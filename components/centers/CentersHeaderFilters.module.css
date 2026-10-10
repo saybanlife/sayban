@@ -1,0 +1,57 @@
+/* Centers list — filter row under the search field */
+
+.filterRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  gap: 0.5rem;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.45rem;
+}
+
+.chipsScroll {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: 0.45rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0.1rem 0.55rem;
+  border-inline-start: 1px solid
+    color-mix(in srgb, var(--token-A-PNbaadkZKd, #afa491) 55%, transparent);
+}
+
+.chipsScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.chip:global(.__wab_instance) {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .filterRow {
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+  }
+
+  .actions {
+    gap: 0.35rem;
+  }
+
+  .chipsScroll {
+    padding-inline: 0.35rem;
+  }
+}

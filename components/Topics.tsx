@@ -4,45 +4,47 @@ import * as React from "react";
 import {
   PlasmicTopics,
   DefaultTopicsProps
-<<<<<<< HEAD
-} from "./plasmic/website_starter/PlasmicTopics";
-=======
 } from "./plasmic/sayban/PlasmicTopics";
->>>>>>> plasmicops/rQ6tUgoS/newMain
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 
-// Your component props start with props for variants and slots you defined
-// in Plasmic, but you can add more here, like event handlers that you can
-// attach to named nodes in your component.
-//
-// If you don't want to expose certain variants or slots as a prop, you can use
-// Omit to hide them:
-//
-// interface TopicsProps extends Omit<DefaultTopicsProps, "hideProps1"|"hideProp2"> {
-//   // etc.
-// }
-//
-// You can also stop extending from DefaultTopicsProps altogether and have
-// total control over the props for your component.
 export interface TopicsProps extends DefaultTopicsProps {}
 
 function Topics_(props: TopicsProps, ref: HTMLElementRefOf<"div">) {
-  // Use PlasmicTopics to render this component as it was
-  // designed in Plasmic, by activating the appropriate variants,
-  // attaching the appropriate event handlers, etc.  You
-  // can also install whatever React hooks you need here to manage state or
-  // fetch data.
-  //
-  // Props you can pass into PlasmicTopics are:
-  // 1. Variants you want to activate,
-  // 2. Contents for slots you want to fill,
-  // 3. Overrides for any named node in the component to attach behavior and data,
-  // 4. Props to set on the root node.
-  //
-  // By default, we are just piping all TopicsProps here, but feel free
-  // to do whatever works for you.
+  const trackRef = React.useRef<HTMLDivElement | null>(null);
 
-  return <PlasmicTopics root={{ ref }} {...props} />;
+  // Keep the selected tab in view when selection changes (scroll-spy / click).
+  React.useEffect(() => {
+    const track = trackRef.current;
+    if (!track || !props.selected) return;
+    const active = track.querySelector(
+      '[data-plasmic-name="topic"][class*="rootselect"]'
+    ) as HTMLElement | null;
+    if (!active) return;
+
+    const trackRect = track.getBoundingClientRect();
+    const activeRect = active.getBoundingClientRect();
+    const overflowLeft = activeRect.left < trackRect.left + 8;
+    const overflowRight = activeRect.right > trackRect.right - 8;
+    if (overflowLeft || overflowRight) {
+      active.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest"
+      });
+    }
+  }, [props.selected, props.data]);
+
+  return (
+    <PlasmicTopics
+      root={{ ref }}
+      freeBox={{
+        ref: (node: HTMLDivElement | null) => {
+          trackRef.current = node;
+        }
+      }}
+      {...props}
+    />
+  );
 }
 
 const Topics = React.forwardRef(Topics_);

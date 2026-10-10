@@ -1,0 +1,36 @@
+-- Panel reservations should expose the booked-for companion (همراه), not only the account owner.
+-- Patient rows live in `users__patient` and reservations reference them via `reservations.patient_id`.
+--
+-- Suggested SELECT fragment for n8n workflow `panel/reservations`:
+--
+-- SELECT
+--   r.*,
+--   JSON_OBJECT(
+--     'id', u.id,
+--     'name', u.name,
+--     'mobile', u.mobile,
+--     'gender', u.gender,
+--     'national_code', u.national_code
+--   ) AS user,
+--   CASE
+--     WHEN r.patient_id IS NULL THEN NULL
+--     ELSE JSON_OBJECT(
+--       'id', p.id,
+--       'name', p.name,
+--       'mobile', p.mobile,
+--       'gender', p.gender,
+--       'national_code', p.national_code,
+--       'relation', p.relation,
+--       'relation_persian', p.relation
+--     )
+--   END AS patient
+-- FROM reservations r
+-- LEFT JOIN users u ON u.id = r.user_id
+-- LEFT JOIN users__patient p ON p.id = r.patient_id
+-- WHERE r.center_id = :center_id
+--
+-- The n8n workflow `panel/reservations` (panel2) now routes through the enriched
+-- reservation chain (MySQL59 → users + users__patient JOIN via Code48).
+-- Re-apply with: `node scripts/patch-panel-reservations-workflow.mjs`
+--
+-- The Next BFF `/api/panel/reservations` is a thin proxy; patient data comes from n8n.

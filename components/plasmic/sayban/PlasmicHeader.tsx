@@ -85,12 +85,18 @@ export const PlasmicHeader__VariantProps = new Array<VariantPropType>(
 );
 
 export type PlasmicHeader__ArgsType = {
+  runCode?: boolean;
+  onRunCodeChange?: (val: string) => void;
+  back?: () => void;
   slot?: React.ReactNode;
   children?: React.ReactNode;
   slot2?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicHeader__ArgsType;
 export const PlasmicHeader__ArgProps = new Array<ArgPropType>(
+  "runCode",
+  "onRunCodeChange",
+  "back",
   "slot",
   "children",
   "slot2"
@@ -103,6 +109,9 @@ export type PlasmicHeader__OverridesType = {
 };
 
 export interface DefaultHeaderProps {
+  runCode?: boolean;
+  onRunCodeChange?: (val: string) => void;
+  back?: () => void;
   slot?: React.ReactNode;
   children?: React.ReactNode;
   slot2?: React.ReactNode;
@@ -163,6 +172,14 @@ function PlasmicHeader__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.search
+      },
+      {
+        path: "runCode",
+        type: "writable",
+        variableType: "boolean",
+
+        valueProp: "runCode",
+        onChangeProp: "onRunCodeChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -198,14 +215,21 @@ function PlasmicHeader__RenderFunc(props: {
       )}
     >
       <div
-        className={classNames("all", sty.freeBox__lHkfy, "fixed-box", {
-          [sty.freeBoxsearch__lHkfyBrJu]: hasVariant(
-            $state,
-            "search",
-            "search"
-          ),
-          [sty.freeBoxsoft__lHkfyFgJuq]: hasVariant($state, "soft", "soft")
-        })}
+        className={classNames(
+          "all",
+          sty.freeBox__lHkfy,
+          hasVariant($state, "soft", "soft")
+            ? "fixed-box "
+            : "fixed-box",
+          {
+            [sty.freeBoxsearch__lHkfyBrJu]: hasVariant(
+              $state,
+              "search",
+              "search"
+            ),
+            [sty.freeBoxsoft__lHkfyFgJuq]: hasVariant($state, "soft", "soft")
+          }
+        )}
       >
         <div
           className={classNames("all", sty.freeBox___3BRFj, {
@@ -219,13 +243,11 @@ function PlasmicHeader__RenderFunc(props: {
             onClick={async event => {
               const $steps = {};
 
-              $steps["runCode"] = true
+              $steps["runCode"] = !$state.runCode
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
-                        return (() => {
-                          return window.history.back();
-                        })();
+                        return window.history.back();
                       }
                     };
                     return (({ customFunction }) => {
@@ -239,6 +261,22 @@ function PlasmicHeader__RenderFunc(props: {
                 typeof $steps["runCode"].then === "function"
               ) {
                 $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["runBack"] = $state.runCode
+                ? (() => {
+                    const actionArgs = { eventRef: $props["back"] };
+                    return (({ eventRef, args }) => {
+                      return eventRef?.(...(args ?? []));
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runBack"] != null &&
+                typeof $steps["runBack"] === "object" &&
+                typeof $steps["runBack"].then === "function"
+              ) {
+                $steps["runBack"] = await $steps["runBack"];
               }
             }}
           >
@@ -295,11 +333,6 @@ function PlasmicHeader__RenderFunc(props: {
             value: args.slot2
           })}
         </div>
-        <div
-          className={classNames("all", sty.freeBox__m7Yl, {
-            [sty.freeBoxsoft__m7YlFgJuq]: hasVariant($state, "soft", "soft")
-          })}
-        />
       </div>
       <div
         data-plasmic-name={"text"}

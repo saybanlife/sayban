@@ -62,13 +62,8 @@ import {
 import { Reveal } from "@plasmicpkgs/react-awesome-reveal";
 import Login2 from "../../Login2"; // plasmic-import: e-nYBMaX6lLd/component
 import CreateAccont from "../../CreateAccont"; // plasmic-import: nYNI2TNqh_0W/component
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -90,11 +85,15 @@ export const PlasmicLoginPanel__VariantProps = new Array<VariantPropType>(
 export type PlasmicLoginPanel__ArgsType = {
   userinfo?: any;
   onUserinfoChange?: (val: any) => void;
+  createAccontUserinfo?: any;
+  onCreateAccontUserinfoChange?: (val: any) => void;
 };
 type ArgPropType = keyof PlasmicLoginPanel__ArgsType;
 export const PlasmicLoginPanel__ArgProps = new Array<ArgPropType>(
   "userinfo",
-  "onUserinfoChange"
+  "onUserinfoChange",
+  "createAccontUserinfo",
+  "onCreateAccontUserinfoChange"
 );
 
 export type PlasmicLoginPanel__OverridesType = {
@@ -109,6 +108,8 @@ export type PlasmicLoginPanel__OverridesType = {
 export interface DefaultLoginPanelProps {
   userinfo?: any;
   onUserinfoChange?: (val: any) => void;
+  createAccontUserinfo?: any;
+  onCreateAccontUserinfoChange?: (val: any) => void;
   page?: SingleChoiceArg<"login" | "create">;
   className?: string;
 }
@@ -167,6 +168,14 @@ function PlasmicLoginPanel__RenderFunc(props: {
 
         valueProp: "userinfo",
         onChangeProp: "onUserinfoChange"
+      },
+      {
+        path: "createAccont.userinfo",
+        type: "writable",
+        variableType: "object",
+
+        valueProp: "createAccontUserinfo",
+        onChangeProp: "onCreateAccontUserinfoChange"
       }
     ],
     [$props, $ctx, $refs]
@@ -213,11 +222,7 @@ function PlasmicLoginPanel__RenderFunc(props: {
               displayWidth={"auto"}
               loading={"lazy"}
               src={{
-<<<<<<< HEAD
-                src: "/plasmic/website_starter/images/untitledPicturePng.png",
-=======
                 src: "/plasmic/sayban/images/untitledPicturePng.png",
->>>>>>> plasmicops/rQ6tUgoS/newMain
                 fullWidth: 3629,
                 fullHeight: 2887,
                 aspectRatio: undefined
@@ -288,6 +293,24 @@ function PlasmicLoginPanel__RenderFunc(props: {
                     "create"
                   )
                 })}
+                onUserinfoChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "createAccont",
+                    "userinfo"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                userinfo={generateStateValueProp($state, [
+                  "createAccont",
+                  "userinfo"
+                ])}
               />
             </Reveal>
           </section>

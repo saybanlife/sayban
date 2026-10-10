@@ -1,0 +1,197 @@
+/* Shared wheel-picker shell for DatePickers + TimePickers.
+   Row geometry is locked by --picker-row-height. Label text is
+   absolutely centered inside that row so font family / size / weight
+   cannot shift the selected value off the indicator mid-line. */
+
+.root {
+  --picker-row-height: 34px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  direction: rtl;
+  box-sizing: border-box;
+  gap: 0.5rem;
+  overflow: hidden;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  gap: 0.25rem;
+}
+
+.wheelsRow {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  gap: 0;
+}
+
+.columnLabelroot {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-width: 0;
+}
+
+.columnLabel {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--token-KjATzAYJ5IB7, #666);
+  margin: 0;
+  padding: 0 0.25rem;
+}
+
+.separator {
+  font-size: 20px;
+  font-weight: 600;
+  color: #666;
+}
+
+.column {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+/* Keep month names readable without starving day/year on wide sheets. */
+.columnMonth {
+  flex: 1.35 1 0;
+}
+
+.root :global(.rmc-picker) {
+  flex: 1 1 0;
+  width: 100% !important;
+  min-width: 0;
+  text-align: center;
+  /* 7 rows — the wheel height rmc-picker's own math assumes. Pinned here so a
+     stretched/constrained parent cannot change it per column. */
+  height: calc(var(--picker-row-height) * 7);
+}
+
+.root :global(.rmc-picker-content) {
+  width: 100%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  /* rmc-picker writes this padding inline from a mount-time measurement of the
+     wheel height; when that measurement is off (dialog still animating,
+     fractional height) each column lands on a different offset. Pin the exact
+     3-row value the scroll math expects. */
+  padding: calc(var(--picker-row-height) * 3) 0 !important;
+}
+
+/* Same mount-time inline value — keep band and rows on one shared rhythm. */
+.root :global(.rmc-picker-mask) {
+  background-size: 100% calc(var(--picker-row-height) * 3) !important;
+}
+
+/* Fixed slot — no line-height / font metrics on the row itself. */
+.root :global(.rmc-picker-item) {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: var(--picker-row-height);
+  min-height: var(--picker-row-height);
+  max-height: var(--picker-row-height);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 0;
+  font-size: inherit;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Geometry lives on the slot; glyphs are centered inside it. */
+.label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 0.35rem;
+  margin: 0;
+  line-height: 1;
+  font-family: inherit;
+  font-size: inherit;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  /* Progressive: trim font leading so optical center ≈ geometric center. */
+  text-box: trim-both cap alphabetic;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
+.root :global(.rmc-picker-item) {
+  color: var(--token-KjATzAYJ5IB7, #5c5c5c);
+}
+
+.root :global(.rmc-picker-item-selected) {
+  color: var(--token-C6B6ZAuqICKE, #1a1a1a);
+}
+
+.root :global(.rmc-picker-item-selected) .label {
+  font-weight: 600;
+  /* Weight must not change the slot size — label stays inset:0. */
+}
+
+.root :global(.rmc-picker-mask),
+.root :global(.rmc-picker-indicator) {
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* rmc-picker measures indicator height for scroll math — must equal row height. */
+.root :global(.rmc-picker-indicator) {
+  height: var(--picker-row-height);
+  top: calc(var(--picker-row-height) * 3) !important;
+  border-top-color: color-mix(
+    in srgb,
+    var(--token-fr7DwvJwRjZb, #afa491) 35%,
+    transparent
+  );
+  border-bottom-color: color-mix(
+    in srgb,
+    var(--token-fr7DwvJwRjZb, #afa491) 35%,
+    transparent
+  );
+}
+
+/* --picker-row-height must stay equal to PICKER_ROW_HEIGHT in DateTimePicker.tsx:
+   rmc-picker derives its scroll offsets from the inline item height, so a
+   breakpoint that changes only the CSS row height pushes every wheel off the
+   indicator band. Desktop scales the type, not the row geometry. */
+@media (min-width: 768px) {
+  .root {
+    max-width: 28rem;
+    margin-inline: auto;
+  }
+
+  .label {
+    font-size: 0.95rem;
+  }
+}

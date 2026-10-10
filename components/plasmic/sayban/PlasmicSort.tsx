@@ -66,13 +66,8 @@ import { DialogTitle } from "@plasmicpkgs/radix-ui";
 import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
 import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
 import { DialogClose } from "@plasmicpkgs/radix-ui";
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -491,34 +486,53 @@ function PlasmicSort__RenderFunc(props: {
             ) {
               return;
             }
+
+            (async val => {
+              const $steps = {};
+
+              $steps["updateOpendialog"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["opendialog"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateOpendialog"] != null &&
+                typeof $steps["updateOpendialog"] === "object" &&
+                typeof $steps["updateOpendialog"].then === "function"
+              ) {
+                $steps["updateOpendialog"] = await $steps["updateOpendialog"];
+              }
+            }).apply(null, eventArgs);
           }}
           options={
             <div
               data-plasmic-name={"freeBox"}
               data-plasmic-override={overrides.freeBox}
               className={classNames("all", sty.freeBox)}
+              onClick={async event => {
+                const $steps = {};
+              }}
             >
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {
                   try {
-                    return [
-                      {
-                        label: "پیش‌فرض",
-                        value: null
-                      },
-                      {
-                        label: "بیشترین امتیاز",
-                        value: "highest_rate"
-                      },
-                      {
-                        label: "کم‌هزینه‌ترین",
-                        value: "lowest_price"
-                      },
-                      {
-                        label: "محبوب‌ترین",
-                        value: "most_popular"
-                      }
-                    ];
+                    return $state.item;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||

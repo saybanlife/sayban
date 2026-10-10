@@ -62,32 +62,27 @@ import {
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicCity.module.css"; // plasmic-import: dRrvldGFbNOC/css
 
 import Icon33Icon from "./icons/PlasmicIcon__Icon33"; // plasmic-import: MJBmXdq7GQ5D/icon
-<<<<<<< HEAD
-import Icon10Icon from "../website_starter/icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
-=======
 import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
->>>>>>> plasmicops/rQ6tUgoS/newMain
 import Icon32Icon from "./icons/PlasmicIcon__Icon32"; // plasmic-import: hVogcrNM7Ss9/icon
 
 createPlasmicElementProxy;
 
-export type PlasmicCity__VariantMembers = {};
-export type PlasmicCity__VariantsArgs = {};
+export type PlasmicCity__VariantMembers = {
+  noHeader: "noHeader";
+};
+export type PlasmicCity__VariantsArgs = {
+  noHeader?: SingleBooleanChoiceArg<"noHeader">;
+};
 type VariantPropType = keyof PlasmicCity__VariantsArgs;
-export const PlasmicCity__VariantProps = new Array<VariantPropType>();
+export const PlasmicCity__VariantProps = new Array<VariantPropType>("noHeader");
 
 export type PlasmicCity__ArgsType = {
   city?: string;
@@ -118,6 +113,7 @@ export interface DefaultCityProps {
   onCityChange?: (val: string) => void;
   back?: () => void;
   token?: string;
+  noHeader?: SingleBooleanChoiceArg<"noHeader">;
   className?: string;
 }
 
@@ -199,6 +195,12 @@ function PlasmicCity__RenderFunc(props: {
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "noHeader",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.noHeader
       }
     ],
     [$props, $ctx, $refs]
@@ -227,7 +229,8 @@ function PlasmicCity__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
-        "page "
+        "page ",
+        { [sty.rootnoHeader]: hasVariant($state, "noHeader", "noHeader") }
       )}
     >
       <SideEffect
@@ -244,14 +247,33 @@ function PlasmicCity__RenderFunc(props: {
         <section
           data-plasmic-name={"section"}
           data-plasmic-override={overrides.section}
-          className={classNames("all", sty.section, "page ")}
+          className={classNames("all", sty.section, "page ", {
+            [sty.sectionnoHeader]: hasVariant($state, "noHeader", "noHeader")
+          })}
         >
           <div
-            className={classNames("all", sty.freeBox__gfn1Y)}
+            className={classNames(
+              "all",
+              sty.freeBox__gfn1Y,
+              hasVariant($state, "noHeader", "noHeader") ? "dark" : undefined,
+              {
+                [sty.freeBoxnoHeader__gfn1Ys082P]: hasVariant(
+                  $state,
+                  "noHeader",
+                  "noHeader"
+                )
+              }
+            )}
             id={"headerMain"}
           >
             <Icon33Icon
-              className={classNames("all", sty.svg__uj7Fb)}
+              className={classNames("all", sty.svg__uj7Fb, {
+                [sty.svgnoHeader__uj7FBs082P]: hasVariant(
+                  $state,
+                  "noHeader",
+                  "noHeader"
+                )
+              })}
               onClick={async event => {
                 const $steps = {};
 
@@ -274,11 +296,25 @@ function PlasmicCity__RenderFunc(props: {
               role={"img"}
             />
 
-            <div className={classNames("all", sty.freeBox___0ZvW)}>
+            <div
+              className={classNames("all", sty.freeBox___0ZvW, {
+                [sty.freeBoxnoHeader___0ZvWs082P]: hasVariant(
+                  $state,
+                  "noHeader",
+                  "noHeader"
+                )
+              })}
+            >
               <TextInput
                 data-plasmic-name={"textInput"}
                 data-plasmic-override={overrides.textInput}
-                className={classNames("__wab_instance", sty.textInput)}
+                className={classNames("__wab_instance", sty.textInput, {
+                  [sty.textInputnoHeader]: hasVariant(
+                    $state,
+                    "noHeader",
+                    "noHeader"
+                  )
+                })}
                 onChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
                     "textInput",
@@ -358,7 +394,11 @@ function PlasmicCity__RenderFunc(props: {
                   "\u062c\u0633\u062a\u062c\u0648 \u0634\u0647\u0631 \u0645\u0648\u0631\u062f \u0646\u0638\u0631"
                 }
                 size={"langh"}
-                style2={"rounded"}
+                type={
+                  hasVariant($state, "noHeader", "noHeader")
+                    ? "lineBoxDark"
+                    : undefined
+                }
                 value={generateStateValueProp($state, ["textInput", "value"])}
               />
 
@@ -379,7 +419,13 @@ function PlasmicCity__RenderFunc(props: {
                 }
               })() ? (
                 <Icon10Icon
-                  className={classNames("all", sty.svg__to88F)}
+                  className={classNames("all", sty.svg__to88F, {
+                    [sty.svgnoHeader__to88Fs082P]: hasVariant(
+                      $state,
+                      "noHeader",
+                      "noHeader"
+                    )
+                  })}
                   onClick={async event => {
                     const $steps = {};
 
@@ -458,33 +504,44 @@ function PlasmicCity__RenderFunc(props: {
                 />
               ) : null}
             </div>
-            <div className={classNames("all", sty.freeBox___1UTm1)} />
           </div>
         </section>
       </div>
       <ApiRequest
         data-plasmic-name={"apiRequest"}
         data-plasmic-override={overrides.apiRequest}
-        className={classNames("__wab_instance", sty.apiRequest)}
-        config={(() => {
-          try {
-            return {
-              headers: {
-                Authorization: `Bearer ${$props.token}`
-              }
-            };
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
+        className={classNames("__wab_instance", sty.apiRequest, {
+          [sty.apiRequestnoHeader]: hasVariant($state, "noHeader", "noHeader")
+        })}
         errorDisplay={null}
-        loadingDisplay={null}
+        loadingDisplay={
+          <div className={classNames("all", sty.freeBox__f085K)}>
+            {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+              (() => {
+                try {
+                  return [2, 3, 4, 5];
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()
+            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+              const currentItem = __plasmic_item_0;
+              const currentIndex = __plasmic_idx_0;
+              return (
+                <div
+                  className={classNames("all", sty.freeBox__nQdAw, "shimmer")}
+                  key={currentIndex}
+                />
+              );
+            })}
+          </div>
+        }
         method={"GET"}
         onError={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
@@ -538,130 +595,134 @@ function PlasmicCity__RenderFunc(props: {
           }).apply(null, eventArgs);
         }}
         shouldFetch={true}
-<<<<<<< HEAD
-        url={"https://sayban.darkube.ir/webhook/city"}
-=======
-        url={"https://sayban.darkube.app/webhook/city"}
->>>>>>> plasmicops/rQ6tUgoS/newMain
-      />
-
-      <div className={classNames("all", sty.freeBox__aqvRm)}>
-        {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-          (() => {
-            try {
-              return $state.filter;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return [];
+        url={"city"}
+      >
+        <div
+          className={classNames("all", sty.freeBox__aqvRm, {
+            [sty.freeBoxnoHeader__aqvRms082P]: hasVariant(
+              $state,
+              "noHeader",
+              "noHeader"
+            )
+          })}
+        >
+          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+            (() => {
+              try {
+                return $state.filter;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
               }
-              throw e;
-            }
-          })()
-        ).map((__plasmic_item_0, __plasmic_idx_0) => {
-          const province = __plasmic_item_0;
-          const provinceIndex = __plasmic_idx_0;
-          return (
-            <div
-              className={classNames("all", sty.freeBox__lNxQy)}
-              key={provinceIndex}
-            >
-              {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                (() => {
-                  try {
-                    return province.cities;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return [];
+            })()
+          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+            const province = __plasmic_item_0;
+            const provinceIndex = __plasmic_idx_0;
+            return (
+              <div
+                className={classNames("all", sty.freeBox__lNxQy)}
+                key={provinceIndex}
+              >
+                {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                  (() => {
+                    try {
+                      return province.cities;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()
-              ).map((__plasmic_item_1, __plasmic_idx_1) => {
-                const currentItem = __plasmic_item_1;
-                const currentIndex = __plasmic_idx_1;
-                return (
-                  <div
-                    className={classNames("all", sty.freeBox__td9Tp)}
-                    key={currentIndex}
-                    onClick={async event => {
-                      const $steps = {};
-
-                      $steps["updateCity"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["city"]
-                              },
-                              operation: 0,
-                              value: currentItem
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateCity"] != null &&
-                        typeof $steps["updateCity"] === "object" &&
-                        typeof $steps["updateCity"].then === "function"
-                      ) {
-                        $steps["updateCity"] = await $steps["updateCity"];
-                      }
-
-                      $steps["runBack"] = true
-                        ? (() => {
-                            const actionArgs = { eventRef: $props["back"] };
-                            return (({ eventRef, args }) => {
-                              return eventRef?.(...(args ?? []));
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["runBack"] != null &&
-                        typeof $steps["runBack"] === "object" &&
-                        typeof $steps["runBack"].then === "function"
-                      ) {
-                        $steps["runBack"] = await $steps["runBack"];
-                      }
-                    }}
-                  >
-                    <Icon32Icon
-                      className={classNames("all", sty.svg__l3R4N)}
-                      role={"img"}
-                    />
-
+                  })()
+                ).map((__plasmic_item_1, __plasmic_idx_1) => {
+                  const currentItem = __plasmic_item_1;
+                  const currentIndex = __plasmic_idx_1;
+                  return (
                     <div
-                      data-plasmic-name={"text"}
-                      data-plasmic-override={overrides.text}
-                      className={classNames("all", "__wab_text", sty.text)}
+                      className={classNames("all", sty.freeBox__td9Tp)}
+                      key={currentIndex}
+                      onClick={async event => {
+                        const $steps = {};
+
+                        $steps["updateCity"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["city"]
+                                },
+                                operation: 0,
+                                value: currentItem
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateCity"] != null &&
+                          typeof $steps["updateCity"] === "object" &&
+                          typeof $steps["updateCity"].then === "function"
+                        ) {
+                          $steps["updateCity"] = await $steps["updateCity"];
+                        }
+
+                        $steps["runBack"] = true
+                          ? (() => {
+                              const actionArgs = { eventRef: $props["back"] };
+                              return (({ eventRef, args }) => {
+                                return eventRef?.(...(args ?? []));
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["runBack"] != null &&
+                          typeof $steps["runBack"] === "object" &&
+                          typeof $steps["runBack"].then === "function"
+                        ) {
+                          $steps["runBack"] = await $steps["runBack"];
+                        }
+                      }}
                     >
-                      <React.Fragment>{`${province.name}   |   ${currentItem}`}</React.Fragment>
+                      <Icon32Icon
+                        className={classNames("all", sty.svg__l3R4N)}
+                        role={"img"}
+                      />
+
+                      <div
+                        data-plasmic-name={"text"}
+                        data-plasmic-override={overrides.text}
+                        className={classNames("all", "__wab_text", sty.text)}
+                      >
+                        <React.Fragment>{`${province.name}   |   ${currentItem}`}</React.Fragment>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })}
-      </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+      </ApiRequest>
     </div>
   ) as React.ReactElement | null;
 }
@@ -680,7 +741,7 @@ const PlasmicDescendants = {
   homePage: ["homePage", "section", "textInput"],
   section: ["section", "textInput"],
   textInput: ["textInput"],
-  apiRequest: ["apiRequest"],
+  apiRequest: ["apiRequest", "text"],
   text: ["text"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;

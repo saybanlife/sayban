@@ -8,7 +8,7 @@
   width: 100%;
   color: var(--token-9M5jRUPt8Msb);
   font-family: var(--token-8ld_RqqV9anD);
-  background: var(--token-h2xt7bB598yU);
+  background: none;
   text-align: right;
   min-width: 0;
   border-radius: var(--token-6F5DR5OsTPi0);
@@ -44,6 +44,27 @@
   outline-width: 0px;
   outline-style: none;
   border-bottom-color: var(--token-Yo4gdKCgyuAu);
+}
+.ariaTextAreatype_outline:global(.__wab_instance) {
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-top-width: 1px;
+  border-top-style: solid;
+  background: var(--token-KPGXdu9o7llP);
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: var(--token-rfsFxiclAtek);
+  border-color: var(--token-pyhDq7s0RTkz);
+}
+.ariaTextAreatype_darkOutline:global(.__wab_instance) {
+  background: none;
+  border-right-style: solid;
+  border-left-style: solid;
+  border-top-style: solid;
+  border-radius: var(--token-cfon0PHiXQoL);
+  border-width: 1px;
+  border-color: var(--token-KjATzAYJ5IB7);
 }
 .ariaTextAreaflat_top:global(.__wab_instance) {
   border-top-left-radius: 0rem;

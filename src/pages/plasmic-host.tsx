@@ -24,6 +24,8 @@ import {JalaliMoment ,JalaliMomentMeta} from "@/components/JalaliMoment";
 import {DatePickers,DatePickersMeta} from "@/components/DatePickers";
 import {Pickers,PickersMeta} from "@/components/Pickers";
 import {TimePickerCustom,TimePickerCustomMeta} from "@/components/TimePickerCustom";
+import {TimePickers,TimePickersMeta} from "@/components/TimePickers";
+import {DateTimePicker,DateTimePickerMeta} from "@/components/DateTimePicker";
 
 
 
@@ -52,3 +54,6 @@ registerComponent(JalaliMoment ,JalaliMomentMeta);
 registerComponent(DatePickers, DatePickersMeta);
 registerComponent(Pickers, PickersMeta);
 registerComponent(TimePickerCustom,TimePickerCustomMeta );
+registerComponent(TimePickers, TimePickersMeta);
+registerComponent(DateTimePicker, DateTimePickerMeta);
+

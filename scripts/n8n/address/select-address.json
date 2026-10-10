@@ -1,0 +1,73 @@
+{
+  "name": "select/address (current user address)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "select/address",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "WebhookSelectAddress",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0],
+      "webhookId": "select-address"
+    },
+    {
+      "parameters": {
+        "jsCode": "const auth = $request.headers.authorization || $request.headers.Authorization || '';\nconst token = String(auth).replace(/^Bearer\\s+/i, '').trim();\nif (!token || token.split('.').length < 2) {\n  return [{ json: { success: false, message: 'Unauthorized', statusCode: 401 } }];\n}\nlet payload = {};\ntry {\n  const raw = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');\n  payload = JSON.parse(Buffer.from(raw + '='.repeat((4 - raw.length % 4) % 4), 'base64').toString('utf8'));\n} catch (e) {\n  return [{ json: { success: false, message: 'Unauthorized', statusCode: 401 } }];\n}\nconst userId = Number(payload.id || payload.userId || payload.sub);\nconst addressId = Number($json.body?.address_id || $json.body?.id || $json.address_id);\nif (!userId) return [{ json: { success: false, message: 'Unauthorized', statusCode: 401 } }];\nif (!addressId) return [{ json: { success: false, message: 'address_id required', statusCode: 400 } }];\nreturn [{ json: { user_id: userId, address_id: addressId } }];"
+      },
+      "id": "AuthSelectAddress",
+      "name": "Auth",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE `address` SET is_current = 0 WHERE user_id = {{ $json.user_id }};\nUPDATE `address` SET is_current = 1 WHERE id = {{ $json.address_id }} AND user_id = {{ $json.user_id }};\nSELECT id, user_id, title, address, details, city, postal_code, latitude, longitude, is_current, created_at\nFROM `address`\nWHERE user_id = {{ $json.user_id }} AND id = {{ $json.address_id }}\nLIMIT 1;",
+        "options": {}
+      },
+      "id": "MysqlSelectAddress",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [460, 0],
+      "credentials": {
+        "mySql": {
+          "id": "REPLACE_WITH_MYSQL_CREDENTIAL_ID",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, result: $json } }}",
+        "options": {}
+      },
+      "id": "RespondSelectAddress",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [700, 0]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "Auth", "type": "main", "index": 0 }]]
+    },
+    "Auth": {
+      "main": [[{ "node": "MySQL", "type": "main", "index": 0 }]]
+    },
+    "MySQL": {
+      "main": [[{ "node": "Respond", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

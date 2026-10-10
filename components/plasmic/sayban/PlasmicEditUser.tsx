@@ -60,31 +60,29 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/component
+import { getNationalIdError } from "../../formFieldRules";
+import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
+import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
+import DateInput from "../../DateInput"; // plasmic-import: 8LUOC3uVttVT/component
+import {
+  dateStateToValue,
+  dateValueToState
+} from "../../datetime/dateStateAdapter";
 import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
-import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
+import { AntdModal } from "../../AntdModal";
 import City from "../../City"; // plasmic-import: dRrvldGFbNOC/component
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicEditUser.module.css"; // plasmic-import: gFlyeK2pwR_U/css
 
-<<<<<<< HEAD
-import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
-import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
-=======
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 createPlasmicElementProxy;
 
@@ -94,24 +92,43 @@ type VariantPropType = keyof PlasmicEditUser__VariantsArgs;
 export const PlasmicEditUser__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicEditUser__ArgsType = {
+  token?: string;
+  onTokenChange?: (val: string) => void;
+  id?: string;
+  onIdChange?: (val: string) => void;
   data?: any;
   opencity?: (event: any) => void;
-  opencity2?: boolean;
+  openCity?: boolean;
+  onOpenCityChange2?: (val: string) => void;
+  cityBack?: () => void;
+  refresh?: string;
+  onRefreshChange?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicEditUser__ArgsType;
 export const PlasmicEditUser__ArgProps = new Array<ArgPropType>(
+  "token",
+  "onTokenChange",
+  "id",
+  "onIdChange",
   "data",
   "opencity",
-  "opencity2"
+  "openCity",
+  "onOpenCityChange2",
+  "cityBack",
+  "refresh",
+  "onRefreshChange"
 );
 
 export type PlasmicEditUser__OverridesType = {
   root?: Flex__<"div">;
   name?: Flex__<typeof TextInput>;
   code?: Flex__<typeof TextInput>;
+  radioGroup?: Flex__<typeof RadioGroup>;
+  radio?: Flex__<typeof Radio>;
+  dateInput?: Flex__<typeof DateInput>;
+  cityInput?: Flex__<typeof TextInput>;
   selectGender?: Flex__<typeof Select>;
   selectMarital?: Flex__<typeof Select>;
-  cityInput?: Flex__<typeof TextInput>;
   modal?: Flex__<typeof AntdModal>;
   city?: Flex__<typeof City>;
   svg?: Flex__<"svg">;
@@ -121,9 +138,17 @@ export type PlasmicEditUser__OverridesType = {
 };
 
 export interface DefaultEditUserProps {
+  token?: string;
+  onTokenChange?: (val: string) => void;
+  id?: string;
+  onIdChange?: (val: string) => void;
   data?: any;
   opencity?: (event: any) => void;
-  opencity2?: boolean;
+  openCity?: boolean;
+  onOpenCityChange2?: (val: string) => void;
+  cityBack?: () => void;
+  refresh?: string;
+  onRefreshChange?: (val: string) => void;
   className?: string;
 }
 
@@ -147,21 +172,7 @@ function PlasmicEditUser__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {
-          opencity2: (() => {
-            try {
-              return $ctx.query.city == "true";
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return false;
-              }
-              throw e;
-            }
-          })()
-        },
+        {},
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -250,25 +261,93 @@ function PlasmicEditUser__RenderFunc(props: {
         path: "modal.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $state.openCity
       },
       {
         path: "city.city",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $props.data.city;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "token",
-        type: "private",
+        type: "writable",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+
+        valueProp: "token",
+        onChangeProp: "onTokenChange"
       },
       {
         path: "id",
-        type: "private",
+        type: "writable",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+
+        valueProp: "id",
+        onChangeProp: "onIdChange"
+      },
+      {
+        path: "openCity",
+        type: "writable",
+        variableType: "boolean",
+
+        valueProp: "openCity",
+        onChangeProp: "onOpenCityChange2"
+      },
+      {
+        path: "refresh",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "refresh",
+        onChangeProp: "onRefreshChange"
+      },
+      {
+        path: "header.runCode",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "radioGroup.value",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $props.data?.gender
+      },
+      {
+        path: "dateInput.date",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              // `dateValueToState` does the Gregorian→Jalali conversion with
+              // `jalaali-js` instead of `Intl`, which cannot silently fall back
+              // to the Gregorian calendar on small-ICU builds.
+              return dateValueToState($props.data?.birth_date);
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return {};
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -340,7 +419,7 @@ function PlasmicEditUser__RenderFunc(props: {
           }
           readOnly={false}
           size={"langh"}
-          type={"lineBox"}
+          type={"lineBoxDark"}
           value={generateStateValueProp($state, ["name", "value"])}
         />
 
@@ -403,10 +482,206 @@ function PlasmicEditUser__RenderFunc(props: {
           }
           readOnly={false}
           size={"langh"}
-          type={"lineBox"}
+          type={"lineBoxDark"}
           value={generateStateValueProp($state, ["code", "value"])}
         />
 
+        <RadioGroup
+          data-plasmic-name={"radioGroup"}
+          data-plasmic-override={overrides.radioGroup}
+          className={classNames("__wab_instance", sty.radioGroup)}
+          label={
+            <div className={classNames("all", "__wab_text", sty.text__idC4U)}>
+              {"\u062c\u0646\u0633\u06cc\u062a"}
+            </div>
+          }
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["radioGroup", "value"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          options={
+            <div className={classNames("all", sty.freeBox__wBVgz)}>
+              {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                (() => {
+                  try {
+                    return [
+                      {
+                        value: "male",
+                        label: "آقا"
+                      },
+                      {
+                        value: "female",
+                        label: "خانم"
+                      }
+                    ];
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()
+              ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                const currentItem = __plasmic_item_0;
+                const currentIndex = __plasmic_idx_0;
+                return (
+                  <div
+                    className={classNames("all", sty.freeBox__j8Rkb)}
+                    key={currentIndex}
+                  >
+                    <Radio
+                      data-plasmic-name={"radio"}
+                      data-plasmic-override={overrides.radio}
+                      className={classNames("__wab_instance", sty.radio)}
+                      label={
+                        <div
+                          className={classNames(
+                            "all",
+                            "__wab_text",
+                            sty.text___8HU5E
+                          )}
+                        >
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return currentItem.label;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "Option 3";
+                                }
+                                throw e;
+                              }
+                            })()}
+                          </React.Fragment>
+                        </div>
+                      }
+                      value={(() => {
+                        try {
+                          return currentItem.value;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          }
+          value={generateStateValueProp($state, ["radioGroup", "value"])}
+        />
+
+        {(() => {
+          const child$Props = {
+            className: classNames("__wab_instance", sty.dateInput),
+            date: generateStateValueProp($state, ["dateInput", "date"]),
+            onDateChange: async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["dateInput", "date"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            },
+            userInfo: true
+          };
+
+          initializePlasmicStates(
+            $state,
+            [
+              {
+                name: "dateInput.date",
+                initFunc: ({ $props, $state, $queries, $q }) =>
+                  (() => {
+                    try {
+                      return dateValueToState($props.data?.birth_date);
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return {};
+                      }
+                      throw e;
+                    }
+                  })()
+              }
+            ],
+            []
+          );
+          return (
+            <DateInput
+              data-plasmic-name={"dateInput"}
+              data-plasmic-override={overrides.dateInput}
+              {...child$Props}
+            />
+          );
+        })()}
+        <div className={classNames("all", sty.freeBox__l2Ksp)}>
+          <TextInput
+            data-plasmic-name={"cityInput"}
+            data-plasmic-override={overrides.cityInput}
+            ariaLabel={``}
+            autoComplete={[]}
+            autoFocus={false}
+            className={classNames("__wab_instance", sty.cityInput)}
+            disabled={false}
+            inputType={"text"}
+            maxLength={10}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["cityInput", "value"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            placeholder={"\u0645\u062d\u0644 \u0633\u06a9\u0648\u0646\u062a"}
+            readOnly={false}
+            size={"langh"}
+            type={"lineBoxDark"}
+            value={generateStateValueProp($state, ["cityInput", "value"])}
+          />
+
+          <div
+            className={classNames("all", sty.freeBox___9Gcq5)}
+            onClick={args.opencity}
+          />
+        </div>
         <div className={classNames("all", sty.freeBox__gw1Vi)}>
           <Select
             data-plasmic-name={"selectGender"}
@@ -600,43 +875,6 @@ function PlasmicEditUser__RenderFunc(props: {
             value={generateStateValueProp($state, ["selectMarital", "value"])}
           />
         </div>
-        <div className={classNames("all", sty.freeBox__l2Ksp)}>
-          <TextInput
-            data-plasmic-name={"cityInput"}
-            data-plasmic-override={overrides.cityInput}
-            ariaLabel={``}
-            autoComplete={[]}
-            autoFocus={false}
-            className={classNames("__wab_instance", sty.cityInput)}
-            disabled={false}
-            inputType={"text"}
-            maxLength={10}
-            onChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["cityInput", "value"]).apply(
-                null,
-                eventArgs
-              );
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-            placeholder={"\u0645\u062d\u0644 \u0633\u06a9\u0648\u0646\u062a"}
-            readOnly={false}
-            size={"langh"}
-            type={"lineBox"}
-            value={generateStateValueProp($state, ["cityInput", "value"])}
-          />
-
-          <div
-            className={classNames("all", sty.freeBox___9Gcq5)}
-            onClick={args.opencity}
-          />
-        </div>
       </div>
       <AntdModal
         data-plasmic-name={"modal"}
@@ -667,40 +905,60 @@ function PlasmicEditUser__RenderFunc(props: {
           );
         }}
         open={generateStateValueProp($state, ["modal", "open"])}
-        title={null}
+        title={
+          <div className={classNames("all", "__wab_text", sty.text__bjP5)}>
+            {"\n"}
+          </div>
+        }
         trigger={null}
         width={"100vw"}
+        wrapClassName={classNames({ [sty["pcls_vPEf0dmEXVrI"]]: true })}
       >
-        <City
-          data-plasmic-name={"city"}
-          data-plasmic-override={overrides.city}
-          back={async () => {
-            const $steps = {};
-          }}
-          city={generateStateValueProp($state, ["city", "city"])}
-          className={classNames("__wab_instance", sty.city)}
-          onCityChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["city", "city"]).apply(
-              null,
-              eventArgs
-            );
+        <div className={classNames("all", sty.freeBox___1Ko0V, "page")}>
+          <City
+            data-plasmic-name={"city"}
+            data-plasmic-override={overrides.city}
+            back={args.cityBack}
+            city={generateStateValueProp($state, ["city", "city"])}
+            className={classNames("__wab_instance", sty.city)}
+            onCityChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["city", "city"]).apply(
+                null,
+                eventArgs
+              );
 
-            if (
-              eventArgs.length > 1 &&
-              eventArgs[1] &&
-              eventArgs[1]._plasmic_state_init_
-            ) {
-              return;
-            }
-          }}
-        />
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
       </AntdModal>
       <Header
         data-plasmic-name={"header"}
         data-plasmic-override={overrides.header}
         className={classNames("__wab_instance", sty.header)}
+        onRunCodeChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["header", "runCode"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        runCode={generateStateValueProp($state, ["header", "runCode"])}
         slot={
-          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc"
+          "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u0628\u0631\u06cc"
         }
       />
 
@@ -751,14 +1009,17 @@ function PlasmicEditUser__RenderFunc(props: {
                     const actionArgs = {
                       customFunction: async () => {
                         return (() => {
+                          // City, birth date, and national code are optional
+                          // profile extras — validate format only when filled.
                           if (!$state.name.value)
                             return "لطفا نام خود را وارد کنید";
-                          if (!$state.city.city)
-                            return "لطفا محل سکونت را وارد کنید";
-                          if (!$state.selectGender.value)
+                          const nationalIdError = getNationalIdError(
+                            $state.code.value,
+                            false
+                          );
+                          if (nationalIdError) return nationalIdError;
+                          if (!$state.radioGroup.value)
                             return "لطفا جنسیت را انتخاب کنید";
-                          if (!$state.selectMarital.value)
-                            return "لطفا وضعیت تاهل را انتخاب کنید";
                         })();
                       }
                     };
@@ -780,22 +1041,23 @@ function PlasmicEditUser__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "POST",
-<<<<<<< HEAD
-                        "https://sayban.darkube.ir/webhook/setProfile",
-=======
-                        "https://sayban.darkube.app/webhook/setProfile",
->>>>>>> plasmicops/rQ6tUgoS/newMain
+                        "setProfile",
                         undefined,
                         (() => {
                           try {
-                            return {
-                              user_Id: $state.id,
-                              name: $state.name.value,
-                              national_code: $state.code.value,
-                              city: $state.city.city,
-                              gender: $state.selectGender.value,
-                              marital_status: $state.selectMarital.value
-                            };
+                            return (() => {
+                              return {
+                                birth_date:
+                                  dateStateToValue($state.dateInput.date) ||
+                                  null,
+                                user_Id: $state.id,
+                                name: $state.name.value,
+                                national_code: $state.code.value || null,
+                                city: $state.city.city || null,
+                                gender: $state.radioGroup.value,
+                                marital_status: $state.selectMarital.value
+                              };
+                            })();
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -856,7 +1118,7 @@ function PlasmicEditUser__RenderFunc(props: {
                             throw e;
                           }
                         })(),
-                        "top-right"
+                        "bottom-center"
                       ]
                     };
                     return $globalActions["Fragment.showToast"]?.apply(null, [
@@ -873,30 +1135,28 @@ function PlasmicEditUser__RenderFunc(props: {
                   await $steps["invokeGlobalAction2"];
               }
 
-              $steps["goToHomepage"] =
+              $steps["invokeGlobalAction3"] =
                 $steps.setProfile?.data?.success == true
                   ? (() => {
-                      const actionArgs = { destination: `/${"home"}/${""}` };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
+                      const actionArgs = {
+                        args: [
+                          "success",
+                          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f",
+                          "bottom-center"
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
                     })()
                   : undefined;
               if (
-                $steps["goToHomepage"] != null &&
-                typeof $steps["goToHomepage"] === "object" &&
-                typeof $steps["goToHomepage"].then === "function"
+                $steps["invokeGlobalAction3"] != null &&
+                typeof $steps["invokeGlobalAction3"] === "object" &&
+                typeof $steps["invokeGlobalAction3"].then === "function"
               ) {
-                $steps["goToHomepage"] = await $steps["goToHomepage"];
+                $steps["invokeGlobalAction3"] =
+                  await $steps["invokeGlobalAction3"];
               }
 
               $steps["invokeGlobalAction"] =
@@ -917,7 +1177,8 @@ function PlasmicEditUser__RenderFunc(props: {
                               }
                               throw e;
                             }
-                          })()
+                          })(),
+                          "bottom-center"
                         ]
                       };
                       return $globalActions["Fragment.showToast"]?.apply(null, [
@@ -938,7 +1199,10 @@ function PlasmicEditUser__RenderFunc(props: {
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
-                        return ($state.codeSubmit2.loading = false);
+                        return (() => {
+                          $state.codeSubmit2.loading = false;
+                          return ($state.refresh = Date.now().toString());
+                        })();
                       }
                     };
                     return (({ customFunction }) => {
@@ -981,9 +1245,12 @@ const PlasmicDescendants = {
     "root",
     "name",
     "code",
+    "radioGroup",
+    "radio",
+    "dateInput",
+    "cityInput",
     "selectGender",
     "selectMarital",
-    "cityInput",
     "modal",
     "city",
     "svg",
@@ -993,9 +1260,12 @@ const PlasmicDescendants = {
   ],
   name: ["name"],
   code: ["code"],
+  radioGroup: ["radioGroup", "radio"],
+  radio: ["radio"],
+  dateInput: ["dateInput"],
+  cityInput: ["cityInput"],
   selectGender: ["selectGender"],
   selectMarital: ["selectMarital"],
-  cityInput: ["cityInput"],
   modal: ["modal", "city", "svg"],
   city: ["city"],
   svg: ["svg"],
@@ -1010,9 +1280,12 @@ type NodeDefaultElementType = {
   root: "div";
   name: typeof TextInput;
   code: typeof TextInput;
+  radioGroup: typeof RadioGroup;
+  radio: typeof Radio;
+  dateInput: typeof DateInput;
+  cityInput: typeof TextInput;
   selectGender: typeof Select;
   selectMarital: typeof Select;
-  cityInput: typeof TextInput;
   modal: typeof AntdModal;
   city: typeof City;
   svg: "svg";
@@ -1085,9 +1358,12 @@ export const PlasmicEditUser = Object.assign(
     // Helper components rendering sub-elements
     _name: makeNodeComponent("name"),
     code: makeNodeComponent("code"),
+    radioGroup: makeNodeComponent("radioGroup"),
+    radio: makeNodeComponent("radio"),
+    dateInput: makeNodeComponent("dateInput"),
+    cityInput: makeNodeComponent("cityInput"),
     selectGender: makeNodeComponent("selectGender"),
     selectMarital: makeNodeComponent("selectMarital"),
-    cityInput: makeNodeComponent("cityInput"),
     modal: makeNodeComponent("modal"),
     city: makeNodeComponent("city"),
     svg: makeNodeComponent("svg"),

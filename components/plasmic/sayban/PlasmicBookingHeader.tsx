@@ -59,24 +59,16 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import { AntdPopover } from "@plasmicpkgs/antd5/skinny/registerPopover";
 import { DatePicker } from "@/fragment/components/date-picker"; // plasmic-import: NS3tI_-DZdxC/codeComponent
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicBookingHeader.module.css"; // plasmic-import: K9ETXxPuQRCy/css
 
-import Icon90Icon from "./icons/PlasmicIcon__Icon90"; // plasmic-import: fhMmwnceyLh4/icon
-import SquareXIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__SquareX"; // plasmic-import: vlg82PNC_PuM/icon
-import Icon91Icon from "./icons/PlasmicIcon__Icon91"; // plasmic-import: lnClONjnY1AS/icon
+import Icon103Icon from "./icons/PlasmicIcon__Icon103"; // plasmic-import: AqLvaAKc1pFH/icon
 
 createPlasmicElementProxy;
 
@@ -96,23 +88,26 @@ export type PlasmicBookingHeader__ArgsType = {
   onDatePickerStartChange?: (val: number) => void;
   datePickerEnd?: number;
   onDatePickerEndChange?: (val: number) => void;
+  all?: number;
+  active?: number;
 };
 type ArgPropType = keyof PlasmicBookingHeader__ArgsType;
 export const PlasmicBookingHeader__ArgProps = new Array<ArgPropType>(
   "datePickerStart",
   "onDatePickerStartChange",
   "datePickerEnd",
-  "onDatePickerEndChange"
+  "onDatePickerEndChange",
+  "all",
+  "active"
 );
 
 export type PlasmicBookingHeader__OverridesType = {
   root?: Flex__<"div">;
-  img?: Flex__<typeof PlasmicImg__>;
-  embedHtml?: Flex__<typeof Embed>;
   popover?: Flex__<typeof AntdPopover>;
   datePicker?: Flex__<typeof DatePicker>;
   popover2?: Flex__<typeof AntdPopover>;
   datePicker2?: Flex__<typeof DatePicker>;
+  svg?: Flex__<"svg">;
 };
 
 export interface DefaultBookingHeaderProps {
@@ -120,6 +115,8 @@ export interface DefaultBookingHeaderProps {
   onDatePickerStartChange?: (val: number) => void;
   datePickerEnd?: number;
   onDatePickerEndChange?: (val: number) => void;
+  all?: number;
+  active?: number;
   filter?: SingleBooleanChoiceArg<"filter">;
   className?: string;
 }
@@ -242,116 +239,6 @@ function PlasmicBookingHeader__RenderFunc(props: {
         { [sty.rootfilter]: hasVariant($state, "filter", "filter") }
       )}
     >
-      <PlasmicImg__
-        data-plasmic-name={"img"}
-        data-plasmic-override={overrides.img}
-        alt={""}
-        className={classNames(sty.img)}
-        displayHeight={"auto"}
-        displayMaxHeight={"none"}
-        displayMaxWidth={"100%"}
-        displayMinHeight={"0"}
-        displayMinWidth={"0"}
-        displayWidth={"auto"}
-        loading={"lazy"}
-        src={{
-          src: "/plasmic/sayban/images/image24.svg",
-          fullWidth: 200,
-          fullHeight: 200,
-          aspectRatio: undefined
-        }}
-      />
-
-      <div className={classNames("all", sty.freeBox__ftmfq)}>
-        <div className={classNames("all", "__wab_text", sty.text__ibP8V)}>
-          {
-            "\u0633\u0648\u0627\u0628\u0642 \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a\u200c\u0647\u0627"
-          }
-        </div>
-        <PlasmicIcon__
-          PlasmicIconType={
-            hasVariant($state, "filter", "filter") ? Icon90Icon : Icon90Icon
-          }
-          className={classNames("all", sty.svg__nOvDd, {
-            [sty.svgfilter__nOvDdLrf0Y]: hasVariant($state, "filter", "filter")
-          })}
-          onClick={async event => {
-            const $steps = {};
-
-            $steps["updateFilter"] = true
-              ? (() => {
-                  const actionArgs = {
-                    vgroup: "filter",
-                    operation: 2,
-                    value: "filter"
-                  };
-                  return (({ vgroup, value }) => {
-                    if (typeof value === "string") {
-                      value = [value];
-                    }
-
-                    const oldValue = $stateGet($state, vgroup);
-                    $stateSet($state, vgroup, !oldValue);
-                    return !oldValue;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["updateFilter"] != null &&
-              typeof $steps["updateFilter"] === "object" &&
-              typeof $steps["updateFilter"].then === "function"
-            ) {
-              $steps["updateFilter"] = await $steps["updateFilter"];
-            }
-          }}
-          role={"img"}
-        />
-
-        <SquareXIcon
-          className={classNames("all", sty.svg__iiQq6, {
-            [sty.svgfilter__iiQq6Lrf0Y]: hasVariant($state, "filter", "filter")
-          })}
-          onClick={async event => {
-            const $steps = {};
-
-            $steps["updateFilter"] = true
-              ? (() => {
-                  const actionArgs = {
-                    vgroup: "filter",
-                    operation: 2,
-                    value: "filter"
-                  };
-                  return (({ vgroup, value }) => {
-                    if (typeof value === "string") {
-                      value = [value];
-                    }
-
-                    const oldValue = $stateGet($state, vgroup);
-                    $stateSet($state, vgroup, !oldValue);
-                    return !oldValue;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["updateFilter"] != null &&
-              typeof $steps["updateFilter"] === "object" &&
-              typeof $steps["updateFilter"].then === "function"
-            ) {
-              $steps["updateFilter"] = await $steps["updateFilter"];
-            }
-          }}
-          role={"img"}
-        />
-
-        <Embed
-          data-plasmic-name={"embedHtml"}
-          data-plasmic-override={overrides.embedHtml}
-          className={classNames("__wab_instance", sty.embedHtml)}
-          code={
-            '<script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>\r\n'
-          }
-        />
-      </div>
       <div
         className={classNames("all", sty.freeBox__jwSv, {
           [sty.freeBoxfilter__jwSvLrf0Y]: hasVariant($state, "filter", "filter")
@@ -359,7 +246,21 @@ function PlasmicBookingHeader__RenderFunc(props: {
       >
         <div className={classNames("all", sty.freeBox__axbDb)}>
           <div className={classNames("all", "__wab_text", sty.text__hRihg)}>
-            {"0"}
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.active;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "0";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
           </div>
           <div className={classNames("all", "__wab_text", sty.text__c3FG)}>
             {
@@ -379,7 +280,21 @@ function PlasmicBookingHeader__RenderFunc(props: {
 
         <div className={classNames("all", sty.freeBox__v4Y5I)}>
           <div className={classNames("all", "__wab_text", sty.text__nRcKx)}>
-            {"0"}
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.all;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
           </div>
           <div className={classNames("all", "__wab_text", sty.text__ubblM)}>
             {
@@ -499,21 +414,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
               }
             })() ? (
               <div className={classNames("all", "__wab_text", sty.text__lZZkp)}>
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return "از تاریخ";
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "\u062a\u0627 \u062a\u0627\u0631\u06cc\u062e";
-                      }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
+                {"\u062a\u0627\u0631\u06cc\u062e \u0634\u0631\u0648\u0639"}
               </div>
             ) : null}
           </div>
@@ -560,7 +461,7 @@ function PlasmicBookingHeader__RenderFunc(props: {
             );
           }}
           open={generateStateValueProp($state, ["popover2", "open"])}
-          placement={"bottom"}
+          placement={"top"}
           popoverScopeClassName={sty["popover2__popover"]}
           title={null}
           trigger={"click"}
@@ -619,127 +520,121 @@ function PlasmicBookingHeader__RenderFunc(props: {
               }
             })() ? (
               <div className={classNames("all", "__wab_text", sty.text__m7Qil)}>
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return "تا تاریخ";
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "\u062a\u0627 \u062a\u0627\u0631\u06cc\u062e";
-                      }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
+                {
+                  "\u062a\u0627\u0631\u06cc\u062e \u067e\u0627\u06cc\u0627\u0646"
+                }
               </div>
             ) : null}
           </div>
         </AntdPopover>
-        <div
-          className={classNames("all", sty.freeBox__bbdgh)}
-          onClick={async event => {
-            const $steps = {};
-
-            $steps["updateDatePicker2Value"] = true
-              ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["datePicker2", "value"]
-                    },
-                    operation: 1
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
-
-                    $stateSet(objRoot, variablePath, undefined);
-                    return undefined;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
+        {(() => {
+          try {
+            return true;
+          } catch (e) {
             if (
-              $steps["updateDatePicker2Value"] != null &&
-              typeof $steps["updateDatePicker2Value"] === "object" &&
-              typeof $steps["updateDatePicker2Value"].then === "function"
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
             ) {
-              $steps["updateDatePicker2Value"] =
-                await $steps["updateDatePicker2Value"];
+              return true;
             }
+            throw e;
+          }
+        })() ? (
+          <div
+            className={classNames("all", sty.freeBox__bbdgh)}
+            onClick={async event => {
+              const $steps = {};
 
-            $steps["updateDatePickerValue"] = true
-              ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["datePicker", "value"]
-                    },
-                    operation: 1
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
+              $steps["updateDatePicker2Value"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["datePicker2", "value"]
+                      },
+                      operation: 1
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
 
-                    $stateSet(objRoot, variablePath, undefined);
-                    return undefined;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["updateDatePickerValue"] != null &&
-              typeof $steps["updateDatePickerValue"] === "object" &&
-              typeof $steps["updateDatePickerValue"].then === "function"
-            ) {
-              $steps["updateDatePickerValue"] =
-                await $steps["updateDatePickerValue"];
-            }
-          }}
-        >
-          <Icon91Icon
-            className={classNames("all", sty.svg__zUGe2)}
-            role={"img"}
-          />
-        </div>
+                      $stateSet(objRoot, variablePath, undefined);
+                      return undefined;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateDatePicker2Value"] != null &&
+                typeof $steps["updateDatePicker2Value"] === "object" &&
+                typeof $steps["updateDatePicker2Value"].then === "function"
+              ) {
+                $steps["updateDatePicker2Value"] =
+                  await $steps["updateDatePicker2Value"];
+              }
+
+              $steps["updateDatePickerValue"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["datePicker", "value"]
+                      },
+                      operation: 1
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, undefined);
+                      return undefined;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateDatePickerValue"] != null &&
+                typeof $steps["updateDatePickerValue"] === "object" &&
+                typeof $steps["updateDatePickerValue"].then === "function"
+              ) {
+                $steps["updateDatePickerValue"] =
+                  await $steps["updateDatePickerValue"];
+              }
+            }}
+          >
+            <Icon103Icon
+              data-plasmic-name={"svg"}
+              data-plasmic-override={overrides.svg}
+              className={classNames("all", sty.svg)}
+              role={"img"}
+            />
+          </div>
+        ) : null}
       </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: [
-    "root",
-    "img",
-    "embedHtml",
-    "popover",
-    "datePicker",
-    "popover2",
-    "datePicker2"
-  ],
-  img: ["img"],
-  embedHtml: ["embedHtml"],
+  root: ["root", "popover", "datePicker", "popover2", "datePicker2", "svg"],
   popover: ["popover", "datePicker"],
   datePicker: ["datePicker"],
   popover2: ["popover2", "datePicker2"],
-  datePicker2: ["datePicker2"]
+  datePicker2: ["datePicker2"],
+  svg: ["svg"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  img: typeof PlasmicImg__;
-  embedHtml: typeof Embed;
   popover: typeof AntdPopover;
   datePicker: typeof DatePicker;
   popover2: typeof AntdPopover;
   datePicker2: typeof DatePicker;
+  svg: "svg";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -804,12 +699,11 @@ export const PlasmicBookingHeader = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    img: makeNodeComponent("img"),
-    embedHtml: makeNodeComponent("embedHtml"),
     popover: makeNodeComponent("popover"),
     datePicker: makeNodeComponent("datePicker"),
     popover2: makeNodeComponent("popover2"),
     datePicker2: makeNodeComponent("datePicker2"),
+    svg: makeNodeComponent("svg"),
 
     // Metadata about props expected for PlasmicBookingHeader
     internalVariantProps: PlasmicBookingHeader__VariantProps,

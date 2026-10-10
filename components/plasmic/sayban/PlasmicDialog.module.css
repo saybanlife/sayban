@@ -50,14 +50,14 @@
 .dialogContent:global(.__wab_instance) {
   box-shadow: 0px 4px 16px 0px #00000033;
   background: var(--token-KPGXdu9o7llP);
-  width: auto;
-  max-width: 500px;
+  width: min(100%, 500px);
+  max-width: min(100vw - 1.5rem, 500px);
   object-fit: cover;
   position: relative;
   left: auto;
   top: auto;
-  min-width: 500px;
-  max-height: 100%;
+  min-width: 0;
+  max-height: min(92dvh, 100%);
   overflow: auto;
   align-self: center;
   z-index: 1;
@@ -66,6 +66,7 @@
   border-radius: 8px;
   padding: var(--token-LBC0X5IbL9bo);
   border: 0px solid var(--token-Le07ngBUPl2h);
+  box-sizing: border-box;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .dialogContent:global(.__wab_instance) {
@@ -86,6 +87,9 @@
 }
 .dialogContentnopadding:global(.__wab_instance) {
   padding: 0px;
+}
+.dialogContentcolorback_w:global(.__wab_instance) {
+  background: var(--token-CoQ7kPLW8rRe);
 }
 .dialogTitle:global(.__wab_instance) {
   max-width: 100%;
@@ -185,7 +189,7 @@
   user-select: text;
   text-decoration-line: none;
   text-overflow: clip;
-  font-family: "Roboto", sans-serif;
+  font-family: "Vazirmatn", sans-serif;
 }
 .freeBox__eflwV {
   display: flex;
@@ -217,7 +221,7 @@
   user-select: text;
   text-decoration-line: none;
   text-overflow: clip;
-  font-family: "Roboto", sans-serif;
+  font-family: "Vazirmatn", sans-serif;
   align-self: flex-start;
   min-width: 0;
 }
@@ -296,7 +300,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  font-family: "Roboto", sans-serif;
+  font-family: "Vazirmatn", sans-serif;
   font-size: 18px;
   font-weight: 700;
   font-style: normal;
@@ -329,7 +333,7 @@
   height: auto;
   max-width: 100%;
   padding-left: 50px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Vazirmatn", sans-serif;
   font-size: 14px;
   font-weight: 400;
   font-style: normal;
@@ -350,7 +354,7 @@
   height: auto;
   max-width: 100%;
   margin-right: 0px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Vazirmatn", sans-serif;
   font-size: 16px;
   font-weight: 700;
   font-style: normal;
@@ -388,7 +392,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  font-family: "Roboto", sans-serif;
+  font-family: "Vazirmatn", sans-serif;
   font-size: 14px;
   font-weight: 400;
   font-style: normal;
@@ -414,8 +418,8 @@
   align-self: flex-start;
   padding-right: 10px;
   padding-left: 10px;
-  color: #8254c6;
-  font-family: "Roboto", sans-serif;
+  color: #6f8a3a;
+  font-family: "Vazirmatn", sans-serif;
   font-size: 14px;
   font-style: normal;
   text-transform: none;
@@ -465,7 +469,7 @@
   max-width: 100%;
   width: 30px;
   height: 30px;
-  color: #8254c6;
+  color: #6f8a3a;
 }
 .freeBox__zX0Op {
   display: block;
@@ -493,7 +497,7 @@
   height: 1em;
 }
 .text__fUjVi {
-  font-family: "Roboto", sans-serif;
+  font-family: "Vazirmatn", sans-serif;
   font-size: 14px;
   font-weight: 500;
   font-style: normal;
@@ -546,7 +550,7 @@
   user-select: text;
   text-decoration-line: none !important;
   text-overflow: clip !important;
-  font-family: "Roboto", sans-serif;
+  font-family: "Vazirmatn", sans-serif;
   min-width: 0;
 }
 .svg__d9IQk {
@@ -570,7 +574,7 @@
   text-decoration-line: none;
   text-overflow: clip;
   cursor: pointer;
-  font-family: "Roboto", sans-serif;
+  font-family: "Vazirmatn", sans-serif;
 }
 .p__nMxnq {
   text-align: center;
@@ -586,7 +590,7 @@
   text-decoration-line: none;
   text-overflow: clip;
   cursor: pointer;
-  font-family: "Roboto", sans-serif;
+  font-family: "Vazirmatn", sans-serif;
   display: none;
 }
 .dialogClose:global(.__wab_instance) {

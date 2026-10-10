@@ -38,7 +38,13 @@ export const Select = (props: SelectType) => {
       onOpenChange={onOpenChange}
     >
       <SelectPrimitive.SelectTrigger className={triggerClassName}>
-        <SelectPrimitive.SelectValue placeholder={placeholder} />
+        <SelectPrimitive.SelectValue
+          placeholder={
+            !placeholder || /select an item/i.test(placeholder)
+              ? "یک مورد را انتخاب کنید"
+              : placeholder
+          }
+        />
       </SelectPrimitive.SelectTrigger>
       <SelectPrimitive.SelectContent>
         {options?.map((option) => (

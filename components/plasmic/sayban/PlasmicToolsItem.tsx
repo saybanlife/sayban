@@ -97,6 +97,7 @@ export type PlasmicToolsItem__OverridesType = {
   root?: Flex__<"div">;
   freeBox?: Flex__<"div">;
   menueIcon?: Flex__<typeof MenueIcon>;
+  img?: Flex__<typeof PlasmicImg__>;
 };
 
 export interface DefaultToolsItemProps {
@@ -187,7 +188,13 @@ function PlasmicToolsItem__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
-        { [sty.rootback]: hasVariant($state, "back", "back") }
+        {
+          [sty.rootback]: hasVariant($state, "back", "back"),
+          [sty.rootback_top]:
+            hasVariant($state, "top", "top") &&
+            hasVariant($state, "back", "back"),
+          [sty.roottop]: hasVariant($state, "top", "top")
+        }
       )}
       onClick={args.onClick}
     >
@@ -196,6 +203,9 @@ function PlasmicToolsItem__RenderFunc(props: {
         data-plasmic-override={overrides.freeBox}
         className={classNames("all", sty.freeBox, {
           [sty.freeBoxback]: hasVariant($state, "back", "back"),
+          [sty.freeBoxback_top]:
+            hasVariant($state, "top", "top") &&
+            hasVariant($state, "back", "back"),
           [sty.freeBoxtop]: hasVariant($state, "top", "top")
         })}
       >
@@ -204,6 +214,9 @@ function PlasmicToolsItem__RenderFunc(props: {
           data-plasmic-override={overrides.menueIcon}
           className={classNames("__wab_instance", sty.menueIcon, {
             [sty.menueIconback]: hasVariant($state, "back", "back"),
+            [sty.menueIconback_top]:
+              hasVariant($state, "top", "top") &&
+              hasVariant($state, "back", "back"),
             [sty.menueIcontop]: hasVariant($state, "top", "top")
           })}
           icons={(() => {
@@ -220,6 +233,55 @@ function PlasmicToolsItem__RenderFunc(props: {
             }
           })()}
           size={"max"}
+        />
+
+        <PlasmicImg__
+          data-plasmic-name={"img"}
+          data-plasmic-override={overrides.img}
+          alt={""}
+          className={classNames(sty.img, {
+            [sty.imgback]: hasVariant($state, "back", "back"),
+            [sty.imgback_top]:
+              hasVariant($state, "top", "top") &&
+              hasVariant($state, "back", "back")
+          })}
+          displayHeight={
+            hasVariant($state, "top", "top") &&
+            hasVariant($state, "back", "back")
+              ? "5rem"
+              : "3.8rem"
+          }
+          displayMaxHeight={"none"}
+          displayMaxWidth={"100%"}
+          displayMinHeight={"0"}
+          displayMinWidth={"0"}
+          displayWidth={
+            hasVariant($state, "top", "top") &&
+            hasVariant($state, "back", "back")
+              ? "5rem"
+              : "3.8rem"
+          }
+          height={"2.5rem"}
+          loading={"lazy"}
+          src={(() => {
+            try {
+              return $props.data.icon;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return {
+                  src: "/plasmic/sayban/images/untitledPicturePng.png",
+                  fullWidth: 3629,
+                  fullHeight: 2887,
+                  aspectRatio: undefined
+                };
+              }
+              throw e;
+            }
+          })()}
+          width={""}
         />
 
         <div
@@ -275,9 +337,10 @@ function PlasmicToolsItem__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox", "menueIcon"],
-  freeBox: ["freeBox", "menueIcon"],
-  menueIcon: ["menueIcon"]
+  root: ["root", "freeBox", "menueIcon", "img"],
+  freeBox: ["freeBox", "menueIcon", "img"],
+  menueIcon: ["menueIcon"],
+  img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -286,6 +349,7 @@ type NodeDefaultElementType = {
   root: "div";
   freeBox: "div";
   menueIcon: typeof MenueIcon;
+  img: typeof PlasmicImg__;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -352,6 +416,7 @@ export const PlasmicToolsItem = Object.assign(
     // Helper components rendering sub-elements
     freeBox: makeNodeComponent("freeBox"),
     menueIcon: makeNodeComponent("menueIcon"),
+    img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicToolsItem
     internalVariantProps: PlasmicToolsItem__VariantProps,

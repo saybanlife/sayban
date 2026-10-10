@@ -1,10 +1,17 @@
 "use client";
 
 import { CodeComponentMeta, useSelector } from "@plasmicapp/host";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import useSWR from "swr";
-const BASE_URL = "https://sayban.darkube.ir/webhook/";
+import { resolveClientApiUrl } from "@/lib/resolveClientApiUrl";
+import { mergePublicAuthHeaders } from "@/lib/publicAuthHeaders";
+import {
+  DEFAULT_API_CACHE_TTL_MS,
+  readApiCache,
+  writeApiCache,
+  type CachedApiEntry
+} from "@/lib/persistentApiCache";
 
 type ApiRequestType = {
   method: "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
@@ -14,6 +21,24 @@ type ApiRequestType = {
   config?: Record<string, any>;
   children: ReactNode;
   shouldFetch?: boolean;
+  /** Bypass SWR dedupe and always revalidate on mount (e.g. reservation history). */
+  fresh?: boolean;
+  /**
+   * Opt in to the localStorage cache under this key. Must be stable and must
+   * not encode the auth token, so a returning user hits the same entry.
+   * While the entry is within its TTL no request is sent at all; once past it
+   * the cached data still paints immediately and is revalidated in the
+   * background. Ignored when `fresh` is set.
+   */
+  cacheKey?: string;
+  /** TTL for `cacheKey`, in ms. Defaults to 12h. */
+  cacheTtlMs?: number;
+  /**
+   * Poll the endpoint every N ms so the view keeps up without a manual refresh
+   * (e.g. reservation status). Polling pauses while the tab is hidden. Off by
+   * default; combine with `fresh` so responses are not served from cache.
+   */
+  refreshInterval?: number;
   errorDisplay?: ReactNode;
   loadingDisplay?: ReactNode;
   previewErrorDisplay?: boolean;
@@ -38,28 +63,85 @@ export const ApiRequest = (props: ApiRequestType) => {
     onError,
     onLoading,
     shouldFetch = true,
-    onSuccess,
+    fresh = false,
+    cacheKey,
+    cacheTtlMs = DEFAULT_API_CACHE_TTL_MS,
+    refreshInterval = 0,
+    onSuccess
   } = props;
   const fragmentConfig = useSelector("Fragment");
   const [isLoading, setIsLoading] = useState(false);
-  const finalUrl = 
-            url.startsWith("http://") || url.startsWith("https://")
-              ? url
-              : `${BASE_URL}${url}`;
+  /** After the first successful response for the current fetch key, background
+   * revalidation (refreshInterval / remount) must not tear down children. */
+  const [hasSucceeded, setHasSucceeded] = useState(false);
+  const hasSucceededRef = useRef(false);
+
+  const cacheEnabled = !!cacheKey && !fresh;
+  // Read synchronously on first render so a cached payload is available before
+  // the first paint, rather than flashing the skeleton for a frame.
+  const [cached, setCached] = useState<CachedApiEntry | null>(() =>
+    cacheEnabled ? readApiCache(cacheKey!, cacheTtlMs) : null
+  );
+  const hasFreshCache = cacheEnabled && !!cached && !cached.stale;
+  const finalUrl = resolveClientApiUrl(url);
   const fetchProps = {
     method,
-    url : finalUrl,
+    url: finalUrl,
     params,
     body,
-    config: {
+    config: mergePublicAuthHeaders({
       ...fragmentConfig?.apiConfig,
       ...fragmentConfig?.previewApiConfig,
-      ...config,
-    },
+      ...config
+    })
   };
-const shouldFetchRequest = shouldFetch !== false && !!url;
-const fetchKey = shouldFetchRequest ? JSON.stringify({ ...fetchProps, shouldFetch }) : null;
-  const { error } = useSWR(
+  const shouldFetchRequest = shouldFetch !== false && !!url;
+  const fetchKey = shouldFetchRequest
+    ? JSON.stringify({ ...fetchProps, shouldFetch, fresh })
+    : null;
+
+  // Reset success tracking synchronously when the SWR key changes so a new
+  // query can show loading once, without a post-paint effect flash.
+  const prevFetchKeyRef = useRef<string | null>(null);
+  if (prevFetchKeyRef.current !== fetchKey) {
+    prevFetchKeyRef.current = fetchKey;
+    hasSucceededRef.current = false;
+    if (hasSucceeded) {
+      setHasSucceeded(false);
+    }
+  }
+
+  const reuqestFn = async ({ method, url, params, body, config }: any) => {
+    // Soft refresh: keep existing UI; only announce loading on the first fetch
+    // for this key (or after a key change).
+    if (!hasSucceededRef.current) {
+      onLoading?.(true);
+      setIsLoading(true);
+    }
+    onError?.(null);
+    try {
+      if (method === "GET") {
+        return await axios.get(url, {
+          params,
+          ...config
+        });
+      }
+      return await axios[
+        method.toLowerCase() as "post" | "delete" | "put" | "patch"
+      ](url, body, {
+        params,
+        ...config
+      });
+    } catch (err) {
+      // SWR still gets the rejection via onError; always clear loading so
+      // abandoned/failed fetches cannot leave the panel overlay stuck.
+      onLoading?.(false);
+      setIsLoading(false);
+      throw err;
+    }
+  };
+
+  const { error, isValidating } = useSWR(
     fetchKey,
     () => reuqestFn(fetchProps),
     {
@@ -73,33 +155,68 @@ const fetchKey = shouldFetchRequest ? JSON.stringify({ ...fetchProps, shouldFetc
       onSuccess(data) {
         onLoading?.(false);
         setIsLoading(false);
+        hasSucceededRef.current = true;
+        setHasSucceeded(true);
+        if (cacheEnabled) {
+          writeApiCache(cacheKey!, data?.data);
+          // Mark the entry fresh so a later key change (the Authorization
+          // header resolving after hydration is the common one) does not
+          // trigger a second identical request.
+          setCached({ data: data?.data, stale: false, storedAt: Date.now() });
+        }
         onSuccess?.(data?.data);
       },
       errorRetryCount: 0,
       revalidateOnFocus: false,
-      keepPreviousData: false,
+      // A fresh cache entry means "do not go to the network at all". A stale
+      // one still revalidates, but behind the already-painted cached data.
+      revalidateOnMount: hasFreshCache ? false : true,
+      revalidateIfStale: hasFreshCache ? false : true,
+      // Dedupe identical in-flight polls; `fresh` alone used to force 0 and
+      // allow stacked Reservation requests every tick.
+      dedupingInterval: fresh && !(refreshInterval > 0) ? 0 : 2000,
+      // Keep the previous payload painted while polling / soft-refreshing.
+      keepPreviousData: !fresh || refreshInterval > 0,
+      refreshInterval,
+      // Polling a background tab wastes requests; SWR revalidates on remount.
+      refreshWhenHidden: false,
+      refreshWhenOffline: false
     }
   );
-  const reuqestFn = async ({ method, url, params, body, config }: any) => {
-    onLoading?.(true);
-    onError?.(null);
-    onSuccess?.(null);
-    setIsLoading(true);
-    if (method === "GET") {
-      return await axios.get(url, {
-        params,
-        ...config,
-      });
-    }
-    return await axios[
-      method.toLowerCase() as "post" | "delete" | "put" | "patch"
-    ](url, body, {
-      params,
-      ...config,
-    });
-  };
 
-  if (isLoading || previewLoadingDisplay) {
+  // Hand the cached payload to consumers once, so `$state` is populated even
+  // when no request runs. Callbacks come from Plasmic as inline arrows, so they
+  // are held in refs to keep this to a single delivery.
+  const onSuccessRef = useRef(onSuccess);
+  onSuccessRef.current = onSuccess;
+  const onLoadingRef = useRef(onLoading);
+  onLoadingRef.current = onLoading;
+  const deliveredCacheRef = useRef(false);
+
+  useEffect(() => {
+    if (!cacheEnabled || !cached || deliveredCacheRef.current) return;
+    deliveredCacheRef.current = true;
+    onLoadingRef.current?.(false);
+    onSuccessRef.current?.(cached.data);
+  }, [cacheEnabled, cached]);
+
+  // When shouldFetch flips off (login/create, missing url, aborted key),
+  // clear any in-flight loading flag — SWR will not call onSuccess/onError.
+  useEffect(() => {
+    if (fetchKey != null) return;
+    setIsLoading(false);
+    onLoadingRef.current?.(false);
+  }, [fetchKey]);
+
+  // Initial fresh fetch may show a skeleton; background polling / revalidation
+  // must keep children mounted so lists and form state do not reset.
+  const showLoading =
+    previewLoadingDisplay ||
+    (!(cacheEnabled && cached) &&
+      (isLoading ||
+        (fresh && isValidating && shouldFetchRequest && !hasSucceeded)));
+
+  if (showLoading) {
     return loadingDisplay;
   }
 
@@ -119,48 +236,74 @@ export const apiRequestMeta: CodeComponentMeta<ApiRequestType> = {
       type: "choice",
       options: ["GET", "POST", "DELETE", "PUT", "PATCH"],
       defaultValueHint: "GET",
-      defaultValue: "GET",
+      defaultValue: "GET"
     },
     url: {
       displayName: "URL",
       type: "string",
       defaultValueHint: "/api/v1/users",
-      required: true,
+      required: true
     },
     params: {
       displayName: "Query Params",
       type: "object",
       description: `e.g. { id: 20 }`,
-      helpText: "It will append this to the end of the URL as ?key=value.",
+      helpText: "It will append this to the end of the URL as ?key=value."
     },
     body: {
       displayName: "Body",
       type: "object",
       description: `e.g. { id: 20 }`,
-      hidden: (ps) => ps.method == "GET",
+      hidden: ps => ps.method == "GET"
     },
     config: {
       displayName: "Request Config",
       type: "object",
       description: `e.g. { headers: { 'Authorization': 'XXX' } }`,
       helpText:
-        "Read about request configuration options at https://axios-http.com/docs/req_config",
+        "Read about request configuration options at https://axios-http.com/docs/req_config"
     },
     shouldFetch: {
       displayName: "Should Fetch?",
       type: "boolean",
       description: "If false, the request will not run.",
-      defaultValue: true,
+      defaultValue: true
+    },
+    fresh: {
+      displayName: "Always Fresh?",
+      type: "boolean",
+      description:
+        "Skip SWR dedupe and always revalidate on mount (use for booking history).",
+      defaultValue: false
+    },
+    cacheKey: {
+      displayName: "Cache Key",
+      type: "string",
+      description:
+        "Persist the response in localStorage under this key. While the entry is fresh no request is sent. Use for slow-changing data such as categories.",
+      hidden: ps => !!ps.fresh
+    },
+    cacheTtlMs: {
+      displayName: "Cache TTL (ms)",
+      type: "number",
+      description: "How long a cached entry stays fresh. Defaults to 12h.",
+      hidden: ps => !ps.cacheKey
+    },
+    refreshInterval: {
+      displayName: "Refresh Interval (ms)",
+      type: "number",
+      description:
+        "Re-fetch every N ms so the view stays current without a manual refresh. Paused while the tab is hidden. 0 disables polling."
     },
     previewLoadingDisplay: {
       displayName: "Preview Loading Display",
       type: "boolean",
-      editOnly: true,
+      editOnly: true
     },
     previewErrorDisplay: {
       displayName: "Preview Error Display",
       type: "boolean",
-      editOnly: true,
+      editOnly: true
     },
     children: { displayName: "Children", type: "slot" },
     loadingDisplay: {
@@ -169,9 +312,9 @@ export const apiRequestMeta: CodeComponentMeta<ApiRequestType> = {
       defaultValue: [
         {
           type: "text",
-          value: "Loading...",
-        },
-      ],
+          value: "Loading..."
+        }
+      ]
     },
     errorDisplay: {
       displayName: "Error Display",
@@ -179,54 +322,54 @@ export const apiRequestMeta: CodeComponentMeta<ApiRequestType> = {
       defaultValue: [
         {
           type: "text",
-          value: "Error fetching data",
-        },
-      ],
+          value: "Error fetching data"
+        }
+      ]
     },
     onSuccess: {
       type: "eventHandler",
       argTypes: [
         {
           name: "data",
-          type: "object",
-        },
-      ],
+          type: "object"
+        }
+      ]
     },
     onError: {
       type: "eventHandler",
       argTypes: [
         {
           name: "error",
-          type: "object",
-        },
-      ],
+          type: "object"
+        }
+      ]
     },
     onLoading: {
       type: "eventHandler",
       argTypes: [
         {
           name: "loading",
-          type: "boolean",
-        },
-      ],
-    },
+          type: "boolean"
+        }
+      ]
+    }
   },
   classNameProp: "className",
   states: {
     data: {
       type: "readonly",
       variableType: "object",
-      onChangeProp: "onSuccess",
+      onChangeProp: "onSuccess"
     },
     error: {
       type: "readonly",
       variableType: "object",
-      onChangeProp: "onError",
+      onChangeProp: "onError"
     },
     loading: {
       type: "readonly",
       variableType: "boolean",
-      onChangeProp: "onLoading",
-    },
-  },
+      onChangeProp: "onLoading"
+    }
+  }
 };

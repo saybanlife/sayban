@@ -1,0 +1,70 @@
+{
+  "name": "Sayban - Panel Support Conversations",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "panel/support/conversations",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0],
+      "id": "panel-support-list-webhook",
+      "name": "Webhook List",
+      "webhookId": "panel-support-list"
+    },
+    {
+      "parameters": {
+        "jsCode": "const headers = $json.headers || {};\nconst auth = headers.authorization || headers.Authorization || '';\nconst token = String(auth).replace(/^Bearer\\s+/i, '').trim();\nif (!token) throw new Error('Unauthorized');\nconst payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString('utf8'));\nconst role = String(payload.role || '');\nif (role !== 'super_admin') throw new Error('Forbidden');\nconst q = String(($json.query && $json.query.q) || '').trim();\nconst status = String(($json.query && $json.query.status) || '').trim();\nreturn [{ json: { q, status } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 0],
+      "id": "panel-support-list-auth",
+      "name": "Auth SuperAdmin"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT c.id, c.user_id, c.status, c.last_message, c.last_message_at, c.message_count,\n       c.created_at, c.updated_at, c.closed_at,\n       u.name AS user_name, u.mobile AS user_mobile\nFROM support__conversations c\nLEFT JOIN users u ON u.id = c.user_id\nWHERE (\n  CASE\n    WHEN ? = 'unanswered' THEN c.status IN ('open', 'pending')\n    WHEN ? = '' THEN 1\n    ELSE c.status = ?\n  END\n)\n  AND (? = '' OR u.name LIKE CONCAT('%', ?, '%') OR CAST(c.user_id AS CHAR) = ? OR c.last_message LIKE CONCAT('%', ?, '%'))\nORDER BY c.updated_at DESC\nLIMIT 200;",
+        "options": {
+          "queryReplacement": "={{ [$json.status, $json.status, $json.status, $json.q, $json.q, $json.q, $json.q] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [460, 0],
+      "id": "panel-support-list-query",
+      "name": "Query Conversations",
+      "credentials": { "mySql": { "id": "oNRa6pdlbbcsx18m", "name": "MySQL account" } },
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const rows = $input.all().map(i => i.json).filter(r => r && r.id != null);\nreturn [{ json: { success: true, result: rows } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [700, 0],
+      "id": "panel-support-list-build",
+      "name": "Build"
+    },
+    {
+      "parameters": { "options": {} },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [920, 0],
+      "id": "panel-support-list-respond",
+      "name": "Respond"
+    }
+  ],
+  "connections": {
+    "Webhook List": { "main": [[{ "node": "Auth SuperAdmin", "type": "main", "index": 0 }]] },
+    "Auth SuperAdmin": { "main": [[{ "node": "Query Conversations", "type": "main", "index": 0 }]] },
+    "Query Conversations": { "main": [[{ "node": "Build", "type": "main", "index": 0 }]] },
+    "Build": { "main": [[{ "node": "Respond", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" }
+}

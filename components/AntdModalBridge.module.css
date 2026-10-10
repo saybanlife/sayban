@@ -1,0 +1,5 @@
+.dialog {
+  width: min(100%, 560px);
+  max-width: min(100vw - 1.5rem, 100%);
+  box-sizing: border-box;
+}

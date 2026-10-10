@@ -63,13 +63,8 @@ import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import RadioGroup from "../../RadioGroup"; // plasmic-import: HKDTSu47OrEH/component
 import Radio from "../../Radio"; // plasmic-import: 4jWqJWAaH2_L/component
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -81,10 +76,14 @@ import Icon60Icon from "./icons/PlasmicIcon__Icon60"; // plasmic-import: JXYPgQm
 
 createPlasmicElementProxy;
 
-export type PlasmicImag__VariantMembers = {};
-export type PlasmicImag__VariantsArgs = {};
+export type PlasmicImag__VariantMembers = {
+  add: "add";
+};
+export type PlasmicImag__VariantsArgs = {
+  add?: SingleBooleanChoiceArg<"add">;
+};
 type VariantPropType = keyof PlasmicImag__VariantsArgs;
-export const PlasmicImag__VariantProps = new Array<VariantPropType>();
+export const PlasmicImag__VariantProps = new Array<VariantPropType>("add");
 
 export type PlasmicImag__ArgsType = {
   uploadFiles?: any;
@@ -108,6 +107,7 @@ export type PlasmicImag__OverridesType = {
 export interface DefaultImagProps {
   uploadFiles?: any;
   onUploadFilesChange?: (val: any) => void;
+  add?: SingleBooleanChoiceArg<"add">;
   className?: string;
 }
 
@@ -178,10 +178,18 @@ function PlasmicImag__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "add",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.add
       }
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
 
   const $state = useDollarState(stateSpecs, {
     $props,
@@ -225,6 +233,22 @@ function PlasmicImag__RenderFunc(props: {
 
           (async files => {
             const $steps = {};
+
+            $steps["invokeGlobalAction"] = true
+              ? (() => {
+                  const actionArgs = { args: [200] };
+                  return $globalActions["Fragment.wait"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["invokeGlobalAction"] != null &&
+              typeof $steps["invokeGlobalAction"] === "object" &&
+              typeof $steps["invokeGlobalAction"].then === "function"
+            ) {
+              $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
+            }
 
             $steps["runCode"] = !$state.upload.files.find(i => i.main)
               ? (() => {
@@ -297,15 +321,29 @@ function PlasmicImag__RenderFunc(props: {
             }
           />
 
-          <div className={classNames("all", sty.freeBox__rNbN)}>
+          <div
+            className={classNames("all", sty.freeBox__rNbN, {
+              [sty.freeBoxadd__rNbNx59Cn]: hasVariant($state, "add", "add")
+            })}
+          >
             <div className={classNames("all", "__wab_text", sty.text__tmlBb)}>
               {"\u0631\u0648\u0632 \u0647\u0641\u062a\u0647"}
             </div>
-            <div className={classNames("all", "__wab_text", sty.text__xnxNh)}>
-              {"\u0645\u06a9\u0627\u0646"}
+            <div
+              className={classNames("all", "__wab_text", sty.text__xnxNh, {
+                [sty.textadd__xnxNhX59Cn]: hasVariant($state, "add", "add")
+              })}
+            >
+              {"\u062a\u0631\u062a\u06cc\u0628 \u0646\u0645\u0627\u06cc\u0634"}
             </div>
-            <div className={classNames("all", "__wab_text", sty.text__yz6Rk)}>
-              {"\u0627\u0635\u0644\u06cc"}
+            <div
+              className={classNames("all", "__wab_text", sty.text__yz6Rk, {
+                [sty.textadd__yz6RkX59Cn]: hasVariant($state, "add", "add")
+              })}
+            >
+              {
+                "\u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0645\u0631\u06a9\u0632"
+              }
             </div>
             <div className={classNames("all", "__wab_text", sty.text__ktMT)}>
               {"\u062a\u0639\u0637\u06cc\u0644"}
@@ -314,7 +352,9 @@ function PlasmicImag__RenderFunc(props: {
           <RadioGroup
             data-plasmic-name={"radioGroup"}
             data-plasmic-override={overrides.radioGroup}
-            className={classNames("__wab_instance", sty.radioGroup)}
+            className={classNames("__wab_instance", sty.radioGroup, {
+              [sty.radioGroupadd]: hasVariant($state, "add", "add")
+            })}
             onChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["radioGroup", "value"]).apply(
                 null,
@@ -380,7 +420,13 @@ function PlasmicImag__RenderFunc(props: {
                   const currentIndex = __plasmic_idx_0;
                   return (
                     <div
-                      className={classNames("all", sty.freeBox__y7YiW)}
+                      className={classNames("all", sty.freeBox__y7YiW, {
+                        [sty.freeBoxadd__y7YiWx59Cn]: hasVariant(
+                          $state,
+                          "add",
+                          "add"
+                        )
+                      })}
                       data-id={(() => {
                         try {
                           return currentItem.uid;
@@ -468,7 +514,14 @@ function PlasmicImag__RenderFunc(props: {
                         className={classNames(
                           "all",
                           "__wab_text",
-                          sty.text__brXq
+                          sty.text__brXq,
+                          {
+                            [sty.textadd__brXqX59Cn]: hasVariant(
+                              $state,
+                              "add",
+                              "add"
+                            )
+                          }
                         )}
                       >
                         <React.Fragment>
@@ -478,7 +531,9 @@ function PlasmicImag__RenderFunc(props: {
                       <Radio
                         data-plasmic-name={"radio"}
                         data-plasmic-override={overrides.radio}
-                        className={classNames("__wab_instance", sty.radio)}
+                        className={classNames("__wab_instance", sty.radio, {
+                          [sty.radioadd]: hasVariant($state, "add", "add")
+                        })}
                         label={
                           <div
                             className={classNames(

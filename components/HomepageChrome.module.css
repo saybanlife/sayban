@@ -1,0 +1,18 @@
+/* Shared fixed Home search chrome (PlasmicHomepage section__pJCrL).
+   It sits outside `.homePage`, so page variants that only hide `.homePage`
+   still leave this fixed header visible on Center / Subcategories / etc. */
+
+.hideSharedHomeHeader :global([class*="section__pJCrL"]) {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Support embeds into Homepage; keep the shell viewport-locked so the composer stays on-screen. */
+.supportMode {
+  overflow: hidden !important;
+  height: 100dvh !important;
+  max-height: 100dvh !important;
+}

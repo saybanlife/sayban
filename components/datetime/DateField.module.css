@@ -1,0 +1,44 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  width: 100%;
+}
+
+.label {
+  font-size: 0.85rem;
+  color: var(--token-C6B6ZAuqICKE, #1a1a1a);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1.1fr 1.4fr 0.9fr;
+  gap: 6px;
+  align-items: center;
+  width: 100%;
+}
+
+.select {
+  min-width: 0;
+  width: 100%;
+  padding: 10px 8px;
+  border: 1px solid color-mix(in srgb, var(--token-fr7DwvJwRjZb, #afa491) 45%, transparent);
+  border-radius: 10px;
+  background: #fff;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  color: inherit;
+  text-align: center;
+}
+
+.select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 420px) {
+  .controls {
+    grid-template-columns: 1fr;
+  }
+}

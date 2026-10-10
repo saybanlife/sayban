@@ -60,25 +60,16 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { BaseCheckbox } from "@plasmicpkgs/react-aria/skinny/registerCheckbox";
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicCheck.module.css"; // plasmic-import: jHhGioxaI9lI/css
 
-<<<<<<< HEAD
-import CheckIcon from "../website_starter/icons/PlasmicIcon__Check"; // plasmic-import: fM5bltoga8N0/icon
-import MinusIcon from "../website_starter/icons/PlasmicIcon__Minus"; // plasmic-import: taAusar-8P7Y/icon
-=======
 import CheckIcon from "./icons/PlasmicIcon__Check"; // plasmic-import: fM5bltoga8N0/icon
 import MinusIcon from "./icons/PlasmicIcon__Minus"; // plasmic-import: taAusar-8P7Y/icon
->>>>>>> plasmicops/rQ6tUgoS/newMain
+import PlusIcon from "./icons/PlasmicIcon__Plus"; // plasmic-import: W7l2-ibgsqkr/icon
 
 createPlasmicElementProxy;
 
@@ -86,17 +77,20 @@ export type PlasmicCheck__VariantMembers = {
   shape: "circle";
   tims: "tims";
   dir: "rtl" | "ltr";
+  tag: "tag";
 };
 export type PlasmicCheck__VariantsArgs = {
   shape?: SingleChoiceArg<"circle">;
   tims?: SingleBooleanChoiceArg<"tims">;
   dir?: SingleChoiceArg<"rtl" | "ltr">;
+  tag?: SingleBooleanChoiceArg<"tag">;
 };
 type VariantPropType = keyof PlasmicCheck__VariantsArgs;
 export const PlasmicCheck__VariantProps = new Array<VariantPropType>(
   "shape",
   "tims",
-  "dir"
+  "dir",
+  "tag"
 );
 
 export type PlasmicCheck__ArgsType = {
@@ -137,6 +131,7 @@ export interface DefaultCheckProps {
   shape?: SingleChoiceArg<"circle">;
   tims?: SingleBooleanChoiceArg<"tims">;
   dir?: SingleChoiceArg<"rtl" | "ltr">;
+  tag?: SingleBooleanChoiceArg<"tag">;
   className?: string;
 }
 
@@ -208,6 +203,12 @@ function PlasmicCheck__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.dir
+      },
+      {
+        path: "tag",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.tag
       }
     ],
     [$props, $ctx, $refs]
@@ -267,6 +268,7 @@ function PlasmicCheck__RenderFunc(props: {
         {
           [sty.ariaCheckboxdir_ltr]: hasVariant($state, "dir", "ltr"),
           [sty.ariaCheckboxshape_circle]: hasVariant($state, "shape", "circle"),
+          [sty.ariaCheckboxtag]: hasVariant($state, "tag", "tag"),
           [sty.ariaCheckboxtims]: hasVariant($state, "tims", "tims")
         }
       )}
@@ -294,6 +296,7 @@ function PlasmicCheck__RenderFunc(props: {
             "shape",
             "circle"
           ),
+          [sty.freeBoxtag___7QJdmEdEv]: hasVariant($state, "tag", "tag"),
           [sty.freeBoxtims___7QJdUa6Vd]: hasVariant($state, "tims", "tims")
         })}
       >
@@ -310,14 +313,28 @@ function PlasmicCheck__RenderFunc(props: {
                 $state,
                 "shape",
                 "circle"
-              )
+              ),
+              [sty.svgtag__e63GCmEdEv]: hasVariant($state, "tag", "tag")
             })}
             role={"img"}
           />
         ) : null}
-        {($ccVariants["indeterminate"] ? true : false) ? (
-          <MinusIcon
-            className={classNames("all", sty.svg__ouaS)}
+        {(
+          hasVariant($state, "tag", "tag") && $ccVariants["selected"]
+            ? true
+            : hasVariant($state, "tag", "tag")
+              ? true
+              : $ccVariants["indeterminate"]
+                ? true
+                : false
+        ) ? (
+          <PlasmicIcon__
+            PlasmicIconType={
+              hasVariant($state, "tag", "tag") ? PlusIcon : MinusIcon
+            }
+            className={classNames("all", sty.svg__ouaS, {
+              [sty.svgtag__ouaSmEdEv]: hasVariant($state, "tag", "tag")
+            })}
             role={"img"}
           />
         ) : null}
@@ -336,7 +353,9 @@ function PlasmicCheck__RenderFunc(props: {
           {renderPlasmicSlot({
             defaultContents: "Option",
             value: args.label,
-            className: classNames(sty.slotTargetLabel)
+            className: classNames(sty.slotTargetLabel, {
+              [sty.slotTargetLabeltag]: hasVariant($state, "tag", "tag")
+            })
           })}
         </div>
       </div>

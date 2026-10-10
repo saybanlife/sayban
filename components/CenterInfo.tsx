@@ -6,39 +6,96 @@ import {
   DefaultCenterInfoProps
 } from "./plasmic/sayban/PlasmicCenterInfo";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
+import CenterTypeFields from "./centerPanel/CenterTypeFields";
+import { useAddCenterAttempted } from "./centerPanel/addCenterValidationStore";
+import { getCenterInfoFieldErrors } from "./centerPanel/validateCenterWizard";
+import styles from "./centerPanel/CenterTypeFields.module.css";
+import fieldStyles from "./centerPanel/CenterOwnerInfoForm.module.css";
 
-// Your component props start with props for variants and slots you defined
-// in Plasmic, but you can add more here, like event handlers that you can
-// attach to named nodes in your component.
-//
-// If you don't want to expose certain variants or slots as a prop, you can use
-// Omit to hide them:
-//
-// interface CenterInfoProps extends Omit<DefaultCenterInfoProps, "hideProps1"|"hideProp2"> {
-//   // etc.
-// }
-//
-// You can also stop extending from DefaultCenterInfoProps altogether and have
-// total control over the props for your component.
-export interface CenterInfoProps extends DefaultCenterInfoProps {}
+export interface CenterInfoProps extends DefaultCenterInfoProps {
+  /** سالمندان / پرستاری / هر دو */
+  careDomain?: string;
+  onCareDomainChange?: (value: string) => void;
+  /** روزانه / شبانه‌روزی / هر دو — drives the centers-list filter */
+  centerType?: string;
+  onCenterTypeChange?: (value: string) => void;
+  /**
+   * Center-page «اطلاعات مرکز» modal only. Create-center keeps these fields.
+   */
+  hideTypeFields?: boolean;
+}
 
 function CenterInfo_(props: CenterInfoProps, ref: HTMLElementRefOf<"div">) {
-  // Use PlasmicCenterInfo to render this component as it was
-  // designed in Plasmic, by activating the appropriate variants,
-  // attaching the appropriate event handlers, etc.  You
-  // can also install whatever React hooks you need here to manage state or
-  // fetch data.
-  //
-  // Props you can pass into PlasmicCenterInfo are:
-  // 1. Variants you want to activate,
-  // 2. Contents for slots you want to fill,
-  // 3. Overrides for any named node in the component to attach behavior and data,
-  // 4. Props to set on the root node.
-  //
-  // By default, we are just piping all CenterInfoProps here, but feel free
-  // to do whatever works for you.
+  const {
+    careDomain,
+    onCareDomainChange,
+    centerType,
+    onCenterTypeChange,
+    hideTypeFields = false,
+    ...plasmicProps
+  } = props;
 
-  return <PlasmicCenterInfo root={{ ref }} {...props} />;
+  const attempted = useAddCenterAttempted();
+  const errors = getCenterInfoFieldErrors({
+    title: plasmicProps.title,
+    description: plasmicProps.description,
+    careDomain,
+    centerType,
+    subcategory: plasmicProps.subcategory2
+  });
+
+  return (
+    <PlasmicCenterInfo
+      root={{ ref }}
+      {...plasmicProps}
+      overrides={{
+        titleInput: {
+          props: {
+            error: attempted && errors.title ? "error" : undefined,
+            ariaLabel: attempted && errors.title ? errors.title : undefined
+          }
+        },
+        textAreaInput: {
+          props: {
+            error: attempted && errors.description ? "error" : undefined,
+            ariaLabel:
+              attempted && errors.description ? errors.description : undefined
+          }
+        },
+        root: {
+          // Appended rather than slotted: the Plasmic design has no slot for
+          // these fields and both wizards render this same component.
+          wrapChildren: (children: React.ReactNode) => (
+            <>
+              {children}
+              {attempted && (errors.title || errors.description || errors.subcategory) ? (
+                <div className={styles.appended} role="alert">
+                  {errors.title ? (
+                    <div className={fieldStyles.error}>{errors.title}</div>
+                  ) : null}
+                  {errors.description ? (
+                    <div className={fieldStyles.error}>{errors.description}</div>
+                  ) : null}
+                  {errors.subcategory ? (
+                    <div className={fieldStyles.error}>{errors.subcategory}</div>
+                  ) : null}
+                </div>
+              ) : null}
+              {hideTypeFields ? null : (
+                <CenterTypeFields
+                  className={styles.appended}
+                  careDomain={careDomain}
+                  onCareDomainChange={onCareDomainChange}
+                  centerType={centerType}
+                  onCenterTypeChange={onCenterTypeChange}
+                />
+              )}
+            </>
+          )
+        }
+      }}
+    />
+  );
 }
 
 const CenterInfo = React.forwardRef(CenterInfo_);

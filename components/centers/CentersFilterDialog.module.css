@@ -1,0 +1,242 @@
+.centersFilterPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  direction: rtl;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--token-fr7DwvJwRjZb, #afa491) 24%, transparent);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+.sectionHead {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.45rem;
+}
+
+.sectionIcon {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex-shrink: 0;
+  color: #4c6444;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--token-9M5jRUPt8Msb, #1a1a1a);
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--token-9M5jRUPt8Msb, #1a1a1a) 58%, #888);
+}
+
+/* Distance — two large toggles */
+.distanceRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+
+.distanceBtn {
+  appearance: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 2.85rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid
+    color-mix(in srgb, var(--token-fr7DwvJwRjZb, #afa491) 38%, transparent);
+  background: #fff;
+  color: var(--token-9M5jRUPt8Msb, #1a1a1a);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.distanceBtnActive {
+  background: #4c6444;
+  border-color: #4c6444;
+  color: #fff;
+}
+
+.distanceBtnDisabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.distanceBtnIcon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+/* Pills — center type & availability */
+.pillRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.pill {
+  appearance: none;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid
+    color-mix(in srgb, var(--token-fr7DwvJwRjZb, #afa491) 34%, transparent);
+  background: #fff;
+  color: var(--token-9M5jRUPt8Msb, #1a1a1a);
+  border-radius: 999px;
+  padding: 0.42rem 0.8rem;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pillActive {
+  background: #e8f0e6;
+  border-color: #8fae55;
+  color: #2f3a22;
+}
+
+.pillIcon {
+  width: 0.95rem;
+  height: 0.95rem;
+  flex-shrink: 0;
+}
+
+/* Rating stars */
+.stars {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.starBtn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0.1rem;
+  font-size: 1.65rem;
+  line-height: 1;
+  color: #d4d0c8;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.starActive {
+  color: #e8b020;
+}
+
+/* Footer */
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 0.65rem;
+  padding-top: 1rem;
+  margin-top: 0.15rem;
+}
+
+.clearBtn,
+.applyBtn {
+  appearance: none;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.85rem;
+  border-radius: 12px;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.clearBtn {
+  border: 1px solid #e8b4b4;
+  background: #fff;
+  color: #c0392b;
+}
+
+.applyBtn {
+  border: none;
+  background: #4c6444;
+  color: #fff;
+}
+
+.footerIcon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.dialogContent {
+  border-radius: 16px !important;
+  padding: 0.35rem 1.2rem 1.15rem !important;
+  min-width: min(500px, calc(100vw - 2rem)) !important;
+  max-width: 520px !important;
+}
+
+.dialogContent :global([class*="dialogTitle"]) {
+  display: none !important;
+}
+
+.dialogContent :global([class*="freeBox__b5NVb"]) {
+  display: none !important;
+}
+
+.dialogContent :global([class*="dialogClose"]) {
+  top: 0.85rem;
+  left: 0.85rem;
+  right: auto;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .dialogContent {
+    min-width: 100vw !important;
+    border-radius: 16px 16px 0 0 !important;
+    padding: 0.25rem 1rem 1rem !important;
+  }
+
+  .distanceRow {
+    grid-template-columns: 1fr;
+  }
+
+  .footer {
+    grid-template-columns: 1fr;
+  }
+}

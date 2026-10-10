@@ -4,11 +4,7 @@ import * as React from "react";
 import {
   PlasmicSelect,
   DefaultSelectProps
-<<<<<<< HEAD
-} from "./plasmic/website_starter/PlasmicSelect";
-=======
 } from "./plasmic/sayban/PlasmicSelect";
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can
@@ -26,22 +22,12 @@ import {
 export interface SelectProps extends DefaultSelectProps {}
 
 function Select(props: SelectProps) {
-  // Use PlasmicSelect to render this component as it was
-  // designed in Plasmic, by activating the appropriate variants,
-  // attaching the appropriate event handlers, etc.  You
-  // can also install whatever React hooks you need here to manage state or
-  // fetch data.
-  //
-  // Props you can pass into PlasmicSelect are:
-  // 1. Variants you want to activate,
-  // 2. Contents for slots you want to fill,
-  // 3. Overrides for any named node in the component to attach behavior and data,
-  // 4. Props to set on the root node.
-  //
-  // By default, we are just piping all SelectProps here, but feel free
-  // to do whatever works for you.
+  const placeholder =
+    !props.placeholder || /select an item/i.test(props.placeholder)
+      ? "یک مورد را انتخاب کنید"
+      : props.placeholder;
 
-  return <PlasmicSelect {...props} />;
+  return <PlasmicSelect {...props} placeholder={placeholder} />;
 }
 
 export default Select;

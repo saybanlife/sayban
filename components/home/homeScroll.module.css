@@ -1,0 +1,111 @@
+/*
+ * Staged hide-on-scroll for the Home landing page.
+ *
+ * The stage is written to `data-scroll-stage` on the page root by
+ * useHomeScrollStage; these rules react to it. Only transforms and opacity are
+ * animated so nothing reflows while the page scrolls.
+ */
+
+/* ---- Stage 1: search bar collapses to its icon -------------------------- */
+
+/* The field and its placeholder shrink toward the RTL-leading search icon. */
+.searchField {
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 220ms ease-out;
+  transform-origin: right center;
+  will-change: transform, opacity;
+}
+
+:global([data-scroll-stage="1"]) .searchField,
+:global([data-scroll-stage="2"]) .searchField,
+:global([data-scroll-stage="3"]) .searchField {
+  transform: scale(0.001);
+  opacity: 0;
+  pointer-events: none;
+}
+
+:global([data-search-expanded="true"]) .searchField {
+  transform: none;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.searchIconButton {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  right: var(--token-rfsFxiclAtek, 12px);
+  transform: translateY(-50%) scale(0.8);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--token-KPGXdu9o7llP, #f5f3eb);
+  opacity: 0;
+  pointer-events: none;
+  cursor: pointer;
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 220ms ease-out;
+}
+
+.searchIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+:global([data-scroll-stage="1"]) .searchIconButton,
+:global([data-scroll-stage="2"]) .searchIconButton,
+:global([data-scroll-stage="3"]) .searchIconButton {
+  transform: translateY(-280%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+:global([data-search-expanded="true"]) .searchIconButton {
+  transform: translateY(-50%) scale(0.8);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---- Stages 2 & 3: banner and cards slide up ---------------------------- */
+
+.banner {
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 300ms ease-out;
+  will-change: transform, opacity;
+}
+
+.cards {
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 300ms ease-out;
+  will-change: transform, opacity;
+}
+
+:global([data-scroll-stage="2"]) .banner,
+:global([data-scroll-stage="3"]) .banner {
+  transform: translateY(-105%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+:global([data-scroll-stage="3"]) .cards {
+  transform: translateY(-105%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Respect reduced motion: keep the collapsing behavior but drop travel. */
+@media (prefers-reduced-motion: reduce) {
+  .searchField,
+  .searchIconButton,
+  .banner,
+  .cards {
+    transition-duration: 1ms;
+  }
+}

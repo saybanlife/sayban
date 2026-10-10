@@ -59,13 +59,8 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -195,15 +190,30 @@ function PlasmicUploudeTime__RenderFunc(props: {
               try {
                 return (() => {
                   const updatedAt = $state.time;
+                  if (
+                    !updatedAt ||
+                    updatedAt.year === undefined ||
+                    updatedAt.month === undefined ||
+                    updatedAt.day === undefined
+                  ) {
+                    return "";
+                  }
                   const date = new Date(
                     updatedAt.year,
                     updatedAt.month - 1,
                     updatedAt.day
                   );
+                  // A reservation stored without a time yields NaN parts, and
+                  // Intl.DateTimeFormat throws a RangeError on an Invalid Date,
+                  // which blanked the whole list.
+                  if (Number.isNaN(date.getTime())) {
+                    return "";
+                  }
                   const formatter = new Intl.DateTimeFormat("fa-IR", {
                     weekday: "long",
                     day: "numeric",
-                    month: "long"
+                    month: "long",
+                    year: "numeric"
                   });
                   return formatter.format(date);
                 })();
@@ -232,9 +242,19 @@ function PlasmicUploudeTime__RenderFunc(props: {
               try {
                 return (() => {
                   function pad(n) {
+                    if (n === undefined || n === null) return "00";
                     return n.toString().padStart(2, "0");
                   }
-                  return `${pad($props.posttime.hour)}:${pad($props.posttime.minute)}`;
+                  if (!$props.posttime) {
+                    return "--:--";
+                  }
+                  const hour = $props.posttime.hour;
+                  const minute = $props.posttime.minute;
+                  // Reservations with no stored time used to render "NaN:NaN".
+                  if (!Number.isFinite(hour) || !Number.isFinite(minute)) {
+                    return "--:--";
+                  }
+                  return `${pad(hour)}:${pad(minute)}`;
                 })();
               } catch (e) {
                 if (

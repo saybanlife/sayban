@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo } from "react";
-import toast, { ToastPosition, Toaster } from "react-hot-toast";
+import * as React from "react";
+import { useEffect, useMemo, useState } from "react";
+import toast from "react-hot-toast";
 
 import {
   DataProvider,
@@ -7,8 +8,76 @@ import {
   GlobalContextMeta,
 } from "@plasmicapp/host";
 import axios from "axios";
+import { useRouter } from "next/router";
+import NotificationModal from "../../components/NotificationModal";
+import { resolveClientApiUrl } from "@/lib/resolveClientApiUrl";
+import { mergePublicAuthHeaders } from "@/lib/publicAuthHeaders";
+import { deleteCookie, readCookie, writeCookie } from "@/lib/authCookies";
+import { logoutPanel } from "@/lib/panelSession";
+import { normalizeOptionalProfileNationalCode } from "@/lib/profilePayload";
+import { clearGuestSession, rememberAuthReturn } from "@/lib/guestSession";
+import { PUBLIC_AUTH_COOKIE_NAME } from "@/lib/publicAuthToken";
+import {
+  ensureVerifiedPublicAuth,
+  hasPhoneVerifiedPublicAuth
+} from "@/lib/publicAuthGate";
+import PhoneVerifyDialog from "../../components/auth/PhoneVerifyDialog";
+import { SaybanToast } from "./CustomToast";
+import { PageLoadingOverlay } from "./PageLoadingOverlay";
+import { SaybanToaster } from "./SaybanToaster";
+import {
+  normalizeToastType,
+  resolveToastPosition,
+  type SaybanToastType
+} from "./toastUtils";
 
-const BASE_URL = "https://sayban.darkube.ir/webhook/";
+/**
+ * Writes the user must not interrupt: each ends in a navigation or creates a
+ * record, so the page is covered until the request settles. Every generated
+ * submit goes through the `apiRequest` action below, so listing routes here
+ * avoids editing the (very large) generated interaction handlers.
+ *
+ * Ordinary writes are intentionally absent — those rely on the button's own
+ * `loading` state instead of blocking the whole page.
+ */
+const BLOCKING_WRITE_ROUTES: { test: RegExp; message: string }[] = [
+  { test: /\/users\/validate/i, message: "در حال بررسی کد تأیید..." },
+  { test: /\/setProfile/i, message: "در حال ثبت اطلاعات..." },
+  { test: /\/panel\/user\/login/i, message: "در حال ورود..." },
+  { test: /\/panel\/user\/register\/complete/i, message: "در حال تکمیل اطلاعات مرکز..." },
+  { test: /\/panel\/user\/register/i, message: "در حال ایجاد مرکز..." },
+  { test: /\/upload\/image/i, message: "در حال بارگذاری مدارک..." },
+  { test: /\/reservations\/(update\/)?pay/i, message: "در حال انتقال به درگاه پرداخت..." },
+  // Must stay after the payment rule so it does not shadow it.
+  { test: /\/reservations(\/|$|\?)/i, message: "در حال ثبت درخواست..." },
+  { test: /add\/address/i, message: "در حال ثبت آدرس..." },
+  { test: /add\/patients/i, message: "در حال ثبت همراه..." },
+  {
+    test: /\/panel\/staffs\/update/i,
+    message: "در حال ذخیره اطلاعات پرستار..."
+  }
+];
+
+function resolveBlockingMessage(
+  method: string,
+  url: string
+): string | undefined {
+  if (method === "GET") return undefined;
+  return BLOCKING_WRITE_ROUTES.find(route => route.test.test(url))?.message;
+}
+
+/** Writes that require phone OTP (guest JWT alone is not enough). */
+const PHONE_AUTH_WRITE_ROUTES: RegExp[] = [
+  /\/reservations(\/|$|\?)/i,
+  /add\/address/i,
+  /add\/patients/i,
+  /\/setProfile/i
+];
+
+function requiresPhoneVerifiedAuth(method: string, url: string): boolean {
+  if (method === "GET") return false;
+  return PHONE_AUTH_WRITE_ROUTES.some(test => test.test(url));
+}
 
 type FragmentProps = React.PropsWithChildren<{
   previewApiConfig: Record<string, any>;
@@ -24,9 +93,23 @@ export const Fragment = ({
   rtl,
   primaryColor,
 }: FragmentProps) => {
+  const router = useRouter();
+
   useEffect(() => {
     changeTheme(primaryColor);
   }, [primaryColor]);
+
+  const [forceShowModal, setForceShowModal] = useState<boolean>(false);
+
+  /**
+   * Blocking page loader. Reference-counted so overlapping flows (an outer
+   * submit that triggers an inner request) cannot hide it early — it stays up
+   * until the last caller releases it.
+   */
+  const [pageLoading, setPageLoading] = useState<{
+    count: number;
+    message?: string;
+  }>({ count: 0 });
 
   const changeTheme = (color: string) => {
     document.documentElement.style.setProperty("--primary", color);
@@ -35,14 +118,48 @@ export const Fragment = ({
   const actions = useMemo(
     () => ({
       showToast: (
-        type: "success" | "error",
+        type: SaybanToastType | string = "success",
         message: string,
-        placement: ToastPosition = "top-right",
-        duration?: number
+        _placement?: string,
+        duration?: number,
+        subtitle?: string
       ) => {
-        toast[type ?? "success"](message, {
-          duration,
-          position: placement,
+        const variant = normalizeToastType(type);
+        const position = resolveToastPosition(router.pathname);
+        const fromTop = position.startsWith("top");
+
+        toast.custom(
+          (toastItem) => (
+            <SaybanToast
+              toastItem={toastItem}
+              variant={variant}
+              title={message}
+              subtitle={subtitle}
+              fromTop={fromTop}
+              onDismiss={() => toast.dismiss(toastItem.id)}
+            />
+          ),
+          {
+            duration: duration ?? 4000,
+            position
+          }
+        );
+      },
+      openNotificationModal: () => {
+        setForceShowModal(true);
+      },
+
+      showPageLoading: (message?: string) => {
+        setPageLoading(prev => ({
+          count: prev.count + 1,
+          message: message || prev.message
+        }));
+      },
+
+      hidePageLoading: () => {
+        setPageLoading(prev => {
+          const count = Math.max(0, prev.count - 1);
+          return { count, message: count === 0 ? undefined : prev.message };
         });
       },
 
@@ -53,33 +170,64 @@ export const Fragment = ({
         body?: Record<string, any>,
         config?: Record<string, any>
       ) => {
+        const blockingMessage = resolveBlockingMessage(method, url);
+        if (blockingMessage) {
+          setPageLoading(prev => ({
+            count: prev.count + 1,
+            message: blockingMessage
+          }));
+        }
         try {
-          const finalUrl = 
-            url.startsWith("http://") || url.startsWith("https://")
-              ? url
-              : `${BASE_URL}${url}`;
+          if (
+            requiresPhoneVerifiedAuth(method, url) &&
+            !hasPhoneVerifiedPublicAuth()
+          ) {
+            if (typeof window !== "undefined") {
+              rememberAuthReturn(
+                `${window.location.pathname}${window.location.search || ""}`
+              );
+              ensureVerifiedPublicAuth({
+                message: "برای ادامه، شماره موبایل خود را تأیید کنید."
+              });
+            }
+            return {
+              data: {
+                success: false,
+                message: "برای ادامه، شماره موبایل خود را تأیید کنید."
+              }
+            };
+          }
+          const finalUrl = resolveClientApiUrl(url);
+          const authConfig = mergePublicAuthHeaders({
+            ...apiConfig,
+            ...previewApiConfig,
+            ...config
+          });
           let result;
           if (method === "GET") {
             result = await axios.get(finalUrl, {
               params,
-              ...apiConfig,
-              ...previewApiConfig,
-              ...config,
+              ...authConfig
             });
           } else {
             result = await axios[
               method.toLowerCase() as "post" | "delete" | "put" | "patch"
-            ](finalUrl, body, {
+            ](finalUrl, normalizeOptionalProfileNationalCode(url, body), {
               params,
-              ...apiConfig,
-              ...previewApiConfig,
-              ...config,
+              ...authConfig
             });
           }
           return result;
         } catch (error) {
           if (axios.isAxiosError(error)) {
             return error.response;
+          }
+        } finally {
+          if (blockingMessage) {
+            setPageLoading(prev => {
+              const count = Math.max(0, prev.count - 1);
+              return { count, message: count === 0 ? undefined : prev.message };
+            });
           }
         }
       },
@@ -88,26 +236,29 @@ export const Fragment = ({
         return new Promise((resolve) => setTimeout(resolve, duration));
       },
 
-      // -----------------------------
-      //       COOKIE: SET & GET
-      // -----------------------------
       setCookie: (name: string, value: string, days: number = 7) => {
-        const expires = new Date(Date.now() + days * 864e5).toUTCString();
-        document.cookie = `${name}=${encodeURIComponent(
-          value
-        )}; expires=${expires}; path=/; domain=.sayban.app; secure; SameSite=Lax`;
+        writeCookie(name, value, days);
+        // Phone OTP (PlasmicLogin) writes `token` without clearing guest LS.
+        // Leaving the marker made Login/Homepage treat the session as guest-only
+        // and wipe a valid JWT while GUEST_MODE_ENABLED is false.
+        if (name === PUBLIC_AUTH_COOKIE_NAME && value) {
+          clearGuestSession();
+        }
       },
 
       getCookie: (name: string) => {
-        return (
-          document.cookie
-            .split("; ")
-            .find((row) => row.startsWith(name + "="))
-            ?.split("=")[1] || null
-        );
+        return readCookie(name);
+      },
+
+      deleteCookie: (name: string) => {
+        deleteCookie(name);
+      },
+
+      logoutPanel: () => {
+        logoutPanel();
       },
     }),
-    []
+    [apiConfig, previewApiConfig, router.pathname]
   );
 
   return (
@@ -123,7 +274,48 @@ export const Fragment = ({
         hidden
       >
         {children}
-        <Toaster />
+        <PhoneVerifyDialog />
+        <SaybanToaster />
+        {pageLoading.count > 0 && (
+          <PageLoadingOverlay message={pageLoading.message} />
+        )}
+        {forceShowModal && (
+          <NotificationModal
+            handleEnableNotifications={async () => {
+              try {
+                const { isSaybanNativeAndroid } = await import(
+                  "@/lib/nativeShell"
+                );
+                const { requestNotificationPermission, initFcm } = await import(
+                  "@/lib/fcm"
+                );
+
+                if (isSaybanNativeAndroid()) {
+                  const { requestNativeNotificationPermission, enableNotificationsWithFcm } =
+                    await import("@/lib/notificationStatus");
+                  await requestNativeNotificationPermission();
+                  await enableNotificationsWithFcm();
+                } else {
+                  const permissionGranted = await requestNotificationPermission();
+                  if (permissionGranted) {
+                    initFcm();
+                  } else {
+                    console.log(
+                      "User denied notification permission after manual action trigger."
+                    );
+                  }
+                }
+              } catch (err) {
+                console.error("Failed to initialize FCM from Fragment action:", err);
+              } finally {
+                setForceShowModal(false);
+              }
+            }}
+            handleLater={() => {
+              setForceShowModal(false);
+            }}
+          />
+        )}
       </DataProvider>
     </GlobalActionsProvider>
   );
@@ -159,6 +351,28 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
   providesData: true,
 
   globalActions: {
+    openNotificationModal: {
+      displayName: "Open Notification Modal",
+      parameters: [],
+    },
+
+    showPageLoading: {
+      displayName: "Show Page Loading",
+      parameters: [
+        {
+          name: "message",
+          type: {
+            type: "string",
+            defaultValueHint: "در حال بارگذاری...",
+          },
+        },
+      ],
+    },
+
+    hidePageLoading: {
+      displayName: "Hide Page Loading",
+      parameters: [],
+    },
     showToast: {
       displayName: "Show Toast",
       parameters: [
@@ -166,7 +380,7 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
           name: "type",
           type: {
             type: "choice",
-            options: ["success", "error"],
+            options: ["success", "error", "info", "warning"],
           },
         },
         {
@@ -194,6 +408,12 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
           name: "duration",
           type: {
             type: "number",
+          },
+        },
+        {
+          name: "subtitle",
+          type: {
+            type: "string",
           },
         },
       ],
@@ -254,9 +474,6 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
       ],
     },
 
-    // -----------------------------
-    //        COOKIE ACTIONS
-    // -----------------------------
     setCookie: {
       displayName: "Set Cookie",
       parameters: [
@@ -298,6 +515,25 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
           },
         },
       ],
+    },
+
+    deleteCookie: {
+      displayName: "Delete Cookie",
+      parameters: [
+        {
+          name: "name",
+          type: {
+            type: "string",
+            required: true,
+            defaultValueHint: "token",
+          },
+        },
+      ],
+    },
+
+    logoutPanel: {
+      displayName: "Logout Panel",
+      parameters: [],
     },
   },
 };

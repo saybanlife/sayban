@@ -1,0 +1,177 @@
+.root {
+  --menu-surface: var(--token-W0eejbtvb0xw, #ffffff);
+  --menu-active: var(--plasmic-token-primary-green, #789443);
+  --menu-muted: #737b6d;
+  --menu-height: 5.25rem;
+  --menu-radius: 2.4rem;
+  --menu-inset: 0.45rem;
+  --menu-motion: 180ms ease;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0 0.75rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
+  background: transparent !important;
+  /* box-shadow: none !important; */
+  pointer-events: none;
+  z-index: 1;
+}
+
+.shell {
+  position: relative;
+  width: 100%;
+  height: var(--menu-height);
+  padding: var(--menu-inset);
+  border-radius: var(--menu-radius);
+  background: var(--menu-surface);
+  box-shadow: 0 0.5rem 1.7rem rgba(76, 81, 69, 0.12);
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+.items {
+  display: flex;
+  flex-direction: row;
+  direction: rtl;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+}
+
+.item {
+  appearance: none;
+  border: 0;
+  border-radius: calc(var(--menu-radius) - var(--menu-inset));
+  background: transparent;
+  display: flex;
+  flex: 1 1 25%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 0.35rem 0.15rem 0.25rem;
+  margin: 0;
+  color: var(--menu-muted);
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--menu-motion), color var(--menu-motion);
+}
+
+.itemActive {
+  background: var(--menu-active);
+  color: #ffffff;
+}
+
+.iconWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+}
+
+.badge {
+  position: absolute;
+  top: -0.2rem;
+  left: -0.4rem;
+  z-index: 1;
+  display: inline-flex;
+  min-width: 1.15rem;
+  min-height: 1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.05rem 0.35rem;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  background: var(--token-Yo4gdKCgyuAu, #f3c94c);
+  color: #1a1f12;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.itemActive .badge {
+  border-color: #fff;
+}
+
+/* Keep IconMenu's existing artwork; only normalize its generated wrapper. */
+.iconMenu {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: none !important;
+  padding: 0 !important;
+  column-gap: 0 !important;
+  background: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.iconMenu :global(svg) {
+  width: 1.85rem !important;
+  height: 1.85rem !important;
+  flex-shrink: 0;
+  transition: color var(--menu-motion);
+}
+
+.iconMenu :global(.__wab_text),
+.iconMenu :global([data-plasmic-name="text"]) {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.label {
+  margin-top: 0.35rem;
+  color: currentColor;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.itemActive .label {
+  font-weight: 700;
+}
+
+.item:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--menu-active) 72%, #ffffff);
+  outline-offset: -3px;
+}
+
+@media (min-width: 769px) {
+  .root {
+    max-width: var(--sayban-app-max, 500px);
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 380px) {
+  .root {
+    --menu-height: 4.9rem;
+    padding-inline: 0.55rem;
+  }
+
+  .label {
+    font-size: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item,
+  .iconMenu :global(svg) {
+    transition: none;
+  }
+}

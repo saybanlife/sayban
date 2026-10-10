@@ -36,3 +36,10 @@ yarn-error.log*
 next-env.d.ts
 
 package-lock.json
+.cursor/
+
+# local n8n workflow snapshots taken before ops edits (rollback artifacts)
+/scripts/backup/
+
+# graphify local cost ledger (graph itself is kept for Cursor)
+graphify-out/cost.json

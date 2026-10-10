@@ -66,49 +66,51 @@ import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import Snackbar from "../../Snackbar"; // plasmic-import: CaodI8ra68z4/component
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicAddServise2.module.css"; // plasmic-import: ldHafC0LATYt/css
 
 import ChevronLeftIcon from "./icons/PlasmicIcon__ChevronLeft"; // plasmic-import: vQC4_6sr1Yuo/icon
+import Icon270Icon from "./icons/PlasmicIcon__Icon270"; // plasmic-import: xtBcS_RDta6A/icon
 import Icon58Icon from "./icons/PlasmicIcon__Icon58"; // plasmic-import: ZZecBkDFVPaA/icon
-<<<<<<< HEAD
-import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
-import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
-import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
-=======
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 createPlasmicElementProxy;
 
-export type PlasmicAddServise2__VariantMembers = {};
-export type PlasmicAddServise2__VariantsArgs = {};
+export type PlasmicAddServise2__VariantMembers = {
+  edit: "edit";
+};
+export type PlasmicAddServise2__VariantsArgs = {
+  edit?: SingleBooleanChoiceArg<"edit">;
+};
 type VariantPropType = keyof PlasmicAddServise2__VariantsArgs;
-export const PlasmicAddServise2__VariantProps = new Array<VariantPropType>();
+export const PlasmicAddServise2__VariantProps = new Array<VariantPropType>(
+  "edit"
+);
 
 export type PlasmicAddServise2__ArgsType = {
   servises?: any;
   onServisesChange?: (val: string) => void;
   restart?: string;
   onRestartChange?: (val: string) => void;
+  centerId?: string;
+  edit2?: boolean;
+  onEditChange2?: (val: string) => void;
 };
 type ArgPropType = keyof PlasmicAddServise2__ArgsType;
 export const PlasmicAddServise2__ArgProps = new Array<ArgPropType>(
   "servises",
   "onServisesChange",
   "restart",
-  "onRestartChange"
+  "onRestartChange",
+  "centerId",
+  "edit2",
+  "onEditChange2"
 );
 
 export type PlasmicAddServise2__OverridesType = {
@@ -133,6 +135,10 @@ export interface DefaultAddServise2Props {
   onServisesChange?: (val: string) => void;
   restart?: string;
   onRestartChange?: (val: string) => void;
+  centerId?: string;
+  edit2?: boolean;
+  onEditChange2?: (val: string) => void;
+  edit?: SingleBooleanChoiceArg<"edit">;
   className?: string;
 }
 
@@ -242,7 +248,8 @@ function PlasmicAddServise2__RenderFunc(props: {
         path: "snackbar.opendialog",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          hasVariant($state, "edit", "edit") ? false : false
       },
       {
         path: "snackbar.data",
@@ -275,6 +282,33 @@ function PlasmicAddServise2__RenderFunc(props: {
 
         valueProp: "restart",
         onChangeProp: "onRestartChange"
+      },
+      {
+        path: "edit",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          (() => {
+            try {
+              return $state.edit2;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })() ?? $props.edit
+      },
+      {
+        path: "edit2",
+        type: "writable",
+        variableType: "boolean",
+
+        valueProp: "edit2",
+        onChangeProp: "onEditChange2"
       }
     ],
     [$props, $ctx, $refs]
@@ -304,7 +338,8 @@ function PlasmicAddServise2__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        { [sty.rootedit]: hasVariant($state, "edit", "edit") }
       )}
     >
       {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -327,7 +362,9 @@ function PlasmicAddServise2__RenderFunc(props: {
         return (() => {
           const child$Props = {
             bordered: false,
-            className: classNames("__wab_instance", sty.collapse),
+            className: classNames("__wab_instance", sty.collapse, {
+              [sty.collapseedit]: hasVariant($state, "edit", "edit")
+            }),
             defaultOpen: false,
             expandIcon: (
               <ChevronLeftIcon
@@ -338,41 +375,119 @@ function PlasmicAddServise2__RenderFunc(props: {
 
             expandIconPosition: "end",
             extra: (
-              <Icon58Icon
-                className={classNames("all", sty.svg__an7Lw)}
-                onClick={async event => {
-                  const $steps = {};
+              <div className={classNames("all", sty.freeBox__rDf2)}>
+                <Icon270Icon
+                  className={classNames("all", sty.svg__an7Lw)}
+                  onClick={async event => {
+                    const $steps = {};
 
-                  $steps["runCode"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          customFunction: async () => {
-                            return (() => {
-                              $state.snackbar.data = currentItem;
-                              return ($state.snackbar.opendialog = true);
-                            })();
-                          }
-                        };
-                        return (({ customFunction }) => {
-                          return customFunction();
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runCode"] != null &&
-                    typeof $steps["runCode"] === "object" &&
-                    typeof $steps["runCode"].then === "function"
-                  ) {
-                    $steps["runCode"] = await $steps["runCode"];
-                  }
-                }}
-                role={"img"}
-              />
+                    $steps["goToPanel"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: `/panel/${(() => {
+                              try {
+                                return `service-${currentItem.id}`;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}`
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToPanel"] != null &&
+                      typeof $steps["goToPanel"] === "object" &&
+                      typeof $steps["goToPanel"].then === "function"
+                    ) {
+                      $steps["goToPanel"] = await $steps["goToPanel"];
+                    }
+                  }}
+                  role={"img"}
+                />
+
+                <Icon58Icon
+                  className={classNames("all", sty.svg__xR0BL, {
+                    [sty.svgedit__xR0BLAje0G]: hasVariant(
+                      $state,
+                      "edit",
+                      "edit"
+                    )
+                  })}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["runCode"] = currentItem.id
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return (() => {
+                                $state.snackbar.data = currentItem;
+                                return ($state.snackbar.opendialog = true);
+                              })();
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+
+                    $steps["runCode2"] = !currentItem.id
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return $state.servises.splice(currentIndex, 1);
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode2"] != null &&
+                      typeof $steps["runCode2"] === "object" &&
+                      typeof $steps["runCode2"].then === "function"
+                    ) {
+                      $steps["runCode2"] = await $steps["runCode2"];
+                    }
+                  }}
+                  role={"img"}
+                />
+              </div>
             ),
-
             key: currentIndex,
             label2: (
-              <div className={classNames("all", "__wab_text", sty.text__yGv7B)}>
+              <div
+                className={classNames("all", "__wab_text", sty.text__yGv7B, {
+                  [sty.textedit__yGv7BAje0G]: hasVariant($state, "edit", "edit")
+                })}
+              >
                 <React.Fragment>
                   {(() => {
                     try {
@@ -463,7 +578,7 @@ function PlasmicAddServise2__RenderFunc(props: {
               data-plasmic-override={overrides.collapse}
               {...child$Props}
             >
-              <div className={classNames("all", sty.freeBox__tHlCa)}>
+              <div className={classNames("all", sty.freeBox__tHlCa, "dark")}>
                 <div className={classNames("all", sty.freeBox___2J1Jy)}>
                   <div
                     className={classNames("all", "__wab_text", sty.text__tiCJu)}
@@ -472,7 +587,12 @@ function PlasmicAddServise2__RenderFunc(props: {
                   </div>
                   {(() => {
                     const child$Props = {
-                      className: classNames("__wab_instance", sty.name),
+                      className: classNames("__wab_instance", sty.name, {
+                        [sty.nameedit]: hasVariant($state, "edit", "edit")
+                      }),
+                      disabled: hasVariant($state, "edit", "edit")
+                        ? false
+                        : true,
                       inputType: "text",
                       onChange: async (...eventArgs: any) => {
                         generateStateOnChangeProp($state, [
@@ -562,7 +682,16 @@ function PlasmicAddServise2__RenderFunc(props: {
                   </div>
                   {(() => {
                     const child$Props = {
-                      className: classNames("__wab_instance", sty.description),
+                      className: classNames("__wab_instance", sty.description, {
+                        [sty.descriptionedit]: hasVariant(
+                          $state,
+                          "edit",
+                          "edit"
+                        )
+                      }),
+                      disabled: hasVariant($state, "edit", "edit")
+                        ? false
+                        : true,
                       inputType: "text",
                       onChange: async (...eventArgs: any) => {
                         generateStateOnChangeProp($state, [
@@ -659,7 +788,12 @@ function PlasmicAddServise2__RenderFunc(props: {
                     </div>
                     {(() => {
                       const child$Props = {
-                        className: classNames("__wab_instance", sty.time),
+                        className: classNames("__wab_instance", sty.time, {
+                          [sty.timeedit]: hasVariant($state, "edit", "edit")
+                        }),
+                        disabled: hasVariant($state, "edit", "edit")
+                          ? false
+                          : true,
                         inputMode: "numeric",
                         inputType: "text",
                         onChange: async (...eventArgs: any) => {
@@ -684,9 +818,16 @@ function PlasmicAddServise2__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].time = $state.time[currentIndex].value);
+                                      return (() => {
+                                        $state.time[currentIndex].value =
+                                          $state.time[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].duration_minutes =
+                                          $state.time[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -703,7 +844,8 @@ function PlasmicAddServise2__RenderFunc(props: {
                             }
                           }).apply(null, eventArgs);
                         },
-                        placeholder: "0 \u062f\u0642\u06cc\u0642\u0647",
+                        placeholder:
+                          "\u0628\u0647 \u062f\u0642\u06cc\u0642\u0647",
                         type: "line",
                         value: generateStateValueProp($state, [
                           "time",
@@ -759,7 +901,12 @@ function PlasmicAddServise2__RenderFunc(props: {
                     </div>
                     {(() => {
                       const child$Props = {
-                        className: classNames("__wab_instance", sty.time2),
+                        className: classNames("__wab_instance", sty.time2, {
+                          [sty.time2edit]: hasVariant($state, "edit", "edit")
+                        }),
+                        disabled: hasVariant($state, "edit", "edit")
+                          ? false
+                          : true,
                         inputMode: "numeric",
                         inputType: "text",
                         onChange: async (...eventArgs: any) => {
@@ -784,10 +931,16 @@ function PlasmicAddServise2__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].time2 =
-                                        $state.time2[currentIndex].value);
+                                      return (() => {
+                                        $state.time2[currentIndex].value =
+                                          $state.time2[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].buffer_minutes =
+                                          $state.time2[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -804,7 +957,8 @@ function PlasmicAddServise2__RenderFunc(props: {
                             }
                           }).apply(null, eventArgs);
                         },
-                        placeholder: "15 \u062f\u0642\u06cc\u0642\u0647",
+                        placeholder:
+                          "\u0628\u0647 \u062f\u0642\u06cc\u0642\u0647",
                         type: "line",
                         value: generateStateValueProp($state, [
                           "time2",
@@ -860,7 +1014,12 @@ function PlasmicAddServise2__RenderFunc(props: {
                     </div>
                     {(() => {
                       const child$Props = {
-                        className: classNames("__wab_instance", sty.prise),
+                        className: classNames("__wab_instance", sty.prise, {
+                          [sty.priseedit]: hasVariant($state, "edit", "edit")
+                        }),
+                        disabled: hasVariant($state, "edit", "edit")
+                          ? false
+                          : true,
                         inputMode: "numeric",
                         inputType: "text",
                         onChange: async (...eventArgs: any) => {
@@ -885,10 +1044,16 @@ function PlasmicAddServise2__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].prise =
-                                        $state.prise[currentIndex].value);
+                                      return (() => {
+                                        $state.prise[currentIndex].value =
+                                          $state.prise[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].prise =
+                                          $state.prise[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -905,6 +1070,8 @@ function PlasmicAddServise2__RenderFunc(props: {
                             }
                           }).apply(null, eventArgs);
                         },
+                        placeholder:
+                          "\u0642\u06cc\u0645\u062a \u0628\u0647 \u062a\u0648\u0645\u0627\u0646",
                         type: "line",
                         value: generateStateValueProp($state, [
                           "prise",
@@ -972,7 +1139,12 @@ function PlasmicAddServise2__RenderFunc(props: {
                     </div>
                     {(() => {
                       const child$Props = {
-                        className: classNames("__wab_instance", sty.off),
+                        className: classNames("__wab_instance", sty.off, {
+                          [sty.offedit]: hasVariant($state, "edit", "edit")
+                        }),
+                        disabled: hasVariant($state, "edit", "edit")
+                          ? false
+                          : true,
                         inputMode: "numeric",
                         inputType: "text",
                         onChange: async (...eventArgs: any) => {
@@ -997,9 +1169,16 @@ function PlasmicAddServise2__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].off = $state.off[currentIndex].value);
+                                      return (() => {
+                                        $state.off[currentIndex].value =
+                                          $state.off[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].discount_percent =
+                                          $state.off[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -1016,6 +1195,8 @@ function PlasmicAddServise2__RenderFunc(props: {
                             }
                           }).apply(null, eventArgs);
                         },
+                        placeholder:
+                          "\u062f\u0631\u0635\u062f \u062a\u062e\u0641\u06cc\u0641",
                         type: "line",
                         value: generateStateValueProp($state, [
                           "off",
@@ -1058,7 +1239,15 @@ function PlasmicAddServise2__RenderFunc(props: {
                     })()}
                   </div>
                 </div>
-                <div className={classNames("all", sty.freeBox__tSG)}>
+                <div
+                  className={classNames("all", sty.freeBox__tSG, {
+                    [sty.freeBoxedit__tSGAje0G]: hasVariant(
+                      $state,
+                      "edit",
+                      "edit"
+                    )
+                  })}
+                >
                   <div
                     className={classNames(
                       "all",
@@ -1070,7 +1259,13 @@ function PlasmicAddServise2__RenderFunc(props: {
                   </div>
                   {(() => {
                     const child$Props = {
-                      className: classNames("__wab_instance", sty.select),
+                      className: classNames("__wab_instance", sty.select, {
+                        [sty.selectedit]: hasVariant($state, "edit", "edit")
+                      }),
+                      description: "Description...",
+                      disabled: hasVariant($state, "edit", "edit")
+                        ? false
+                        : true,
                       isOpen: generateStateValueProp($state, [
                         "select",
                         __plasmic_idx_0,
@@ -1084,6 +1279,10 @@ function PlasmicAddServise2__RenderFunc(props: {
                               {
                                 label: "پرداخت آنلاین",
                                 value: "online"
+                              },
+                              {
+                                label: "رایگان",
+                                value: "in_person"
                               },
                               {
                                 label: "پرداخت حضوری",
@@ -1141,6 +1340,7 @@ function PlasmicAddServise2__RenderFunc(props: {
                           />
                         );
                       }),
+                      label: "Label",
                       onChange: async (...eventArgs: any) => {
                         generateStateOnChangeProp($state, [
                           "select",
@@ -1220,7 +1420,7 @@ function PlasmicAddServise2__RenderFunc(props: {
                           initFunc: ({ $props, $state, $queries, $q }) =>
                             (() => {
                               try {
-                                return currentItem.payment_method;
+                                return currentItem.payment_method || "online";
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1252,7 +1452,9 @@ function PlasmicAddServise2__RenderFunc(props: {
       <Button
         data-plasmic-name={"button5"}
         data-plasmic-override={overrides.button5}
-        className={classNames("__wab_instance", sty.button5)}
+        className={classNames("__wab_instance", sty.button5, {
+          [sty.button5edit]: hasVariant($state, "edit", "edit")
+        })}
         color={"second"}
         end={
           <Icon56Icon
@@ -1276,7 +1478,7 @@ function PlasmicAddServise2__RenderFunc(props: {
             ? (() => {
                 const actionArgs = {
                   customFunction: async () => {
-                    return $state.servises.push({});
+                    return $state.servises.push({ center_id: $props.centerId });
                   }
                 };
                 return (({ customFunction }) => {
@@ -1338,7 +1540,9 @@ function PlasmicAddServise2__RenderFunc(props: {
       <Snackbar
         data-plasmic-name={"snackbar"}
         data-plasmic-override={overrides.snackbar}
-        className={classNames("__wab_instance", sty.snackbar)}
+        className={classNames("__wab_instance", sty.snackbar, {
+          [sty.snackbaredit]: hasVariant($state, "edit", "edit")
+        })}
         data={generateStateValueProp($state, ["snackbar", "data"])}
         index={generateStateValueProp($state, ["snackbar", "index"])}
         onDataChange={async (...eventArgs: any) => {
@@ -1402,7 +1606,9 @@ function PlasmicAddServise2__RenderFunc(props: {
           <Button
             data-plasmic-name={"_delete"}
             data-plasmic-override={overrides._delete}
-            className={classNames("__wab_instance", sty._delete)}
+            className={classNames("__wab_instance", sty._delete, {
+              [sty._deleteedit]: hasVariant($state, "edit", "edit")
+            })}
             color={"errorDestructive"}
             label={
               <div className={classNames("all", "__wab_text", sty.text__bKqMq)}>
@@ -1448,11 +1654,7 @@ function PlasmicAddServise2__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "POST",
-<<<<<<< HEAD
-                        "https://sayban.darkube.ir/webhook/delete/service",
-=======
-                        "https://sayban.darkube.app/webhook/delete/service",
->>>>>>> plasmicops/rQ6tUgoS/newMain
+                        "/delete/service",
                         undefined,
                         {
                           id: $state.snackbar.data.id
@@ -1478,7 +1680,9 @@ function PlasmicAddServise2__RenderFunc(props: {
                       customFunction: async () => {
                         return (() => {
                           $state.snackbar.opendialog = false;
-                          return ($state.restart += "1");
+                          return ($state.servises = $state.servises.filter(
+                            item => item.id !== $state.snackbar.data.id
+                          ));
                         })();
                       }
                     };

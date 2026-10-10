@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <title>DatePickers vertical align fixture</title>
+    <style>
+      /* Mirrors pickerWheels.module.css geometry (unhashed for the fixture). */
+      .root {
+        --picker-row-height: 34px;
+        display: flex;
+        width: 360px;
+        margin: 40px auto;
+        direction: rtl;
+        box-sizing: border-box;
+        overflow: hidden;
+        border: 1px solid #ddd;
+      }
+      .column {
+        flex: 1 1 0;
+        min-width: 0;
+        position: relative;
+        height: calc(var(--picker-row-height) * 5);
+      }
+      .rmc-picker {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+      }
+      .rmc-picker-indicator {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(var(--picker-row-height) * 2);
+        height: var(--picker-row-height);
+        box-sizing: border-box;
+        border-top: 1px solid rgba(175, 164, 145, 0.35);
+        border-bottom: 1px solid rgba(175, 164, 145, 0.35);
+        z-index: 3;
+        pointer-events: none;
+      }
+      .rmc-picker-content {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        /* Selected row sits in the indicator band (row index 2). */
+        transform: translateY(0);
+      }
+      .rmc-picker-item {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: var(--picker-row-height);
+        min-height: var(--picker-row-height);
+        max-height: var(--picker-row-height);
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        line-height: 0;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .label {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        padding: 0 0.35rem;
+        margin: 0;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-box: trim-both cap alphabetic;
+        text-box-trim: trim-both;
+        text-box-edge: cap alphabetic;
+      }
+      .rmc-picker-item-selected {
+        color: #1a1a1a;
+      }
+      .rmc-picker-item-selected .label {
+        font-weight: 600;
+      }
+      .case {
+        margin-bottom: 48px;
+      }
+      h2 {
+        text-align: center;
+        font-family: system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cases"></div>
+    <script>
+      const cases = [
+        { id: "iran-16", fontFamily: "Tahoma, sans-serif", fontSize: "16px" },
+        { id: "serif-22", fontFamily: "Georgia, serif", fontSize: "22px" },
+        { id: "mono-12", fontFamily: "Consolas, monospace", fontSize: "12px" },
+        { id: "system-28", fontFamily: "system-ui, sans-serif", fontSize: "28px" },
+        { id: "cursive-18", fontFamily: "cursive", fontSize: "18px" }
+      ];
+
+      const labels = ["۳", "۴", "۵", "۶", "۷"];
+      const root = document.getElementById("cases");
+
+      for (const c of cases) {
+        const wrap = document.createElement("div");
+        wrap.className = "case";
+        wrap.dataset.case = c.id;
+        wrap.innerHTML = `<h2>${c.id} — ${c.fontFamily} @ ${c.fontSize}</h2>`;
+
+        const pickerRoot = document.createElement("div");
+        pickerRoot.className = "root";
+        pickerRoot.style.fontFamily = c.fontFamily;
+        pickerRoot.style.fontSize = c.fontSize;
+
+        const column = document.createElement("div");
+        column.className = "column";
+
+        const picker = document.createElement("div");
+        picker.className = "rmc-picker";
+
+        const indicator = document.createElement("div");
+        indicator.className = "rmc-picker-indicator";
+        indicator.dataset.role = "indicator";
+
+        const content = document.createElement("div");
+        content.className = "rmc-picker-content";
+
+        labels.forEach((text, i) => {
+          const item = document.createElement("div");
+          item.className =
+            "rmc-picker-item" + (i === 2 ? " rmc-picker-item-selected" : "");
+          if (i === 2) item.dataset.role = "selected";
+          const span = document.createElement("span");
+          span.className = "label";
+          if (i === 2) span.dataset.role = "selected-label";
+          span.textContent = text;
+          item.appendChild(span);
+          content.appendChild(item);
+        });
+
+        picker.appendChild(indicator);
+        picker.appendChild(content);
+        column.appendChild(picker);
+        pickerRoot.appendChild(column);
+        wrap.appendChild(pickerRoot);
+        root.appendChild(wrap);
+      }
+
+      window.__measureAlignments = () => {
+        const textInkMidY = el => {
+          const range = document.createRange();
+          range.selectNodeContents(el);
+          const r = range.getBoundingClientRect();
+          return r.top + r.height / 2;
+        };
+
+        return [...document.querySelectorAll(".case")].map(caseEl => {
+          const indicator = caseEl.querySelector('[data-role="indicator"]');
+          const selected = caseEl.querySelector('[data-role="selected"]');
+          const label = caseEl.querySelector('[data-role="selected-label"]');
+          const ir = indicator.getBoundingClientRect();
+          const sr = selected.getBoundingClientRect();
+          const indicatorMid = ir.top + ir.height / 2;
+          const selectedMid = sr.top + sr.height / 2;
+          const inkMid = textInkMidY(label);
+          return {
+            id: caseEl.dataset.case,
+            indicatorHeight: ir.height,
+            selectedHeight: sr.height,
+            deltaSelectedVsIndicator: selectedMid - indicatorMid,
+            deltaInkVsIndicator: inkMid - indicatorMid
+          };
+        });
+      };
+
+      // Expose machine-readable results for headless --dump-dom checks.
+      const out = document.createElement("pre");
+      out.id = "align-results";
+      // Measure synchronously after layout so --dump-dom captures filled JSON.
+      document.body.offsetHeight;
+      out.textContent = JSON.stringify(window.__measureAlignments());
+      document.body.appendChild(out);
+    </script>
+  </body>
+</html>

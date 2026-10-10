@@ -65,24 +65,15 @@ import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/compone
 import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicAddServise.module.css"; // plasmic-import: GoiLccUqO4vp/css
 
 import ChevronLeftIcon from "./icons/PlasmicIcon__ChevronLeft"; // plasmic-import: vQC4_6sr1Yuo/icon
-<<<<<<< HEAD
-import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
-=======
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
->>>>>>> plasmicops/rQ6tUgoS/newMain
 import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 9uSUOFbEcoV4/icon
 
 createPlasmicElementProxy;
@@ -95,11 +86,13 @@ export const PlasmicAddServise__VariantProps = new Array<VariantPropType>();
 export type PlasmicAddServise__ArgsType = {
   servises?: any;
   onServisesChange?: (val: string) => void;
+  centerId?: string;
 };
 type ArgPropType = keyof PlasmicAddServise__ArgsType;
 export const PlasmicAddServise__ArgProps = new Array<ArgPropType>(
   "servises",
-  "onServisesChange"
+  "onServisesChange",
+  "centerId"
 );
 
 export type PlasmicAddServise__OverridesType = {
@@ -119,6 +112,7 @@ export type PlasmicAddServise__OverridesType = {
 export interface DefaultAddServiseProps {
   servises?: any;
   onServisesChange?: (val: string) => void;
+  centerId?: string;
   className?: string;
 }
 
@@ -250,7 +244,8 @@ function PlasmicAddServise__RenderFunc(props: {
         "plasmic_default_styles",
         "plasmic_mixins",
         styleTokensClassNames,
-        sty.root
+        sty.root,
+        "dark"
       )}
     >
       {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -289,7 +284,7 @@ function PlasmicAddServise__RenderFunc(props: {
                 <React.Fragment>
                   {(() => {
                     try {
-                      return currentItem.name ?? "نام سرویس";
+                      return currentItem.name ?? "نام خدمت";
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -385,7 +380,7 @@ function PlasmicAddServise__RenderFunc(props: {
                       sty.text___3XdMk
                     )}
                   >
-                    {"\u0646\u0627\u0645 \u0633\u0631\u0648\u06cc\u0633"}
+                    {"\u0646\u0627\u0645 \u062e\u062f\u0645\u062a"}
                   </div>
                   {(() => {
                     const child$Props = {
@@ -431,6 +426,8 @@ function PlasmicAddServise__RenderFunc(props: {
                           }
                         }).apply(null, eventArgs);
                       },
+                      placeholder:
+                        "\u0645\u062b\u0627\u0644: \u0622\u0628 \u062f\u0631\u0645\u0627\u0646\u06cc",
                       type: "line",
                       value: generateStateValueProp($state, [
                         "name",
@@ -511,6 +508,8 @@ function PlasmicAddServise__RenderFunc(props: {
                           }
                         }).apply(null, eventArgs);
                       },
+                      placeholder:
+                        "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u062a\u06a9\u0645\u06cc\u0644\u06cc",
                       type: "line",
                       value: generateStateValueProp($state, [
                         "description",
@@ -577,9 +576,16 @@ function PlasmicAddServise__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].time = $state.time[currentIndex].value);
+                                      return (() => {
+                                        $state.time[currentIndex].value =
+                                          $state.time[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].duration_minutes =
+                                          $state.time[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -596,7 +602,8 @@ function PlasmicAddServise__RenderFunc(props: {
                             }
                           }).apply(null, eventArgs);
                         },
-                        placeholder: "0 \u062f\u0642\u06cc\u0642\u0647",
+                        placeholder:
+                          "\u0645\u062f\u062a \u0632\u0645\u0627\u0646 (\u0628\u0647 \u062f\u0642\u06cc\u0642\u0647) - \u0645\u062b\u0627\u0644: 20",
                         type: "line",
                         value: generateStateValueProp($state, [
                           "time",
@@ -610,8 +617,7 @@ function PlasmicAddServise__RenderFunc(props: {
                         [
                           {
                             name: "time[].value",
-                            initFunc: ({ $props, $state, $queries, $q }) =>
-                              undefined
+                            initFunc: ({ $props, $state, $queries, $q }) => "60"
                           }
                         ],
                         [__plasmic_idx_0]
@@ -664,10 +670,16 @@ function PlasmicAddServise__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].time2 =
-                                        $state.time2[currentIndex].value);
+                                      return (() => {
+                                        $state.time2[currentIndex].value =
+                                          $state.time2[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].buffer_minutes =
+                                          $state.time2[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -684,7 +696,8 @@ function PlasmicAddServise__RenderFunc(props: {
                             }
                           }).apply(null, eventArgs);
                         },
-                        placeholder: "15 \u062f\u0642\u06cc\u0642\u0647",
+                        placeholder:
+                          "\u0641\u0627\u0635\u0644\u0647 \u0628\u06cc\u0646 \u0646\u0648\u0628\u062a\u200c\u0647\u0627 (\u0645\u062b\u0627\u0644: 10 \u062f\u0642\u06cc\u0642\u0647)",
                         type: "line",
                         value: generateStateValueProp($state, [
                           "time2",
@@ -698,8 +711,7 @@ function PlasmicAddServise__RenderFunc(props: {
                         [
                           {
                             name: "time2[].value",
-                            initFunc: ({ $props, $state, $queries, $q }) =>
-                              undefined
+                            initFunc: ({ $props, $state, $queries, $q }) => "10"
                           }
                         ],
                         [__plasmic_idx_0]
@@ -752,10 +764,16 @@ function PlasmicAddServise__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].prise =
-                                        $state.prise[currentIndex].value);
+                                      return (() => {
+                                        $state.prise[currentIndex].value =
+                                          $state.prise[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].prise =
+                                          $state.prise[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -772,6 +790,8 @@ function PlasmicAddServise__RenderFunc(props: {
                             }
                           }).apply(null, eventArgs);
                         },
+                        placeholder:
+                          "\u0642\u06cc\u0645\u062a (\u062a\u0648\u0645\u0627\u0646)",
                         type: "line",
                         value: generateStateValueProp($state, [
                           "prise",
@@ -786,7 +806,7 @@ function PlasmicAddServise__RenderFunc(props: {
                           {
                             name: "prise[].value",
                             initFunc: ({ $props, $state, $queries, $q }) =>
-                              undefined
+                              "300000"
                           }
                         ],
                         [__plasmic_idx_0]
@@ -851,9 +871,16 @@ function PlasmicAddServise__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return ($state.servises[
-                                        currentIndex
-                                      ].off = $state.off[currentIndex].value);
+                                      return (() => {
+                                        $state.off[currentIndex].value =
+                                          $state.off[
+                                            currentIndex
+                                          ].value.replace(/\D/g, "");
+                                        return ($state.servises[
+                                          currentIndex
+                                        ].discount_percent =
+                                          $state.off[currentIndex].value);
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -923,6 +950,10 @@ function PlasmicAddServise__RenderFunc(props: {
                               },
                               {
                                 label: "پرداخت حضوری",
+                                value: "in_person"
+                              },
+                              {
+                                label: "رایگان",
                                 value: "in_person"
                               },
                               {
@@ -1034,7 +1065,8 @@ function PlasmicAddServise__RenderFunc(props: {
                           return;
                         }
                       },
-                      placeholder: ``,
+                      placeholder:
+                        "\u0631\u0648\u0634 \u067e\u0631\u062f\u0627\u062e\u062a (\u0622\u0646\u0644\u0627\u06cc\u0646 / \u062d\u0636\u0648\u0631\u06cc)",
                       showLabel: false,
                       type: "line",
                       value: generateStateValueProp($state, [
@@ -1054,7 +1086,7 @@ function PlasmicAddServise__RenderFunc(props: {
                         {
                           name: "select[].value",
                           initFunc: ({ $props, $state, $queries, $q }) =>
-                            undefined
+                            "online"
                         }
                       ],
                       [__plasmic_idx_0]
@@ -1087,9 +1119,7 @@ function PlasmicAddServise__RenderFunc(props: {
         iconEnd={true}
         label={
           <div className={classNames("all", "__wab_text", sty.text__nbzIn)}>
-            {
-              "\u0627\u0641\u0632\u0648\u062f\u0646 \u0633\u0631\u0648\u06cc\u0633"
-            }
+            {"\u0627\u0641\u0632\u0648\u062f\u0646 \u062e\u062f\u0645\u062a"}
           </div>
         }
         loading={generateStateValueProp($state, ["button5", "loading"])}
@@ -1100,7 +1130,7 @@ function PlasmicAddServise__RenderFunc(props: {
             ? (() => {
                 const actionArgs = {
                   customFunction: async () => {
-                    return $state.servises.push({});
+                    return $state.servises.push({ center_id: $props.centerId });
                   }
                 };
                 return (({ customFunction }) => {

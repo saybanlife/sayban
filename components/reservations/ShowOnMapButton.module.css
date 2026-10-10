@@ -1,0 +1,29 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 6px;
+  padding: 6px 10px;
+  border: 1px solid var(--token-pyhDq7s0RTkz, #e6eadc);
+  border-radius: 8px;
+  background: var(--token-k-47TemksE2v, #fff);
+  color: var(--token-ee2TuxDknsJj, #3c6d0b);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: nowrap;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.button:hover {
+  background: var(--token-eGqF7qP0vY2Q, #f4f7ee);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--token-ee2TuxDknsJj, #3c6d0b);
+  outline-offset: 2px;
+}

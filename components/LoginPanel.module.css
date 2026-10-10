@@ -1,0 +1,4 @@
+/* Marker class for auth-shell scroll overrides (injected in LoginPanel.tsx). */
+.host {
+  box-sizing: border-box;
+}

@@ -1,0 +1,318 @@
+/* High-rated centers strip — match home mock (RTL horizontal cards) */
+
+.root {
+  --hr-green: #6F8A3A;
+  --hr-link: #6F8A3A;
+  --hr-title: #2a2f28;
+  --hr-muted: #8a8f86;
+  --hr-card-bg: #fdf9e8;
+  --hr-card-border: #6F8A3A;
+  /* بردر نازک تان/زیتونی */
+  --hr-rating-bg: #fff9e6;
+  --hr-rating-fg: #f2b805;
+  --hr-section-bg: #f7f8f4;
+  --hr-shadow: 0 4px 14px rgba(80, 90, 70, 0.164);
+  --hr-card-w: clamp(9.75rem, 38vw, 11.25rem);
+  --hr-radius: 1rem;
+
+  direction: rtl;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.75rem 0 0.35rem;
+  margin: 0.15rem 0 0.5rem;
+  border-radius: 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0 0 0.65rem 1rem;
+  box-sizing: border-box;
+}
+
+.titleRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 1.55rem;
+  height: 1.55rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--hr-green) 88%, #2f5a2a);
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(80, 120, 60, 0.28);
+}
+
+.badge svg {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--hr-title);
+  white-space: nowrap;
+}
+
+.viewAll {
+  appearance: none;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.15rem 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--hr-link);
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.viewAll:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--hr-link) 50%, white);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+.viewAllChevron {
+  display: inline-flex;
+  width: 0.85rem;
+  height: 0.85rem;
+  flex: 0 0 auto;
+}
+
+.scroller {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+  padding: 0.15rem 1rem 0.85rem;
+  box-sizing: border-box;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.card {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: stretch;
+  width: var(--hr-card-w);
+  min-width: var(--hr-card-w);
+  max-width: var(--hr-card-w);
+  border: 1px solid var(--hr-card-border);
+  padding: 0.85rem 0.75rem 0.75rem;
+  box-sizing: border-box;
+  background: var(--hr-card-bg);
+  border-radius: var(--hr-radius);
+  box-shadow: var(--hr-shadow);
+  scroll-snap-align: start;
+}
+
+.cardTop {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.35rem;
+  margin-bottom: 0.55rem;
+}
+
+.rating {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 0.45rem;
+  background: var(--hr-rating-bg);
+  color: var(--hr-rating-fg);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  direction: ltr;
+}
+
+.ratingStar {
+  width: 0.7rem;
+  height: 0.7rem;
+  flex: 0 0 auto;
+}
+
+.avatar {
+  width: 3.15rem;
+  height: 3.15rem;
+  border-radius: 999px;
+  object-fit: cover;
+  background: #eef0ea;
+  box-shadow: 0 0 0 2px #fff, 0 1px 4px rgba(0, 0, 0, 0.08);
+  flex: 0 0 auto;
+}
+
+.avatarFallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.15rem;
+  height: 3.15rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--hr-green) 18%, #fff);
+  color: var(--hr-green);
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex: 0 0 auto;
+  box-shadow: 0 0 0 2px #fff, 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.name {
+  margin: 0;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--hr-title);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.4em;
+}
+
+.location {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  margin-top: 0.35rem;
+  color: var(--hr-muted);
+  font-size: 0.7rem;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.locationPin {
+  width: 0.85rem;
+  height: 0.85rem;
+  flex: 0 0 auto;
+  color: var(--hr-green);
+}
+
+.locationText {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.cta {
+  appearance: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.55rem 0.5rem;
+  border-radius: 999px;
+  background: var(--hr-green);
+  color: #fff;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: filter 140ms ease, transform 140ms ease;
+}
+
+.cta:hover {
+  filter: brightness(1.04);
+}
+
+.cta:active {
+  transform: scale(0.98);
+}
+
+.cta:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--hr-green) 55%, white);
+  outline-offset: 2px;
+}
+
+.statusSection {
+  direction: rtl;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.55rem 0 0;
+  padding-left: var(--token-TONjX_YbO9_T);
+  margin: 0.1rem 0 0.35rem;
+}
+
+.statusTitle {
+  margin: 0 0 0.75rem;
+  color: var(--hr-title, #2a2f28);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.45;
+  text-align: right;
+}
+
+.statusList {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.85rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.statusCard:global(.__wab_instance),
+.statusCard {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 360px) {
+  .statusSection {
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+  }
+}

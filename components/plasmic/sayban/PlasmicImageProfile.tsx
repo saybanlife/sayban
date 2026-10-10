@@ -61,13 +61,8 @@ import {
 
 import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import { Timer } from "@plasmicpkgs/plasmic-basic-components";
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -247,7 +242,9 @@ function PlasmicImageProfile__RenderFunc(props: {
               loading={"lazy"}
               src={(() => {
                 try {
-                  return `data:${$state.upload.files[0].type};base64,${$state.upload.files[0].contents}`;
+                  return $state.upload?.files[0]?.type
+                    ? `data:${$state.upload.files[0].type};base64,${$state.upload.files[0].contents}`
+                    : $state.upload.files[0];
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -374,7 +371,7 @@ function PlasmicImageProfile__RenderFunc(props: {
             $steps["updateUploadload"] = await $steps["updateUploadload"];
           }
         }}
-        runWhileEditing={false}
+        runWhileEditing={true}
       />
     </div>
   ) as React.ReactElement | null;

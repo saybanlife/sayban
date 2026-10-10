@@ -1,0 +1,11 @@
+.wrap {
+  display: inline-flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.text {
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,58 @@
+.sliderSlideBtn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.sliderSlideImage {
+  display: block;
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: var(--token-73iLa06AE6f4, 16px);
+}
+
+@media (min-width: 769px) {
+  .sliderSlideImage {
+    height: 150px;
+  }
+}
+
+/*
+ * The banner scales with its container instead of being pinned to 150px.
+ * The ratio matches the 16/9 the panel enforces on upload
+ * (see MainPageHomeSlider), so slides are shown uncropped at every width.
+ */
+.promoSliderSlideBtn {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 6;
+  max-height: 15rem;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.promoSliderSlideImage,
+.promoFallbackImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 6;
+  max-height: 15rem;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 0.75rem;
+}
+
+.promoSliderSlideBtn .promoSliderSlideImage {
+  /* Inside the button the ratio is already established by the button. */
+  aspect-ratio: auto;
+  max-height: none;
+}

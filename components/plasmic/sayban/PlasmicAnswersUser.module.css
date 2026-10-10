@@ -1,0 +1,73 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-cfon0PHiXQoL);
+  position: relative;
+  min-width: 0;
+  padding: 0px;
+}
+.freeBox__setP {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0px;
+}
+.text__wm38M {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  text-align: right;
+  color: var(--token-KjATzAYJ5IB7);
+  font-size: var(--token-N8Pb0ZuDQAeF);
+  font-weight: 600;
+}
+.text__dp4B {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  text-align: right;
+  color: var(--token-sdHWFpeV8MAu);
+  font-size: var(--token-hbNq_Oz393_j);
+  font-weight: 700;
+}
+.freeBox__a3MbV {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 0px;
+}
+.select:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.dateInput:global(.__wab_instance) {
+  position: relative;
+}
+.timeInput:global(.__wab_instance) {
+  max-width: 100%;
+}
+.textAreaInput:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.addressDialog:global(.__wab_instance) {
+  max-width: 100%;
+}
+.check:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}

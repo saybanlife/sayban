@@ -1,0 +1,154 @@
+/* Match Add Event mock: همراه full-width pill + small dashed image tile on the right */
+
+.root {
+  display: contents;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  justify-content: flex-start;
+  align-items: stretch;
+  row-gap: 0.4rem;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.fieldLabel {
+  width: 100%;
+  text-align: right;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--token-ee2TuxDknsJj, #6f8a3a);
+  min-width: 0;
+}
+
+.fieldControl {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 3.15rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: stretch;
+  font-size: 16px;
+  font-family: inherit;
+  color: #2c2a26;
+  background: #ffffff;
+  min-width: 0;
+  flex-shrink: 0;
+  border-radius: 1.35rem;
+  padding: 0.65rem 1.15rem;
+  border: 1.5px solid rgba(111, 138, 58, 0.42);
+  appearance: none;
+  direction: rtl;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236f8a3a' d='M1.2 1.2 6 6l4.8-4.8'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 1rem center;
+  background-size: 0.7rem;
+  padding-left: 2.2rem;
+}
+
+.fieldControl:disabled {
+  opacity: 0.6;
+}
+
+.imageRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.55rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.addChip {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  margin: 0;
+  width: 5.75rem;
+  min-height: 5.75rem;
+  border-radius: 1.05rem;
+  border: 1.5px dashed rgba(111, 138, 58, 0.55);
+  background: transparent;
+  color: var(--token-ee2TuxDknsJj, #6f8a3a);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 0.65rem;
+}
+
+.addPlus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: inherit;
+}
+
+.removeChip {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.45rem 0.9rem;
+  min-height: 2.25rem;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: 1px solid rgba(180, 60, 50, 0.35);
+  background: none;
+  color: #a33a32;
+  align-self: center;
+}
+
+.addChip:disabled,
+.removeChip:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.file {
+  display: none;
+}
+
+.previewWrap {
+  width: 5.75rem;
+  height: 5.75rem;
+  border-radius: 1.05rem;
+  overflow: hidden;
+  border: 1.5px solid rgba(111, 138, 58, 0.28);
+  background: rgba(40, 36, 24, 0.04);
+  flex-shrink: 0;
+}
+
+.preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.error {
+  width: 100%;
+  text-align: right;
+  font-size: 0.75rem;
+  color: #b42318;
+}

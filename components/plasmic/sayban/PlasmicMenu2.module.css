@@ -29,7 +29,7 @@
 .freeBox__b4Hp {
   display: flex;
   flex-direction: column;
-  width: auto;
+  width: 100%;
   height: auto;
   max-width: 100%;
   justify-content: flex-start;
@@ -37,6 +37,7 @@
   transition-property: all;
   transition-duration: 0.05s;
   transition-timing-function: ease-in-out;
+  min-width: 0;
   -webkit-transition-property: all;
   -webkit-transition-timing-function: ease-in-out;
   -webkit-transition-duration: 0.05s;

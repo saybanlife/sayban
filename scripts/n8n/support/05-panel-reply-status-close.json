@@ -1,0 +1,22 @@
+{
+  "name": "Sayban - Panel Support Reply / Status / Close / Messages",
+  "notes": "Import and split into 4 webhooks if preferred. SQL below is the source of truth.",
+  "sql": {
+    "getMessages": "SELECT m.* FROM support__messages m WHERE m.conversation_id = ? ORDER BY m.id ASC;",
+    "reply": [
+      "INSERT INTO support__messages (conversation_id, sender_id, sender_type, message) VALUES (?, ?, 'superadmin', ?);",
+      "UPDATE support__conversations SET last_message = ?, last_message_at = NOW(), message_count = message_count + 1, status = 'answered', updated_at = NOW() WHERE id = ?;",
+      "INSERT INTO users__notification (userId, title, text, action, notification_type) SELECT user_id, 'پاسخ پشتیبانی', ?, CONCAT('/support_chat_', id), 'system' FROM support__conversations WHERE id = ?;"
+    ],
+    "status": "UPDATE support__conversations SET status = ?, closed_at = IF(? = 'closed', NOW(), closed_at), updated_at = NOW() WHERE id = ?;",
+    "close": "UPDATE support__conversations SET status = 'closed', closed_at = NOW(), updated_at = NOW() WHERE id = ?;"
+  },
+  "paths": {
+    "messages": "GET panel-support-messages/panel/support/conversations/:id/messages",
+    "reply": "POST panel-support-reply/panel/support/conversations/:id/reply",
+    "status": "POST panel-support-status/panel/support/conversations/:id/status",
+    "close": "POST panel-support-close/panel/support/conversations/:id/close",
+    "userClose": "POST user-support-close/support/conversations/:id/close"
+  },
+  "auth": "panel JWT role must be super_admin for panel/* ; user JWT + ownership for support/*"
+}

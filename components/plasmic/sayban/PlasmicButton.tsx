@@ -82,7 +82,9 @@ export type PlasmicButton__VariantMembers = {
     | "errorDestructive"
     | "second"
     | "clear"
-    | "line";
+    | "line"
+    | "dark"
+    | "white";
   type: "soft" | "bordered";
   size: "extraSmall" | "small" | "large" | "extraLarge";
   iconStart: "iconStart";
@@ -90,6 +92,7 @@ export type PlasmicButton__VariantMembers = {
   roundedFull: "roundedFull";
   flatSide: "top" | "right" | "bottom" | "left";
   loading: "loading";
+  disabel: "disabel";
 };
 export type PlasmicButton__VariantsArgs = {
   color?: SingleChoiceArg<
@@ -101,6 +104,8 @@ export type PlasmicButton__VariantsArgs = {
     | "second"
     | "clear"
     | "line"
+    | "dark"
+    | "white"
   >;
   type?: SingleChoiceArg<"soft" | "bordered">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -109,6 +114,7 @@ export type PlasmicButton__VariantsArgs = {
   roundedFull?: SingleBooleanChoiceArg<"roundedFull">;
   flatSide?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   loading?: SingleBooleanChoiceArg<"loading">;
+  disabel?: SingleBooleanChoiceArg<"disabel">;
 };
 type VariantPropType = keyof PlasmicButton__VariantsArgs;
 export const PlasmicButton__VariantProps = new Array<VariantPropType>(
@@ -119,7 +125,8 @@ export const PlasmicButton__VariantProps = new Array<VariantPropType>(
   "iconEnd",
   "roundedFull",
   "flatSide",
-  "loading"
+  "loading",
+  "disabel"
 );
 
 export type PlasmicButton__ArgsType = {
@@ -179,6 +186,8 @@ export interface DefaultButtonProps {
     | "second"
     | "clear"
     | "line"
+    | "dark"
+    | "white"
   >;
   type?: SingleChoiceArg<"soft" | "bordered">;
   size?: SingleChoiceArg<"extraSmall" | "small" | "large" | "extraLarge">;
@@ -187,6 +196,7 @@ export interface DefaultButtonProps {
   roundedFull?: SingleBooleanChoiceArg<"roundedFull">;
   flatSide?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   loading?: SingleBooleanChoiceArg<"loading">;
+  disabel?: SingleBooleanChoiceArg<"disabel">;
   className?: string;
 }
 
@@ -283,6 +293,12 @@ function PlasmicButton__RenderFunc(props: {
 
         valueProp: "loading",
         onChangeProp: "onLoadingChange"
+      },
+      {
+        path: "disabel",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.disabel
       }
     ],
     [$props, $ctx, $refs]
@@ -335,6 +351,8 @@ function PlasmicButton__RenderFunc(props: {
         sty.root,
         {
           [sty.rootcolor_clear]: hasVariant($state, "color", "clear"),
+          [sty.rootcolor_dark]: hasVariant($state, "color", "dark"),
+          [sty.rootcolor_white]: hasVariant($state, "color", "white"),
           [sty.rootcolor_errorDestructive]: hasVariant(
             $state,
             "color",
@@ -346,6 +364,7 @@ function PlasmicButton__RenderFunc(props: {
           [sty.rootcolor_second]: hasVariant($state, "color", "second"),
           [sty.rootcolor_success]: hasVariant($state, "color", "success"),
           [sty.rootcolor_warning]: hasVariant($state, "color", "warning"),
+          [sty.rootdisabel]: hasVariant($state, "disabel", "disabel"),
           [sty.rootflatSide_bottom]: hasVariant($state, "flatSide", "bottom"),
           [sty.rootflatSide_left]: hasVariant($state, "flatSide", "left"),
           [sty.rootflatSide_right]: hasVariant($state, "flatSide", "right"),
@@ -397,7 +416,13 @@ function PlasmicButton__RenderFunc(props: {
         }
       )}
       href={args.linkTo}
-      isDisabled={args.disabled}
+      isDisabled={
+        hasVariant($state, "disabel", "disabel")
+          ? true
+          : hasVariant($state, "loading", "loading")
+            ? true
+            : undefined
+      }
       onPress={args.onClick}
       plasmicUpdateVariant={updateVariant}
       resetsForm={args.resetsForm}
@@ -454,6 +479,11 @@ function PlasmicButton__RenderFunc(props: {
               "color",
               "warning"
             ),
+            [sty.softBackgroundcolor_white]: hasVariant(
+              $state,
+              "color",
+              "white"
+            ),
             [sty.softBackgroundloading]: hasVariant(
               $state,
               "loading",
@@ -488,6 +518,11 @@ function PlasmicButton__RenderFunc(props: {
             [sty.bordercolor_neutral]: hasVariant($state, "color", "neutral"),
             [sty.bordercolor_success]: hasVariant($state, "color", "success"),
             [sty.bordercolor_warning]: hasVariant($state, "color", "warning"),
+            [sty.bordercolor_white]: hasVariant(
+              $state,
+              "color",
+              "white"
+            ),
             [sty.borderflatSide_bottom]: hasVariant(
               $state,
               "flatSide",
@@ -579,6 +614,11 @@ function PlasmicButton__RenderFunc(props: {
 
       <div
         className={classNames("all", sty.freeBox__vNlPw, {
+          [sty.freeBoxcolor_dark__vNlPwTdvCb]: hasVariant(
+            $state,
+            "color",
+            "dark"
+          ),
           [sty.freeBoxcolor_neutral__vNlPWafpkQ]: hasVariant(
             $state,
             "color",
@@ -701,6 +741,11 @@ function PlasmicButton__RenderFunc(props: {
                 "color",
                 "warning"
               ),
+              [sty.slotTargetStartcolor_white]: hasVariant(
+                $state,
+                "color",
+                "white"
+              ),
               [sty.slotTargetStarticonStart]: hasVariant(
                 $state,
                 "iconStart",
@@ -814,6 +859,11 @@ function PlasmicButton__RenderFunc(props: {
                   $state,
                   "color",
                   "warning"
+                ),
+                [sty.slotTargetLabelcolor_white]: hasVariant(
+                  $state,
+                  "color",
+                  "white"
                 ),
                 [sty.slotTargetLabeliconEnd]: hasVariant(
                   $state,
@@ -951,6 +1001,11 @@ function PlasmicButton__RenderFunc(props: {
                 $state,
                 "color",
                 "warning"
+              ),
+              [sty.slotTargetEndcolor_white]: hasVariant(
+                $state,
+                "color",
+                "white"
               ),
               [sty.slotTargetEndiconEnd]: hasVariant(
                 $state,

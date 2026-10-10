@@ -1,0 +1,16 @@
+.root {
+  animation: none;
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-k-47TemksE2v);
+  width: var(--token-0tl2H1TRPHhV);
+  height: var(--token-0tl2H1TRPHhV);
+  position: relative;
+}
+.rooticon_history {
+  width: var(--token-xsiin-peP6fP);
+  height: var(--token-xsiin-peP6fP);
+}
+.rootselect {
+  color: var(--token-9M5jRUPt8Msb);
+}

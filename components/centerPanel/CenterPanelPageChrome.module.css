@@ -1,0 +1,57 @@
+/* Hide leftover Plasmic chrome for removed panel sections (services / old gallery). */
+.panelRoot :global([data-plasmic-name="addServise2"]),
+.panelRoot :global([data-plasmic-name="imageEdit"]),
+.panelRoot :global([data-plasmic-name="button2"]) {
+  display: none !important;
+}
+
+/* Stable-ish Plasmic section wrappers for legacy «تصاویر» / «خدمات» cards. */
+.panelRoot :global([class*="PlasmicCenterPage_freeBox__vRowu"]),
+.panelRoot :global([class*="PlasmicCenterPage_freeBox__eog3I"]) {
+  display: none !important;
+}
+
+/* Legacy center-details card, adopted into the «اطلاعات مرکز» workspace card:
+   drop its own card chrome and title so it reads as part of the host card. */
+.panelRoot :global([data-sayban-adopted="true"]) {
+  width: 100%;
+  background: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+.panelRoot :global([data-sayban-adopted="true"]) > *:first-child {
+  display: none !important;
+}
+
+/* Some Plasmic cards have a fixed height; let them shrink when collapsed. */
+.panelRoot :global([data-sayban-open="false"]) {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+.legacyToggle {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid color-mix(in srgb, var(--plasmic-token-gray) 22%, transparent);
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--plasmic-token-gray) 6%, transparent);
+  color: var(--plasmic-token-text-primary, #1a1a1a);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+.legacyToggle:hover {
+  background: color-mix(
+    in srgb,
+    var(--plasmic-token-primary-green, #2d6a4f) 12%,
+    transparent
+  );
+}

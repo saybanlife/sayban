@@ -1,0 +1,136 @@
+.host {
+  --rm-green: var(--token-ee2TuxDknsJj, #6f8a3a);
+  --rm-yellow: var(--token-Yo4gdKCgyuAu, #f3c94c);
+  --rm-cream: #f7f4ea;
+  direction: rtl;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  align-self: stretch;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.boardSlot {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.plasmicLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.plasmicLayer :global([class*="button12"]),
+.plasmicLayer :global([class*="Button2"]),
+.plasmicLayer :global([class*="dialog"]),
+.plasmicLayer :global([class*="Dialog"]),
+.plasmicLayer :global([class*="reminderSetting"]),
+.plasmicLayer :global([class*="ReminderSetting"]),
+.plasmicLayer :global([class*="section__"]),
+.plasmicLayer :global([data-plasmic-name="button12"]),
+.plasmicLayer :global([data-plasmic-name="reminderSetting"]),
+.plasmicLayer :global([data-plasmic-name="dialog"]),
+.plasmicLayer :global([data-plasmic-name="dialog2"]),
+.plasmicLayer :global([data-plasmic-name="dialog3"]) {
+  pointer-events: auto;
+}
+
+.listThumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+  cursor: zoom-in;
+  background: rgba(40, 36, 24, 0.06);
+}
+
+.host :global([data-has-reminder-image="1"]) {
+  overflow: hidden;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Redesign: custom board owns the list chrome; keep Plasmic for dialogs/FAB. */
+.host[data-reminder-redesign="1"] :global(.PlasmicReminder_freeBox__bvL0Y),
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_freeBox__bvL0Y"]),
+.host[data-reminder-redesign="1"] :global(.PlasmicReminder_text__lpSnH),
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_text__lpSnH"]),
+.host[data-reminder-redesign="1"] :global(.PlasmicReminder_frame32),
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_frame32"]),
+.host[data-reminder-redesign="1"] :global(.PlasmicReminder_freeBox__ed4Xw),
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_freeBox__ed4Xw"]),
+.host[data-reminder-redesign="1"] :global(.PlasmicReminder_freeBox___4Cfsa),
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_freeBox___4Cfsa"]),
+.host[data-reminder-redesign="1"] :global(.PlasmicReminder_alertTelegram),
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_alertTelegram"]),
+.host[data-reminder-redesign="1"] :global(.PlasmicReminder_alertSms),
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_alertSms"]) {
+  display: none !important;
+}
+
+.host[data-reminder-redesign="1"] :global(.PlasmicReminder_root),
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_root"]) {
+  background: transparent !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+/* Bottom chrome: keep only the yellow + FAB (visual left). */
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_freeBox___95CEd"]) {
+  pointer-events: none !important;
+  /* RTL: flex-end parks the yellow + on the visual left (mock). */
+  justify-content: flex-end !important;
+  /* Sit just above Homepage Menu2 (~5.8rem) with a small visual gap. */
+  padding: 0 1rem calc(6.55rem + env(safe-area-inset-bottom, 0px)) !important;
+  z-index: 35 !important;
+}
+
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_freeBox__ug6J6"]),
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_text___4MWc"]) {
+  display: none !important;
+}
+
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_freeBox__qz4Ne"]),
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_button12"]) {
+  pointer-events: auto !important;
+  width: 3.6rem !important;
+  height: 3.6rem !important;
+  min-width: 3.6rem !important;
+  border-radius: 999px !important;
+  background: var(--rm-yellow) !important;
+  box-shadow: 0 10px 24px rgba(180, 140, 20, 0.35) !important;
+  overflow: hidden;
+}
+
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_freeBox__qz4Ne"]) :global(button),
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_button12"]) :global(button),
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_freeBox__qz4Ne"]) :global(.__wab_instance) {
+  width: 3.6rem !important;
+  height: 3.6rem !important;
+  min-width: 3.6rem !important;
+  border-radius: 999px !important;
+  background: var(--rm-yellow) !important;
+  color: #1f1c14 !important;
+  box-shadow: none !important;
+}
+
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_freeBox__qz4Ne"]) :global(svg),
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_button12"]) :global(svg) {
+  color: #1f1c14 !important;
+  width: 1.45rem !important;
+  height: 1.45rem !important;
+}
+
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_freeBox__qz4Ne"]) :global(.__wab_text),
+.host[data-reminder-redesign="1"] :global([class*="PlasmicReminder_button12"]) :global(.__wab_text) {
+  display: none !important;
+}

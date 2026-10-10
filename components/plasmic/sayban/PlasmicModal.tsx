@@ -139,7 +139,7 @@ const $$ = {};
 function useNextRouter() {
   try {
     return useRouter();
-  } catch {}
+  } catch { }
   return undefined;
 }
 
@@ -280,22 +280,16 @@ function PlasmicModal__RenderFunc(props: {
               )
             })}
           >
-            {renderPlasmicSlot({
-              defaultContents: (
-                <h3
-                  className={classNames(
-                    "all",
-                    "h3",
-                    "h3__qARqp",
-                    "__wab_text",
-                    sty.h3__gGbK
-                  )}
-                >
-                  {"Heading"}
-                </h3>
-              ),
-              value: args.heading
-            })}
+            <div className={classNames("all", sty.headingWrap)}>
+              {renderPlasmicSlot({
+                defaultContents: (
+                  <h3 className={classNames("all", "h3", sty.h3__gGbK)}>
+                    {"Heading"}
+                  </h3>
+                ),
+                value: args.heading
+              })}
+            </div>
             <div
               data-plasmic-name={"scrollableContent"}
               data-plasmic-override={overrides.scrollableContent}
@@ -332,61 +326,6 @@ function PlasmicModal__RenderFunc(props: {
             {renderPlasmicSlot({
               defaultContents: (
                 <div className={classNames("all", sty.freeBox___7AYkt)}>
-                  <Button
-                    color={"muted"}
-                    label={
-                      <div
-                        className={classNames(
-                          "all",
-                          "__wab_text",
-                          sty.text__b0CFb
-                        )}
-                      >
-                        {"Close"}
-                      </div>
-                    }
-                    onClick={async event => {
-                      const $steps = {};
-
-                      $steps["updateAriaDialogTriggerIsOpen"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["ariaDialogTrigger", "isOpen"]
-                              },
-                              operation: 0,
-                              value: false
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateAriaDialogTriggerIsOpen"] != null &&
-                        typeof $steps["updateAriaDialogTriggerIsOpen"] ===
-                          "object" &&
-                        typeof $steps["updateAriaDialogTriggerIsOpen"].then ===
-                          "function"
-                      ) {
-                        $steps["updateAriaDialogTriggerIsOpen"] =
-                          await $steps["updateAriaDialogTriggerIsOpen"];
-                      }
-                    }}
-                    type={"soft"}
-                  />
                 </div>
               ),
               value: args.footer
@@ -404,15 +343,15 @@ function PlasmicModal__RenderFunc(props: {
       trigger={
         (hasVariant($state, "noTrigger", "noTrigger") ? false : true)
           ? renderPlasmicSlot({
-              defaultContents: (
-                <Button
-                  className={classNames("__wab_instance", sty.button__ydSv)}
-                  label={"Open Modal"}
-                />
-              ),
+            defaultContents: (
+              <Button
+                className={classNames("__wab_instance", sty.button__ydSv)}
+                label={"Open Modal"}
+              />
+            ),
 
-              value: args.trigger
-            })
+            value: args.trigger
+          })
           : null
       }
     />
@@ -452,20 +391,20 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicModal__ArgsType;
     overrides?: NodeOverridesType<T>;
   } &
-    // Specify variants directly as props
-    Omit<PlasmicModal__VariantsArgs, ReservedPropsType> &
-    // Specify args directly as props
-    Omit<PlasmicModal__ArgsType, ReservedPropsType> &
-    // Specify overrides for each element directly as props
-    Omit<
-      NodeOverridesType<T>,
-      ReservedPropsType | VariantPropType | ArgPropType
-    > &
-    // Specify props for the root element
-    Omit<
-      Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
-      ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
-    >;
+  // Specify variants directly as props
+  Omit<PlasmicModal__VariantsArgs, ReservedPropsType> &
+  // Specify args directly as props
+  Omit<PlasmicModal__ArgsType, ReservedPropsType> &
+  // Specify overrides for each element directly as props
+  Omit<
+    NodeOverridesType<T>,
+    ReservedPropsType | VariantPropType | ArgPropType
+  > &
+  // Specify props for the root element
+  Omit<
+    Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
+    ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
+  >;
 
 function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   type PropsType = NodeComponentProps<NodeName> & { key?: React.Key };

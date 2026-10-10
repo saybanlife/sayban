@@ -1,0 +1,117 @@
+/*
+ * Full-page blocking loader. Used for requests the user must not interrupt
+ * (starting a support chat, verifying an OTP, submitting a booking/payment).
+ *
+ * z-index sits above every modal in the app (the highest is PlasmicReport2 at
+ * 100000) because the whole point is to cover the page. Toasts render at 99999
+ * and so are intentionally behind it: messages surface once the overlay hides.
+ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100010;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+
+  direction: rtl;
+  /* Green wash over the page, matching --token-fr7DwvJwRjZb (#4f5b2a). */
+  background: rgba(79, 91, 42, 0.88);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+
+  /* Swallow every interaction while visible. */
+  pointer-events: auto;
+  touch-action: none;
+  user-select: none;
+
+  animation: overlayFadeIn 180ms ease-out both;
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.logo {
+  width: 8.5rem;
+  max-width: 55vw;
+  height: auto;
+  object-fit: contain;
+  /* The lockup is mid-green, which is low-contrast against the green wash, so
+   * it is brightened toward the sand tone rather than left to blend in. */
+  filter: brightness(1.55) saturate(0.7)
+    drop-shadow(0 6px 18px rgba(0, 0, 0, 0.32));
+  animation: logoPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.88;
+  }
+}
+
+.message {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  max-width: min(20rem, calc(100vw - 3rem));
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Pill-shaped indeterminate progress bar, as in the reference design. */
+.track {
+  position: relative;
+  width: 4.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  overflow: hidden;
+}
+
+.bar {
+  position: absolute;
+  inset-block: 0;
+  width: 45%;
+  border-radius: 999px;
+  background: var(--token-pyhDq7s0RTkz, #e1d5ab);
+  animation: barSlide 1.1s ease-in-out infinite;
+}
+
+@keyframes barSlide {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .logo,
+  .bar {
+    animation: none;
+  }
+
+  .bar {
+    width: 100%;
+    opacity: 0.7;
+  }
+}

@@ -1,0 +1,57 @@
+.root {
+  display: inline-flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  background: #f3c94c66;
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: var(--token-cfon0PHiXQoL);
+}
+.rootstatus_confirmed {
+  background: #8fae5566;
+}
+.rootstatus_canceled {
+  background: #a3b18a66;
+}
+.rootstatus_rejected {
+  background: #c9383b66;
+}
+.rootstatus_completed {
+  background: #818cf866;
+}
+.roottextcolor_status_pending {
+  background: none;
+}
+.roottextcolor_status_confirmed {
+  background: none;
+}
+.roottextcolor_status_canceled {
+  background: none;
+}
+.rootstatus_rejected_textcolor {
+  background: none;
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  width: var(--token-OJSN3W0Myvht);
+  height: var(--token-P3I_D0uxQRnt);
+  color: var(--token-Yo4gdKCgyuAu);
+  flex-shrink: 0;
+}
+.svgstatus_confirmed {
+  color: var(--token--ieHgGbFH1Fa);
+}
+.svgstatus_canceled {
+  color: var(--token-Es3BYpS8XP38);
+}
+.svgstatus_rejected {
+  color: var(--token-FCYaeT_sNnHr);
+}
+.svgstatus_completed {
+  color: var(--token-wjDz2yYxsQQ8);
+}

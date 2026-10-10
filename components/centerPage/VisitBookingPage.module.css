@@ -1,0 +1,788 @@
+.page {
+  --vb-green: #6f8a3a;
+  --vb-green-deep: #4f6824;
+  --vb-mint: #e7f0d8;
+  --vb-beige: #f5f1e3;
+  --vb-card: #fffdf7;
+  --vb-text: #1f2a0f;
+  --vb-muted: #6b7064;
+  --vb-gold: #c4a35a;
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  background: var(--vb-beige);
+  color: var(--vb-text);
+  box-sizing: border-box;
+}
+
+/*
+ * Plasmic Header defaults to position:fixed. Keep it in normal flow so it
+ * cannot scroll away when an ancestor creates a containing block, and so the
+ * page uses a dedicated scroll region below the chrome.
+ */
+.header {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  left: auto !important;
+  flex: 0 0 auto;
+  width: 100% !important;
+  max-width: 100% !important;
+  z-index: 20;
+}
+
+/*
+ * The generated header only spans its full grid below the 768px viewport
+ * breakpoint. On desktop the app still renders inside a mobile-width shell,
+ * so force the header surface to span that shell instead of grid column 4.
+ */
+.header > * {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 0.75rem;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
+}
+
+.summary {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0.55rem;
+  margin: 0.55rem 0.85rem 0.4rem;
+  border: 1px solid #b3c19d;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  background: var(--vb-card);
+  box-shadow: inset 0 0 0 1px rgba(111, 138, 58, 0.1);
+}
+
+@keyframes visitBookingShimmer {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.summaryShimmer,
+.shimmerBanner,
+.shimmerMonth,
+.shimmerDays span,
+.timeShimmer span,
+.shimmerTitle,
+.shimmerCompanionRow,
+.shimmerCompanionButton {
+  background: linear-gradient(90deg, #ebe5d3 25%, #f8f5ea 45%, #ebe5d3 65%);
+  background-size: 220% 100%;
+  animation: visitBookingShimmer 1.25s ease-in-out infinite;
+}
+
+.summaryShimmer {
+  min-height: 3.7rem;
+  box-shadow: none;
+}
+
+.summaryMedia {
+  flex: 0 0 2.6rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.65rem;
+  object-fit: cover;
+  background: #cbb89a;
+}
+
+.summaryBody {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.summaryTop {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.summaryName {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.summaryAddress {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.3rem;
+  color: var(--vb-muted);
+  font-size: 0.7rem;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.addressPin {
+  flex: 0 0 auto;
+  width: 0.78rem;
+  height: 0.78rem;
+  margin-top: 0.08rem;
+  color: var(--vb-muted);
+}
+
+.rating {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.2rem;
+  color: var(--vb-text);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.ratingStar {
+  width: 0.75rem;
+  height: 0.75rem;
+  color: #e0a100;
+}
+
+.host {
+  width: 100%;
+  min-width: 0;
+}
+
+.bookingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0 0.85rem calc(4.5rem + env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
+}
+
+.pickerSection,
+.companionSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.pickerSection:first-child {
+  padding: 0.25rem 0 0.65rem;
+  border-radius: 0 0 1rem 1rem;
+  background: #f8f3e3;
+}
+
+.dateShimmer {
+  gap: 0.7rem;
+  min-height: 10.2rem;
+}
+
+.shimmerBanner {
+  height: 3rem;
+  border-radius: 0.75rem;
+}
+
+.shimmerMonth {
+  align-self: center;
+  width: 7rem;
+  height: 1.3rem;
+  border-radius: 0.4rem;
+}
+
+.shimmerDays {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.shimmerDays span {
+  height: 5rem;
+  border-radius: 2rem;
+}
+
+.instruction {
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+  gap: .15rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: var(--vb-mint);
+  text-align: center;
+}
+
+.instruction strong {
+  font-size: 1rem;
+}
+
+.instruction span {
+  color: var(--vb-muted);
+  font-size: 0.8rem;
+}
+
+.monthRow {
+  display: flex;
+  padding: 0.5rem 0 0.5rem 0;
+  text-align: center;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+
+.monthRow button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: 2.25rem;
+  padding: 0 0.25rem;
+  border: 0;
+  background: transparent;
+  color: #b57900;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.monthRow button span {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.monthRow button:disabled {
+  color: #c9c3ae;
+  cursor: default;
+}
+
+.previousMonth {
+  grid-column: 3;
+  justify-self: end;
+}
+
+.nextMonth {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.monthRow strong,
+.sectionTitle {
+  margin: 0;
+  color: var(--vb-text);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.monthRow strong {
+  min-width: 7rem;
+  font-size: 1rem;
+  direction: rtl;
+}
+
+.sectionTitle {
+  text-align: right;
+}
+
+.calendar,
+.periods,
+.times {
+  width: 100% !important;
+  min-width: 0;
+}
+
+.calendar {
+  scrollbar-width: none;
+  gap: 0.45rem !important;
+  padding: 0.15rem 0.1rem 0.1rem !important;
+  scroll-snap-type: x proximity;
+}
+
+.calendar::-webkit-scrollbar {
+  display: none;
+}
+
+.timeSection {
+  gap: 0 !important;
+}
+
+.periods {
+  padding: 0 0.25rem !important;
+  border-bottom: 1px solid rgba(196, 163, 90, 0.2);
+}
+
+.periods :global([class*="PlasmicTopic_root"]) {
+  justify-content: center !important;
+}
+
+.periods :global([class*="PlasmicTopic_text"]) {
+  color: #5f635c !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+}
+
+.periods :global([class*="PlasmicTopic_textselect"]) {
+  color: #a66f00 !important;
+}
+
+.periods :global([class*="PlasmicTopic_freeBoxselect"]) {
+  border-bottom-color: #f2b600 !important;
+  border-bottom-width: 3px !important;
+}
+
+.timeViewport {
+  max-height: 9.8rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0.65rem 0.15rem 0.15rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(111, 138, 58, 0.35) transparent;
+}
+
+.timeViewport::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+.timeViewport::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background: rgba(111, 138, 58, 0.35);
+}
+
+.times {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 0.55rem !important;
+}
+
+.times :global([class*="PlasmicTimeShow_root"]) {
+  min-height: 2.7rem !important;
+  border: 1px solid rgba(196, 163, 90, 0.28) !important;
+  border-radius: 0.8rem !important;
+  background: #fffdf7 !important;
+}
+
+.times :global([class*="PlasmicTimeShow_rootselect"]) {
+  border-color: #a8c863 !important;
+  background: #eaf7c9 !important;
+}
+
+.times :global([class*="PlasmicTimeShow_text"]) {
+  color: #14200a !important;
+  font-size: 0.82rem !important;
+  font-weight: 800 !important;
+}
+
+.emptyTimeState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 9.8rem;
+  padding: 0.8rem 0.5rem;
+  box-sizing: border-box;
+}
+
+.emptyTimeIcon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: #fff0bf;
+  color: #bd8200;
+}
+
+.emptyTimeIcon svg {
+  width: 1.45rem;
+  height: 1.45rem;
+}
+
+.emptyTimeState p {
+  margin: 0;
+  color: #555b56;
+  font-size: 0.82rem;
+}
+
+.emptyTimeState button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.6rem;
+  padding: 0.35rem 1.2rem;
+  border: 1px solid var(--vb-green);
+  border-radius: 1.5rem;
+  background: transparent;
+  color: var(--vb-green);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.calendar :global([class*="PlasmicDayItem_root"]) {
+  flex: 0 0 calc((100% - 2.25rem) / 6);
+  gap: 0.35rem !important;
+  scroll-snap-align: start;
+}
+
+.calendar :global([class*="PlasmicDayItem_text__lsz5S"]) {
+  color: #5e5c55 !important;
+  font-size: 0.72rem !important;
+  white-space: nowrap;
+}
+
+.calendar :global([class*="PlasmicDayItem_freeBox__h8Ix2"]) {
+  width: 100% !important;
+  justify-content: center !important;
+  padding: .8rem !important;
+  background: #e6efd2 !important;
+  box-sizing: border-box;
+}
+
+.calendar :global([class*="PlasmicDayItem_freeBox__op8O"]) {
+  width: auto !important;
+  height: auto !important;
+  min-height: 1.6rem;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.calendar :global([class*="PlasmicDayItem_freeBoxselect__op8O"]) {
+  color: #fff !important;
+}
+
+.calendar :global([class*="PlasmicDayItem_freeBox__h8Ix2"]):has([class*="freeBoxselect__op8O"]) {
+  background: var(--vb-green) !important;
+}
+
+.calendar :global([class*="PlasmicDayItem_freeBox__h8Ix2"]):has([class*="freeBoxselect__op8O"]) :global([class*="text__zdFcx"]) {
+  color: #fff !important;
+}
+
+.calendar :global([class*="PlasmicDayItem_text__zdFcx"]) {
+  font-size: 1.05rem !important;
+  font-weight: 800 !important;
+}
+
+/*
+ * Selected day: make the icon / dot under the number white too.
+ * 1) SVG icon (color, fill and stroke, including inner paths)
+ * 2) Dot built with a background (any child whose class contains "dot")
+ * If the dot still stays colored, inspect it in DevTools and add its exact
+ * class to the last selector in this block.
+ */
+.calendar :global([class*="PlasmicDayItem_freeBox__h8Ix2"]):has([class*="freeBoxselect__op8O"]) :global(svg),
+.calendar :global([class*="PlasmicDayItem_freeBox__h8Ix2"]):has([class*="freeBoxselect__op8O"]) :global(svg *) {
+  color: #fff !important;
+  fill: #fff !important;
+  stroke: #fff !important;
+}
+
+.calendar :global([class*="PlasmicDayItem_freeBox__h8Ix2"]):has([class*="freeBoxselect__op8O"]) :global([class*="dot"]) {
+  background: #fff !important;
+  background-color: #fff !important;
+}
+
+.loadingSlots {
+  width: 100%;
+  height: 5.4rem;
+  border-radius: 0.75rem;
+  background: var(--vb-mint);
+  opacity: 0.55;
+}
+
+.timeShimmer {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+  height: 9.8rem;
+  padding: 0.65rem 0.15rem 0.15rem;
+  box-sizing: border-box;
+}
+
+.timeShimmer span {
+  min-height: 2.7rem;
+  border-radius: 0.8rem;
+}
+
+.empty {
+  margin: 0;
+  padding: 0.85rem;
+  color: var(--vb-muted);
+  font-size: 0.74rem;
+  text-align: center;
+}
+
+.companionSection {
+  gap: 0.35rem;
+}
+
+.companionShimmer {
+  min-height: 6.55rem;
+}
+
+.shimmerTitle {
+  width: 6.5rem;
+  height: 1rem;
+  border-radius: 0.35rem;
+}
+
+.shimmerCompanionRow,
+.shimmerCompanionButton {
+  width: 100%;
+  height: 2.75rem;
+  border-radius: 0.75rem;
+}
+
+.companionOption {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid rgba(111, 138, 58, 0.28);
+  border-radius: 0.75rem;
+  background: var(--vb-card);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.companionOption:has(input:checked) {
+  border-color: var(--vb-green);
+  background: #f0f6e4;
+}
+
+.companionOption input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  accent-color: var(--vb-green);
+}
+
+.companionOption span {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+}
+
+.companionOption strong {
+  font-size: 1rem;
+}
+
+.companionOption small {
+  color: var(--vb-muted);
+  font-size: 0.8rem;
+}
+
+.addCompanion {
+  width: 100%;
+  min-height: 2.6rem;
+  border: 2px dashed rgba(111, 138, 58, .32);
+  border-radius: .75rem;
+  padding: 0.7rem;
+  background: transparent;
+  color: var(--vb-green-deep);
+  font: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.confirmBar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  width: calc(min(100vw, 500px) - 1.7rem);
+  box-sizing: border-box;
+  padding: 1rem;
+  background: linear-gradient(180deg, rgba(245, 241, 227, 0), var(--vb-beige) 30%);
+}
+
+.confirmButton {
+  width: 100% !important;
+  min-height: 2.8rem !important;
+}
+
+/* Center root in visit-booking mode: keep only the extracted booking body. */
+.centerRoot>*:not([data-visit-booking-root]) {
+  display: none !important;
+}
+
+.bookingBody {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  min-height: calc(100% - 0.25rem);
+  padding: 0 0.85rem 0.35rem;
+  box-sizing: border-box;
+  gap: 0.45rem;
+}
+
+/* Page header already titles the flow; hide the dialog heading duplicate. */
+.bookingBody :global([class*="freeBox__ywuoD"]) {
+  display: none !important;
+}
+
+/* Main column: fill height so the confirm block can sit at the bottom. */
+.bookingBody :global([class*="freeBox__eh9J7"]) {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 auto;
+  height: auto !important;
+  min-height: 0 !important;
+  row-gap: 0.55rem !important;
+}
+
+.bookingBody :global([class*="freeBox__n49Dk"]) {
+  display: flex !important;
+  flex-direction: column !important;
+  row-gap: 0.55rem !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+/* Mint instruction banner — match mock (text-first, soft card). */
+.bookingBody :global([class*="freeBox__o41A2"]) {
+  background: var(--vb-mint) !important;
+  border: none !important;
+  border-radius: 0.75rem !important;
+  padding: 0.55rem 0.75rem !important;
+  column-gap: 0.65rem !important;
+  justify-content: center !important;
+}
+
+.bookingBody :global([class*="freeBox__o41A2"]) :global(svg) {
+  display: none !important;
+}
+
+.bookingBody :global([class*="freeBox__o41A2"]):has([class*="freeBoxselect__op8O"]) :global(svg) {
+  background: white !important;
+}
+
+.bookingBody :global([class*="freeBox__obQeL"]) {
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.bookingBody :global([class*="text___864Fg"]),
+.bookingBody :global([class*="text___1PIid"]) {
+  text-align: center !important;
+  color: var(--vb-text) !important;
+}
+
+.bookingBody :global([class*="text___864Fg"]) {
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+}
+
+.bookingBody :global([class*="text___1PIid"]) {
+  font-size: 0.68rem !important;
+  font-weight: 500 !important;
+  color: var(--vb-muted) !important;
+}
+
+/* Month row */
+.bookingBody :global([class*="freeBox__pEwRp"]) {
+  margin-top: 0.15rem;
+  padding: 0 0.15rem !important;
+}
+
+.bookingBody :global([class*="text__wjmMc"]) {
+  color: var(--vb-text) !important;
+  font-weight: 800 !important;
+}
+
+/* Keep the existing date/time components, but match the compact reference. */
+.bookingBody :global([class*="PlasmicCalendar_root"]) {
+  scrollbar-width: none;
+  gap: 0.45rem !important;
+}
+
+.bookingBody :global([class*="PlasmicCalendar_root"])::-webkit-scrollbar {
+  display: none;
+}
+
+.bookingBody :global([class*="PlasmicSelectTime_root"]) {
+  gap: 0.45rem !important;
+}
+
+.bookingBody :global([class*="PlasmicTimeShow_root"]) {
+  min-height: 2.5rem !important;
+  border-width: 1px !important;
+  border-radius: 0.7rem !important;
+}
+
+/* Soften nested scroll shells from the dialog layout. */
+.bookingBody :global([class*="freeBox__sDCwv"]),
+.bookingBody :global([class*="freeBox__k6H4"]) {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  flex-shrink: 1 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Companion / confirm footer — pin to bottom of the page scrollport. */
+.bookingBody :global([class*="section__lYw80"]) {
+  position: sticky !important;
+  bottom: 0 !important;
+  z-index: 5;
+  margin-top: auto;
+  width: 100% !important;
+  padding: 0.45rem 0 calc(0.25rem + env(safe-area-inset-bottom, 0px)) !important;
+  background: linear-gradient(180deg,
+      rgba(245, 241, 227, 0) 0%,
+      var(--vb-beige) 28%,
+      var(--vb-beige) 100%) !important;
+  display: flex !important;
+  justify-content: center !important;
+  grid-template-columns: none !important;
+}
+
+.bookingBody :global([class*="section__lYw80"])>* {
+  grid-column: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.bookingBody :global([class*="freeBox___2LWei"]) {
+  gap: 0.75rem;
+  width: 100% !important;
+}
+
+.bookingBody :global([class*="freeBox__sa99I"]) {
+  width: 100% !important;
+  padding: 0.6rem 0.75rem !important;
+  border-radius: 0.75rem;
+  background: var(--vb-mint);
+  box-sizing: border-box;
+}
+
+.bookingBody :global([class*="button2"]) {
+  width: 100% !important;
+  min-height: 2.8rem !important;
+  border-radius: 0.8rem !important;
+}

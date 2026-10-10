@@ -1,0 +1,168 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin: 12px 0;
+  padding: 14px;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #e2dccb;
+  border-radius: 14px;
+  direction: rtl;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+  color: #243015;
+}
+
+.hint {
+  margin: 4px 0 0;
+  color: #6f685e;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: end;
+  padding: 10px;
+  background: #f7f4ea;
+  border-radius: 12px;
+}
+
+.index {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 8px;
+  border-radius: 999px;
+  background: #e5efcf;
+  color: #4f6924;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 8px;
+  min-width: 0;
+}
+
+.remove,
+.secondary,
+.primary {
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid #d8d2c2;
+  background: #fff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.remove {
+  color: #9a3b3b;
+  border-color: #efc9c9;
+  background: #fff7f7;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.secondary {
+  color: #3f4d24;
+}
+
+.primary {
+  color: #1d240d;
+  background: var(--token-Yo4gdKCgyuAu, #f3c94c);
+  border-color: var(--token-Yo4gdKCgyuAu, #f3c94c);
+}
+
+.primary:disabled,
+.secondary:disabled,
+.remove:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.selectedBox,
+.waitingBox {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.selectedBox {
+  background: #eef5df;
+  color: #35501a;
+}
+
+.waitingBox {
+  background: #fff7df;
+  color: #6a5600;
+}
+
+.selectedBox strong {
+  font-size: 12px;
+}
+
+.ok {
+  color: #35501a;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.err {
+  color: #9a3b3b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.muted {
+  color: #7a7468;
+  font-size: 12px;
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .fields {
+    grid-template-columns: 1fr;
+  }
+
+  .index {
+    margin-bottom: 0;
+  }
+}

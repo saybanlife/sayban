@@ -1,0 +1,342 @@
+.fab {
+  position: fixed;
+  left: max(0.75rem, calc((100vw - var(--sayban-app-max, 500px)) / 2 + 0.75rem));
+  bottom: calc(6.55rem + env(safe-area-inset-bottom, 0px));
+  z-index: 42;
+  display: grid;
+  width: 3.45rem;
+  height: 3.45rem;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #f6bb00;
+  color: #17210e;
+  box-shadow: 0 0.45rem 1rem rgba(199, 153, 0, 0.28);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fab svg {
+  width: 1.85rem;
+  height: 1.85rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.4;
+}
+
+.fab:focus-visible,
+.closeFab:focus-visible,
+.option:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/*
+ * Phone-column overlay (desktop + mobile). Menu sits above the FAB spot.
+ * backdrop-filter / transform / filter on the overlay would turn it into the
+ * containing block for position:fixed children (the close FAB), so the blur
+ * lives on ::before and the overlay itself stays "frame-free".
+ */
+.overlay {
+  align-items: flex-end !important;
+  justify-content: left !important;
+  padding: 1.25rem 0.75rem
+    calc(10.95rem + env(safe-area-inset-bottom, 0px)) !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transform: none !important;
+  translate: none !important;
+  scale: none !important;
+  filter: none !important;
+  will-change: auto !important;
+  contain: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: rgba(37, 47, 26, 0.5);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  animation: overlayIn 0.22s ease-out;
+}
+
+/* Transparent shell so the white panel can sit above the close FAB. */
+.contentShell:global(.__wab_instance) {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  width: min(100%, 21.5rem) !important;
+  min-width: 0 !important;
+  max-width: min(100%, 21.5rem) !important;
+  max-height: calc(100dvh - 13rem) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  align-self: flex-end !important;
+  height: auto !important;
+  min-height: 0 !important;
+  flex: 0 0 auto !important;
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  translate: none !important;
+  scale: none !important;
+  rotate: none !important;
+  filter: none !important;
+  will-change: auto !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.panel {
+  width: 100%;
+  padding: 1.15rem 0.95rem 1rem;
+  border-radius: 1.7rem;
+  background: #ffffff;
+  box-shadow: 0 0.65rem 1.75rem rgba(31, 39, 23, 0.22);
+  animation: panelIn 0.22s ease-out;
+}
+
+.title {
+  margin: 0 0 0.95rem;
+  color: var(--token-9M5jRUPt8Msb, #17210e);
+  font: inherit;
+  font-size: 1.02rem;
+  font-weight: 800;
+  line-height: 1.65;
+  text-align: center;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  width: 100%;
+}
+
+.option {
+  appearance: none;
+  display: grid;
+  grid-template-columns: 2.85rem minmax(0, 1fr) 1rem;
+  align-items: center;
+  width: 100%;
+  min-height: 4.35rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid #d7d2c4;
+  border-radius: 1.1rem;
+  background: #ffffff;
+  color: #17210e;
+  font: inherit;
+  text-align: right;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.option:active {
+  background: #faf8f2;
+}
+
+.optionIcon {
+  display: grid;
+  width: 2.65rem;
+  height: 2.65rem;
+  place-items: center;
+  border-radius: 50%;
+  color: #2f3a1f;
+}
+
+.optionIconGreen {
+  background: #e7efd6;
+}
+
+.optionIconSand {
+  background: #efe6d4;
+}
+
+.optionIcon svg {
+  width: 1.45rem;
+  height: 1.45rem;
+}
+
+.optionCopy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding-inline: 0.6rem;
+}
+
+.optionTitle {
+  overflow: hidden;
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.55;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.optionDescription {
+  overflow: hidden;
+  color: #6d7364;
+  font-size: 0.72rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chevron {
+  width: 1.05rem;
+  height: 1.05rem;
+  color: #a8ad9f;
+}
+
+/* Same fixed spot as .fab so the toggle feels like one button. */
+.closeFab {
+  position: fixed;
+  left: max(0.75rem, calc((100vw - var(--sayban-app-max, 500px)) / 2 + 0.75rem));
+  bottom: calc(6.55rem + env(safe-area-inset-bottom, 0px));
+  z-index: 43;
+  display: grid;
+  width: 3.45rem;
+  height: 3.45rem;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #263917;
+  color: #ffffff;
+  box-shadow: 0 0.45rem 1rem rgba(20, 35, 11, 0.3);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.closeFab svg {
+  width: 1.65rem;
+  height: 1.65rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.4;
+}
+
+.hiddenTrigger {
+  display: none;
+}
+
+@media (max-width: 360px) {
+  .overlay {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  .panel {
+    padding-inline: 0.8rem;
+    border-radius: 1.45rem;
+  }
+
+  .option {
+    min-height: 4.05rem;
+    padding: 0.45rem 0.5rem;
+  }
+
+  .optionTitle {
+    font-size: 0.84rem;
+  }
+
+  .optionDescription {
+    font-size: 0.66rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fab,
+  .closeFab,
+  .option {
+    transition: none;
+  }
+
+  .panel,
+  .overlay::before {
+    animation: none;
+  }
+}
+
+/*
+ * Beat globals.css phone-shell bottom-sheet rules for this menu only.
+ * Scope: dialog that contains our transparent content shell.
+ */
+:global(html[data-sayban-shell="app"])
+  .overlay:global(.pl__fixed.pl__inset-0),
+:global(html[data-sayban-shell="app"]) .overlay {
+  left: max(0px, calc((100vw - var(--sayban-app-max, 500px)) / 2)) !important;
+  right: max(0px, calc((100vw - var(--sayban-app-max, 500px)) / 2)) !important;
+  width: auto !important;
+  max-width: var(--sayban-app-max, 500px) !important;
+  margin-inline: auto !important;
+  justify-content: left !important;
+  align-items: flex-end !important;
+}
+
+:global(html[data-sayban-shell="app"])
+  .contentShell:global(.__wab_instance)[role="dialog"],
+:global(html[data-sayban-shell="app"]) .contentShell:global(.__wab_instance) {
+  width: min(100%, 21.5rem) !important;
+  max-width: min(100%, 21.5rem) !important;
+  min-width: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  align-self: flex-end !important;
+  margin: 0 !important;
+  max-height: calc(100dvh - 13rem) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  flex: 0 0 auto !important;
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  filter: none !important;
+}

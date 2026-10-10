@@ -1,0 +1,62 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 20px;
+  height: 20px;
+  max-width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  background: none;
+  position: relative;
+  border-radius: 100px;
+  padding: 0px;
+  border: 2px solid var(--token-pyhDq7s0RTkz);
+}
+.rootcurrent {
+  outline-width: 7px;
+  outline-style: solid;
+  outline-color: var(--token-ee2TuxDknsJj);
+  outline-offset: -7px;
+  border-width: 0px;
+  border-color: var(--token-ee2TuxDknsJj);
+}
+.rootsubmit {
+  background: var(--token--ieHgGbFH1Fa);
+  border-width: 0px;
+  border-color: var(--token--ieHgGbFH1Fa);
+}
+.rootsubmit_current {
+  width: 45px;
+  height: 45px;
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-80wG4y4sryg5);
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  display: none;
+}
+.svgsubmit {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  display: block;
+}
+.text {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-pyhDq7s0RTkz);
+  font-size: var(--token-R7X4jvpZsbD-);
+  font-weight: 700;
+  line-height: 1;
+}
+.textcurrent {
+  display: none;
+}
+.textsubmit {
+  display: none;
+}

@@ -51,7 +51,14 @@
 .ariaInputtype_lineBox:global(.__wab_instance) {
   background: none;
   color: var(--token-9M5jRUPt8Msb);
+  border-radius: var(--token-cfon0PHiXQoL);
   border: 1px solid var(--token-Pxe4wDL2kJpb);
+}
+.ariaInputtype_lineBoxDark:global(.__wab_instance) {
+  background: none;
+  color: var(--token-9M5jRUPt8Msb);
+  border-radius: var(--token-cfon0PHiXQoL);
+  border: 1px solid var(--token-KjATzAYJ5IB7);
 }
 .ariaInputflat_top:global(.__wab_instance) {
   border-top-left-radius: 0rem;
@@ -86,4 +93,7 @@
   outline-color: var(--token-FCYaeT_sNnHr);
   outline-style: solid;
   outline-width: 1.75px;
+}
+.ariaInputshadow:global(.__wab_instance) {
+  box-shadow: 0px 2px 5px 0px var(--token-fr7DwvJwRjZb);
 }

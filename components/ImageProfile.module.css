@@ -1,0 +1,101 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.hiddenInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dropzone {
+  appearance: none;
+  width: 100%;
+  max-width: 22rem;
+  min-height: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border: 1.5px dashed
+    color-mix(in srgb, var(--token-ee2TuxDknsJj, #6f8a3a) 55%, transparent);
+  border-radius: 0.85rem;
+  background: var(--token-h2xt7bB598yU, var(--panel-bg-muted, #f5f1e3));
+  color: var(--token-9M5jRUPt8Msb, var(--panel-text, #1f2a0f));
+  cursor: pointer;
+  font: inherit;
+  text-align: center;
+}
+
+.dropzone:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.dropTitle {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--token-KjATzAYJ5IB7, var(--panel-text-muted, #6b7a5a));
+}
+
+.dropAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.25rem;
+  padding: 0.4rem 1rem;
+  border-radius: 0.65rem;
+  background: var(--token-ee2TuxDknsJj, #6f8a3a);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.previewWrap {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.preview {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 999px;
+  border: 2px solid
+    color-mix(in srgb, var(--token-ee2TuxDknsJj, #6f8a3a) 40%, transparent);
+  background: var(--panel-bg-muted, #ececd8);
+}
+
+.clearBtn {
+  position: absolute;
+  top: -0.25rem;
+  left: -0.25rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  border: 0;
+  background: var(--token-sdHWFpeV8MAu, #eb464a);
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.error {
+  margin: 0;
+  color: var(--token-sdHWFpeV8MAu, #eb464a);
+  font-size: 0.8125rem;
+  text-align: center;
+  line-height: 1.5;
+}

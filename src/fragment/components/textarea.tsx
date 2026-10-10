@@ -2,6 +2,7 @@
 import { CodeComponentMeta, useSelector } from "@plasmicapp/host";
 import * as TextareaPrimitive from "@/components/ui/textarea";
 import { RefAttributes } from "react";
+import { improvePlaceholder } from "../../../components/formFieldRules";
 
 type InputType = {
   placeholder?: string;
@@ -28,11 +29,14 @@ export const Textarea = (props: InputType) => {
   return (
     <TextareaPrimitive.Textarea
       disabled={disabled}
-      onChange={(e) => onChange?.(e.target?.value ?? "")}
+      onChange={(e) =>
+        onChange?.((e.target?.value ?? "").slice(0, attributes?.maxLength ?? 2000))
+      }
       value={value}
       dir={fragmentConfig.rtl ? "rtl" : "ltr"}
       name={name}
-      placeholder={placeholder}
+      placeholder={improvePlaceholder(placeholder, "description")}
+      maxLength={attributes?.maxLength ?? 2000}
       className={className}
       {...attributes}
     />

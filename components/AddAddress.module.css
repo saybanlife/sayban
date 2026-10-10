@@ -1,0 +1,398 @@
+.page {
+  --aa-green: #6f8a3a;
+  --aa-green-deep: #5a752d;
+  --aa-yellow: var(--token-Yo4gdKCgyuAu, #f3c94c);
+  --aa-bg: #f5f1e4;
+  --aa-text: #202515;
+  --aa-muted: #6f685e;
+  --aa-border: #d8d4c4;
+  background: var(--aa-bg) !important;
+  direction: rtl;
+}
+
+.pageStep2 {
+  padding-top: 3.6rem !important;
+}
+
+/* Keep green Header chrome; white title (default Header tokens). */
+.step2Header :global([class*="freeBox__lHkfy"]) {
+  width: 100%;
+  min-height: 3.35rem;
+  margin: 0;
+  padding-bottom: 0.85rem;
+  color: #fff;
+  background: var(--aa-green);
+  border-bottom-right-radius: 1.35rem;
+  border-bottom-left-radius: 1.35rem;
+  box-shadow: none;
+}
+
+.step2Header :global([class*="slotTargetSlot"]) {
+  color: #fff !important;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.step2Header :global(svg) {
+  color: #fff !important;
+}
+
+.confirmBar {
+  z-index: 1200 !important;
+  padding: 0.75rem 0.85rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(180deg, transparent, var(--aa-bg) 28%);
+}
+
+.confirmBar :global(button),
+.confirmBar :global([role="button"]) {
+  min-height: 3.1rem !important;
+  border-radius: 0.95rem !important;
+  background: var(--aa-yellow) !important;
+  border-color: var(--aa-yellow) !important;
+  color: #15190e !important;
+  font-weight: 900 !important;
+  font-size: 0.98rem !important;
+}
+
+.confirmBar :global([class*="slotTargetLabel"]),
+.confirmBar :global(.__wab_text) {
+  color: #15190e !important;
+  font-weight: 900 !important;
+}
+
+.stepContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 0.35rem 0.15rem 0;
+}
+
+.progressWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.15rem 0.1rem 0;
+}
+
+.progressTrack {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.progressTrackTwo {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.progressTrackFour {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.progressSeg,
+.progressSegOn {
+  height: 5px;
+  border-radius: 999px;
+  background: #ddd8c6;
+}
+
+.progressSegOn {
+  background: var(--aa-green-deep);
+}
+
+.progressLabel {
+  color: var(--aa-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: right;
+  line-height: 1.6;
+}
+
+.contextChip {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--aa-border);
+  border-radius: 1rem;
+  background: #fff;
+  color: var(--aa-text);
+  font-size: 0.88rem;
+  font-weight: 800;
+  line-height: 1.6;
+  text-align: right;
+}
+
+.contextChipIcon {
+  display: grid;
+  flex: 0 0 auto;
+  width: 2.1rem;
+  height: 2.1rem;
+  place-items: center;
+  border-radius: 50%;
+  background: #e8efd6;
+  color: #5a752d;
+}
+
+.contextChipIcon svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.contextChipText {
+  min-width: 0;
+  flex: 1;
+}
+
+.step2Title {
+  width: 100%;
+  margin: 0.15rem 0 0.15rem;
+  padding: 0 0.15rem;
+  color: var(--aa-text);
+  font-size: 1.15rem;
+  font-weight: 900;
+  line-height: 1.7;
+  text-align: right;
+}
+
+.step1Hint {
+  width: 100%;
+  margin: 0;
+  padding: 0 var(--token-73iLa06AE6f4, 16px) 8px;
+  text-align: right;
+  font-size: var(--token-w-4Gcj0_UzPS, 14px);
+  color: var(--aa-muted);
+  line-height: 1.7;
+}
+
+.mapStage {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #eee;
+  border-radius: 1.1rem;
+  flex-shrink: 0;
+}
+
+.pageStep1 .mapStage {
+  height: calc(100dvh - 12.5rem);
+  max-height: calc(100dvh - 12.5rem);
+  min-height: 240px;
+}
+
+.pageStep2 .mapStage {
+  height: 11.5rem;
+  min-height: 11.5rem;
+  max-height: 12.5rem;
+  background:
+    linear-gradient(rgba(111, 138, 58, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(111, 138, 58, 0.08) 1px, transparent 1px),
+    #e8efd6;
+  background-size: 22px 22px, 22px 22px, auto;
+  border: 1px solid #c5d3a8;
+  border-radius: 1.15rem;
+}
+
+.mapStage > div {
+  width: 100%;
+  height: 100%;
+}
+
+.pageStep2 .mapStage .stepMap {
+  pointer-events: none;
+}
+
+.pageStep2 .mapStage :global(.leaflet-control-container) {
+  display: none !important;
+}
+
+.editLocationBtn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--aa-text);
+  cursor: pointer;
+  z-index: 1100;
+  pointer-events: auto;
+}
+
+.editLocationBtn:hover {
+  filter: brightness(0.98);
+}
+
+.editLocationIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.formSheet {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.15rem 0 5.5rem;
+}
+
+.pageStep2 .formSheet {
+  padding-top: 0.15rem;
+}
+
+.step2Fields {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.fieldGroup {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.4rem;
+  color: var(--aa-text);
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.6;
+  text-align: right;
+}
+
+.addressParts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.addressField,
+.compactField,
+.fullField {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  color: var(--aa-text);
+  background: #fff;
+  border-color: var(--aa-border);
+  border-radius: 1rem;
+  font-size: 0.92rem;
+  text-align: right;
+}
+
+.compactField,
+.fullField {
+  min-height: 3rem;
+}
+
+.addressField {
+  height: auto;
+  min-height: 3rem;
+  max-height: 6rem;
+  padding: 0.75rem 1rem;
+  resize: vertical;
+}
+
+.addressField :global(textarea),
+.compactField :global(input),
+.fullField :global(input) {
+  width: 100%;
+  min-height: 3rem;
+  box-sizing: border-box;
+  color: var(--aa-text);
+  background: #fff;
+  border: 1px solid var(--aa-border) !important;
+  border-radius: 1rem !important;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-align: right !important;
+  padding: 0.7rem 1rem !important;
+}
+
+.addressField :global(textarea) {
+  height: auto;
+  min-height: 3rem;
+  max-height: 6rem;
+  resize: vertical;
+}
+
+.compactField :global(input)::placeholder,
+.fullField :global(input)::placeholder,
+.addressField :global(textarea)::placeholder {
+  color: #a39a8c;
+  opacity: 1;
+  text-align: right;
+}
+
+.postalField {
+  padding-bottom: 0.25rem;
+}
+
+.pageStep1 .formSheet {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  pointer-events: none;
+}
+
+.pageStep2 .formSheet :global(#click_location) {
+  display: none !important;
+}
+
+@media (min-width: 769px) {
+  .pageStep1 .mapStage {
+    height: min(70vh, 560px);
+    max-height: min(70vh, 560px);
+    min-height: 320px;
+  }
+
+  .pageStep2 .mapStage {
+    height: 12rem;
+    min-height: 11rem;
+    max-height: 13rem;
+  }
+}
+
+.embedded.pageStep1 .mapStage {
+  height: min(32vh, 220px) !important;
+  min-height: 150px !important;
+  max-height: 220px !important;
+}
+
+.embedded.pageStep2 .mapStage {
+  height: 140px !important;
+  min-height: 120px !important;
+  max-height: 160px !important;
+}
+
+.embedded .formSheet {
+  position: static !important;
+  width: 100% !important;
+  height: auto !important;
+  overflow: visible !important;
+  padding: 0.5rem 0 0 !important;
+  pointer-events: auto !important;
+}
+
+.embedded .formSheet :global(textarea) {
+  min-height: 64px !important;
+  max-height: 96px;
+}
+
+.embedded .progressWrap,
+.embedded .contextChip {
+  display: none;
+}
+
+.hiddenFields {
+  display: none !important;
+}

@@ -1,0 +1,39 @@
+.embedVisible:global(.__wab_instance) {
+  display: grid !important;
+  max-width: 100%;
+  width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  align-content: stretch;
+}
+
+.embedRoot {
+  width: 100%;
+  background: transparent !important;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5rem 0 !important;
+  height: 100dvh;
+  max-height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  grid-column-start: 1 !important;
+  grid-column-end: -1 !important;
+}
+
+.embedRoot > * {
+  grid-column: unset;
+}
+
+.embedContent {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  grid-column-start: 1 !important;
+  grid-column-end: -1 !important;
+}

@@ -64,17 +64,18 @@ import TextAreaInput from "../../TextAreaInput"; // plasmic-import: qqmK9B2Ozci4
 import Select from "../../Select"; // plasmic-import: IQ4yTzxYcpjO/component
 import MenuItem from "../../MenuItem"; // plasmic-import: fC_9RAtGrwae/component
 import Tags from "../../Tags"; // plasmic-import: Lr-0_vYS3Xmt/component
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
+import { AntdModal } from "../../AntdModal";
+import AddTags from "../../AddTags"; // plasmic-import: u73vHai14kpP/component
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicCenterInfo.module.css"; // plasmic-import: 5fhUfrSk0s6y/css
+
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
 
 createPlasmicElementProxy;
 
@@ -97,6 +98,10 @@ export type PlasmicCenterInfo__ArgsType = {
   tagsitem?: any;
   categories?: any;
   onCategoriesChange?: (val: string) => void;
+  refresh?: string;
+  onRefreshChange?: (val: string) => void;
+  tags2?: any;
+  onTagsChange?: (val: any) => void;
 };
 type ArgPropType = keyof PlasmicCenterInfo__ArgsType;
 export const PlasmicCenterInfo__ArgProps = new Array<ArgPropType>(
@@ -112,7 +117,11 @@ export const PlasmicCenterInfo__ArgProps = new Array<ArgPropType>(
   "onTagChange",
   "tagsitem",
   "categories",
-  "onCategoriesChange"
+  "onCategoriesChange",
+  "refresh",
+  "onRefreshChange",
+  "tags2",
+  "onTagsChange"
 );
 
 export type PlasmicCenterInfo__OverridesType = {
@@ -122,6 +131,10 @@ export type PlasmicCenterInfo__OverridesType = {
   category?: Flex__<typeof Select>;
   subcategory?: Flex__<typeof Select>;
   tags?: Flex__<typeof Tags>;
+  modal?: Flex__<typeof AntdModal>;
+  addTags?: Flex__<typeof AddTags>;
+  button?: Flex__<typeof Button>;
+  button2?: Flex__<typeof Button>;
 };
 
 export interface DefaultCenterInfoProps {
@@ -138,6 +151,10 @@ export interface DefaultCenterInfoProps {
   tagsitem?: any;
   categories?: any;
   onCategoriesChange?: (val: string) => void;
+  refresh?: string;
+  onRefreshChange?: (val: string) => void;
+  tags2?: any;
+  onTagsChange?: (val: any) => void;
   className?: string;
 }
 
@@ -241,10 +258,76 @@ function PlasmicCenterInfo__RenderFunc(props: {
 
         valueProp: "categories",
         onChangeProp: "onCategoriesChange"
+      },
+      {
+        path: "modal.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "button.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "addTags.servises",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "refresh",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "refresh",
+        onChangeProp: "onRefreshChange"
+      },
+      {
+        path: "tags.tags2",
+        type: "writable",
+        variableType: "array",
+
+        valueProp: "tags2",
+        onChangeProp: "onTagsChange"
+      },
+      {
+        path: "addTags.nameValue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "addTags.textInputValue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "addTags.textInput2Value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "addTags.tag",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
 
   const $state = useDollarState(stateSpecs, {
     $props,
@@ -271,7 +354,12 @@ function PlasmicCenterInfo__RenderFunc(props: {
         sty.root
       )}
     >
-      <div className={classNames("all", sty.freeBox___2Znrw)}>
+      <div className={classNames("all", sty.freeBox___2Znrw, "dark")}>
+        <div className={classNames("all", "__wab_text", sty.text__gBffe)}>
+          {
+            "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0645\u0631\u06a9\u0632"
+          }
+        </div>
         <div className={classNames("all", sty.freeBox__qbIrE)}>
           <div className={classNames("all", "__wab_text", sty.text__arxrP)}>
             {"\u0646\u0627\u0645 \u0645\u0631\u06a9\u0632"}
@@ -295,6 +383,9 @@ function PlasmicCenterInfo__RenderFunc(props: {
                 return;
               }
             }}
+            placeholder={
+              "\u0645\u062b\u0627\u0644: \u06a9\u0644\u06cc\u0646\u06cc\u06a9 \u0622\u0631\u06cc\u0627"
+            }
             type={"line"}
             value={generateStateValueProp($state, ["titleInput", "value"])}
           />
@@ -325,7 +416,7 @@ function PlasmicCenterInfo__RenderFunc(props: {
             value={generateStateValueProp($state, ["textAreaInput", "value"])}
           />
         </div>
-        <div className={classNames("all", sty.freeBox__g3Myx)}>
+        {/* <div className={classNames("all", sty.freeBox__g3Myx)}>
           <div className={classNames("all", "__wab_text", sty.text___7T0Su)}>
             {
               "\u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc \u0627\u0635\u0644\u06cc"
@@ -412,14 +503,45 @@ function PlasmicCenterInfo__RenderFunc(props: {
               ) {
                 return;
               }
+
+              (async val => {
+                const $steps = {};
+
+                $steps["invokeGlobalAction"] =
+                  ($state.categories || []).length == 0
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc \u0627\u06cc \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f \u0648 \u0627\u0628\u062a\u062f\u0627 \u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u0647\u0627 \u0631\u0627 \u0627\u0636\u0627\u0641\u0647 \u06a9\u0646\u06cc\u062f",
+                            "top-left"
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] =
+                    await $steps["invokeGlobalAction"];
+                }
+              }).apply(null, eventArgs);
             }}
-            placeholder={``}
+            placeholder={
+              "\u0627\u0646\u062a\u062e\u0627\u0628 \u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc"
+            }
             showLabel={false}
             type={"line"}
             value={generateStateValueProp($state, ["category", "value"])}
           />
-        </div>
-        <div className={classNames("all", sty.freeBox__q6JLg)}>
+        </div> */}
+        {/* <div className={classNames("all", sty.freeBox__q6JLg)}>
           <div className={classNames("all", "__wab_text", sty.text__jq9Pr)}>
             {
               "\u0632\u06cc\u0631\u200c\u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc"
@@ -510,20 +632,70 @@ function PlasmicCenterInfo__RenderFunc(props: {
               ) {
                 return;
               }
+
+              (async val => {
+                const $steps = {};
+
+                $steps["invokeGlobalAction"] =
+                  (
+                    ($state?.categories || []).find(
+                      i => i.category_id == $state?.category?.value
+                    )?.subcategories || []
+                  ).length == 0 && $state.subcategory.isOpen
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u0632\u06cc\u0631\u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u06cc \u0627\u06cc \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f \u0648 \u0627\u0628\u062a\u062f\u0627 \u0632\u06cc\u0631\u062f\u0633\u062a\u0647 \u0628\u0646\u062f\u0647\u0627 \u0631\u0627 \u0627\u0636\u0627\u0641\u0647 \u06a9\u0646\u06cc\u062f",
+                            "top-left"
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] =
+                    await $steps["invokeGlobalAction"];
+                }
+              }).apply(null, eventArgs);
             }}
-            placeholder={``}
+            placeholder={
+              "\u0627\u0646\u062a\u062e\u0627\u0628 \u0632\u06cc\u0631 \u062f\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc"
+            }
             showLabel={false}
             type={"line"}
             value={generateStateValueProp($state, ["subcategory", "value"])}
           />
-        </div>
+        </div> */}
         <div className={classNames("all", sty.freeBox__ig0Dw)}>
           <Tags
             data-plasmic-name={"tags"}
             data-plasmic-override={overrides.tags}
             className={classNames("__wab_instance", sty.tags)}
+            disabel={true}
             onSelect3ValueChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["tags", "select3Value"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            onTagsChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["tags", "tags2"]).apply(
                 null,
                 eventArgs
               );
@@ -540,10 +712,359 @@ function PlasmicCenterInfo__RenderFunc(props: {
               "tags",
               "select3Value"
             ])}
+            tags2={generateStateValueProp($state, ["tags", "tags2"])}
             tagsitem={args.tagsitem}
           />
+
+          <div
+            className={classNames("all", "__wab_text", sty.text__l8Lxi)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateModalOpen"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["modal", "open"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateModalOpen"] != null &&
+                typeof $steps["updateModalOpen"] === "object" &&
+                typeof $steps["updateModalOpen"].then === "function"
+              ) {
+                $steps["updateModalOpen"] = await $steps["updateModalOpen"];
+              }
+            }}
+          >
+            {
+              "\u0627\u0641\u0632\u0648\u062f\u0646 \u062a\u06af \u062c\u062f\u06cc\u062f"
+            }
+          </div>
         </div>
       </div>
+      <AntdModal
+        data-plasmic-name={"modal"}
+        data-plasmic-override={overrides.modal}
+        className={classNames("__wab_instance", sty.modal)}
+        defaultStylesClassName={classNames(
+          "root_reset_qARqpE4p5tZmJuNxFbTaPz",
+          "plasmic_default_styles",
+          "plasmic_mixins",
+          styleTokensClassNames
+        )}
+        hideFooter={true}
+        modalContentClassName={classNames({ [sty["pcls_ElT7-trRoT5_"]]: true })}
+        modalScopeClassName={sty["modal__modal"]}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["modal", "open"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        open={generateStateValueProp($state, ["modal", "open"])}
+        title={null}
+        trigger={null}
+      >
+        <AddTags
+          data-plasmic-name={"addTags"}
+          data-plasmic-override={overrides.addTags}
+          className={classNames("__wab_instance", sty.addTags)}
+          nameValue={generateStateValueProp($state, ["addTags", "nameValue"])}
+          onNameValueChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["addTags", "nameValue"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onServisesChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["addTags", "servises"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onTagChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["addTags", "tag"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onTextInput2ValueChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "addTags",
+              "textInput2Value"
+            ]).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onTextInputValueChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "addTags",
+              "textInputValue"
+            ]).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          servises={generateStateValueProp($state, ["addTags", "servises"])}
+          tag={generateStateValueProp($state, ["addTags", "tag"])}
+          textInput2Value={generateStateValueProp($state, [
+            "addTags",
+            "textInput2Value"
+          ])}
+          textInputValue={generateStateValueProp($state, [
+            "addTags",
+            "textInputValue"
+          ])}
+        />
+
+        <div className={classNames("all", sty.freeBox___93Q5U)}>
+          <Button
+            data-plasmic-name={"button"}
+            data-plasmic-override={overrides.button}
+            className={classNames("__wab_instance", sty.button)}
+            color={"success"}
+            label={
+              <div
+                className={classNames("all", "__wab_text", sty.text___0Z6Wy)}
+              >
+                {"\u0630\u062e\u06cc\u0631\u0647"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateButtonLoading"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["button", "loading"]
+                      },
+                      operation: 4,
+                      value: false
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateButtonLoading"] != null &&
+                typeof $steps["updateButtonLoading"] === "object" &&
+                typeof $steps["updateButtonLoading"].then === "function"
+              ) {
+                $steps["updateButtonLoading"] =
+                  await $steps["updateButtonLoading"];
+              }
+
+              $steps["invokeGlobalAction"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "/insert/tags",
+                        undefined,
+                        {
+                          tags: $state.addTags.servises
+                        }
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["invokeGlobalAction2"] = $steps.invokeGlobalAction?.data
+                ?.success
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "success",
+                        "\u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0636\u0627\u0641\u0647 \u0634\u062f.",
+                        "top-center"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction2"] != null &&
+                typeof $steps["invokeGlobalAction2"] === "object" &&
+                typeof $steps["invokeGlobalAction2"].then === "function"
+              ) {
+                $steps["invokeGlobalAction2"] =
+                  await $steps["invokeGlobalAction2"];
+              }
+
+              $steps["runCode"] = $steps.invokeGlobalAction?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.button.loading = false;
+                          return ($state.modal.open = false);
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            size={"extraLarge"}
+          />
+
+          <Button
+            data-plasmic-name={"button2"}
+            data-plasmic-override={overrides.button2}
+            className={classNames("__wab_instance", sty.button2)}
+            color={"neutral"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__tbgux)}>
+                {"\u0628\u0633\u062a\u0646"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button2", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateModalOpen"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["modal", "open"]
+                      },
+                      operation: 4
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateModalOpen"] != null &&
+                typeof $steps["updateModalOpen"] === "object" &&
+                typeof $steps["updateModalOpen"].then === "function"
+              ) {
+                $steps["updateModalOpen"] = await $steps["updateModalOpen"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button2", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </AntdModal>
     </div>
   ) as React.ReactElement | null;
 }
@@ -555,13 +1076,21 @@ const PlasmicDescendants = {
     "textAreaInput",
     "category",
     "subcategory",
-    "tags"
+    "tags",
+    "modal",
+    "addTags",
+    "button",
+    "button2"
   ],
   titleInput: ["titleInput"],
   textAreaInput: ["textAreaInput"],
   category: ["category"],
   subcategory: ["subcategory"],
-  tags: ["tags"]
+  tags: ["tags"],
+  modal: ["modal", "addTags", "button", "button2"],
+  addTags: ["addTags"],
+  button: ["button"],
+  button2: ["button2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -573,6 +1102,10 @@ type NodeDefaultElementType = {
   category: typeof Select;
   subcategory: typeof Select;
   tags: typeof Tags;
+  modal: typeof AntdModal;
+  addTags: typeof AddTags;
+  button: typeof Button;
+  button2: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -642,6 +1175,10 @@ export const PlasmicCenterInfo = Object.assign(
     category: makeNodeComponent("category"),
     subcategory: makeNodeComponent("subcategory"),
     tags: makeNodeComponent("tags"),
+    modal: makeNodeComponent("modal"),
+    addTags: makeNodeComponent("addTags"),
+    button: makeNodeComponent("button"),
+    button2: makeNodeComponent("button2"),
 
     // Metadata about props expected for PlasmicCenterInfo
     internalVariantProps: PlasmicCenterInfo__VariantProps,

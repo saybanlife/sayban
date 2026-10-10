@@ -1,0 +1,66 @@
+.hiddenTrigger {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.content {
+  padding-bottom: 1.25rem !important;
+}
+
+.title {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--token-9M5jRUPt8Msb, #1a1a1a);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.85rem;
+  padding: 0.25rem 0.15rem 0.5rem;
+  text-align: center;
+}
+
+.lead {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--token-9M5jRUPt8Msb, #1a1a1a);
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--token-Es3BYpS8XP38, #6b6b6b);
+}
+
+.cta {
+  appearance: none;
+  border: none;
+  margin-top: 0.35rem;
+  min-height: 2.75rem;
+  border-radius: var(--token-rfsFxiclAtek, 0.75rem);
+  background: color-mix(in srgb, #8fae55 88%, #5f7a2e);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cta:active {
+  transform: translateY(1px);
+}

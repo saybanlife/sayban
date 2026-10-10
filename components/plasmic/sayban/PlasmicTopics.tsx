@@ -71,12 +71,17 @@ createPlasmicElementProxy;
 
 export type PlasmicTopics__VariantMembers = {
   size: "small";
+  color: "green";
 };
 export type PlasmicTopics__VariantsArgs = {
   size?: SingleChoiceArg<"small">;
+  color?: SingleChoiceArg<"green">;
 };
 type VariantPropType = keyof PlasmicTopics__VariantsArgs;
-export const PlasmicTopics__VariantProps = new Array<VariantPropType>("size");
+export const PlasmicTopics__VariantProps = new Array<VariantPropType>(
+  "size",
+  "color"
+);
 
 export type PlasmicTopics__ArgsType = {
   data?: any;
@@ -105,6 +110,7 @@ export interface DefaultTopicsProps {
   selected?: string;
   onSelectedChange?: (val: string) => void;
   size?: SingleChoiceArg<"small">;
+  color?: SingleChoiceArg<"green">;
   className?: string;
 }
 
@@ -170,6 +176,12 @@ function PlasmicTopics__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.size
+      },
+      {
+        path: "color",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.color
       }
     ],
     [$props, $ctx, $refs]
@@ -229,8 +241,22 @@ function PlasmicTopics__RenderFunc(props: {
               data-plasmic-name={"topic"}
               data-plasmic-override={overrides.topic}
               className={classNames("__wab_instance", sty.topic, {
+                [sty.topiccolor_green]: hasVariant($state, "color", "green"),
                 [sty.topicsize_small]: hasVariant($state, "size", "small")
               })}
+              color={(() => {
+                try {
+                  return $state.color;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()}
               data={(() => {
                 try {
                   return currentItem;

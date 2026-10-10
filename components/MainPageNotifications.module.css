@@ -1,0 +1,135 @@
+.panelPad {
+  padding: var(--token-73iLa06AE6f4);
+  overflow: auto;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-start: 0.5rem;
+  min-width: 1.5rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  vertical-align: middle;
+  color: #fff;
+  background: var(--token-ee2TuxDknsJj, #2d6a4f);
+}
+
+.emptyHint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 14rem;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--token-KjATzAYJ5IB7, #5a5a5a);
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.emptyHint p {
+  margin: 0;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--token-LN1YkB123lXQ, #e6e8e3);
+  background: var(--token-W0eejbtvb0xw, #fff);
+  direction: rtl;
+}
+
+.cardUnread {
+  border-color: color-mix(in srgb, var(--token-ee2TuxDknsJj, #2d6a4f) 35%, #e6e8e3);
+  background: color-mix(in srgb, var(--token-ee2TuxDknsJj, #2d6a4f) 6%, #fff);
+}
+
+.cardSeen {
+  opacity: 0.92;
+}
+
+.cardMain {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.thumb {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.625rem;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--token-LN1YkB123lXQ, #e6e8e3);
+}
+
+.cardBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.cardTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--token-9M5jRUPt8Msb, #1a1a1a);
+}
+
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--token-ee2TuxDknsJj, #2d6a4f);
+  flex-shrink: 0;
+}
+
+.cardText {
+  margin: 0.35rem 0 0;
+  font-size: 0.875rem;
+  text-align: right;
+  line-height: 1.7;
+  color: var(--token-KjATzAYJ5IB7, #5a5a5a);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--token-KjATzAYJ5IB7, #5a5a5a);
+}
+
+.cardActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}

@@ -2,6 +2,93 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Vazirmatn is the only font in the app. Files live in `public/font`, so they
+ * are self-hosted — no Google Fonts / web.sayban.app requests.
+ *
+ * The family is applied globally by the EmbedCss blob in
+ * PlasmicGlobalContextsProvider, which uses `!important` to beat the
+ * Plasmic-generated per-component rules. Keep both in sync.
+ */
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/font/Vazirmatn-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/font/Vazirmatn-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/font/Vazirmatn-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/font/Vazirmatn-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/font/Vazirmatn-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/font/Vazirmatn-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/font/Vazirmatn-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/font/Vazirmatn-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/font/Vazirmatn-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    /* Canonical stack. Plasmic font tokens/mixins also resolve to this. */
+    --sayban-font: "Vazirmatn", sans-serif;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -55,4 +142,167 @@
 
 .holiday-style {
   @apply !text-red-500;
+}
+
+::placeholder {
+  color: #6b7a5a !important;
+  opacity: 1;
+}
+
+.dark ::placeholder {
+  color: #c5c0a8 !important;
+  opacity: 1;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #6b7a5a !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #c5c0a8 !important;
+}
+
+/* Toast container — always above modals/dialogs (max modal z-index ~100000) */
+.sayban-toaster {
+  z-index: 99999 !important;
+  pointer-events: none;
+}
+
+.sayban-toaster > div {
+  pointer-events: auto;
+}
+
+/*
+ * Closed / inert portal overlays must never steal mouse or touch hits.
+ * An earlier unconditional `display: flex !important` kept Radix/react-aria
+ * exit-state overlays clickable, so real clicks hit the ghost layer while
+ * `element.click()` / a11y clicks still reached the button underneath.
+ */
+[data-radix-dialog-overlay][data-state="closed"],
+[data-radix-dialog-overlay][aria-hidden="true"],
+.pl__fixed.pl__inset-0[aria-hidden="true"],
+.pl__fixed.pl__inset-0:has(> [role="dialog"][aria-hidden="true"]),
+[data-react-aria-top-layer][aria-hidden="true"] {
+  pointer-events: none !important;
+}
+
+/*
+ * Panel (wide shell): keep dialogs viewport-centered on all breakpoints.
+ * Plasmic mobile rules pin overlays to flex-end + full-bleed content;
+ * those bottom-sheet styles must not apply on Panel date/time pickers.
+ * Only force layout while the overlay is actually open.
+ */
+html[data-sayban-shell="wide"] [data-radix-dialog-overlay][data-state="open"],
+html[data-sayban-shell="wide"]
+  .pl__fixed.pl__inset-0:has(> [role="dialog"]):not([aria-hidden="true"]) {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+html[data-sayban-shell="wide"] [role="dialog"]:not([aria-hidden="true"]) {
+  align-self: center !important;
+  width: min(100%, 500px) !important;
+  max-width: min(100vw - 1.5rem, 500px) !important;
+  min-width: 0 !important;
+  margin: auto !important;
+  border-radius: 8px !important;
+  max-height: min(92dvh, 100%) !important;
+}
+
+/*
+ * Public app phone shell (NOT Panel / plasmic-host).
+ * Keeps the consumer web app at a mobile width on large screens.
+ * Toggle via documentElement[data-sayban-shell] from _app.tsx.
+ */
+html[data-sayban-shell="app"] {
+  --sayban-app-max: 500px;
+  /* Match existing .page / .fixed-box width; Panel keeps Plasmic 800px default */
+  --plsmc-standard-width: 500px;
+  --plsmc-wide-width: 500px;
+}
+
+@media (min-width: 768px) {
+  html[data-sayban-shell="app"] body {
+    background: #e4dfd2;
+  }
+
+  html[data-sayban-shell="app"] #__next {
+    max-width: var(--sayban-app-max);
+    margin-inline: auto;
+    min-height: 100dvh;
+    background: var(--token-KPGXdu9o7llP, #f5f2ea);
+    box-shadow:
+      0 0 0 1px rgba(70, 64, 50, 0.06),
+      0 16px 48px rgba(70, 64, 50, 0.12);
+  }
+
+  /* Align fixed/page chrome to the phone column (same contract as EmbedCss .page) */
+  html[data-sayban-shell="app"] .page,
+  html[data-sayban-shell="app"] .fixed-box,
+  html[data-sayban-shell="app"] .fixed-bottom,
+  html[data-sayban-shell="app"] [data-reminder-event-page],
+  html[data-sayban-shell="app"] [data-reminder-detail],
+  html[data-sayban-shell="app"] [data-reminder-lightbox] {
+    max-width: var(--sayban-app-max);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    border-bottom-right-radius: var(--token-0tl2H1TRPHhV);
+    border-bottom-left-radius: var(--token-0tl2H1TRPHhV);
+  }
+
+  /*
+   * Public dialogs (date/time pickers, reminders, …) must live inside the
+   * phone column on desktop — not as a floating 500px card on the full
+   * viewport, and not with a rigid min-width that overflows narrow desktops.
+   *
+   * Plasmic/Radix portal overlay is a fixed inset-0 wrapper around
+   * [role=dialog] (class pl__fixed pl__inset-0). It does NOT always expose
+   * data-radix-dialog-overlay, so target both.
+   */
+  html[data-sayban-shell="app"] [data-radix-dialog-overlay][data-state="open"],
+  html[data-sayban-shell="app"]
+    .pl__fixed.pl__inset-0:has(> [role="dialog"]):not([aria-hidden="true"]) {
+    left: max(0px, calc((100vw - var(--sayban-app-max)) / 2)) !important;
+    right: max(0px, calc((100vw - var(--sayban-app-max)) / 2)) !important;
+    width: auto !important;
+    max-width: var(--sayban-app-max);
+    margin-inline: auto;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    align-items: stretch !important;
+    box-sizing: border-box;
+  }
+
+  html[data-sayban-shell="app"]
+    [role="dialog"]:not([aria-hidden="true"]):not([data-reminder-lightbox]) {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 16px 16px 0 0 !important;
+    align-self: stretch !important;
+    margin: 0 !important;
+    max-height: min(88dvh, 100%) !important;
+  }
+
+  /* Reminder photo lightbox must fill the phone column (no sheet max-height). */
+  html[data-sayban-shell="app"] [data-reminder-lightbox] {
+    max-height: none !important;
+    height: auto !important;
+    border-radius: 0 !important;
+  }
+}
+
+/* Reminder add-event portal: hide Homepage bottom nav under the full-page shell. */
+html[data-reminder-event-open="1"] nav[aria-label="???? ????"],
+html[data-reminder-event-open="1"] [class*="PlasmicHomepage_section__iGcIn"] {
+  visibility: hidden !important;
+  pointer-events: none !important;
 }

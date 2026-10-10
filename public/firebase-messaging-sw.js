@@ -1,54 +1,31 @@
+/* eslint-disable no-undef */
 importScripts("https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js");
 importScripts("https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging-compat.js");
 
 firebase.initializeApp({
-  apiKey: "AIzaSyBVtKyIzcD0xVEMOjeMYjDdNRozFVVrmRo",
-  authDomain: "liom-31952.firebaseapp.com",
-  databaseURL: "https://liom-31952.firebaseio.com",
-  projectId: "liom-31952",
-  storageBucket: "liom-31952.firebasestorage.app",
-  messagingSenderId: "518322220404",
-  appId: "1:518322220404:web:09527c8a42f2f017d89021",
-  measurementId: "G-TVWYWYEH1D",
+  apiKey: "AIzaSyAG_UJ8y1wWjqJT4LnFKT3O6bWGjd7CORI",
+  authDomain: "sayban-web.firebaseapp.com",
+  projectId: "sayban-web",
+  storageBucket: "sayban-web.firebasestorage.app",
+  messagingSenderId: "856382957880",
+  appId: "1:856382957880:web:13290f4f3da5805ac179cd"
 });
+
+// Activate new versions immediately so the registration never stays stuck in
+// "installing"/"waiting" while the page waits for an active worker to subscribe.
+self.addEventListener("install", () => self.skipWaiting());
+self.addEventListener("activate", (event) => event.waitUntil(self.clients.claim()));
 
 const messaging = firebase.messaging();
 
-messaging.onBackgroundMessage(function (payload) {
-  console.log("[firebase-messaging-sw.js] Background message:", payload);
+messaging.onBackgroundMessage((payload) => {
+  console.log("Background message received:", payload);
 
-  const notificationTitle =
-    payload.notification?.title || payload.data?.title || "اعلان جدید";
-
+  const notificationTitle = payload?.notification?.title || "پیام جدید";
   const notificationOptions = {
-    body: payload.notification?.body || payload.data?.body || "",
-    icon: payload.notification?.icon || "/icon-192x192.png",
-    data: payload.data || {},
+    body: payload?.notification?.body,
+    icon: "/icon-192x192.png"
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
-});
-
-self.addEventListener("notificationclick", function (event) {
-  event.notification.close();
-
-  const targetUrl =
-    event.notification?.data?.url ||
-    event.notification?.data?.click_action ||
-    "/";
-
-  event.waitUntil(
-    clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (clientList) {
-      for (const client of clientList) {
-        if ("focus" in client) {
-          client.focus();
-          return;
-        }
-      }
-
-      if (clients.openWindow) {
-        return clients.openWindow(targetUrl);
-      }
-    })
-  );
 });

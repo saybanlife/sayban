@@ -1,0 +1,187 @@
+/* Collapsible Panel sidebar — keeps Plasmic layout, toggles labels/width */
+
+.shell {
+  --panel-sidebar-expanded: 17rem;
+  --panel-sidebar-collapsed: 4.75rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: var(--panel-sidebar-expanded) !important;
+  flex-shrink: 0;
+  max-width: 100%;
+  height: 100%;
+  min-height: 0;
+  align-self: stretch;
+  border: 1px solid #647c34;
+  padding: 5px;
+  background: #647c34;
+  transition: width 0.22s ease;
+  z-index: 5;
+  box-sizing: border-box;
+}
+
+.shellCollapsed {
+  width: var(--panel-sidebar-collapsed) !important;
+}
+
+.shellCollapsed.shellHoverExpand {
+  width: var(--panel-sidebar-expanded) !important;
+  z-index: 40;
+  box-shadow: 8px 0 24px rgba(47, 58, 42, 0.12);
+  background: var(--token-W0eejbtvb0xw, #ffffff);
+}
+
+.menuHost {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.menuHost > :global(*) {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+}
+
+/*
+ * Icon-only mode: hide every menu label / brand word while collapsed.
+ * Prefer data-sidebar-* (set on the aside) so we do not depend on Plasmic
+ * class hashes; also target __wab_text and named text nodes.
+ */
+.shell[data-sidebar-mode="collapsed"]:not([data-sidebar-hover="1"])
+  .menuHost
+  :global([data-plasmic-name="text"]),
+.shell[data-sidebar-mode="collapsed"]:not([data-sidebar-hover="1"])
+  .menuHost
+  :global(.__wab_text) {
+  display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+/* Chevron for expandable items only (not MenuIcon internals) */
+.shell[data-sidebar-mode="collapsed"]:not([data-sidebar-hover="1"])
+  .menuHost
+  :global([data-plasmic-name="svg"]) {
+  display: none !important;
+}
+
+/* Hide open submenu panels while icon-only */
+.shell[data-sidebar-mode="collapsed"]:not([data-sidebar-hover="1"])
+  .menuHost
+  :global([class*="freeBox__auT2X"]),
+.shell[data-sidebar-mode="collapsed"]:not([data-sidebar-hover="1"])
+  .menuHost
+  :global([class*="freeBoxhaveSubItem"]) {
+  display: none !important;
+}
+
+/* Tighten brand / item rows when icon-only */
+.shell[data-sidebar-mode="collapsed"]:not([data-sidebar-hover="1"])
+  .menuHost
+  :global([class*="freeBox__hoGtv"]) {
+  padding-bottom: 1.25rem !important;
+  column-gap: 0 !important;
+  justify-content: center !important;
+}
+
+.shell[data-sidebar-mode="collapsed"]:not([data-sidebar-hover="1"])
+  .menuHost
+  :global([class*="freeBox__jkFp4"]),
+.shell[data-sidebar-mode="collapsed"]:not([data-sidebar-hover="1"])
+  .menuHost
+  :global([class*="freeBox__fjODh"]) {
+  justify-content: center !important;
+  column-gap: 0 !important;
+  padding-inline: 0.35rem !important;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  flex-shrink: 0;
+  padding: 0.65rem 0.75rem 0.85rem;
+  border-top: 1px solid
+    color-mix(in srgb, var(--token-fr7DwvJwRjZb, #afa491) 22%, transparent);
+  box-sizing: border-box;
+  gap: 0.5rem;
+}
+
+.shell[data-sidebar-mode="collapsed"]:not([data-sidebar-hover="1"]) .footer {
+  justify-content: center;
+  padding-inline: 0.35rem;
+}
+
+.toggleBtn {
+  appearance: none;
+  border: 1px solid
+    color-mix(in srgb, var(--token-fr7DwvJwRjZb, #afa491) 30%, transparent);
+  background: #ffffff24;
+  color: white;
+  border-radius: var(--token-rfsFxiclAtek, 0.75rem);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.25rem;
+  width: 100%;
+  padding: 0.4rem 0.65rem;
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--token-Tca_MqWoqq_b, 0.75rem);
+  font-weight: 600;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.toggleBtn:hover {
+  background: color-mix(
+    in srgb,
+    #dbe27b 45%,
+    var(--token-h2xt7bB598yU, #f5f1e3)
+  );
+}
+
+.toggleBtn:focus-visible {
+  outline: 2px solid
+    color-mix(in srgb, var(--token--ieHgGbFH1Fa, #8fae55) 55%, white);
+  outline-offset: 2px;
+}
+
+.toggleIcon {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+  display: block;
+}
+
+.toggleLabel {
+  white-space: nowrap;
+  font-size: 0.75rem;
+}
+
+.shell[data-sidebar-mode="collapsed"]:not([data-sidebar-hover="1"])
+  .toggleLabel {
+  display: none;
+}
+
+.shell[data-sidebar-mode="collapsed"]:not([data-sidebar-hover="1"])
+  .toggleBtn {
+  width: 2.5rem;
+  padding: 0.4rem;
+}

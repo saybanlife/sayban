@@ -1,0 +1,41 @@
+.bar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  text-align: right;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  margin: 0 0 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--token-LN1YkB123lXQ, #e6e8e3);
+  background: var(--token-80wG4y4sryg5, #fff);
+  direction: rtl;
+  box-sizing: border-box;
+}
+
+.copy {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-align: right;
+  color: var(--token-9M5jRUPt8Msb, #1a1a1a);
+  margin-bottom: 0.15rem;
+}
+
+.text {
+  font-size: 0.8125rem;
+  text-align: right;
+  line-height: 1.55;
+  color: var(--token-KjATzAYJ5IB7, #5a5a5a);
+}
+
+.actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}

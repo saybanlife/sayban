@@ -71,20 +71,22 @@ import sty from "./PlasmicTextInput.module.css"; // plasmic-import: lMgENIWzjnK0
 createPlasmicElementProxy;
 
 export type PlasmicTextInput__VariantMembers = {
-  type: "soft" | "plain" | "line" | "lineBox";
+  type: "soft" | "plain" | "line" | "lineBox" | "lineBoxDark";
   flat: "top" | "right" | "bottom" | "left";
   padded: "left" | "right";
   size: "langh";
   style2: "rounded";
   error: "error";
+  shadow: "shadow";
 };
 export type PlasmicTextInput__VariantsArgs = {
-  type?: SingleChoiceArg<"soft" | "plain" | "line" | "lineBox">;
+  type?: SingleChoiceArg<"soft" | "plain" | "line" | "lineBox" | "lineBoxDark">;
   flat?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   padded?: MultiChoiceArg<"left" | "right">;
   size?: SingleChoiceArg<"langh">;
   style2?: SingleChoiceArg<"rounded">;
   error?: SingleBooleanChoiceArg<"error">;
+  shadow?: SingleBooleanChoiceArg<"shadow">;
 };
 type VariantPropType = keyof PlasmicTextInput__VariantsArgs;
 export const PlasmicTextInput__VariantProps = new Array<VariantPropType>(
@@ -93,7 +95,8 @@ export const PlasmicTextInput__VariantProps = new Array<VariantPropType>(
   "padded",
   "size",
   "style2",
-  "error"
+  "error",
+  "shadow"
 );
 
 export type PlasmicTextInput__ArgsType = {
@@ -178,6 +181,7 @@ export type PlasmicTextInput__ArgsType = {
   maxLength?: number;
   minLength?: number;
   pattern?: string;
+  ariaInputOnBlur?: (focusEvent: any) => void;
 };
 type ArgPropType = keyof PlasmicTextInput__ArgsType;
 export const PlasmicTextInput__ArgProps = new Array<ArgPropType>(
@@ -194,7 +198,8 @@ export const PlasmicTextInput__ArgProps = new Array<ArgPropType>(
   "onFocus",
   "maxLength",
   "minLength",
-  "pattern"
+  "pattern",
+  "ariaInputOnBlur"
 );
 
 export type PlasmicTextInput__OverridesType = {
@@ -283,12 +288,14 @@ export interface DefaultTextInputProps {
   maxLength?: number;
   minLength?: number;
   pattern?: string;
-  type?: SingleChoiceArg<"soft" | "plain" | "line" | "lineBox">;
+  ariaInputOnBlur?: (focusEvent: any) => void;
+  type?: SingleChoiceArg<"soft" | "plain" | "line" | "lineBox" | "lineBoxDark">;
   flat?: MultiChoiceArg<"top" | "right" | "bottom" | "left">;
   padded?: MultiChoiceArg<"left" | "right">;
   size?: SingleChoiceArg<"langh">;
   style2?: SingleChoiceArg<"rounded">;
   error?: SingleBooleanChoiceArg<"error">;
+  shadow?: SingleBooleanChoiceArg<"shadow">;
   className?: string;
 }
 
@@ -378,6 +385,12 @@ function PlasmicTextInput__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.error
+      },
+      {
+        path: "shadow",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.shadow
       }
     ],
     [$props, $ctx, $refs]
@@ -436,11 +449,17 @@ function PlasmicTextInput__RenderFunc(props: {
             hasVariant($state, "padded", "left") &&
             hasVariant($state, "padded", "right"),
           [sty.ariaInputpadded_right]: hasVariant($state, "padded", "right"),
+          [sty.ariaInputshadow]: hasVariant($state, "shadow", "shadow"),
           [sty.ariaInputsize_langh]: hasVariant($state, "size", "langh"),
           [sty.ariaInputstyle2_rounded]: hasVariant(
             $state,
             "style2",
             "rounded"
+          ),
+          [sty.ariaInputtype_lineBoxDark]: hasVariant(
+            $state,
+            "type",
+            "lineBoxDark"
           ),
           [sty.ariaInputtype_lineBox]: hasVariant($state, "type", "lineBox"),
           [sty.ariaInputtype_line]: hasVariant($state, "type", "line"),
@@ -452,6 +471,7 @@ function PlasmicTextInput__RenderFunc(props: {
       inputMode: args.inputMode,
       maxLength: args.maxLength,
       minLength: args.minLength,
+      onBlur: args.ariaInputOnBlur,
       onChange: async (...eventArgs: any) => {
         generateStateOnChangePropForCodeComponents(
           $state,

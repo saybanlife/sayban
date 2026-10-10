@@ -1,15 +1,17 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import Picker from 'rmc-picker';
-import Jalaali from 'jalaali-js';
-import { CodeComponentMeta } from '@plasmicapp/host';
-import 'rmc-picker/assets/index.css';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import Picker from "rmc-picker";
+import Jalaali from "jalaali-js";
+import { CodeComponentMeta } from "@plasmicapp/host";
+import { classNames } from "@plasmicapp/react-web";
+import "rmc-picker/assets/index.css";
+import wheelStyles from "./pickerWheels.module.css";
 
 type DatePickersProps = {
-  onChange?: (values: { 
-    day: number; 
-    month: number; 
-    year: number; 
-    gregorian: { day: number; month: number; year: number } 
+  onChange?: (values: {
+    day: number;
+    month: number;
+    year: number;
+    gregorian: { day: number; month: number; year: number };
   }) => void;
   SelectedDay?: number;
   SelectedMonth?: number;
@@ -17,7 +19,34 @@ type DatePickersProps = {
   selectedValues?: { day: number; month: number; year: number };
   customYears?: { value: number; label: string }[];
   className?: string;
-  hideYear?: boolean; // ✅ اضافه شد
+  hideYear?: boolean;
+  disablePastDates?: boolean;
+};
+
+const toPersianDigits = (num: number | string): string => {
+  const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+  return num
+    .toString()
+    .replace(/\d/g, digit => persianDigits[parseInt(digit, 10)]);
+};
+
+const PICKER_ROW_HEIGHT = 34;
+
+/** Lock indicator height so rmc-picker scroll math matches CSS row slots. */
+const pickerIndicatorStyle: React.CSSProperties = {
+  height: PICKER_ROW_HEIGHT,
+  boxSizing: "border-box"
+};
+
+/** Keep item slot height fixed; text centering is handled by `.label` CSS. */
+const pickerItemStyle: React.CSSProperties = {
+  height: PICKER_ROW_HEIGHT,
+  lineHeight: 0,
+  padding: 0,
+  margin: 0,
+  boxSizing: "border-box",
+  position: "relative",
+  overflow: "hidden"
 };
 
 export const DatePickers = (props: DatePickersProps) => {
@@ -26,53 +55,123 @@ export const DatePickers = (props: DatePickersProps) => {
     SelectedDay = 5,
     SelectedMonth = 10,
     SelectedYear = 1403,
-    selectedValues = {},
     customYears = [],
     className,
-    hideYear = false, // ✅ مقدار پیش‌فرض false
+    hideYear = false,
+    disablePastDates = false
   } = props;
+
+  const todayJalaali = useMemo(() => Jalaali.toJalaali(new Date()), []);
 
   const [selectedDay, setSelectedDay] = useState<number>(SelectedDay);
   const [selectedMonth, setSelectedMonth] = useState<number>(SelectedMonth);
   const [selectedYear, setSelectedYear] = useState<number>(SelectedYear);
 
-  const toPersianDigits = (num: number | string): string => {
-    const persianDigits = '۰۱۲۳۴۵۶۷۸۹';
-    return num.toString().replace(/\d/g, (digit) => persianDigits[parseInt(digit, 10)]);
-  };
-
   const getDaysOfMonth = (month: number, year: number) => {
     const daysInMonth = Jalaali.jalaaliMonthLength(year, month);
-    return Array.from({ length: daysInMonth }, (_, i) => ({
-      value: i + 1,
-      label: toPersianDigits(i + 1),
-    }));
+    let startDay = 1;
+
+    if (
+      disablePastDates &&
+      year === todayJalaali.jy &&
+      month === todayJalaali.jm
+    ) {
+      startDay = todayJalaali.jd;
+    }
+
+    return Array.from({ length: daysInMonth - startDay + 1 }, (_, i) => {
+      const dayValue = startDay + i;
+      return {
+        value: dayValue,
+        label: toPersianDigits(dayValue)
+      };
+    });
   };
 
-  const currentYear = Jalaali.toJalaali(new Date()).jy;
+  const currentYear = todayJalaali.jy;
 
-  const months = [
-    { value: 1, label: 'فروردین' },
-    { value: 2, label: 'اردیبهشت' },
-    { value: 3, label: 'خرداد' },
-    { value: 4, label: 'تیر' },
-    { value: 5, label: 'مرداد' },
-    { value: 6, label: 'شهریور' },
-    { value: 7, label: 'مهر' },
-    { value: 8, label: 'آبان' },
-    { value: 9, label: 'آذر' },
-    { value: 10, label: 'دی' },
-    { value: 11, label: 'بهمن' },
-    { value: 12, label: 'اسفند' },
-  ].map((month) => ({ ...month, label: month.label }));
+  const months = useMemo(() => {
+    const allMonths = [
+      { value: 1, label: "فروردین" },
+      { value: 2, label: "اردیبهشت" },
+      { value: 3, label: "خرداد" },
+      { value: 4, label: "تیر" },
+      { value: 5, label: "مرداد" },
+      { value: 6, label: "شهریور" },
+      { value: 7, label: "مهر" },
+      { value: 8, label: "آبان" },
+      { value: 9, label: "آذر" },
+      { value: 10, label: "دی" },
+      { value: 11, label: "بهمن" },
+      { value: 12, label: "اسفند" }
+    ];
 
-  const years =
-    customYears.length > 0
-      ? customYears
-      : Array.from({ length: currentYear - 1300 + 1 }, (_, i) => {
-          const year = 1300 + i;
-          return { value: year, label: toPersianDigits(year) };
-        });
+    if (disablePastDates && selectedYear === todayJalaali.jy) {
+      return allMonths.filter(m => m.value >= todayJalaali.jm);
+    }
+    return allMonths;
+  }, [selectedYear, todayJalaali, disablePastDates]);
+
+  const years = useMemo(() => {
+    if (customYears.length > 0) {
+      if (disablePastDates) {
+        return customYears.filter(y => y.value >= todayJalaali.jy);
+      }
+      return customYears;
+    }
+
+    if (disablePastDates) {
+      const futureRange = 20;
+      return Array.from({ length: futureRange }, (_, i) => {
+        const year = todayJalaali.jy + i;
+        return { value: year, label: toPersianDigits(year) };
+      });
+    }
+
+    return Array.from({ length: currentYear - 1300 + 1 }, (_, i) => {
+      const year = 1300 + i;
+      return { value: year, label: toPersianDigits(year) };
+    });
+  }, [customYears, todayJalaali, disablePastDates, currentYear]);
+
+  useEffect(() => {
+    if (!disablePastDates) return;
+
+    let correctedYear = selectedYear;
+    let correctedMonth = selectedMonth;
+    let correctedDay = selectedDay;
+
+    if (selectedYear < todayJalaali.jy) {
+      correctedYear = todayJalaali.jy;
+    }
+
+    if (correctedYear === todayJalaali.jy && selectedMonth < todayJalaali.jm) {
+      correctedMonth = todayJalaali.jm;
+    }
+
+    if (
+      correctedYear === todayJalaali.jy &&
+      correctedMonth === todayJalaali.jm &&
+      selectedDay < todayJalaali.jd
+    ) {
+      correctedDay = todayJalaali.jd;
+    }
+
+    const maxDays = Jalaali.jalaaliMonthLength(correctedYear, correctedMonth);
+    if (correctedDay > maxDays) {
+      correctedDay = maxDays;
+    }
+
+    if (
+      correctedYear !== selectedYear ||
+      correctedMonth !== selectedMonth ||
+      correctedDay !== selectedDay
+    ) {
+      setSelectedYear(correctedYear);
+      setSelectedMonth(correctedMonth);
+      setSelectedDay(correctedDay);
+    }
+  }, [selectedYear, selectedMonth, selectedDay, todayJalaali, disablePastDates]);
 
   const onChangeRef = useRef(onChange);
 
@@ -81,10 +180,14 @@ export const DatePickers = (props: DatePickersProps) => {
   }, [onChange]);
 
   useEffect(() => {
-    const gregorian = Jalaali.toGregorian(selectedYear, selectedMonth, selectedDay);
-    const values = { 
-      day: selectedDay, 
-      month: selectedMonth, 
+    const gregorian = Jalaali.toGregorian(
+      selectedYear,
+      selectedMonth,
+      selectedDay
+    );
+    const values = {
+      day: selectedDay,
+      month: selectedMonth,
       year: selectedYear,
       gregorian: {
         day: gregorian.gd,
@@ -98,10 +201,27 @@ export const DatePickers = (props: DatePickersProps) => {
   }, [selectedDay, selectedMonth, selectedYear]);
 
   useEffect(() => {
-    setSelectedDay(SelectedDay);
-    setSelectedMonth(SelectedMonth);
-    setSelectedYear(SelectedYear);
-  }, [SelectedDay, SelectedMonth, SelectedYear]);
+    let initialYear = SelectedYear;
+    let initialMonth = SelectedMonth;
+    let initialDay = SelectedDay;
+
+    if (disablePastDates) {
+      initialYear = Math.max(SelectedYear, todayJalaali.jy);
+      if (initialYear === todayJalaali.jy) {
+        initialMonth = Math.max(SelectedMonth, todayJalaali.jm);
+      }
+      if (
+        initialYear === todayJalaali.jy &&
+        initialMonth === todayJalaali.jm
+      ) {
+        initialDay = Math.max(SelectedDay, todayJalaali.jd);
+      }
+    }
+
+    setSelectedDay(initialDay);
+    setSelectedMonth(initialMonth);
+    setSelectedYear(initialYear);
+  }, [SelectedDay, SelectedMonth, SelectedYear, todayJalaali, disablePastDates]);
 
   const handleChangeDay = useCallback(
     (value: string | number) => {
@@ -131,86 +251,111 @@ export const DatePickers = (props: DatePickersProps) => {
   );
 
   return (
-    <div className={className}>
-      {/* 👇 انتخاب روز */}
-      <Picker selectedValue={selectedDay} onValueChange={handleChangeDay}>
-        {getDaysOfMonth(selectedMonth, selectedYear).map((day) => (
-          <Picker.Item key={day.value} value={day.value}>
-            {day.label}
-          </Picker.Item>
-        ))}
-      </Picker>
-
-      {/* 👇 انتخاب ماه */}
-      <Picker selectedValue={selectedMonth} onValueChange={handleChangeMonth}>
-        {months.map((month) => (
-          <Picker.Item key={month.value} value={month.value}>
-            {month.label}
-          </Picker.Item>
-        ))}
-      </Picker>
-
-      {/* 👇 فقط اگر hideYear=false باشد نمایش داده می‌شود */}
-      {!hideYear && (
-        <Picker selectedValue={selectedYear} onValueChange={handleChangeYear}>
-          {years.map((year) => (
-            <Picker.Item key={year.value} value={year.value}>
-              {year.label}
+    <div className={classNames(wheelStyles.root, className)} dir="rtl">
+      <div className={wheelStyles.column}>
+        <Picker
+          selectedValue={selectedDay}
+          onValueChange={handleChangeDay}
+          itemStyle={pickerItemStyle}
+          indicatorStyle={pickerIndicatorStyle}
+        >
+          {getDaysOfMonth(selectedMonth, selectedYear).map(day => (
+            <Picker.Item key={day.value} value={day.value}>
+              <span className={wheelStyles.label}>{day.label}</span>
             </Picker.Item>
           ))}
         </Picker>
+      </div>
+
+      <div className={wheelStyles.column}>
+        <Picker
+          selectedValue={selectedMonth}
+          onValueChange={handleChangeMonth}
+          itemStyle={pickerItemStyle}
+          indicatorStyle={pickerIndicatorStyle}
+        >
+          {months.map(month => (
+            <Picker.Item key={month.value} value={month.value}>
+              <span className={wheelStyles.label}>{month.label}</span>
+            </Picker.Item>
+          ))}
+        </Picker>
+      </div>
+
+      {!hideYear && (
+        <div className={wheelStyles.column}>
+          <Picker
+            selectedValue={selectedYear}
+            onValueChange={handleChangeYear}
+            itemStyle={pickerItemStyle}
+            indicatorStyle={pickerIndicatorStyle}
+          >
+            {years.map(year => (
+              <Picker.Item key={year.value} value={year.value}>
+                <span className={wheelStyles.label}>{year.label}</span>
+              </Picker.Item>
+            ))}
+          </Picker>
+        </div>
       )}
     </div>
   );
 };
 
 export const DatePickersMeta: CodeComponentMeta<DatePickersProps> = {
-  name: 'DatePickers',
-  importPath: '@/components/DatePickers',
+  name: "DatePickers",
+  importPath: "@/components/DatePickers",
   props: {
     onChange: {
-      type: 'eventHandler',
+      type: "eventHandler",
       argTypes: [
         {
-          name: 'selectedValues',
-          type: 'object',
-        },
+          name: "selectedValues",
+          type: "object"
+        }
       ],
-      description: 'Callback function to handle changes in selected day, month, and year.',
+      description:
+        "Callback function to handle changes in selected day, month, and year."
     },
     SelectedDay: {
-      type: 'number',
-      defaultValue: 10,
+      type: "number",
+      defaultValue: 10
     },
     SelectedMonth: {
-      type: 'number',
-      defaultValue: 10,
+      type: "number",
+      defaultValue: 10
     },
     SelectedYear: {
-      type: 'number',
-      defaultValue: 1379,
+      type: "number",
+      defaultValue: 1403
     },
     selectedValues: {
-      type: 'object',
-      defaultValue: {},
+      type: "object",
+      defaultValue: {}
     },
     customYears: {
-      type: 'object',
+      type: "object",
       defaultValue: [],
-      description: 'Custom years array to override the default generated years.',
+      description: "Custom years array to override the default generated years."
     },
     hideYear: {
-      type: 'boolean',
+      type: "boolean",
       defaultValue: false,
-      description: 'اگر true باشد، انتخابگر سال نمایش داده نمی‌شود.', // ✅ اضافه شد
+      description: "اگر true باشد، انتخابگر سال نمایش داده نمی‌شود."
     },
+    disablePastDates: {
+      type: "boolean",
+      defaultValue: false,
+      description:
+        "اگر true باشد، تاریخ‌های قبل از امروز غیرقابل انتخاب می‌شوند."
+    }
   },
   states: {
     value: {
-      type: 'writable',
-      variableType: 'object',
-      valueProp: 'selectedValues',
-      onChangeProp: 'onChange',
-    },
-  },
+      type: "writable",
+      variableType: "object",
+      valueProp: "selectedValues",
+      onChangeProp: "onChange"
+    }
+  }
 };

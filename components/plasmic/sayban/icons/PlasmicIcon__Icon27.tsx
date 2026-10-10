@@ -13,220 +13,46 @@ export function Icon27Icon(props: Icon27IconProps) {
   const { className, style, title, ...restProps } = props;
   return (
     <svg
-      xmlns={"http://www.w3.org/2000/svg"}
-      xmlnsXlink={"http://www.w3.org/1999/xlink"}
-      fill={"none"}
       viewBox={"0 0 24 24"}
-      height={"1em"}
+      fill={"none"}
+      xmlns={"http://www.w3.org/2000/svg"}
       className={classNames("plasmic-default__svg", className)}
       style={style}
       {...restProps}
     >
       {title && <title>{title}</title>}
 
-      <g clipPath={"url(#a)"} filter={"url(#b)"}>
-        <g filter={"url(#c)"}>
-          <path
-            fill={"url(#d)"}
-            d={
-              "M2 9.318c0 3.729 4.02 7.673 6.962 10.06C10.294 20.46 10.96 21 12 21s1.706-.54 3.038-1.621C17.981 16.99 22 13.047 22 9.317c0-6.23-5.5-8.556-10-3.743C7.5.761 2 3.087 2 9.318"
-            }
-          ></path>
-        </g>
+      <g id={"SVGRepo_bgCarrier"} strokeWidth={"0"}></g>
 
-        <g filter={"url(#e)"}>
-          <path
-            fill={"#5698E6"}
-            fillRule={"evenodd"}
-            d={
-              "M16.5 6.25a.75.75 0 0 1 .75.75v1.25h1.25a.75.75 0 0 1 0 1.5h-1.25V11a.75.75 0 0 1-1.5 0V9.75H14.5a.75.75 0 0 1 0-1.5h1.25V7a.75.75 0 0 1 .75-.75"
-            }
-            clipRule={"evenodd"}
-          ></path>
-        </g>
+      <g
+        id={"SVGRepo_tracerCarrier"}
+        strokeLinecap={"round"}
+        strokeLinejoin={"round"}
+      ></g>
+
+      <g id={"SVGRepo_iconCarrier"}>
+        <path
+          opacity={".5"}
+          fill={"currentColor"}
+          d={
+            "M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+          }
+        ></path>
+
+        <path
+          fill={"currentColor"}
+          d={
+            "M12 7.75C11.3787 7.75 10.875 8.25368 10.875 8.875C10.875 9.28921 10.5392 9.625 10.125 9.625C9.71079 9.625 9.375 9.28921 9.375 8.875C9.375 7.42525 10.5503 6.25 12 6.25C13.4497 6.25 14.625 7.42525 14.625 8.875C14.625 9.58584 14.3415 10.232 13.883 10.704C13.7907 10.7989 13.7027 10.8869 13.6187 10.9708C13.4029 11.1864 13.2138 11.3753 13.0479 11.5885C12.8289 11.8699 12.75 12.0768 12.75 12.25V13C12.75 13.4142 12.4142 13.75 12 13.75C11.5858 13.75 11.25 13.4142 11.25 13V12.25C11.25 11.5948 11.555 11.0644 11.8642 10.6672C12.0929 10.3733 12.3804 10.0863 12.6138 9.85346C12.6842 9.78321 12.7496 9.71789 12.807 9.65877C13.0046 9.45543 13.125 9.18004 13.125 8.875C13.125 8.25368 12.6213 7.75 12 7.75Z"
+          }
+        ></path>
+
+        <path
+          fill={"currentColor"}
+          d={
+            "M12 17C12.5523 17 13 16.5523 13 16C13 15.4477 12.5523 15 12 15C11.4477 15 11 15.4477 11 16C11 16.5523 11.4477 17 12 17Z"
+          }
+        ></path>
       </g>
-
-      <defs>
-        <filter
-          id={"b"}
-          width={"28"}
-          height={"26"}
-          x={"-2"}
-          y={"-1"}
-          colorInterpolationFilters={"sRGB"}
-          filterUnits={"userSpaceOnUse"}
-        >
-          <feFlood floodOpacity={"0"} result={"BackgroundImageFix"}></feFlood>
-
-          <feColorMatrix
-            in={"SourceAlpha"}
-            result={"hardAlpha"}
-            type={"matrix"}
-            values={"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"}
-          ></feColorMatrix>
-
-          <feOffset></feOffset>
-
-          <feGaussianBlur stdDeviation={"2"}></feGaussianBlur>
-
-          <feComposite in2={"hardAlpha"} operator={"out"}></feComposite>
-
-          <feColorMatrix
-            type={"matrix"}
-            values={"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"}
-          ></feColorMatrix>
-
-          <feBlend
-            in2={"BackgroundImageFix"}
-            mode={"normal"}
-            result={"effect1_dropShadow_1_27"}
-          ></feBlend>
-
-          <feBlend
-            in={"SourceGraphic"}
-            in2={"effect1_dropShadow_1_27"}
-            mode={"normal"}
-            result={"shape"}
-          ></feBlend>
-        </filter>
-
-        <filter
-          id={"c"}
-          width={"20"}
-          height={"21"}
-          x={"2"}
-          y={"0"}
-          colorInterpolationFilters={"sRGB"}
-          filterUnits={"userSpaceOnUse"}
-        >
-          <feFlood floodOpacity={"0"} result={"BackgroundImageFix"}></feFlood>
-
-          <feBlend
-            in={"SourceGraphic"}
-            in2={"BackgroundImageFix"}
-            mode={"normal"}
-            result={"shape"}
-          ></feBlend>
-
-          <feColorMatrix
-            in={"SourceAlpha"}
-            result={"hardAlpha"}
-            type={"matrix"}
-            values={"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"}
-          ></feColorMatrix>
-
-          <feOffset dy={"-3"}></feOffset>
-
-          <feGaussianBlur stdDeviation={"2"}></feGaussianBlur>
-
-          <feComposite
-            in2={"hardAlpha"}
-            k2={"-1"}
-            k3={"1"}
-            operator={"arithmetic"}
-          ></feComposite>
-
-          <feColorMatrix
-            type={"matrix"}
-            values={"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"}
-          ></feColorMatrix>
-
-          <feBlend
-            in2={"shape"}
-            mode={"normal"}
-            result={"effect1_innerShadow_1_27"}
-          ></feBlend>
-        </filter>
-
-        <filter
-          id={"e"}
-          width={"9.5"}
-          height={"9.5"}
-          x={"11.75"}
-          y={"4.25"}
-          colorInterpolationFilters={"sRGB"}
-          filterUnits={"userSpaceOnUse"}
-        >
-          <feFlood floodOpacity={"0"} result={"BackgroundImageFix"}></feFlood>
-
-          <feColorMatrix
-            in={"SourceAlpha"}
-            result={"hardAlpha"}
-            type={"matrix"}
-            values={"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"}
-          ></feColorMatrix>
-
-          <feOffset></feOffset>
-
-          <feGaussianBlur stdDeviation={"1"}></feGaussianBlur>
-
-          <feComposite in2={"hardAlpha"} operator={"out"}></feComposite>
-
-          <feColorMatrix
-            type={"matrix"}
-            values={"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"}
-          ></feColorMatrix>
-
-          <feBlend
-            in2={"BackgroundImageFix"}
-            mode={"normal"}
-            result={"effect1_dropShadow_1_27"}
-          ></feBlend>
-
-          <feBlend
-            in={"SourceGraphic"}
-            in2={"effect1_dropShadow_1_27"}
-            mode={"normal"}
-            result={"shape"}
-          ></feBlend>
-
-          <feColorMatrix
-            in={"SourceAlpha"}
-            result={"hardAlpha"}
-            type={"matrix"}
-            values={"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"}
-          ></feColorMatrix>
-
-          <feOffset dy={".2"}></feOffset>
-
-          <feGaussianBlur stdDeviation={"2"}></feGaussianBlur>
-
-          <feComposite
-            in2={"hardAlpha"}
-            k2={"-1"}
-            k3={"1"}
-            operator={"arithmetic"}
-          ></feComposite>
-
-          <feColorMatrix
-            type={"matrix"}
-            values={"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"}
-          ></feColorMatrix>
-
-          <feBlend
-            in2={"shape"}
-            mode={"normal"}
-            result={"effect2_innerShadow_1_27"}
-          ></feBlend>
-        </filter>
-
-        <linearGradient
-          id={"d"}
-          x1={"12"}
-          x2={"12"}
-          y1={"3"}
-          y2={"21"}
-          gradientUnits={"userSpaceOnUse"}
-        >
-          <stop stopColor={"#FDFEFF"}></stop>
-
-          <stop offset={"1"} stopColor={"#F1F5FE"}></stop>
-        </linearGradient>
-
-        <clipPath id={"a"}>
-          <path fill={"#fff"} d={"M0 0h24v24H0z"}></path>
-        </clipPath>
-      </defs>
     </svg>
   );
 }

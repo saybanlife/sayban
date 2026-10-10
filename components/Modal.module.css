@@ -1,0 +1,24 @@
+/*
+ * Same shell for every panel Modal, including center-page dialogs
+ * (contact/location, center facts, gallery, FAQ):
+ * cap the dialog, scroll only the body.
+ *
+ * Native <select> popups are not used inside these dialogs — see
+ * PanelOptionSelect. Overflow on the shell no longer blocks option picks.
+ */
+.dialog {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: min(90vh, 92dvh);
+  overflow: hidden;
+}
+
+.body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}

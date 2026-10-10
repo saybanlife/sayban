@@ -1,0 +1,20 @@
+.workspace {
+  /* Preview lives in the Plasmic sidebar column, so this stays single-column. */
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  direction: rtl;
+  text-align: right;
+  margin: 0.75rem 0 1.5rem;
+  box-sizing: border-box;
+  /* Portalled to the end of the Plasmic card column; show it first. */
+  order: -1;
+}
+
+.mainCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  min-width: 0;
+}
+

@@ -60,13 +60,9 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import DayItem from "../../DayItem"; // plasmic-import: KwLDzQVC-NAg/component
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
+import { isHolidayDate } from "../../reservation/bookingCalendar";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -167,6 +163,8 @@ function PlasmicCalendar__RenderFunc(props: {
     [$props, $ctx, $refs]
   );
 
+  const $globalActions = useGlobalActions?.();
+
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
@@ -174,6 +172,28 @@ function PlasmicCalendar__RenderFunc(props: {
     $q: {},
     $refs
   });
+
+  // `dayItem[].disable` is initialised once by Plasmic; re-apply when holidays
+  // arrive from the network so closed days actually become unclickable.
+  React.useEffect(() => {
+    const days = Array.isArray($props.days) ? $props.days : [];
+    days.forEach((day, index) => {
+      const formatted =
+        day && typeof day === "object"
+          ? String((day as { formatted?: unknown }).formatted ?? "")
+          : "";
+      if (!formatted) return;
+      $stateSet(
+        $state,
+        ["dayItem", index, "disable"],
+        isHolidayDate($props.holidays, formatted)
+      );
+    });
+
+    if (isHolidayDate($props.holidays, String($state.selected ?? ""))) {
+      $stateSet($state, ["selected"], undefined);
+    }
+  }, [$props.holidays, $props.days, $state]);
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -279,6 +299,28 @@ function PlasmicCalendar__RenderFunc(props: {
               ) {
                 $steps["updateSelected2"] = await $steps["updateSelected2"];
               }
+
+              $steps["updateSelected3"] = $state.dayItem[currentIndex].disable
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "error",
+                        "\u062e\u062f\u0645\u0627\u062a \u062f\u0631 \u0631\u0648\u0632\u0647\u0627\u06cc \u062a\u0639\u0637\u06cc\u0644 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644 \u0627\u0633\u062a",
+                        "bottom-center"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSelected3"] != null &&
+                typeof $steps["updateSelected3"] === "object" &&
+                typeof $steps["updateSelected3"].then === "function"
+              ) {
+                $steps["updateSelected3"] = await $steps["updateSelected3"];
+              }
             },
             onDisableChange: async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
@@ -318,16 +360,16 @@ function PlasmicCalendar__RenderFunc(props: {
                 initFunc: ({ $props, $state, $queries, $q }) =>
                   (() => {
                     try {
-                      return (
-                        $props.holidays?.includes(currentItem.formatted) ||
-                        false
+                      return isHolidayDate(
+                        $props.holidays,
+                        currentItem.formatted
                       );
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
                         e?.plasmicType === "PlasmicUndefinedDataError"
                       ) {
-                        return [];
+                        return false;
                       }
                       throw e;
                     }

@@ -1,0 +1,39 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 220px;
+  height: clamp(220px, 42vw, 300px);
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 12px 8px;
+}
+
+.lottie {
+  width: min(100%, 280px);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 638 / 572;
+  display: block;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.lottie :global(svg) {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .wrap {
+    min-height: 180px;
+    height: 220px;
+    padding: 8px 4px;
+  }
+
+  .lottie {
+    width: min(100%, 220px);
+  }
+}

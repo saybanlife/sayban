@@ -60,34 +60,29 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import Header from "../../Header"; // plasmic-import: Ot6T4AzLOJkl/component
+import {
+  activeFilterKeys,
+  filterChipLabel
+} from "../../centers/centerFilters";
+import ServiceHoursNotice from "../../centers/ServiceHoursNotice";
+import filterStyles from "../../centers/CentersHeaderFilters.module.css";
 import Search from "../../Search"; // plasmic-import: kFfVHLyoRXeP/component
 import ItemShow from "../../ItemShow"; // plasmic-import: hegjECXSYJcF/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
 import Item from "../../Item"; // plasmic-import: lqR7VxT6h9YH/component
 import Filter from "../../Filter"; // plasmic-import: TmisqS8piGSB/component
 import Sort from "../../Sort"; // plasmic-import: V2In34aoYVht/component
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicSubcategories.module.css"; // plasmic-import: JM9_woEGqy8m/css
 
 import Icon54Icon from "./icons/PlasmicIcon__Icon54"; // plasmic-import: 4na0R6L_flPD/icon
-<<<<<<< HEAD
-import Icon10Icon from "../website_starter/icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
-import Icon62Icon from "./icons/PlasmicIcon__Icon62"; // plasmic-import: DmL_SuYFROX3/icon
-import Icon11Icon from "../website_starter/icons/PlasmicIcon__Icon11"; // plasmic-import: TLjQehPXSyaR/icon
-=======
 import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: MSkuAHzkec39/icon
 import Icon62Icon from "./icons/PlasmicIcon__Icon62"; // plasmic-import: DmL_SuYFROX3/icon
 import Icon11Icon from "./icons/PlasmicIcon__Icon11"; // plasmic-import: TLjQehPXSyaR/icon
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 createPlasmicElementProxy;
 
@@ -259,6 +254,12 @@ function PlasmicSubcategories__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "header.runCode",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -294,8 +295,39 @@ function PlasmicSubcategories__RenderFunc(props: {
         data-plasmic-override={overrides.header}
         children={null}
         className={classNames("__wab_instance", sty.header)}
+        onRunCodeChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["header", "runCode"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        runCode={generateStateValueProp($state, ["header", "runCode"])}
         search={true}
-        slot={"\u06a9\u0644\u06cc\u0646\u06cc\u06a9 \u0647\u0627"}
+        slot={
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.subcategori.name || "کلینیک ها";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "\u06a9\u0644\u06cc\u0646\u06cc\u06a9 \u0647\u0627";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        }
         slot2={
           <React.Fragment>
             <Search
@@ -333,8 +365,20 @@ function PlasmicSubcategories__RenderFunc(props: {
               text={generateStateValueProp($state, ["search", "text"])}
             />
 
-            <div className={classNames("all", sty.freeBox__w1FkG)}>
-              <div className={classNames("all", sty.freeBox__bq5Fi)}>
+            <div
+              className={classNames(
+                "all",
+                sty.freeBox__w1FkG,
+                filterStyles.filterRow
+              )}
+            >
+              <div
+                className={classNames(
+                  "all",
+                  sty.freeBox__bq5Fi,
+                  filterStyles.actions
+                )}
+              >
                 <ItemShow
                   className={classNames("__wab_instance", sty.itemShow__iFbc5)}
                   currentItem={(() => {
@@ -352,6 +396,16 @@ function PlasmicSubcategories__RenderFunc(props: {
                         return "\u0645\u0631\u062a\u0628 \u0633\u0627\u0632\u06cc";
                       }
                       throw e;
+                    }
+                  })()}
+                  select={(() => {
+                    try {
+                      return (
+                        $state.sort.radioGroupValue != null &&
+                        $state.sort.radioGroupValue !== "null"
+                      );
+                    } catch (e) {
+                      return false;
                     }
                   })()}
                   onClick={async event => {
@@ -450,13 +504,16 @@ function PlasmicSubcategories__RenderFunc(props: {
               </div>
               {(() => {
                 try {
-                  return Object.keys($state.filter.filtes).length > 0;
+                  const searchChip =
+                    String($state.search.text ?? "").trim().length > 0;
+                  const filterKeys = activeFilterKeys($state.filter.filtes);
+                  return searchChip || filterKeys.length > 0;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
                     e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    return true;
+                    return false;
                   }
                   throw e;
                 }
@@ -465,82 +522,88 @@ function PlasmicSubcategories__RenderFunc(props: {
                   className={classNames(
                     "all",
                     sty.freeBox__atFlk,
+                    filterStyles.chipsScroll,
                     "container-scroll"
                   )}
                 >
-                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                    (() => {
-                      try {
-                        return Object.keys($state.filter.filtes);
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
-                        }
-                        throw e;
-                      }
-                    })()
-                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                    const currentItem = __plasmic_item_0;
-                    const currentIndex = __plasmic_idx_0;
-                    return (
-                      <ItemShow
-                        children={null}
-                        className={classNames(
-                          "__wab_instance",
-                          sty.itemShow__dYLic
-                        )}
-                        currentItem={(() => {
-                          try {
-                            return $state.filter.filtes[currentItem].label;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return "\u0641\u06cc\u0644\u062a\u0631";
-                            }
-                            throw e;
-                          }
-                        })()}
-                        key={currentIndex}
-                        onClick={async event => {
-                          const $steps = {};
+                  {(() => {
+                    try {
+                      const searchText = String($state.search.text ?? "").trim();
+                      const chips: React.ReactNode[] = [];
 
-                          $steps["runCode"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  customFunction: async () => {
-                                    return delete $state.filter.filtes[
-                                      currentItem
-                                    ];
-                                  }
-                                };
-                                return (({ customFunction }) => {
-                                  return customFunction();
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["runCode"] != null &&
-                            typeof $steps["runCode"] === "object" &&
-                            typeof $steps["runCode"].then === "function"
-                          ) {
-                            $steps["runCode"] = await $steps["runCode"];
-                          }
-                        }}
-                        select={true}
-                        slot={
-                          <Icon11Icon
-                            className={classNames("all", sty.svg__sykTg)}
-                            role={"img"}
+                      if (searchText) {
+                        chips.push(
+                          <ItemShow
+                            children={null}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.itemShow__dYLic,
+                              filterStyles.chip
+                            )}
+                            currentItem={`جستجو: ${searchText}`}
+                            key={"__search__"}
+                            onClick={async () => {
+                              $stateSet($state, ["search", "text"], "");
+                              $stateSet($state, ["search", "textInputValue"], "");
+                            }}
+                            select={true}
+                            slot={
+                              <Icon11Icon
+                                className={classNames("all", sty.svg__sykTg)}
+                                role={"img"}
+                              />
+                            }
                           />
-                        }
-                      />
-                    );
-                  })}
+                        );
+                      }
+
+                      for (const currentItem of activeFilterKeys(
+                        $state.filter.filtes
+                      )) {
+                        const label = filterChipLabel(
+                          currentItem,
+                          $state.filter.filtes[currentItem]
+                        );
+                        if (!label) continue;
+                        chips.push(
+                          <ItemShow
+                            children={null}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.itemShow__dYLic,
+                              filterStyles.chip
+                            )}
+                            currentItem={label}
+                            key={currentItem}
+                            onClick={async () => {
+                              const next = {
+                                ...($state.filter.filtes || {})
+                              };
+                              delete next[currentItem];
+                              $stateSet($state, ["filter", "filtes"], next);
+                            }}
+                            select={true}
+                            slot={
+                              <Icon11Icon
+                                className={classNames("all", sty.svg__sykTg)}
+                                role={"img"}
+                              />
+                            }
+                          />
+                        );
+                      }
+
+                      return chips;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()}
                 </div>
               ) : null}
             </div>
@@ -549,6 +612,7 @@ function PlasmicSubcategories__RenderFunc(props: {
       />
 
       <div className={classNames("all", sty.freeBox__zwWvt)}>
+        <ServiceHoursNotice className={sty.serviceHoursNotice} />
         <ApiRequest
           data-plasmic-name={"centers"}
           data-plasmic-override={overrides.centers}
@@ -650,11 +714,7 @@ function PlasmicSubcategories__RenderFunc(props: {
               throw e;
             }
           })()}
-<<<<<<< HEAD
-          url={"https://sayban.darkube.ir/webhook/centers"}
-=======
           url={"/centers"}
->>>>>>> plasmicops/rQ6tUgoS/newMain
         >
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {
@@ -695,8 +755,6 @@ function PlasmicSubcategories__RenderFunc(props: {
                 onClick={async event => {
                   const $steps = {};
 
-<<<<<<< HEAD
-=======
                   $steps["updateCenter3"] = true
                     ? (() => {
                         const actionArgs = {
@@ -720,7 +778,6 @@ function PlasmicSubcategories__RenderFunc(props: {
                     $steps["updateCenter3"] = await $steps["updateCenter3"];
                   }
 
->>>>>>> plasmicops/rQ6tUgoS/newMain
                   $steps["updateCenter"] = true
                     ? (() => {
                         const actionArgs = {

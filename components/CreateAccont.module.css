@@ -1,0 +1,32 @@
+.emailWrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  row-gap: 0.35rem;
+  min-width: 0;
+}
+
+.emailError {
+  font-size: 0.75rem;
+  color: #d64545;
+  text-align: right;
+  width: 100%;
+}
+
+.stepHint {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--token-ee2TuxDknsJj, #2d6a4f);
+}
+
+.submitLabel {
+  white-space: pre;
+  font-size: var(--token-Tca_MqWoqq_b, 1rem);
+  font-weight: 700;
+  padding-top: var(--token-RuQNZpYm0Yds, 0.25rem);
+  padding-bottom: var(--token-RuQNZpYm0Yds, 0.25rem);
+}

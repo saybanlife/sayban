@@ -1,0 +1,189 @@
+/* Content styles for Support — layout/tokens from PlasmicSupport (Rules copy) */
+
+.card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: var(--token-h2xt7bB598yU);
+  box-shadow: 0px 2px 5px 0px #afa49199;
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: var(--token-0tl2H1TRPHhV);
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--token-rfsFxiclAtek);
+  padding-top: 6.5rem;
+}
+
+@media (min-width: 0px) and (max-width: 768px) {
+  .card {
+    margin-left: var(--token-cfon0PHiXQoL);
+    margin-right: var(--token-cfon0PHiXQoL);
+  }
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: var(--token-cfon0PHiXQoL);
+  direction: rtl;
+}
+
+.statusDot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 999px;
+  background: #16a34a;
+  box-shadow: 0 0 0 4px color-mix(in srgb, #16a34a 22%, transparent);
+  flex-shrink: 0;
+}
+
+.statusText {
+  color: var(--token-9M5jRUPt8Msb);
+  font-weight: 700;
+  font-size: var(--token-ehIkf6s-dMLU, 1rem);
+}
+
+.hint {
+  margin: 0;
+  color: var(--token-KjATzAYJ5IB7);
+  font-size: var(--token-R7X4jvpZsbD-);
+  line-height: 1.7;
+  text-align: right;
+}
+
+.textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 8rem;
+  resize: vertical;
+  border: 1px solid color-mix(in srgb, var(--token-C6B6ZAuqICKE) 55%, transparent);
+  border-radius: var(--token-rfsFxiclAtek);
+  background: var(--token-W0eejbtvb0xw, var(--panel-bg-elevated, #fff));
+  padding: var(--token-rfsFxiclAtek);
+  font-family: inherit;
+  font-size: var(--token-R7X4jvpZsbD-);
+  color: var(--token-9M5jRUPt8Msb);
+  text-align: right;
+  direction: rtl;
+}
+
+.textarea:focus {
+  outline: 2px solid color-mix(in srgb, var(--token-ee2TuxDknsJj) 45%, transparent);
+  outline-offset: 1px;
+}
+
+.error {
+  color: #b91c1c;
+  font-size: var(--token-U1UvBDD-VoLt);
+  text-align: right;
+}
+
+.cta:global(.__wab_instance) {
+  width: 100%;
+  height: 3rem;
+}
+
+.phoneLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: var(--token-ee2TuxDknsJj);
+  font-weight: 600;
+  font-size: var(--token-R7X4jvpZsbD-);
+  padding: var(--token-cfon0PHiXQoL) 0;
+  border-radius: var(--token-rfsFxiclAtek);
+  border: 1px solid color-mix(in srgb, var(--token-ee2TuxDknsJj) 35%, transparent);
+  background: color-mix(in srgb, var(--token-ee2TuxDknsJj) 8%, white);
+}
+
+.historyCard {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: var(--token-h2xt7bB598yU);
+  box-shadow: 0px 2px 5px 0px #afa49199;
+  border-radius: var(--token-rfsFxiclAtek);
+  padding: var(--token-0tl2H1TRPHhV);
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--token-cfon0PHiXQoL);
+  margin: 0 var(--token-0tl2H1TRPHhV) var(--token-73iLa06AE6f4);
+}
+
+@media (min-width: 0px) and (max-width: 768px) {
+  .historyCard {
+    margin-left: var(--token-cfon0PHiXQoL);
+    margin-right: var(--token-cfon0PHiXQoL);
+  }
+}
+
+.historyTitle {
+  font-weight: 700;
+  color: var(--token-9M5jRUPt8Msb);
+  text-align: right;
+}
+
+.historyEmpty {
+  color: var(--token-KjATzAYJ5IB7);
+  text-align: center;
+  padding: 0.5rem 0;
+  font-size: var(--token-U1UvBDD-VoLt);
+}
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--token-cfon0PHiXQoL);
+}
+
+.historyItem {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+  width: 100%;
+  text-align: right;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--token-C6B6ZAuqICKE) 35%, transparent);
+  background: transparent;
+  padding: 0.65rem 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.historyItem:last-child {
+  border-bottom: 0;
+}
+
+.historyTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  column-gap: var(--token-cfon0PHiXQoL);
+}
+
+.historyPreview {
+  flex: 1;
+  color: var(--token-9M5jRUPt8Msb);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.historyBadge {
+  flex-shrink: 0;
+  font-size: var(--token-U1UvBDD-VoLt);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--token-C6B6ZAuqICKE) 20%, white);
+  color: var(--token-9M5jRUPt8Msb);
+}
+
+.historyMeta {
+  font-size: var(--token-U1UvBDD-VoLt);
+  color: var(--token-KjATzAYJ5IB7);
+}

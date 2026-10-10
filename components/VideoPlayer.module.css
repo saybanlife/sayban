@@ -1,0 +1,88 @@
+/*
+ * Styling mirrors the tokens the generated PlasmicVideoPlayer used for its root
+ * and media element, so replacing the player does not change how it sits in the
+ * staff and edit layouts.
+ */
+
+.root {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 640px;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+  background: #000;
+  border-radius: var(--token-73iLa06AE6f4);
+  box-shadow: 0px 2px 5px 0px var(--token-fr7DwvJwRjZb);
+}
+
+.video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  background: #000;
+}
+
+/* In fullscreen the container is the viewport, so let the video fill it. */
+.root:fullscreen {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  background: #000;
+}
+
+.root:fullscreen .video {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: contain;
+}
+
+.fullscreenButton {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  color: #fff;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.55);
+  border: none;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.fullscreenButton:hover,
+.fullscreenButton:focus-visible {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.fullscreenButton svg {
+  width: 20px;
+  height: 20px;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 640px;
+  max-width: 100%;
+  min-height: 180px;
+  padding: var(--token-I0Xtb9z7Q0X3, 16px);
+  color: #6b7280;
+  font-size: 0.875rem;
+  text-align: center;
+  background: #f3f4f6;
+  border-radius: var(--token-73iLa06AE6f4);
+}

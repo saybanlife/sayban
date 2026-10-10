@@ -1,0 +1,218 @@
+/*
+ * Category picker tiles in «نوع یادآوری را انتخاب کنید» bottom sheet.
+ * Only restyles the three type items — dialog chrome stays Plasmic.
+ */
+
+.host {
+  --rc-card: #fdf9e8;
+  --rc-card-pressed: #f5efcf;
+  --rc-border: #a3b18a;
+  --rc-icon-bg: #fbefc0;
+  --rc-icon: #b58500;
+  --rc-ink: #1f2a0f;
+  --rc-green: #6f8a3a;
+  --rc-gap: 10px;
+  width: 90%;
+  --rc-radius: 20px;
+  font-family: Vazirmatn, sans-serif;
+}
+
+/* Three equal tiles in one RTL row */
+.host :global([class*="freeBox__g6Urn"]) {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+  gap: var(--rc-gap) !important;
+  grid-template-columns: none !important;
+  width: 100% !important;
+  padding-block: 0.35rem 1.25rem !important;
+  padding-inline: 1rem !important;
+  box-sizing: border-box !important;
+}
+
+.host :global([class*="freeBox__fnxV4"]) {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  row-gap: 0 !important;
+  padding: 0 !important;
+}
+
+/* Hide section heading (label lives on the tile) */
+.host :global([class*="text__yjipn"]),
+.host :global([class*="freeBox__alNqp"]) {
+  display: none !important;
+}
+
+.host :global([class*="freeBox__tbvNm"]) {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  min-height: 0 !important;
+}
+
+.host :global([class*="radioGroupLiom2"].__wab_instance),
+.host :global([class*="RadioGroupLiom"]) {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+}
+
+.host :global([class*="PlasmicRadioGroupLiom_root"]),
+.host :global([class*="RadioGroupLiom"] [class*="root"]) {
+  width: 100% !important;
+  height: 100% !important;
+  column-gap: 0 !important;
+  padding: 0 !important;
+}
+
+/* The clickable type card */
+.host :global([class*="RadioGrop_rooticon"]),
+.host :global([class*="radioGropicon"].__wab_instance),
+.host :global([class*="PlasmicRadioGrop_rooticon"]) {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  min-height: 7.25rem !important;
+  padding-block: 16px !important;
+  padding-inline: 4px !important;
+  box-sizing: border-box !important;
+  border-radius: var(--rc-radius) !important;
+  border: 1px solid var(--rc-border) !important;
+  background: var(--rc-card) !important;
+  box-shadow: 0 2px 8px rgba(31, 42, 15, 0.07) !important;
+  transition:
+    transform 120ms ease,
+    background-color 120ms ease,
+    box-shadow 120ms ease !important;
+  cursor: pointer;
+}
+
+.host :global([class*="RadioGrop_rooticon"]:active),
+.host :global([class*="PlasmicRadioGrop_rooticon"]:active) {
+  transform: scale(0.97) !important;
+  background: var(--rc-card-pressed) !important;
+}
+
+.host :global([class*="RadioGrop_rooticon"]:focus-visible),
+.host :global([class*="PlasmicRadioGrop_rooticon"]:focus-visible),
+.host :global([class*="RadioGrop_rooticon"]:focus-visible) {
+  outline: 2px solid var(--rc-green) !important;
+  outline-offset: 2px !important;
+}
+
+.host :global([class*="RadioGrop"] [class*="freeBoxicon"]),
+.host :global([class*="PlasmicRadioGrop_freeBoxicon"]) {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Icon circle */
+.host :global([class*="menuIconicon"].__wab_instance),
+.host :global([class*="MenuIcon"]) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px !important;
+  min-height: 46px !important;
+  margin: 0 !important;
+  margin-bottom: 0 !important;
+  border-radius: 999px !important;
+  background: var(--rc-icon-bg) !important;
+  color: var(--rc-icon) !important;
+  flex-shrink: 0 !important;
+}
+
+.host :global([class*="menuIconicon"] svg),
+.host :global([class*="MenuIcon"] svg) {
+  display: none !important;
+}
+
+.host :global([class*="menuIconicon"].__wab_instance)::before,
+.host :global([data-reminder-type] [class*="menuIconicon"])::before {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 26px;
+  background-color: var(--rc-icon);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/* زمان دارو — pill */
+.host :global([data-reminder-type="medicine_time"] [class*="menuIconicon"])::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Crect x='3.5' y='8' width='17' height='8' rx='4' stroke='black' stroke-width='1.8'/%3E%3Cpath d='M12 8v8' stroke='black' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Crect x='3.5' y='8' width='17' height='8' rx='4' stroke='black' stroke-width='1.8'/%3E%3Cpath d='M12 8v8' stroke='black' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* نوبت پزشکی — calendar with check */
+.host :global([data-reminder-type="appointment"] [class*="menuIconicon"])::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Crect x='3.5' y='5' width='17' height='15.5' rx='2.5' stroke='black' stroke-width='1.8'/%3E%3Cpath d='M8 3.5v3.5M16 3.5v3.5M3.5 9.5h17' stroke='black' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='m9 14.2 2 2 4-4.2' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Crect x='3.5' y='5' width='17' height='15.5' rx='2.5' stroke='black' stroke-width='1.8'/%3E%3Cpath d='M8 3.5v3.5M16 3.5v3.5M3.5 9.5h17' stroke='black' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='m9 14.2 2 2 4-4.2' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* مناسبت — calendar */
+.host :global([data-reminder-type="occasion"] [class*="menuIconicon"])::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Crect x='3.5' y='5' width='17' height='15.5' rx='2.5' stroke='black' stroke-width='1.8'/%3E%3Cpath d='M8 3.5v3.5M16 3.5v3.5M3.5 9.5h17' stroke='black' stroke-width='1.8' stroke-linecap='round'/%3E%3Ccircle cx='8.5' cy='14' r='1.1' fill='black'/%3E%3Ccircle cx='12' cy='14' r='1.1' fill='black'/%3E%3Ccircle cx='15.5' cy='14' r='1.1' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Crect x='3.5' y='5' width='17' height='15.5' rx='2.5' stroke='black' stroke-width='1.8'/%3E%3Cpath d='M8 3.5v3.5M16 3.5v3.5M3.5 9.5h17' stroke='black' stroke-width='1.8' stroke-linecap='round'/%3E%3Ccircle cx='8.5' cy='14' r='1.1' fill='black'/%3E%3Ccircle cx='12' cy='14' r='1.1' fill='black'/%3E%3Ccircle cx='15.5' cy='14' r='1.1' fill='black'/%3E%3C/svg%3E");
+}
+
+/* Fallback icon when type unknown */
+.host :global([data-reminder-type]:not([data-reminder-type="medicine_time"]):not([data-reminder-type="appointment"]):not([data-reminder-type="occasion"]) [class*="menuIconicon"])::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Crect x='3.5' y='5' width='17' height='15.5' rx='2.5' stroke='black' stroke-width='1.8'/%3E%3Cpath d='M8 3.5v3.5M16 3.5v3.5M3.5 9.5h17' stroke='black' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Crect x='3.5' y='5' width='17' height='15.5' rx='2.5' stroke='black' stroke-width='1.8'/%3E%3Cpath d='M8 3.5v3.5M16 3.5v3.5M3.5 9.5h17' stroke='black' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* Label under icon */
+.host :global([class*="RadioGrop"] [class*="slotTargetChildren"] .__wab_text),
+.host :global([class*="RadioGrop"] [class*="slotTargetSlot"] .__wab_text),
+.host :global([class*="PlasmicRadioGrop"] .__wab_text),
+.host :global([class*="radioGropicon"] .__wab_text),
+.host :global([class*="text__kmQZi"]) {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: center !important;
+  color: var(--rc-ink) !important;
+  font-family: Vazirmatn, sans-serif !important;
+  font-size: 12.75px !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: clip !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  letter-spacing: -0.01em !important;
+}

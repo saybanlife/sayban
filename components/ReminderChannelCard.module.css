@@ -1,0 +1,165 @@
+/*
+ * Compact channel cards for Add Event step 3 (روش ارسال).
+ */
+
+.priceHint {
+  margin: 0 0 10px;
+  padding-inline: 4px;
+  padding-block: 0;
+  color: #6b7064;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: Vazirmatn, sans-serif;
+  text-align: right;
+  line-height: 1.45;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  height: 68px;
+  min-height: 68px;
+  max-height: 68px;
+  padding-block: 10px;
+  padding-inline: 14px;
+  box-sizing: border-box;
+  border-radius: 18px;
+  border: 1px solid #a3b18a;
+  background: #fdf9e8;
+  color: #1f2a0f;
+  font-family: Vazirmatn, sans-serif;
+  direction: rtl;
+}
+
+.card[data-selected="1"] {
+  background: #eef6d6;
+  border-width: 1.5px;
+  border-color: #86a04a;
+}
+
+.card[data-disabled="1"] {
+  opacity: 0.55;
+}
+
+.iconWrap {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(31, 42, 15, 0.06);
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.mid {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+}
+
+.name {
+  font-size: 14.5px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #1f2a0f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.freeChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #c8e6b0;
+  color: #2f5a1a;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+  padding-block: 1px;
+  padding-inline: 10px;
+}
+
+.priceText {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #6b7064;
+}
+
+.actionAdd {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  min-height: 36px;
+  padding-block: 0;
+  padding-inline: 12px;
+  border: none;
+  border-radius: 12px;
+  background: #6f8a3a;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.actionAdd:disabled {
+  cursor: default;
+  opacity: 0.65;
+}
+
+.actionRemove {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  background: #e2e6d2;
+  color: #6b7064;
+  cursor: pointer;
+}
+
+.actionRemove:disabled {
+  cursor: default;
+  opacity: 0.65;
+}
+
+.trash {
+  width: 18px;
+  height: 18px;
+  display: block;
+}

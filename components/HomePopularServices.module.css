@@ -1,0 +1,160 @@
+/* Horizontal “most used services” — project tokens, layout inspired by reference */
+
+.root {
+  --popular-gap: var(--token-LBC0X5IbL9bo, 0.75rem);
+  --popular-card-bg: color-mix(
+    in srgb,
+    var(--token--ieHgGbFH1Fa, #8fae55) 20%,
+    var(--token-h2xt7bB598yU, #ffffff)
+  );
+  --popular-label: var(--token-9M5jRUPt8Msb, #1a1a1a);
+  --popular-radius: var(--token-rfsFxiclAtek, 0.75rem);
+  --popular-icon-size: 3.25rem;
+
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  direction: rtl;
+  box-sizing: border-box;
+}
+
+.scroller {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: var(--popular-gap);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+  padding: 0.15rem 0 0.35rem;
+  box-sizing: border-box;
+
+  /* Hide scrollbar (keep scroll) */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.card {
+  appearance: none;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--token-I0Xtb9z7Q0X3, 0.5rem);
+  width: 5.5rem;
+  min-width: 5.5rem;
+  max-width: 6.25rem;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: var(--popular-label);
+  text-align: center;
+  scroll-snap-align: start;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.iconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: calc(var(--popular-radius) + 0.35rem);
+  background: linear-gradient(
+  to bottom,
+  var(--token-h2xt7bB598yU, #ffffff) 0%,
+  color-mix(in srgb, var(--token--ieHgGbFH1Fa, #8fae55) 20%, var(--token-h2xt7bB598yU, #ffffff)) 100%
+  );
+  box-shadow: 0px 2px 5px 0px #afa49166;
+  box-sizing: border-box;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.card:hover .iconBox,
+.card:focus-visible .iconBox {
+  transform: translateY(-1px);
+  box-shadow: 0px 4px 10px 0px #afa49188;
+}
+
+.card:focus-visible {
+  outline: none;
+}
+
+.card:focus-visible .iconBox {
+  outline: 2px solid color-mix(in srgb, var(--token--ieHgGbFH1Fa, #8fae55) 45%, white);
+  outline-offset: 2px;
+}
+
+.card:active .iconBox {
+  transform: scale(0.98);
+}
+
+.iconImg {
+  display: block;
+  width: var(--popular-icon-size);
+  height: var(--popular-icon-size);
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.iconSvg {
+  width: var(--popular-icon-size);
+  height: var(--popular-icon-size);
+  max-width: 100%;
+  color: var(--token-fr7DwvJwRjZb, #afa491);
+}
+
+.label {
+  width: 100%;
+  min-width: 0;
+  color: var(--popular-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.45;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+@media (min-width: 769px) {
+  .card {
+    width: 6rem;
+    min-width: 6rem;
+  }
+
+  .root {
+    --popular-icon-size: 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .root {
+    --popular-gap: var(--token-cfon0PHiXQoL, 0.5rem);
+    --popular-icon-size: 3rem;
+  }
+
+  .card {
+    width: 5.15rem;
+    min-width: 5.15rem;
+  }
+}

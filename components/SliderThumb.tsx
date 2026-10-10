@@ -4,11 +4,7 @@ import * as React from "react";
 import {
   PlasmicSliderThumb,
   DefaultSliderThumbProps
-<<<<<<< HEAD
-} from "./plasmic/website_starter/PlasmicSliderThumb";
-=======
 } from "./plasmic/sayban/PlasmicSliderThumb";
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 // Your component props start with props for variants and slots you defined
 // in Plasmic, but you can add more here, like event handlers that you can

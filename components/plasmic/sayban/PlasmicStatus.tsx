@@ -59,28 +59,78 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicStatus.module.css"; // plasmic-import: UhSHXabmHrQP/css
 
+import EditIcon from "../library_tabler_3_2_icons/icons/PlasmicIcon__Edit"; // plasmic-import: Q3Mz32feM0mm/icon
+
 createPlasmicElementProxy;
 
 export type PlasmicStatus__VariantMembers = {
-  status: "pending" | "confirmed" | "canceled";
+  status:
+    | "pending"
+    | "confirmed"
+    | "canceled"
+    | "rejected"
+    | "completed"
+    | "awaitingOffers"
+    | "offersReceived"
+    | "draft"
+    | "awaitingCenterContact"
+    | "awaitingPayment"
+    | "nurseSelected"
+    | "paymentCompleted"
+    | "userNoResponse"
+    | "underFinalReview"
+    | "readyForDispatch"
+    | "inProgress"
+    | "awaitingConsultation"
+    | "sentToCenters"
+    | "finalConfirmed"
+    | "serviceFinished"
+    | "refunded"
+    | "awaitingSupport";
+  textcolor: "textcolor";
+  edit: "edit";
 };
 export type PlasmicStatus__VariantsArgs = {
-  status?: SingleChoiceArg<"pending" | "confirmed" | "canceled">;
+  status?: SingleChoiceArg<
+    | "pending"
+    | "confirmed"
+    | "canceled"
+    | "rejected"
+    | "completed"
+    | "awaitingOffers"
+    | "offersReceived"
+    | "draft"
+    | "awaitingCenterContact"
+    | "awaitingPayment"
+    | "nurseSelected"
+    | "paymentCompleted"
+    | "userNoResponse"
+    | "underFinalReview"
+    | "readyForDispatch"
+    | "inProgress"
+    | "awaitingConsultation"
+    | "sentToCenters"
+    | "finalConfirmed"
+    | "serviceFinished"
+    | "refunded"
+    | "awaitingSupport"
+  >;
+  textcolor?: SingleBooleanChoiceArg<"textcolor">;
+  edit?: SingleBooleanChoiceArg<"edit">;
 };
 type VariantPropType = keyof PlasmicStatus__VariantsArgs;
-export const PlasmicStatus__VariantProps = new Array<VariantPropType>("status");
+export const PlasmicStatus__VariantProps = new Array<VariantPropType>(
+  "status",
+  "textcolor",
+  "edit"
+);
 
 export type PlasmicStatus__ArgsType = {};
 type ArgPropType = keyof PlasmicStatus__ArgsType;
@@ -89,10 +139,36 @@ export const PlasmicStatus__ArgProps = new Array<ArgPropType>();
 export type PlasmicStatus__OverridesType = {
   root?: Flex__<"div">;
   text?: Flex__<"div">;
+  svg?: Flex__<"svg">;
 };
 
 export interface DefaultStatusProps {
-  status?: SingleChoiceArg<"pending" | "confirmed" | "canceled">;
+  status?: SingleChoiceArg<
+    | "pending"
+    | "confirmed"
+    | "canceled"
+    | "rejected"
+    | "completed"
+    | "awaitingOffers"
+    | "offersReceived"
+    | "draft"
+    | "awaitingCenterContact"
+    | "awaitingPayment"
+    | "nurseSelected"
+    | "paymentCompleted"
+    | "userNoResponse"
+    | "underFinalReview"
+    | "readyForDispatch"
+    | "inProgress"
+    | "awaitingConsultation"
+    | "sentToCenters"
+    | "finalConfirmed"
+    | "serviceFinished"
+    | "refunded"
+    | "awaitingSupport"
+  >;
+  textcolor?: SingleBooleanChoiceArg<"textcolor">;
+  edit?: SingleBooleanChoiceArg<"edit">;
   className?: string;
 }
 
@@ -142,6 +218,32 @@ function PlasmicStatus__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.status
+      },
+      {
+        path: "textcolor",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.textcolor
+      },
+      {
+        path: "unnamedGroupOfVariants",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $props.unnamedGroupOfVariants
+      },
+      {
+        path: "unnamedGroupOfVariants2",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $props.unnamedGroupOfVariants2
+      },
+      {
+        path: "edit",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.edit
       }
     ],
     [$props, $ctx, $refs]
@@ -171,9 +273,90 @@ function PlasmicStatus__RenderFunc(props: {
         styleTokensClassNames,
         sty.root,
         {
+          [sty.rootedit]: hasVariant($state, "edit", "edit"),
+          [sty.rootstatus_awaitingCenterContact]: hasVariant(
+            $state,
+            "status",
+            "awaitingCenterContact"
+          ),
+          [sty.rootstatus_awaitingOffers]: hasVariant(
+            $state,
+            "status",
+            "awaitingOffers"
+          ),
+          [sty.rootstatus_awaitingPayment]: hasVariant(
+            $state,
+            "status",
+            "awaitingPayment"
+          ),
           [sty.rootstatus_canceled]: hasVariant($state, "status", "canceled"),
+          [sty.rootstatus_completed]: hasVariant($state, "status", "completed"),
+          [sty.rootstatus_completed_edit]:
+            hasVariant($state, "status", "completed") &&
+            hasVariant($state, "edit", "edit"),
           [sty.rootstatus_confirmed]: hasVariant($state, "status", "confirmed"),
-          [sty.rootstatus_pending]: hasVariant($state, "status", "pending")
+          [sty.rootstatus_draft]: hasVariant($state, "status", "draft"),
+          [sty.rootstatus_finalConfirmed]: hasVariant(
+            $state,
+            "status",
+            "finalConfirmed"
+          ),
+          [sty.rootstatus_inProgress]: hasVariant(
+            $state,
+            "status",
+            "inProgress"
+          ),
+          [sty.rootstatus_nurseSelected]: hasVariant(
+            $state,
+            "status",
+            "nurseSelected"
+          ),
+          [sty.rootstatus_offersReceived]: hasVariant(
+            $state,
+            "status",
+            "offersReceived"
+          ),
+          [sty.rootstatus_paymentCompleted]: hasVariant(
+            $state,
+            "status",
+            "paymentCompleted"
+          ),
+          [sty.rootstatus_pending]: hasVariant($state, "status", "pending"),
+          [sty.rootstatus_readyForDispatch]: hasVariant(
+            $state,
+            "status",
+            "readyForDispatch"
+          ),
+          [sty.rootstatus_refunded]: hasVariant($state, "status", "refunded"),
+          [sty.rootstatus_rejected]: hasVariant($state, "status", "rejected"),
+          [sty.rootstatus_rejected_textcolor]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "rejected"),
+          [sty.rootstatus_serviceFinished]: hasVariant(
+            $state,
+            "status",
+            "serviceFinished"
+          ),
+          [sty.rootstatus_underFinalReview]: hasVariant(
+            $state,
+            "status",
+            "underFinalReview"
+          ),
+          [sty.roottextcolor_status_awaitingOffers]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "awaitingOffers"),
+          [sty.roottextcolor_status_canceled]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "canceled"),
+          [sty.roottextcolor_status_confirmed]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "confirmed"),
+          [sty.roottextcolor_status_pending]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "pending"),
+          [sty.roottextcolor_status_underFinalReview]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "underFinalReview")
         }
       )}
     >
@@ -181,24 +364,201 @@ function PlasmicStatus__RenderFunc(props: {
         data-plasmic-name={"text"}
         data-plasmic-override={overrides.text}
         className={classNames("all", "__wab_text", sty.text, {
+          [sty.textedit]: hasVariant($state, "edit", "edit"),
+          [sty.textstatus_awaitingCenterContact]: hasVariant(
+            $state,
+            "status",
+            "awaitingCenterContact"
+          ),
+          [sty.textstatus_awaitingConsultation]: hasVariant(
+            $state,
+            "status",
+            "awaitingConsultation"
+          ),
+          [sty.textstatus_awaitingOffers]: hasVariant(
+            $state,
+            "status",
+            "awaitingOffers"
+          ),
+          [sty.textstatus_awaitingPayment]: hasVariant(
+            $state,
+            "status",
+            "awaitingPayment"
+          ),
+          [sty.textstatus_awaitingSupport]: hasVariant(
+            $state,
+            "status",
+            "awaitingSupport"
+          ),
           [sty.textstatus_canceled]: hasVariant($state, "status", "canceled"),
+          [sty.textstatus_completed]: hasVariant($state, "status", "completed"),
           [sty.textstatus_confirmed]: hasVariant($state, "status", "confirmed"),
-          [sty.textstatus_pending]: hasVariant($state, "status", "pending")
+          [sty.textstatus_draft]: hasVariant($state, "status", "draft"),
+          [sty.textstatus_finalConfirmed]: hasVariant(
+            $state,
+            "status",
+            "finalConfirmed"
+          ),
+          [sty.textstatus_inProgress]: hasVariant(
+            $state,
+            "status",
+            "inProgress"
+          ),
+          [sty.textstatus_nurseSelected]: hasVariant(
+            $state,
+            "status",
+            "nurseSelected"
+          ),
+          [sty.textstatus_offersReceived]: hasVariant(
+            $state,
+            "status",
+            "offersReceived"
+          ),
+          [sty.textstatus_paymentCompleted]: hasVariant(
+            $state,
+            "status",
+            "paymentCompleted"
+          ),
+          [sty.textstatus_pending]: hasVariant($state, "status", "pending"),
+          [sty.textstatus_readyForDispatch]: hasVariant(
+            $state,
+            "status",
+            "readyForDispatch"
+          ),
+          [sty.textstatus_refunded]: hasVariant($state, "status", "refunded"),
+          [sty.textstatus_rejected]: hasVariant($state, "status", "rejected"),
+          [sty.textstatus_rejected_textcolor]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "rejected"),
+          [sty.textstatus_sentToCenters]: hasVariant(
+            $state,
+            "status",
+            "sentToCenters"
+          ),
+          [sty.textstatus_serviceFinished]: hasVariant(
+            $state,
+            "status",
+            "serviceFinished"
+          ),
+          [sty.textstatus_underFinalReview]: hasVariant(
+            $state,
+            "status",
+            "underFinalReview"
+          ),
+          [sty.textstatus_userNoResponse]: hasVariant(
+            $state,
+            "status",
+            "userNoResponse"
+          ),
+          [sty.texttextcolor_status_awaitingOffers]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "awaitingOffers"),
+          [sty.texttextcolor_status_canceled]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "canceled"),
+          [sty.texttextcolor_status_confirmed]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "confirmed"),
+          [sty.texttextcolor_status_pending]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "pending"),
+          [sty.texttextcolor_status_underFinalReview]:
+            hasVariant($state, "textcolor", "textcolor") &&
+            hasVariant($state, "status", "underFinalReview")
         })}
       >
-        {hasVariant($state, "status", "canceled")
-          ? "\u0644\u063a\u0648 \u0634\u062f\u0647"
-          : hasVariant($state, "status", "confirmed")
-            ? "\u062a\u0623\u06cc\u06cc\u062f \u0634\u062f\u0647"
-            : "\u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0627\u06cc\u06cc\u062f"}
+        {hasVariant($state, "status", "awaitingSupport")
+          ? "\u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc"
+          : hasVariant($state, "status", "refunded")
+            ? "\u0639\u0648\u062f\u062a \u0648\u062c\u0647"
+            : hasVariant($state, "status", "serviceFinished")
+              ? "\u062e\u062f\u0645\u062a \u067e\u0627\u06cc\u0627\u0646 \u06cc\u0627\u0641\u062a"
+              : hasVariant($state, "status", "finalConfirmed")
+                ? "\u062a\u0627\u06cc\u06cc\u062f \u0646\u0647\u0627\u06cc\u06cc \u0634\u062f\u0647"
+                : hasVariant($state, "status", "sentToCenters")
+                  ? "\u0627\u0631\u0633\u0627\u0644\u200c\u0634\u062f\u0647 \u0628\u0647 \u0645\u0631\u0627\u06a9\u0632"
+                  : hasVariant($state, "status", "awaitingConsultation")
+                    ? "\u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u0645\u0634\u0627\u0648\u0631\u0647"
+                    : hasVariant($state, "status", "inProgress")
+                      ? "\u062e\u062f\u0645\u062a \u062f\u0631 \u062d\u0627\u0644 \u0627\u0646\u062c\u0627\u0645"
+                      : hasVariant($state, "status", "readyForDispatch")
+                        ? "\u0622\u0645\u0627\u062f\u0647 \u0627\u0639\u0632\u0627\u0645"
+                        : hasVariant($state, "status", "underFinalReview")
+                          ? "\u062f\u0631 \u062d\u0627\u0644 \u0628\u0631\u0631\u0633\u06cc \u0646\u0647\u0627\u06cc\u06cc"
+                          : hasVariant($state, "status", "userNoResponse")
+                            ? "\u06a9\u0627\u0631\u0628\u0631 \u067e\u0627\u0633\u062e \u0646\u062f\u0627\u062f"
+                            : hasVariant($state, "status", "paymentCompleted")
+                              ? "\u0647\u0632\u06cc\u0646\u0647 \u067e\u0631\u062f\u0627\u062e\u062a \u0634\u062f"
+                              : hasVariant($state, "status", "nurseSelected")
+                                ? "\u067e\u0631\u0633\u062a\u0627\u0631 \u0627\u0646\u062a\u062e\u0627\u0628 \u0634\u062f"
+                                : hasVariant(
+                                      $state,
+                                      "status",
+                                      "awaitingPayment"
+                                    )
+                                  ? "\u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u067e\u0631\u062f\u0627\u062e\u062a"
+                                  : hasVariant(
+                                        $state,
+                                        "status",
+                                        "awaitingCenterContact"
+                                      )
+                                    ? "\u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0645\u0627\u0633 \u0645\u0631\u06a9\u0632"
+                                    : hasVariant($state, "status", "draft")
+                                      ? "\u067e\u06cc\u0634\u200c\u0646\u0648\u06cc\u0633"
+                                      : hasVariant(
+                                            $state,
+                                            "status",
+                                            "offersReceived"
+                                          )
+                                        ? "\u067e\u06cc\u0634\u0646\u0647\u0627\u062f \u062f\u0631\u06cc\u0627\u0641\u062a \u0634\u062f"
+                                        : hasVariant(
+                                              $state,
+                                              "status",
+                                              "awaitingOffers"
+                                            )
+                                          ? "\u062f\u0631 \u062d\u0627\u0644 \u062c\u0633\u062a\u062c\u0648 \u067e\u0631\u0633\u062a\u0627\u0631"
+                                          : hasVariant(
+                                                $state,
+                                                "status",
+                                                "completed"
+                                              )
+                                            ? "\u062a\u06a9\u0645\u06cc\u0644 \u0634\u062f\u0647"
+                                            : hasVariant(
+                                                  $state,
+                                                  "status",
+                                                  "rejected"
+                                                )
+                                              ? "\u0631\u062f \u0634\u062f\u0647"
+                                              : hasVariant(
+                                                    $state,
+                                                    "status",
+                                                    "canceled"
+                                                  )
+                                                ? "\u0644\u063a\u0648 \u0634\u062f\u0647"
+                                                : hasVariant(
+                                                      $state,
+                                                      "status",
+                                                      "confirmed"
+                                                    )
+                                                  ? "\u062a\u0623\u06cc\u06cc\u062f \u0634\u062f\u0647"
+                                                  : "\u062f\u0631 \u0627\u0646\u062a\u0638\u0627\u0631 \u062a\u0627\u06cc\u06cc\u062f"}
       </div>
+      <EditIcon
+        data-plasmic-name={"svg"}
+        data-plasmic-override={overrides.svg}
+        className={classNames("all", sty.svg, {
+          [sty.svgedit]: hasVariant($state, "edit", "edit")
+        })}
+        role={"img"}
+      />
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "text"],
-  text: ["text"]
+  root: ["root", "text", "svg"],
+  text: ["text"],
+  svg: ["svg"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -206,6 +566,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   text: "div";
+  svg: "svg";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -271,6 +632,7 @@ export const PlasmicStatus = Object.assign(
   {
     // Helper components rendering sub-elements
     text: makeNodeComponent("text"),
+    svg: makeNodeComponent("svg"),
 
     // Metadata about props expected for PlasmicStatus
     internalVariantProps: PlasmicStatus__VariantProps,

@@ -60,52 +60,81 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { AntdSelect } from "@plasmicpkgs/antd5/skinny/registerSelect";
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: TUk6VD6AhbGJ/codeComponent
+import CheckboxGroup from "../../CheckboxGroup"; // plasmic-import: -LTmesN9vMxo/component
+import Check from "../../Check"; // plasmic-import: jHhGioxaI9lI/component
+import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
+import Dialog from "../../Dialog"; // plasmic-import: AoPc4Hy8St02/component
+import AddTags from "../../AddTags"; // plasmic-import: u73vHai14kpP/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicTags.module.css"; // plasmic-import: Lr-0_vYS3Xmt/css
 
+import PlusIcon from "./icons/PlasmicIcon__Plus"; // plasmic-import: W7l2-ibgsqkr/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
+
 createPlasmicElementProxy;
 
 export type PlasmicTags__VariantMembers = {
   lable: "lable";
+  disabel: "disabel";
+  normal: "normal";
 };
 export type PlasmicTags__VariantsArgs = {
   lable?: SingleBooleanChoiceArg<"lable">;
+  disabel?: SingleBooleanChoiceArg<"disabel">;
+  normal?: SingleBooleanChoiceArg<"normal">;
 };
 type VariantPropType = keyof PlasmicTags__VariantsArgs;
-export const PlasmicTags__VariantProps = new Array<VariantPropType>("lable");
+export const PlasmicTags__VariantProps = new Array<VariantPropType>(
+  "lable",
+  "disabel",
+  "normal"
+);
 
 export type PlasmicTags__ArgsType = {
   select3Value?: string;
   onSelect3ValueChange?: (val: string) => void;
   tagsitem?: any;
+  tags2?: any;
+  onTagsChange?: (val: any) => void;
 };
 type ArgPropType = keyof PlasmicTags__ArgsType;
 export const PlasmicTags__ArgProps = new Array<ArgPropType>(
   "select3Value",
   "onSelect3ValueChange",
-  "tagsitem"
+  "tagsitem",
+  "tags2",
+  "onTagsChange"
 );
 
 export type PlasmicTags__OverridesType = {
   root?: Flex__<"div">;
-  text?: Flex__<"div">;
   tags?: Flex__<typeof AntdSelect>;
+  apiRequest?: Flex__<typeof ApiRequest>;
+  checkboxGroup?: Flex__<typeof CheckboxGroup>;
+  check?: Flex__<typeof Check>;
+  button?: Flex__<typeof Button>;
+  svg?: Flex__<"svg">;
+  dialog?: Flex__<typeof Dialog>;
+  addTags?: Flex__<typeof AddTags>;
+  button3?: Flex__<typeof Button>;
+  button2?: Flex__<typeof Button>;
 };
 
 export interface DefaultTagsProps {
   select3Value?: string;
   onSelect3ValueChange?: (val: string) => void;
   tagsitem?: any;
+  tags2?: any;
+  onTagsChange?: (val: any) => void;
   lable?: SingleBooleanChoiceArg<"lable">;
+  disabel?: SingleBooleanChoiceArg<"disabel">;
+  normal?: SingleBooleanChoiceArg<"normal">;
   className?: string;
 }
 
@@ -163,10 +192,115 @@ function PlasmicTags__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.lable
+      },
+      {
+        path: "disabel",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.disabel
+      },
+      {
+        path: "checkboxGroup.value",
+        type: "writable",
+        variableType: "array",
+
+        valueProp: "tags2",
+        onChangeProp: "onTagsChange"
+      },
+      {
+        path: "check[].isSelected",
+        type: "private",
+        variableType: "boolean"
+      },
+      {
+        path: "normal",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.normal
+      },
+      {
+        path: "button.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "addTags.servises",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
+      },
+      {
+        path: "button3.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "button2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "refresh",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "apiRequest.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "apiRequest.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "apiRequest.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "dialog.opendialog",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "addTags.nameValue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "addTags.textInputValue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "addTags.textInput2Value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
+      },
+      {
+        path: "addTags.tag",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
   );
+
+  const $globalActions = useGlobalActions?.();
 
   const $state = useDollarState(stateSpecs, {
     $props,
@@ -191,14 +325,15 @@ function PlasmicTags__RenderFunc(props: {
         "plasmic_mixins",
         styleTokensClassNames,
         sty.root,
-        { [sty.rootlable]: hasVariant($state, "lable", "lable") }
+        {
+          [sty.rootlable]: hasVariant($state, "lable", "lable"),
+          [sty.rootnormal]: hasVariant($state, "normal", "normal")
+        }
       )}
     >
       <div
-        data-plasmic-name={"text"}
-        data-plasmic-override={overrides.text}
-        className={classNames("all", "__wab_text", sty.text, {
-          [sty.textlable]: hasVariant($state, "lable", "lable")
+        className={classNames("all", "__wab_text", sty.text__g8KuA, {
+          [sty.textlable__g8KuAoSbzw]: hasVariant($state, "lable", "lable")
         })}
       >
         {"\u062a\u06af \u0647\u0627"}
@@ -206,13 +341,20 @@ function PlasmicTags__RenderFunc(props: {
       <AntdSelect
         data-plasmic-name={"tags"}
         data-plasmic-override={overrides.tags}
-        className={classNames("__wab_instance", sty.tags)}
+        allowClear={false}
+        autoFocus={false}
+        bordered={true}
+        className={classNames("__wab_instance", sty.tags, {
+          [sty.tagsdisabel]: hasVariant($state, "disabel", "disabel")
+        })}
+        defaultOpen={false}
         defaultStylesClassName={classNames(
           "root_reset_qARqpE4p5tZmJuNxFbTaPz",
           "plasmic_default_styles",
           "plasmic_mixins",
           styleTokensClassNames
         )}
+        disabled={hasVariant($state, "disabel", "disabel") ? true : undefined}
         mode={"tags"}
         onChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["tags", "value"]).apply(
@@ -238,24 +380,651 @@ function PlasmicTags__RenderFunc(props: {
         })()}
         placeholder={"\u062a\u06af \u0647\u0627"}
         popupScopeClassName={sty["tags__popup"]}
+        size={"middle"}
         value={generateStateValueProp($state, ["tags", "value"])}
       />
+
+      <div className={classNames("all", sty.freeBox__dLwsm)}>
+        <div className={classNames("all", sty.freeBox___0W3Xu)}>
+          <ApiRequest
+            data-plasmic-name={"apiRequest"}
+            data-plasmic-override={overrides.apiRequest}
+            className={classNames("__wab_instance", sty.apiRequest)}
+            errorDisplay={
+              <div className={classNames("all", "__wab_text", sty.text__fA2Kk)}>
+                {"Error fetching data"}
+              </div>
+            }
+            loadingDisplay={
+              <div className={classNames("all", sty.freeBox__gomYt)}>
+                {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                  (() => {
+                    try {
+                      return [2, 3, 4, 5, , 6, 7];
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()
+                ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                  const currentItem = __plasmic_item_0;
+                  const currentIndex = __plasmic_idx_0;
+                  return (
+                    <div
+                      className={classNames(
+                        "all",
+                        sty.freeBox__dS4QL,
+                        "shimmer"
+                      )}
+                      key={currentIndex}
+                    />
+                  );
+                })}
+              </div>
+            }
+            method={"GET"}
+            onError={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            onLoading={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "apiRequest",
+                "loading"
+              ]).apply(null, eventArgs);
+            }}
+            onSuccess={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            params={{
+              r: $state.refresh
+            }}
+            shouldFetch={true}
+            url={"get/tags"}
+          >
+            <div className={classNames("all", sty.freeBox___521Ja)}>
+              <CheckboxGroup
+                data-plasmic-name={"checkboxGroup"}
+                data-plasmic-override={overrides.checkboxGroup}
+                className={classNames("__wab_instance", sty.checkboxGroup, {
+                  [sty.checkboxGroupnormal]: hasVariant(
+                    $state,
+                    "normal",
+                    "normal"
+                  )
+                })}
+                label={null}
+                onChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "checkboxGroup",
+                    "value"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                options={
+                  <div className={classNames("all", sty.freeBox__lir9U)}>
+                    {(_par =>
+                      !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                      (() => {
+                        try {
+                          return $state.apiRequest.data.result.map(i => ({
+                            label: i.name,
+                            value: i.id
+                          }));
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()
+                    ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                      const currentItem = __plasmic_item_0;
+                      const currentIndex = __plasmic_idx_0;
+                      return (() => {
+                        const child$Props = {
+                          className: classNames("__wab_instance", sty.check),
+                          isSelected: generateStateValueProp($state, [
+                            "check",
+                            __plasmic_idx_0,
+                            "isSelected"
+                          ]),
+                          key: currentIndex,
+                          label: (
+                            <div
+                              className={classNames(
+                                "all",
+                                "__wab_text",
+                                sty.text__tfHzb
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return currentItem.label;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "Option";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
+                            </div>
+                          ),
+                          onChange: async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "check",
+                              __plasmic_idx_0,
+                              "isSelected"
+                            ]).apply(null, eventArgs);
+
+                            if (
+                              eventArgs.length > 1 &&
+                              eventArgs[1] &&
+                              eventArgs[1]._plasmic_state_init_
+                            ) {
+                              return;
+                            }
+                          },
+                          tag: true,
+                          value: (() => {
+                            try {
+                              return currentItem.value;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        };
+
+                        initializePlasmicStates(
+                          $state,
+                          [
+                            {
+                              name: "check[].isSelected",
+                              initFunc: ({ $props, $state, $queries, $q }) =>
+                                false
+                            }
+                          ],
+                          [__plasmic_idx_0]
+                        );
+                        return (
+                          <Check
+                            data-plasmic-name={"check"}
+                            data-plasmic-override={overrides.check}
+                            {...child$Props}
+                          />
+                        );
+                      })();
+                    })}
+                    <div
+                      className={classNames("all", sty.freeBox___2DtNu, {
+                        [sty.freeBoxnormal___2DtNUmeJm0]: hasVariant(
+                          $state,
+                          "normal",
+                          "normal"
+                        )
+                      })}
+                    />
+                  </div>
+                }
+                showLabel={false}
+                value={generateStateValueProp($state, [
+                  "checkboxGroup",
+                  "value"
+                ])}
+              />
+            </div>
+          </ApiRequest>
+        </div>
+        <div className={classNames("all", sty.freeBox__td73F)}>
+          <div className={classNames("all", "__wab_text", sty.text__vlYiK)}>
+            <React.Fragment>{`${$state.checkboxGroup?.value?.length || 0} تگ انتخاب شده`}</React.Fragment>
+          </div>
+          <Button
+            data-plasmic-name={"button"}
+            data-plasmic-override={overrides.button}
+            className={classNames("__wab_instance", sty.button, {
+              [sty.buttonlable]: hasVariant($state, "lable", "lable"),
+              [sty.buttonnormal]: hasVariant($state, "normal", "normal")
+            })}
+            color={"success"}
+            iconStart={true}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__dqNZo)}>
+                {
+                  "\u0627\u0641\u0632\u0648\u062f\u0646 \u062a\u06af \u062c\u062f\u06cc\u062f"
+                }
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return ($state.dialog.opendialog = true);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            start={
+              <PlusIcon
+                data-plasmic-name={"svg"}
+                data-plasmic-override={overrides.svg}
+                className={classNames("all", sty.svg)}
+                role={"img"}
+              />
+            }
+          />
+        </div>
+      </div>
+      <Dialog
+        data-plasmic-name={"dialog"}
+        data-plasmic-override={overrides.dialog}
+        className={classNames("__wab_instance", sty.dialog)}
+        onOpendialogChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog", "opendialog"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        opendialog={generateStateValueProp($state, ["dialog", "opendialog"])}
+      >
+        <AddTags
+          data-plasmic-name={"addTags"}
+          data-plasmic-override={overrides.addTags}
+          className={classNames("__wab_instance", sty.addTags)}
+          nameValue={generateStateValueProp($state, ["addTags", "nameValue"])}
+          onNameValueChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["addTags", "nameValue"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onServisesChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["addTags", "servises"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onTagChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["addTags", "tag"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onTextInput2ValueChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "addTags",
+              "textInput2Value"
+            ]).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          onTextInputValueChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "addTags",
+              "textInputValue"
+            ]).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          servises={generateStateValueProp($state, ["addTags", "servises"])}
+          tag={generateStateValueProp($state, ["addTags", "tag"])}
+          textInput2Value={generateStateValueProp($state, [
+            "addTags",
+            "textInput2Value"
+          ])}
+          textInputValue={generateStateValueProp($state, [
+            "addTags",
+            "textInputValue"
+          ])}
+        />
+
+        <div className={classNames("all", sty.freeBox__smOps)}>
+          <Button
+            data-plasmic-name={"button3"}
+            data-plasmic-override={overrides.button3}
+            className={classNames("__wab_instance", sty.button3)}
+            color={"success"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__ran7D)}>
+                {"\u0630\u062e\u06cc\u0631\u0647"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button3", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateButtonLoading"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["button3", "loading"]
+                      },
+                      operation: 4,
+                      value: false
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      const oldValue = $stateGet(objRoot, variablePath);
+                      $stateSet(objRoot, variablePath, !oldValue);
+                      return !oldValue;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateButtonLoading"] != null &&
+                typeof $steps["updateButtonLoading"] === "object" &&
+                typeof $steps["updateButtonLoading"].then === "function"
+              ) {
+                $steps["updateButtonLoading"] =
+                  await $steps["updateButtonLoading"];
+              }
+
+              $steps["invokeGlobalAction"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "/insert/tags",
+                        undefined,
+                        {
+                          tags: [$state.addTags.tag]
+                        }
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+
+              $steps["invokeGlobalAction2"] = $steps.invokeGlobalAction?.data
+                ?.success
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "success",
+                        "\u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0636\u0627\u0641\u0647 \u0634\u062f.",
+                        "top-center"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction2"] != null &&
+                typeof $steps["invokeGlobalAction2"] === "object" &&
+                typeof $steps["invokeGlobalAction2"].then === "function"
+              ) {
+                $steps["invokeGlobalAction2"] =
+                  await $steps["invokeGlobalAction2"];
+              }
+
+              $steps["runCode"] = $steps.invokeGlobalAction?.data?.success
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.addTags.tag = {};
+                          $state.addTags.textInput2Value = "";
+                          $state.addTags.textInputValue = "";
+                          $state.addTags.nameValue = "";
+                          $state.button3.loading = false;
+                          $state.dialog.opendialog = false;
+                          return ($state.refresh += "1");
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button3", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+            size={"extraLarge"}
+          />
+
+          <Button
+            data-plasmic-name={"button2"}
+            data-plasmic-override={overrides.button2}
+            className={classNames("__wab_instance", sty.button2)}
+            color={"neutral"}
+            label={
+              <div className={classNames("all", "__wab_text", sty.text__mTivq)}>
+                {"\u0628\u0633\u062a\u0646"}
+              </div>
+            }
+            loading={generateStateValueProp($state, ["button2", "loading"])}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          $state.addTags.tag = {};
+                          $state.addTags.textInput2Value = "";
+                          $state.addTags.textInputValue = "";
+                          $state.addTags.nameValue = "";
+                          return ($state.dialog.opendialog = false);
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+            }}
+            onLoadingChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["button2", "loading"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </div>
+      </Dialog>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "text", "tags"],
-  text: ["text"],
-  tags: ["tags"]
+  root: [
+    "root",
+    "tags",
+    "apiRequest",
+    "checkboxGroup",
+    "check",
+    "button",
+    "svg",
+    "dialog",
+    "addTags",
+    "button3",
+    "button2"
+  ],
+  tags: ["tags"],
+  apiRequest: ["apiRequest", "checkboxGroup", "check"],
+  checkboxGroup: ["checkboxGroup", "check"],
+  check: ["check"],
+  button: ["button", "svg"],
+  svg: ["svg"],
+  dialog: ["dialog", "addTags", "button3", "button2"],
+  addTags: ["addTags"],
+  button3: ["button3"],
+  button2: ["button2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  text: "div";
   tags: typeof AntdSelect;
+  apiRequest: typeof ApiRequest;
+  checkboxGroup: typeof CheckboxGroup;
+  check: typeof Check;
+  button: typeof Button;
+  svg: "svg";
+  dialog: typeof Dialog;
+  addTags: typeof AddTags;
+  button3: typeof Button;
+  button2: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -320,8 +1089,16 @@ export const PlasmicTags = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    text: makeNodeComponent("text"),
     tags: makeNodeComponent("tags"),
+    apiRequest: makeNodeComponent("apiRequest"),
+    checkboxGroup: makeNodeComponent("checkboxGroup"),
+    check: makeNodeComponent("check"),
+    button: makeNodeComponent("button"),
+    svg: makeNodeComponent("svg"),
+    dialog: makeNodeComponent("dialog"),
+    addTags: makeNodeComponent("addTags"),
+    button3: makeNodeComponent("button3"),
+    button2: makeNodeComponent("button2"),
 
     // Metadata about props expected for PlasmicTags
     internalVariantProps: PlasmicTags__VariantProps,

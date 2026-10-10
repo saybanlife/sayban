@@ -63,25 +63,15 @@ import TextInput from "../../TextInput"; // plasmic-import: lMgENIWzjnK0/compone
 import Hide from "../../Hide"; // plasmic-import: 6tyxrSjs9tps/component
 import Check from "../../Check"; // plasmic-import: jHhGioxaI9lI/component
 import Button from "../../Button"; // plasmic-import: 2MRRFY7jUAge/component
-<<<<<<< HEAD
-import { _useGlobalVariants } from "../website_starter/plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
-import { _useStyleTokens } from "../website_starter/PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
-=======
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: qARqpE4p5tZmJuNxFbTaPz/styleTokensProvider
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import sty from "./PlasmicLogin2.module.css"; // plasmic-import: e-nYBMaX6lLd/css
 
-<<<<<<< HEAD
-import CircleIcon from "../website_starter/icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
-import ChevronDownIcon from "../website_starter/icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
-=======
 import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: 4RgfxZWAffAT/icon
 import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cDVOBX0F9d9g/icon
->>>>>>> plasmicops/rQ6tUgoS/newMain
 
 createPlasmicElementProxy;
 
@@ -218,7 +208,7 @@ function PlasmicLogin2__RenderFunc(props: {
         path: "age",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 0
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 5
       }
     ],
     [$props, $ctx, $refs]
@@ -282,7 +272,9 @@ function PlasmicLogin2__RenderFunc(props: {
             return;
           }
         }}
-        placeholder={"\u0646\u0627\u0645 \u06a9\u0627\u0631\u0628\u0631\u06cc"}
+        placeholder={
+          "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u06cc\u0627 \u0627\u06cc\u0645\u06cc\u0644 \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"
+        }
         size={"langh"}
         type={"soft"}
         value={generateStateValueProp($state, ["userName", "value"])}
@@ -320,7 +312,9 @@ function PlasmicLogin2__RenderFunc(props: {
               return;
             }
           }}
-          placeholder={"\u0631\u0645\u0632 \u0639\u0628\u0648\u0631"}
+          placeholder={
+            "\u0631\u0645\u0632 \u0639\u0628\u0648\u0631 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"
+          }
           size={"langh"}
           type={"soft"}
           value={generateStateValueProp($state, ["password", "value"])}
@@ -558,7 +552,7 @@ function PlasmicLogin2__RenderFunc(props: {
                 const actionArgs = {
                   args: [
                     "POST",
-                    "https://sayban.darkube.ir/webhook/panel/user/login",
+                    "/panel/user/login",
                     undefined,
                     {
                       userName: $state.userName.value,
@@ -656,6 +650,40 @@ function PlasmicLogin2__RenderFunc(props: {
             typeof $steps["updateUserinfo"].then === "function"
           ) {
             $steps["updateUserinfo"] = await $steps["updateUserinfo"];
+          }
+
+          $steps["invokeGlobalAction2"] = $steps.loginApi?.data?.message
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    $steps.loginApi?.data?.success ? "success" : "error",
+                    (() => {
+                      try {
+                        return $steps.loginApi?.data?.message;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })(),
+                    "top-left"
+                  ]
+                };
+                return $globalActions["Fragment.showToast"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["invokeGlobalAction2"] != null &&
+            typeof $steps["invokeGlobalAction2"] === "object" &&
+            typeof $steps["invokeGlobalAction2"].then === "function"
+          ) {
+            $steps["invokeGlobalAction2"] = await $steps["invokeGlobalAction2"];
           }
 
           $steps["loading2"] = true

@@ -1,0 +1,227 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+}
+
+.label {
+  font-size: 0.85rem;
+  color: var(--token-C6B6ZAuqICKE, #1a1a1a);
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--token-fr7DwvJwRjZb, #c5c0b4) 70%, transparent);
+  border-radius: 12px;
+  background: var(--token-W0eejbtvb0xw, var(--panel-bg-elevated, #fff));
+  font: inherit;
+  color: var(--token-9M5jRUPt8Msb, var(--panel-text, inherit));
+  cursor: pointer;
+  text-align: right;
+  direction: rtl;
+}
+
+.trigger:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.triggerIcon,
+.triggerChevron {
+  display: inline-flex;
+  color: var(--token-KjATzAYJ5IB7, var(--panel-text-muted, #6b7280));
+  flex-shrink: 0;
+}
+
+.triggerValue,
+.triggerPlaceholder {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.95rem;
+}
+
+.triggerPlaceholder {
+  color: #9ca3af;
+}
+
+.triggerForm {
+  min-height: 3rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid #d1c7b7;
+  border-radius: 1.35rem;
+  background: #fff;
+  color: #1a2212;
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.7;
+  box-shadow: none;
+}
+
+.triggerForm .triggerValue {
+  font-weight: 500;
+  color: #1a2212;
+}
+
+.triggerForm .triggerPlaceholder {
+  color: #a39a8c;
+}
+
+.triggerForm:focus-visible {
+  outline: none;
+  border-color: #9caf72;
+  box-shadow: 0 0 0 1px color-mix(in srgb, #9caf72 35%, transparent);
+}
+
+.sheet {
+  width: min(100%, 360px);
+  margin: 0 auto;
+  padding: 8px 4px 4px;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--token-9M5jRUPt8Msb, var(--panel-text, #1f2937));
+}
+
+.iconBtn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.monthNav {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  gap: 4px;
+  margin: 4px 0 12px;
+}
+
+.monthLabel {
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--token-9M5jRUPt8Msb, var(--panel-text, #111827));
+}
+
+.navBtn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  font-size: 1.35rem;
+  color: var(--token-KjATzAYJ5IB7, var(--panel-text-muted, #374151));
+  cursor: pointer;
+}
+
+.navBtn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 6px;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #9ca3af;
+  padding: 4px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px 2px;
+}
+
+.empty {
+  aspect-ratio: 1;
+}
+
+.day {
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  color: var(--token-9M5jRUPt8Msb, var(--panel-text, #111827));
+  cursor: pointer;
+}
+
+.dayToday {
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--token-ee2TuxDknsJj, #0f6b5c) 55%, transparent);
+}
+
+.daySelected {
+  background: var(--token-ee2TuxDknsJj, #0f6b5c);
+  color: #fff;
+  font-weight: 700;
+}
+
+.dayDisabled {
+  color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.cancelBtn,
+.confirmBtn {
+  min-height: 44px;
+  border-radius: 12px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cancelBtn {
+  background: var(--token-W0eejbtvb0xw, var(--panel-bg-elevated, #fff));
+  color: var(--token-ee2TuxDknsJj, #0f6b5c);
+  border: 1.5px solid var(--token-ee2TuxDknsJj, #0f6b5c);
+}
+
+.confirmBtn {
+  background: var(--token-ee2TuxDknsJj, #0f6b5c);
+  color: #fff;
+  border: 1.5px solid var(--token-ee2TuxDknsJj, #0f6b5c);
+}
+
+.confirmBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
